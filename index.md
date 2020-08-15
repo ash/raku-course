@@ -2,54 +2,54 @@
 
 ## Basic introduction to Raku and its compiler
 
-### How to install Rakudo
+* How to install Rakudo
 
-### How to run it from console or from a web service such as glot.io
+* How to run it from console or from a web service such as glot.io
 
-### Notes on using Unicode
+* Notes on using Unicode
 
-### Simple input and output
+* Simple input and output
 
 
 ## Running Raku
 
-### Command-line options
+* Command-line options
 
-### Phasers
+* Phasers
 
-### Understanding error messages
+* Understanding error messages
 
-### The MAIN subroutine
+* The MAIN subroutine
 
 
 ## Variables and data types
 
-### Types of variable containers in Raku (scalar, arrays, etc.)
+* Types of variable containers in Raku (scalar, arrays, etc.)
 
-### Understanding Raku containers
+* Understanding Raku containers
 
-### Integers
+* Integers
 
-### Strings
+* Strings
 
-### Date and Time built-in support
+* Date and Time built-in support
 
-### Other data times
+* Other data times
 
-### Understanding a sequence
+* Understanding a sequence
 
 
 ## Operators
 
-### Types of operators in Raku (infix, prefix, etc.)
+* Types of operators in Raku (infix, prefix, etc.)
 
-### Overview of operators in Raku
+* Overview of operators in Raku
 
-### Meta-operators
+* Meta-operators
 
-### User-defined operators
+* User-defined operators
 
-### Data type conversion (e.g., prefix operators `+` or `~`, etc.)
+* Data type conversion (e.g., prefix operators `+` or `~`, etc.)
 
 
 
@@ -58,47 +58,47 @@
 
 ## Control flow
 
-### Blocks and scoping 101
+* Blocks and scoping 101
 
-### Boolean data type and type casting
+* Boolean data type and type casting
 
-### Conditional checks
+* Conditional checks
 
-### Loops
+* Loops
 
-### Block-related phasers (e.g. `LEAVE`)
+* Block-related phasers (e.g. `LEAVE`)
 
-### Other options (e.g., `gather`, `given`)
+* Other options (e.g., `gather`, `given`)
 
 
 ## Subroutines
 
-### Creating a subroutine
+* Creating a subroutine
 
-### Signature
+* Signature
 
-### Calling a subroutine
+* Calling a subroutine
 
-### Multiple dispatch
+* Multiple dispatch
 
-### Multiple MAIN subroutines
+* Multiple MAIN subroutines
 
-### Nested subroutines
+* Nested subroutines
 
-### Anonymous subroutines
+* Anonymous subroutines
 
 
 ## Modules
 
-### Creating modules
+* Creating modules
 
-### Using modules
+* Using modules
 
-### Different types of importing (`import`, `need`, etc.)
+* Different types of importing (`import`, `need`, etc.)
 
-### Introspections
+* Introspections
 
-### Installing modules from web
+* Installing modules from web
 
 
 
@@ -107,50 +107,50 @@
 
 ## Object-oriented programming
 
-### Classes in Raku
+* Classes in Raku
 
-### Attributes
+* Attributes
 
-### Methods
+* Methods
 
-### Class methods
+* Class methods
 
-### Subroutines vs methods
+* Subroutines vs methods
 
-### Inheritance
+* Inheritance
 
-### Roles
+* Roles
 
-### Introspection
+* Introspection
 
 
 ## Input and output
 
-### Standard input, output, and errors
+* Standard input, output, and errors
 
-### Working with files
+* Working with files
 
-### Working with directories
+* Working with directories
 
-### File streams
+* File streams
 
 
 
 ## Exceptions
 
-### The `try` block
+* The `try` block
 
-### What is a soft failure
+* What is a soft failure
 
-### The `CATCH` phaser
+* The `CATCH` phaser
 
-### Exception objects
+* Exception objects
 
-### Failure objects
+* Failure objects
 
-### Multiple dispatch in handling exceptions
+* Multiple dispatch in handling exceptions
 
-### Custom exceptions
+* Custom exceptions
 
 
 # Part 4
@@ -158,42 +158,42 @@
 
 ## Regexes
 
-### Literals and character classes
+* Literals and character classes
 
-### Regexp matching
+* Regexp matching
 
-### Quantifiers
+* Quantifiers
 
-### Captures
+* Captures
 
-### Alternations
+* Alternations
 
-### Anchors
+* Anchors
 
-### Forward and backward assertions
+* Forward and backward assertions
 
-### Adverbs (such as `:g` etc.)
+* Adverbs (such as `:g` etc.)
 
-### String substitution and replacement
+* String substitution and replacement
 
 
 ## Grammars
 
-### What is a grammar
+* What is a grammar
 
-### Creating grammars
+* Creating grammars
 
-### Rules
+* Rules
 
-### Tokens
+* Tokens
 
-### Grammars vs. classes and inheritance
+* Grammars vs. classes and inheritance
 
-### AST (Abstract syntax tree), `make` and `made`
+* AST (Abstract syntax tree), `make` and `made`
 
-### Actions
+* Actions
 
-### Inline actions vs. action class
+* Inline actions vs. action class
 
 
 # Part 5
@@ -201,51 +201,51 @@
 
 ## Functional programming
 
-### Recursion
+* Recursion
 
-### Reduction
+* Reduction
 
-### Higher-order functions
+* Higher-order functions
 
-### Lambdas
+* Lambdas
 
-### Data feeds
+* Data feeds
 
-### Iterators
+* Iterators
 
-### Lazy and infinite sequences
+* Lazy and infinite sequences
 
 
 ## Concurrent programming
 
-### Junctions
+* Junctions
 
-### Threads
+* Threads
 
-### Promises
+* Promises
 
-### Channels
+* Channels
 
 
 ## Reactive programming
 
-### Supplies
+* Supplies
 
-### Live and on-demand supplies
+* Live and on-demand supplies
 
-### Understanding `react`
+* Understanding `react`
 
-### Understanding `whenever`
+* Understanding `whenever`
 
-### Understanding `await`
+* Understanding `await`
 
 
 ## Web programming
 
-### Making remote connections
+* Making remote connections
 
-### Simple HTTP client
+* Simple HTTP client
 
-### Simple HTTP server
+* Simple HTTP server
 
-### Cro 101
+* Cro 101
