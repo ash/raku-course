@@ -1,12 +1,22 @@
 # Part 1
 
+* [About this course](about-this-course)
+
 ## Basic introduction to Raku and its compiler
 
-* How to install Rakudo
+* [What is Raku](what-is-raku)
+
+* [Raku vs. Rakudo](raku-vs-rakudo)
+
+* [How to install Rakudo](how-to-install-rakudo)
 
 * How to run it from console or from a web service such as glot.io
 
+* [Editors and IDEs](editors-and-ides)
+
 * Notes on using Unicode
+
+* [Conventional file extensions](conventional-file-extensions)
 
 * Simple input and output
 
