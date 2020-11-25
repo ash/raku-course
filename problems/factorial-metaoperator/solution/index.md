@@ -1,4 +1,4 @@
-[Concatenate a list](../)
+[Compute a factorial](../)
 
 # The solution
 
@@ -13,7 +13,7 @@ Here is the solution of the problem ‘[Compute a factorial](../)‘ that uses a
     say factorial(5);
 
 
-You can find the full code in the file [factorial-reduction.raku](factorial-reduction.raku).
+You can find the full code in the file [factorial-reduction.raku](https://github.com/ash/raku-course/blob/master/problems/factorial-metaoperator/solution/factorial-reduction.raku).
 
 ## Output
 

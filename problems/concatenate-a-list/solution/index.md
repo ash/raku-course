@@ -12,7 +12,7 @@ Here is the solution of the problem ‘[Concatenate a list](../)‘ that uses a 
 
     say $string;
 
-You can find the full code in the file [concatenate-a-list.raku](concatenate-a-list.raku).
+You can find the full code in the file [concatenate-a-list.raku](https://github.com/ash/raku-course/blob/master/problems/concatenate-a-list/solution/concatenate-a-list.raku).
 
 ## Output
 
