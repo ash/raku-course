@@ -13,7 +13,7 @@ Reduction metaoperators are constructed using the reduction metaoperators, which
 
 Solve the following tasks using reduction metaoperators.
 
-1. [Sum of a list](/problems/sum-of-a-list) — Add up the values of a list of integers.
+1. [Sum of array](/problems/sum-of-array) — Add up the values of a array of integers.
 
 1. [Factorial](/problems/factorial-metaoperator) - Compute a factorial of N.
 
