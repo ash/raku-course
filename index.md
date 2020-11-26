@@ -1,8 +1,10 @@
-# Part 1
+# Contents
+
+## Part 1
 
 * [About this course](about-this-course)
 
-## Basic introduction to Raku and its compiler
+### Basic introduction to Raku and its compiler
 
 * [What is Raku](what-is-raku)
 
@@ -23,7 +25,7 @@
 * [Hello, World!](hello-world)
 
 
-## Running Raku
+### Running Raku
 
 * Command-line options
 
@@ -34,7 +36,7 @@
 * The MAIN subroutine
 
 
-## Variables and data types
+### Variables and data types
 
 * Types of variable containers in Raku (scalar, arrays, etc.)
 
@@ -51,7 +53,7 @@
 * Understanding a sequence
 
 
-## Operators
+### Operators
 
 * Types of operators in Raku (infix, prefix, etc.)
 
@@ -65,10 +67,10 @@
 
 
 
-# Part 2
+## Part 2
 
 
-## Control flow
+### Control flow
 
 * Blocks and scoping 101
 
@@ -83,7 +85,7 @@
 * Other options (e.g., `gather`, `given`)
 
 
-## Subroutines
+### Subroutines
 
 * Creating a subroutine
 
@@ -100,7 +102,7 @@
 * Anonymous subroutines
 
 
-## Modules
+### Modules
 
 * Creating modules
 
@@ -114,10 +116,10 @@
 
 
 
-# Part 3
+## Part 3
 
 
-## Object-oriented programming
+### Object-oriented programming
 
 * Classes in Raku
 
@@ -136,7 +138,7 @@
 * Introspection
 
 
-## Input and output
+### Input and output
 
 * Standard input, output, and errors
 
@@ -147,8 +149,7 @@
 * File streams
 
 
-
-## Exceptions
+### Exceptions
 
 * The `try` block
 
@@ -165,10 +166,10 @@
 * Custom exceptions
 
 
-# Part 4
+## Part 4
 
 
-## Regexes
+### Regexes
 
 * Literals and character classes
 
@@ -189,7 +190,7 @@
 * String substitution and replacement
 
 
-## Grammars
+### Grammars
 
 * What is a grammar
 
@@ -208,10 +209,10 @@
 * Inline actions vs. action class
 
 
-# Part 5
+## Part 5
 
 
-## Functional programming
+### Functional programming
 
 * Recursion
 
@@ -228,7 +229,7 @@
 * Lazy and infinite sequences
 
 
-## Concurrent programming
+### Concurrent programming
 
 * Junctions
 
@@ -239,7 +240,7 @@
 * Channels
 
 
-## Reactive programming
+### Reactive programming
 
 * Supplies
 
@@ -252,7 +253,7 @@
 * Understanding `await`
 
 
-## Web programming
+### Web programming
 
 * Making remote connections
 
