@@ -21,7 +21,6 @@ Here, `$factorial` is the variable to have to fill with the value of _5!_.
 ## Things to use
 
 * [Reduction metaoperator](/metaoperators/reduction-metaoperators)
-* [Functions](functions)
 
 ## Solution
 

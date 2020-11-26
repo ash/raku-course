@@ -34,4 +34,4 @@ The program works correctly for the input numbers bigger than 1. Suprisingly eno
 ## Refresh your knowledge
 
 * [Reduction metaoperator](/metaoperators/reduction-metaoperators)
-* [Functions](functions)
+
