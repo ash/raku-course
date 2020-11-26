@@ -20,6 +20,8 @@
 
 * [Simple input and output](simple-input-output)
 
+* [Hello, World!](hello-world)
+
 
 ## Running Raku
 
