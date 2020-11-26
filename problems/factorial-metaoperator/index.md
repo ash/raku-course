@@ -2,17 +2,21 @@
 
 ## Problem
 
-Create a function to compute a factorial of an integer number. The function should accept a positive number and return its factorial.
+Create a program to compute a factorial of an integer number. The program should take an integer (hard-coded) and print its factorial.
 
 Use reduction metaoperator in the solution.
 
 ## Example
 
-You program should be able to execute the following line of code:
+You program should be able to execute the following lines of code:
 
-    say factorial(5);
+    my $n = 5;
 
-Here, `factorial` is the function you need to write.
+    # Your code goes here...
+
+    say $factorial;
+
+Here, `$factorial` is the variable to have to fill with the value of _5!_.
 
 ## Things to use
 

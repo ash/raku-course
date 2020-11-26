@@ -1,5 +1,5 @@
-sub factorial($n) {
-    [*] 1..$n
-}
+my $n = 5;
 
-say factorial(5);
+my $factorial = [*] 1..$n;
+
+say $factorial;
