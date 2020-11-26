@@ -6,7 +6,7 @@ Here is the solution of the problem ‘[Compute a factorial](../)‘ that uses a
 
 ## Code
 
-    {% highlight raku %}
+    {% highlight perl %}
     my $n = 5;
 
     my $factorial = [*] 1..$n;
