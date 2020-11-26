@@ -1,3 +1,5 @@
+[Start](../) / Part 1
+
 # Simple input and output
 
 In this course, we will move thought the Raku language from the very basics to more and more complicated topics. But even the simplest programs require that the program prints something so that we understand that it works and if it works correctly. Also, in some tasks, it will be handy to ask the user to enter some input — a number or a string.
@@ -49,3 +51,8 @@ If you entered `Raku`, you get the following phrase printed:
     You are going to learn Raku
 
 Ok, we can now talk to the program and we can make the program talk to us!
+
+# Course Navigation 
+
+* [Table of contents](../)
+* Next: [Hello, World!](../hello-world)
