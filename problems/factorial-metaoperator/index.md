@@ -10,11 +10,13 @@ Use reduction metaoperator in the solution.
 
 You program should be able to execute the following lines of code:
 
-    my $n = 5;
+```perl
+my $n = 5;
 
-    # Your code goes here...
+# Your code goes here...
 
-    say $factorial;
+say $factorial;
+```
 
 Here, `$factorial` is the variable to have to fill with the value of _5!_.
 

@@ -10,7 +10,9 @@ Use reduction operators in the solution.
 
 It is assumed that the input data are hard-coded in the program, for example:
 
-    my @data = 3, 5, 7, 9, 11;
+```perl
+my @data = 3, 5, 7, 9, 11;
+```
 
 ## Output
 

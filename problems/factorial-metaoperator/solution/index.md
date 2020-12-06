@@ -6,11 +6,13 @@ Here is the solution of the problem ‘[Compute a factorial](../)‘ that uses a
 
 ## Code
 
-    my $n = 5;
+```perl
+my $n = 5;
 
-    my $factorial = [*] 1..$n;
+my $factorial = [*] 1..$n;
 
-    say $factorial;
+say $factorial;
+```
 
 You can find the full code in the file [factorial-reduction.raku](https://github.com/ash/raku-course/blob/master/problems/factorial-metaoperator/solution/factorial-reduction.raku).
 

@@ -10,7 +10,9 @@ Use reduction metaoperator in the solution.
 
 ### Input data
 
-    my @strings = < neun hundert fünf und zwanzig >;
+```perl
+my @strings = < neun hundert fünf und zwanzig >;
+```
 
 ### Output result
 

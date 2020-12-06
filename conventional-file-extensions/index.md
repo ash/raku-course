@@ -12,3 +12,4 @@ These are the [recommended](https://github.com/Raku/problem-solving/blob/master/
 As of today, GitHub does not fully support syntax highlighting for the sources in Raku. It does it only if the source file has a shebang with `raku` mentioned in it, for example:
 
     #!/usr/bin/env raku
+
