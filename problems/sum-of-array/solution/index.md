@@ -6,11 +6,10 @@ Here is the solution of the problem ‘[Sum of an array](../)‘ that uses a red
 
 ## Code
 
-```perl
-my @data = 3, 5, 7, 9, 11;
+    my @data = 3, 5, 7, 9, 11;
 
-say [+] @data;
-```
+    say [+] @data;
+
 
 You can find the full code in the file [sum-of-array.raku](https://github.com/ash/raku-course/blob/master/problems/sum-of-array/solution/sum-of-array.raku).
 

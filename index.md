@@ -20,9 +20,9 @@
 
 * [Conventional file extensions](conventional-file-extensions)
 
-* [Simple input and output](simple-input-output)
-
 * [Hello, World!](hello-world)
+
+* [Simple input and output](simple-input-output)
 
 
 ### Running Raku
