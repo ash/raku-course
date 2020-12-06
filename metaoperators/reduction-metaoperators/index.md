@@ -1,4 +1,4 @@
-[Start](/) / [Operators](/operators) / [Metaoperators](/operators/metaoperators)
+[Start](/raku-course) / [Operators](/raku-course/operators) / [Metaoperators](/raku-course/operators/metaoperators)
 
 # Reduction metaoperators
 
@@ -13,11 +13,11 @@ Reduction metaoperators are constructed using the reduction metaoperators, which
 
 Solve the following tasks using reduction metaoperators.
 
-1. [Sum of array](/problems/sum-of-array) — Add up the values of a array of integers.
+1. [Sum of array](/raku-course/problems/sum-of-array) — Add up the values of a array of integers.
 
-1. [Factorial](/problems/factorial-metaoperator) - Compute a factorial of N.
+1. [Factorial](/raku-course/problems/factorial-metaoperator) - Compute a factorial of N.
 
-1. [Concatenate a list](/problems/concatenate-a-list) — Take an array of strings and concatenate them to a single string.
+1. [Concatenate a list](/raku-course/problems/concatenate-a-list) — Take an array of strings and concatenate them to a single string.
 
 The solution of the following problems should involve triangular reduction operator.
 

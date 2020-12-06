@@ -56,5 +56,5 @@ say [~] @strings;
 
 ## Refresh your knowledge
 
-* [Reduction metaoperator](/metaoperators/reduction-metaoperators)
+* [Reduction metaoperator](/raku-course/metaoperators/reduction-metaoperators)
 * [String concatenation](string-concatenation)

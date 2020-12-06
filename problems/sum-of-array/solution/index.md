@@ -29,4 +29,4 @@ In this program, we are using a reduction operator in the form of `[+]` with `+`
 
 ## Refresh your knowledge
 
-* [Reduction metaoperator](/metaoperators/reduction-metaoperators)
+* [Reduction metaoperator](/raku-course/metaoperators/reduction-metaoperators)
