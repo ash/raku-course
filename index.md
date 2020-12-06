@@ -59,7 +59,7 @@
 
 * Overview of operators in Raku
 
-* [Meta-operators](meta-operators)
+* [Meta-operators](metaoperators)
 
 * User-defined operators
 
