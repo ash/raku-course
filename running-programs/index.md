@@ -1,6 +1,6 @@
 # Running Programs
 
-In [the previous section](../hello-world), we created a simple program, but did not run it yet. There are four main ways of running the program: using an installed command-line tool, using a REPL shell, running a program directly from an [IDE](../editors-and-ides) or using an online service such as [glot.io](https://glot.io/new/perl6).
+In [one of the previous section](../hello-world), we created a simple program, but did not run it yet. There are four main ways of running the program: using an installed command-line tool, using a REPL shell, running a program directly from an [IDE](../editors-and-ides) or using an online service such as [glot.io](https://glot.io/new/perl6).
 
 ## Running from command line
 
