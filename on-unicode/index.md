@@ -1,6 +1,6 @@
 # Notes on using Unicode
 
-Raku assumes that all your program files are saved as UTF-8 files. From the practical point of view, that means that you don’t have to worry about non-ASCII characters in, for example, string variables. But that’s not only that. You most likely will not need to worry if your program reads a text file that is also a UTF-8 file. It also means that string length is correctly detected as the number of characters and not the nubmer of bytes. (We will have more detailed look into it later.) 
+Raku assumes that all your program files are saved as UTF-8 files. From the practical point of view, that means that you don’t have to worry about non-ASCII characters in, for example, string variables. But that’s not only that. You most likely will not need to worry if your program reads a text file that is also a UTF-8 file. It also means that string length is correctly detected as the number of characters and not the nubmer of bytes. (We will have a more detailed look into it later.) 
 
 The next thing you want to know is that you can also use non-Latin or non-English letters for identifiers. You can name your variable `$ι` instead of `$i` if you prefer, and the compiler will parse it correctly.
 
