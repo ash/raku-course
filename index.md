@@ -12,8 +12,6 @@
 
 * [How to install Rakudo](how-to-install-rakudo)
 
-* How to run it from console or from a web service such as glot.io
-
 * [Editors and IDEs](editors-and-ides)
 
 * Notes on using Unicode
@@ -21,6 +19,8 @@
 * [Conventional file extensions](conventional-file-extensions)
 
 * [Hello, World!](hello-world)
+
+* [Running programs](running-programs)
 
 * [Simple input and output](simple-input-output)
 
