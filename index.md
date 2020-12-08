@@ -14,11 +14,11 @@
 
 * [Editors and IDEs](editors-and-ides)
 
-* Notes on using Unicode
-
 * [Conventional file extensions](conventional-file-extensions)
 
 * [Hello, World!](hello-world)
+
+* [Notes on using Unicode](on-unicode)
 
 * [Running programs](running-programs)
 
