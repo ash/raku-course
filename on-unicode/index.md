@@ -10,7 +10,7 @@ Raku treats the Unicode properties of the characters very pedantically, for exam
 
 A number of built-in operators have two forms: a Unicode and ASCII versions. For example, a negated comparison can be typed as `!=` or as `≠`. The same with set operations, for example, for `∈`, there is a pure ASCII equivalent `(elem)`. Or, there is a built-in constant which you can refer to as `pi` or `π`.
 
-When working with numbers, you can choose to use fractions in the form of `½` instead of `0.5`. Or, to evaluate the power of `$x` as `$x²` using a superscript character.
+When working with numbers, you can choose to use fractions in the form of `½` instead of `0.5`. Or, evaluating the square of `$x` as `$x²` using a superscript character.
 
 Find the full list of such pairs on the following documentation page:
 
