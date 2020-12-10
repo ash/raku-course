@@ -32,7 +32,7 @@ Just notice that the parts of this output will be concatenated to a single strin
 
 After printing all the argumnets, the `say` routine adds a newline character to the output.
 
-# Input with `prompt`
+## Input with `prompt`
 
 The opposite of `say` is `prompt`. It waits when the user of the program enters something and then passes it to the program as a string. You can take the result of `prompt` and pass it to `say`. In this case you echo what the user inputs. Let us create such a program:
 

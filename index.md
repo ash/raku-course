@@ -20,7 +20,7 @@
 
 * [Notes on using Unicode](on-unicode)
 
-* [Running programs](running-programs)
+* [Running programs](running-programs) — 1 assignment
 
 * [Simple input and output](simple-input-output)
 

@@ -24,6 +24,10 @@ But before we move on, let me show one more exciting option. You can call a func
 
     'Hello, World!'.say;
 
+# Assignments
+
+* [Hello, me!](/raku-course/problems/hello-me)
+
 # Course Navigation 
 
 * [Table of contents](../)
