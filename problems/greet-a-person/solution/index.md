@@ -11,7 +11,7 @@ Here is a possible solution to the task.
 ## Code
 
     my $name = prompt 'What is your name? ';
-    print 'Hello, ', $name, '!';
+    say 'Hello, ', $name, '!';
 
 You can find the source code in the file [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/problems/greet-a-person/solution/greet-a-person.raku).
 
