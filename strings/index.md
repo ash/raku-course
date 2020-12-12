@@ -2,23 +2,28 @@
 title: Strings in Raku
 ---
 
+[Start](../) / [Part 1](../part1)
+
 # Strings
 
 Let’s talk about strings. We already used strings in a number of previous programs. All of them are also called string literals. A string literal is some text in quotes:
 
     say 'I am a string literal';
 
-The way you quote the string defines how special characters are interpreted. Consider these two examples:
+Of course, you can use a scalar variable to keep strings:
 
-    say 'One\nTwo';
-    say "Three\nFour";
+    my $message = 'This is my message';
 
-If you run this program, you will see that the first string appears as is on a single line. The second string was split into two pieces:
+Let us see what other basic features we can learn about strings.
 
-    One\nTwo
-    Three
-    Four
+## Next steps
 
-In double quotes, a special sequence `\n` was processed as a newline character, while in a string in single quotes it was a regular sequence of two characters: `\` and `n`.
+* [String concatenation](string-concatenation)
+* [String interpolation](string-interpolation)
+* [String length](string-length)
 
-## Assignment
+## Course navigation
+
+← [Scalar variables](../scalar-variables) / [Declaration with initialization](../scalar-variables/declaration-with-initialization) | [String concatenation](string-concatenation) →
+
+💪 Or you can jump straight to the [assignments on strings](assignments).

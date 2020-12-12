@@ -26,4 +26,4 @@ Try solving this task yourself. Save the code in a file and pass it to the comma
 
 ## Course navigation
 
-← [Running programs](../..) / [Assignments](../../running-programs/assignments) | [Simple input and output](../../simple-input-output) →
+← [Running programs](../..) / [Assignments](..) | [Simple input and output](../../simple-input-output) →

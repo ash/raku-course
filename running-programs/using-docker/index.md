@@ -22,4 +22,4 @@ Add the `--rm` flag if you want to clean up the container and remove the file sy
 
 ← [Running programs](..) / [Running from IDE](../from-ide) | [Running programs](..) / [Using online service](../using-online-services) →
 
-Or jump directly to [the assignments to this section](../assignments).
+💪 Or jump directly to [the assignments to this section](../assignments).

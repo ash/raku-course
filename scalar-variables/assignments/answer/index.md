@@ -1,27 +1,21 @@
 ---
-title: Assignment ’Greet a person‘
+title: Assignment ’The answer to life, the Universe and everything‘
 ---
 
 [Start](../../..) / [Part 1](../../../part1) / [Scalar variables](../..) / [Assignments](..)
 
-# Greet a person
+# The answer to life, the Universe and everything
 
 ## Problem
 
-Write a program that does the following two actions:
-
-1. Asks the user for their name.
-2. Prints a message `Hello, Name!`, where `Name` is the named that was just entered.
-
-In this program, please use variables.
+Create a program that writes The answer to life, the Universe and everything, which is stored in a variable.
 
 ## Example
 
 The expected behaviour of the program is demonstrated below:
 
-    $ raku greet-a-person.raku
-    What is your name? John
-    Hello, John!
+    $ raku answer.raku
+    42
 
 ## Solution
 

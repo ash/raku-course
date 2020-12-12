@@ -10,4 +10,4 @@ Online services do not require many explanations. In the case of [glot.io](https
 
 ## Course navigation
 
-← [Running programs](..) / [Using docker](../using-docker) | [Running programs](..) / [Assignments](../assignments) →
+← [Running programs](..) / [Using docker](../using-docker) | [Running programs](..) / 💪 [Assignments](../assignments) →

@@ -13,7 +13,7 @@ Here is a possible solution to the task.
     my $name = prompt 'What is your name? ';
     say 'Hello, ', $name, '!';
 
-You can find the source code in the file [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/problems/greet-a-person/solution/greet-a-person.raku).
+👀 You can find the source code in the file [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/scalar-variables/assignments/greet-a-person/solution/greet-a-person.raku).
 
 ## Output
 

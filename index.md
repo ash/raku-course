@@ -26,7 +26,7 @@
 
 ### Variables and data types
 
-* [Scalar variables](scalar-variables) — [1 assignment](scalar-variables/assignments)
+* [Scalar variables](scalar-variables) — [2 assignments](scalar-variables/assignments)
 
 * [Strings](strings)
 
