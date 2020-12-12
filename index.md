@@ -20,9 +20,15 @@
 
 * [Notes on using Unicode](on-unicode)
 
-* [Running programs](running-programs) — 1 assignment
+* [Running programs](running-programs) — [1 assignment](running-programs/assignments)
 
 * [Simple input and output](simple-input-output)
+
+### Variables and data types
+
+* [Scalar variables](scalar-variables) — [1 assignment](scalar-variables/assignments)
+
+* [Strings](strings)
 
 
 ### Running Raku

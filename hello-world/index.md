@@ -1,4 +1,8 @@
-[Start](../) / Part 1
+---
+title: "Hello, World!" in Raku
+---
+
+[Start](../) / [Part 1](../part1)
 
 # Hello, World!
 
@@ -24,10 +28,6 @@ But before we move on, let me show one more exciting option. You can call a func
 
     'Hello, World!'.say;
 
-# Assignments
+## Course navigation
 
-* [Hello, me!](/raku-course/problems/hello-me)
-
-# Course Navigation 
-
-* [Table of contents](../)
+← [Conventional file extensions](../conventional-file-extensions) | [Notes on using Unicode](../on-unicode) →

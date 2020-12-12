@@ -1,5 +1,18 @@
 # Input and printing
 
+## Basic introduction to Raku and its compiler
+
+### Running programs
+
+* [Hello, me!](/raku-course/problems/hello-me)
+
+### Simple input and output
+
+* [Greet a person](/raku-course/problems/greet-a-person)
+
+---
+
+
 * [Sum of numbers](sum-of-numbers)
 * [Hello, Name!](hello-name)
 * [Apple sharing](apple-sharing)

@@ -1,3 +1,9 @@
+---
+title: Assignment ’Hello, Me!‘
+---
+
+[Start](../..) / [Part 1](../../part1) / [Running programs](../../running-programs) / [Assignments](../../running-programs/assignments)
+
 # Hello, me!
 
 ## Problem
@@ -14,4 +20,10 @@ Here is an example of running the program and of its output:
 
 ## Solution
 
-[Solution](solution)
+Try solving this task yourself. Save the code in a file and pass it to the command-line interpreter or run it using other methods that we [covered earlier](../../running-programs). If you want to see the result, or if your program—for some reasons—does not work, you are welcome to see the working solution via the link below.
+
+✅ [See the solution](solution)
+
+## Course navigation
+
+← [Assignments](../../running-programs/assignments) | [Simple input and output](../../simple-input-output) →

@@ -1,3 +1,9 @@
+---
+title: Raku vs. Rakudo
+---
+
+[Start](../) / [Part 1](../part1)
+
 # Raku vs. Rakudo
 
 Raku is the name of the programming language, while Rakudo is the name of the compiler.
@@ -8,7 +14,11 @@ Rakudo is the compiler that we are going to use in this course. Rakudo is using 
 
 The design of Raku does not dictate which compiler to use. The design documents come with a set of test cases called [Roast](https://github.com/Raku/roast). You can implement your own compiler and if it passes the tests, you can call it a Raku compiler. Rakudo is currently the most developed and production-ready tool.
 
-## Links
+## External links
 
 * [raku.org](https://raku.org)
 * [rakudo.org](https://rakudo.org)
+
+## Course navigation
+
+← [What is Raku](../what-is-raku) | [How to install Rakudo](../how-to-install-rakudo) →

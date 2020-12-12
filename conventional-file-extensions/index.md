@@ -1,3 +1,9 @@
+---
+title: Conventional file extensions in Raku
+---
+
+[Start](../) / [Part 1](../part1)
+
 # Conventional file extensions
 
 These are the [recommended](https://github.com/Raku/problem-solving/blob/master/solutions/language/Path-to-Raku.md#extensions) file extensions for the Raku files:
@@ -14,3 +20,7 @@ As of today, GitHub does not fully support syntax highlighting for the sources i
     #!/usr/bin/env raku
 
 GitHub [needs more repositories](https://github.com/github/linguist/pull/5104#pullrequestreview-545723766) with the above-mentioned file extensions to activate full language recognition for Raku. Please upload your files to fulfil this requirement.
+
+## Course navigation
+
+← [Editors and IDEs](../editors-and-ides) | [Hello, World!](../hello-world) →
