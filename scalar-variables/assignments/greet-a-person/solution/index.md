@@ -2,7 +2,7 @@
 title: The solution of ’Greet a person‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Scalar variables](../../../scalar-variables) / [Assignments](../../../running-programs/assignments) / [Greet a person](../)
+[Start](../../../..) / [Part 1](../../../../part1) / [Scalar variables](../../..) / [Assignments](../..) / [Greet a person](../)
 
 # The solution
 

@@ -29,4 +29,4 @@ The expected behaviour of the program is demonstrated below:
 
 ## Course navigation
 
-← [Declaration with initialization](../../scalar-variables/declaration-with-initialization) | [Strings](../strings) →
+← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../strings) →

@@ -2,7 +2,7 @@
 title: Assignment ’Hello, Me!‘
 ---
 
-[Start](../..) / [Part 1](../../part1) / [Running programs](../../running-programs) / [Assignments](../../running-programs/assignments)
+[Start](../../..) / [Part 1](../../../part1) / [Running programs](../..) / [Assignments](..)
 
 # Hello, me!
 
@@ -26,4 +26,4 @@ Try solving this task yourself. Save the code in a file and pass it to the comma
 
 ## Course navigation
 
-← [Assignments](../../running-programs/assignments) | [Simple input and output](../../simple-input-output) →
+← [Running programs](../..) / [Assignments](../../running-programs/assignments) | [Simple input and output](../../simple-input-output) →

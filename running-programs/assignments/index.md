@@ -6,7 +6,7 @@ title: Assignments to ’Running programs‘
 
 # Assignments to ’Running programs‘
 
-* [Hello, me!](../../problems/hello-me)
+* [Hello, me!](hello-me)
 
 ## Course navigation
 

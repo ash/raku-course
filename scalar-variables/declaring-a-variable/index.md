@@ -15,3 +15,5 @@ Having that said, you introduced a new variable, which keeps no payload so far. 
 ## Course navigation
 
 ← [Scalar variables](../) / [Declaring a variable](../declaring-a-variable) | [Scalar variables](../) / [Assigning a value](../assigning-a-value) →
+
+Or jump directly to [the assignments to this section](../assignments).

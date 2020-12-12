@@ -2,7 +2,7 @@
 title: Solution of ’Hello, Me!‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Running programs](../../../running-programs) / [Assignments](../../../running-programs/assignments) / [Hello, me!](..)
+[Start](../../../..) / [Part 1](../../../../part1) / [Running programs](../../..) / [Assignments](../..) / [Hello, me!](..)
 
 # The solution
 
@@ -27,4 +27,4 @@ There’s no doubt you managed to create this program. Nevetheless, remember tha
 
 ## Course navigation
 
-← [Assignments](../../../running-programs/assignments) | [Simple input and output](../../../simple-input-output) →
+← [Running programs](../../..) / [Assignments](../..) | [Simple input and output](../../../simple-input-output) →

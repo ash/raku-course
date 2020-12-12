@@ -1,13 +1,13 @@
 ---
-title: Assignmnets to ‘Declaration with initialization’
+title: Assignmnets to ‘Scalar variables’
 ---
 
 [Start](../..) / [Part 1](../../part1) / [Scalar variables](..)
 
-# Assignments to ‘Declaration with initialization’
+# Assignments to ‘Scalar variables’
 
-* [Greet a person](../../problems/greet-a-person)
+* [Greet a person](greet-a-person)
 
 ## Course navigation
 
-← [Declaration with initialization](../declaration-with-initialization) | [Strings](../../strings) →
+← [Scalar variables](..) / [Declaration with initialization](../declaration-with-initialization) | [Strings](../../strings) →
