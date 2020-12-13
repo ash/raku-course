@@ -6,7 +6,7 @@ title: Assignments to ’Running programs‘
 
 # Assignments to ’Running programs‘
 
-* [Hello, me!](hello-me)
+1. [Hello, me!](hello-me)
 
 ## Course navigation
 

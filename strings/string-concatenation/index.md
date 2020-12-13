@@ -1,5 +1,5 @@
 ---
-title: Strings in Raku
+title: String concatenation in Raku
 ---
 
 [Start](../..) / [Part 1](../../part1) / [Strings](..)
@@ -27,6 +27,6 @@ Or create a new variable using the concatenated value:
 
 ## Course navigation
 
-← [Strings](..) | [Strings](..) / [String interpolation](string-interpolation) →
+← [Strings](..) | [Strings](..) / [Variable interpolation](../variable-interpolation) →
 
 💪 Or you can jump straight to the [assignments on strings](../assignments).

@@ -6,8 +6,12 @@ title: Assignmnets to ‘Scalar variables’
 
 # Assignments to ‘Scalar variables’
 
-* [Greet a person](greet-a-person)
-* [The answer to life, the Universe and everything](answer)
+1. [Greet a person](greet-a-person)
+1. [The answer to life, the Universe and everything](answer)
+
+## Start the assignments
+
+| [Greet a person](greet-a-person) →
 
 ## Course navigation
 

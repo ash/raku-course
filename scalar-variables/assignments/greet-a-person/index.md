@@ -27,6 +27,10 @@ The expected behaviour of the program is demonstrated below:
 
 ✅ [See the solution](solution)
 
+## Next assignment
+
+| [The answer to life, the Universe and everything](../answer) →
+
 ## Course navigation
 
 ← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../strings) →

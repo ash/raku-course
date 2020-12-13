@@ -19,11 +19,12 @@ Let us see what other basic features we can learn about strings.
 ## Next steps
 
 * [String concatenation](string-concatenation)
-* [String interpolation](string-interpolation)
+* [Variable interpolation](variable-interpolation)
+* [Escaping special characters](escaping-special-characters)
 * [String length](string-length)
 
 ## Course navigation
 
 ← [Scalar variables](../scalar-variables) / [Declaration with initialization](../scalar-variables/declaration-with-initialization) | [String concatenation](string-concatenation) →
 
-💪 Or you can jump straight to the [assignments on strings](assignments).
+💪 If you already have read all the materials about strings, you can go directly to [assignments on strings](assignments).

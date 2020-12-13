@@ -13,7 +13,7 @@ Here is a possible solution to the task.
     my $answer = 42;
     say $answer;
 
-👀 You can find the source code in the file [answer.raku](https://github.com/ash/raku-course/blob/master/scalar-variables/assignments/answer/solution/answer.raku).
+🦋 You can find the source code in the file [answer.raku](https://github.com/ash/raku-course/blob/master/scalar-variables/assignments/answer/solution/answer.raku).
 
 ## Output
 

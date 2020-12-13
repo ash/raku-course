@@ -28,7 +28,7 @@
 
 * [Scalar variables](scalar-variables) — [2 assignments](scalar-variables/assignments)
 
-* [Strings](strings)
+* [Strings](strings) — [assignments](strings/assignments)
 
 
 ### Running Raku

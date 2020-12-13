@@ -13,7 +13,7 @@ Here is a possible solution to the task.
     my $name = prompt 'What is your name? ';
     say 'Hello, ', $name, '!';
 
-👀 You can find the source code in the file [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/scalar-variables/assignments/greet-a-person/solution/greet-a-person.raku).
+🦋 You can find the source code in the file [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/scalar-variables/assignments/greet-a-person/solution/greet-a-person.raku).
 
 ## Output
 
@@ -34,6 +34,10 @@ This program uses a scalar variable `$name` to keep a string that was entered by
 
 Let us return to this problem in the near future.
 
+## Next assignment
+
+| [The answer to life, the Universe and everything](../../answer) →
+
 ## Course navigation
 
-← [Scalar variables](../../../scalar-variables) / [Declaration with initialization](../../../scalar-variables/declaration-with-initialization) | [Strings](../../strings) →
+← [Scalar variables](../../..) / [Declaration with initialization](../../../declaration-with-initialization) | [Strings](../../../../strings) →
