@@ -24,11 +24,11 @@
 
 * [Simple input and output](simple-input-output)
 
-### Variables and data types
+### Variables and data types essentials
 
 * [Scalar variables](scalar-variables) — [2 assignments](scalar-variables/assignments)
 
-* [Strings](strings) — [assignments](strings/assignments)
+* [Strings](strings) — [4 assignments](strings/assignments)
 
 
 ### Running Raku

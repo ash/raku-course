@@ -1,5 +1,5 @@
 ---
-title: "Hello, World!" in Raku
+title: Hello, World! in Raku
 ---
 
 [Start](../) / [Part 1](../part1)

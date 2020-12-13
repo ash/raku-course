@@ -27,6 +27,10 @@ Run the program and it will enter a mode when it waits for your input. After you
 
 Notice that this time, the string is double-quoted. In double quotes, variables will be interpolated, so their content will be placed in the string.
 
+## Next assignment
+
+| [Purchase table](../../purchase-table) →
+
 ## Course navigation
 
 ← [Strings](../../..) / [String length](../../../string-length) | [Numbers](../../../../numbers) →

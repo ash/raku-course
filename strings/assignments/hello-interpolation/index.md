@@ -22,6 +22,10 @@ If you run the program, you get a prompt:
 
 ✅ [See the solution](solution)
 
+## Next assignment
+
+| [Purchase table](../purchase-table) →
+
 ## Course navigation
 
 ← [Strings](../..) / [String length](../../string-length) | [Numbers](../../../numbers) →

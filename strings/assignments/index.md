@@ -8,7 +8,8 @@ title: Assignments to ‘Strings’
 
 1. [Hello, Concatination!](hello-concatination)
 1. [Hello, Interpolation!](hello-interpolation)
-
+1. [Purchase table](purchase-table)
+1. [Name length](name-length)
 
 ## Start the assignments
 
