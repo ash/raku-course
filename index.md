@@ -30,6 +30,9 @@
 
 * [Strings](strings) — [4 assignments](strings/assignments)
 
+* [Numbers](numbers) — [assignments](numbers/assignments)
+
+* [Comments](comments)
 
 ### Running Raku
 

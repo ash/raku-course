@@ -2,7 +2,7 @@
 title: Assignment ‘Name length‘
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Strings](..)
+[Start](/raku-course) / [Part 1](/raku-course/part1) / [Strings](../..) / [Assignments](..)
 
 # Name length
 

@@ -42,4 +42,4 @@ This character, `x̨`, does not have a dedicated code point and can only be cons
 
 ## Course navigation
 
-← [Strings](..) / [Escaping special characters](escaping-special-characters) | 💪 [Assignments on ’Strings‘](../assignments) →
+← [Strings](..) / [Escaping special characters](../escaping-special-characters) | 💪 [Assignments on ’Strings‘](../assignments) →

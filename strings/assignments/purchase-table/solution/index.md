@@ -39,6 +39,8 @@ Run the program and see how it prints the table:
 
 ## Comments
 
+Did you notice the hyphens in the name of the variables such as `$chair-price` or `$tables-total`? This is an acceptable way of naming variables in Raku. We’ll touch this in one of the later sections soon.
+
 Don’t be confused by the two adjacent dollar symbols. Raku reads them separately. For example, in the substring `\$$price`, the first dollar sign is escaped and thus represents itself, while the second one is a part of the variable name `$price`.
 
 All the strings are quoted in double quotes to allow interpolation of the variables and the special characters.

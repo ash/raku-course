@@ -23,4 +23,4 @@ The expected behaviour of the program is demonstrated below:
 
 ## Course navigation
 
-← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../strings) →
+← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../../../strings) →
