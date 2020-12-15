@@ -1,2 +1,3 @@
-say 'x̨'.chars;
-    say 'x̨'.codes;
+my $name;
+    $name = #`[[[User input expected here]]] prompt 'What is your name? ';
+    say $name;

@@ -24,15 +24,19 @@
 
 * [Simple input and output](simple-input-output)
 
+* [Comments](comments)
+
 ### Variables and data types essentials
 
 * [Scalar variables](scalar-variables) — [2 assignments](scalar-variables/assignments)
 
 * [Strings](strings) — [4 assignments](strings/assignments)
 
-* [Numbers](numbers) — [assignments](numbers/assignments)
+* [Numbers](numbers) — *[assignments](numbers/assignments)
 
-* [Comments](comments)
+* [Boolean type](booleans) — *[assignments](booleans/assignments)
+
+* [Data type conversion](coersion)
 
 ### Running Raku
 
@@ -82,8 +86,6 @@
 ### Control flow
 
 * Blocks and scoping 101
-
-* Boolean data type and type casting
 
 * Conditional checks
 

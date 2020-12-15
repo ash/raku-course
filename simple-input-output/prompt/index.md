@@ -26,4 +26,4 @@ Ok, we can now talk to the program and we can make the program talk to us!
 
 ## Course navigation
 
-← [Simple input and output](..) / [Output with `say`](../say) | [Scalar variables](../../scalar-variables) →
+← [Simple input and output](..) / [Output with `say`](../say) | [Comments](../../comments) →
