@@ -34,9 +34,11 @@
 
 * [Numbers](numbers) — *[assignments](numbers/assignments)
 
-* [Boolean type](booleans) — *[assignments](booleans/assignments)
+* [Boolean type](booleans)
 
 * [Data type conversion](coersion)
+
+* [Typed variables](typed-variables)
 
 ### Running Raku
 
