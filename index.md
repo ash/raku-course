@@ -7,37 +7,40 @@
 ### Basic introduction to Raku and its compiler
 
 * [What is Raku](what-is-raku)
-
 * [Raku vs. Rakudo](raku-vs-rakudo)
-
 * [How to install Rakudo](how-to-install-rakudo)
-
 * [Editors and IDEs](editors-and-ides)
-
 * [Conventional file extensions](conventional-file-extensions)
-
 * [Hello, World!](hello-world)
-
 * [Notes on using Unicode](on-unicode)
-
 * [Running programs](running-programs) — [1 assignment](running-programs/assignments)
-
+    - [Running from command line](from-command-line)
+    - [Running from REPL](from-repl)
+    - [Running from IDE](from-ide)
+    - [Using docker](using-docker)
+    - [Using online service](using-online-services)
 * [Simple input and output](simple-input-output)
-
+    - [Output with `say`](say)
+    - [Input with `prompt`](prompt)
 * [Comments](comments)
 
 ### Variables and data types essentials
 
 * [Scalar variables](scalar-variables) — [2 assignments](scalar-variables/assignments)
-
+    - [Declaring a variable](declaring-a-variable)
+    - [Assigning a value](assigning-a-value)
+    - [Declaration with initialization](declaration-with-initialization)
 * [Strings](strings) — [4 assignments](strings/assignments)
-
+    - [String concatenation](string-concatenation)
+    - [Variable interpolation](variable-interpolation)
+    - [Escaping special characters](escaping-special-characters)
+    - [String length](string-length)
 * [Numbers](numbers) — *[assignments](numbers/assignments)
-
+    - [Integer numberss](integers)
+    - [Rational numbers](rats)
+    - [Scientific notation](numeric)
 * [Boolean type](booleans)
-
 * [Data type conversion](coersion)
-
 * [Typed variables](typed-variables)
 
 ### Running Raku
