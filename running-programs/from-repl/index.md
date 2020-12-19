@@ -32,4 +32,4 @@ At the end you see the prompt character where you can type in your program or it
 
 ← [Running programs](..) / [Running from command line](../from-command-line) | [Running programs](..) / [Running from IDE](../from-ide) →
 
-💪 Or jump directly to [the assignments to this section](../assignments).
+💪 Or jump directly to [the exercises to this section](../exercises).

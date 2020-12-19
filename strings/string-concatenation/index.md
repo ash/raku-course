@@ -29,4 +29,4 @@ Or create a new variable using the concatenated value:
 
 ← [Strings](..) | [Strings](..) / [Variable interpolation](../variable-interpolation) →
 
-💪 Or you can jump straight to the [assignments on strings](../assignments).
+💪 Or you can jump straight to the [exercises on strings](../exercises).

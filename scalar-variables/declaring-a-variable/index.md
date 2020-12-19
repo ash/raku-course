@@ -16,4 +16,4 @@ Having that said, you introduced a new variable, which keeps no payload so far. 
 
 ← [Scalar variables](../) / [Declaring a variable](../declaring-a-variable) | [Scalar variables](../) / [Assigning a value](../assigning-a-value) →
 
-💪 Or jump directly to [the assignments to this section](../assignments).
+💪 Or jump directly to [the exercises to this section](../exercises).

@@ -13,4 +13,4 @@ If you know the value that you want to put in a variable at the time the variabl
 
 ## Course navigation
 
-← [Scalar variables](../) / [Assigning a value](../assigning-a-value) | 💪 [Assignments to ’Scalar variables‘](../assignments) →
+← [Scalar variables](../) / [Assigning a value](../assigning-a-value) | 💪 [Exercises](../exercises) →

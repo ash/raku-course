@@ -19,4 +19,4 @@ You can now use the variable and, for example, print it:
 
 ← [Scalar variables](../) / [Declaring a variable](../declaring-a-variable) | [Scalar variables](../) / [Declaration with initialization](../declaration-with-initialization) →
 
-💪 Or jump directly to [the assignments to this section](../assignments).
+💪 Or jump directly to [the exercises to this section](../exercises).

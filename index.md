@@ -1,8 +1,8 @@
 # Contents
 
-## Part 1
-
 * [About this course](about-this-course)
+
+## Part 1. Raku essentials
 
 ### Basic introduction to Raku and its compiler
 
@@ -13,7 +13,7 @@
 * [Conventional file extensions](conventional-file-extensions)
 * [Hello, World!](hello-world)
 * [Notes on using Unicode](on-unicode)
-* [Running programs](running-programs) — [1 assignment](running-programs/assignments)
+* [Running programs](running-programs) — [1 exercise](running-programs/exercises)
     - [Running from command line](running-programs/from-command-line)
     - [Running from REPL](running-programs/from-repl)
     - [Running from IDE](running-programs/from-ide)
@@ -26,23 +26,23 @@
 
 ### Variables and data types essentials
 
-* [Scalar variables](scalar-variables) — [2 assignments](scalar-variables/assignments)
+* [Scalar variables](scalar-variables) — [2 exercises](scalar-variables/exercises)
     - [Declaring a variable](scalar-variables/declaring-a-variable)
     - [Assigning a value](scalar-variables/assigning-a-value)
     - [Declaration with initialization](scalar-variables/declaration-with-initialization)
-* [Strings](strings) — [4 assignments](strings/assignments)
+* [Strings](strings) — [4 exercises](strings/exercises)
     - [String concatenation](strings/string-concatenation)
     - [Variable interpolation](strings/variable-interpolation)
     - [Escaping special characters](strings/escaping-special-characters)
     - [String length](strings/string-length)
-* [Numbers](numbers) — *[assignments](numbers/assignments)
+* [Numbers](numbers) — *[exercises](numbers/exercises)
     - [Integer numberss](numbers/integers)
     - [Rational numbers](numbers/rats)
     - [Floating-point numbers](numbers/numeric)
 * [Boolean type](booleans)
-* [Data types and introspection](what)
+* [Data types and introspection](what) — [1 exercise](what/exercises)
 * [Data type conversion](coercion)
-* [Typed variables](typed-variables)
+* [Typed variables](typed-variables) — [1 exercise](typed-variables/exercises)
 
 ### Running Raku
 

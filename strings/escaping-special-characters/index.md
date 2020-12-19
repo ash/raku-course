@@ -47,4 +47,4 @@ In double quotes, a special sequence `\n` was processed as a newline character, 
 
 ← [Strings](..) / [Variable interpolation](../variable-interpolation) | [Strings](..) / [String length](../string-length) →
 
-💪 Or you can jump straight to the [assignments on strings](../assignments).
+💪 Or you can jump straight to the [exercises on strings](../exercises).

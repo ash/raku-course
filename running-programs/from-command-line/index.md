@@ -19,4 +19,4 @@ If the program does not contain errors, it will be immediately executed, and if 
 
 ← [Running programs](..) | [Running programs](..) / [Running from REPL](../from-repl) →
 
-💪 Or jump directly to [the assignments to this section](../assignments).
+💪 Or jump directly to [the exercises to this section](../exercises).

@@ -40,4 +40,4 @@ The same string generates differnet messages this time:
 
 ← [Strings](..) / [String concatenation](../string-concatenation) | [Strings](..) / [Escaping special characters](../escaping-special-characters) →
 
-💪 Or you can jump straight to the [assignments on strings](../assignments).
+💪 Or you can jump straight to the [exercises on strings](../exercises).

@@ -27,4 +27,4 @@ Let us see what other basic features we can learn about strings.
 
 ← [Scalar variables](../scalar-variables) / [Declaration with initialization](../scalar-variables/declaration-with-initialization) | [String concatenation](string-concatenation) →
 
-💪 If you already have read all the materials about strings, you can go directly to [assignments on strings](assignments).
+💪 If you already have read all the materials about strings, you can go directly to [exercises on strings](exercises).
