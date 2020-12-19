@@ -14,7 +14,7 @@ Explore the following topics to get the idea of the most important differences i
 
 * [Integer numberss](integers)
 * [Rational numbers](rats)
-* [Scientific notation](numeric)
+* [Floating-point numbers](numeric)
 
 ## Course navigation
 

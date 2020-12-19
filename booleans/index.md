@@ -50,4 +50,4 @@ Notice that we just met a ‘null’ value `Nil`.
 
 ## Course navigation
 
-← [Numbers](/raku-course/numbers) / [Scientific notation](/raku-course/numbers/numeric) | [Data type conversion](/raku-course/coersion)  →
+← [Numbers](/raku-course/numbers) / [Floating-point numbers](/raku-course/numbers/numeric) | [Data types and introspection](/raku-course/what)  →

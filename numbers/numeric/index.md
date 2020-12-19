@@ -4,7 +4,7 @@ title: Scientific notation in Raku
 
 [Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers)
 
-# Scientific notation
+# Floating-point numbers
 
 In the previous section, we saw that numbers such as `1.5` are rational numbers. To make a number that corresponds to a `double` number in C++, use scientific notation:
 
