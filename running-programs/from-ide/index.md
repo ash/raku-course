@@ -22,4 +22,4 @@ The running facility sits behind the `Run` menu item. Follow [the instructions](
 
 ← [Running programs](..) / [Running from REPL](../from-repl) | [Running programs](..) / [Using docker](../using-docker) →
 
-💪 Or jump directly to [the assignments to this section](../assignments).
+💪 Or jump directly to [the exercises to this section](../exercises).

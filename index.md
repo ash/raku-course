@@ -40,7 +40,7 @@
     - [Rational numbers](numbers/rats)
     - [Floating-point numbers](numbers/numeric)
 * [Boolean type](booleans)
-* [Data types and introspection](what) — [1 exercise](what/exercises)
+* [Data types and introspection](what) — [2 exercises](what/exercises)
 * [Data type conversion](coercion)
 * [Typed variables](typed-variables) — [1 exercise](typed-variables/exercises)
 

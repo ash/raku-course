@@ -36,8 +36,10 @@ There is no problem to call a method on a literal itself. For example:
 
 Notice that in the case of `-1` we put the number in parentheses, as `say -1.WHAT` would try to negate the result of `1.WHAT`, which leads to an exception.
 
-Do not skip the assignment as it reveals some additional information about the data types of Raku.
+## Exercises
+
+Do not skip the exercises as they reveal some additional information about the data types of Raku.
 
 ## Course navigation
 
-← [Boolean type](/raku-course/booleans) | 💪 [Assignments](assignments) →
+← [Boolean type](/raku-course/booleans) | 💪 [Exercises](exercises) →
