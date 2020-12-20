@@ -26,7 +26,7 @@ All the numbers are hard coded and saved in a number of variables. We are also u
 
 The three lines that generate output print the three lines of the table, including its header. Notice how the columns are separated by the tab characters `\t`. In the data rows, we also see an escaped dollar character: `\$` as well as different variables that we want to interpolate.
 
-🦋 You can find the source code in the file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/strings/exercises/purchase-table/solution/purchase-table.raku).
+🦋 You can find the source code in the file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
 
 ## Output
 

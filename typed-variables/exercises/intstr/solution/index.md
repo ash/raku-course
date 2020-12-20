@@ -40,7 +40,7 @@ Notice that you get an error even if the input string can be casted to a number,
 
 The second assignment, `$s = $input`, will never break as a string can take any input.
 
-🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/typed-variables/exercises/intstr/intstr.raku).
+🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/intstr.raku).
 
 ## Course navigation
 

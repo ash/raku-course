@@ -14,7 +14,7 @@ Here is the complete program that sovles the job and prints both the entered str
     say $name;
     say $name.WHAT;
 
-🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/what/exercises/prompt-strings/solution/prompt-strings.raku).
+🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/what/prompt-strings.raku).
 
 ## Test runs
 

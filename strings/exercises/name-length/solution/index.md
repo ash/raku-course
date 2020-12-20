@@ -13,7 +13,7 @@ Here is the solution to the task:
     my $name = prompt 'What is your name? ';
     say $name.chars;
 
-🦋 You can find the source code in the file [name-length.raku](https://github.com/ash/raku-course/blob/master/strings/exercises/name-length/solution/name-length.raku).
+🦋 You can find the source code in the file [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/name-length.raku).
 
 ## Output
 

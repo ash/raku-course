@@ -13,7 +13,7 @@ Here is a possible solution of this problem:
     my $name = prompt 'What is your name? ';
     say "Hello, $name!";
 
-🦋 You can find the source code in the file [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/strings/exercises/hello-interpolation/solution/hello-interpolation.raku).
+🦋 You can find the source code in the file [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
 
 ## Output
 

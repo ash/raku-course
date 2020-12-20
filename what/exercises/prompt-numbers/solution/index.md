@@ -14,7 +14,7 @@ Here is the complete program that sovles the job and prints both the entered str
     say $n;
     say $n.WHAT;
 
-🦋 You can find the source code in the file [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/what/exercises/prompt-numbers/solution/prompt-numbers.raku).
+🦋 You can find the source code in the file [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/what/prompt-numbers.raku).
 
 ## Test runs
 
