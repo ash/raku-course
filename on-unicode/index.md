@@ -18,9 +18,7 @@ A number of built-in operators have two forms: a Unicode and ASCII versions. For
 
 When working with numbers, you can choose to use fractions in the form of `½` instead of `0.5`. Or, evaluating the square of `$x` as `$x²` using a superscript character.
 
-Find the full list of such pairs on the following documentation page:
-
-* [Unicode versus ASCII symbols](https://docs.raku.org/language/unicode_ascii)
+Find the full list of such pairs on the following documentation page: 📖 [Unicode versus ASCII symbols](https://docs.raku.org/language/unicode_ascii).
 
 ## Course navigation
 

@@ -44,6 +44,23 @@
 * [Data type conversion](coercion)
 * [Typed variables](typed-variables) — [1 exercise](typed-variables/exercises)
 
+### Control flow essentials
+
+* Code blocks
+* Conditional checks
+* Loops
+
+### Functions essentials
+
+* Creating a subroutine
+    - Signature
+    - Calling a subroutine
+* Multiple dispatch
+* The MAIN function
+    - Multiple MAIN subroutines
+* Nested subroutines
+* Anonymous subroutines
+
 ### Running Raku
 
 * Command-line options

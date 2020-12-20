@@ -6,8 +6,7 @@ title: Exercises to ‘Typed variables’
 
 # Exercises
 
-1. [Exploring the output of `prompt`](prompt)
-
+1. [Trying IntStr](intstr)
 
 ## Course navigation
 

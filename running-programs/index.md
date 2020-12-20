@@ -22,4 +22,4 @@ There are two five in this section. You can browse all of them or examine only t
 
 ← [Notes on using Unicode](../on-unicode) | [Running from command line](from-command-line) →
 
-💪 Or jump directly to [the exercises to this section](exercise).
+💪 Or jump directly to [the exercises to this section](exercises).
