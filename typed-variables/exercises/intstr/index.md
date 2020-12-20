@@ -17,7 +17,7 @@ Consider the following program. Before running it, can you tell which input valu
     say $i;
     say $s;
 
-🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/typed-variables/exercises/intstr/intstr.raku).
+🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/intstr.raku).
 
 ## Solution
 
