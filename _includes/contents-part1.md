@@ -20,7 +20,7 @@
 
 ### Variables and data types essentials
 
-* [Scalar variables](/raku-course/scalar-variables) — [2 exercises](/raku-course/scalar-variables/exercises)
+* [Scalar variables](/raku-course/scalar-variables) — [3 exercises](/raku-course/scalar-variables/exercises)
     - [Declaring a variable](/raku-course/scalar-variables/declaring-a-variable)
     - [Assigning a value](/raku-course/scalar-variables/assigning-a-value)
     - [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization)
@@ -29,14 +29,14 @@
     - [Variable interpolation](/raku-course/strings/variable-interpolation)
     - [Escaping special characters](/raku-course/strings/escaping-special-characters)
     - [String length](/raku-course/strings/string-length)
-* [Numbers](/raku-course/numbers) — *[exercises](/raku-course/numbers/exercises)
+* [Numbers](/raku-course/numbers) — [5 exercises](/raku-course/numbers/exercises)
     - [Integer numberss](/raku-course/numbers/integers)
     - [Rational numbers](/raku-course/numbers/rats)
     - [Floating-point numbers](/raku-course/numbers/numeric)
     - [Operations with numbers](/raku-course/numbers/operations)
-* [Boolean type](/raku-course/booleans)
+* [Boolean type](/raku-course/booleans) — [3 exercises](/raku-course/booleans/exercises)
 * [Data types and introspection](/raku-course/what) — [2 exercises](/raku-course/what/exercises)
-* [Data type conversion](/raku-course/coercion)
+* [Data type conversion](/raku-course/coercion) — [3 exercises](/raku-course/coercion/exercises)
 * [Typed variables](/raku-course/typed-variables) — [1 exercise](/raku-course/typed-variables/exercises)
 
 ### Control flow essentials

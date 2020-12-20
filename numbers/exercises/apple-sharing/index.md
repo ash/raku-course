@@ -8,7 +8,7 @@ title: Apple sharing
 
 ## Problem
 
-_N_ people take _K_ apples and evenly distribute them among each other. The remaning (the indivisibale) part is kept in the basket. Create the program that answers the following questions:
+_N_ people take _K_ apples and evenly distribute them among each other. The remaining part is kept in the basket. Create the program that answers the following questions:
 
 * How many apples each single person gets?
 * How many apples remain in the basket?

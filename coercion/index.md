@@ -61,4 +61,4 @@ Notice that with the case of numeric conversion, the type of the converted value
 
 ## Course navigation
 
-← [Data types and introspection](/raku-course/what) | [Typed variables](/raku-course/typed-variables) →
+← [Data types and introspection](/raku-course/what) | 💪 [Exercises](exercises) →
