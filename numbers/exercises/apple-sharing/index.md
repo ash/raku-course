@@ -36,7 +36,7 @@ At this point, ignore putting the nouns in the correct form and do not take into
 
 ## Next exercise
 
-| [Sum of numbers](../sum-of-numbers) →
+| [Sum of numbers](/raku-course/numbers/exercises/sum-of-numbers) →
 
 ## Course navigation
 

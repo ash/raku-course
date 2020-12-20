@@ -6,7 +6,9 @@ title: Solution of ‘Apple sharing’
 
 # The solution of ‘Apple sharing’
 
-Here is the solution of the problem:
+Here is the solution of the problem.
+
+## Code
 
     my $N = 3;
     my $K = 11;
@@ -42,7 +44,7 @@ In the program, we are using the two operators: `div` to perform integer divisio
 
 ## Next exercise
 
-| [Sum of numbers](../sum-of-numbers) →
+| [Sum of numbers](/raku-course/numbers/exercises/sum-of-numbers) →
 
 ## Course navigation
 

@@ -8,6 +8,9 @@ title: Exercises — ‘Numbers’
 
 1. [Apple sharing](apple-sharing)
 1. [Sum of numbers](sum-of-numbers)
+1. [Class desks](class-desks)
+1. [Number of tens](tens)
+1. [The value of π](pi)
 
 ## Start the assignments
 

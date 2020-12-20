@@ -6,7 +6,9 @@ title: Solution of ‘Sum of numbers’
 
 # The solution of ‘Sum of numbers’
 
-Here is the solution of the problem:
+Here is the solution of the problem.
+
+## Code
 
     my $a = prompt 'Enter number A: ';
     my $b = prompt 'Enter number A: ';
@@ -34,7 +36,7 @@ Notice that we are directly using the value returned by the `prompt` routine. Th
 
 ## Next exercise
 
-| [Sum of numbers](../sum-of-numbers) →
+| [Class desks](/raku-course/numbers/exercises/class-desks) →
 
 ## Course navigation
 

@@ -1,24 +1,22 @@
 ---
-title: Sum of numbers
+title: Number of tens
 ---
 
 [Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises)
 
-# Sum of numbers
+# Number of tens
 
 ## Problem
 
-Write the program that asks to enter three numbers (one after another), and then prints the sum of them.
+Create a program that asks to enter an positive integer number and prints the digit corresponding to the number of _tens_ in it.
 
 ## Example
 
-Here is an expected script of how the program is used:
+For example, in the input number 234, the number of tens is 3, so the program prints 3:
 
-    $ raku sum-of-numbers.raku
-    Enter number A: 10
-    Enter number B: 20
-    Enter number C: 30
-    The sum of the numbers is 60.
+    $ raku tens.raku
+    Enter a positive integer number: 234
+    3
 
 ## Solution
 
@@ -26,7 +24,7 @@ Here is an expected script of how the program is used:
 
 ## Next exercise
 
-| [Class desks](/raku-course/numbers/exercises/class-desks) →
+| [The value of π](/raku-course/numbers/exercises/pi) →
 
 ## Course navigation
 
