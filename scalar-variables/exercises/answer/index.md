@@ -21,6 +21,10 @@ The expected behaviour of the program is demonstrated below:
 
 ✅ [See the solution](solution)
 
+## Next exercise
+
+| [Swap values](../swap) →
+
 ## Course navigation
 
 ← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../../../strings) →

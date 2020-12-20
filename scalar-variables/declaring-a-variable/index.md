@@ -12,8 +12,14 @@ Variables cannot appear from nowhere, that’s why you have to announce it befor
 
 Having that said, you introduced a new variable, which keeps no payload so far. But it is already known to the compiler, so it can identify it when it see the same name later in the program.
 
+## More than one variable
+
+You can declare two or more variables using the same `my` declarator:
+
+    my ($x, $y);
+
 ## Course navigation
 
-← [Scalar variables](../) / [Declaring a variable](../declaring-a-variable) | [Scalar variables](../) / [Assigning a value](../assigning-a-value) →
+← [Scalar variables](../) | [Scalar variables](../) / [Assigning a value](../assigning-a-value) →
 
 💪 Or jump directly to [the exercises to this section](../exercises).

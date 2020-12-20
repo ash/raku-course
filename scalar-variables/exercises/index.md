@@ -8,6 +8,7 @@ title: Assignmnets to ‘Scalar variables’
 
 1. [Greet a person](greet-a-person)
 1. [The answer to life, the Universe and everything](answer)
+1. [Swap values](swap)
 
 ## Start the assignments
 
