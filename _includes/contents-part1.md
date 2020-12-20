@@ -33,6 +33,7 @@
     - [Integer numberss](/raku-course/numbers/integers)
     - [Rational numbers](/raku-course/numbers/rats)
     - [Floating-point numbers](/raku-course/numbers/numeric)
+    - [Operations with numbers](/raku-course/numbers/operations)
 * [Boolean type](/raku-course/booleans)
 * [Data types and introspection](/raku-course/what) — [2 exercises](/raku-course/what/exercises)
 * [Data type conversion](/raku-course/coercion)

@@ -51,4 +51,4 @@ With some fractions, such as `1/3`, you have less options, `⅓` or `<1/3>`, as 
 
 ← [Numbers](/raku-course/numbers) / [Integer numbers](/raku-course/numbers/integers) | [Numbers](/raku-course/numbers) / [Floating-point numbers](../numeric) →
 
-Ot jump to the 💪 [assignmnets](../assignments).
+Ot jump to the 💪 [exercises](../exercises).

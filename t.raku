@@ -1,8 +1,2 @@
-my $input = prompt 'Enter a number: ';
-say $input.WHAT;
-
-my Int $i = $input;
-my Str $s = $input;
-
-say $i;
-say $s;
+say 3 * 4 + 5;   # 17
+    say 3 * (4 + 5); # 21

@@ -26,4 +26,6 @@ There are a few constants that you can use straight ahead, which are also the nu
 
 ## Course navigation
 
-← [Numbers](/raku-course/numbers) / [Rational numbers](/raku-course/numbers/rats) | 💪 [Assignmnets](../assignments) →
+← [Numbers](/raku-course/numbers) / [Rational numbers](/raku-course/numbers/rats) | [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) →
+
+Ot jump to the 💪 [exercises](../exercises).

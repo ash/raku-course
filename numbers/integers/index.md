@@ -35,4 +35,4 @@ Raku will perfectly handle numbers that go beyond 32- or 64-bit integers. So, fo
 
 ← [Numbers](/raku-course/numbers) | [Numbers](/raku-course/numbers) / [Rational numbers](../rats) →
 
-Ot jump to the 💪 [assignmnets](../assignments).
+Ot jump to the 💪 [exercises](../exercises).
