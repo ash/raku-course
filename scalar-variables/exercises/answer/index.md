@@ -1,8 +1,8 @@
 ---
-title: Assignment ’The answer to life, the Universe and everything‘
+title: Exercise ’The answer to life, the Universe and everything‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Scalar variables](../..) / [Assignments](..)
+[Start](../../..) / [Part 1](../../../part1) / [Scalar variables](../..) / [Exercises](..)
 
 # The answer to life, the Universe and everything
 

@@ -2,7 +2,7 @@
 title: The solution of ’The answer to life, the Universe and everything‘
 ---
 
-[Start](../../../..) / [Part 1](../../../../part1) / [Scalar variables](../../..) / [Assignments](../..) / [The answer to life, the Universe and everything](../)
+[Start](../../../..) / [Part 1](../../../../part1) / [Scalar variables](../../..) / [Exercises](../..) / [The answer to life, the Universe and everything](../)
 
 # The solution
 
@@ -13,7 +13,7 @@ Here is a possible solution to the task.
     my $answer = 42;
     say $answer;
 
-🦋 You can find the source code in the file [answer.raku](https://github.com/ash/raku-course/blob/master/assignments/scalar-variables/answer.raku).
+🦋 You can find the source code in the file [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
 
 ## Output
 
