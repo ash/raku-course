@@ -1,7 +1,9 @@
 ---
-title: Part 1 of the Raku course
+title: Part 1 — Raku essentials
 ---
 
-[Start](../)
+[Start](/raku-course/)
 
-# Part 1
+# Part 1. Raku essentials
+
+{% include contents-part1.md %}

@@ -29,18 +29,18 @@ If you enter a string that cannot be an integer number, the program breaks at th
     $ raku intstr.raku
     Enter something: Hello, World!
     Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
-      in block <unit> at trying-intstr.raku line 2
+      in block <unit> at intstr.raku line 2
 
 Notice that you get an error even if the input string can be casted to a number, but not integer. As it is not possible to store a floating-point or a rational number in an integer container, Raku will emit an exception:
 
     $ raku intstr.raku
     Enter something: 3.14
     Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
-      in block <unit> at typed-variables/exercises/intstr/trying-intstr.raku line 2
+      in block <unit> at intstr.raku line 2
 
 The second assignment, `$s = $input`, will never break as a string can take any input.
 
-🦋 You can find the source code in the file [trying-intstr.raku](https://github.com/ash/raku-course/blob/master/typed-variables/exercises/intstr/intstr.raku).
+🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/typed-variables/exercises/intstr/intstr.raku).
 
 ## Course navigation
 

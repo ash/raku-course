@@ -4,62 +4,7 @@
 
 ## Part 1. Raku essentials
 
-### Basic introduction to Raku and its compiler
-
-* [What is Raku](what-is-raku)
-* [Raku vs. Rakudo](raku-vs-rakudo)
-* [How to install Rakudo](how-to-install-rakudo)
-* [Editors and IDEs](editors-and-ides)
-* [Conventional file extensions](conventional-file-extensions)
-* [Hello, World!](hello-world)
-* [Notes on using Unicode](on-unicode)
-* [Running programs](running-programs) — [1 exercise](running-programs/exercises)
-    - [Running from command line](running-programs/from-command-line)
-    - [Running from REPL](running-programs/from-repl)
-    - [Running from IDE](running-programs/from-ide)
-    - [Using docker](running-programs/using-docker)
-    - [Using online service](running-programs/using-online-services)
-* [Simple input and output](simple-input-output)
-    - [Output with `say`](simple-input-output/say)
-    - [Input with `prompt`](simple-input-output/prompt)
-* [Comments](comments)
-
-### Variables and data types essentials
-
-* [Scalar variables](scalar-variables) — [2 exercises](scalar-variables/exercises)
-    - [Declaring a variable](scalar-variables/declaring-a-variable)
-    - [Assigning a value](scalar-variables/assigning-a-value)
-    - [Declaration with initialization](scalar-variables/declaration-with-initialization)
-* [Strings](strings) — [4 exercises](strings/exercises)
-    - [String concatenation](strings/string-concatenation)
-    - [Variable interpolation](strings/variable-interpolation)
-    - [Escaping special characters](strings/escaping-special-characters)
-    - [String length](strings/string-length)
-* [Numbers](numbers) — *[exercises](numbers/exercises)
-    - [Integer numberss](numbers/integers)
-    - [Rational numbers](numbers/rats)
-    - [Floating-point numbers](numbers/numeric)
-* [Boolean type](booleans)
-* [Data types and introspection](what) — [2 exercises](what/exercises)
-* [Data type conversion](coercion)
-* [Typed variables](typed-variables) — [1 exercise](typed-variables/exercises)
-
-### Control flow essentials
-
-* Code blocks
-* Conditional checks
-* Loops
-
-### Functions essentials
-
-* Creating a subroutine
-    - Signature
-    - Calling a subroutine
-* Multiple dispatch
-* The MAIN function
-    - Multiple MAIN subroutines
-* Nested subroutines
-* Anonymous subroutines
+{% include contents-part1.md %}
 
 ### Running Raku
 
