@@ -7,6 +7,7 @@ title: Exercises — ‘Numbers’
 # Exercises — ’Numbers’
 
 1. [Apple sharing](apple-sharing)
+1. [Sum of numbers](sum-of-numbers)
 
 ## Start the assignments
 

@@ -37,18 +37,12 @@ Modify the initial value of `$N` and `$K` to model other situations:
 
 In the program, we are using the two operators: `div` to perform integer division and `%` for getting the remainder of the division. Alternatively, you can make the calculations in the following manner:
 
-
     my $gets = $K div $N;
-    my $remains = $K - $N * $gets;
-
-Or even using standard division and explicit conversion to `Int`, in which case it is equivalent to rounding the number down.
-
-    my $gets = ($K / $N).Int;
     my $remains = $K - $N * $gets;
 
 ## Next exercise
 
-| [Apple sharing](apple-sharing) →
+| [Sum of numbers](../sum-of-numbers) →
 
 ## Course navigation
 

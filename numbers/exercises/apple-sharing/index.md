@@ -36,7 +36,7 @@ At this point, ignore putting the nouns in the correct form and do not take into
 
 ## Next exercise
 
-| [Apple sharing](apple-sharing) →
+| [Sum of numbers](../sum-of-numbers) →
 
 ## Course navigation
 
