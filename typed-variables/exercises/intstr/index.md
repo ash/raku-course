@@ -23,6 +23,10 @@ Consider the following program. Before running it, can you tell which input valu
 
 ✅ [See the solution and read the comments](solution)
 
+## Next exercise
+
+| [Converting user input to a number](/raku-course/typed-variables/exercises/input-number) →
+
 ## Course navigation
 
 ← [Typed variables](/raku-course/typed-variables)| [Code blocks](/raku-course/code-blocks) →

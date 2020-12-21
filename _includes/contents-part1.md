@@ -37,8 +37,8 @@
     - [Operations with numbers](/raku-course/numbers/operations)
 * [Boolean type](/raku-course/booleans) — [3 exercises](/raku-course/booleans/exercises)
 * [Data types and introspection](/raku-course/what) — [2 exercises](/raku-course/what/exercises)
-* [Data type conversion](/raku-course/coercion) — [3 exercises](/raku-course/coercion/exercises)
-* [Typed variables](/raku-course/typed-variables) — [1 exercise](/raku-course/typed-variables/exercises)
+* [Data type conversion](/raku-course/coercion) — [2 exercises](/raku-course/coercion/exercises)
+* [Typed variables](/raku-course/typed-variables) — [2 exercise](/raku-course/typed-variables/exercises)
 
 ### Control flow essentials
 

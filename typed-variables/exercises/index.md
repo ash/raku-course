@@ -7,6 +7,11 @@ title: Exercises to ‘Typed variables’
 # Exercises
 
 1. [Trying IntStr](intstr)
+1. [Converting user input to a number](input-number)
+
+## Start the assignments
+
+| [Trying IntStr](intstr) →
 
 ## Course navigation
 

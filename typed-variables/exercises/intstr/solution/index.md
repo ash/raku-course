@@ -42,6 +42,10 @@ The second assignment, `$s = $input`, will never break as a string can take any 
 
 🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/intstr.raku).
 
+## Next exercise
+
+| [Converting user input to a number](/raku-course/typed-variables/exercises/input-number) →
+
 ## Course navigation
 
 ← [Typed variables](/raku-course/typed-variables)| [Code blocks](/raku-course/code-blocks) →
