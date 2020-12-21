@@ -16,7 +16,7 @@ There are more than one way to make the identifiers correct. Some possible optio
     my $address2 = 'Second street, 12';
     my $from-to = 'London to Paris';
 
-All the identifiers are valid, but it is probably better to avoid names with an apostrophy if you `$don’t` have strong reasons to use them.
+All the identifiers are valid, but it is probably better to avoid names with apostrophes if you `$don't` have strong reasons to use them.
 
 🦋 You can find the source code in the file [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
 
@@ -26,7 +26,7 @@ Let us list the problems with the original names:
 
 * Spaces are not allowed: `$ A G E`.
 * A variable needs a sigil: `Name` (it is possible to have sigilles variables in Raku, but they still cannot be declared as `my Name`).
-* An apostrophy cannot start a name: `$'Middle'Name`.
+* An apostrophe (a single quote, actually) cannot start a name: `$'Middle'Name`.
 * A digit cannot start a name either: `$2address`.
 * Two hyphens cannot sit together: `$from--to`.
 
