@@ -1,22 +1,24 @@
 ---
-title: Exercise ’Swap the values‘
+title: Exercise ’Correct the identifiers‘
 ---
 
 [Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Exercises](..)
 
-# Swap the values
+# Correct the identifiers
 
 ## Problem
 
-Create a program that first creates two values and assigns some integers to them, and then swaps the values and prints them. Try to create the simplest program you can and do not use temporary variables.
+Make the nesessary corrections in the following program to make all variable names valid.
 
+    my $ A G E = 30;
+    my Name = 'Valdis';
+    my $'Middle'Name = 'C.';
+    my $2address = 'Second street, 12';
+    my $from--to = 'London to Paris';
+    
 ## Solution
 
 ✅ [See the solution](solution)
-
-## Next exercise
-
-| [Correct the identifiers](../identifiers) →
 
 ## Course navigation
 

@@ -56,6 +56,10 @@ This program prints even more warnings, but you can also see that only `$b` chan
     Useless use of $a in sink context (line 2)
     10, 40
 
+## Next exercise
+
+| [Correct the identifiers](../../identifiers) →
+
 ## Course navigation
 
 ← [Scalar variables](/raku-course/scalar-variables) / [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization) | [Strings](/raku-course/strings) →

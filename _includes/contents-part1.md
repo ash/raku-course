@@ -20,10 +20,11 @@
 
 ### Variables and data types essentials
 
-* [Scalar variables](/raku-course/scalar-variables) — [3 exercises](/raku-course/scalar-variables/exercises)
+* [Scalar variables](/raku-course/scalar-variables) — [4 exercises](/raku-course/scalar-variables/exercises)
     - [Declaring a variable](/raku-course/scalar-variables/declaring-a-variable)
     - [Assigning a value](/raku-course/scalar-variables/assigning-a-value)
     - [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization)
+    - [Variable names](/raku-course/scalar-variables/identifiers)
 * [Strings](/raku-course/strings) — [4 exercises](/raku-course/strings/exercises)
     - [String concatenation](/raku-course/strings/string-concatenation)
     - [Variable interpolation](/raku-course/strings/variable-interpolation)

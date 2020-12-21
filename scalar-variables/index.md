@@ -21,6 +21,7 @@ Here are a couple of examples of scalar variables:
 * [Declaring a variable](declaring-a-variable)
 * [Assigning a value](assigning-a-value)
 * [Declaration with initialization](declaration-with-initialization)
+* [Variable names](identifiers)
 
 ## Course navigation
 
