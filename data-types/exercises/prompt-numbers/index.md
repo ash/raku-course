@@ -2,7 +2,7 @@
 title: Examining the result of prompt — Numbers
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types and introspection](/raku-course/what) / [Exercises](..)
+[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types) / [Exercises](..)
 
 # Examining the result of `prompt` — Numbers
 
@@ -16,4 +16,4 @@ Modify the program from the previous exercise. This time, it should ask to enter
 
 ## Course navigation
 
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) →
+← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →

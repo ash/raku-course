@@ -17,6 +17,10 @@
     - [Output with `say`](/raku-course/simple-input-output/say)
     - [Input with `prompt`](/raku-course/simple-input-output/prompt)
 * [Comments](/raku-course/comments)
+    - [Single-line comments](/raku-course/comments/single-line)
+    - [Multi-line comments](/raku-course/comments/multi-line)
+    - [Embedded comments](/raku-course/comments/embedded)
+
 
 ### Variables and data types essentials
 
@@ -36,13 +40,19 @@
     - [Floating-point numbers](/raku-course/numbers/numeric)
     - [Operations with numbers](/raku-course/numbers/operations)
 * [Boolean type](/raku-course/booleans) — [3 exercises](/raku-course/booleans/exercises)
-* [Data types and introspection](/raku-course/what) — [2 exercises](/raku-course/what/exercises)
+    - [Boolean operations](/raku-course/booleans/operations)
+    - [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types)
+* [Data types](/raku-course/data-types) — [2 exercises](/raku-course/data-types/exercises)
+    - [Introspection with `WHAT`](/raku-course/data-types/what)
 * [Data type conversion](/raku-course/coercion) — [2 exercises](/raku-course/coercion/exercises)
 * [Typed variables](/raku-course/typed-variables) — [2 exercise](/raku-course/typed-variables/exercises)
 
 ### Control flow essentials
 
-* Code blocks
+* [Code blocks](/raku-course/code-blocks)
+    - [Lexical scope](/raku-course/code-blocks/lexical-scope)
+    - [Global variables](/raku-course/code-blocks/global-variables)
+    - [Local variables](/raku-course/code-blocks/local-variables)
 * Conditional checks
 * Loops
 

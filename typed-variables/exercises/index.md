@@ -15,4 +15,4 @@ title: Exercises to ‘Typed variables’
 
 ## Course navigation
 
-← [Typed variables](/raku-course/typed-variables) | [Data type conversion](/raku-course/coercion) →
+← [Typed variables](/raku-course/typed-variables) | [Code blocks](/raku-course/code-blocks) →

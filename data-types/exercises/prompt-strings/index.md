@@ -2,7 +2,7 @@
 title: Examining the result of prompt — Strings
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types and introspection](/raku-course/what) / [Exercises](..)
+[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types) / [Exercises](..)
 
 # Examining the result of `prompt` — Strings
 
@@ -23,4 +23,4 @@ Complete the following program so that it repeats the entered name and then prin
 
 ## Course navigation
 
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) →
+← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →

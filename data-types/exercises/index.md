@@ -2,7 +2,7 @@
 title: Exercises — ‘Typed variables’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types and introspection](/raku-course/what)
+[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types)
 
 # Exercices
 
@@ -17,4 +17,4 @@ These exercises go a bit beyond the theory that was covered in the previous sect
 
 ## Course navigation
 
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) →
+← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →

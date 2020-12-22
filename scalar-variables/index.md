@@ -25,6 +25,6 @@ Here are a couple of examples of scalar variables:
 
 ## Course navigation
 
-← [Simple input and output](../simple-input-output) / [Input with `prompt`](../simple-input-output/prompt) | [Declaring a variable](declaring-a-variable) →
+← [Comments](/raku-course/comments) / [Embedded](/raku-course/comments/embedded)  | [Declaring a variable](declaring-a-variable) →
 
 💪 Or jump directly to [the exercises to this section](exercises).

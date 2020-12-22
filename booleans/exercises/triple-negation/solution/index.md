@@ -55,4 +55,4 @@ This happens because `!!!` is a special operator for marking the part of the cod
 
 ## Course navigation
 
-← [Scalar variables](/raku-course/scalar-variables) / [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization) | [Data types and introspection](/raku-course/what) →
+← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →

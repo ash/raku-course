@@ -29,4 +29,4 @@ Here is an example of partial output of this program.
 
 ## Course navigation
 
-← [Scalar variables](/raku-course/scalar-variables) / [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization) | [Data types and introspection](/raku-course/what) →
+← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →

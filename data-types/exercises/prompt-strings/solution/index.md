@@ -2,7 +2,7 @@
 title: Solution of ‘Examining the output of prompt — Strings’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types and introspection](/raku-course/what) / [Exercises](../..) / [Examining the result of `prompt` — Strings](..)
+[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types) / [Exercises](../..) / [Examining the result of `prompt` — Strings](..)
 
 # Solution — testing strings
 
@@ -14,7 +14,7 @@ Here is the complete program that sovles the job and prints both the entered str
     say $name;
     say $name.WHAT;
 
-🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/what/prompt-strings.raku).
+🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/data-types/prompt-strings.raku).
 
 ## Test runs
 
@@ -41,4 +41,4 @@ We do not see the output (well, it is seen as white on white), but we see that t
 
 ## Course navigation
 
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) →
+← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →
