@@ -59,6 +59,12 @@ Notice that with the case of numeric conversion, the type of the converted value
     say (+'3.14').WHAT;  # (Rat)
     say (+'27E-1').WHAT; # (Num)
 
+For Boolean conversions, there is also another prefix operator called `so`, and you can call this routine as a method too:
+
+    my $value = 42;
+    say so $value; # True
+    say $value.so; # True
+
 ## Course navigation
 
 ← [Data types and introspection](/raku-course/what) | 💪 [Exercises](exercises) →

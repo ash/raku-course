@@ -6,8 +6,12 @@ title: Exercises to ‘Data type conversion’
 
 # Exercises to ‘Data type conversion’
 
-1. [True and False integers](true-false-integers)
+1. [True and False numbers](true-false-numbers)
 1. [True and False strings](true-false-strings)
+
+## Start the assignments
+
+| [True and False numbers](true-false-numbers) →
 
 ## Course navigation
 
