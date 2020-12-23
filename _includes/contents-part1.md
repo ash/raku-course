@@ -45,7 +45,13 @@
 * [Data types](/raku-course/data-types) — [2 exercises](/raku-course/data-types/exercises)
     - [Introspection with `WHAT`](/raku-course/data-types/what)
 * [Data type conversion](/raku-course/coercion) — [2 exercises](/raku-course/coercion/exercises)
+    - [Converting types using type coercion methods](/raku-course/coercion/methods)
+    - [Converting types using constructor forms](/raku-course/coercion/new)
+    - [Converting types with prefix operators](/raku-course/coercion/prefixes)
 * [Typed variables](/raku-course/typed-variables) — [2 exercise](/raku-course/typed-variables/exercises)
+    - [Type constraints](/raku-course/typed-variables/type-constraints)
+    - [Using `of`](/raku-course/typed-variables/using-of)
+    - [Type conversion for typed variables](/raku-course/typed-variables/coercion)
 
 ### Control flow essentials
 

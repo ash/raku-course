@@ -6,65 +6,27 @@ title: Data type conversion
 
 # Data type conversion
 
-Sometimes you need to convert the values of one type to another type. There are a few ways you can do that.
+Raku is a language with the so-called gradual type system. In most cases, you don’t need to worry about specifying the type of the variable. You can reuse the same variable to first store a string and then a number, or convert a number to the string implicitly:
 
-## Using type coercion methods
+This is a valid program that does not break:
 
-To convert, or to _coerce_ a type, call a method with the name of the data type. For example, convert a string into an integer number:
+    my $var = 42;
+    $var = 'string';
 
-    my $howmany = '42';
-    my $n = $howmany.Int;
-    say $n;
+So is this program:
 
-In many cases, you don’t need to convert values explicitly, as Raku does that job for you. The following code is a working correctly and predictably:
+    my $a = '100';
+    my $b = 200;
+    say $a + $b; # 300
 
-    my $a = '10';
-    my $b = '20';
-    my $c = $a + $b;
-    say "The result is $c."; # The result is 30.
+Nevertheless, Raku allows you to specify the type of things that you can keep in the given variable, if you want to. Also, sometimes you need to convert the values of one type to another type. There are a few ways you can do that.
 
-The two variables, `$a` and `$b`, contain strings, but they are used in an arithmetical expression with `+`. At this point, both strings are converted to integers, and thus `$c` also gets an integer. In the last line, a variable containing an integer is interpolated in a string, so Raku does the necessary operations to present the number as a sequence of digit characters.
+## Next steps
 
-## Using constructor forms
-
-A similar method is to construct a new instance of an object of the required type by calling its constructor, whose name is the name of the type. For example:
-
-    my $n = Int('1.23E4');
-    say $n;      # 12300
-    say $n.WHAT; # (Int)
-
-Here, the string containing a floating-point number is converted to an integer.
-
-## Using prefix operators
-
-Another way of transforming the type of an object is to use prefix operators. Those are one-character operators that are placed immediately before the value (or a variable).
-
-`~` | String coercion
-`+` | Numeric coercion
-`?` | Boolean coercion
-
-Consider an example of creating a Boolean value out of an integer:
-
-    say ?42; # True
-
-Converting to a string is similar:
-
-    my $n = -30;
-    my $s = ~$n;
-    say $s.chars; # 3, as "-30" has 3 characters
-
-Notice that with the case of numeric conversion, the type of the converted value differes depending on the number in question. Compare the following conversions from strings:
-
-    say (+'100').WHAT;   # (Int)
-    say (+'3.14').WHAT;  # (Rat)
-    say (+'27E-1').WHAT; # (Num)
-
-For Boolean conversions, there is also another prefix operator called `so`, and you can call this routine as a method too:
-
-    my $value = 42;
-    say so $value; # True
-    say $value.so; # True
+* [Converting types using type coercion methods](methods)
+* [Converting types using constructor forms](new)
+* [Converting types with prefix operators](prefixes)
 
 ## Course navigation
 
-← [Data types and introspection](/raku-course/what) | 💪 [Exercises](exercises) →
+← [Data types and introspection](/raku-course/what) | [Converting types using type coercion methods](methods) →
