@@ -1,0 +1,33 @@
+<style>
+    tr.correct td {background-color: #c9f7c9;}
+    tr.incorrect td {background-color: #f4bcbc;}
+</style>
+
+<script>
+    document.querySelectorAll('table.quiz tr').forEach(function(item) {
+        let cells = item.querySelectorAll('td');
+
+        if (cells[0].innerHTML == '1') {
+            cells[0].innerHTML = '<input type="checkbox" data-ok="1">';
+        }
+        else if (cells[0].innerHTML == '0') {
+            cells[0].innerHTML = '<input type="checkbox" data-ok="0">';
+        }
+
+        if (cells.length > 2) {
+            cells[2].style.display = 'none';
+        }
+    });
+
+    function quiz() {
+        document.querySelectorAll('table.quiz input[type="checkbox"]').forEach(function(item) {
+            let correct = (item.checked && item.dataset.ok == 1) || (!item.checked && item.dataset.ok == 0);
+            item.parentElement.parentElement.className = correct ? 'correct' : 'incorrect';
+        });
+        document.querySelectorAll('table.quiz tr td').forEach(function(item) {
+            item.style.display = '';
+        });
+}
+</script>
+
+<button onclick="quiz()">Check the answers</button>

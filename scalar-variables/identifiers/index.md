@@ -50,4 +50,4 @@ The definition of letters and digits is actually extended to include all those c
 
 ## Course navigation
 
-← [Scalar variables](../) / [Declaration with initialization](../declaration-with-initialization) | 💪 [Exercises](../exercises) →
+← [Scalar variables](../) / [Declaration with initialization](../declaration-with-initialization) | 🤔 [Quiz](quiz) →
