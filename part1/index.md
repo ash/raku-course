@@ -6,4 +6,3 @@ title: Part 1 — Raku essentials
 
 # Part 1. Raku essentials
 
-{% include contents-part1.md %}

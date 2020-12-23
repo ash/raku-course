@@ -1,0 +1,44 @@
+{% assign urlparts = page.url | remove_first: "/" | split: "/" %}
+{% assign L1 = urlparts[0] | default '' %}
+{% assign L2 = urlparts[1] | default '' %}
+{% assign L3 = urlparts[2] | default '' %}
+{% assign L4 = urlparts[3] | default '' %}
+{% assign L5 = urlparts[4] | default '' %}
+{% assign prefix = site.data.toc.prefix %}
+{% assign levels = urlparts.size %}
+
+<!-- URL levels: {{ levels }} -->
+
+[Course of Raku](/{{prefix}}/)
+
+{%- for part in site.data.toc.toc %}
+    {%- if part.url == L1 %}
+        {%- if levels == 1 %}
+            {%- assign title = part.title %}
+        {%- else %}
+            / [{{part.title}}](/{{prefix}}/{{part.url}})
+        {%- endif %}
+    {%- endif %}
+    {%- for section in part.items %}
+        {%- for topic in section.items %}
+            {%- if topic.url == L2 %}
+                {%- if levels == 2 %}
+                    {%- assign title = topic.title %}
+                {%- else %}
+                    / [{{topic.title}}](/{{prefix}}/{{part.url}}/{{topic.url}})
+                {%- endif %}
+            {%- endif %}
+            {%- for item in topic.items %}
+                {%- if item.url == L3 %}
+                    {%- if levels == 3 %}
+                        {%- assign title = item.title %}
+                    {%- else %}
+                        / [{{item.title}}](/{{prefix}}/{{part.url}}/{{topic.url}}/{{item.url}})
+                    {%- endif %}
+                {%- endif %}
+            {%- endfor %}
+        {%- endfor %}
+    {%- endfor %}
+{%- endfor %}
+
+# {{title}}

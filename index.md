@@ -1,10 +1,33 @@
-# Contents
+---
+prefix: /raku-course
+---
+
+# A Complete Course of the Raku programming language
+
+* [About this course]({{page.prefix}}/about-this-course)
+
+{% for part in site.data.toc.toc %}
+<!--## [{{part.title}}]({{page.prefix}}/{{part.url}})-->
+## {{part.title}}
+{%- for section in part.items %}
+### {{section.title}}
+{%- for topic in section.items %}
+* [{{topic.title}}]({{page.prefix}}/{{part.url}}/{{topic.url}})
+{%- for item in topic.items %}
+    - [{{item.title}}]({{page.prefix}}/{{part.url}}/{{topic.url}}/{{item.url}})
+{%- endfor %}
+{%- endfor %}
+{% endfor %}
+{% endfor %}
+
+
+
+---
 
 * [About this course](about-this-course)
 
 ## Part 1. Raku essentials
 
-{% include contents-part1.md %}
 
 ### Running Raku
 

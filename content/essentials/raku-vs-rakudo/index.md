@@ -1,1 +1,0 @@
-# Raku vs. Rakudo
