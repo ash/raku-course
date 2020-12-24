@@ -32,59 +32,64 @@ URL levels: {{ levels }}
 
     {% for subpart in part.items %}
         {% for section in subpart.items %}
-            {% if section.url == L2 %}
-                {% assign curr_subpart = subpart %}
-                {% assign curr_section = section %}
-            {% else %}
-                {% if curr_section == nil %}
-                    {% assign prev_section = section %}
-                    {% assign prev_section_part = part %}
-                {% endif %}
-                {% if curr_section != nil and next_section == nil %}
-                    {% assign next_section = section %}
-                    {% assign next_section_part = part %}
+            {% if part.url == L1 %}
+                {% if section.url == L2 %}
+                    {% assign curr_subpart = subpart %}
+                    {% assign curr_section = section %}
+                {% else %}
+                    {% if curr_section == nil %}
+                        {% assign prev_section = section %}
+                        {% assign prev_section_part = part %}
+                    {% endif %}
+                    {% if curr_section != nil and next_section == nil %}
+                        {% assign next_section = section %}
+                        {% assign next_section_part = part %}
+                    {% endif %}
                 {% endif %}
             {% endif %}
 
-            {% for topic in section.items %}
-                {% if topic.url == L3 %}
-                    {% assign curr_topic = topic %}
-                {% else %}
-                    {% if curr_topic == nil %}
-                        {% assign prev_topic = topic %}
-                        {% assign prev_topic_section = section %}
-                        {% assign prev_topic_part = part %}
+            {% if section.url == L2 %}
+                {% for topic in section.items %}                
+                    {% if topic.url == L3 %}
+                        {% assign curr_topic = topic %}
+                    {% else %}
+                        {% if curr_topic == nil %}
+                            {% assign prev_topic = topic %}
+                            {% assign prev_topic_section = section %}
+                            {% assign prev_topic_part = part %}
+                        {% endif %}
+                        {% if curr_topic != nil and next_topic == nil %}
+                            {% assign next_topic = topic %}
+                            {% assign next_topic_section = section %}
+                            {% assign next_topic_part = part %}
+                        {% endif %}
                     {% endif %}
-                    {% if curr_topic != nil and next_topic == nil %}
-                        {% assign next_topic = topic %}
-                        {% assign next_topic_section = section %}
-                        {% assign next_topic_part = part %}
-                    {% endif %}
-                {% endif %}
 
-                {% for quiz in topic.quizzes %}
-                    {% if quiz.url == L4 %}
+                    {% if topic.url == L3 %}
+                        {% for quiz in topic.quizzes %}
+                            {% if quiz.url == L4 %}
+                                {% assign curr_quiz = quiz %}
+                            {% else %}
+                                {% if curr_quiz != nil and next_quiz == nil %}
+                                    {% assign next_quiz = quiz %}
+                                    {% assign next_quiz_topic = topic %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            
+                {% for quiz in section.quizzes %}
+                    {% if quiz.url == L3 %}
                         {% assign curr_quiz = quiz %}
                     {% else %}
                         {% if curr_quiz != nil and next_quiz == nil %}
                             {% assign next_quiz = quiz %}
-                            {% assign next_quiz_topic = topic %}
+                            {% assign next_quiz_section = section %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-            {% endfor %}
-
-            {% for quiz in section.quizzes %}
-                {% if quiz.url == L3 %}
-                    {% assign curr_quiz = quiz %}
-                {% else %}
-                    {% if curr_quiz != nil and next_quiz == nil %}
-                        {% assign next_quiz = quiz %}
-                        {% assign next_quiz_section = section %}
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-
+            {% endif %}
         {% endfor %}
     {% endfor %}
 

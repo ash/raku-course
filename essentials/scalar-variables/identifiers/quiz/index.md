@@ -2,9 +2,7 @@
 title: Quiz — Variable names
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Variable names](/raku-course/scalar-variables/identifiers)
-
-# Quiz — Variable names
+{% include menu.html %}
 
 Check the variables which are named correctly.
 
@@ -33,6 +31,4 @@ Check the variables which are named correctly.
 
 {% include quiz.html %}
 
-## Course navigation
-
-← [Scalar variables](../) / [Declaration with initialization](../declaration-with-initialization) | 💪 [Exercises](../exercises) →
+{% include nav.html %}

@@ -2,9 +2,7 @@
 title: Quiz 1 — Assigning a value
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Assigning a value](/raku-course/scalar-variables/assigning-a-value)
-
-# Quiz 1 — Assigning a value
+{% include menu.html %}
 
 Complete the following lines of code to get a working program that create a few variables and assigns some values to them;
 
@@ -39,6 +37,4 @@ Notice that you cannot omit the parentheses on the left-hand side. But you can a
 
     ($a, $b) = (10, 20);
 
-## Course navigation
-
-← [Scalar variables](/raku-course/scalar-variables/) / [Declaring a variable](/raku-course/scalar-variables/declaring-a-variable) | [Scalar variables](/raku-course/scalar-variables/) / [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization)  →
+{% include nav.html %}
