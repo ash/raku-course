@@ -61,6 +61,18 @@ URL levels: {{ levels }}
                         {% assign next_topic_part = part %}
                     {% endif %}
                 {% endif %}
+
+                {% for quiz in topic.quizzes %}
+                    {% if quiz.url == L4 %}
+                        {% assign curr_quiz = quiz %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+            {% for quiz in section.quizzes %}
+                {% if quiz.url == L3 %}
+                    {% assign curr_quiz = quiz %}
+                {% endif %}
             {% endfor %}
 
         {% endfor %}
@@ -69,12 +81,16 @@ URL levels: {{ levels }}
 {% endfor %}
 
 [{{course_title}}](/{{prefix}}/)
-{%- if curr_part    and curr_section  != nil %} / [{{curr_part.title}}](/{{prefix}}/{{curr_part.url}}){%- endif %}
-{%- if curr_section and curr_topic    != nil %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
+{%- if curr_part    and curr_section                       %} / [{{curr_part.title}}](/{{prefix}}/{{curr_part.url}}){%- endif %}
+{%- if curr_section and curr_topic                         %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
+{%- if curr_topic   and curr_quiz                          %} / [{{curr_topic.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}){%- endif %}
+{%- if curr_section and curr_topic == nil and curr_quiz    %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
 
 {% capture title %}
-{%- if curr_part    and curr_section  == nil %}{{ curr_part.title    }}{%- endif %}
-{%- if curr_section and curr_topic    == nil %}{{ curr_section.title }}{%- endif %}
-{%- if curr_topic                            %}{{ curr_topic.title   }}{%- endif %}
+{%- if curr_part       and curr_section == nil %}{{ curr_part.title    }}
+{%- elsif curr_section and curr_topic   == nil %}{{ curr_section.title }}
+{%- elsif curr_topic   and curr_quiz    == nil %}{{ curr_topic.title   }}
+{%- elsif curr_quiz                            %}{{ curr_quiz.title    }}
+{%- endif %}
 {% endcapture %}
 # {{title}}

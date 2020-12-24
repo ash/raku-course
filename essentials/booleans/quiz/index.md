@@ -2,9 +2,7 @@
 title: Quiz — Boolean type
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Boolean type](/raku-course/booleans)
-
-# Quiz — Boolean type
+{% include menu.html %}
 
 Select all examples with correct Boolean values in Raku
 
@@ -24,6 +22,4 @@ Select all examples with correct Boolean values in Raku
 
 {% include quiz.html %}
 
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) | [Boolean operations](operations) →
+{% include nav.html %}

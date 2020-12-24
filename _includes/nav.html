@@ -17,10 +17,12 @@
 * next_topic: {{next_topic.title}}, part={{next_topic_part.title}}, section={{next_topic_section.title}}
 {% endcomment %}
 
-{% include topics.html %}
+{% if curr_quiz == nil %}
+    {% include topics.html %}
+{% endif %}
 
 {% if curr_topic %}
-    {% if curr_topic.quizzes %}
+    {% if curr_topic.quizzes and curr_quiz == nil %}
 %%practiceblock
 
 ## Practice
@@ -28,19 +30,19 @@
 Complete the {% if curr_topic.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
 
         {%- for quiz in curr_topic.quizzes %}
-* [{{quiz.title}}]({{quiz.url}})
+* [{{quiz.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}/{{quiz.url}})
         {%- endfor %}
     {% endif %}
 %%/practiceblock
 {% else %}
-    {% if curr_section.quizzes %}
+    {% if curr_section.quizzes and curr_quiz == nil %}
 %%practiceblock
 ## Practice
 
 Complete the {% if curr_section.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
 
         {%- for quiz in curr_section.quizzes %}
-* [{{quiz.title}}]({{quiz.url}})
+* [{{quiz.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{quiz.url}})
         {% endfor %}
 %%/practiceblock
     {% endif %}

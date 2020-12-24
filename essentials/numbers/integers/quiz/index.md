@@ -2,9 +2,7 @@
 title: Quiz — Integer numbers
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Integer numbers](/raku-course/numbers/integers)
-
-# Quiz — Integer numbers
+{% include menu.html %}
 
 Mark all the examples with valid integer numbers.
 
@@ -27,6 +25,4 @@ Mark all the examples with valid integer numbers.
 
 {% include quiz.html %}
 
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Integer numbers](/raku-course/numbers/integers) | 💪 [Exercises](../exercises) →
+{% include nav.html %}
