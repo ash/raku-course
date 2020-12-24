@@ -17,5 +17,3 @@ You can declare two or more variables using the same `my` declarator:
     my ($x, $y);
 
 {% include nav.html %}
-
-💪 Or jump directly to [the exercises to this section](../exercises).

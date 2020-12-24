@@ -15,5 +15,3 @@ Here are a couple of examples of scalar variables:
     $age
 
 {% include nav.html %}
-
-💪 Or jump directly to [the exercises to this section](exercises).
