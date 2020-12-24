@@ -4,41 +4,55 @@
 {% assign L3 = urlparts[2] | default '' %}
 {% assign L4 = urlparts[3] | default '' %}
 {% assign L5 = urlparts[4] | default '' %}
+
 {% assign prefix = site.data.toc.prefix %}
 {% assign levels = urlparts.size %}
 
-<!-- URL levels: {{ levels }} -->
+<!-- URL levels: {{ levels }} 
+
+             L1         L2               L3
+/raku-course/essentials/running-programs/from-ide/
+             ^ part     ^ section        ^ topic
+              | subpart is not part of an URL
+-->
+
+{% assign curr_part     = '' %}
+{% assign curr_subpart  = '' %}
+{% assign curr_section  = '' %}
+{% assign curr_topic    = '' %}
+{% assign curr_subtopic = '' %}
+
+{% for part in site.data.toc.toc %}
+    {% if part.url == L1 %}
+        {% assign curr_part = part %}
+    {% endif %}
+
+    {% for subpart in part.items %}
+        {% for section in subpart.items %}
+            {% if section.url == L2 %}
+                {% assign curr_subpart = subpart %}
+                {% assign curr_section = section %}
+            {% endif %}
+
+            {% for topic in section.items %}
+                {% if topic.url == L3 %}
+                    {% assign curr_topic = topic %}
+                {% endif %}
+            {% endfor %}
+
+        {% endfor %}
+    {% endfor %}
+
+{% endfor %}
 
 [Course of Raku](/{{prefix}}/)
+{%- if curr_part    and curr_section  != '' %} / [{{curr_part.title}}](/{{prefix}}/{{curr_part.url}}){%- endif %}
+{%- if curr_section and curr_topic    != '' %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
+{%- if curr_topic   and curr_subtopic != '' %} / [{{curr_topic.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}){%- endif %}
 
-{%- for part in site.data.toc.toc %}
-    {%- if part.url == L1 %}
-        {%- if levels == 1 %}
-            {%- assign title = part.title %}
-        {%- else %}
-            / [{{part.title}}](/{{prefix}}/{{part.url}})
-        {%- endif %}
-    {%- endif %}
-    {%- for section in part.items %}
-        {%- for topic in section.items %}
-            {%- if topic.url == L2 %}
-                {%- if levels == 2 %}
-                    {%- assign title = topic.title %}
-                {%- else %}
-                    / [{{topic.title}}](/{{prefix}}/{{part.url}}/{{topic.url}})
-                {%- endif %}
-            {%- endif %}
-            {%- for item in topic.items %}
-                {%- if item.url == L3 %}
-                    {%- if levels == 3 %}
-                        {%- assign title = item.title %}
-                    {%- else %}
-                        / [{{item.title}}](/{{prefix}}/{{part.url}}/{{topic.url}}/{{item.url}})
-                    {%- endif %}
-                {%- endif %}
-            {%- endfor %}
-        {%- endfor %}
-    {%- endfor %}
-{%- endfor %}
-
+{% capture title %}
+{%- if curr_part    and curr_section  == '' %}{{ curr_part.title    }}{%- endif %}
+{%- if curr_section and curr_topic    == '' %}{{ curr_section.title }}{%- endif %}
+{%- if curr_topic   and curr_subtopic == '' %}{{ curr_topic.title   }}{%- endif %}
+{% endcapture %}
 # {{title}}
