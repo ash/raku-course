@@ -2,8 +2,10 @@
 title: About this course
 ---
 
-{% assign title = "About this course" %}
-{% include menu.html %}
+{% assign prefix = site.data.toc.prefix %}
+{% assign course_title = site.data.toc.title %}
+
+[{{course_title}}](/{{prefix}}/)
 
 This course covers all main aspects of the Raku programming language that you need to successfully use it in your daily practice. The course consists of separate chapters that explain the theory and offer a number of exercises. It is assumed that you solve the tasks before looking to the solution.
 

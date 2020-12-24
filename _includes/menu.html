@@ -6,6 +6,7 @@
 {% assign L5 = urlparts[4] | default '' %}
 
 {% assign prefix = site.data.toc.prefix %}
+{% assign course_title = site.data.toc.title %}
 {% assign levels = urlparts.size %}
 
 <!-- URL levels: {{ levels }} 
@@ -16,15 +17,34 @@
               | subpart is not part of an URL
 -->
 
+{% assign prev_part     = '' %}
+{% assign prev_subpart  = '' %}
+{% assign prev_section  = '' %}
+{% assign prev_topic    = '' %}
+{% assign prev_subtopic = '' %}
+
 {% assign curr_part     = '' %}
 {% assign curr_subpart  = '' %}
 {% assign curr_section  = '' %}
 {% assign curr_topic    = '' %}
 {% assign curr_subtopic = '' %}
 
+{% assign next_part     = '' %}
+{% assign next_subpart  = '' %}
+{% assign next_section  = '' %}
+{% assign next_topic    = '' %}
+{% assign next_subtopic = '' %}
+
 {% for part in site.data.toc.toc %}
     {% if part.url == L1 %}
         {% assign curr_part = part %}
+    {% else %}
+        {% if curr_part == '' %}
+            {% assign prev_part = part %}
+        {% endif %}
+        {% if curr_part != '' and next_part == '' %}
+            {% assign next_part = part %}
+        {% endif %}
     {% endif %}
 
     {% for subpart in part.items %}
@@ -32,11 +52,25 @@
             {% if section.url == L2 %}
                 {% assign curr_subpart = subpart %}
                 {% assign curr_section = section %}
+            {% else %}
+                {% if curr_section == '' %}
+                    {% assign prev_section = section %}
+                {% endif %}
+                {% if curr_section != '' and next_section == '' %}
+                    {% assign next_section = section %}
+                {% endif %}
             {% endif %}
 
             {% for topic in section.items %}
                 {% if topic.url == L3 %}
                     {% assign curr_topic = topic %}
+                {% else %}
+                    {% if curr_topic == '' %}
+                        {% assign prev_topic = topic %}
+                    {% endif %}
+                    {% if curr_topic != '' and next_topic == '' %}
+                        {% assign next_topic = topic %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 
@@ -45,7 +79,7 @@
 
 {% endfor %}
 
-[Course of Raku](/{{prefix}}/)
+[{{course_title}}](/{{prefix}}/)
 {%- if curr_part    and curr_section  != '' %} / [{{curr_part.title}}](/{{prefix}}/{{curr_part.url}}){%- endif %}
 {%- if curr_section and curr_topic    != '' %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
 {%- if curr_topic   and curr_subtopic != '' %} / [{{curr_topic.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}){%- endif %}
@@ -56,3 +90,13 @@
 {%- if curr_topic   and curr_subtopic == '' %}{{ curr_topic.title   }}{%- endif %}
 {% endcapture %}
 # {{title}}
+
+<!--
+* prev_part: {{prev_part.title}}
+* prev_section: {{prev_section.title}}
+* prev_topic: {{prev_topic.title}}
+
+* next_part: {{next_part.title}}
+* next_section: {{next_section.title}}
+* next_topic: {{next_topic.title}}
+-->
