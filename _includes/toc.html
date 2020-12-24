@@ -1,0 +1,18 @@
+{% assign prefix = site.data.toc.prefix %}
+
+{% for part in site.data.toc.toc %}
+{% if (menu_for_part == nil) or (menu_for_part == part.url) %}
+{% if menu_for_part == nil %}
+## {% if part.long_title %}{{part.long_title}}{% else %}{{part.title}}{% endif %}
+{% endif %}
+{%- for section in part.items %}
+#### {{section.title}}
+{%- for topic in section.items %}
+* [{{topic.title}}](/{{prefix}}/{{part.url}}/{{topic.url}})
+{%- for item in topic.items %}
+    - [{{item.title}}](/{{prefix}}/{{part.url}}/{{topic.url}}/{{item.url}})
+{%- endfor %}
+{%- endfor %}
+{% endfor %}
+{% endif %}
+{% endfor %}

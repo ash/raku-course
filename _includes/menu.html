@@ -102,10 +102,13 @@ URL levels: {{ levels }}
 {%- if curr_section and curr_topic == nil and curr_quiz    %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
 
 {% capture title %}
-{%- if curr_part       and curr_section == nil %}{{ curr_part.title    }}
-{%- elsif curr_section and curr_topic   == nil %}{{ curr_section.title }}
-{%- elsif curr_topic   and curr_quiz    == nil %}{{ curr_topic.title   }}
-{%- elsif curr_quiz                            %}{{ curr_quiz.title    }}
+{%- if    curr_part       and curr_section == nil and curr_part.long_title        %}{{ curr_part.long_title    }}
+{%- elsif curr_part       and curr_section == nil and curr_part.long_title == nil %}{{ curr_part.title         }}
+{%- elsif curr_section and curr_topic   == nil and curr_section.long_title        %}{{ curr_section.long_title }}
+{%- elsif curr_section and curr_topic   == nil and curr_section.long_title == nil %}{{ curr_section.title      }}
+{%- elsif curr_topic   and curr_quiz    == nil and curr_topic.long_title          %}{{ curr_topic.long_title   }}
+{%- elsif curr_topic   and curr_quiz    == nil and curr_topic.long_title == nil   %}{{ curr_topic.title        }}
+{%- elsif curr_quiz                                                               %}{{ curr_quiz.title         }}
 {%- endif %}
 {% endcapture %}
 # {{title}}

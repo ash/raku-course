@@ -25,4 +25,6 @@ Below each page, there is a navigation block that you can use to traverse the en
 
 ## Course navigation
 
-← [Start](../) | [What is Raku](../what-is-raku) →
+← [Start](../) 
+&nbsp;&nbsp;|&nbsp;&nbsp;
+[What is Raku](../essentials/what-is-raku) →
