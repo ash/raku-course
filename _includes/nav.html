@@ -1,4 +1,4 @@
-<!--
+{% comment %}
 #### prev
 * prev_part: {{prev_part.title}}
 * prev_section: {{prev_section.title}}, part={{prev_section_part.title}}
@@ -15,13 +15,40 @@
 * next_part: {{next_part.title}}
 * next_section: {{next_section.title}}, part={{next_section_part.title}}
 * next_topic: {{next_topic.title}}, part={{next_topic_part.title}}, section={{next_topic_section.title}}
--->
+{% endcomment %}
 
 {% include topics.html %}
 
+{% if curr_topic %}
+    {% if curr_topic.quizzes %}
+%%practiceblock
+
+## Practice
+
+Complete the {% if curr_topic.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
+
+        {%- for quiz in curr_topic.quizzes %}
+* [{{quiz.title}}]({{quiz.url}})
+        {%- endfor %}
+    {% endif %}
+%%/practiceblock
+{% else %}
+    {% if curr_section.quizzes %}
+%%practiceblock
+## Practice
+
+Complete the {% if curr_section.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
+
+        {%- for quiz in curr_section.quizzes %}
+* [{{quiz.title}}]({{quiz.url}})
+        {% endfor %}
+%%/practiceblock
+    {% endif %}
+{% endif %}
+
 ## Course navigation
 
-← 
+←
 {%- if curr_topic %}
     {%- if prev_topic_section.url == curr_section.url %}
         [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}) / [{{prev_topic.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{prev_topic.url}})
