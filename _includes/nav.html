@@ -21,6 +21,16 @@
     {% include topics.html %}
 {% endif %}
 
+{% if next_quiz and ((next_quiz_topic and next_quiz_topic.url == curr_topic.url) or (next_quiz_section and next_quiz_section.url == curr_section.url)) %}
+%%practiceblock
+
+## More practice
+
+* [{{next_quiz.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}/{{next_quiz.url}})
+
+%%/practiceblock
+{% endif %}
+
 {% if curr_topic %}
     {% if curr_topic.quizzes and curr_quiz == nil %}
 %%practiceblock

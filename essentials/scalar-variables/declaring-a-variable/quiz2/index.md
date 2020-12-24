@@ -2,9 +2,7 @@
 title: Quiz 2 — Scalar variables
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Declaring a variable](/raku-course/scalar-variables/declaring-a-variable)
-
-# Quiz 2 — Declaring a variable
+{% include menu.html %}
 
 Now, more than one scalar variable is declared with a single `my` declarator. Make all lines syntactically correct.
 
@@ -14,6 +12,4 @@ Now, more than one scalar variable is declared with a single `my` declarator. Ma
 
 {% include quiz.html %}
 
-## Course navigation
-
-← [Scalar variables](/raku-course/scalar-variables) | [Scalar variables](/raku-course/scalar-variables) / [Assigning a value](/raku-course/scalar-variables/assigning-a-value) →
+{% include nav.html %}

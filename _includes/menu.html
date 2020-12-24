@@ -65,6 +65,11 @@ URL levels: {{ levels }}
                 {% for quiz in topic.quizzes %}
                     {% if quiz.url == L4 %}
                         {% assign curr_quiz = quiz %}
+                    {% else %}
+                        {% if curr_quiz != nil and next_quiz == nil %}
+                            {% assign next_quiz = quiz %}
+                            {% assign next_quiz_topic = topic %}
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             {% endfor %}
@@ -72,6 +77,11 @@ URL levels: {{ levels }}
             {% for quiz in section.quizzes %}
                 {% if quiz.url == L3 %}
                     {% assign curr_quiz = quiz %}
+                {% else %}
+                    {% if curr_quiz != nil and next_quiz == nil %}
+                        {% assign next_quiz = quiz %}
+                        {% assign next_quiz_section = section %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 
