@@ -22,6 +22,4 @@ For example:
 
     say $name; #`( And now we can print it )
 
-## Course navigation
-
-← [Comments](/raku-course/comments) / [Single-line comments](/raku-course/comments/single-line) | [Comments](/raku-course/comments) / [Embedded comments](/raku-course/comments/embedded)  →
+{% include nav.html %}

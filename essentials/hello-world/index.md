@@ -26,6 +26,4 @@ But before we move on, let me show one more exciting option. You can call a func
 
     'Hello, World!'.say;
 
-## Course navigation
-
-← [Conventional file extensions](../conventional-file-extensions) | [Notes on using Unicode](../on-unicode) →
+{% include nav.html %}

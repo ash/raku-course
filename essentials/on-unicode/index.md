@@ -18,6 +18,4 @@ When working with numbers, you can choose to use fractions in the form of `½` i
 
 Find the full list of such pairs on the following documentation page: 📖 [Unicode versus ASCII symbols](https://docs.raku.org/language/unicode_ascii).
 
-## Course navigation
-
-← [Hello, World!](../hello-world) | [Running programs](../running-programs) →
+{% include nav.html %}

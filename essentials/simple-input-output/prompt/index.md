@@ -22,6 +22,4 @@ If you entered `Raku`, you get the following phrase printed:
 
 Ok, we can now talk to the program and we can make the program talk to us!
 
-## Course navigation
-
-← [Simple input and output](..) / [Output with `say`](../say) | [Comments](../../comments) →
+{% include nav.html %}

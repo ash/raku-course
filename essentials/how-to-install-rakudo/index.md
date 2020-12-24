@@ -31,6 +31,4 @@ Version numbering system of Rakudo forms the version number out of two parts: th
 
 There are three version numbers here. First is the version of Rakudo itself: `v2020.10`. Then comes the version of the Raku language: `v6.d`. Currently, the updates will get the new letter as a minory version part, e.g., `v6.e`, etc. Finally, we see the name of the virtual machine used in this compiler: it MoarVM version `2020.10`.
 
-## Course navigation
-
-← [Raku vs. Rakudo](../raku-vs-rakudo) | [Editors and IDEs](../editors-and-ides) →
+{% include nav.html %}

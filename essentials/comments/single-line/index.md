@@ -12,6 +12,4 @@ The simplest form of a comment is a one-line comment, which starts by the `#` ch
 
 Notice that a sheebang such as `#!/usr/bin/env raku` in the first line of code is also a comment for Raku, while it can be read and executed by the shell.
 
-## Course navigation
-
-← [Comments](/raku-course/comments) | [Comments](/raku-course/comments) / [Multi-line comments](/raku-course/comments/multi-line)  →
+{% include nav.html %}

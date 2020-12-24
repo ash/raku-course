@@ -14,12 +14,4 @@ The presence of a code block in this program does not add much sence, but code b
 
 But first let us examine the concept of _scope_.
 
-## Next steps
-
-* [Lexical scope](lexical-scope)
-* [Global variables](global-variables)
-* [Local variables](local-variables)
-
-## Course navigation
-
-← [Typed variables](/raku-course/typed-variables) | [Lexical scope](lexical-scope) →
+{% include nav.html %}

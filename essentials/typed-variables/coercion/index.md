@@ -15,6 +15,4 @@ Use one of the methods to cast the value.
     $x = 42e1.Int;
     $x = Int(42e1);
 
-## Course navigation
-
-← [Data type conversion](/raku-course/coercion) | [Typed variables](/raku-course/typed-variables) / 💪 [Exercises](/raku-course/typed-variables/exercises) →
+{% include nav.html %}

@@ -13,6 +13,4 @@ title: Exercises to ‘Data type conversion’
 
 | [True and False numbers](true-false-numbers) →
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Typed variables](/raku-course/typed-variables) →
+{% include nav.html %}

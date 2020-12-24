@@ -15,8 +15,6 @@ To create and assign more than one variable, use the following pattern:
 
     my ($name, $age) = 'Carl', 36;
 
-## Course navigation
-
-← [Scalar variables](../) / [Assigning a value](../assigning-a-value) | [Scalar variables](../) / [Variable names](../identifiers) →
+{% include nav.html %}
 
 💪 Or jump directly to [the exercises to this section](../exercises).

@@ -15,6 +15,4 @@ Here are the links to the popular IDEs.
 * [Visual Studio Code](https://code.visualstudio.com/) — available for Windows, Mac OS, and Linux
 * [Comma](https://commaide.com) — the Raku IDE that is built specifically for programming in Raku; available for Windows, Mac OS, and Linux.
 
-## Course navigation
-
-← [How to install Rakudo](../how-to-install-rakudo) | [Conventional file extensions](../conventional-file-extensions) →
+{% include nav.html %}

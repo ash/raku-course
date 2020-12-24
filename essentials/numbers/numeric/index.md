@@ -22,8 +22,6 @@ There are a few constants that you can use straight ahead, which are also the nu
 `tau` | `τ` | equals to `2 * π`
 `e` | `𝑒` | 2.718281828459045
 
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Rational numbers](/raku-course/numbers/rats) | [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) →
+{% include nav.html %}
 
 Ot jump to the 💪 [exercises](../exercises).

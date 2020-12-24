@@ -18,7 +18,4 @@ Let us read the rules 📖 [from the documentation](https://docs.raku.org/langua
 
 Notice that we just met a ‘null’ value `Nil`.
 
-
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations](/raku-course/booleans/operations) | 💪 [Exercises](/raku-course/booleans/exercises) →
+{% include nav.html %}

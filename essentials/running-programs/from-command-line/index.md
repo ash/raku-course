@@ -13,8 +13,6 @@ If the program does not contain errors, it will be immediately executed, and if 
     $ raku hello.raku 
     Hello, World!
 
-## Course navigation
-
-← [Running programs](..) | [Running programs](..) / [Running from REPL](../from-repl) →
+{% include nav.html %}
 
 💪 Or jump directly to [the exercises to this section](../exercises).

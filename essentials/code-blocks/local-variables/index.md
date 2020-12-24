@@ -21,6 +21,4 @@ Now the program has actually two independent variables. They share the name, but
     42
     1
 
-## Course navigation
-
-← [Code blocks](/raku-course/code-blocks) / [Global variables](/raku-course/code-blocks/lexical-scope) | [Code blocks](/raku-course/code-blocks) / 💪 [Exercises](/raku-course/code-blocks/exercises) →
+{% include nav.html %}

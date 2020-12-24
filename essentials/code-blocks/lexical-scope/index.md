@@ -20,6 +20,4 @@ The `$x` variable is created inside the code block. The first call of `say $x` p
     at /Users/ash/raku-course/t.raku:6
     ------> say ⏏$x;
 
-## Course navigation
-
-← [Code blocks](/raku-course/code-blocks) | [Code blocks](/raku-course/code-blocks) / [Global variables](/raku-course/code-blocks/global-variables) →
+{% include nav.html %}

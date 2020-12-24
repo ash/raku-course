@@ -19,12 +19,4 @@ So is this program:
 
 Nevertheless, Raku allows you to specify the type of things that you can keep in the given variable, if you want to. Also, sometimes you need to convert the values of one type to another type. There are a few ways you can do that.
 
-## Next steps
-
-* [Converting types using type coercion methods](methods)
-* [Converting types using constructor forms](new)
-* [Converting types with prefix operators](prefixes)
-
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Converting types using type coercion methods](methods) →
+{% include nav.html %}

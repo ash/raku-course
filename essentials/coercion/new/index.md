@@ -12,6 +12,4 @@ A similar method is to construct a new instance of an object of the required typ
 
 Here, the string containing a floating-point number is converted to an integer.
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) / [Converting types with prefix operators](../prefixes) →
+{% include nav.html %}

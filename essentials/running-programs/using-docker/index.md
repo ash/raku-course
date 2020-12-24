@@ -16,8 +16,6 @@ To run a program using [a docker image](https://hub.docker.com/_/rakudo-star/), 
 
 Add the `--rm` flag if you want to clean up the container and remove the file system when the container exits. Find more instructions on the [project page](https://github.com/Raku/docker).
 
-## Course navigation
-
-← [Running programs](..) / [Running from IDE](../from-ide) | [Running programs](..) / [Using online service](../using-online-services) →
+{% include nav.html %}
 
 💪 Or jump directly to [the exercises to this section](../exercises).

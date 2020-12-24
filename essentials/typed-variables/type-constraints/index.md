@@ -18,6 +18,4 @@ This program emits the following error:
     Type check failed in assignment to $var; expected Int but got Str ("314E-2")
       in block <unit> at t.raku line 2
 
-## Course navigation
-
-← [Data type conversion](/raku-course/coercion) | [Typed variables](/raku-course/typed-variables) / [Using `of`](../using-of) →
+{% include nav.html %}

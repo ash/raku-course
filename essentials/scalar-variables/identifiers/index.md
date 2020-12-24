@@ -46,6 +46,4 @@ The definition of letters and digits is actually extended to include all those c
 
     $Δ۲ # where ۲ is a digit
 
-## Course navigation
-
-← [Scalar variables](../) / [Declaration with initialization](../declaration-with-initialization) | 🤔 [Quiz](quiz) →
+{% include nav.html %}

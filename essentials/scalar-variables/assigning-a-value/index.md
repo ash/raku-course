@@ -24,6 +24,4 @@ Notice that you cannot omit the parentheses on the left-hand side. But you can a
 
     ($a, $b) = (10, 20);
 
-## Course navigation
-
-← [Scalar variables](/raku-course/scalar-variables/) / [Declaring a variable](/raku-course/scalar-variables/declaring-a-variable) | 🤔 [Quiz](quiz) →
+{% include nav.html %}

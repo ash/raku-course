@@ -8,16 +8,6 @@ In [one of the previous section](../hello-world), we created a simple program, b
 
 There are two five in this section. You can browse all of them or examine only those that you find suitable for your needs. After the sections, there is an assignment.
 
-## Next steps
-
-* [Running from command line](from-command-line)
-* [Running from REPL](from-repl)
-* [Running from IDE](from-ide)
-* [Using docker](using-docker)
-* [Using online service](using-online-services)
-
-## Course navigation
-
-← [Notes on using Unicode](../on-unicode) | [Running from command line](from-command-line) →
+{% include nav.html %}
 
 💪 Or jump directly to [the exercises to this section](exercises).

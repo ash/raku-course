@@ -12,6 +12,4 @@ Embedded, or inline comments, have the same form as multi-line comments with the
 
 A good syntax highlighter helps a lot to visualize the presense of embedded comments.
 
-## Course navigation
-
-← [Comments](/raku-course/comments) / [Multi-line comments](/raku-course/comments/multi-line) | [Scalar variables](/raku-course/scalar-variables)  →
+{% include nav.html %}

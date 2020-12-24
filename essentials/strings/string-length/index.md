@@ -38,6 +38,4 @@ This character, `x̨`, does not have a dedicated code point and can only be cons
     1
     2
 
-## Course navigation
-
-← [Strings](..) / [Escaping special characters](../escaping-special-characters) | 💪 [Exercises](../exercises) →
+{% include nav.html %}

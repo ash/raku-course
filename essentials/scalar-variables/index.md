@@ -14,15 +14,6 @@ Here are a couple of examples of scalar variables:
 
     $age
 
-## Next steps
-
-* [Declaring a variable](declaring-a-variable)
-* [Assigning a value](assigning-a-value)
-* [Declaration with initialization](declaration-with-initialization)
-* [Variable names](identifiers)
-
-## Course navigation
-
-← [Comments](/raku-course/comments) / [Embedded](/raku-course/comments/embedded)  | [Declaring a variable](declaring-a-variable) →
+{% include nav.html %}
 
 💪 Or jump directly to [the exercises to this section](exercises).

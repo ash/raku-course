@@ -49,6 +49,4 @@ Both `div` and `mod` expect integer operands. So, the following program will not
     say 10.3 / 3.3;     # OK
     # say 10.3 mod 3.3; # Error
 
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Integer numbers](/raku-course/numbers/integers) | 💪 [Exercises](../exercises) →
+{% include nav.html %}

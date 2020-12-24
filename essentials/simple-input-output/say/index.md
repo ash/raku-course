@@ -28,6 +28,4 @@ Just notice that the parts of this output will be concatenated to a single strin
 
 After printing all the argumnets, the `say` routine adds a newline character to the output.
 
-# Course navigation
-
-← [Simple input and output](..) | [Simple input and output](..) / [Input with `prompt`](../prompt) →
+{% include nav.html %}

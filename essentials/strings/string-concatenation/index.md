@@ -23,8 +23,6 @@ Or create a new variable using the concatenated value:
 
     say $message;
 
-## Course navigation
-
-← [Strings](..) | [Strings](..) / [Variable interpolation](../variable-interpolation) →
+{% include nav.html %}
 
 💪 Or you can jump straight to the [exercises on strings](../exercises).

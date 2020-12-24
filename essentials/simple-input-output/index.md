@@ -8,13 +8,4 @@ In this course, we will move thought the Raku language from the very basics to m
 
 So, before we learn what is what, let us introduce a couple of basic language elements that help us to print and read data. We will explore functions later in the course, but here are the two most important for us at this point.
 
-# Next steps
-
-There are two subtopics in this section:
-
-* [Output with `say`](say)
-* [Input with `prompt`](prompt)
-
-## Course navigation
-
-← [Running programs](../running-programs) | [Output with `say`](say) →
+{% include nav.html %}

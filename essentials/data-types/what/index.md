@@ -26,6 +26,4 @@ Notice that in the case of `-1` we put the number in parentheses, as `say -1.WHA
 
 Do not skip the exercises as they reveal some additional information about the data types of Raku.
 
-## Course navigation
-
-← [Data types](/raku-course/data-types) | 💪 [Exercises](/raku-course/data-types/exercises) →
+{% include nav.html %}

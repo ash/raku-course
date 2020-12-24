@@ -26,8 +26,6 @@ At the end you see the prompt character where you can type in your program or it
     Hello, World
     > 
 
-## Course navigation
-
-← [Running programs](..) / [Running from command line](../from-command-line) | [Running programs](..) / [Running from IDE](../from-ide) →
+{% include nav.html %}
 
 💪 Or jump directly to [the exercises to this section](../exercises).

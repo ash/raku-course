@@ -34,8 +34,6 @@ The same string generates differnet messages this time:
     Hello, Karl!
     Hello, Anna!
 
-## Course navigation
-
-← [Strings](..) / [String concatenation](../string-concatenation) | [Strings](..) / [Escaping special characters](../escaping-special-characters) →
+{% include nav.html %}
 
 💪 Or you can jump straight to the [exercises on strings](../exercises).

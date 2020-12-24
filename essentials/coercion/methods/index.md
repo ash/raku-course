@@ -19,6 +19,4 @@ In many cases, you don’t need to convert values explicitly, as Raku does that 
 
 The two variables, `$a` and `$b`, contain strings, but they are used in an arithmetical expression with `+`. At this point, both strings are converted to integers, and thus `$c` also gets an integer. In the last line, a variable containing an integer is interpolated in a string, so Raku does the necessary operations to present the number as a sequence of digit characters.
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) / [Converting types using constructor forms](../new) →
+{% include nav.html %}

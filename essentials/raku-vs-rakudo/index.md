@@ -17,6 +17,4 @@ The design of Raku does not dictate which compiler to use. The design documents 
 * [raku.org](https://raku.org)
 * [rakudo.org](https://rakudo.org)
 
-## Course navigation
-
-← [What is Raku](../what-is-raku) | [How to install Rakudo](../how-to-install-rakudo) →
+{% include nav.html %}

@@ -32,6 +32,4 @@ For Boolean conversions, there is also another prefix operator called `so`, and 
     say so $value; # True
     say $value.so; # True
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Data type conversion](/raku-course/coercion) / 💪 [Exercises](../exercises) →
+{% include nav.html %}

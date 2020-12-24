@@ -25,6 +25,4 @@ Boolean values can be stored in scalar variables:
     my $did = True;
     my $didn't = !$did;
 
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) | [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) →
+{% include nav.html %}

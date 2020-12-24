@@ -14,14 +14,8 @@ So far we have seen a number of data types that Raku supports. These are differe
 
 There are not all data types that Raku understands. We will see more in the further sections of this course.
 
-## Next step
-
-* [Introspection with `WHAT`](what)
-
 ## Exercises
 
 Do not skip the exercises after this section as they reveal some additional information about the data types of Raku.
 
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Introspection with `WHAT`](/raku-course/data-types/what) →
+{% include nav.html %}
