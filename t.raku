@@ -1,3 +1,7 @@
-my $radius = 6378;  # km
-my $population = 8; # billion
-my $age = 4.5;      # billion years
+# say 'alpha' + 'beta';
+# say  		'alpha' . 'beta';
+say  		'alpha' ~ 'beta';
+say  		'alpha' ~~ 'beta';
+
+# say α ~ β;
+ 	say 	'α' ~ 'β';

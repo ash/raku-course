@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Declaration with initialization'
+title: 'Quiz 1: Declaration with initialization'
 ---
 
 {% include menu.html %}
