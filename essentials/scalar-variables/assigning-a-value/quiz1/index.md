@@ -8,10 +8,10 @@ Complete the following lines of code to get a working program that create a few 
 
 {:.quiz-code}
 . | my $first-name;
-$ | my&nbsp; ␣last-name;
-= | $first-name&nbsp; ␣ &nbsp;&apos;Emily&apos;;
-= ; | $last-name&nbsp; ␣ &nbsp;&apos;Lizards&apos; ␣
-; | say $first-name ␣
+$ | my ␣last-name;
+= | $first-name ␣ &apos;Emily&apos;;
+= ; | $last-name ␣ &apos;Lizards&apos;␣
+; | say $first-name␣
 . | say $last-name;
 
 {% include quiz.html %}

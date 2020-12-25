@@ -57,10 +57,17 @@
         /* background-color: #fffdeb !important; */
         background-color: white !important;
     }
+    table.quiz-code tr td.code {
+        font-family: monospace;
+    }
+    table.quiz tr td.comment,
+    table.quiz-code tr td.comment {
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
     div.practice {
         /* background-color: #fffdeb; */
         /* background-color: white; */
-
     }
 </style>
 
@@ -79,6 +86,7 @@
 
         if (cells.length > 3) {
             cells[3].style.display = 'none';
+            cells[3].className = 'comment';
         }
     });
 
@@ -88,13 +96,19 @@
         let cells = item.querySelectorAll('td');
         let answer = cells[1].innerHTML;
         cells[1].style.display = 'none';
-        console.log(answer);
+        
+        cells[2].className = 'code';
+        if (cells.length > 3) {
+            cells[3].className = 'comment';
+        }
 
-        cells[2].dataset.ok = answer;
+        let answers = cells[1].innerHTML.split(' ');
         if (cells[2].innerHTML.indexOf('␣') != -1) {
+            let c = 0;
             cells[2].innerHTML = cells[2].innerHTML.replace(/␣+/g, function(a, b) {
-                let len = a.length;
-                return '<input type="text" class="mono" style="width: ' + len + 'em; data-ok="' + answer + '"/>'
+                let ret = '<input type="text" class="mono" style="width: ' + a.length + 'em;" data-ok="' + answers[c] + '"/>';
+                c++;
+                return ret;
             });
         }
     });
@@ -114,17 +128,13 @@
         });
 
         let show_correct_button = false;
-        document.querySelectorAll('table.quiz-code tr td').forEach(function(item) {
-            if (!item.dataset.ok) return;
-
+        document.querySelectorAll('table.quiz-code tr').forEach(function(item) {            
             let inputs = item.querySelectorAll('input');
             if (!inputs.length) return;
 
-            let answers = item.dataset.ok.split(' ');
-
             let correct = 0;
-            for (let c = 0; c != answers.length; c++) {
-                if (inputs[c].value == answers[c]) {
+            for (let c = 0; c != inputs.length; c++) {
+                if (inputs[c].value == inputs[c].dataset.ok) {
                     correct++;
                 }
                 else {
@@ -133,10 +143,10 @@
                 }
             }
 
-            let is_correct = correct == answers.length;
+            let is_correct = correct == inputs.length;
             // item.parentElement.className = is_correct ? 'correct' : 'incorrect';
 
-            item.parentElement.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+            item.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
         });
 
         if (show_correct_button) {
@@ -145,16 +155,12 @@
     }
 
     function showanswers() {
-        document.querySelectorAll('table.quiz-code tr td').forEach(function(item) {
-            if (!item.dataset.ok) return;
-
+        document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
             let inputs = item.querySelectorAll('input');
             if (!inputs.length) return;
 
-            let answers = item.dataset.ok.split(' ');
-
-            for (let c = 0; c != answers.length; c++) {
-                inputs[c].value = answers[c];
+            for (let c = 0; c != inputs.length; c++) {
+                inputs[c].value = inputs[c].dataset.ok;
             }
 
             item.parentElement.className = '';

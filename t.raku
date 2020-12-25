@@ -1,3 +1,3 @@
-my ($first-name,   $last-name);
-($first-name,   $last-name)    =  'Emily',   'Lizards';
-	say $first-name , $last-name;
+my $radius = 6378;  # km
+my $population = 8; # billion
+my $age = 4.5;      # billion years

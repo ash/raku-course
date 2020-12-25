@@ -7,9 +7,9 @@ title: Quiz 1 — Scalar variables
 Make all declarations of these scalar variables syntactically correct.
 
 {:.quiz-code}
-my | ␣␣ <code>&nbsp;$name;</code>
-$ | <code>my&nbsp;</code> ␣ `age;`
-$ | <code>my&nbsp;</code> ␣ `title;`
+my | ␣␣ $name;
+$ | my ␣age;
+$ | my ␣title;
 
 {% include quiz.html %}
 
