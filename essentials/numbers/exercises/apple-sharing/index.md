@@ -2,9 +2,7 @@
 title: Apple sharing
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises)
-
-# Apple sharing
+{% include menu.html %}
 
 ## Problem
 
@@ -34,10 +32,4 @@ At this point, ignore putting the nouns in the correct form and do not take into
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Sum of numbers](/raku-course/numbers/exercises/sum-of-numbers) →
-
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) | [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

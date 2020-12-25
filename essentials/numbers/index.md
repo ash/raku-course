@@ -9,5 +9,3 @@ Let us talk about numbers. We already used them a bit in the previous sections a
 Explore the following topics to get the idea of the most important differences in how Raku treat numbers.
 
 {% include nav.html %}
-
-If you have learned all the subjects, go directly to the 💪 [exercises](exercises).

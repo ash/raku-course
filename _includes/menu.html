@@ -89,6 +89,18 @@ URL levels: {{ levels }}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+
+                {% for exercise in section.exercises %}
+                    {% if exercise.url == L4 %}
+                        {% assign curr_exercise = exercise %}
+                    {% else %}
+                        {% if curr_exercise != nil and next_exercise == nil %}
+                            {% assign next_exercise = exercise %}
+                            {% assign next_exercise_section = section %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
             {% endif %}
         {% endfor %}
     {% endfor %}
@@ -100,15 +112,21 @@ URL levels: {{ levels }}
 {%- if curr_section and curr_topic                         %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
 {%- if curr_topic   and curr_quiz                          %} / [{{curr_topic.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}){%- endif %}
 {%- if curr_section and curr_topic == nil and curr_quiz    %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}){%- endif %}
+{%- if L3 == 'exercises'                                   %} / [{{curr_section.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/){%- endif %}
+{%- if curr_exercise                                       %} / [Exercises](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/exercises/){%- endif %}
+{%- if curr_exercise and L5 == 'solution'                  %} / [{{curr_exercise.title}}](/{{prefix}}/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_exercise.url}}){%- endif %}
 
 {% capture title %}
-{%- if    curr_part       and curr_section == nil and curr_part.long_title        %}{{ curr_part.long_title    }}
-{%- elsif curr_part       and curr_section == nil and curr_part.long_title == nil %}{{ curr_part.title         }}
-{%- elsif curr_section and curr_topic   == nil and curr_section.long_title        %}{{ curr_section.long_title }}
-{%- elsif curr_section and curr_topic   == nil and curr_section.long_title == nil %}{{ curr_section.title      }}
-{%- elsif curr_topic   and curr_quiz    == nil and curr_topic.long_title          %}{{ curr_topic.long_title   }}
-{%- elsif curr_topic   and curr_quiz    == nil and curr_topic.long_title == nil   %}{{ curr_topic.title        }}
-{%- elsif curr_quiz                                                               %}{{ curr_quiz.title         }}
+{%- if    curr_part       and curr_section == nil and curr_part.long_title                             %}{{ curr_part.long_title    }}
+{%- elsif curr_part       and curr_section == nil and curr_part.long_title == nil                      %}{{ curr_part.title         }}
+{%- elsif curr_section and curr_topic   == nil and curr_quiz == nil and curr_section.long_title        %}{{ curr_section.long_title }}
+{%- elsif curr_section and curr_topic   == nil and curr_quiz == nil and curr_section.long_title == nil and L3 != 'exercises' and curr_exercise == nil %}{{ curr_section.title }}
+{%- elsif curr_section and curr_topic   == nil and curr_quiz == nil and L3 == 'exercises' and curr_exercise == nil               %}Exercises: {{ curr_section.title }}
+{%- elsif curr_section and curr_topic   == nil and curr_quiz == nil and L3 == 'exercises' and curr_exercise and L5 == 'solution' %}Solution: {{ curr_exercise.title }}
+{%- elsif curr_section and curr_topic   == nil and curr_quiz == nil and L3 == 'exercises' and curr_exercise %}{{ curr_exercise.title }}
+{%- elsif curr_topic   and curr_quiz    == nil and curr_topic.long_title                               %}{{ curr_topic.long_title   }}
+{%- elsif curr_topic   and curr_quiz    == nil and curr_topic.long_title == nil                        %}{{ curr_topic.title        }}
+{%- elsif curr_quiz                                                                                    %}{{ curr_quiz.title         }}
 {%- endif %}
 {% endcapture %}
 # {{title}}

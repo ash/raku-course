@@ -2,9 +2,7 @@
 title: Exercise ’Correct the identifiers‘
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Exercises](..)
-
-# Correct the identifiers
+{% include menu.html %}
 
 ## Problem
 
@@ -20,6 +18,4 @@ Make the nesessary corrections in the following program to make all variable nam
 
 ✅ [See the solution](solution)
 
-## Course navigation
-
-← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](/raku-course/strings) →
+{% include nav.html %}

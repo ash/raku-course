@@ -2,9 +2,7 @@
 title: Exercise ’The answer to life, the Universe and everything‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Scalar variables](../..) / [Exercises](..)
-
-# The answer to life, the Universe and everything
+{% include menu.html %}
 
 ## Problem
 
@@ -21,10 +19,4 @@ The expected behaviour of the program is demonstrated below:
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Swap values](../swap) →
-
-## Course navigation
-
-← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../../../strings) →
+{% include nav.html%}

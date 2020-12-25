@@ -24,5 +24,3 @@ Or create a new variable using the concatenated value:
     say $message;
 
 {% include nav.html %}
-
-💪 Or you can jump straight to the [exercises on strings](../exercises).

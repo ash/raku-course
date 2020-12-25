@@ -14,5 +14,3 @@ If the program does not contain errors, it will be immediately executed, and if 
     Hello, World!
 
 {% include nav.html %}
-
-💪 Or jump directly to [the exercises to this section](../exercises).

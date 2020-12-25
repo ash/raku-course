@@ -2,9 +2,7 @@
 title: Solution of ’Purchase table‘
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Strings](/raku-course/strings) / [Exercises](../..) / [Purchase table](..)
-
-# The solution of ‘Purchase table’
+{% include menu.html %}
 
 ## Code
 
@@ -47,13 +45,4 @@ All the strings are quoted in double quotes to allow interpolation of the variab
 
 Let us return to this task again after we get familiar with arrays.
 
-## Next exercise
-
-| [Name length](../../name-length) →
-
-## Course navigation
-
-← [Strings](/raku-course/strings) / [String length](/raku-course/strings/string-length) | [Numbers](/raku-course/numbers) →
-
-
-
+{% include nav.html %}

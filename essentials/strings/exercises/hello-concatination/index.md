@@ -1,10 +1,8 @@
 ---
-title: Assignment ’Hello, Concatenation!‘
+title: Exercise ’Hello, Concatenation!‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Strings](../..) / [Exercises](..)
-
-# Hello, Concatenation!
+{% include menu.html %}
 
 ## Problem
 
@@ -27,10 +25,4 @@ Then you enter the name and get see greeting:
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Hello, Interpolation!](../hello-interpolation) →
-
-## Course navigation
-
-← [Strings](../..) / [String length](../../string-length) | [Numbers](../../../numbers) →
+{% include nav.html %}

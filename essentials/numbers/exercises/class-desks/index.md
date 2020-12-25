@@ -2,9 +2,7 @@
 title: Class desks
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises)
-
-# Class desks
+{% include menu.html %}
 
 ## Problem
 
@@ -28,10 +26,4 @@ When you run the program, you should get the following:
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Number of tens](/raku-course/numbers/exercises/tens) →
-
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) | [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

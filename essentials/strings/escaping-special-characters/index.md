@@ -42,5 +42,3 @@ If you run this program, you will see that the first string appears as is on a s
 In double quotes, a special sequence `\n` was processed as a newline character, while in a string in single quotes it was a regular sequence of two characters: `\` and `n`.
 
 {% include nav.html %}
-
-💪 Or you can jump straight to the [exercises on strings](../exercises).

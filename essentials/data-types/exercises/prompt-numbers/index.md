@@ -2,9 +2,7 @@
 title: Examining the result of prompt — Numbers
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types) / [Exercises](..)
-
-# Examining the result of `prompt` — Numbers
+{% include menu.html %}
 
 ## Task
 
@@ -14,6 +12,4 @@ Modify the program from the previous exercise. This time, it should ask to enter
 
 ✅ [See the solution](solution)
 
-## Course navigation
-
-← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →
+{% include nav.html %}

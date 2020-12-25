@@ -15,5 +15,3 @@ Of course, you can use a scalar variable to keep strings:
 Let us see what other basic features we can learn about strings.
 
 {% include nav.html %}
-
-💪 If you already have read all the materials about strings, you can go directly to [exercises on strings](exercises).

@@ -23,5 +23,3 @@ There are a few constants that you can use straight ahead, which are also the nu
 `e` | `𝑒` | 2.718281828459045
 
 {% include nav.html %}
-
-Ot jump to the 💪 [exercises](../exercises).

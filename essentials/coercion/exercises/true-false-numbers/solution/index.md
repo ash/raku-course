@@ -2,9 +2,7 @@
 title: Solution of ‘True and False integers’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data type conversions](/raku-course/coercion) / [Exercises](/raku-course/coercion/exercises) / [True and False numbers](..)
-
-# The solution of ‘True and False numbers’
+{% include menu.html %}
 
 To convert a number to a Boolean value, you can use either the `?` prefix operator or a constructor form, or call the `Bool` method, or using the `so` routine as either a function or a method:
 
@@ -35,10 +33,4 @@ Of course, nothing changes if you try to negate the number first:
 
 🦋 You can find the full program with the above example in the file [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku).
 
-## Next exercise
-
-1. [True and False strings](/raku-course/coercion/exercises/true-false-strings) →
-
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Typed variables](/raku-course/typed-variables) →
+{% include nav.html %}

@@ -35,5 +35,3 @@ The same string generates differnet messages this time:
     Hello, Anna!
 
 {% include nav.html %}
-
-💪 Or you can jump straight to the [exercises on strings](../exercises).

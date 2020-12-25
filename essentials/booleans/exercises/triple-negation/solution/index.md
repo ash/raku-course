@@ -2,9 +2,7 @@
 title: Solution to ‘Triple negation’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Boolean type](/raku-course/booleans) / [Exercises](../..) / [Triple negation](..)
-
-# Solution of ‘Triple negation’
+{% include menu.html %}
 
 The program shown in the task won’t compile and requires a small fix. Here is the correct and working variant (a space added to separate `!` and `!!`):
 
@@ -53,6 +51,4 @@ This program compiles but terminates with the following message:
 
 This happens because `!!!` is a special operator for marking the part of the code as a stub code. It the program reaches this point, it terminates and prints the message, which in our case was the current value of the variable `$value`. Refer to 📖 [the documentation](https://docs.raku.org/routine/!!!) for more details.
 
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →
+{% include nav.html %}

@@ -1,10 +1,8 @@
 ---
-title: Exercises 'Double and tripple negations’
+title: Exercise 'Double and tripple negations’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Boolean type](/raku-course/booleans) / [Exercises](..)
-
-# Double and tripple negations
+{% include menu.html %}
 
 ## Problem
 
@@ -19,11 +17,4 @@ Extend the program to repeat the actions, but this time they should start with `
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Triple negation](/raku-course/booleans/exercises/triple-negation) →
-
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →
-
+{% include nav.html %}

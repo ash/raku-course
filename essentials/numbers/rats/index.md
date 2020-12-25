@@ -46,5 +46,3 @@ It is also possible to use Unicode characters that represent the fractions, such
 With some fractions, such as `1/3`, you have less options, `⅓` or `<1/3>`, as the decimal form will require infinite number of digits.
 
 {% include nav.html %}
-
-Ot jump to the 💪 [exercises](../exercises).

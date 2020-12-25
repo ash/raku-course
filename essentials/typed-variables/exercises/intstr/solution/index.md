@@ -2,9 +2,7 @@
 title: Solution to ‘Trying IntStr’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Typed variables](/raku-course/typed-variables) / [Exercises](../..) / [Trying IntStr](..)
-
-# Solution and comments
+{% include menu.html %}
 
 Let us take a look at the program again.
 
@@ -42,10 +40,4 @@ The second assignment, `$s = $input`, will never break as a string can take any 
 
 🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/intstr.raku).
 
-## Next exercise
-
-| [Converting user input to a number](/raku-course/typed-variables/exercises/input-number) →
-
-## Course navigation
-
-← [Typed variables](/raku-course/typed-variables)| [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

@@ -2,9 +2,7 @@
 title: Solution of ‘Apple sharing’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises) / [Apple sharing](..)
-
-# The solution of ‘Apple sharing’
+{% include menu.html %}
 
 Here is the solution of the problem.
 
@@ -42,10 +40,4 @@ In the program, we are using the two operators: `div` to perform integer divisio
     my $gets = $K div $N;
     my $remains = $K - $N * $gets;
 
-## Next exercise
-
-| [Sum of numbers](/raku-course/numbers/exercises/sum-of-numbers) →
-
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) | [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

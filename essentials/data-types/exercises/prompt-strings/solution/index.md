@@ -2,9 +2,7 @@
 title: Solution of ‘Examining the output of prompt — Strings’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types) / [Exercises](../..) / [Examining the result of `prompt` — Strings](..)
-
-# Solution — testing strings
+{% include menu.html %}
 
 ## Code
 
@@ -34,11 +32,4 @@ Now, run the program again and instead of a name type a few spaces, then press E
 
 We do not see the output (well, it is seen as white on white), but we see that the type of the variable is still `Str`.
 
-
-## Next exercise
-
-| [Examining the result of `prompt` — Numbers](../../prompt-numbers) →
-
-## Course navigation
-
-← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →
+{% include nav.html %}

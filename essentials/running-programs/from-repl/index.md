@@ -27,5 +27,3 @@ At the end you see the prompt character where you can type in your program or it
     > 
 
 {% include nav.html %}
-
-💪 Or jump directly to [the exercises to this section](../exercises).

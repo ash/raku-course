@@ -2,9 +2,7 @@
 title: Solution of ‘Examining the result of prompt — Numbers’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data types](/raku-course/data-types) / [Exercises](../..) / [Examining the result of `prompt` — Numbers](..)
-
-# Solution — testing numbers
+{% include menu.html %}
 
 ## Code
 
@@ -53,6 +51,4 @@ Finally, try a number in the scientific notation. You should be able to guess th
 
 Indeed, the new value is of the `NumStr` type. We will come back to these interesting types in the excercises to one of the following sections.
 
-## Course navigation
-
-← [Data types](/raku-course/data-types) / [Introspection with `WHAT`](/raku-course/data-types/what) | [Data type conversion](/raku-course/coercion) →
+{% include nav.html %}

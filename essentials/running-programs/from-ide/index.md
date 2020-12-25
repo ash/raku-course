@@ -17,5 +17,3 @@ Open a terminal from the menu `Terminal` → `New Terminal`. It will add a panel
 The running facility sits behind the `Run` menu item. Follow [the instructions](https://commaide.com/docs/running) on the Comma website to set the IDE up before the first run of the program.
 
 {% include nav.html %}
-
-💪 Or jump directly to [the exercises to this section](../exercises).

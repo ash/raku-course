@@ -2,9 +2,7 @@
 title: Solution of ’Correct the identifiers‘
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Exercises](../..) / [Correct the identifiers](..)
-
-# The solution of ‘Correct the identifiers’
+{% include menu.html %}
 
 There are more than one way to make the identifiers correct. Some possible options are shown here:
 
@@ -30,6 +28,4 @@ Let us list the problems with the original names:
 * A digit cannot start a name either: `$2address`.
 * Two hyphens cannot sit together: `$from--to`.
 
-## Course navigation
-
-← [Scalar variables](/raku-course/scalar-variables) / [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization) | [Strings](/raku-course/strings) →
+{% include nav.html %}

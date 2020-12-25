@@ -2,9 +2,7 @@
 title: Exercise ‘Purchase table‘
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Strings](../..) / [Exercises](..)
-
-# Purchase table
+{% include menu.html %}
 
 ## Problem
 
@@ -26,10 +24,4 @@ This program does not take any input, so it prints the above table when your run
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Name length](../name-length) →
-
-## Course navigation
-
-← [Strings](../..) / [String length](../../string-length) | [Numbers](../../../numbers) →
+{% include nav.html %}

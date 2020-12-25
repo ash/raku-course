@@ -2,9 +2,7 @@
 title: Exercise ‘Converting user input to a number’
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Typed variables](/raku-course/typed-variables) / [Exercises](..)
-
-# Converting user input to a number
+{% include menu.html %}
 
 ## Problem
 
@@ -22,6 +20,4 @@ This program runs in the following way:
 
 ✅ [See the solution](solution)
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Typed variables](/raku-course/typed-variables) →
+{% include nav.html %}

@@ -2,9 +2,7 @@
 title: Solution of ’Name length‘
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Strings](/raku-course/strings) / [Exercises](../..) / [Name length](..)
-
-# The solution of ‘Name length’
+{% include menu.html %}
 
 ## Code
 
@@ -27,6 +25,4 @@ Run the program and enter the name.
 
 In this program, we are getting the length of the string by calling the `chars` method on the `$name` variable. As the variable contains a string, the method returns the length of it.
 
-## Course navigation
-
-← [Strings](/raku-course/strings) / [String length](/raku-course/strings/string-length) | [Numbers](/raku-course/numbers) →
+{% include nav.html %}

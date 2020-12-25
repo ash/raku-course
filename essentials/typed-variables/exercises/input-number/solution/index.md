@@ -1,10 +1,8 @@
 ---
-title: Solution ‘Converting user input to a number’
+title: Solution of ‘Converting user input to a number’
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Typed variables](/raku-course/typed-variables) / [Exercises](../..) / [Converting user input to a number](..)
-
-# The Solution of ‘Converting user input to a number’
+{% include menu.html %}
 
 The program can be as simple as this:
 
@@ -29,6 +27,4 @@ As we’ve seen in the [previous exercise](/raku-course/typed-variables/exercise
 
 Notice, though, that the program will be terminated with an exception if you enter a string that cannot be converted to an integer number.
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Typed variables](/raku-course/typed-variables) →
+{% include nav.html %}

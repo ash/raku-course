@@ -2,9 +2,7 @@
 title: Solution of ‘True and False strings’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Data type conversions](/raku-course/coercion) / [Exercises](/raku-course/coercion/exercises) / [True and False strings](..)
-
-# The solution of ‘True and False strings’
+{% include menu.html %}
 
 This exercise is similar to [the previous one](/raku-course/coercion/exercises/true-false-numbers), but this time, the task is a bit trickier. There are more ’suspect’ strings that can be treated as `False`. Let us explore them.
 
@@ -22,6 +20,4 @@ From all of these, only the empty string is casted as `False`. All other strings
 
 🦋 You can find the full program with the above example in the file [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
 
-## Course navigation
-
-← [Data types and introspection](/raku-course/what) | [Typed variables](/raku-course/typed-variables) →
+{% include nav.html %}

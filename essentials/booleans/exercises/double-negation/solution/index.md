@@ -2,9 +2,7 @@
 title: Solution to 'Double negation’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Boolean type](/raku-course/booleans) / [Exercises](../..) / [Double negation](..)
-
-# Solution of ‘Double negation’
+{% include menu.html %}
 
 Let us extend the program to solve the second part of the exercise and reuse the same variable:
 
@@ -30,11 +28,4 @@ The program prints the following output, which confirms the above considerations
     False
     True
 
-## Next exercise
-
-| [Triple negation](/raku-course/booleans/exercises/triple-negation) →
-
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →
-
+{% include nav.html %}

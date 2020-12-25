@@ -1,10 +1,8 @@
 ---
-title: Exercises 'Boolean tables’
+title: Exercise 'Boolean tables’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Boolean type](/raku-course/booleans) / [Exercises](..)
-
-# Boolean tables
+{% include menu.html %}
 
 ## Problem
 
@@ -23,10 +21,4 @@ Here is an example of partial output of this program.
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Double negation](/raku-course/booleans/exercises/double-negation) →
-
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →
+{% include nav.html %}

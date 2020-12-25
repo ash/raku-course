@@ -2,9 +2,7 @@
 title: Solution to 'Boolean tables’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Boolean type](/raku-course/booleans) / [Exercises](..)
-
-# Solution of ‘Boolean tables’
+{% include menu.html %}
 
 Here is a possible program that prints all the results of Boolean operations.
 
@@ -53,10 +51,4 @@ Notice that due to higher precedence of the Boolean operations, you do not need 
 
 You can return to this exercise after we review interpolating code blocks in strings.
 
-## Next exercise
-
-| [Double and tripple negation](/raku-course/booleans/exercises/nth-negation) →
-
-## Course navigation
-
-← [Boolean type](/raku-course/booleans) / [Boolean operations with other types](/raku-course/booleans/boolean-operations-other-types) | [Data types and introspection](/raku-course/what) →
+{% include nav.html %}

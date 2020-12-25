@@ -2,9 +2,7 @@
 title: Solution of ‘Number of tens’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises) / [Number of tens](..)
-
-# The solution of ‘Number of tens’
+{% include menu.html %}
 
 This is how you can solve the task.
 
@@ -39,10 +37,4 @@ Notice the space before the opening parenthesis. It has to be there, otherwise y
 
     say(($n % 100) div 10);
 
-## Next exercise
-
-| [The value of π](/raku-course/numbers/exercises/pi) →
-
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) | [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

@@ -2,9 +2,7 @@
 title: The solution of ’The answer to life, the Universe and everything‘
 ---
 
-[Start](../../../..) / [Part 1](../../../../part1) / [Scalar variables](../../..) / [Exercises](../..) / [The answer to life, the Universe and everything](../)
-
-# The solution
+{% include menu.html %}
 
 Here is a possible solution to the task.
 
@@ -26,6 +24,4 @@ Run the program and enter a name when you get the prompt:
 
 One of the requirements of this problem was to use variables. As `42` is a single value, it is a good choice to use a scalar variable to store it.
 
-## Course navigation
-
-← [Scalar variables](../../..) / [Declaration with initialization](../../../declaration-with-initialization) | [Strings](../../../../strings) →
+{% include nav.html%}

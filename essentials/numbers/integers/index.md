@@ -30,5 +30,3 @@ Raku will perfectly handle numbers that go beyond 32- or 64-bit integers. So, fo
     say 1_234_456_789_012_345_678_901 * 987_654_321_098_765_432_100;
 
 {% include nav.html %}
-
-Ot jump to the 💪 [exercises](../exercises).

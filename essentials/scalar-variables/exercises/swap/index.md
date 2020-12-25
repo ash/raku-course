@@ -2,9 +2,7 @@
 title: Exercise ’Swap the values‘
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Exercises](..)
-
-# Swap the values
+{% include menu.html %}
 
 ## Problem
 
@@ -14,10 +12,4 @@ Create a program that first creates two values and assigns some integers to them
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Correct the identifiers](../identifiers) →
-
-## Course navigation
-
-← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](/raku-course/strings) →
+{% include nav.html %}

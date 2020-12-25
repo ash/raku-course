@@ -2,9 +2,7 @@
 title: Sum of numbers
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises)
-
-# Sum of numbers
+{% include menu.html %}
 
 ## Problem
 
@@ -24,10 +22,4 @@ Here is an expected script of how the program is used:
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Class desks](/raku-course/numbers/exercises/class-desks) →
-
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) | [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

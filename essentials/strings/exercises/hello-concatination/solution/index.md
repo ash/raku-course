@@ -2,9 +2,7 @@
 title: Solution of ’Hello, Concatenation!‘
 ---
 
-[Start](../../../..) / [Part 1](../../../../part1) / [Strings](../../..) / [Exercises](../..) / [Hello, Concatenation!](..)
-
-# The solution of ‘Hello, Concatenation!’
+{% include menu.html %}
 
 ## Code
 
@@ -31,13 +29,4 @@ Compare the program with [the previous variant](../../../../scalar-variables/exe
 
 This time, the three parts are first concatenated and then passed to `say` as a single string.
 
-## Next exercise
-
-| [Hello, Interpolation!](../../hello-interpolation) →
-
-## Course navigation
-
-← [Strings](../../..) / [String length](../../../string-length) | [Numbers](../../../../numbers) →
-
-
-
+{% include nav.html %}

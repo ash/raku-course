@@ -2,9 +2,7 @@
 title: Number of tens
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Numbers](/raku-course/numbers) / [Exercises](/raku-course/numbers/exercises)
-
-# Number of tens
+{% include menu.html %}
 
 ## Problem
 
@@ -22,10 +20,4 @@ For example, in the input number 234, the number of tens is 3, so the program pr
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [The value of π](/raku-course/numbers/exercises/pi) →
-
-## Course navigation
-
-← [Numbers](/raku-course/numbers) / [Operations with numbers](/raku-course/numbers/operations) | [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

@@ -2,9 +2,7 @@
 title: Solution of ’Swap the values‘
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Scalar variables](/raku-course/scalar-variables) / [Exercises](../..) / [Swap the values](..)
-
-# The solution of ‘Swap the values’
+{% include menu.html %}
 
 In this program, we are using the elements of Raku syntax from the section about [scalar variables](/raku-course/scalar-variables).
 
@@ -56,10 +54,4 @@ This program prints even more warnings, but you can also see that only `$b` chan
     Useless use of $a in sink context (line 2)
     10, 40
 
-## Next exercise
-
-| [Correct the identifiers](../../identifiers) →
-
-## Course navigation
-
-← [Scalar variables](/raku-course/scalar-variables) / [Declaration with initialization](/raku-course/scalar-variables/declaration-with-initialization) | [Strings](/raku-course/strings) →
+{% include nav.html %}

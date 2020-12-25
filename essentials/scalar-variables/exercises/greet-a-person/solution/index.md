@@ -2,9 +2,7 @@
 title: The solution of ’Greet a person‘
 ---
 
-[Start](../../../..) / [Part 1](../../../../part1) / [Scalar variables](../../..) / [Exercises](../..) / [Greet a person](../)
-
-# The solution
+{% include menu.html %}
 
 Here is a possible solution to the task.
 
@@ -34,10 +32,4 @@ This program uses a scalar variable `$name` to keep a string that was entered by
 
 Let us return to this problem in the near future.
 
-## Next exercise
-
-| [The answer to life, the Universe and everything](../../answer) →
-
-## Course navigation
-
-← [Scalar variables](../../..) / [Declaration with initialization](../../../declaration-with-initialization) | [Strings](../../../../strings) →
+{% include nav.html %}

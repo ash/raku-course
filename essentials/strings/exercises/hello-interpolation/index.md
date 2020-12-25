@@ -1,10 +1,8 @@
 ---
-title: Exercises ’Hello, Interpolation!‘
+title: Exercise ’Hello, Interpolation!‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Strings](../..) / [Exercises](..)
-
-# Hello, Interpolation!
+{% include menu.html %}
 
 ## Problem
 
@@ -22,10 +20,4 @@ If you run the program, you get a prompt:
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [Purchase table](../purchase-table) →
-
-## Course navigation
-
-← [Strings](../..) / [String length](../../string-length) | [Numbers](../../../numbers) →
+{% include nav.html %}

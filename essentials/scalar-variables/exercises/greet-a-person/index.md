@@ -2,9 +2,7 @@
 title: Exercise ’Greet a person‘
 ---
 
-[Start](../../..) / [Part 1](../../../part1) / [Scalar variables](../..) / [Exercises](..)
-
-# Greet a person
+{% include menu.html %}
 
 ## Problem
 
@@ -27,10 +25,4 @@ The expected behaviour of the program is demonstrated below:
 
 ✅ [See the solution](solution)
 
-## Next exercise
-
-| [The answer to life, the Universe and everything](../answer) →
-
-## Course navigation
-
-← [Scalar variables](../..) / [Declaration with initialization](../../declaration-with-initialization) | [Strings](../strings) →
+{% include nav.html %}

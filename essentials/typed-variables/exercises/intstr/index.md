@@ -2,9 +2,7 @@
 title: Exercise ‘Trying IntStr’
 ---
 
-[Start](/raku-course/) / [Part 1](/raku-course/part1) / [Typed variables](/raku-course/typed-variables) / [Exercises](..)
-
-# Trying IntStr
+{% include menu.html %}
 
 ## Task
 
@@ -23,10 +21,4 @@ Consider the following program. Before running it, can you tell which input valu
 
 ✅ [See the solution and read the comments](solution)
 
-## Next exercise
-
-| [Converting user input to a number](/raku-course/typed-variables/exercises/input-number) →
-
-## Course navigation
-
-← [Typed variables](/raku-course/typed-variables)| [Code blocks](/raku-course/code-blocks) →
+{% include nav.html %}

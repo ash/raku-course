@@ -2,9 +2,7 @@
 title: Exercise ‘Name length‘
 ---
 
-[Start](/raku-course) / [Part 1](/raku-course/part1) / [Strings](../..) / [Exercises](..)
-
-# Name length
+{% include menu.html %}
 
 ## Problem
 
@@ -22,6 +20,4 @@ When you run the program and enter your name in response to the prompt, the prog
 
 ✅ [See the solution](solution)
 
-## Course navigation
-
-← [Strings](../..) / [String length](../../string-length) | [Numbers](../../../numbers) →
+{% include nav.html %}
