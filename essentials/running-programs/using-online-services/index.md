@@ -4,6 +4,17 @@ title: Using online services to run Raku
 
 {% include menu.html %}
 
-Online services do not require many explanations. In the case of [glot.io](https://glot.io/new/perl6), paste the text of the program into the online editor and press the `Run` button. You will see the output of the program in a separate area. If there are some errors, you will see them too.
+Online services do not require many explanations. Paste the text of the program into the online editor and press the `Run` button. You will see the output of the program in a separate area. If there are some errors, you will see them too. Such services can often send data to your program’s input stream from a separate textarea.
+
+## External links
+
+Here is a list of some of the services that supports Raku:
+
+* [glot.io](https://glot.io/new/raku)
+* [RakuPlay](https://rakudist.raku.org/play/)
+* [TIO](https://tio.run/#perl6)
+* [Repl.it](https://repl.it/new/raku) (requires logging-in first)
+
+You may also check [the discussion on Reddit](https://www.reddit.com/r/rakulang/comments/kj63dq/glotio_now_supports_raku/ggxow6n/) for more links and comments about different online services.
 
 {% include nav.html %}
