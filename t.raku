@@ -1,3 +1,3 @@
-my $a = '100';
-    my $b = 200;
-    say $a + $b; # 300
+my ($first-name,   $last-name);
+($first-name,   $last-name)    =  'Emily',   'Lizards';
+	say $first-name , $last-name;
