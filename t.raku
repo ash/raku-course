@@ -1,7 +1,2 @@
-# say 'alpha' + 'beta';
-# say  		'alpha' . 'beta';
-say  		'alpha' ~ 'beta';
-say  		'alpha' ~~ 'beta';
-
-# say α ~ β;
- 	say 	'α' ~ 'β';
+    my $value = True || False && True;
+    say $value;
