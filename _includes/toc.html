@@ -1,5 +1,3 @@
-{% assign extended = true %}
-
 {% assign prefix = site.data.toc.prefix %}
 
 {% for part in site.data.toc.toc %}
@@ -21,7 +19,9 @@
 
 {%- for topic in section.items %}
     - [{{topic.title}}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}})
-    {%- if topic.quizzes %} — <span class="has-q">[{{topic.quizzes.size}} quiz{% if topic.quizzes.size != 1 %}zes{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
+    {%- if extended %}
+        {%- if topic.quizzes %} — <span class="has-q">[{{topic.quizzes.size}} quiz{% if topic.quizzes.size != 1 %}zes{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
+    {%- endif %}
 {%- endfor %}
 {%- endfor %}
 {% endfor %}

@@ -25,25 +25,31 @@
     }
     table.quiz,
     table.quiz-code,
+    table.quiz-selecte,
     table.quiz tr,
     table.quiz-code tr,
+    table.quiz-select tr,
     table.quiz tr td,
-    table.quiz-code tr td {
+    table.quiz-code tr td,
+    table.quiz-select tr td {
         /* background-color: #fffdeb; */
         background-color: white;
         border: none;
     }
     table.quiz,
-    table.quiz-code {
+    table.quiz-code,
+    table.quiz-select {
         /* background-color: #fffdeb; */
         background-color: white;
     }
     table.quiz tr,
-    table.quiz-code tr {
+    table.quiz-code tr,
+    table.quiz-select tr {
         border: none;
     }
     table.quiz td,
-    table.quiz-code td {
+    table.quiz-code td,
+    table.quiz-select td {
         border: none;
         /* background-color: #fffdeb; */
         background-color: white;
@@ -52,18 +58,22 @@
     }
     table.quiz tr td code,
     table.quiz-code tr td code,
+    table.quiz-select tr td code,
     table.quiz tr td tt,
-    table.quiz-code tr td tt {
+    table.quiz-code tr td tt,
+    table.quiz-select tr td tt {
         /* background-color: #fffdeb !important; */
         background-color: white !important;
     }
     table.quiz tr td.code,
-    table.quiz-code tr td.code {
+    table.quiz-code tr td.code,
+    table.quiz-select tr td.code {
         font-family: monospace;
         font-size: 95%;
     }
     table.quiz tr td.comment,
-    table.quiz-code tr td.comment {
+    table.quiz-code tr td.comment,
+    table.quiz-select tr td.comment {
         font-family: 'Times New Roman', Times, serif;
         font-style: italic;
     }
@@ -103,6 +113,7 @@
         
         cells[2].className = 'code';
         if (cells.length > 3) {
+            cells[3].style.display = 'none';
             cells[3].className = 'comment';
         }
 
@@ -117,14 +128,39 @@
         }
     });
 
+    document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
+        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
+
+        let cells = item.querySelectorAll('td');
+        let answer = cells[1].innerHTML.trim();
+        cells[1].style.display = 'none';
+        
+        // cells[2].className = 'code';
+        if (cells.length > 3) {
+            cells[3].style.display = 'none';
+            cells[3].className = 'comment';
+        }
+
+        let question = cells[2].innerHTML;
+        let q_from = question.indexOf('(:');
+        let q_to = question.indexOf(':)');
+        let values = question.substring(q_from + 2, q_to).trim();
+        let values_items = values.split(',');
+        let select = '<select data-ok="' + answer + '"><option value=""></option>';
+        for (let c = 0; c != values_items.length; c++) {
+            let value = values_items[c].trim();
+            select += '<option value="' + value + '">' + value + '</option>';
+        }
+        select += '</select>';
+        cells[2].innerHTML = question.substring(0, q_from) + select + question.substring(q_to + 2);
+    });
+
     function checkquiz() {
         document.getElementById('ShowAnswers').style.display = 'none';
 
         document.querySelectorAll('table.quiz input[type="checkbox"]').forEach(function(item) {
             let is_correct = (item.checked && item.dataset.ok == 1) || (!item.checked && item.dataset.ok == 0);
             let row = item.parentElement.parentElement;
-            // row.className = is_correct ? 'correct' : 'incorrect';
-
             row.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
         });
         document.querySelectorAll('table.quiz tr td').forEach(function(item) {
@@ -132,6 +168,7 @@
         });
 
         let show_correct_button = false;
+
         document.querySelectorAll('table.quiz-code tr').forEach(function(item) {            
             let inputs = item.querySelectorAll('input');
             if (!inputs.length) return;
@@ -148,9 +185,35 @@
             }
 
             let is_correct = correct == inputs.length;
-            // item.parentElement.className = is_correct ? 'correct' : 'incorrect';
 
-            item.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+            let tds = item.querySelectorAll('td');            
+            tds[0].innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+            if (tds.length > 3) {
+                tds[3].style.display = '';
+            }
+        });
+
+        document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
+            let selects = item.querySelectorAll('select');
+            if (!selects.length) return;
+
+            let correct = 0;
+            for (let c = 0; c != selects.length; c++) {
+                if (selects[c].value == selects[c].dataset.ok) {
+                    correct++;
+                }
+                else {
+                    show_correct_button = true;
+                    break;
+                }
+            }
+
+            let is_correct = correct == selects.length;
+            let tds = item.querySelectorAll('td');            
+            tds[0].innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+            if (tds.length > 3) {
+                tds[3].style.display = '';
+            }
         });
 
         if (show_correct_button) {
@@ -166,8 +229,15 @@
             for (let c = 0; c != inputs.length; c++) {
                 inputs[c].value = inputs[c].dataset.ok;
             }
+        });
 
-            item.parentElement.className = '';
+        document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
+            let selects = item.querySelectorAll('select');
+            if (!selects.length) return;
+
+            for (let c = 0; c != selects.length; c++) {
+                selects[c].value = selects[c].dataset.ok;
+            }
         });
     }
 </script>
