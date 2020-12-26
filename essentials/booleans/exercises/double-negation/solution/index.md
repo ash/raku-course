@@ -24,7 +24,7 @@ Before running the program, let us think what it will print. There are two negat
 
 The program prints the following output, which confirms the above considerations:
 
-    $ raku double-negation.raku
+    $ raku exercises/booleans/double-negation.raku
     False
     True
 

@@ -6,7 +6,7 @@ title: Quiz — Integer numbers
 
 Mark all the examples with valid integer numbers.
 
-{:.quiz .white}
+{:.quiz}
 1 | `42`
 1 | `0`
 1 | `-42`

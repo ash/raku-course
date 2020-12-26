@@ -22,7 +22,7 @@ Here is the solution of the problem.
 
 Run the program a few times and confirm it works with the numbers of different kinds.
 
-    $ raku sum-of-numbers.raku
+    $ raku exercises/numbers/sum-of-numbers.raku
     Enter number A: 1.2
     Enter number B: -3.4
     Enter number C: 45

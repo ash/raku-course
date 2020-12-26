@@ -14,7 +14,7 @@ There is no doubt you already know some of the operations that you can do with n
 `*` | Multiplication
 `/` | Division
 
-As Raku [supports Unicode](/raku-course/on-unicode) really well, some of these operators have non-ASCII equivalents:
+As Raku [supports Unicode](/raku-course/essentials/on-unicode) really well, some of these operators have non-ASCII equivalents:
 
 `×` | Multiplication
 `÷` | Division
@@ -48,5 +48,26 @@ Both `div` and `mod` expect integer operands. So, the following program will not
 
     say 10.3 / 3.3;     # OK
     # say 10.3 mod 3.3; # Error
+
+## Power
+
+There are two ways of geting the result of _x_ to the power of _y_. First, you can use the `**` operator:
+
+    say 3 ** 4; # 81
+
+Second, you can use superscript digits, for example:
+
+    say 3⁴; # 81
+
+It is possible to have more than one superscript digit to get the value of power, which is bigger than 9, for example:
+
+    say 2¹⁵; # 32768
+
+A negative power is not a problem either:
+
+    say 2 ** (-2); ## 0.25
+    say 2⁻²; # 0.25
+
+Notice that the result of the last two expressions is a `Rat` number.
 
 {% include nav.html %}

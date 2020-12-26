@@ -17,7 +17,7 @@ Here is a possible solution to the task.
 
 Run the program and enter a name when you get the prompt:
 
-    $ raku problems/greet-a-person/solution/greet-a-person.raku 
+    $ raku exercises/scalar-variables/greet-a-person.raku 
     What is your name? Inge
     Hello, Inge!
 

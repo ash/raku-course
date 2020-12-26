@@ -17,7 +17,7 @@ Here is a possible solution to the task.
 
 Run the program and enter a name when you get the prompt:
 
-    $ raku answer.raku 
+    $ raku exercises/scalar-variables/answer.raku 
     42
 
 ## Comments

@@ -18,6 +18,12 @@ All the identifiers are valid, but it is probably better to avoid names with apo
 
 🦋 You can find the source code in the file [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
 
+## Output
+
+This program does not generate any output, but you should not get any errors when Rakudo compiles and runs it:
+
+    $ raku exercises/scalar-variables/identifiers.raku
+
 ## Comments
 
 Let us list the problems with the original names:

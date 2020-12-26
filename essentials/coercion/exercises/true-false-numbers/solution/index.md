@@ -31,6 +31,6 @@ Of course, nothing changes if you try to negate the number first:
     my $int = 0;
     say ?(-$int); # False
 
-🦋 You can find the full program with the above example in the file [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku).
+🦋 You can find the full program with the above example in the file [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/true-false-numbers.raku).
 
 {% include nav.html %}

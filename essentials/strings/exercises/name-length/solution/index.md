@@ -17,7 +17,7 @@ Here is the solution to the task:
 
 Run the program and enter the name.
 
-    $ raku name-length.raku 
+    $ raku exercises/strings/name-length.raku 
     What is your name? Alexandra
     9
 

@@ -17,13 +17,13 @@ The program can be as simple as this:
 
 Run it and enter an integer number, either positive or negative:
 
-    $ raku input-number.raku
+    $ raku exercises/typed-variables/input-number.raku
     Enter a number: -42
     -42
 
 ## Comments
 
-As we’ve seen in the [previous exercise](/raku-course/typed-variables/exercises/intstr), the return value of `prompt` is `IntStr`, which can be assigned to an `Int` variable with no problems. 
+As we’ve seen in the [previous exercise](/raku-course/essentials/typed-variables/exercises/intstr), the return value of `prompt` is `IntStr`, which can be assigned to an `Int` variable with no problems. 
 
 Notice, though, that the program will be terminated with an exception if you enter a string that cannot be converted to an integer number.
 

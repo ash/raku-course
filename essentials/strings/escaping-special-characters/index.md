@@ -13,7 +13,7 @@ How do you print the label if the price is meant to be in dollars? This is what 
 
     say "$product costs \$$price";
 
-Of course, you can use string concatenation andn avoid escaping `$`:
+Of course, you can use string concatenation and avoid escaping `$`:
 
     say $product ~ ' costs $' ~ $price;
 

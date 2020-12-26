@@ -18,14 +18,14 @@ Here is the complete program that sovles the job and prints both the entered str
 
 Run the program a couple of times and enter different names. The program echoes the input and also reports that the variable contains a string, in other words, an object of the `Str` type.
 
-    $ raku prompt-strings.raku
+    $ raku exercises/data-types/prompt-strings.raku
     What is your name? Andrey
     Andrey
     (Str)
 
 Now, run the program again and instead of a name type a few spaces, then press Enter.
 
-    $ raku prompt-strings.raku
+    $ raku exercises/data-types/prompt-strings.raku
     What is your name?    
     
     (Str)

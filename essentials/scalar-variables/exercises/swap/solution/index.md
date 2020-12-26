@@ -18,7 +18,7 @@ In this program, we are using the elements of Raku syntax from the section about
 
 Run the program and confirm it prints the values in different order.
 
-    $ raku swap.raku
+    $ raku exercises/scalar-variables/swap.raku
     20, 10
 
 ## Comments
@@ -37,7 +37,7 @@ What happens if you omit parentheses?
 
 In this case, you get a warning about that `$a` on the right-hand side is not used.:
 
-    $ raku swap.raku
+    $ raku exercises/scalar-variables/swap.raku
     WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
     Useless use of $a in sink context (lines 2, 2)
     10, 20
@@ -48,7 +48,7 @@ The above line is actually equivalent to a useless assignment `$b = $b`. You can
 
 This program prints even more warnings, but you can also see that only `$b` changed its value:
 
-    $ raku swap.raku
+    $ raku exercises/scalar-variables/swap.raku
     WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
     Useless use of "*" in expression "3 * $a" in sink context (line 2)
     Useless use of $a in sink context (line 2)

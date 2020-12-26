@@ -16,7 +16,7 @@ The program to print the value of π is simple enough.
 
 Run the program and see what it prints:
 
-    $ raku pi.raku
+    $ raku exercises/numbers/pi.raku
     3.141592653589793
 
 ## Comments

@@ -16,7 +16,7 @@ Here is the solution of the problem ‘[Hello, me!](../)‘.
 
 To see the output, run the program as shown below:
 
-    $ raku hello-me.raku 
+    $ raku exercises/running-programs/hello-me.raku 
     Hello, Andrew!
 
 ## Discussion

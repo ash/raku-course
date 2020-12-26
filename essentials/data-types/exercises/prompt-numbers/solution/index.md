@@ -22,7 +22,7 @@ Run the program several times and enter the nubmers of different types.
 
 Let us try integers first, both positive and negative.
 
-    $ raku prompt-numbers.raku
+    $ raku exercises/what/prompt-numbers.raku
     Enter a number: 10
     10
     (IntStr)
@@ -33,7 +33,7 @@ The type of the result is `IntStr`, the one that we did not see yet. This is an 
 
 Now let us try a rational number. Remember that in Raku notation with a decimal dot creates a `Rat` number rather than a floating-point number.
 
-    $ raku prompt-numbers.raku
+    $ raku exercises/what/prompt-numbers.raku
     Enter a number: 3.14
     3.14
     (RatStr)
@@ -44,7 +44,7 @@ This time, the program says the type of the data in `$n` is `RatStr`, which stan
 
 Finally, try a number in the scientific notation. You should be able to guess the output at this point.
 
-    $ raku prompt-numbers.raku
+    $ raku exercises/what/prompt-numbers.raku
     Enter a number: 5e-14
     5e-14
     (NumStr)

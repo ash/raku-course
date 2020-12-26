@@ -23,7 +23,7 @@ Here is the solution of the problem.
 
 With the input numbers 3 and 11, the program prints the following output:
 
-    $ raku apple-sharing.raku
+    $ raku exercises/numbers/apple-sharing.raku
     Each person gets 3 apple(s).
     There are 2 apple(s) remaining.
 
