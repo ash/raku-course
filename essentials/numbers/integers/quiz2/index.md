@@ -1,5 +1,5 @@
 ---
-title: Quiz — Unicode digits
+title: Quiz — Unicode digits and numbers
 ---
 
 {% include menu.html %}
@@ -9,17 +9,14 @@ Try to find out, which of the following digits form integers that Raku accepts a
 {:.quiz}
 1 | 3
 1 | 12345
-1 | ⓷ | A single digit is fine.
-0 | ⓵⓶⓷⓸⓹ | But you cannot combine a number in such a way.
+1 | ⓷ | This is considered a number, not a single digit.
+0 | ⓵⓶⓷⓸⓹ | So you cannot combine them in such a way to get `12345`.
 1 | ❷
 0 | ❸❹❺
-1 | ⒌ | This is a single Unicode character `DIGIT FIVE FULL STOP`.
-0 | ⒊⒋⒌
-1 | ㊷ | A single Unicode digit named `CIRCLED NUMBER FOURTY TWO`.
-0 | ⓸⓶ | But this is not a number already.
-0 | ㊀㊁㊂㊃㊄
-1 | ㊄ | Circled Chinese 5 and it is a digit `CIRCLED IDEOGRAPH FIVE`.
-0 | 五 | While this means 5, the character is not a digit.
+1 | ㊷ | A single Unicode character named `CIRCLED NUMBER FOURTY TWO`.
+0 | ⓸⓶ | But this is not two numbers already.
+1 | ㊄ | Circled Chinese 5 and it is a number `CIRCLED IDEOGRAPH FIVE`.
+0 | 五 | While this means 5, the character is neither a digit nor a number.
 0 | 一二三四五
 
 {% include quiz.html %}

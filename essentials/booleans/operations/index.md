@@ -16,6 +16,8 @@ This program prints the following results:
     True
     True
 
+## Negation
+
 To negate a Boolan value, use the prefix operator `!`:
 
     say !False; # True

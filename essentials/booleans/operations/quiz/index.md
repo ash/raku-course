@@ -32,6 +32,8 @@ What does the second program print?
 
 ## 3
 
+What is the output of this program?
+
     my $value = True || False && True;
     say $value;
 
