@@ -8,6 +8,7 @@ sub scan-dir($root) {
     say "Scanning $root";
     for dir($root) -> $path {
         # next if $path ~~ /^'_' | ^'.'/;
+        next if $path ~~ /^ 'docs' /;
 
         if $path.d {
             scan-dir($path);
