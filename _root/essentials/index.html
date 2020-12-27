@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A Complete Course of the Raku programming language</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="A Complete Course of the Raku programming language" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/raku-course/essentials/" />
+<meta property="og:url" content="http://localhost:4000/raku-course/essentials/" />
+<meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/raku-course/essentials/","headline":"A Complete Course of the Raku programming language","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/raku-course/assets/main.css">
+    <title></title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+      ul li {
+        list-style-type: none;
+      }
+      .markdown-body h1,
+      .markdown-body h2,
+      .markdown-body h3 {
+        border-bottom: none;
+      }
+      .markdown-body h2 {
+        margin-top: 1.5em;
+        margin-bottom: 0.3em;
+      }
+      .markdown-body h4 {
+        margin-bottom: 0.5em;
+      }
+      .practice {
+        background: #faf8e0;
+        padding: 0.3em 1.5em 0.8em 1.5em;
+        margin-top: 2em;
+        border-radius: 5px;
+      }
+      .practice h2 {
+        margin-top: 0;
+      }
+      .exercises {
+        background: #d1f2f9;
+        padding: 0.3em 1.5em 0.8em 1.5em;
+        margin-top: 2em;
+        border-radius: 5px;
+      }
+      .exercises h2 {
+        margin-top: 0;
+      }
+      span.has-q {
+        background-color: #a834f9;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      span.has-q a {
+        color: white;
+      }
+      span.has-e {
+        background-color: #297bf5;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      span.has-e a {
+        color: white;
+      }
+      div.formula {
+        text-align: center;
+      }
+    </style>
+
+    <style>
+    pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+
+
+.hll { background-color: #ffffcc }
+.c { color: #008000 } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #0000ff } /* Keyword */
+.ch { color: #008000 } /* Comment.Hashbang */
+.cm { color: #008000 } /* Comment.Multiline */
+.cp { color: #0000ff } /* Comment.Preproc */
+.cpf { color: #008000 } /* Comment.PreprocFile */
+.c1 { color: #008000 } /* Comment.Single */
+.cs { color: #008000 } /* Comment.Special */
+.ge { font-style: italic } /* Generic.Emph */
+.gh { font-weight: bold } /* Generic.Heading */
+.gp { font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { font-weight: bold } /* Generic.Subheading */
+.kc { color: #0000ff } /* Keyword.Constant */
+.kd { color: #0000ff } /* Keyword.Declaration */
+.kn { color: #0000ff } /* Keyword.Namespace */
+.kp { color: #0000ff } /* Keyword.Pseudo */
+.kr { color: #0000ff } /* Keyword.Reserved */
+.kt { color: #2b91af } /* Keyword.Type */
+.s { color: #a31515 } /* Literal.String */
+.nc { color: #2b91af } /* Name.Class */
+.ow { color: #0000ff } /* Operator.Word */
+.sa { color: #a31515 } /* Literal.String.Affix */
+.sb { color: #a31515 } /* Literal.String.Backtick */
+.sc { color: #a31515 } /* Literal.String.Char */
+.dl { color: #a31515 } /* Literal.String.Delimiter */
+.sd { color: #a31515 } /* Literal.String.Doc */
+.s2 { color: #a31515 } /* Literal.String.Double */
+.se { color: #a31515 } /* Literal.String.Escape */
+.sh { color: #a31515 } /* Literal.String.Heredoc */
+.si { color: #a31515 } /* Literal.String.Interpol */
+.sx { color: #a31515 } /* Literal.String.Other */
+.sr { color: #a31515 } /* Literal.String.Regex */
+.s1 { color: #a31515 } /* Literal.String.Single */
+.ss { color: #a31515 } /* Literal.String.Symbol */
+
+.nb { color: #0000ff } /* Literal.String.Symbol */
+.mi { color: #0000ff } /* Literal.String.Symbol */
+
+    </style>
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a></p>
+
+<h1 id="raku-essentials">Raku essentials</h1>
+
+<h4 id="basic-introduction-to-raku-and-its-compiler">Basic introduction to Raku and its compiler</h4>
+<ul>
+  <li><a href="/raku-course/essentials/what-is-raku">What is Raku</a></li>
+  <li><a href="/raku-course/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+  <li><a href="/raku-course/essentials/how-to-install-rakudo">How to install Rakudo</a></li>
+  <li><a href="/raku-course/essentials/editors-and-ides">Editors and IDEs</a></li>
+  <li><a href="/raku-course/essentials/conventional-file-extensions">Conventional file extensions</a></li>
+  <li><a href="/raku-course/essentials/hello-world">Hello, World!</a></li>
+  <li><a href="/raku-course/essentials/on-unicode">Notes on using Unicode</a></li>
+  <li><a href="/raku-course/essentials/running-programs">Running programs</a>
+       —
+      <span class="has-e"><a href="/raku-course/essentials/running-programs/exercises">1 exercise</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/running-programs/from-command-line">Running from command line</a></li>
+      <li><a href="/raku-course/essentials/running-programs/from-repl">Running from REPL</a></li>
+      <li><a href="/raku-course/essentials/running-programs/from-ide">Running from IDE</a></li>
+      <li><a href="/raku-course/essentials/running-programs/using-docker">Using docker</a></li>
+      <li><a href="/raku-course/essentials/running-programs/using-online-services">Using online services</a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/simple-input-output">Simple input and output</a>
+    <ul>
+      <li><a href="/raku-course/essentials/simple-input-output/say">Output with <code class="language-plaintext highlighter-rouge">say</code></a></li>
+      <li><a href="/raku-course/essentials/simple-input-output/prompt">Input with <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/comments">Comments</a>
+    <ul>
+      <li><a href="/raku-course/essentials/comments/single-line">Single-line comments</a> — <span class="has-q"><a href="/raku-course/essentials/comments/single-line#practice">1 quiz</a></span></li>
+      <li><a href="/raku-course/essentials/comments/multi-line">Multi-line comments</a></li>
+      <li><a href="/raku-course/essentials/comments/embedded">Embedded comments</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="variables-and-data-types-essentials">Variables and data types essentials</h4>
+<ul>
+  <li><a href="/raku-course/essentials/scalar-variables">Scalar variables</a>
+       —
+      <span class="has-e"><a href="/raku-course/essentials/scalar-variables/exercises">4 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/scalar-variables/declaring-a-variable">Declaring a variable</a> — <span class="has-q"><a href="/raku-course/essentials/scalar-variables/declaring-a-variable#practice">2 quizzes</a></span></li>
+      <li><a href="/raku-course/essentials/scalar-variables/assigning-a-value">Assigning a value</a> — <span class="has-q"><a href="/raku-course/essentials/scalar-variables/assigning-a-value#practice">2 quizzes</a></span></li>
+      <li><a href="/raku-course/essentials/scalar-variables/declaration-with-initialization">Declaration with initialization</a> — <span class="has-q"><a href="/raku-course/essentials/scalar-variables/declaration-with-initialization#practice">2 quizzes</a></span></li>
+      <li><a href="/raku-course/essentials/scalar-variables/identifiers">Variable names</a> — <span class="has-q"><a href="/raku-course/essentials/scalar-variables/identifiers#practice">1 quiz</a></span></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/strings">Strings</a>
+       —
+      <span class="has-e"><a href="/raku-course/essentials/strings/exercises">4 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/strings/string-concatenation">String concatenation</a> — <span class="has-q"><a href="/raku-course/essentials/strings/string-concatenation#practice">3 quizzes</a></span></li>
+      <li><a href="/raku-course/essentials/strings/variable-interpolation">Variable interpolation</a> — <span class="has-q"><a href="/raku-course/essentials/strings/variable-interpolation#practice">1 quiz</a></span></li>
+      <li><a href="/raku-course/essentials/strings/escaping-special-characters">Escaping special characters</a></li>
+      <li><a href="/raku-course/essentials/strings/string-length">String length</a> — <span class="has-q"><a href="/raku-course/essentials/strings/string-length#practice">1 quiz</a></span></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/numbers">Numbers</a>
+       —
+      <span class="has-e"><a href="/raku-course/essentials/numbers/exercises">6 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/numbers/integers">Integer numbers</a> — <span class="has-q"><a href="/raku-course/essentials/numbers/integers#practice">2 quizzes</a></span></li>
+      <li><a href="/raku-course/essentials/numbers/rats">Rational numbers</a> — <span class="has-q"><a href="/raku-course/essentials/numbers/rats#practice">1 quiz</a></span></li>
+      <li><a href="/raku-course/essentials/numbers/numeric">Floating-point numbers</a></li>
+      <li><a href="/raku-course/essentials/numbers/operations">Operations with numbers</a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/booleans">Boolean type</a> — <span class="has-q"><a href="/raku-course/essentials/booleans#practice">1 quiz</a></span>
+       and
+      <span class="has-e"><a href="/raku-course/essentials/booleans/exercises">3 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/booleans/operations">Boolean operations</a> — <span class="has-q"><a href="/raku-course/essentials/booleans/operations#practice">1 quiz</a></span></li>
+      <li><a href="/raku-course/essentials/booleans/boolean-operations-other-types">Boolean operations with other types</a> — <span class="has-q"><a href="/raku-course/essentials/booleans/boolean-operations-other-types#practice">1 quiz</a></span></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/data-types">Data types</a> — <span class="has-q"><a href="/raku-course/essentials/data-types#practice">1 quiz</a></span>
+       and
+      <span class="has-e"><a href="/raku-course/essentials/data-types/exercises">2 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/data-types/what">Introspection with <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/coercion">Data type conversion</a>
+       —
+      <span class="has-e"><a href="/raku-course/essentials/coercion/exercises">2 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/coercion/methods">Converting types using type coercion methods</a></li>
+      <li><a href="/raku-course/essentials/coercion/new">Converting types using constructor forms</a></li>
+      <li><a href="/raku-course/essentials/coercion/prefixes">Converting types with prefix operators</a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/typed-variables">Typed variables</a>
+       —
+      <span class="has-e"><a href="/raku-course/essentials/typed-variables/exercises">2 exercises</a></span>
+    <ul>
+      <li><a href="/raku-course/essentials/typed-variables/type-constraints">Type constraints</a></li>
+      <li><a href="/raku-course/essentials/typed-variables/using-of">Using <code class="language-plaintext highlighter-rouge">of</code></a></li>
+      <li><a href="/raku-course/essentials/typed-variables/coercion">Type conversion for typed variables</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="control-flow-essentials">Control flow essentials</h4>
+<ul>
+  <li><a href="/raku-course/essentials/code-blocks">Code blocks</a>
+    <ul>
+      <li><a href="/raku-course/essentials/code-blocks/lexical-scope">Lexical scope</a></li>
+      <li><a href="/raku-course/essentials/code-blocks/global-variables">Global variables</a></li>
+      <li><a href="/raku-course/essentials/code-blocks/local-variables">Local variables</a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/conditional-checks">Conditional checks</a>
+    <ul>
+      <li><a href="/raku-course/essentials/conditional-checks/if"><code class="language-plaintext highlighter-rouge">if</code> blocks</a></li>
+      <li><a href="/raku-course/essentials/conditional-checks/else"><code class="language-plaintext highlighter-rouge">else</code> blocks</a></li>
+      <li><a href="/raku-course/essentials/conditional-checks/elsif">Using <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
+      <li><a href="/raku-course/essentials/conditional-checks/unless">Using <code class="language-plaintext highlighter-rouge">unless</code></a></li>
+      <li><a href="/raku-course/essentials/conditional-checks/postfix-forms">Postfix forms of <code class="language-plaintext highlighter-rouge">if</code> and <code class="language-plaintext highlighter-rouge">unless</code></a></li>
+    </ul>
+  </li>
+  <li><a href="/raku-course/essentials/loops">Loops</a>
+    <ul>
+      <li><a href="/raku-course/essentials/loops/while">Using <code class="language-plaintext highlighter-rouge">while</code></a></li>
+      <li><a href="/raku-course/essentials/loops/until">Using <code class="language-plaintext highlighter-rouge">until</code></a></li>
+      <li><a href="/raku-course/essentials/loops/repeat">Using <code class="language-plaintext highlighter-rouge">repeat</code></a></li>
+      <li><a href="/raku-course/essentials/loops/postfix">Postfix forms of <code class="language-plaintext highlighter-rouge">while</code> and <code class="language-plaintext highlighter-rouge">until</code></a></li>
+      <li><a href="/raku-course/essentials/loops/loop">Three-statement <code class="language-plaintext highlighter-rouge">loop</code></a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="functions-essentials">Functions essentials</h4>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

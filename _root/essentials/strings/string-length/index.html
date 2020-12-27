@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>String length in Raku | A Complete Course of the Raku programming language</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="String length in Raku" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/raku-course/essentials/strings/string-length/" />
+<meta property="og:url" content="http://localhost:4000/raku-course/essentials/strings/string-length/" />
+<meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/raku-course/essentials/strings/string-length/","headline":"String length in Raku","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/raku-course/assets/main.css">
+    <title>String length in Raku</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+      ul li {
+        list-style-type: none;
+      }
+      .markdown-body h1,
+      .markdown-body h2,
+      .markdown-body h3 {
+        border-bottom: none;
+      }
+      .markdown-body h2 {
+        margin-top: 1.5em;
+        margin-bottom: 0.3em;
+      }
+      .markdown-body h4 {
+        margin-bottom: 0.5em;
+      }
+      .practice {
+        background: #faf8e0;
+        padding: 0.3em 1.5em 0.8em 1.5em;
+        margin-top: 2em;
+        border-radius: 5px;
+      }
+      .practice h2 {
+        margin-top: 0;
+      }
+      .exercises {
+        background: #d1f2f9;
+        padding: 0.3em 1.5em 0.8em 1.5em;
+        margin-top: 2em;
+        border-radius: 5px;
+      }
+      .exercises h2 {
+        margin-top: 0;
+      }
+      span.has-q {
+        background-color: #a834f9;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      span.has-q a {
+        color: white;
+      }
+      span.has-e {
+        background-color: #297bf5;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      span.has-e a {
+        color: white;
+      }
+      div.formula {
+        text-align: center;
+      }
+    </style>
+
+    <style>
+    pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+
+
+.hll { background-color: #ffffcc }
+.c { color: #008000 } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #0000ff } /* Keyword */
+.ch { color: #008000 } /* Comment.Hashbang */
+.cm { color: #008000 } /* Comment.Multiline */
+.cp { color: #0000ff } /* Comment.Preproc */
+.cpf { color: #008000 } /* Comment.PreprocFile */
+.c1 { color: #008000 } /* Comment.Single */
+.cs { color: #008000 } /* Comment.Special */
+.ge { font-style: italic } /* Generic.Emph */
+.gh { font-weight: bold } /* Generic.Heading */
+.gp { font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { font-weight: bold } /* Generic.Subheading */
+.kc { color: #0000ff } /* Keyword.Constant */
+.kd { color: #0000ff } /* Keyword.Declaration */
+.kn { color: #0000ff } /* Keyword.Namespace */
+.kp { color: #0000ff } /* Keyword.Pseudo */
+.kr { color: #0000ff } /* Keyword.Reserved */
+.kt { color: #2b91af } /* Keyword.Type */
+.s { color: #a31515 } /* Literal.String */
+.nc { color: #2b91af } /* Name.Class */
+.ow { color: #0000ff } /* Operator.Word */
+.sa { color: #a31515 } /* Literal.String.Affix */
+.sb { color: #a31515 } /* Literal.String.Backtick */
+.sc { color: #a31515 } /* Literal.String.Char */
+.dl { color: #a31515 } /* Literal.String.Delimiter */
+.sd { color: #a31515 } /* Literal.String.Doc */
+.s2 { color: #a31515 } /* Literal.String.Double */
+.se { color: #a31515 } /* Literal.String.Escape */
+.sh { color: #a31515 } /* Literal.String.Heredoc */
+.si { color: #a31515 } /* Literal.String.Interpol */
+.sx { color: #a31515 } /* Literal.String.Other */
+.sr { color: #a31515 } /* Literal.String.Regex */
+.s1 { color: #a31515 } /* Literal.String.Single */
+.ss { color: #a31515 } /* Literal.String.Symbol */
+
+.nb { color: #0000ff } /* Literal.String.Symbol */
+.mi { color: #0000ff } /* Literal.String.Symbol */
+
+    </style>
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/strings">Strings</a></p>
+
+<h1 id="string-length">String length</h1>
+
+<p>The Unicode nature of all the things, including strings, makes some trivial things it a bit more difficult. Or, at least, you need to think of it as of a less straightforward topic. Take, for example, the length of a string. Is it the number of characters or is it the number of bytes. Or what if the the same character is decomposed differently in different strings, is it still one characters?</p>
+
+<h2 id="length-in-characters">Length in characters</h2>
+
+<p>To get the lengths of the string in characters, use the <code class="language-plaintext highlighter-rouge">chars</code> <em>method</em>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $str = '你好世界';
+say $str.chars;
+</code></pre></div></div>
+
+<p>While we’ll talk about methods later, we already should be able to use it. In Raku, you can call methods on almost every object, including strings and scalar variables. To call a method, use dot, so, here we see the method called on a variable that keeps a string: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>There are four characters in this Chinese greeting 你好世界. And <code class="language-plaintext highlighter-rouge">$str.chars</code> returns exactly <code class="language-plaintext highlighter-rouge">4</code>.</p>
+
+<h2 id="length-in-bytes">Length in bytes</h2>
+
+<p>Just for the reference, this is how you get the lengths of the string in bytes. In this case, it it important to know which encoding is used to keep the string:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $str = '你好世界';
+say $str.encode('UTF-8').bytes;
+</code></pre></div></div>
+
+<p>This time, the program prints <code class="language-plaintext highlighter-rouge">12</code>. Notice that we have two chained method calles in the second line here.</p>
+
+<h2 id="length-in-code-points">Length in code points</h2>
+
+<p>Just for the completeness, here is another useful method that also relates to string lengths: <code class="language-plaintext highlighter-rouge">codes</code>. It returns the number of code points in the string after it is being normalized. In many cases, <code class="language-plaintext highlighter-rouge">codes</code> and <code class="language-plaintext highlighter-rouge">chars</code> return the same, but in some rare cases, when, for example, you built ‘an impossible’ character, for which there is no single codepoint in the whole Unicode space, the methods give different results.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say 'x̨'.chars;
+say 'x̨'.codes;
+</code></pre></div></div>
+
+<p>This character, <code class="language-plaintext highlighter-rouge">x̨</code>, does not have a dedicated code point and can only be constructed by two parts: lowercase letter <code class="language-plaintext highlighter-rouge">x</code> and the combining character with the code <code class="language-plaintext highlighter-rouge">0x0328</code>. So, there is still one character but two codepoints. So, the program prints:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="practice">Practice</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/raku-course/essentials/strings/string-length/quiz">Quiz: The length of a phrase</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/strings">Strings</a> / <a href="/raku-course/essentials/strings/escaping-special-characters">Escaping special characters</a>
+  |  
+        💪 <a href="/raku-course/essentials/strings/exercises">Exercises: Strings</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

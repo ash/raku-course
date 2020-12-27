@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Rational numbers in Raku | A Complete Course of the Raku programming language</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Rational numbers in Raku" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/raku-course/essentials/numbers/rats/" />
+<meta property="og:url" content="http://localhost:4000/raku-course/essentials/numbers/rats/" />
+<meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/raku-course/essentials/numbers/rats/","headline":"Rational numbers in Raku","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/raku-course/assets/main.css">
+    <title>Rational numbers in Raku</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+      ul li {
+        list-style-type: none;
+      }
+      .markdown-body h1,
+      .markdown-body h2,
+      .markdown-body h3 {
+        border-bottom: none;
+      }
+      .markdown-body h2 {
+        margin-top: 1.5em;
+        margin-bottom: 0.3em;
+      }
+      .markdown-body h4 {
+        margin-bottom: 0.5em;
+      }
+      .practice {
+        background: #faf8e0;
+        padding: 0.3em 1.5em 0.8em 1.5em;
+        margin-top: 2em;
+        border-radius: 5px;
+      }
+      .practice h2 {
+        margin-top: 0;
+      }
+      .exercises {
+        background: #d1f2f9;
+        padding: 0.3em 1.5em 0.8em 1.5em;
+        margin-top: 2em;
+        border-radius: 5px;
+      }
+      .exercises h2 {
+        margin-top: 0;
+      }
+      span.has-q {
+        background-color: #a834f9;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      span.has-q a {
+        color: white;
+      }
+      span.has-e {
+        background-color: #297bf5;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      span.has-e a {
+        color: white;
+      }
+      div.formula {
+        text-align: center;
+      }
+    </style>
+
+    <style>
+    pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+
+
+.hll { background-color: #ffffcc }
+.c { color: #008000 } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #0000ff } /* Keyword */
+.ch { color: #008000 } /* Comment.Hashbang */
+.cm { color: #008000 } /* Comment.Multiline */
+.cp { color: #0000ff } /* Comment.Preproc */
+.cpf { color: #008000 } /* Comment.PreprocFile */
+.c1 { color: #008000 } /* Comment.Single */
+.cs { color: #008000 } /* Comment.Special */
+.ge { font-style: italic } /* Generic.Emph */
+.gh { font-weight: bold } /* Generic.Heading */
+.gp { font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { font-weight: bold } /* Generic.Subheading */
+.kc { color: #0000ff } /* Keyword.Constant */
+.kd { color: #0000ff } /* Keyword.Declaration */
+.kn { color: #0000ff } /* Keyword.Namespace */
+.kp { color: #0000ff } /* Keyword.Pseudo */
+.kr { color: #0000ff } /* Keyword.Reserved */
+.kt { color: #2b91af } /* Keyword.Type */
+.s { color: #a31515 } /* Literal.String */
+.nc { color: #2b91af } /* Name.Class */
+.ow { color: #0000ff } /* Operator.Word */
+.sa { color: #a31515 } /* Literal.String.Affix */
+.sb { color: #a31515 } /* Literal.String.Backtick */
+.sc { color: #a31515 } /* Literal.String.Char */
+.dl { color: #a31515 } /* Literal.String.Delimiter */
+.sd { color: #a31515 } /* Literal.String.Doc */
+.s2 { color: #a31515 } /* Literal.String.Double */
+.se { color: #a31515 } /* Literal.String.Escape */
+.sh { color: #a31515 } /* Literal.String.Heredoc */
+.si { color: #a31515 } /* Literal.String.Interpol */
+.sx { color: #a31515 } /* Literal.String.Other */
+.sr { color: #a31515 } /* Literal.String.Regex */
+.s1 { color: #a31515 } /* Literal.String.Single */
+.ss { color: #a31515 } /* Literal.String.Symbol */
+
+.nb { color: #0000ff } /* Literal.String.Symbol */
+.mi { color: #0000ff } /* Literal.String.Symbol */
+
+    </style>
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/numbers">Numbers</a></p>
+
+<h1 id="rational-numbers">Rational numbers</h1>
+
+<p>Rational number is a unique feature of Raku. Such numbers are represented by the <code class="language-plaintext highlighter-rouge">Rat</code> data type.</p>
+
+<p>Internally, rational numbers are fractions with two integer parts: numerator and denominator. So, you can easily present the numbers such as 1/3 without loosing precision.</p>
+
+<p>There are a few methods to write a <code class="language-plaintext highlighter-rouge">Rat</code> number in a program in Raku:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $x = 1/2;
+my $y = &lt;2/3&gt;;
+</code></pre></div></div>
+
+<p>Notice that the slash here is a part of the notation. This is not a division operator, so <code class="language-plaintext highlighter-rouge">1/2</code> does not mean that you divide 1 by 2. In printing, though, rationals are printed as decimal numbers or integers:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say 1/2; # 0.5
+say 3/4; # 0.75
+</code></pre></div></div>
+
+<p>The part of the line after the <code class="language-plaintext highlighter-rouge">#</code> symbol is a comment and is ignored by the compiler.</p>
+
+<h2 id="decimal-form">Decimal form</h2>
+
+<p>It is important to realise that when you write the number in a decimal form, e.g., <code class="language-plaintext highlighter-rouge">0.5</code>, Raku creates a <code class="language-plaintext highlighter-rouge">Rat</code> number at that point. It is not an integer, but it is neither a floating-point number (<code class="language-plaintext highlighter-rouge">float</code> or <code class="language-plaintext highlighter-rouge">double</code> in other languages). It is still a rational number!</p>
+
+<p>Consider the following example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say 0.1 + 0.2 - 0.3;
+</code></pre></div></div>
+
+<p>If those languages which would use floating-point arithmetics for these calculations, the result will not be equal to 0. The website <a href="https://0.30000000000000004.com">0.30000000000000004.com</a> gives an exhaustive list of examples where floating-point arithmethics does not give an expected result.</p>
+
+<p>But Raku prints an exact <code class="language-plaintext highlighter-rouge">0</code>. This happens because it treats the numbers <code class="language-plaintext highlighter-rouge">0.1</code>, <code class="language-plaintext highlighter-rouge">0.2</code>, and <code class="language-plaintext highlighter-rouge">0.3</code> as rational numbers and keep them as <code class="language-plaintext highlighter-rouge">1/10</code>, <code class="language-plaintext highlighter-rouge">2/10</code>, and <code class="language-plaintext highlighter-rouge">3/10</code> internally. Run it from command line to confirm it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku -e 'say 0.1 + 0.2 - 0.3'
+0
+</code></pre></div></div>
+
+<h2 id="unicode-forms">Unicode forms</h2>
+
+<p>It is also possible to use Unicode characters that represent the fractions, such as <code class="language-plaintext highlighter-rouge">½</code> or <code class="language-plaintext highlighter-rouge">¼</code> or <code class="language-plaintext highlighter-rouge">¾</code>. Probably, it’s not always easy to enter it from the keyboard, but these fractions are exactly the same as their ASCII versions spellt as a fraction or as a decimal number:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">½</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1/2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;1/2&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.5</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">¼</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1/4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;1/4&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.25</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">¾</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3/4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;3/4&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.75</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>With some fractions, such as <code class="language-plaintext highlighter-rouge">1/3</code>, you have less options, <code class="language-plaintext highlighter-rouge">⅓</code> or <code class="language-plaintext highlighter-rouge">&lt;1/3&gt;</code>, as the decimal form will require infinite number of digits.</p>
+
+<p><div class="practice"></p>
+<h2 id="practice">Practice</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/raku-course/essentials/numbers/rats/quiz">Quiz: Rational numbers in Raku</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/numbers">Numbers</a> / <a href="/raku-course/essentials/numbers/integers">Integer numbers</a>
+  |  
+        <a href="/raku-course/essentials/numbers">Numbers</a> / <a href="/raku-course/essentials/numbers/numeric">Floating-point numbers</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/raku-course/essentials/numbers/exercises">to the exercises to this section</a>.</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
