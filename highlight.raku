@@ -1,6 +1,6 @@
 #!/usr/bin/env raku
 
-my $output-root = '_root';
+my $output-root = 'docs';
 
 scan-dir('_site');
 

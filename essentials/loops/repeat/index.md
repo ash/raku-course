@@ -8,12 +8,14 @@ The `while` and `until` blocks may be never executed if the condition was initia
 
 Consider this program.
 
-    my $x = 100;
-    repeat {
-        $x = prompt 'Enter a number: ';
-        say "You entered $x.";
-    } while $x <= 10;
-    say "$x is bigger than 10.";
+```raku
+my $x = 100;
+repeat {
+    $x = prompt 'Enter a number: ';
+    say "You entered $x.";
+} while $x <= 10;
+say "$x is bigger than 10.";
+```
 
 The `$x` variable is initially set to `100`, and the `while` condition is checking whether `$x` is less then or equals to `10`. With the given value of the variable, the condition is already `False`, but the code block is still executed first.
 
@@ -26,12 +28,14 @@ The `$x` variable is initially set to `100`, and the `while` condition is checki
 
 Let us modify the program so that it uses `until` instead.
 
-    my $x = 0;
-    repeat {
-        $x = prompt 'Enter a number: ';
-        say "You entered $x.";
-    } until $x > 10;
-    say "$x is bigger than 10.";
+```raku
+my $x = 0;
+repeat {
+    $x = prompt 'Enter a number: ';
+    say "You entered $x.";
+} until $x > 10;
+say "$x is bigger than 10.";
+```
 
 Run it to confirm it works as expected:
 
