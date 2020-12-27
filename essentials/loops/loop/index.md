@@ -29,6 +29,6 @@ Some, or even all, of the statements in `loop` header may be ommited. For instan
         $c++;
     }
 
-The `loop` loops are, probably, the least used loops in Raku. They can be used, for example, in an automated translator from C to Raku. In Raku, though, there are handier loops. We’ll return to this subject in the second part of the course.
+The `loop` loops are, probably, the least used loops in Raku. They can be used, for example, in an automated translator from C to Raku. In Raku, though, there are handier loops, such as `for`, which we are examining on the next page.
 
 {% include nav.html %}

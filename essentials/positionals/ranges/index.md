@@ -25,4 +25,9 @@ To exclude one of the edges or both of them, modify the range creation operator 
     1 ^.. 5;  #    2, 3, 4, 5
     1 ^..^ 5; #    2, 3, 4
 
+In simple cases as shown above, you can omit the spaces around the range operator:
+
+    my $r1 = 1..5;
+    my $r2 = 1..^5;
+
 {% include nav.html %}
