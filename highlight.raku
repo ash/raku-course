@@ -49,7 +49,5 @@ sub highlight($code is copy) {
 
     my $html = '/tmp/highlight.raku.html'.IO.slurp;
 
-
-
     return $html;
 }
