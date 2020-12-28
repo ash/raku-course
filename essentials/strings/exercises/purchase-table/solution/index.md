@@ -8,17 +8,19 @@ title: Solution of ’Purchase table‘
 
 Here is a possible solution of this task:
 
-    my $chair-price = 20.57;
-    my $chairs = 4;
-    my $chairs-total = $chair-price * $chairs;
+```raku
+my $chair-price = 20.57;
+my $chairs = 4;
+my $chairs-total = $chair-price * $chairs;
 
-    my $table-price = 50.18;
-    my $tables = 1;
-    my $tables-total = $table-price * $tables;
+my $table-price = 50.18;
+my $tables = 1;
+my $tables-total = $table-price * $tables;
 
-    say "Item\tPrice\tN\tTotal";
-    say "Chairs\t\$$chair-price\t$chairs\t\$$chairs-total";
-    say "Tables\t\$$table-price\t$tables\t\$$tables-total";
+say "Item\tPrice\tN\tTotal";
+say "Chairs\t\$$chair-price\t$chairs\t\$$chairs-total";
+say "Tables\t\$$table-price\t$tables\t\$$tables-total";
+```
 
 All the numbers are hard coded and saved in a number of variables. We are also using multiplication operator `*` to compute the result. We’ll learn more about operators in the next section of this course, but at this point the construction such as `$chair-price * $chairs` should not be something that you cannot understand.
 

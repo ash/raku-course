@@ -156,10 +156,11 @@
 
 <h2 id="code">Code</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my ($a, $b) = 10, 20;
-($a, $b) = $b, $a;
-say "$a, $b";
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="k">my</span> (<span class="nv">$a</span>, <span class="nv">$b</span>) = <span class="mi">10</span>, <span class="mi">20</span>;
+(<span class="nv">$a</span>, <span class="nv">$b</span>) = <span class="nv">$b</span>, <span class="nv">$a</span>;
+<span class="nb">say</span> <span class="s">&quot;$a, $b&quot;</span>;
+</pre></div>
+
 
 <p>🦋 You can find the source code in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku">swap.raku</a>.</p>
 
@@ -175,18 +176,21 @@ say "$a, $b";
 
 <p>All the steps of this program (creating a variable and assigning the values, swapping them, and printing) use both variables in the same construction. The most interesting here is the way the variables swap their values:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>($a, $b) = $b, $a;
-</code></pre></div></div>
+<div class="highlight"><pre><span></span>(<span class="nv">$a</span>, <span class="nv">$b</span>) = <span class="nv">$b</span>, <span class="nv">$a</span>;
+</pre></div>
+
 
 <p>Notice that you need parentheses on the left-hand side, but you can also add them on the right-hand side:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>($a, $b) = ($b, $a);
-</code></pre></div></div>
+<div class="highlight"><pre><span></span>(<span class="nv">$a</span>, <span class="nv">$b</span>) = (<span class="nv">$b</span>, <span class="nv">$a</span>);
+</pre></div>
+
 
 <p>What happens if you omit parentheses?</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$a, $b = $b, $a;
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$b</span>, <span class="nv">$a</span>;
+</pre></div>
+
 
 <p>In this case, you get a warning about that <code class="language-plaintext highlighter-rouge">$a</code> on the right-hand side is not used.:</p>
 
@@ -198,8 +202,9 @@ Useless use of $a in sink context (lines 2, 2)
 
 <p>The above line is actually equivalent to a useless assignment <code class="language-plaintext highlighter-rouge">$b = $b</code>. You can easily see it if you modify the values on the right side, for example:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$a, $b = 2 * $b, 3 * $a;
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nv">$a</span>, <span class="nv">$b</span> = <span class="mi">2</span> * <span class="nv">$b</span>, <span class="mi">3</span> * <span class="nv">$a</span>;
+</pre></div>
+
 
 <p>This program prints even more warnings, but you can also see that only <code class="language-plaintext highlighter-rouge">$b</code> changed its value:</p>
 

@@ -8,9 +8,11 @@ title: Solution of ‘Examining the result of prompt — Numbers’
 
 Here is the complete program that sovles the job and prints both the entered string and its type.
 
-    my $n = prompt 'Enter a number: ';
-    say $n;
-    say $n.WHAT;
+```raku
+my $n = prompt 'Enter a number: ';
+say $n;
+say $n.WHAT;
+```
 
 🦋 You can find the source code in the file [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/what/prompt-numbers.raku).
 

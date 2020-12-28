@@ -27,7 +27,9 @@ Run the program and it will enter a mode when it waits for your input. After you
 
 Compare the program with [the previous variant](../../../../scalar-variables/exercises/greet-a-person/solution) where we passed three strings to the the `say` routine:
 
-    say 'Hello, ', $name, '!';
+```raku
+say 'Hello, ', $name, '!';
+```
 
 This time, the three parts are first concatenated and then passed to `say` as a single string.
 

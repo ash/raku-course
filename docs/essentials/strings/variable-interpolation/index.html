@@ -156,30 +156,34 @@
 
 <p>Of course, you can use double quotes if you want to put a single quote insde the string with minimum effort:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say "O'Henry";
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;O&#39;Henry&quot;</span>;
+</pre></div>
+
 
 <p>By the way, it is still better to use a proper apostrophe instead of a single quote as <a href="../../on-unicode">Raku is good at Unicode</a>.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say 'O’Henry';
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;O’Henry&#39;</span>;
+</pre></div>
+
 
 <p>But the real power of double quotes is in their ability to <em>interpolate</em> variables and—as we’ll see a bit further—to execute code! Examine the following program:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $name = 'Karl';
-say "Hello, $name!";
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Karl&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+</pre></div>
+
 
 <p>As you might expect, the program prints <code class="language-plaintext highlighter-rouge">Hello, Karl!</code>. The name of the <code class="language-plaintext highlighter-rouge">$name</code> variable (together with its sigil <code class="language-plaintext highlighter-rouge">$</code>) was replaced by the value of the variable.</p>
 
 <p>The variabl was interpolated with that value that the variable kept at the moment of interpolation, so if you change the content of <code class="language-plaintext highlighter-rouge">$name</code> and interpolate it again, it will be interpollated with the updated value. Let’s test it:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $name = 'Karl';
-say "Hello, $name!";
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Karl&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 
-$name = 'Anna';
-say "Hello, $name!";
-</code></pre></div></div>
+<span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+</pre></div>
+
 
 <p>The same string generates differnet messages this time:</p>
 

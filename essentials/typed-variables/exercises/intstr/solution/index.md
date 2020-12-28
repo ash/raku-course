@@ -6,12 +6,14 @@ title: Solution to ‘Trying IntStr’
 
 Let us take a look at the program again.
 
-    my $input = prompt 'Enter something: ';
-    my Int $i = $input;
-    my Str $s = $input;
+```raku
+my $input = prompt 'Enter something: ';
+my Int $i = $input;
+my Str $s = $input;
 
-    say $i;
-    say $s;
+say $i;
+say $s;
+```
 
 There are three scalar variables created there, two of them, `$i` and `$s` are typed variables. That means that `$i` can only store integers and `$s` can only store strings.
 

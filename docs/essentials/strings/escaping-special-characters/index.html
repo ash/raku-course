@@ -154,19 +154,22 @@
 
 <p>Imagine you want to print a price label and you have both the name of the product and its price in scalar variables?</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $product = 'Electricity';
-my $price = 3.14;
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
+
 
 <p>How do you print the label if the price is meant to be in dollars? This is what is expected to be output: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. A dollar sign in a double-quoted strings is an indicator of a variable to be interpolated. To print the <code class="language-plaintext highlighter-rouge">$</code> character itself, you need to escape it:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say "$product costs \$$price";
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
+
 
 <p>Of course, you can use string concatenation and avoid escaping <code class="language-plaintext highlighter-rouge">$</code>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say $product ~ ' costs $' ~ $price;
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
+
 
 <p>This variant prints exactly the same string, but in general strings with interpolated variables look more natural and easy to read. But what is important here is that as you see, the <code class="language-plaintext highlighter-rouge">$</code> was neither interpolated nor escaped in a string in single quotes: <code class="language-plaintext highlighter-rouge">' costs $'</code>. That’s tha main difference. Special characters in single quotes appear as-is.</p>
 
@@ -203,9 +206,10 @@ my $price = 3.14;
 
 <p>The way you quote the string defines how special characters are interpreted. Consider these two examples:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say 'One\nTwo';
-say "Three\nFour";
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
+
 
 <p>If you run this program, you will see that the first string appears as is on a single line. The second string was split into two pieces:</p>
 
