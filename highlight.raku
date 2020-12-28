@@ -43,7 +43,7 @@ sub process-file($path) {
 sub highlight($code is copy) {
     $code ~~ s:g/'&lt;'/</;
     $code ~~ s:g/'&gt;'/>/;
-say $code;
+
     '/tmp/highlight.raku'.IO.spurt($code);
     run '/usr/local/bin/pygmentize', '-f', 'html', '-l', 'raku', '-O', 'style=vs', '-o', '/tmp/highlight.raku.html', '/tmp/highlight.raku';
 
