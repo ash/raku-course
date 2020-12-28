@@ -20,6 +20,7 @@ Check the variables which are named correctly.
 1 | $Βήτα | Accented Greek letters are also fine!
 0 | $33 | A name cannot start with a digit.
 1 | $AddressLine1
+0 | $AddressLine-1 | A dash must be followed by an alphabetic character.
 0 | $2LineOfAddress | A name cannot start with a digit.
 0 | $)%^@!# | Total rubbish :-)
 0 | $"scalar" | A quote character is neither letter nor digit nor underscore.

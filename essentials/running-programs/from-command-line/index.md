@@ -13,4 +13,16 @@ If the program does not contain errors, it will be immediately executed, and if 
     $ raku hello.raku 
     Hello, World!
 
+As with any other script, in Unix system, you can add a shebang and make the file executable:
+
+    #!/usr/bin/env raku
+
+    say 'Hello, World!';
+
+The next steps are the following:
+
+    $ chmod a+x hello.raku
+    $ ./hello.raku
+    Hello, World!
+
 {% include nav.html %}

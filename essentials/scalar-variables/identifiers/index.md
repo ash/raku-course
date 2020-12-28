@@ -22,7 +22,7 @@ It is up to you to stick to a naming scheme, but at least the all-capital names 
 
 ## Other characters
 
-Among the ASCII characters, you are allowed to use digits, underscore character `_`, a hyphen `-`, and single quote (that stands for apostrophe) `'`. Note that the first character of the identifier must be either a letter or an underscore. Both `-` and `'`' must have other non-dash and non-apostrophe characters on each side of them. Here are a few more valid identifiers:
+Among the ASCII characters, you are allowed to use digits, underscore character `_`, a hyphen `-`, and single quote (that stands for apostrophe) `'`. Note that the first character of the identifier must be either a letter or an underscore. Both `-` and `'`' must be followed by an alphabetic character. Here are a few more valid identifiers:
 
     $___
 
