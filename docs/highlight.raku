@@ -36,7 +36,7 @@ sub process-file($path) {
         }/;
         $output-path.IO.spurt: $html;
     }
-    else {
+    elsif $path !~ / 'index.md' / {
         $path.IO.copy: $output-path;
     }
 }
