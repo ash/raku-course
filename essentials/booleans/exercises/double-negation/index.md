@@ -8,8 +8,10 @@ title: Exercise 'Double and tripple negations’
 
 What is the output of the following program?
 
-    my $value = False;
-    say !!$value;
+```raku
+my $value = False;
+say !!$value;
+```
 
 Extend the program to repeat the actions, but this time they should start with `True`.
 

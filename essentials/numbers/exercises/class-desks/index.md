@@ -14,8 +14,10 @@ Use a variable to hard code the number of students.
 
 Here is the first line of the program:
 
-    my $students = 23;
-    # Your code here . . .
+```raku
+my $students = 23;
+# Your code here . . .
+```
 
 When you run the program, you should get the following:
 

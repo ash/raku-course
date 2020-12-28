@@ -8,12 +8,14 @@ title: Exercise ‘Trying IntStr’
 
 Consider the following program. Before running it, can you tell which input values will break it and at which line?
 
-    my $input = prompt 'Enter something: ';
-    my Int $i = $input;
-    my Str $s = $input;
+```raku
+my $input = prompt 'Enter something: ';
+my Int $i = $input;
+my Str $s = $input;
 
-    say $i;
-    say $s;
+say $i;
+say $s;
+```
 
 🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/intstr.raku).
 

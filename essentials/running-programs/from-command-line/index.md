@@ -15,9 +15,11 @@ If the program does not contain errors, it will be immediately executed, and if 
 
 As with any other script, in Unix system, you can add a shebang and make the file executable:
 
-    #!/usr/bin/env raku
+```raku
+#!/usr/bin/env raku
 
-    say 'Hello, World!';
+say 'Hello, World!';
+```
 
 The next steps are the following:
 

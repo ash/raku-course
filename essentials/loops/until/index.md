@@ -8,12 +8,14 @@ The `until` construct is opposite to `while`. It executes the block of code unti
 
 Here is a modified [program from the previous page](../while) that uses `until` and a new condition:
 
-    my $x = 0;
-    until $x > 10 {
-        $x = prompt 'Enter a number: ';
-        say "You entered $x, which is not bigger than 10.";
-    }
-    say "$x is bigger than 10.";
+```raku
+my $x = 0;
+until $x > 10 {
+    $x = prompt 'Enter a number: ';
+    say "You entered $x, which is not bigger than 10.";
+}
+say "$x is bigger than 10.";
+```
 
 Run the program and check the output:
 
@@ -32,9 +34,11 @@ Run the program and check the output:
 
 Compare the equivalent programs with `while` and `until`:
 
-    while $x <= 10 { . . . }
+```raku
+while $x <= 10 { . . . }
 
-    until $x > 10 { . . . }
+until $x > 10 { . . . }
+```
 
 As you see, the conditions are simply negated versions of each other. In this sense, `while` and `until` are in the same relations as `if` and `unless`.
 

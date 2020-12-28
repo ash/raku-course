@@ -8,7 +8,9 @@ The program to print the value of π is simple enough.
 
 ## Code
 
-    say π;
+```raku
+say π;
+```
 
 🦋 You can find the full code in the file [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
 
@@ -23,14 +25,20 @@ Run the program and see what it prints:
 
 Raku already offers us a built-in constant called `π`, which makes the program trivial. Nevertheless, consider other options of doing the same:
 
+```raku
     π.say;
+```
 
 Or:
 
+```raku
     pi.say;
+```
 
 Or:
 
+```raku
     say pi;
+```
 
 {% include nav.html %}

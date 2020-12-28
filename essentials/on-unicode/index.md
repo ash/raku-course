@@ -10,7 +10,9 @@ The next thing you want to know is that you can also use non-Latin or non-Englis
 
 Raku treats the Unicode properties of the characters very pedantically, for example, it understands not only the letters or digits from other non-Latin scripts, but also corretly identifies pair characters such as parentheses or different kind of brackets. In many cases, you can choose different type of brackets for separate parts of the program. For instanse, you can use modify our ‘Hello, World!’ proram to use these fancy characters:
 
-    say ｢Hello, World!｣;
+```raku
+say ｢Hello, World!｣;
+```
 
 A number of built-in operators have two forms: a Unicode and ASCII versions. For example, a negated comparison can be typed as `!=` or as `≠`. The same with set operations, for example, for `∈`, there is a pure ASCII equivalent `(elem)`. Or, there is a built-in constant which you can refer to as `pi` or `π`.
 

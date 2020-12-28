@@ -12,9 +12,11 @@ Having this known, the solution is rather trivial.
 
 ## Code
 
-    my $N = 100;
-    my $sum = $N * (1 + $N) / 2;
-    say "The sum of the numbers from 1 to $N is $sum.";
+```raku
+my $N = 100;
+my $sum = $N * (1 + $N) / 2;
+say "The sum of the numbers from 1 to $N is $sum.";
+```
 
 🦋 You can find the full code in the file [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum1-100.raku).
 

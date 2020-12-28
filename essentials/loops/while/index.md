@@ -6,12 +6,14 @@ title: while
 
 The `while` construct has a Boolean condition and a code block. The code block is executed repeatedly _while_ the condition is `True`.
 
-    my $x = 0;
-    while $x <= 10 {
-        $x = prompt 'Enter a number: ';
-        say "You entered $x, which is not bigger than 10.";
-    }
-    say "$x is bigger than 10.";
+```raku
+my $x = 0;
+while $x <= 10 {
+    $x = prompt 'Enter a number: ';
+    say "You entered $x, which is not bigger than 10.";
+}
+say "$x is bigger than 10.";
+```
 
 In the loop, the program asks to enter a number, and if the number is not bigger than 10, the loop body repeats. As soon as the entered number breaks the condition `$x <= 10`, the loop ends, and the next line of the program is executed.
 

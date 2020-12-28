@@ -10,13 +10,15 @@ Before we move further, let us spend some time on an interesting topic of the al
 
 Names of the variables (or _identifiers_) are case censitive. That means that all of the below names refer to different scalar containers:
 
-    $myname
+```raku
+$myname
 
-    $MyName
+$MyName
 
-    $myName
+$myName
 
-    $MYNAME
+$MYNAME
+```
 
 It is up to you to stick to a naming scheme, but at least the all-capital names are usually used for constants.
 
@@ -24,13 +26,15 @@ It is up to you to stick to a naming scheme, but at least the all-capital names 
 
 Among the ASCII characters, you are allowed to use digits, underscore character `_`, a hyphen `-`, and single quote (that stands for apostrophe) `'`. Note that the first character of the identifier must be either a letter or an underscore. Both `-` and `'`' must be followed by an alphabetic character. Here are a few more valid identifiers:
 
-    $___
+```raku
+$___
 
-    $a'b'c
+$a'b'c
 
-    $my-name
+$my-name
 
-    $address2
+$address2
+```
 
 Again, it is up to you to choose the names, but it is probably not a good practice to deliberately choose names that look cryptic.
 
@@ -38,12 +42,14 @@ Again, it is up to you to choose the names, but it is probably not a good practi
 
 The definition of letters and digits is actually extended to include all those characters that are considered letters and decimal digits accourding to their Unicode properties. For example, the next variables are valid in Raku:
 
-    $привет
+```raku
+$привет
 
-    $駱駝道
+$駱駝道
 
-    $αβγ
+$αβγ
 
-    $Δ۲ # where ۲ is a digit
+$Δ۲ # where ۲ is a digit
+```
 
 {% include nav.html %}

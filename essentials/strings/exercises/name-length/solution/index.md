@@ -8,8 +8,10 @@ title: Solution of ’Name length‘
 
 Here is the solution to the task:
 
-    my $name = prompt 'What is your name? ';
-    say $name.chars;
+```raku
+my $name = prompt 'What is your name? ';
+say $name.chars;
+```
 
 🦋 You can find the source code in the file [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/name-length.raku).
 

@@ -8,11 +8,13 @@ There are more than one way to make the identifiers correct. Some possible optio
 
 ## Code
 
-    my $AGE = 30;
-    my $Name = 'Valdis';
-    my $Middle'Name = 'C.';
-    my $address2 = 'Second street, 12';
-    my $from-to = 'London to Paris';
+```raku
+my $AGE = 30;
+my $Name = 'Valdis';
+my $Middle'Name = 'C.';
+my $address2 = 'Second street, 12';
+my $from-to = 'London to Paris';
+```
 
 All the identifiers are valid, but it is probably better to avoid names with apostrophes if you `$don't` have strong reasons to use them.
 

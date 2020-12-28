@@ -8,9 +8,10 @@ The program shown in the task won’t compile and requires a small fix. Here is 
 
 ## Code
 
-    my $value = False;
-    say ! !!$value;
-
+```raku
+my $value = False;
+say ! !!$value;
+```
 
 🦋 You can find the full code in the file [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
 
@@ -40,8 +41,10 @@ It was a bit unexpected the program with three exclamation signs did not compile
 
 An added space solves this problem. But don’t fall into another trap. Consider the following program:
 
-    my $value = False;
-    say !!! $value;
+```raku
+my $value = False;
+say !!! $value;
+```
 
 This program compiles but terminates with the following message:
 

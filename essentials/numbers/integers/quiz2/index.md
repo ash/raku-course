@@ -25,29 +25,31 @@ Try to find out, which of the following digits form integers that Raku accepts a
 
 You can take the following program as a starting point to play with and explore the properties of such digits. Uncomment the lines to see if that compiles.
 
-    my $x;
-    $x =  3;
-    say $x; say $x.WHAT;
+```raku
+my $x;
+$x =  3;
+say $x; say $x.WHAT;
 
-    $x =  12345;
-    $x =  ⓷;
-    # $x =  ⓵⓶⓷⓸⓹;
+$x =  12345;
+$x =  ⓷;
+# $x =  ⓵⓶⓷⓸⓹;
 
-    $x =  ❷;
-    # $x =  ❸❹❺;
+$x =  ❷;
+# $x =  ❸❹❺;
 
-    $x =  ⒌;
-    # $x =  ⒊⒋⒌;
+$x =  ⒌;
+# $x =  ⒊⒋⒌;
 
-    # $x =  ㊀㊁㊂㊃㊄;
-    $x =  ㊄;
-    say $x; say $x.WHAT;
+# $x =  ㊀㊁㊂㊃㊄;
+$x =  ㊄;
+say $x; say $x.WHAT;
 
-    # $x =  五;
-    # $x =  一二三四五;
+# $x =  五;
+# $x =  一二三四五;
 
-    $x = ㊷;
-    say $x;
+$x = ㊷;
+say $x;
+```
 
 🦋 Take the code from GitHub: [unicode-digits.raku](https://github.com/ash/raku-course/blob/master/essentials/numbers/integers/quiz2/unicode-digits.raku).
 

@@ -8,8 +8,10 @@ title: Examining the result of prompt — Strings
 
 Complete the following program so that it repeats the entered name and then prints the type of the value in the variable `$name`.
 
-    my $name = prompt 'What is your name? ';
-    # Continue here . . .
+```raku
+my $name = prompt 'What is your name? ';
+# Continue here . . .
+```
 
 ## Solution
 

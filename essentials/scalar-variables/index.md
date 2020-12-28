@@ -10,8 +10,10 @@ There are a few types of variables in Raku. A variable is a container that can k
 
 Here are a couple of examples of scalar variables:
 
-    $name
+```raku
+$name
 
-    $age
+$age
+```
 
 {% include nav.html %}

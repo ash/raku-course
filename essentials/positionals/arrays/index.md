@@ -8,28 +8,38 @@ Arrays are aggregate data types that can keep more than one value. Which differs
 
 Array variables use another kind of sigil: `@`. The rules for the variable name is the same as [for scalars](/raku-course/essentials/scalar-variables/identifiers/).
 
-    my @cities;
+```raku
+my @cities;
+```
 
 So far, the array named `@cities` has been created. You can fill it with some values:
 
-    @cities = 'Paris', 'Rome', 'Berlin';
+```raku
+@cities = 'Paris', 'Rome', 'Berlin';
+```
 
 Alternatively, it is possible to initialise the values at the time of creation of the variable:
 
-    my @cities = 'Paris', 'Rome', 'Berlin';
+```raku
+my @cities = 'Paris', 'Rome', 'Berlin';
+```
 
 ## Indexing
 
 To access a single item of an array, use a pair of brackets that you place immediately after the name of the variable:
 
-    say @cities[1];
+```raku
+say @cities[1];
+```
 
 Notice that the sigil always stays the same. As elements are counted from zero, the element `@cities[1]` is `'Rome'` in our example.
 
 Arrays are mutable, so you can easily modify the items of it by simply assigning a new value to it:
 
-    @cities[0] = 'Rome';
-    @cities[1] = 'Paris';
+```raku
+@cities[0] = 'Rome';
+@cities[1] = 'Paris';
+```
 
 After this, the statement `say @cities[1]` will print the new value `'Paris'`.
 
@@ -37,6 +47,8 @@ After this, the statement `say @cities[1]` will print the new value `'Paris'`.
 
 To get the current length of an array, or, in other words, the number of its elements, use the `elems` method:
 
-    say @cities.elems; # 3
+```raku
+say @cities.elems; # 3
+```
 
 {% include nav.html %}

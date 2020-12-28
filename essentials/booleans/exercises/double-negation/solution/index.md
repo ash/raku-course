@@ -8,11 +8,13 @@ Let us extend the program to solve the second part of the exercise and reuse the
 
 ## Code
 
-    my $value = False;
-    say !!$value;
+```raku
+my $value = False;
+say !!$value;
 
-    $value = True;
-    say !!$value;
+$value = True;
+say !!$value;
+```
 
 🦋 You can find the full code in the file [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
 

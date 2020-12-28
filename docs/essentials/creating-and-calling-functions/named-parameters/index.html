@@ -156,13 +156,15 @@
 
 <p>The following function takes two parameters called <code class="language-plaintext highlighter-rouge">$from</code> and <code class="language-plaintext highlighter-rouge">$to</code>.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub distance(:$from, :$to) { $from - $to }
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
+
 
 <p>Now, to call the function, you need to name the arguments:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say distance(from =&gt; 30, to =&gt; 10); # 20
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
+
 
 <p>It is an error to pass the parameters as if they were positional. The call <code class="language-plaintext highlighter-rouge">distance(30, 10)</code> generates an error:</p>
 
@@ -173,29 +175,33 @@
 
 <p>The good part is that named parameters can be listed in any order. The following two calls are totally equivalent:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say distance(from =&gt; 30, to =&gt; 10); # 20
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
-say distance(to =&gt; 10, from =&gt; 30); # 20
-</code></pre></div></div>
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
+
 
 <h2 id="passing-variables">Passing variables</h2>
 
 <p>When the value that you want to pass to a function is kept in a variable, whose name coinsides with the name of the parameter, you can enjoy a special syntax that reduces typing:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my $from = 30;
-my $to = 10;
-say distance(:$from, :$to); # 20
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
 
 <p>This is similar to a wordy call:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say distance(from =&gt; $from, to =&gt; $to); # 20
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
 
 <p>Again, the order is not strict here:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say distance(:$to, :$from); # 20
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
+
 
 <p></div></p>
 

@@ -8,8 +8,10 @@ The program can be as simple as this:
 
 ## Code
 
-    my Int $n = prompt 'Enter a number: ';
-    say $n;
+```raku
+my Int $n = prompt 'Enter a number: ';
+say $n;
+```
 
 🦋 You can find the source code in the file [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
 

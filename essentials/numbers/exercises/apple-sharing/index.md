@@ -13,10 +13,12 @@ _N_ people take _K_ apples and evenly distribute them among each other. The rema
 
 The input numbers _N_ and _K_ should be hard coded and assigned to the variables, for example:
 
-    my $N = 3;
-    my $K = 11;
+```raku
+my $N = 3;
+my $K = 11;
 
-    # Your code here . . .
+# Your code here . . .
+```
 
 ## Example
 

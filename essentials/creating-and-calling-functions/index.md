@@ -12,20 +12,24 @@ A function is a reusable part of code that has its own name and can be called fr
 
 To create a function, use the keyword `sub` followed by a name of the function. The body of the function is enclosed in a pair of curly brackets. 
 
-    sub greet {
-        say 'Hello, World!';
-    }
+```raku
+sub greet {
+    say 'Hello, World!';
+}
+```
 
 ## Using a function
 
 To use the function, just put it name at the place where you need to call it. In Raku, a function definition can be before or after the place where the function is used.
 
-    say 'This is what the first program usually prints:';
-    greet;    
+```raku
+say 'This is what the first program usually prints:';
+greet;    
 
-    sub greet {
-        say 'Hello, World!';
-    }
+sub greet {
+    say 'Hello, World!';
+}
+```
 
 The program prints both messages:
 

@@ -8,9 +8,11 @@ Both `while` and `until` can be used in a form of statement modifiers ([similarl
 
 Consider an example that emulates modulo division:
 
-    my $x = 10;
-    $x -= 3 while $x > 2;
-    say $x; # 1
+```raku
+my $x = 10;
+$x -= 3 while $x > 2;
+say $x; # 1
+```
 
 Here, `-=` is the operator that combines both subtraction and assignment. In this case, `$x -= 3` is equivalent to `$x = $x - 3`.
 
@@ -20,8 +22,10 @@ Notice that if the condition was `False` initially, the statement is not execute
 
 The same program can be rewritten with `until`. For this, the condition must be inverted:
 
-    my $x = 10;
-    $x -= 3 until $x <= 2;
-    say $x; # 1
+```raku
+my $x = 10;
+$x -= 3 until $x <= 2;
+say $x; # 1
+```
 
 {% include nav.html %}

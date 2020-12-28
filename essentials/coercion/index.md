@@ -8,14 +8,18 @@ Raku is a language with the so-called gradual type system. In most cases, you do
 
 This is a valid program that does not break:
 
-    my $var = 42;
-    $var = 'string';
+```raku
+my $var = 42;
+$var = 'string';
+```
 
 So is this program:
 
-    my $a = '100';
-    my $b = 200;
-    say $a + $b; # 300
+```raku
+my $a = '100';
+my $b = 200;
+say $a + $b; # 300
+```
 
 Nevertheless, Raku allows you to specify the type of things that you can keep in the given variable, if you want to. Also, sometimes you need to convert the values of one type to another type. There are a few ways you can do that.
 

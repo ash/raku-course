@@ -10,13 +10,17 @@ Internally, rational numbers are fractions with two integer parts: numerator and
 
 There are a few methods to write a `Rat` number in a program in Raku:
 
-    my $x = 1/2;
-    my $y = <2/3>;
+```raku
+my $x = 1/2;
+my $y = <2/3>;
+```
 
 Notice that the slash here is a part of the notation. This is not a division operator, so `1/2` does not mean that you divide 1 by 2. In printing, though, rationals are printed as decimal numbers or integers:
 
-    say 1/2; # 0.5
-    say 3/4; # 0.75
+```raku
+say 1/2; # 0.5
+say 3/4; # 0.75
+```
 
 The part of the line after the `#` symbol is a comment and is ignored by the compiler.
 
@@ -26,7 +30,9 @@ It is important to realise that when you write the number in a decimal form, e.g
 
 Consider the following example:
 
-    say 0.1 + 0.2 - 0.3;
+```raku
+say 0.1 + 0.2 - 0.3;
+```
 
 If those languages which would use floating-point arithmetics for these calculations, the result will not be equal to 0. The website [0.30000000000000004.com](https://0.30000000000000004.com) gives an exhaustive list of examples where floating-point arithmethics does not give an expected result.
 

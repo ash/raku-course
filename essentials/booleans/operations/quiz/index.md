@@ -10,8 +10,10 @@ In each of the sections below, select the correct answer that the program prints
 
 Here is the program:
 
-    my $value = True && False;
-    say $value;
+```raku
+my $value = True && False;
+say $value;
+```
 
 What does it print?
 
@@ -23,8 +25,10 @@ What does it print?
 
 What does the second program print?
 
-    my $value = True && False || True;
-    say $value;
+```raku
+my $value = True && False || True;
+say $value;
+```
 
 {:.quiz}
 1 | True
@@ -34,8 +38,10 @@ What does the second program print?
 
 What is the output of this program?
 
-    my $value = True || False && True;
-    say $value;
+```raku
+my $value = True || False && True;
+say $value;
+```
 
 {:.quiz}
 1 | True

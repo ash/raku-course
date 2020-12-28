@@ -8,7 +8,9 @@ Here is the solution of the problem ‘[Hello, me!](../)‘.
 
 ## Code
 
-    say 'Hello, Andrew!';
+```raku
+say 'Hello, Andrew!';
+```
 
 🦋 You can find the full code in the file [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
 

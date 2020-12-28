@@ -8,14 +8,16 @@ Here is the solution of the problem.
 
 ## Code
 
-    my $N = 3;
-    my $K = 11;
+```raku
+my $N = 3;
+my $K = 11;
 
-    my $gets = $K div $N;
-    my $remains = $K % $N;
+my $gets = $K div $N;
+my $remains = $K % $N;
 
-    say "Each person gets $gets apple(s).";
-    say "There are {$remains} apple(s) remaining.";
+say "Each person gets $gets apple(s).";
+say "There are {$remains} apple(s) remaining.";
+```
 
 🦋 You can find the full code in the file [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
 
@@ -37,7 +39,9 @@ Modify the initial value of `$N` and `$K` to model other situations:
 
 In the program, we are using the two operators: `div` to perform integer division and `%` for getting the remainder of the division. Alternatively, you can make the calculations in the following manner:
 
-    my $gets = $K div $N;
-    my $remains = $K - $N * $gets;
+```raku
+my $gets = $K div $N;
+my $remains = $K - $N * $gets;
+```
 
 {% include nav.html %}

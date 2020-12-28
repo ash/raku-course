@@ -8,19 +8,21 @@ So far, we’ve learned `if` and `else`. What if you want to organise a chain of
 
 One of the possibilities is to use the chain of `if`, `elsif`, and `else` blocks. Note the spelling of `elsif`. It is neither `elseif` nor `else if`.
 
-    my $x = prompt 'Enter the number: ';
-    if $x > 100 {
-        say "$x is bigger than 100.";
-    }
-    elsif $x > 50 {
-        say "$x is bigger than 50.";
-    }
-    elsif $x > 25 {
-        say "$x is bigger than 25.";
-    }
-    else {
-        say "$x is 25 or smaller.";
-    }
+```raku
+my $x = prompt 'Enter the number: ';
+if $x > 100 {
+    say "$x is bigger than 100.";
+}
+elsif $x > 50 {
+    say "$x is bigger than 50.";
+}
+elsif $x > 25 {
+    say "$x is bigger than 25.";
+}
+else {
+    say "$x is 25 or smaller.";
+}
+```
 
 In this program, there are three branches and three tests which are executed one after another. Only one of the blocks is executed. If neither check is `True`, the `else` block is run.
 

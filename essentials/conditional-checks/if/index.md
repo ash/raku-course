@@ -6,33 +6,41 @@ title: Conditional checks with if
 
 The `if` conditional check test a condition and if it is `True`, runs a block of code.
 
-    if 10 > 4 {
-        say 'Mathematics works!';
-    }
+```raku
+if 10 > 4 {
+    say 'Mathematics works!';
+}
+```
 
 Notice that you don’t need to put the condition in parentheses (but you can if you wish). 
 
 Of course, variables are more than welcome in the tests:
 
-    my $flag = False;
-    if $flag {
-        # . . . do something
-    }
+```raku
+my $flag = False;
+if $flag {
+    # . . . do something
+}
+```
 
 In the case there are more than one check that uses the same variable, it is possible to use chained comparisons:
 
-    my $x = 42;
-    if 40 < $x < 45 {
-        say "Correct answer $x is given.";
-    }
+```raku
+my $x = 42;
+if 40 < $x < 45 {
+    say "Correct answer $x is given.";
+}
+```
 
 If the condition is not satisfied, the associated block of code is not executed, and the program flow continues.
 
-    say 'Begin';
-    if False {
-        say 'This is never printed.';
-    }
-    say 'End';
+```raku
+say 'Begin';
+if False {
+    say 'This is never printed.';
+}
+say 'End';
+```
 
 This program just prints `Begin` and `End`.;
 

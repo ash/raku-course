@@ -12,9 +12,11 @@ Consider the following program run:
 
 The program `run.raku` gets three paraters: `alpha` and `beta`. They can be read from the program from `@*ARGS`.
 
-    say @*ARGS.elems;
-    say @*ARGS[0];
-    say @*ARGS[1];
+```raku
+say @*ARGS.elems;
+say @*ARGS[0];
+say @*ARGS[1];
+```
 
 This program prints the number of arguments passed to it and the arguments themselves:
 
@@ -29,10 +31,12 @@ Notice that the program requires no change if you call it as an executable file:
 
 The program in this case [should have a shebang](/raku-course/essentials/running-programs/from-command-line), but the most important thing is that the indices of `@*ARGS` still start with `0`:
 
-    #!/usr/bin/env raku
+```raku
+#!/usr/bin/env raku
 
-    say @*ARGS.elems;
-    say @*ARGS[0];
-    say @*ARGS[1];
+say @*ARGS.elems;
+say @*ARGS[0];
+say @*ARGS[1];
+```
 
 {% include nav.html %}

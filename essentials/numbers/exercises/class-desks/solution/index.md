@@ -8,12 +8,13 @@ The solution of the problem is shown below.
 
 ## Code
 
-    my $students = 23;
+```raku
+my $students = 23;
 
-    my $desks = $students div 2 + $students % 2;
+my $desks = $students div 2 + $students % 2;
 
-    say "$desks desks must be bought.";
-
+say "$desks desks must be bought.";
+```
 
 🦋 You can find the full code in the file [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/class-desks.raku).
 

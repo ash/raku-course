@@ -6,11 +6,13 @@ title: Scientific notation in Raku
 
 In the previous section, we saw that numbers such as `1.5` are rational numbers. To make a number that corresponds to a `double` number in C++, use scientific notation:
 
-    1E0
-    314e-2
-    -5e-20
-    5.424E40
-    7.6e+15
+```raku
+1E0
+314e-2
+-5e-20
+5.424E40
+7.6e+15
+```
 
 In this case, Raku creates instances of the `Num` data type and internally stores the data as an IEEE number.
 

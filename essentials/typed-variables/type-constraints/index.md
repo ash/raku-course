@@ -6,12 +6,16 @@ title: Type constraints
 
 In some cases, though, you may want to restrict the type for the given variable, and you can do it by specifying the type as shown below:
 
-    my Int $var = 42;
+```raku
+my Int $var = 42;
+```
 
 Now, it is possible to assign another integer value to `$var`, but and attempt to put a string or even a floating-point number into the variable ends with an exception:
 
-    my Int $var = 42;
-    $var = '314E-2';
+```raku
+my Int $var = 42;
+$var = '314E-2';
+```
 
 This program emits the following error:
 

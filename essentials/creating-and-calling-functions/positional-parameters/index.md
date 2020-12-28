@@ -6,7 +6,9 @@ title: Positional parameters
 
 The order of function parameters is important. For example, create a function that computes the difference between teh two numbers:
 
-    sub diff($a, $b) { $a - $b }
+```raku
+sub diff($a, $b) { $a - $b }
+```
 
 It is obvious that the result of calling `diff(10, 20)` differs from `diff(20, 10)`.
 

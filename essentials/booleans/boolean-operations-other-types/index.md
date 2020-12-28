@@ -6,9 +6,11 @@ title: Boolean operations with other types
 
 In the next section, we will talk about converting data of different types to each other. But before that it is important to highlight the following feature of Raku. When boolean operations are applied to strings and integers, the values are not converted to Booleans, and the result is neither directly a Boolean value. Consider the following examples:
 
-    say 'Hello' && 'World'; # World
-    say 'Alpha' || 'Beta';  # Alpha
-    say 0 ^^ 42;            # 42
+```raku
+say 'Hello' && 'World'; # World
+say 'Alpha' || 'Beta';  # Alpha
+say 0 ^^ 42;            # 42
+```
 
 Let us read the rules 📖 [from the documentation](https://docs.raku.org/language/operators#Tight_AND_precedence):
 

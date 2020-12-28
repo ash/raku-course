@@ -8,8 +8,10 @@ title: Solution of ’Hello, Concatenation!‘
 
 Here is a possible solution of this problem:
 
-    my $name = prompt 'What is your name? ';
-    say 'Hello, ' ~ $name ~ '!';
+```raku
+my $name = prompt 'What is your name? ';
+say 'Hello, ' ~ $name ~ '!';
+```
 
 🦋 You can find the source code in the file [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
 

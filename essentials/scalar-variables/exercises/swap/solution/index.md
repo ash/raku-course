@@ -8,9 +8,11 @@ In this program, we are using the elements of Raku syntax from the section about
 
 ## Code
 
-    my ($a, $b) = 10, 20;
-    ($a, $b) = $b, $a;
-    say "$a, $b";
+```raku
+my ($a, $b) = 10, 20;
+($a, $b) = $b, $a;
+say "$a, $b";
+```
 
 🦋 You can find the source code in the file [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
 
@@ -25,15 +27,21 @@ Run the program and confirm it prints the values in different order.
 
 All the steps of this program (creating a variable and assigning the values, swapping them, and printing) use both variables in the same construction. The most interesting here is the way the variables swap their values:
 
-    ($a, $b) = $b, $a;
+```raku
+($a, $b) = $b, $a;
+```
 
 Notice that you need parentheses on the left-hand side, but you can also add them on the right-hand side:
 
-    ($a, $b) = ($b, $a);
+```raku
+($a, $b) = ($b, $a);
+```
 
 What happens if you omit parentheses?
 
-    $a, $b = $b, $a;
+```raku
+$a, $b = $b, $a;
+```
 
 In this case, you get a warning about that `$a` on the right-hand side is not used.:
 
@@ -44,7 +52,9 @@ In this case, you get a warning about that `$a` on the right-hand side is not us
 
 The above line is actually equivalent to a useless assignment `$b = $b`. You can easily see it if you modify the values on the right side, for example:
 
-    $a, $b = 2 * $b, 3 * $a;
+```raku
+$a, $b = 2 * $b, 3 * $a;
+```
 
 This program prints even more warnings, but you can also see that only `$b` changed its value:
 

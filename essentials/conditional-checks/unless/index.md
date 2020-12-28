@@ -8,24 +8,30 @@ All Boolean conditions can be easily negated with the [`!` operator](/raku-cours
 
 The `unless` block is executed when its condition is `False`.
 
-    my $broken = False;
+```raku
+my $broken = False;
 
-    # ...Something can set $broken to True here...
-     
-    unless $broken {
-        say "Don’t worry!";
-        say "Be happy!";
-    }
+# ...Something can set $broken to True here...
+    
+unless $broken {
+    say "Don’t worry!";
+    say "Be happy!";
+}
+```
 
 Compare the two variants of the same program:
 
 With `if` and negation:
 
-    if !$broken { . . . }
+```raku
+if !$broken { . . . }
+```
 
 With `unless`:
 
-    unless $broken { . . . }
+```raku
+unless $broken { . . . }
+```
 
 Having the alternatives, you can always choose what feels better to you in the current situation.
 

@@ -8,9 +8,11 @@ This is how you can solve the task.
 
 ## Code
 
-    my $n = prompt 'Enter a positive integer number: ';
+```raku
+my $n = prompt 'Enter a positive integer number: ';
 
-    say ($n % 100) div 10;
+say ($n % 100) div 10;
+```
 
 🦋 You can find the full code in the file [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
 
@@ -35,6 +37,8 @@ In this solution, the combination of the modulo `%` and integer division `div` i
 
 Notice the space before the opening parenthesis. It has to be there, otherwise you get a syntax error. We’ll return to this aspect of Raku in the section about [functions](/raku-course/functions), but for now, type the code as shown above or add another pair of parentheses to surround the argument of the function — in this case, no space is needed:
 
+```raku
     say(($n % 100) div 10);
+```
 
 {% include nav.html %}
