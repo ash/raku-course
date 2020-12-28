@@ -41,9 +41,16 @@ sub process-file($path) {
 }
 
 sub highlight($code is copy) {
+my $show = 0;
+if $code ~~ /'&amp;'/  {
+    $show = 1;
+}
+
+say $code if $show;
     $code ~~ s:g/'&lt;'/</;
     $code ~~ s:g/'&gt;'/>/;
     $code ~~ s:g/'&amp;'/&/;
+say $code if $show;
 
     '/tmp/highlight.raku'.IO.spurt($code);
     run '/usr/local/bin/pygmentize', '-f', 'html', '-l', 'raku', '-O', 'style=vs', '-o', '/tmp/highlight.raku.html', '/tmp/highlight.raku';
