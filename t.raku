@@ -1,5 +1,5 @@
-sub greet(:$greeting = 'Hello', :$name) {
-    say "$greeting, $name!";
+sub f($param) {
+    say $param.WHAT;
 }
 
-greet(name => 'Alla');
+f (5, 6);

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mind the space | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Mind the space | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=1609194744">
+    <title>Mind the space | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/more-on-functions">More about functions</a></p>
+
+<h1 id="mind-the-space">Mind the space</h1>
+
+<p>Using functions in Raku in general is intuitive and causes no problems, but you must be warned about the following aspect.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>Do not add a space between the name of the function and the parentheses of the function signature.</p>
+
+<h2 id="long-story">Long story</h2>
+
+<p>Let us take a simple function:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>First of all, notice the absense of spaces between the name of the function and the opening parentheses that keeps the parameters. Some coding styles in other languages may require a space there. Raku is fine with that, but this is not a practice to follow:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>But on the calling side, the absense of space is important.</p>
+
+<p>If you call the function and omit the parentheses, then the space after the name of the function is unavoidable:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>But if you add parentheses, you cannot have a space before them. This is a correct call:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>And this call is wrong:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Such code causes an exception:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+  sub f at t.raku line 1
+  in block &lt;unit&gt; at t.raku line 5
+</code></pre></div></div>
+
+<p>Raku understands the call with a space <code class="language-plaintext highlighter-rouge">f (5, 6)</code> as an attempt to pass a single argument <code class="language-plaintext highlighter-rouge">(5, 6)</code> to the function. You can easily check the type of this argument if you rewrite the function to accept only one argument:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub f($param) {
+    say $param.WHAT;
+}
+
+f (5, 6); # (List)
+</code></pre></div></div>
+
+<p>So, calling <code class="language-plaintext highlighter-rouge">f (5, 6)</code> means that we are passing a list to the function. (<code class="language-plaintext highlighter-rouge">List</code> is a data type that will be covered in the second part of the course.)</p>
+
+<p>The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses of the function signature.</p>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/more-on-functions">More about functions</a>
+  |  
+        <a href="/raku-course/essentials/more-on-functions">More about functions</a> / <a href="/raku-course/essentials/more-on-functions/typed-parameters">Typed parameters</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
