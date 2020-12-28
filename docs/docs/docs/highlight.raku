@@ -30,13 +30,12 @@ sub process-file($path) {
     if $path ~~ / 'index.html' / {
         my $html = $path.slurp;
 
-
         $html ~~ s:g/'<pre><code class="language-raku">' (.*?) '</code></pre>'/{
             highlight(~$0)
         }/;
         $output-path.IO.spurt: $html;
     }
-    else {
+    elsif $path !~~ / 'index.md' / {
         $path.IO.copy: $output-path;
     }
 }

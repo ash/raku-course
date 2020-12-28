@@ -35,7 +35,7 @@ Hashes are immutable, so you can both change the existing values and add the new
 
 ```raku
 %capitals<Germany> = 'Berlin';
-```raku
+```
 
 ## Keys and values
 
