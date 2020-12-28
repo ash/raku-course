@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
-    <link rel="stylesheet" href="/raku-course/assets/course.css?t=1609194744">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=1609194973">
     <title>Mind the space | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
@@ -53,7 +53,7 @@
 <p>Let us take a simple function:</p>
 
 <div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
-    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
 }
 </pre></div>
 
@@ -61,7 +61,7 @@
 <p>First of all, notice the absense of spaces between the name of the function and the opening parentheses that keeps the parameters. Some coding styles in other languages may require a space there. Raku is fine with that, but this is not a practice to follow:</p>
 
 <div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
-    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
 }
 </pre></div>
 
@@ -95,14 +95,15 @@
 
 <p>Raku understands the call with a space <code class="language-plaintext highlighter-rouge">f (5, 6)</code> as an attempt to pass a single argument <code class="language-plaintext highlighter-rouge">(5, 6)</code> to the function. You can easily check the type of this argument if you rewrite the function to accept only one argument:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub f($param) {
-    say $param.WHAT;
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
 }
 
-f (5, 6); # (List)
-</code></pre></div></div>
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
 
-<p>So, calling <code class="language-plaintext highlighter-rouge">f (5, 6)</code> means that we are passing a list to the function. (<code class="language-plaintext highlighter-rouge">List</code> is a data type that will be covered in the second part of the course.)</p>
+
+<p>So, calling <code class="language-plaintext highlighter-rouge">f (5, 6)</code> means that we are passing a list to the function. A list as a single entity. (<code class="language-plaintext highlighter-rouge">List</code> is a data type that will be covered in the second part of the course.)</p>
 
 <p>The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses of the function signature.</p>
 

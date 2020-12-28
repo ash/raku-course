@@ -16,7 +16,7 @@ Let us take a simple function:
 
 ```raku
 sub f($x, $y) {
-    say $x + $y;
+    return $x + $y;
 }
 ```
 
@@ -24,7 +24,7 @@ First of all, notice the absense of spaces between the name of the function and 
 
 ```raku
 sub f ($x, $y) {
-    say $x + $y;
+    return $x + $y;
 }
 ```
 
@@ -56,13 +56,15 @@ Such code causes an exception:
 
 Raku understands the call with a space `f (5, 6)` as an attempt to pass a single argument `(5, 6)` to the function. You can easily check the type of this argument if you rewrite the function to accept only one argument:
 
-    sub f($param) {
-        say $param.WHAT;
-    }
+```raku
+sub f($param) {
+    say $param.WHAT;
+}
 
-    f (5, 6); # (List)
+f (5, 6); # (List)
+```
 
-So, calling `f (5, 6)` means that we are passing a list to the function. (`List` is a data type that will be covered in the second part of the course.)
+So, calling `f (5, 6)` means that we are passing a list to the function. A list as a single entity. (`List` is a data type that will be covered in the second part of the course.)
 
 The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses of the function signature.
 
