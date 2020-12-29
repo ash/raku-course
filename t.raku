@@ -1,5 +1,14 @@
-unit sub MAIN($a, $b);
-
-my $sum = $a + $b;
-
-say "The sum of $a and $b is $sum.";
+say 'String'.WHAT;
+say 500.WHAT;
+say 3.14.WHAT;
+say pi.WHAT;
+# say -10.WHAT;
+say (-10).WHAT;
+# say +10.WHAT;
+say (+10).WHAT;
+# say 1/2.WHAT;
+# say -1/2.WHAT;
+say (-1/2).WHAT;
+say ('3' + '4').WHAT;
+say ('3' ~ '4').WHAT;
+# say 3 + 4.WHAT;

@@ -12,7 +12,6 @@ The usage of `unit sub` is demonstrated in the following example of a program.
 unit sub MAIN($a, $b);
 
 my $sum = $a + $b;
-
 say "The sum of $a and $b is $sum.";
 ```
 
