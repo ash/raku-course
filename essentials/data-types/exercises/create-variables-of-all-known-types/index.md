@@ -6,7 +6,7 @@ title: Create variables of all known types
 
 ## Task
 
-Write the program that creates a few scalar variables and initialises them with the values of the following type: `Int`, `Rat`, `Num`, and `Str`. The program should print both the value and its type.
+Write the program that creates a few scalar variables and initialises them with the values of the following type: `Int`, `Rat`, `Num`, `Bool`, and `Str`. The program should print both the value and its type.
 
 ## Example
 
@@ -17,6 +17,7 @@ $ raku types.raku
 151 (Int)
 4.2 (Rat)
 1e10 (Num)
+True (Bool)
 xyz (Str)
 ```
 

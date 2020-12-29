@@ -22,17 +22,18 @@ say $c, ' ', $c.WHAT;
 say $d, ' ', $d.WHAT;
 ```
 
-🦋 Find the program in the file [tricky-what.raku](https://github.com/ash/raku-course/blob/master/exercises/what/tricky-what.raku).
+🦋 Find the program in the file [types.raku](https://github.com/ash/raku-course/blob/master/exercises/data-types/types.raku).
 
 ## Output
 
 This program prints the following output:
 
 ```console
-$ raku  exercises/data-types/types.raku
+$ raku exercises/data-types/types.raku
 10 (Int)
 10.2 (Rat)
 10000 (Num)
+True (Bool)
 ten (Str)
 ```
 
