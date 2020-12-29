@@ -1,3 +1,7 @@
+---
+title: Raku essentials
+---
+
 {% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
