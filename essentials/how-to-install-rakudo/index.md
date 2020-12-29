@@ -24,10 +24,12 @@ Rakudo Start is available as a docker image. You can use it for both running pro
 
 Version numbering system of Rakudo forms the version number out of two parts: the year and the month of the release date. You can easily see how fresh your compiler is. Run the following command line to see its version number:
 
-    $ raku -v
-    Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
-    Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-    Built on MoarVM version 2020.10.
+```console
+$ raku -v
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
+Built on MoarVM version 2020.10.
+```
 
 There are three version numbers here. First is the version of Rakudo itself: `v2020.10`. Then comes the version of the Raku language: `v6.d`. Currently, the updates will get the new letter as a minory version part, e.g., `v6.e`, etc. Finally, we see the name of the virtual machine used in this compiler: it MoarVM version `2020.10`.
 

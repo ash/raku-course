@@ -22,7 +22,9 @@ say "The sum of the numbers from 1 to $N is $sum.";
 
 ## Output
 
-    $ raku exercises/numbers/sum1-100.raku 
-    The sum of the numbers from 1 to 100 is 5050.
+```console
+$ raku exercises/numbers/sum1-100.raku 
+The sum of the numbers from 1 to 100 is 5050.
+```
 
 {% include nav.html %}

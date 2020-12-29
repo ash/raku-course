@@ -25,9 +25,11 @@ say "There are {$remains} apple(s) remaining.";
 
 With the input numbers 3 and 11, the program prints the following output:
 
-    $ raku exercises/numbers/apple-sharing.raku
-    Each person gets 3 apple(s).
-    There are 2 apple(s) remaining.
+```console
+$ raku exercises/numbers/apple-sharing.raku
+Each person gets 3 apple(s).
+There are 2 apple(s) remaining.
+```
 
 Modify the initial value of `$N` and `$K` to model other situations:
 

@@ -18,7 +18,9 @@ N.B. If you are not satisfied with the choice of the currency, feel free to use 
 
 This program does not take any input, so it prints the above table when your run it.
 
-    $ raku purchase-table.raku
+```console
+$ raku purchase-table.raku
+```
 
 ## Solution
 

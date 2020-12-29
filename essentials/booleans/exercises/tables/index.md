@@ -12,10 +12,12 @@ Create a program that prints the results of the three boolean operations for the
 
 Here is an example of partial output of this program.
 
-    $ raku tables.raku
-    True && True is True
-    True && False is False
-    . . .
+```console
+$ raku tables.raku
+True && True is True
+True && False is False
+. . .
+```
 
 ## Solution
 

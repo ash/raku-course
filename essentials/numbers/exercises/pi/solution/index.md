@@ -18,8 +18,10 @@ say π;
 
 Run the program and see what it prints:
 
-    $ raku exercises/numbers/pi.raku
-    3.141592653589793
+```console
+$ raku exercises/numbers/pi.raku
+3.141592653589793
+```
 
 ## Comments
 

@@ -15,11 +15,13 @@ for @numbers -> $n {
 
 In this program, the variable `$n` takes the next value from the `@numbers` array on each iteration. Notice that you do not have to explicitly declare the variable with `my`. The block of code is repeated as many times as the number of elements in the data source. So, the program prints the numbers line by line:
 
-    $ raku t.raku 
-    1
-    3
-    5
-    7
+```console
+$ raku t.raku 
+1
+3
+5
+7
+```
 
 ## `for` with ranges
 
@@ -45,9 +47,11 @@ for 1..6 -> $n, $m {
 
 The output of this program is the following:
 
-    $ raku t.raku
-    1 and 2
-    3 and 4
-    5 and 6
+```console
+$ raku t.raku
+1 and 2
+3 and 4
+5 and 6
+```
 
 {% include nav.html %}

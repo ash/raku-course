@@ -12,8 +12,10 @@ Create a program that writes The answer to life, the Universe and everything, wh
 
 The expected behaviour of the program is demonstrated below:
 
-    $ raku answer.raku
-    42
+```console
+$ raku answer.raku
+42
+```
 
 ## Solution
 

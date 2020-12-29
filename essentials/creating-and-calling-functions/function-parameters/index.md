@@ -21,9 +21,11 @@ greet('Karl');
 
 The two calls of the same function will now produce different results:
 
-    $ raku t.raku
-    Hello, Alla!
-    Hello, Karl!
+```console
+$ raku t.raku
+Hello, Alla!
+Hello, Karl!
+```
 
 ## More parameters
 

@@ -25,12 +25,14 @@ my %hash = a => 'b', c => 'd';
 
 The program outputs:
 
-    $ raku t.raku
-    42
-    AlphaBeta
-    3 4 5
-    a	b
-    c	d
+```console
+$ raku t.raku
+42
+AlphaBeta
+3 4 5
+a	b
+c	d
+```
 
 %%tipblock
 ## A newline of `put`

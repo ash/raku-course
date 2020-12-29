@@ -18,8 +18,10 @@ print 'Raku';
 
 These values are printed one after another. There is no newline at the end of the whole output, too.
 
-    $ raku t.raku
-    42Raku
+```console
+$ raku t.raku
+42Raku
+```
 
 For aggregate data, the result may differ from what you see with `say`. For example, try arrays and hashes:
 
@@ -35,11 +37,13 @@ print %data;
 
 This is how the output looks like:
 
-    $ raku t.raku
-    alpha beta gamma
-    alpha	1
-    beta	2
-    gamma	3
+```console
+$ raku t.raku
+alpha beta gamma
+alpha	1
+beta	2
+gamma	3
+```
 
 The `print` routine can also be called as a method:
 

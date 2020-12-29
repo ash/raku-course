@@ -17,9 +17,11 @@ In this program, please use variables.
 
 The expected behaviour of the program is demonstrated below:
 
-    $ raku greet-a-person.raku
-    What is your name? John
-    Hello, John!
+```console
+$ raku greet-a-person.raku
+What is your name? John
+Hello, John!
+```
 
 ## Solution
 

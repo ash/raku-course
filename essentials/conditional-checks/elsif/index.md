@@ -28,21 +28,23 @@ In this program, there are three branches and three tests which are executed one
 
 Here are a few test run of the program that triggers all of the blocks:
 
-    $ raku t.raku
-    Enter the number: 120
-    120 is bigger than 100.
-    
-    $ raku t.raku
-    Enter the number: 75      
-    75 is bigger than 50.
-    
-    $ raku t.raku
-    Enter the number: 30
-    30 is bigger than 25.
-    
-    $ raku t.raku
-    Enter the number: 10
-    10 is 25 or smaller.
+```console
+$ raku t.raku
+Enter the number: 120
+120 is bigger than 100.
+
+$ raku t.raku
+Enter the number: 75      
+75 is bigger than 50.
+
+$ raku t.raku
+Enter the number: 30
+30 is bigger than 25.
+
+$ raku t.raku
+Enter the number: 10
+10 is 25 or smaller.
+```
 
 An alternative way is to use the `given` and `when` pair, which we will learn in the future.
 

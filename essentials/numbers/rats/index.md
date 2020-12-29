@@ -38,8 +38,10 @@ If those languages which would use floating-point arithmetics for these calculat
 
 But Raku prints an exact `0`. This happens because it treats the numbers `0.1`, `0.2`, and `0.3` as rational numbers and keep them as `1/10`, `2/10`, and `3/10` internally. Run it from command line to confirm it:
 
-    $ raku -e 'say 0.1 + 0.2 - 0.3'
-    0
+```console
+$ raku -e 'say 0.1 + 0.2 - 0.3'
+0
+```
 
 ## Unicode forms
 

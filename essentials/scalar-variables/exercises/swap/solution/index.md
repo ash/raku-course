@@ -20,8 +20,10 @@ say "$a, $b";
 
 Run the program and confirm it prints the values in different order.
 
-    $ raku exercises/scalar-variables/swap.raku
-    20, 10
+```console
+$ raku exercises/scalar-variables/swap.raku
+20, 10
+```
 
 ## Comments
 
@@ -45,10 +47,12 @@ $a, $b = $b, $a;
 
 In this case, you get a warning about that `$a` on the right-hand side is not used.:
 
-    $ raku exercises/scalar-variables/swap.raku
-    WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
-    Useless use of $a in sink context (lines 2, 2)
-    10, 20
+```console
+$ raku exercises/scalar-variables/swap.raku
+WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+Useless use of $a in sink context (lines 2, 2)
+10, 20
+```
 
 The above line is actually equivalent to a useless assignment `$b = $b`. You can easily see it if you modify the values on the right side, for example:
 
@@ -58,10 +62,12 @@ $a, $b = 2 * $b, 3 * $a;
 
 This program prints even more warnings, but you can also see that only `$b` changed its value:
 
-    $ raku exercises/scalar-variables/swap.raku
-    WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
-    Useless use of "*" in expression "3 * $a" in sink context (line 2)
-    Useless use of $a in sink context (line 2)
-    10, 40
+```console
+$ raku exercises/scalar-variables/swap.raku
+WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+Useless use of "*" in expression "3 * $a" in sink context (line 2)
+Useless use of $a in sink context (line 2)
+10, 40
+```
 
 {% include nav.html %}

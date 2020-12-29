@@ -31,19 +31,21 @@ say 'False ^^ False is ', False ^^ False;
 
 Run the program, and it prints the following table.
 
-    $ raku tables.raku
-    True && True is True
-    True && False is False
-    False && True is False
-    False && False is False
-    True || True is True
-    True || False is True
-    False || True is True
-    False || False is False
-    True ^^ True is Nil
-    True ^^ False is True
-    False ^^ True is True
-    False ^^ False is False
+```console
+$ raku tables.raku
+True && True is True
+True && False is False
+False && True is False
+False && False is False
+True || True is True
+True || False is True
+False || True is True
+False || False is False
+True ^^ True is Nil
+True ^^ False is True
+False ^^ True is True
+False ^^ False is False
+```
 
 ## Comments
 

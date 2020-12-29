@@ -21,8 +21,10 @@ my $students = 23;
 
 When you run the program, you should get the following:
 
-    $ raku class-desks.raku
-    12 desks must be bought.
+```console
+$ raku class-desks.raku
+12 desks must be bought.
+```
 
 ## Solution
 

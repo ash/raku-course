@@ -27,9 +27,11 @@ Run the program and test a few different cases:
 
 For the input number 234, the program’s output looks like this:
 
-    $ raku exercises/numbers/tens.raku
-    Enter a positive integer number: 234
-    3
+```console
+$ raku exercises/numbers/tens.raku
+Enter a positive integer number: 234
+3
+```
 
 ## Comments
 

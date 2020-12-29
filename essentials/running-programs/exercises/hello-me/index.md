@@ -12,8 +12,10 @@ Create and run a program that prints a greeting with your name. Save the program
 
 Here is an example of running the program and of its output:
 
-    $ raku hello-me.raku
-    Hello, Andrew!
+```console
+$ raku hello-me.raku
+Hello, Andrew!
+```
 
 ## Solution
 

@@ -20,10 +20,12 @@ say 'Also mainline';
 
 This program first executes the top-level `say`s, and then calls `MAIN`:
 
-    $ raku t.raku
-    Mainline code
-    Also mainline
-    MAIN called
+```console
+$ raku t.raku
+Mainline code
+Also mainline
+MAIN called
+```
 
 Of course, it is also possible to have a program that only have the `MAIN` function and no other mainline code.
 

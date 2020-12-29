@@ -12,9 +12,11 @@ OK, let us greet a person once more. But this time try using string interpolatio
 
 If you run the program, you get a prompt:
 
-    $ raku hello-concatenation.raku
-    What is your name? Marek
-    Hello, Marek!
+```console
+$ raku hello-concatenation.raku
+What is your name? Marek
+Hello, Marek!
+```
 
 ## Solution
 

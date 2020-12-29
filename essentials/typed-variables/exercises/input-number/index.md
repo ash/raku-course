@@ -12,9 +12,11 @@ Write a program that asks the user to enter an integer number and saves it in a 
 
 This program runs in the following way:
 
-    $ raku input-number.raku
-    Enter a number: 42
-    42
+```console
+$ raku input-number.raku
+Enter a number: 42
+42
+```
 
 ## Solution
 

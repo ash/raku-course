@@ -12,9 +12,11 @@ Create a program that asks to enter an positive integer number and prints the di
 
 For example, in the input number 234, the number of tens is 3, so the program prints 3:
 
-    $ raku tens.raku
-    Enter a positive integer number: 234
-    3
+```console
+$ raku tens.raku
+Enter a positive integer number: 234
+3
+```
 
 ## Solution
 

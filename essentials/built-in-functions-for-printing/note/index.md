@@ -18,8 +18,10 @@ note "Current value of \$x is $x";
 
 Confirm that this program does not send the message to `STDOUT`:
 
-    $ raku t.raku > /dev/null
-    Current value of $x is 42
+```console
+$ raku t.raku > /dev/null
+Current value of $x is 42
+```
 
 If no argument is passed to `note`, it prints `Noted` as the default message.
 

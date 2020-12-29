@@ -19,9 +19,11 @@ say $n;
 
 Run it and enter an integer number, either positive or negative:
 
-    $ raku exercises/typed-variables/input-number.raku
-    Enter a number: -42
-    -42
+```console
+$ raku exercises/typed-variables/input-number.raku
+Enter a number: -42
+-42
+```
 
 ## Comments
 

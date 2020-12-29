@@ -18,8 +18,10 @@ say 'Hello, Andrew!';
 
 To see the output, run the program as shown below:
 
-    $ raku exercises/running-programs/hello-me.raku 
-    Hello, Andrew!
+```console
+$ raku exercises/running-programs/hello-me.raku 
+Hello, Andrew!
+```
 
 ## Discussion
 

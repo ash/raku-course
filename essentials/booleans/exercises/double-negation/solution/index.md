@@ -26,8 +26,10 @@ Before running the program, let us think what it will print. There are two negat
 
 The program prints the following output, which confirms the above considerations:
 
-    $ raku exercises/booleans/double-negation.raku
-    False
-    True
+```console
+$ raku exercises/booleans/double-negation.raku
+False
+True
+```
 
 {% include nav.html %}

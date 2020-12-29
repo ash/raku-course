@@ -33,9 +33,11 @@ sub greet {
 
 The program prints both messages:
 
-    $ raku t.raku
-    This is what the first program usually prints:
-    Hello, World!
+```console
+$ raku t.raku
+This is what the first program usually prints:
+Hello, World!
+```
 
 Now, let us look at other details of creating and using functions.
 

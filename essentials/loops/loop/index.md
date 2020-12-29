@@ -16,12 +16,14 @@ Here, `++` is a postfix operator that increments its argument by 1. We will cove
 
 The program executes the body of the loop five times.
 
-    $ raku t.raku
-    The current value of the counter is 0.
-    The current value of the counter is 1.
-    The current value of the counter is 2.
-    The current value of the counter is 3.
-    The current value of the counter is 4.
+```console
+$ raku t.raku
+The current value of the counter is 0.
+The current value of the counter is 1.
+The current value of the counter is 2.
+The current value of the counter is 3.
+The current value of the counter is 4.
+```
 
 Some, or even all, of the statements in `loop` header may be ommited. For instance, here is the same program:
 

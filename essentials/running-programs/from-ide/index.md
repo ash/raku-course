@@ -10,7 +10,9 @@ This section very briefly explain how you start the program without leaving the 
 
 Open a terminal from the menu `Terminal` → `New Terminal`. It will add a panel below your program text. Run the program as you do it from command line:
 
-    $ raku hello.raku
+```console
+$ raku hello.raku
+```
 
 ## Comma IDE
 

@@ -19,8 +19,10 @@ say $answer;
 
 Run the program and enter a name when you get the prompt:
 
-    $ raku exercises/scalar-variables/answer.raku 
-    42
+```console
+$ raku exercises/scalar-variables/answer.raku 
+42
+```
 
 ## Comments
 

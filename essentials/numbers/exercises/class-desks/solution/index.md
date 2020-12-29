@@ -22,8 +22,10 @@ say "$desks desks must be bought.";
 
 Run the program at least twice trying odd and even number of students. For example, for the input numbers `23` and `24`, the program prints the same result:
 
-    $ raku exercises/numbers/class-desks.raku
-    12 desks must be bought.
+```console
+$ raku exercises/numbers/class-desks.raku
+12 desks must be bought.
+```
 
 ## Comments
 

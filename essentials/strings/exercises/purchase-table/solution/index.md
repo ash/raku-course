@@ -32,10 +32,12 @@ The three lines that generate output print the three lines of the table, includi
 
 Run the program and see how it prints the table:
 
-    $ raku exercises/strings/purchase-table.raku
-    Item    Price   N      Total
-    Chairs  $20.57  4      $82.28
-    Tables  $50.18  1      $50.18
+```console
+$ raku exercises/strings/purchase-table.raku
+Item    Price   N      Total
+Chairs  $20.57  4      $82.28
+Tables  $50.18  1      $50.18
+```
 
 ## Comments
 

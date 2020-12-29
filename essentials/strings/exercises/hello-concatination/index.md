@@ -14,8 +14,10 @@ Write a program that asks the user for their name and prints a greeting.
 
 If you run the program, you get a prompt:
 
-    $ raku hello-concatenation.raku
-    What is your name?
+```console
+$ raku hello-concatenation.raku
+What is your name?
+```
 
 Then you enter the name and get see greeting:
 

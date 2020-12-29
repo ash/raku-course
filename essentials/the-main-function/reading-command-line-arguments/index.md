@@ -18,8 +18,10 @@ sub MAIN($a, $b) {
 
 You can run the program in the following way:
 
-    $ raku t.raku 123 45
-    168
+```console
+$ raku t.raku 123 45
+168
+```
 
 As with any other function, the `MAIN` function can have default values for some (or even all) of its arguments. For example:
 

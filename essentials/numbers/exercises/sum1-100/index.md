@@ -12,8 +12,10 @@ Creat the program that computes the sum of integer numbers from 1 to 100 (includ
 
 This is what the expected result of the program is (assuming we compute the sum of the numbers from 1 to 10):
 
-    $ raku sum1-10.raku
-    The sum of the numbers from 1 to 10 is 55.
+```console
+$ raku sum1-10.raku
+The sum of the numbers from 1 to 10 is 55.
+```
 
 ## Solution
 

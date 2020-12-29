@@ -24,7 +24,9 @@ All the identifiers are valid, but it is probably better to avoid names with apo
 
 This program does not generate any output, but you should not get any errors when Rakudo compiles and runs it:
 
-    $ raku exercises/scalar-variables/identifiers.raku
+```console
+$ raku exercises/scalar-variables/identifiers.raku
+```
 
 ## Comments
 

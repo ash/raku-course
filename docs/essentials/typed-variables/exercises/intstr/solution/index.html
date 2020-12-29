@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
-    <link rel="stylesheet" href="/raku-course/assets/course.css?t=2">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
     <title>Solution to ‘Trying IntStr’ | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
@@ -57,27 +57,27 @@
 
 <p>As we saw from <a href="/raku-course/what/exercises">the exercises</a> from one of the previous section, <code class="language-plaintext highlighter-rouge">prompt</code> return type depends on the characters we typed. If the input string can represent an integer number, the result will be of the <code class="language-plaintext highlighter-rouge">IntStr</code> type, which is both <code class="language-plaintext highlighter-rouge">Int</code> and <code class="language-plaintext highlighter-rouge">Str</code>, and thus can be assigned to either an <code class="language-plaintext highlighter-rouge">Int</code> or a <code class="language-plaintext highlighter-rouge">Str</code> variable. So, if you enter, say, <code class="language-plaintext highlighter-rouge">1234</code>, the program does not break.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/typed-variables/intstr.raku
-Enter something: 1234
-1234
-1234
-</code></pre></div></div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">  $</span><span class="w"> </span>raku exercises/typed-variables/intstr.raku
+<span class="go">  Enter something: 1234
+  1234
+  1234
+</span></code></pre></div></div>
 
 <p>If you enter a string that cannot be an integer number, the program breaks at the moment we assign <code class="language-plaintext highlighter-rouge">$input</code> to <code class="language-plaintext highlighter-rouge">$i</code>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/typed-variables/intstr.raku
-Enter something: Hello, World!
-Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
-  in block &lt;unit&gt; at intstr.raku line 2
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/typed-variables/intstr.raku
+<span class="go">Enter something: Hello, World!
+</span><span class="gp">Type check failed in assignment to $</span>i<span class="p">;</span> expected Int but got Str <span class="o">(</span><span class="s2">"Hello, World!"</span><span class="o">)</span>
+<span class="gp">  in block &lt;unit&gt;</span><span class="w"> </span>at intstr.raku line 2
 </code></pre></div></div>
 
 <p>Notice that you get an error even if the input string can be casted to a number, but not integer. As it is not possible to store a floating-point or a rational number in an integer container, Raku will emit an exception:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/typed-variables/intstr.raku
-Enter something: 3.14
-Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
-  in block &lt;unit&gt; at intstr.raku line 2
-</code></pre></div></div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/typed-variables/intstr.raku
+<span class="go">Enter something: 3.14
+</span><span class="gp">Type check failed in assignment to $</span>i<span class="p">;</span> expected Int but got RatStr <span class="o">(</span>RatStr.new<span class="o">(</span>3.14, <span class="s2">"3....)
+</span><span class="gp">  in block &lt;unit&gt;</span><span class="w"> </span><span class="s2">at intstr.raku line 2
+</span></code></pre></div></div>
 
 <p>The second assignment, <code class="language-plaintext highlighter-rouge">$s = $input</code>, will never break as a string can take any input.</p>
 

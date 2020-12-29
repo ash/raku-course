@@ -19,9 +19,11 @@ say 'Hello, ', $name, '!';
 
 Run the program and enter a name when you get the prompt:
 
-    $ raku exercises/scalar-variables/greet-a-person.raku 
-    What is your name? Inge
-    Hello, Inge!
+```console
+$ raku exercises/scalar-variables/greet-a-person.raku 
+What is your name? Inge
+Hello, Inge!
+```
 
 ## Comments
 

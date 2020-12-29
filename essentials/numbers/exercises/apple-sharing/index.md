@@ -24,9 +24,11 @@ my $K = 11;
 
 With the numbers given above, the program is expected to print the following:
 
-    $ raku apple-sharing.raku
-    Each person gets 3 apple(s).
-    There are 2 apple(s) remaining.
+```console
+$ raku apple-sharing.raku
+Each person gets 3 apple(s).
+There are 2 apple(s) remaining.
+```
 
 At this point, ignore putting the nouns in the correct form and do not take into account a potentially akward output when the remaining number is zero.
 

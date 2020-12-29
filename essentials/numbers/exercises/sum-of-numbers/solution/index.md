@@ -24,11 +24,13 @@ say "The sum of numbers is $sum.";
 
 Run the program a few times and confirm it works with the numbers of different kinds.
 
-    $ raku exercises/numbers/sum-of-numbers.raku
-    Enter number A: 1.2
-    Enter number B: -3.4
-    Enter number C: 45
-    The sum of the numbers is 42.8.
+```console
+$ raku exercises/numbers/sum-of-numbers.raku
+Enter number A: 1.2
+Enter number B: -3.4
+Enter number C: 45
+The sum of the numbers is 42.8.
+```
 
 ## Comments
 

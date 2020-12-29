@@ -19,9 +19,11 @@ say $name.chars;
 
 Run the program and enter the name.
 
-    $ raku exercises/strings/name-length.raku 
-    What is your name? Alexandra
-    9
+```console
+$ raku exercises/strings/name-length.raku 
+What is your name? Alexandra
+9
+```
 
 ## Comments
 

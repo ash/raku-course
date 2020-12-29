@@ -8,7 +8,9 @@ So far as arrays are introduced, it is a good time to meet one of the built-in a
 
 Consider the following program run:
 
-    $ raku run.raku alpha beta
+```console
+$ raku run.raku alpha beta
+```
 
 The program `run.raku` gets three paraters: `alpha` and `beta`. They can be read from the program from `@*ARGS`.
 
@@ -20,14 +22,18 @@ say @*ARGS[1];
 
 This program prints the number of arguments passed to it and the arguments themselves:
 
-    $ raku run.raku alpha beta
-    2
-    alpha
-    beta
+```console
+$ raku run.raku alpha beta
+2
+alpha
+beta
+```
 
 Notice that the program requires no change if you call it as an executable file:
 
-    $ ./run.raku alpha beta
+```console
+$ ./run.raku alpha beta
+```
 
 The program in this case [should have a shebang](/raku-course/essentials/running-programs/from-command-line), but the most important thing is that the indices of `@*ARGS` still start with `0`:
 
