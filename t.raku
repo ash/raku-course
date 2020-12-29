@@ -1,14 +1,3 @@
-say 'String'.WHAT;
-say 500.WHAT;
-say 3.14.WHAT;
-say pi.WHAT;
-# say -10.WHAT;
-say (-10).WHAT;
-# say +10.WHAT;
-say (+10).WHAT;
-# say 1/2.WHAT;
-# say -1/2.WHAT;
-say (-1/2).WHAT;
-say ('3' + '4').WHAT;
-say ('3' ~ '4').WHAT;
-# say 3 + 4.WHAT;
+if(True != False) {
+    say 'OK';
+}

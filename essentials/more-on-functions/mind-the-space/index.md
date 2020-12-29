@@ -8,7 +8,7 @@ Using functions in Raku in general is intuitive and causes no problems, but you 
 
 ## TL;DR
 
-Do not add a space between the name of the function and the parentheses with its arguments.
+Do not add a space between the name of the function and the parentheses with its arguments. But use a space after `for` and `if`.
 
 ## Long story
 
@@ -66,6 +66,37 @@ f (5, 6); # (List)
 
 So, calling `f (5, 6)` means that we are passing a list to the function. A list as a single entity. (`List` is a data type that will be covered in the second part of the course.)
 
-The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function.
+## When the space is needed
+
+In some cases, the space is needed. This happens when you use parentheses with one of the keywords such as `if` or `for` or `loop`. The following code is wrong:
+
+```raku
+if(True != False) {
+    say 'OK';
+}
+```
+
+The error message explain what’s wrong:
+
+    ===SORRY!===
+    The word 'if' is interpreted as a 'if()' function call.  Please use
+    whitespace instead of parentheses.
+    at /Users/ash/raku-course/t.raku:1
+    ------> if⏏(True != False) {
+    Unexpected block in infix position (two terms in a row)
+    at /Users/ash/raku-course/t.raku:1
+    ------> if(True != False)⏏ {
+
+With the case of `if`, parentheses are not required at all, so the problem have no chances to appear if you do not use them. But in some cases, as, for example, with `loop`, you need to have them, and the space becomes mandatory:
+
+```for
+loop(my $c = 0; $c != 10; $c++) { say $c }
+```
+
+In this code, the same thing happens: `loop(...)` is understood by the compiler as a function call. Add a space to fix the issue. Or better rewrite the fragment using `for`.
+
+## Conclusion
+
+The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function, and try to avoid parentheses if that’s possible with other language constructions such as control flow.
 
 {% include nav.html %}

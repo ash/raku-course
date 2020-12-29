@@ -49,4 +49,16 @@ If you run this program, you will see that the first string appears as is on a s
 
 In double quotes, a special sequence `\n` was processed as a newline character, while in a string in single quotes it was a regular sequence of two characters: `\` and `n`.
 
+An interesting exception is for `'` and `\`. In single quotes, you can escape a single quote by prefixing it with another `\`:
+
+```raku
+say '\''; # '
+```
+
+A backslash also has to be escaped it is followed by a single quote:
+
+```raku
+say 'a\b\c\\'; # a\b\c\
+```
+
 {% include nav.html %}

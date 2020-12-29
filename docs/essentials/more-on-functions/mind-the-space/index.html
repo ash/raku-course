@@ -46,7 +46,7 @@
 
 <h2 id="tldr">TL;DR</h2>
 
-<p>Do not add a space between the name of the function and the parentheses with its arguments.</p>
+<p>Do not add a space between the name of the function and the parentheses with its arguments. But use a space after <code class="language-plaintext highlighter-rouge">for</code> and <code class="language-plaintext highlighter-rouge">if</code>.</p>
 
 <h2 id="long-story">Long story</h2>
 
@@ -105,7 +105,38 @@
 
 <p>So, calling <code class="language-plaintext highlighter-rouge">f (5, 6)</code> means that we are passing a list to the function. A list as a single entity. (<code class="language-plaintext highlighter-rouge">List</code> is a data type that will be covered in the second part of the course.)</p>
 
-<p>The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function.</p>
+<h2 id="when-the-space-is-needed">When the space is needed</h2>
+
+<p>In some cases, the space is needed. This happens when you use parentheses with one of the keywords such as <code class="language-plaintext highlighter-rouge">if</code> or <code class="language-plaintext highlighter-rouge">for</code> or <code class="language-plaintext highlighter-rouge">loop</code>. The following code is wrong:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>The error message explain what’s wrong:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+The word 'if' is interpreted as a 'if()' function call.  Please use
+whitespace instead of parentheses.
+at /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unexpected block in infix position (two terms in a row)
+at /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>With the case of <code class="language-plaintext highlighter-rouge">if</code>, parentheses are not required at all, so the problem have no chances to appear if you do not use them. But in some cases, as, for example, with <code class="language-plaintext highlighter-rouge">loop</code>, you need to have them, and the space becomes mandatory:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>In this code, the same thing happens: <code class="language-plaintext highlighter-rouge">loop(...)</code> is understood by the compiler as a function call. Add a space to fix the issue. Or better rewrite the fragment using <code class="language-plaintext highlighter-rouge">for</code>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function, and try to avoid parentheses if that’s possible with other language constructions such as control flow.</p>
 
 <p></div></p>
 
