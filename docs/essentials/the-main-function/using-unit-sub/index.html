@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Reading command line arguments | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Reading command line arguments | A Complete Course of the Raku programming language" />
+    <title>Using unit sub | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Using unit sub | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Reading command line arguments | A Complete Course of the Raku programming language</title>
+    <title>Using unit sub | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -40,48 +40,30 @@
           
 <p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/the-main-function">The <code class="language-plaintext highlighter-rouge">MAIN</code> function</a></p>
 
-<h1 id="reading-command-line-arguments">Reading command-line arguments</h1>
+<h1 id="using-unit-sub">Using <code class="language-plaintext highlighter-rouge">unit sub</code></h1>
 
-<p>The <code class="language-plaintext highlighter-rouge">MAIN</code> function is handy not only to explicitly locate the start of the program, but also because of its arguments, which get the values passed in command line.</p>
+<p>The <code class="language-plaintext highlighter-rouge">unit sub</code> construct is a handy way to make the rest of the file the body of the function! When used with <code class="language-plaintext highlighter-rouge">MAIN</code> that expands to the whole program file, it allows to get rid of the curly braces that embrace virtually the whole file, as well as of unnesessary indentation.</p>
 
-<p>There are two ways of reading command-line arguments. One of them is through the <a href="/raku-course/essentials/positionals/args-array"><code class="language-plaintext highlighter-rouge">@*ARGS</code> array</a>. We will examine the second method now.</p>
+<p>The usage of <code class="language-plaintext highlighter-rouge">unit sub</code> is demonstrated in the following example of a program.</p>
 
-<p>Let us create a program that adds up two numbers.</p>
+<div class="highlight"><pre><span></span><span class="k">unit</span> <span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span>);
 
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">say</span> <span class="nv">$a</span> + <span class="nv">$b</span>;
-}
+<span class="k">my</span> <span class="nv">$sum</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+
+<span class="nb">say</span> <span class="s">&quot;The sum of $a and $b is $sum.&quot;</span>;
 </pre></div>
 
 
-<p>You can run the program in the following way:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku 123 45
-<span class="go">168
-</span></code></pre></div></div>
-
-<p>As with any other function, the <code class="language-plaintext highlighter-rouge">MAIN</code> function can have default values for some (or even all) of its arguments. For example:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="mi">100</span>) {
-    <span class="nb">say</span> <span class="nv">$a</span> + <span class="nv">$b</span>;
-}
-</pre></div>
-
-
-<p>If the second argument is not provided, the default value is used:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku 15
-<span class="go">115
-</span></code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">MAIN</code> funciton is the only function in this file. If this is the case for your program, consider using <code class="language-plaintext highlighter-rouge">unit sub MAIN</code> as shown above.</p>
 
 <p></div></p>
 
 <h2 id="course-navigation">Course navigation</h2>
 
 <p>←
-        <a href="/raku-course/essentials/the-main-function">The <code class="language-plaintext highlighter-rouge">MAIN</code> function</a>
-  |  
         <a href="/raku-course/essentials/the-main-function">The <code class="language-plaintext highlighter-rouge">MAIN</code> function</a> / <a href="/raku-course/essentials/the-main-function/multi-main-functions">Multiple <code class="language-plaintext highlighter-rouge">MAIN</code> functions</a>
+  |  
+        <a href="/raku-course//"></a>
 →</p>
 
 
