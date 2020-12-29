@@ -1,4 +1,3 @@
-my @d = "alpha", "beta";
-my @e = "alpha2", "beta2";
-
-say @d, @e;
+sub MAIN($a, $b = 100) {
+    say $a + $b;
+}
