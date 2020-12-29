@@ -31,7 +31,9 @@ sub MAIN($a, $b = 100) {
 
 If the second argument is not provided, the default value is used:
 
-    $ raku t.raku 15
-    115
+```bash
+$ raku t.raku 15
+115
+```
 
 {% include nav.html %}
