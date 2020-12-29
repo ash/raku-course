@@ -31,7 +31,7 @@ sub MAIN($a, $b = 100) {
 
 If the second argument is not provided, the default value is used:
 
-```bash
+```console
 $ raku t.raku 15
 115
 ```
