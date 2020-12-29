@@ -8,7 +8,7 @@ Using functions in Raku in general is intuitive and causes no problems, but you 
 
 ## TL;DR
 
-Do not add a space between the name of the function and the parentheses of the function signature.
+Do not add a space between the name of the function and the parentheses with its arguments.
 
 ## Long story
 
@@ -20,7 +20,7 @@ sub f($x, $y) {
 }
 ```
 
-First of all, notice the absense of spaces between the name of the function and the opening parentheses that keeps the parameters. Some coding styles in other languages may require a space there. Raku is fine with that, but this is not a practice to follow:
+First of all, note the absense of spaces between the name of the function and the opening parentheses that keeps the parameters. Some coding styles in other languages may require a space there. Raku is fine with that, but this is not a practice to follow:
 
 ```raku
 sub f ($x, $y) {
@@ -66,6 +66,6 @@ f (5, 6); # (List)
 
 So, calling `f (5, 6)` means that we are passing a list to the function. A list as a single entity. (`List` is a data type that will be covered in the second part of the course.)
 
-The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses of the function signature.
+The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function.
 
 {% include nav.html %}

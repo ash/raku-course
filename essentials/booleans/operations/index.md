@@ -20,7 +20,7 @@ This program prints the following results:
 
 ## Negation
 
-To negate a Boolan value, use the prefix operator `!`:
+To negate a Boolean value, use the prefix operator `!`:
 
 ```raku
 say !False; # True

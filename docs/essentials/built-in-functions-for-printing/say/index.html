@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>The say routine | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="The say routine | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=2">
+    <title>The say routine | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/built-in-functions-for-printing">Built-in functions for printing</a></p>
+
+<h1 id="say"><code class="language-plaintext highlighter-rouge">say</code></h1>
+
+<p>The <code class="language-plaintext highlighter-rouge">say</code> built-in routine does the following actions:</p>
+
+<ol>
+  <li>Calls the <code class="language-plaintext highlighter-rouge">gist</code> method on its arguments.</li>
+  <li>Adds a newline character.</li>
+  <li>Converts the result to UTF-8.</li>
+  <li>Sends it to the <code class="language-plaintext highlighter-rouge">STDOUT</code> stream.</li>
+</ol>
+
+<p>From the user perspective, <code class="language-plaintext highlighter-rouge">say</code> simply prints the contents of a variable to the terminal.</p>
+
+<p>The first step requires some explanations. The <code class="language-plaintext highlighter-rouge">gist</code> method is a method that is defined for every built-in data type, such as integers or strings. For such simple types, the return result is a human-readable value that represents the item.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
+<span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>; <span class="c1"># Raku</span>
+</pre></div>
+
+
+<p>For more complex data, such as arrays or hashes, the <code class="language-plaintext highlighter-rouge">gist</code> method adds some simple formatting.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">&#39;alpha&#39;</span>, <span class="s">&#39;beta&#39;</span>, <span class="s">&#39;gamma&#39;</span>;
+<span class="nb">say</span> <span class="nv">@data</span>; <span class="c1"># [alpha beta gamma]</span>
+
+<span class="k">my</span> <span class="nv">%data</span> = <span class="n">alpha</span> =&gt; <span class="mi">1</span>, <span class="n">beta</span> =&gt; <span class="mi">2</span>, <span class="n">gamma</span> =&gt; <span class="mi">3</span>;
+<span class="nb">say</span> <span class="nv">%data</span>; <span class="c1"># {alpha =&gt; 1, beta =&gt; 2, gamma =&gt; 3}</span>
+</pre></div>
+
+
+<p>The <code class="language-plaintext highlighter-rouge">say</code> routine can be called as both a function or a method:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
+<span class="nb">say</span>(<span class="mi">42</span>);
+<span class="mi">42</span>.<span class="nb">say</span>;
+</pre></div>
+
+
+<p>You can pass more than one argument to <code class="language-plaintext highlighter-rouge">say</code>. The output pieces are joint with no spaces between them.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span>
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/built-in-functions-for-printing">Built-in functions for printing</a>
+  |  
+        <a href="/raku-course/essentials/built-in-functions-for-printing">Built-in functions for printing</a> / <a href="/raku-course/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

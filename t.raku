@@ -1,5 +1,4 @@
-sub f($param) {
-    say $param.WHAT;
-}
+my @d = "alpha", "beta";
+my @e = "alpha2", "beta2";
 
-f (5, 6); # (List)
+say @d, @e;

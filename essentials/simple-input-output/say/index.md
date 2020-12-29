@@ -28,7 +28,7 @@ The `say` routine can accept more than one argumnet, so we can print both values
 say 42, 'Hello, World!';
 ```
 
-Just notice that the parts of this output will be concatenated to a single string: `42Hello, World!`, so it’s better to add a space. And you should be able to solve this problem by now, for example, like this:
+Just note that the parts of this output will be concatenated to a single string: `42Hello, World!`, so it’s better to add a space. And you should be able to solve this problem by now, for example, like this:
 
 ```raku
 say 42, ' ', 'Hello, World!';

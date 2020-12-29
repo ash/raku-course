@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Multi-functions | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Multi-functions | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=2">
+    <title>Multi-functions | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/more-on-functions">More about functions</a></p>
+
+<h1 id="multi-functions">Multi-functions</h1>
+
+<p>Raku offers multiple dispatch based on function’s signature. It allows to create more than one function that share the name but has different types of their input data. Use the <code class="language-plaintext highlighter-rouge">multi</code> declarator for each of the variants of the function.</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
+</pre></div>
+
+
+<p>(It is fine to omit <code class="language-plaintext highlighter-rouge">sub</code> if there is <code class="language-plaintext highlighter-rouge">multi</code>.)</p>
+
+<p>Having the two variants of the same functions, the compiler will perform multiple dispatch depending on which arguments it sees in the function call. Compare the following two calls:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
+</pre></div>
+
+
+<p>The first call triggers the function with integer parameters, while the second call runs the second variant of the funciton that expects two strings.</p>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/more-on-functions">More about functions</a> / <a href="/raku-course/essentials/more-on-functions/return-type">Return type</a>
+  |  
+        <a href="/raku-course/essentials/built-in-functions-for-printing">Built-in functions for printing</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
