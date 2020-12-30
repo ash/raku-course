@@ -19,10 +19,10 @@ my @names = <
 if $n < 20 {
     say @names[$n];
 }
-elsif $n % 10 {    
+elsif $n % 10 { # Two-digit non-round numbers, e.g., 34
     say @names[$n / 10 + 18] ~ '-' ~ @names[$n % 10];
 }
-else {
+else { # Multiples of 10, e.g., 50
     say @names[$n / 10 + 18];
 }
 ```
