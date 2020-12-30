@@ -28,7 +28,7 @@ loop (my $n = @*ARGS[0]; $n <= @*ARGS[1]; $n++) {
 
 🦋 Find the program in the file [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/topic/series-of-numbers-loop.raku).
 
-As you can see, the first variant is significantly shorter and is more expressive.
+As you can see, the first variant is significantly shorter and more expressive.
 
 ## Discussion
 

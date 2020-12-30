@@ -18,7 +18,7 @@ note "Current value of \$x is $x";
 
 Confirm that this program does not send the message to `STDOUT`:
 
-```console
+```
 $ raku t.raku > /dev/null
 Current value of $x is 42
 ```

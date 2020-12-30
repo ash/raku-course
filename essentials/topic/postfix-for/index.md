@@ -4,6 +4,8 @@ title: 'Postfix form of "for"'
 
 {% include menu.html %}
 
+We have already seen other statement modifiers: [`if` and `else`](/raku-course/essentials/conditional-checks/modifiers) and [`while` and `until`](/raku-course/essentials/loops/modifiers). And that’s a reason for a small celebration as the design of Raku is very consistent.
+
 With a short loop body, the `for` loop can be written in a postfix form:
 
 ```raku

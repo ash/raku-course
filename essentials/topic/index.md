@@ -38,12 +38,4 @@ for 1..5 {
 }
 ```
 
-But that’s not all. As there is a single statement in the loop body, it is possible to use `for` as a statement modifier and place it after the loop body:
-
-```raku
-.say for 1..5;
-```
-
-We have already seen other statement modifiers: [`if` and `else`](/raku-course/essentials/conditional-checks/modifiers) and [`while` and `until`](/raku-course/essentials/loops/modifiers). And that’s a reason for a small celebration as the design of Raku is very consistent.
-
 {% include nav.html %}
