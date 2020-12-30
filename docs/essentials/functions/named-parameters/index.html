@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Named parameters | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Named parameters | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
+    <title>Named parameters | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions">Creating and calling functions</a></p>
+
+<h1 id="named-parameters">Named parameters</h1>
+
+<p>In contract to <a href="../positional-parameters">positional parameters</a>, <em>named</em> parameters are referred by their names.</p>
+
+<p>The following function takes two parameters called <code class="language-plaintext highlighter-rouge">$from</code> and <code class="language-plaintext highlighter-rouge">$to</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
+
+
+<p>Now, to call the function, you need to name the arguments:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>It is an error to pass the parameters as if they were positional. The call <code class="language-plaintext highlighter-rouge">distance(30, 10)</code> generates an error:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too many positionals passed; expected 0 arguments but got 2
+    in sub distance at t.raku line 1
+    in block &lt;unit&gt; at t.raku line 2
+</code></pre></div></div>
+
+<p>The good part is that named parameters can be listed in any order. The following two calls are totally equivalent:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<h2 id="passing-variables">Passing variables</h2>
+
+<p>When the value that you want to pass to a function is kept in a variable, whose name coinsides with the name of the parameter, you can enjoy a special syntax that reduces typing:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>This is similar to a wordy call:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Again, the order is not strict here:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/positional-parameters">Positional parameters</a>
+  |  
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/default-values">Default values</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/raku-course/essentials/functions/exercises/recursive-factorial">to the exercise to this section</a>.</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

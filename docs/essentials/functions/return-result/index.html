@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Returning the result | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Returning the result | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
+    <title>Returning the result | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions">Creating and calling functions</a></p>
+
+<h1 id="returning-the-result">Returning the result</h1>
+
+<p>Functions often not just do something but also return a result. Actually, in functional programming, functions should not produce any side effects such as printing to console. But nevertheless, Raku does not limit you from doing so. Anyways, let’s see how to return a value from a function and how to get it from a calling code.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+
+<span class="k">my</span> <span class="nv">$sum</span> = <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>);
+<span class="nb">say</span> <span class="nv">$sum</span>; <span class="c1"># 30</span>
+</pre></div>
+
+
+<p>Here, the function called <code class="language-plaintext highlighter-rouge">add</code> takes two numbers and returns their sum. An explicit <code class="language-plaintext highlighter-rouge">return</code> is used. On the calling side, the value the function returns can be used as any other value. In the above program, it is assigned to a variable.</p>
+
+<h2 id="the-last-evaluated-value">The last evaluated value</h2>
+
+<p>In Raku, an explicit <code class="language-plaintext highlighter-rouge">return</code> is not required if the result that you want to return from a funciton is the last computed value in its body. Our <code class="language-plaintext highlighter-rouge">add</code> funciton can be simplified in this manner:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nv">$x</span> + <span class="nv">$y</span>
+}
+</pre></div>
+
+
+<p>As you may have noticed, there is no semicolon at the end of the line as it is not required when the line ends the current code block.</p>
+
+<p>Such trivial and small functions are often formatted in a single line for a more compact code:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/function-parameters">Function parameters</a>
+  |  
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/positional-parameters">Positional parameters</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/raku-course/essentials/functions/exercises/recursive-factorial">to the exercise to this section</a>.</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

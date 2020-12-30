@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Default values | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Default values | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
+    <title>Default values | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions">Creating and calling functions</a></p>
+
+<h1 id="default-values">Default values</h1>
+
+<p>Both positional and named parameters can have default values. If the function has a default value for the given parameter, that parameter may be ommitted in the function call.</p>
+
+<h2 id="positional-parameters">Positional parameters</h2>
+
+<p>An example of a default value for a function with positional paramers:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="s">&#39;Merinda&#39;</span>);
+<span class="n">greet</span>();
+</pre></div>
+
+
+<p>The first call uses the name passed as the only argument and thus prints <code class="language-plaintext highlighter-rouge">Hello, Merinda!</code>. The second call uses the default value and prints <code class="language-plaintext highlighter-rouge">Hello, World!</code>.</p>
+
+<p>If the function has more than one paramters, then the defaul values can only be used at the end of the list of them:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># correct</span>
+<span class="c1"># sub f($a = 10, $b = 20, $c, $d) { . . . } # WRONG</span>
+</pre></div>
+
+
+<h2 id="named-parameters">Named parameters</h2>
+
+<p>The same syntax is used for setting default values for named parameters:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Merinda&#39;</span>);
+<span class="n">greet</span>();
+</pre></div>
+
+
+<p>The order of the named parameters does not matter, so any of them can have default values, even the first in the list:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$greeting</span> = <span class="s">&#39;Hello&#39;</span>, :<span class="nv">$name</span>) {
+    <span class="nb">say</span> <span class="s">&quot;$greeting, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Alla&#39;</span>);
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/named-parameters">Named parameters</a>
+  |  
+        💪 <a href="/raku-course/essentials/functions/exercises/recursive-factorial">Exercise: Recursive factorial</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
