@@ -1,8 +1,8 @@
-my $F0 = 0;
-my $F1 = 1;
+my $a = 0;
+my $b = 1;
 
-say $F0;
+say $a;
 for ^19 {
-    ($F0, $F1) = $F1, $F0 + $F1;
-    say $F0;
+    ($a, $b) = $b, $a + $b;
+    say $a;
 }

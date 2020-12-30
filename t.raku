@@ -1,3 +1,9 @@
-say 'alpha' lt 'beta'; # True
-say 'word' ne 'Word'; # True
-say 'xyz' gt 'xvw'; # True
+my $str = "ABC";
+my $another-str = "def";
+# Instead of 
+$str = $str ~ $another-str;
+
+# use:
+# $str ~= $another-str;
+# 
+say $str;

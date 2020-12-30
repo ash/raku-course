@@ -29,4 +29,16 @@ my $message = $greeting ~ $who;
 say $message;
 ```
 
+## Concatenation with assignments
+
+When you need to update the variable and append the new string to it, use the following form:
+
+```raku
+# Instead of 
+$str = $str ~ $another-str;
+
+# use:
+$str ~= $another-str;
+```
+
 {% include nav.html %}

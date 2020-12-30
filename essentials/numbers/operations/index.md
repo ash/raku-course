@@ -82,4 +82,16 @@ say 2⁻²; # 0.25
 
 Notice that the result of the last two expressions is a `Rat` number.
 
+## Operations with assignmnets
+
+All the operations support the shortcut syntax when you need to update the same variable. Let us demonstrate it on the example of `+`:
+
+```raku
+$a = $a + $b;
+
+# is equivalent to:
+
+$a += $b;
+```
+
 {% include nav.html %}

@@ -14,13 +14,13 @@ Fibonacci numbers are defined by the following algorithm.
 The code implements the algorithm literary. It uses a couple of variables to keep the current two Fibonacci numbers, and updates them in a loop. Note that both variables get updates [in a single assignment](/raku-course/essentials/scalar-variables/assigning-a-value/#multiple-assignment). 
 
 ```raku
-my $F0 = 0;
-my $F1 = 1;
+my $a = 0;
+my $b = 1;
 
-say $F0;
+say $a;
 for ^19 {
-    ($F0, $F1) = $F1, $F0 + $F1;
-    say $F0;
+    ($a, $b) = $b, $a + $b;
+    say $a;
 }
 ```
 
