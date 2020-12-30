@@ -51,4 +51,12 @@ To get the current length of an array, or, in other words, the number of its ele
 say @cities.elems; # 3
 ```
 
+If the array appears in a context, where the expected parameter is a number, the return value is the size of the array:
+
+```raku
+say +@cities; # 3
+```
+
+Here, the [`+` prefix operator](/raku-course/essentials/coercion/prefixes) requires a numeric value from its argument, so the result of `+@cities` is `3`.
+
 {% include nav.html %}

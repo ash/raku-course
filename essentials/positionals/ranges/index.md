@@ -25,6 +25,8 @@ my $r = 1 .. 5;
 say $r.WHAT; # (Range)
 ```
 
+## Excluding edges
+
 To exclude one of the edges or both of them, modify the range creation operator with the `^` character. There are three more operators that can be constructed in such a way. In the comment, the nubmers that the range generates are shown:
 
 ```raku
@@ -39,5 +41,7 @@ In simple cases as shown above, you can omit the spaces around the range operato
 my $r1 = 1..5;
 my $r2 = 1..^5;
 ```
+
+For a range that start with 0, such as `0..^5`, there exists a shortcut syntax: `^5`.
 
 {% include nav.html %}
