@@ -1,6 +1,3 @@
-my %data = FR => 'Paris', 'IT' => 'Rome';
-
-say "%data<FR>";
-
-say "%data<>";
-say "%data{}";
+say 'alpha' lt 'beta'; # True
+say 'word' ne 'Word'; # True
+say 'xyz' gt 'xvw'; # True
