@@ -23,7 +23,7 @@ The sum of 10 and 20 is 30.
 
 ## Variables again
 
-One of the application of this method is to help to disambiguate situations when a variable must be followed by a text that can be wrongly understood as the continuation of the name of the variable, use curly braces to enclose the variable:
+One of the application of this method is to help to disambiguate situations when a variable must be followed by a text that can be wrongly understood as the continuation of the name of the variable. To prevent that, use curly braces to enclose the variable:
 
 ```raku
 my $how-many = 5;
