@@ -47,6 +47,6 @@ say $f;
 
 ## More on this subject
 
-We will return to this task twice. In the second part of the course, we will learn about the so-called `reduction operators`, which will make the solution trivial. Also, there will be a way to define a custom operator `!` so that you can write `$n!` to compute a factorial.
+We will return to this task a number of times. In the second part of the course, we will learn about the so-called `reduction operators`, which will make the solution trivial. Also, there will be a way to define a custom operator `!` so that you can write `$n!` to compute a factorial. Finally, there will be another chance to see an interesting solution when we’ll talk about the `where` clause.
 
 {% include nav.html %}
