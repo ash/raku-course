@@ -14,7 +14,7 @@ say $n ** 2;
 say $n ** 3;
 ```
 
-🦋 Find the program in the file [squares-and-cubes.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/squares-and-cubes.raku).
+🦋 Find the program in the file [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube.raku).
 
 ## Code 2
 
@@ -26,7 +26,7 @@ say $n²;
 say $n³;
 ```
 
-🦋 Find the program in the file [squares-and-cubes-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/squares-and-cubes.raku).
+🦋 Find the program in the file [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube-2.raku).
 
 ## Output
 
