@@ -34,6 +34,14 @@ The modulo operator is `%` as in many other languages.
 
 It returns the remainder of integer division of two numbers, so `10 % 3` is `1`. Note that `-10 % 3` is `2` as the result of the operation is defined as the difference between the first number and the rounded-down division multiplied by the second number. So, `$a % $b` is equivalent to `$a - $b * floor($a / $b)`.
 
+## Divisibility
+
+Raku adds a useful operator to check if the number is divisible by another.
+
+`%%` | Divisilibity
+
+This is an infix operator that needs two operands: `10 %% 3`. If the first operand is divisible by the second operand, the result is a Boolean `True`. Otherwise, `False`.
+
 ## Integer operations
 
 There are special operations that return integer results. Their operators are words instead of symbols.
