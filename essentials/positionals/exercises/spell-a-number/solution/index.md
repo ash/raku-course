@@ -27,23 +27,23 @@ else { # Multiples of 10, e.g., 50
 }
 ```
 
-🦋 Find the program in the file [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/spell-a-number.raku).
+🦋 Find the program in the file [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
 
 ## Example
 
 Run the program a few times to check all the three branches of the `if`—`elsif`—`elses` construction.
 
 ```console
-$ raku exercises/conditional-checks/spell-a-number.raku 5
+$ raku exercises/positionals/spell-a-number.raku 5
 five
 
-$ raku exercises/conditional-checks/spell-a-number.raku 12
+$ raku exercises/positionals/spell-a-number.raku 12
 twelve
 
-$ raku exercises/conditional-checks/spell-a-number.raku 67
+$ raku exercises/positionals/spell-a-number.raku 67
 sixty-seven
 
-$ raku exercises/conditional-checks/spell-a-number.raku 80
+$ raku exercises/positionals/spell-a-number.raku 80
 eighty
 ```
 
