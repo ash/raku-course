@@ -11,6 +11,7 @@ for %toc<toc><> -> %part {
                 my $section-exercise-url = "%part<url>/%section<url>/exercises";
                 unless "$section-exercise-url/index.md".IO.f {
                     note "No index file for [%section<title>]($section-exercise-url)";
+                    index-template(%section<title>, $section-exercise-url);
                 };
 
                 for %section<exercises><> -> %exercise {
@@ -37,6 +38,20 @@ for %toc<toc><> -> %part {
             }
         }
     }
+}
+
+sub index-template($section-title, $section-exercise-url) {
+    mkdir $section-exercise-url;
+
+    "$section-exercise-url/index.md".IO.spurt: qq:to/TMPL/;
+    ---
+    title: 'Exercises: $section-title'
+    ---
+
+    \{% include menu.html %}
+    \{% include nav.html %}
+
+    TMPL
 }
 
 sub exercise-template($title, $url, $section-url, $exercise-url) {
