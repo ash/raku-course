@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: How many equal numbers?'
+title: 'Exercise: How many numbers are equal?'
 ---
 
 {% include menu.html %}

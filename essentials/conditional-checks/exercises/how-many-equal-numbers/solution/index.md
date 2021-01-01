@@ -1,5 +1,5 @@
 ---
-title: 'Solution: How many equal numbers?'
+title: 'Solution: How many numbers are equal?'
 ---
 
 {% include menu.html %}
