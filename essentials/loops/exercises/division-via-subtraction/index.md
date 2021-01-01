@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Divising via subtraction'
+title: 'Exercise: Division via subtraction'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solution: Divising via subtraction'
+title: 'Solution: Division via subtraction'
 ---
 
 {% include menu.html %}

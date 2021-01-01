@@ -19,7 +19,7 @@ say add(10, 20);
 
 An attempt to pass a parameter of any other type than `Int` is a compile-time error.
 
-```console
+```
 $ raku t.raku
 ===SORRY!=== Error while compiling t.raku
 Calling add(Num, Num) will never work with declared signature (Int $x, Int $y)
