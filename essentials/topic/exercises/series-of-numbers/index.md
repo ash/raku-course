@@ -6,14 +6,16 @@ title: Print a series of numbers
 
 ## Task
 
-Create a program that takes two integer numbers _A_ and _B_ (such as _A ≤ B_) from command line and prints all integer numbers from _A_ to _B_ including both _A_ and _B_.
+Create a program that asks to enter two integer numbers _A_ and _B_ (such as _A ≤ B_) and then prints all integer numbers from _A_ to _B_ including both _A_ and _B_.
 
 ## Example
 
 The program should work like this:
 
 ```console
-$ raku series-of-numbers.raku 14 17
+$ raku series-of-numbers.raku
+Begin: 14
+End: 17
 14
 15
 16

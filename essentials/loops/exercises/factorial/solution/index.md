@@ -9,7 +9,7 @@ A factorial of `N` is a product of integer numbers from 1 to and including `N`. 
 ## Code
 
 ```raku
-my $n = @*ARGS[0];
+my $n = 8;
 
 my $f = 1;
 $f *= $_ for 1..$n;
@@ -21,11 +21,11 @@ say $f;
 
 ## Output
 
-Run the program at least twice and test it with the input `1` and with any other positive integer:
+Run the program a few times and try different values of `$n`.
 
 ```console
-$ raku exercises/loops/factorial.raku 10
-3628800
+$ raku exercises/loops/factorial.raku
+40320
 ```
 
 ## Comments
@@ -35,7 +35,7 @@ This program uses the `*=` operator, which is a shortcut for multiplication with
 You can use a ’full‘ loop instead of a postfix form:
 
 ```raku
-my $n = @*ARGS[0];
+my $n = 8;
 
 my $f = 1;
 for 1..$n -> $x {

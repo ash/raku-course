@@ -11,7 +11,10 @@ There are more than one ways to solve the given problem.
 The first sollution is more Raku-ish and compact.
 
 ```raku
-.say for @*ARGS[0] .. @*ARGS[1];
+my $begin = prompt 'Begin: ';
+my $end = prompt 'End: ';
+
+.say for $begin .. $end;
 ```
 
 🦋 Find the program in the file [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/topic/series-of-numbers.raku).
@@ -21,7 +24,10 @@ The first sollution is more Raku-ish and compact.
 The second possible solution can use the `loop` statement.
 
 ```raku
-loop (my $n = @*ARGS[0]; $n <= @*ARGS[1]; $n++) {
+my $begin = prompt 'Begin: ';
+my $end = prompt 'End: ';
+
+loop (my $n = $begin; $n <= $end; $n++) {
     say $n;
 }
 ```
@@ -32,9 +38,6 @@ As you can see, the first variant is significantly shorter and more expressive.
 
 ## Discussion
 
-The arguments from command line are read using the built-in array [`@*ARGS`](/raku-course/essentials/positionals/args-array). The input values are [of the type `IntStr`](/raku-course/essentials/data-types/exercises/prompt-numbers), so they can be used as integers to form the range.
-
-
 In the first variant of the program, the [postfix form of the `for` loop](/raku-course/essentials/topic/postfix-for) is used. In the second program, a `loop` is chosen.
 
 ## Output
@@ -42,7 +45,9 @@ In the first variant of the program, the [postfix form of the `for` loop](/raku-
 Pass the two numbers in the console and run the program. Both variants produce the same output.
 
 ```console
-$ raku exercises/topic/series-of-numbers.raku 15 19
+$ raku exercises/topic/series-of-numbers.raku
+Begin: 15
+End: 19
 15
 16
 17

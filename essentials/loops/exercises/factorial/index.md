@@ -6,15 +6,15 @@ title: 'Exercise: Factorial'
 
 ## Problem
 
-Create a program that prints a factorial of the number passed as a command-line argument. Use a loop.
+Create a program that computes factorial of 8 using a loop and then prints it.
 
 ## Example
 
 The program’s behaviour is illustrated by this snippet:
 
 ```console
-$ raku factorial.raku 6
-720
+$ raku factorial.raku
+40320
 ```
 
 ## Solution

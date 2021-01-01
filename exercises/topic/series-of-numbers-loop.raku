@@ -1,3 +1,6 @@
-loop (my $n = @*ARGS[0]; $n <= @*ARGS[1]; $n++) {
+my $begin = prompt 'Begin: ';
+my $end = prompt 'End: ';
+
+loop (my $n = $begin; $n <= $end; $n++) {
     say $n;
 }

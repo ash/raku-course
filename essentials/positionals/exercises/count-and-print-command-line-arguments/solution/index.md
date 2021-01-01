@@ -14,14 +14,14 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Find the program in the file [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/count-and-print-arguments.raku).
+🦋 Find the program in the file [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
 
 ## Output
 
 Run the program and confirm it prints the arguments line by line:
 
 ```console
-$ raku exercises/loops/count-and-print-arguments.raku one two three four
+$ raku exercises/positionals/count-and-print-arguments.raku one two three four
 1. one
 2. two
 3. three
