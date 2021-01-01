@@ -28,6 +28,13 @@ sub process-file($path) {
     $dirname.IO.mkdir unless $dirname.IO.d;
 
     if $path ~~ / 'index.html' / {
+
+        if $output-path.IO.f && ($path.IO.modified < $output-path.IO.modified) {
+            return;
+        }
+
+        # say "Processing $path";
+
         my $html = $path.slurp;
 
         $html ~~ s:g/'<pre><code class="language-raku">' (.*?) '</code></pre>'/{
