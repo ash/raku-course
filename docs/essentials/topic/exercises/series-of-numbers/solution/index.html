@@ -48,7 +48,10 @@
 
 <p>The first sollution is more Raku-ish and compact.</p>
 
-<div class="highlight"><pre><span></span>.<span class="nb">say</span> <span class="k">for</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>] .. <span class="vg">@*ARGS</span>[<span class="mi">1</span>];
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$begin</span> = <span class="nb">prompt</span> <span class="s">&#39;Begin: &#39;</span>;
+<span class="k">my</span> <span class="nv">$end</span> = <span class="nb">prompt</span> <span class="s">&#39;End: &#39;</span>;
+
+.<span class="nb">say</span> <span class="k">for</span> <span class="nv">$begin</span> .. <span class="nv">$end</span>;
 </pre></div>
 
 
@@ -58,7 +61,10 @@
 
 <p>The second possible solution can use the <code class="language-plaintext highlighter-rouge">loop</code> statement.</p>
 
-<div class="highlight"><pre><span></span><span class="k">loop</span> (<span class="k">my</span> <span class="nv">$n</span> = <span class="vg">@*ARGS</span>[<span class="mi">0</span>]; <span class="nv">$n</span> &lt;= <span class="vg">@*ARGS</span>[<span class="mi">1</span>]; <span class="nv">$n</span>++) {
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$begin</span> = <span class="nb">prompt</span> <span class="s">&#39;Begin: &#39;</span>;
+<span class="k">my</span> <span class="nv">$end</span> = <span class="nb">prompt</span> <span class="s">&#39;End: &#39;</span>;
+
+<span class="k">loop</span> (<span class="k">my</span> <span class="nv">$n</span> = <span class="nv">$begin</span>; <span class="nv">$n</span> &lt;= <span class="nv">$end</span>; <span class="nv">$n</span>++) {
     <span class="nb">say</span> <span class="nv">$n</span>;
 }
 </pre></div>
@@ -70,16 +76,16 @@
 
 <h2 id="discussion">Discussion</h2>
 
-<p>The arguments from command line are read using the built-in array <a href="/raku-course/essentials/positionals/args-array"><code class="language-plaintext highlighter-rouge">@*ARGS</code></a>. The input values are <a href="/raku-course/essentials/data-types/exercises/prompt-numbers">of the type <code class="language-plaintext highlighter-rouge">IntStr</code></a>, so they can be used as integers to form the range.</p>
-
 <p>In the first variant of the program, the <a href="/raku-course/essentials/topic/postfix-for">postfix form of the <code class="language-plaintext highlighter-rouge">for</code> loop</a> is used. In the second program, a <code class="language-plaintext highlighter-rouge">loop</code> is chosen.</p>
 
 <h2 id="output">Output</h2>
 
 <p>Pass the two numbers in the console and run the program. Both variants produce the same output.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/topic/series-of-numbers.raku 15 19
-<span class="go">15
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/topic/series-of-numbers.raku
+<span class="go">Begin: 15
+End: 19
+15
 16
 17
 18
@@ -92,7 +98,7 @@
     <a href="/raku-course/essentials/loops">Loops</a>
         / <a href="/raku-course/essentials/loops/for"><code class="language-plaintext highlighter-rouge">for</code> loops</a>
   |  
-    <a href="/raku-course/essentials/functions">Creating and calling functions</a>
+    <a href="/raku-course/essentials/positionals">Positional data types</a>
 →</p>
 
 <!-- <style>

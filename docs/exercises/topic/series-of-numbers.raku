@@ -1,1 +1,4 @@
-.say for @*ARGS[0] .. @*ARGS[1];
+my $begin = prompt 'Begin: ';
+my $end = prompt 'End: ';
+
+.say for $begin .. $end;

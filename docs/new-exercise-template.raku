@@ -50,7 +50,6 @@ sub index-template($section-title, $section-exercise-url) {
 
     \{% include menu.html %}
     \{% include nav.html %}
-
     TMPL
 }
 
@@ -77,7 +76,6 @@ sub exercise-template($title, $url, $section-url, $exercise-url) {
     ✅ [See the solution](solution)
 
     \{% include nav.html %}
-
     TMPL
 }
 
@@ -107,6 +105,5 @@ sub solution-template($title, $url, $section-url, $exercise-url) {
     ```
 
     \{% include nav.html %}
-
     TMPL
 }

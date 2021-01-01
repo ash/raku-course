@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: How many equal numbers? | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Solution: How many equal numbers? | A Complete Course of the Raku programming language" />
+    <title>Solution: How many numbers are equal? | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: How many numbers are equal? | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Solution: How many equal numbers? | A Complete Course of the Raku programming language</title>
+    <title>Solution: How many numbers are equal? | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,9 +38,9 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/conditional-checks/">Conditional checks</a> / <a href="/raku-course/essentials/conditional-checks/exercises/">Exercises</a> / <a href="/raku-course/essentials/conditional-checks/exercises/how-many-equal-numbers">How many equal numbers?</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/conditional-checks/">Conditional checks</a> / <a href="/raku-course/essentials/conditional-checks/exercises/">Exercises</a> / <a href="/raku-course/essentials/conditional-checks/exercises/how-many-equal-numbers">How many numbers are equal?</a></p>
 
-<h1 id="solution-how-many-equal-numbers">Solution: How many equal numbers?</h1>
+<h1 id="solution-how-many-numbers-are-equal">Solution: How many numbers are equal?</h1>
 
 <p>The program should make a few comparisons. For three input numbers, there are two possible cases:</p>
 
@@ -54,10 +54,14 @@
 
 <p>Here is the solution with explicit comparisons.</p>
 
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>] == <span class="vg">@*ARGS</span>[<span class="mi">1</span>] == <span class="vg">@*ARGS</span>[<span class="mi">2</span>] {
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n1</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter number 1: &#39;</span>;
+<span class="k">my</span> <span class="nv">$n2</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter number 2: &#39;</span>;
+<span class="k">my</span> <span class="nv">$n3</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter number 3: &#39;</span>;
+
+<span class="k">if</span> <span class="nv">$n1</span> == <span class="nv">$n2</span> == <span class="nv">$n3</span> {
     <span class="nb">say</span> <span class="mi">3</span>;
 }
-<span class="k">elsif</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>] == <span class="vg">@*ARGS</span>[<span class="mi">1</span>] || <span class="vg">@*ARGS</span>[<span class="mi">1</span>] == <span class="vg">@*ARGS</span>[<span class="mi">2</span>] || <span class="vg">@*ARGS</span>[<span class="mi">0</span>] == <span class="vg">@*ARGS</span>[<span class="mi">2</span>] {
+<span class="k">elsif</span> <span class="nv">$n1</span> == <span class="nv">$n2</span> || <span class="nv">$n2</span> == <span class="nv">$n3</span> || <span class="nv">$n1</span> == <span class="nv">$n3</span> {
     <span class="nb">say</span> <span class="mi">2</span>;
 }
 <span class="k">else</span> {
@@ -66,26 +70,35 @@
 </pre></div>
 
 
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/essentials/conditional-checks/exercises/how-many-equal-numbers.raku">how-many-equal-numbers.raku</a>.</p>
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku">how-many-equal-numbers.raku</a>.</p>
 
 <h2 id="output">Output</h2>
 
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/how-many-equal-numbers.raku 0 0 0
-<span class="go">3
+<span class="go">Enter number 1: 14
+Enter number 2: 8
+Enter number 3: 8
+2
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/how-many-equal-numbers.raku 1 2 3
-<span class="go">0
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/how-many-equal-numbers.raku 
+<span class="go">Enter number 1: 15
+Enter number 2: 15
+Enter number 3: 15
+3
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/how-many-equal-numbers.raku 1 <span class="nt">-2</span> 1
-<span class="go">2
-
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/how-many-equal-numbers.raku 4 4 4 
-<span class="go">3
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/how-many-equal-numbers.raku 
+<span class="go">Enter number 1: 4
+Enter number 2: 6
+Enter number 3: 8
+0
 </span></code></pre></div></div>
 
-<h2 id="comment">Comment</h2>
+<h2 id="comments">Comments</h2>
 
-<p>Return to this task and solve it again after learning about the reduction operator.</p>
+<ol>
+  <li>Note that you can compare three numbers in a single expression: <code class="language-plaintext highlighter-rouge">$n1 == $n2 == $n3</code>.</li>
+  <li>Return to this task and solve it again after learning about the reduction operator.</li>
+</ol>
 
 <h2 id="course-navigation">Course navigation</h2>
 

@@ -1,7 +1,11 @@
-if @*ARGS[0] == @*ARGS[1] == @*ARGS[2] {
+my $n1 = prompt 'Enter number 1: ';
+my $n2 = prompt 'Enter number 2: ';
+my $n3 = prompt 'Enter number 3: ';
+
+if $n1 == $n2 == $n3 {
     say 3;
 }
-elsif @*ARGS[0] == @*ARGS[1] || @*ARGS[1] == @*ARGS[2] || @*ARGS[0] == @*ARGS[2] {
+elsif $n1 == $n2 || $n2 == $n3 || $n1 == $n3 {
     say 2;
 }
 else {
