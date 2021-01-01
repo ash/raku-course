@@ -15,10 +15,14 @@ The program should make a few comparisons. For three input numbers, there are tw
 Here is the solution with explicit comparisons.
 
 ```raku
-if @*ARGS[0] == @*ARGS[1] == @*ARGS[2] {
+my $n1 = prompt 'Enter number 1: ';
+my $n2 = prompt 'Enter number 2: ';
+my $n3 = prompt 'Enter number 3: ';
+
+if $n1 == $n2 == $n3 {
     say 3;
 }
-elsif @*ARGS[0] == @*ARGS[1] || @*ARGS[1] == @*ARGS[2] || @*ARGS[0] == @*ARGS[2] {
+elsif $n1 == $n2 || $n2 == $n3 || $n1 == $n3 {
     say 2;
 }
 else {
@@ -32,21 +36,28 @@ else {
 
 ```console
 $ raku exercises/conditional-checks/how-many-equal-numbers.raku 0 0 0
-3
-
-$ raku exercises/conditional-checks/how-many-equal-numbers.raku 1 2 3
-0
-
-$ raku exercises/conditional-checks/how-many-equal-numbers.raku 1 -2 1
+Enter number 1: 14
+Enter number 2: 8
+Enter number 3: 8
 2
 
-$ raku exercises/conditional-checks/how-many-equal-numbers.raku 4 4 4 
+$ raku exercises/conditional-checks/how-many-equal-numbers.raku 
+Enter number 1: 15
+Enter number 2: 15
+Enter number 3: 15
 3
+
+$ raku exercises/conditional-checks/how-many-equal-numbers.raku 
+Enter number 1: 4
+Enter number 2: 6
+Enter number 3: 8
+0
 ```
 
-## Comment
+## Comments
 
-Return to this task and solve it again after learning about the reduction operator.
+1. Note that you can compare three numbers in a single expression: `$n1 == $n2 == $n3`.
+1. Return to this task and solve it again after learning about the reduction operator.
 
 {% include nav.html %}
 

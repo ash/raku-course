@@ -6,14 +6,17 @@ title: 'Exercise: How many numbers are equal?'
 
 ## Problem
 
-Creat a program that takes three integer numbers from command line and tells how many of them are equal to each other. The program should be able to work with both positive and negative numbers.
+Creat a program that takes three integer numbers from the user and tells how many of them are equal to each other. The program should be able to work with both positive and negative numbers.
 
 ## Example
 
 A possible run of the program is shown below:
 
 ```console
-$ raku how-many-equal-numbers.raku 3 -4 3
+$ raku how-many-equal-numbers.raku
+Number 1: 3
+Number 2: -4
+Number 3: 3
 2
 ```
 
