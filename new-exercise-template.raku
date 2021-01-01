@@ -96,7 +96,7 @@ sub solution-template($title, $url, $section-url, $exercise-url) {
     ```raku
     ```
 
-    🦋 Find the program in the file [$exercise-url.raku](https://github.com/ash/raku-course/blob/master/$url.raku).
+    🦋 Find the program in the file [$exercise-url.raku](https://github.com/ash/raku-course/blob/master/exercises/$section-url/$exercise-url.raku).
 
     ## Output
 

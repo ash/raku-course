@@ -23,7 +23,7 @@ while $a >= $b {
 say $n;
 ```
 
-🦋 Find the program in the file [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/essentials/loops/exercises/division-via-subtraction.raku).
+🦋 Find the program in the file [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/exercises/division-via-subtraction.raku).
 
 ## Output
 
