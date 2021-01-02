@@ -1,10 +1,10 @@
 ---
-title: Solution to ‘Trying allomorphs’
+title: Allomorphs
 ---
 
 {% include menu.html %}
 
-Let us take a look at the program again.
+Consider the following program. Before running it, can you tell which input values will break it and at which line?
 
 ```raku
 my $input = prompt 'Enter something: ';
@@ -48,6 +48,6 @@ Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3
 
 The second assignment, `$s = $input`, will never break as a string can take any input.
 
-🦋 You can find the source code in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/allomorphs.raku).
+🦋 You can find the source code in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/essentials/data-types/allomorphs.raku).
 
 {% include nav.html %}
