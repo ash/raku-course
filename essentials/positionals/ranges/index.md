@@ -44,4 +44,12 @@ my $r2 = 1..^5;
 
 For a range that start with 0, such as `0..^5`, there exists a shortcut syntax: `^5`.
 
+## Ranges in a loop
+
+Ranges are very natural in `for` loops. Just look at this beauty:
+
+```raku
+.say for 1..5;
+```
+
 {% include nav.html %}

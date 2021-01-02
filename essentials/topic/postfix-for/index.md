@@ -9,13 +9,13 @@ We have already seen other statement modifiers: [`if` and `else`](/raku-course/e
 With a short loop body, the `for` loop can be written in a postfix form:
 
 ```raku
-.say for 1..5;
+.say for 1, 3, 5, 7;
 ```
 
 This program is equivalent to a more traditional variant:
 
 ```raku
-for 1..5 -> $n {
+for 1, 3, 5, 7 -> $n {
     say $n;
 }
 ```
@@ -23,7 +23,7 @@ for 1..5 -> $n {
 Or, if the default loop variable is used, to:
 
 ```raku
-for 1..5 {
+for 1, 3, 5, 7 {
     .say;
 }
 ```
