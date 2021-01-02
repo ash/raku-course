@@ -8,7 +8,7 @@ title: 'Exercise: Replace with antonyms'
 
 Create a program that replaces all the words from command line with their antonyms. If the word is missing in the dictionary, do not modify it and print as is.
 
-Use a hard-coded hash to keep the dictionary of antonyms. For you convenience, here is a prepared list of about 200 pairs antonyms that you can directly copy and paste into your program: [dictionary.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/dictionary.raku). All the pairs are kept in both direction, e.g.:
+Use a hard-coded hash to keep the dictionary of antonyms. For you convenience, here is a prepared list of about 200 pairs antonyms that you can directly copy and paste into your program: [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku). All the pairs are kept in both direction, e.g.:
 
 ```raku
 my %dictionary =
