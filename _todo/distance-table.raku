@@ -22,14 +22,9 @@ my %distance =
 for ^@cities -> $from-index {
     my $from = @cities[$from-index];
 
-    say "$from => \{";
-
     for ^@cities -> $to-index {
         my $to = @cities[$to-index];
         
-        next if $from eq $to;
-        # say "$from - $to = %distance{$from}[$to-index]";
-        say "\t$to => %distance{$from}[$to-index],";
+        say "$from - $to = %distance{$from}[$to-index]";
     }
-    say "},";
 }

@@ -12,14 +12,14 @@ Here is the solution:
 
 ```raku
 my %employee =
-    name => 'Eliza Vents',
+    full-name => 'Eliza Vents',
     department => 'Sales',
     salary => 3000;
 
 my $raise = 5; # in percents
 
 %employee<salary> *= (1 + $raise / 100);
-say "New salary of %employee<name>: %employee<salary>";
+say "New salary of %employee<full-name>: %employee<salary>";
 ```
 
 🦋 Find the program in the file [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).

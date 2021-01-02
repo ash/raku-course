@@ -10,7 +10,7 @@ Given a hash with the data of an employee:
 
 ```raku
 my %employee =
-    name => 'Eliza Vents',
+    full-name => 'Eliza Vents',
     department => 'Sales',
     salary => 3000;
 ```
