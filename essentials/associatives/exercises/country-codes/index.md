@@ -12,7 +12,7 @@ You have a list of two-letter country codes in the array:
 my @codes = < FR IT DE EE LV US CN IN BR>;
 ```
 
-Complete the program to print the full names of these countries, one at a line. Use the file [cc.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercices/country-codes/cc.raku) with the hash that maps country codes to the names.
+Complete the program to print the full names of these countries, one at a line. Use the file [cc.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/country-codes/cc.raku) with the hash that maps country codes to the names.
 
 ## Example
 
