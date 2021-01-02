@@ -1,3 +1,3 @@
-my $x;
-$x //= 42;
-say $x; # 42
+loop {
+    say 'Eternity'
+}

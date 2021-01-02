@@ -15,7 +15,6 @@ my %dictionary =
     'above' => 'below',
     'absent' => 'present',
     'achieve' => 'fail',
-    'active' => 'idle',
     'active' => 'passive',
     'add' => 'subtract',
     # . . .

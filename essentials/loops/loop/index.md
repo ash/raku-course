@@ -35,6 +35,20 @@ loop (; $c < 5;) {
 }
 ```
 
+## Infinite loop
+
+The `loop` can be also used with only a body:
+
+```raku
+loop {
+    say 'Eternity';
+}
+```
+
+This loop will be exuted infinitely until you terminate the program by, for example, pressing `Ctrl+C`. (We will have better ways to control the loop in the second part of the course.)
+
+## * * *
+
 The `loop` loops are, probably, the least used loops in Raku. They can be used, for example, in an automated translator from C to Raku. In Raku, though, there are handier loops, such as `for`, which we are examining on the next page.
 
 {% include nav.html %}
