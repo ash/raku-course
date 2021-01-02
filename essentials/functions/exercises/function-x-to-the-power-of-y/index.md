@@ -6,7 +6,7 @@ title: 'Exercise: Function to compute xʸ'
 
 ## Problem
 
-Create a function with two arguments that returns the value of `$x` to the power of `$y`. Write a program to print the value of 5³, 2¹⁰, and (-4)⁵.
+Create a function with two arguments that returns the value of `$x` to the power of `$y`. Write a program to print the value of `5³`, `2¹⁰`, and `(−4)⁵`.
 
 ## Example
 
