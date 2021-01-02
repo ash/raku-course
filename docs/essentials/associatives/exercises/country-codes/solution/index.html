@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Seen before? | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Solution: Seen before? | A Complete Course of the Raku programming language" />
+    <title>Solution: Country codes | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Country codes | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Solution: Seen before? | A Complete Course of the Raku programming language</title>
+    <title>Solution: Country codes | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,60 +38,54 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/associatives/">Associative data types</a> / <a href="/raku-course/essentials/associatives/exercises/">Exercises</a> / <a href="/raku-course/essentials/associatives/exercises/seen-before">Seen before?</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/associatives/">Associative data types</a> / <a href="/raku-course/essentials/associatives/exercises/">Exercises</a> / <a href="/raku-course/essentials/associatives/exercises/country-codes">Country codes</a></p>
 
-<h1 id="solution-seen-before">Solution: Seen before?</h1>
+<h1 id="solution-country-codes">Solution: Country codes</h1>
 
-<p>This task is a classical example of using a hash to keep track of items. Before a loop, a hash <code class="language-plaintext highlighter-rouge">%seen</code> is created. Inside the loop, the entered <code class="language-plaintext highlighter-rouge">$word</code> serves a key of the hash.</p>
+<p>In this program, converting a code to a name is done as a hash lookup <code class="language-plaintext highlighter-rouge">%cc{$_}</code> in a loop over the <code class="language-plaintext highlighter-rouge">@codes</code> array.</p>
 
 <h2 id="code">Code</h2>
 
-<p>Here is the solution:</p>
+<p>Here is the possible solution (not all countries are shown):</p>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%seen</span>;
-<span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$word</span> = <span class="nb">prompt</span> <span class="s">&#39;Word: &#39;</span>;
-    <span class="k">if</span> <span class="nv">%seen</span>{<span class="nv">$word</span>} {
-        <span class="nb">say</span> <span class="nv">%seen</span>{<span class="nv">$word</span>} == <span class="mi">1</span> ?? <span class="s">&#39;Seen!&#39;</span> !! <span class="nb">say</span> <span class="s">&quot;Seen %seen{$word} times!&quot;</span>;
-    }
-    <span class="nv">%seen</span>{<span class="nv">$word</span>}++;
-}
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%cc</span> =
+    <span class="n">AD</span> =&gt; <span class="s">&#39;Andorra&#39;</span>,
+    <span class="n">AE</span> =&gt; <span class="s">&#39;United Arab Emirates&#39;</span>,
+
+    <span class="c1"># . . .</span>
+
+    <span class="n">ZM</span> =&gt; <span class="s">&#39;Zambia&#39;</span>,
+    <span class="n">ZW</span> =&gt; <span class="s">&#39;Zimbabwe&#39;</span>
+;
+
+<span class="k">my</span> <span class="nv">@codes</span> = &lt; <span class="n">FR</span> <span class="n">IT</span> <span class="n">DE</span> <span class="n">EE</span> <span class="n">LV</span> <span class="n">US</span> <span class="n">CN</span> <span class="n">IN</span> <span class="n">BR</span>&gt;;
+
+<span class="nb">say</span> <span class="nv">%cc</span>{<span class="nv">$_</span>} <span class="k">for</span> <span class="nv">@codes</span>;
 </pre></div>
 
 
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku">seen-before.raku</a>.</p>
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/country-codes.raku">country-codes.raku</a>.</p>
 
 <h2 id="output">Output</h2>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/seen-before.raku
-<span class="go">Word: I
-Word: never
-Word: saw
-Word: a
-Word: saw
-Seen!
-Word: that
-Word: saw
-Seen 2 times!
-True
-Word: as
-Word: that
-Seen!
-Word: saw
-Seen 3 times!
-True
-Word: sawed
-Word: ^C
+<p>For the given input codes, the program prints the following list of country names:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/country-codes.raku
+<span class="go">France
+Italy
+Germany
+Estonia
+Latvia
+United States of America
+China
+India
+Brazil
 </span></code></pre></div></div>
-
-<h2 id="comment">Comment</h2>
-
-<p>The construct <code class="language-plaintext highlighter-rouge">%seen{$word}++</code> not only increments the value, but also creates it if it did not exist yet. The process of creating is called <em>autovivification</em>. Notice that it does not happen when you only read the value as in the condition: <code class="language-plaintext highlighter-rouge">if %seen{$word}</code>.</p>
 
 <p><div class="exercises"></p>
 <h2 id="next-exercise">Next exercise</h2>
 
-<p>💪 <a href="/raku-course//essentials/associatives/exercises/country-codes">Country codes</a>
+<p>💪 <a href="/raku-course//essentials/associatives/exercises/replace-with-antonyms">Replace with antonyms</a>
 </div></p>
 
 <h2 id="course-navigation">Course navigation</h2>
