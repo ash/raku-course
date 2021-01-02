@@ -1,5 +1,5 @@
 ---
-title: Exercise ‘Trying IntStr’
+title: Exercise ‘Trying allomorphs’
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ say $i;
 say $s;
 ```
 
-🦋 You can find the source code in the file [intstr.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/intstr.raku).
+🦋 You can find the source code in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/allomorphs.raku).
 
 ## Solution
 
