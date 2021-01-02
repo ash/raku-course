@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solution: Purchase table | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Purchase table | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
+    <title>Solution: Purchase table | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/associatives/">Associative data types</a> / <a href="/raku-course/essentials/associatives/exercises/">Exercises</a> / <a href="/raku-course/essentials/associatives/exercises/purchase-table">Purchase table</a></p>
+
+<h1 id="solution-purchase-table">Solution: Purchase table</h1>
+
+<p>The table contains a header (which you simply print with a single <code class="language-plaintext highlighter-rouge">say</code>) and a number of rows with the similar structure: item name, item price, quantity and the total cost for these items.</p>
+
+<p>As you want to preserve the order of rows, an array is a good choice to keep the items. So, each line of the table corresponds to a single element of an array.</p>
+
+<p>On the second level, a record can be saved in a hash strucutre with a few named fields: <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">price</code>, and <code class="language-plaintext highlighter-rouge">quantity</code>.</p>
+
+<p>The rest of the program is to loop over the items, calculate the totals and print the table row.</p>
+
+<h2 id="code">Code</h2>
+
+<p>Here is one of the possible solution of this task:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@items</span> = [
+    {
+        <span class="nb">name</span> =&gt; <span class="s">&#39;Chairs&#39;</span>,
+        <span class="n">price</span> =&gt; <span class="mf">20.57</span>,
+        <span class="n">quantity</span> =&gt; <span class="mi">4</span>,
+    },
+    {
+        <span class="nb">name</span> =&gt; <span class="s">&#39;Tables&#39;</span>,
+        <span class="n">price</span> =&gt; <span class="mf">50.18</span>,
+        <span class="n">quantity</span> =&gt; <span class="mi">1</span>,
+    }
+];
+
+<span class="nb">say</span> <span class="s">&quot;Item\tPrice\tN\tTotal&quot;</span>;
+<span class="k">for</span> <span class="nv">@items</span> -&gt; <span class="nv">$item</span> {
+    <span class="k">my</span> <span class="nv">$total</span> = <span class="nv">$item&lt;price&gt;</span> * <span class="nv">$item&lt;quantity&gt;</span>;
+    <span class="nb">say</span> <span class="s">&quot;$item&lt;name&gt;\t\$$item&lt;price&gt;\t$item&lt;quantity&gt;\t\$$total&quot;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku">purchase-table.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/purchase-table.raku
+<span class="go">Item	Price	N	Total
+</span><span class="gp">Chairs	$</span>20.57	4	<span class="nv">$82</span>.28
+<span class="gp">Tables	$</span>50.18	1	<span class="nv">$50</span>.18
+</code></pre></div></div>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/raku-course//essentials/associatives/exercises/travel-distance">Travel distance*</a>
+</div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+    <a href="/raku-course/essentials/positionals">Positional data types</a>
+        / <a href="/raku-course/essentials/positionals/ranges">Ranges</a>
+  |  
+    <a href="/raku-course/essentials/coercion">Data type conversion</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

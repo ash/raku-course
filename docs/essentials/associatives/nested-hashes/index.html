@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Interpolating hashes | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Interpolating hashes | A Complete Course of the Raku programming language" />
+    <title>Nested hashes | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Nested hashes | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Interpolating hashes | A Complete Course of the Raku programming language</title>
+    <title>Nested hashes | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -40,39 +40,57 @@
           
 <p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/associatives">Associative data types</a></p>
 
-<h1 id="interpolating-hashes">Interpolating hashes</h1>
+<h1 id="nested-hashes">Nested hashes</h1>
 
-<p>To interpolate an array elements in double-quoted strings write it as you do in a program itself: <code class="language-plaintext highlighter-rouge">%data&lt;FR&gt;</code>. To interpolate the whole hash, add a pair of empty angle or curly brackets: <code class="language-plaintext highlighter-rouge">@data{}</code>. The following program illustrates this approach:</p>
+<p>Creating nested hashes is similar to creating <a href="/raku-course/essentials/positionals/nested-arrays">nested arrays</a>. Use curly braces to embrace the inner hashes.</p>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%data</span> = <span class="n">FR</span> =&gt; <span class="s">&#39;Paris&#39;</span>, <span class="n">IT</span> =&gt; <span class="s">&#39;Rome&#39;</span>;
-
-<span class="nb">say</span> <span class="s">&quot;%data&lt;FR&gt;&quot;</span>;
-<span class="nb">say</span> <span class="s">&quot;%data&lt;&gt;&quot;</span>;
-
-<span class="c1"># Or:</span>
-<span class="c1"># say &quot;%data{}&quot;;</span>
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%people</span> =
+    <span class="n">John</span> =&gt; {
+        <span class="n">age</span> =&gt; <span class="mi">20</span>,
+        <span class="n">city</span> =&gt; <span class="s">&#39;Madrid&#39;</span>
+    },
+    <span class="n">Alla</span> =&gt; {
+        <span class="n">age</span> =&gt; <span class="mi">21</span>,
+        <span class="n">city</span> =&gt; <span class="s">&#39;Tokyo&#39;</span>
+    };
 </pre></div>
 
 
-<p>This program prints the requested data:</p>
+<p>Note that a trailing comma is a valid syntax element:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
-<span class="go">Paris
-FR	Paris
-IT	Rome
-</span></code></pre></div></div>
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%people</span> =
+    <span class="n">John</span> =&gt; {
+        <span class="n">age</span> =&gt; <span class="mi">20</span>,
+        <span class="n">city</span> =&gt; <span class="s">&#39;Madrid&#39;</span>,
+    },
+    <span class="n">Alla</span> =&gt; {
+        <span class="n">age</span> =&gt; <span class="mi">21</span>,
+        <span class="n">city</span> =&gt; <span class="s">&#39;Tokyo&#39;</span>,
+    };
+</pre></div>
 
-<p>Note that printing the whole hash may generate multi-line output.</p>
+
+<p>Having a comma helps when you edit the structure by copying and pasting lines.</p>
+
+<p>To get the elements from the inner hashes, use two pairs of curly braces for the keys:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">%people&lt;John&gt;&lt;city&gt;</span>; <span class="c1"># Madrid</span>
+<span class="nb">say</span> <span class="nv">%people&lt;Alla&gt;&lt;city&gt;</span>; <span class="c1"># Tokyo</span>
+</pre></div>
+
 
 <p></div></p>
 
 <h2 id="course-navigation">Course navigation</h2>
 
 <p>←
-        <a href="/raku-course/essentials/associatives">Associative data types</a> / <a href="/raku-course/essentials/associatives/nested-hashes">Nested hashes</a>
+        <a href="/raku-course/essentials/associatives">Associative data types</a> / <a href="/raku-course/essentials/associatives/hashes">Hashes</a>
   |  
-        💪 <a href="/raku-course/essentials/associatives/exercises">Exercises: Associative data types</a>
+        <a href="/raku-course/essentials/associatives">Associative data types</a> / <a href="/raku-course/essentials/associatives/interpolating-hashes">Interpolating hashes</a>
 →</p>
+
+<p><br />
+💪 Or jump directly <a href="/raku-course/essentials/associatives/exercises">to the exercises to this section</a>.</p>
 
 
         </div>

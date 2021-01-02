@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Recursive factorial | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Solution: Recursive factorial | A Complete Course of the Raku programming language" />
+    <title>Solution: Interval function | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Interval function | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Solution: Recursive factorial | A Complete Course of the Raku programming language</title>
+    <title>Solution: Interval function | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,44 +38,37 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions/">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/exercises/">Exercises</a> / <a href="/raku-course/essentials/functions/exercises/recursive-factorial">Recursive factorial</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions/">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/exercises/">Exercises</a> / <a href="/raku-course/essentials/functions/exercises/interval-function">Interval function</a></p>
 
-<h1 id="solution-recursive-factorial">Solution: Recursive factorial</h1>
+<h1 id="solution-interval-function">Solution: Interval function</h1>
 
-<p>Factorial is a very productive exercise, as it can be solved in a number of different ways. This time we are using recursion, which means that the function is called from itself.</p>
+<p>In this function, a three-branch <code class="language-plaintext highlighter-rouge">if</code> construct is used. The first two branches have a Boolean test, but the third check is not needed as if the number did not pass either of the first two tests, it is negative.</p>
 
 <h2 id="code">Code</h2>
 
-<p>Here is the code of the solution. Notice that you need to check the condition to stop the recursion, otherwise it will continue infinitely.</p>
+<p>Here is the solution:</p>
 
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">factorial</span>(<span class="nv">$n</span>) {
-    <span class="k">if</span> <span class="nv">$n</span> &lt; <span class="mi">2</span> {
-        <span class="k">return</span> <span class="mi">1</span>;
-    }
-    <span class="k">else</span> {
-        <span class="k">return</span> <span class="nv">$n</span> * <span class="n">factorial</span>(<span class="nv">$n</span> - <span class="mi">1</span>);
-    }
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {
+    <span class="k">if</span>    <span class="nv">$x</span> &gt; <span class="mi">0</span>  { <span class="k">return</span> <span class="nv">$x</span> - <span class="mf">0.5</span> }
+    <span class="k">elsif</span> <span class="nv">$x</span> == <span class="mi">0</span> { <span class="k">return</span> <span class="mi">0</span> }
+    <span class="k">else</span>          { <span class="k">return</span> -<span class="nv">$x</span> }
 }
 
-<span class="nb">say</span> <span class="n">factorial</span>(<span class="mi">10</span>);
+<span class="nb">say</span> <span class="nb">f</span>(-<span class="mi">2</span>);
+<span class="nb">say</span> <span class="nb">f</span>(<span class="mi">0</span>);
+<span class="nb">say</span> <span class="nb">f</span>(<span class="mi">3</span>);
 </pre></div>
 
 
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial.raku">recursive-factorial.raku</a>.</p>
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku">interval-function.raku</a>.</p>
 
-<h2 id="example">Example</h2>
+<h2 id="output">Output</h2>
 
-<p>Run the program and check the result. By the way, did you know that <em>10!</em> is the exact number of seconds in six weeks?</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/functions/recursive-factorial.raku
-<span class="go">3628800
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/functions/interval-function.raku
+<span class="go">2
+0
+2.5
 </span></code></pre></div></div>
-
-<p><div class="exercises"></p>
-<h2 id="next-exercise">Next exercise</h2>
-
-<p>💪 <a href="/raku-course//essentials/functions/exercises/interval-function">Interval function</a>
-</div></p>
 
 <h2 id="course-navigation">Course navigation</h2>
 
