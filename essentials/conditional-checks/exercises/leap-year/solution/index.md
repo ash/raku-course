@@ -11,6 +11,8 @@ The algorithm of the detection if the year is leap:
 1. if year is not divisible by 400 => common year
 1. else => leap year
 
+Note that you can use the built-in types for working with date and time, so we’ll return to this task in the second part of the course.
+
 ## Code 1
 
 The first solution is using the above steps literary:
