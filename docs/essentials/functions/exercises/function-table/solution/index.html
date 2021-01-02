@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Interval function | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Solution: Interval function | A Complete Course of the Raku programming language" />
+    <title>Solution: Function table | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Function table | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Solution: Interval function | A Complete Course of the Raku programming language</title>
+    <title>Solution: Function table | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,43 +38,57 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions/">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/exercises/">Exercises</a> / <a href="/raku-course/essentials/functions/exercises/interval-function">Interval function</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions/">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/exercises/">Exercises</a> / <a href="/raku-course/essentials/functions/exercises/function-table">Function table</a></p>
 
-<h1 id="solution-interval-function">Solution: Interval function</h1>
+<h1 id="solution-function-table">Solution: Function table</h1>
 
-<p>In this function, a three-branch <code class="language-plaintext highlighter-rouge">if</code> construct is used. The first two branches have a Boolean test, but the third check is not needed as if the number did not pass either of the first two tests, it is negative.</p>
+<p>This program is, probably, a good example for using the <code class="language-plaintext highlighter-rouge">loop</code> loop. With it, you can set both the edges of the interval and the step directly in the units you need. Note that you can return to this task later after learning Raku <em>sequences</em>.</p>
 
 <h2 id="code">Code</h2>
 
 <p>Here is the solution:</p>
 
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {
-    <span class="k">if</span>    <span class="nv">$x</span> &gt; <span class="mi">0</span>  { <span class="k">return</span> <span class="nv">$x</span> - <span class="mf">0.5</span> }
-    <span class="k">elsif</span> <span class="nv">$x</span> == <span class="mi">0</span> { <span class="k">return</span> <span class="mi">0</span> }
-    <span class="k">else</span>          { <span class="k">return</span> -<span class="nv">$x</span> }
-}
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) { <span class="nv">$x²</span> }
 
-<span class="nb">say</span> <span class="nb">f</span>(-<span class="mi">2</span>);
-<span class="nb">say</span> <span class="nb">f</span>(<span class="mi">0</span>);
-<span class="nb">say</span> <span class="nb">f</span>(<span class="mi">3</span>);
+<span class="nb">say</span> <span class="s">&quot;x\tf(x)&quot;</span>;
+<span class="k">loop</span> (<span class="k">my</span> <span class="nv">$x</span> = -<span class="mi">3</span>; <span class="nv">$x</span> &lt;= <span class="mi">3</span>; <span class="nv">$x</span> += <span class="mf">0.1</span>) {
+    <span class="nb">say</span> <span class="s">&quot;$x\t{f($x)}&quot;</span>;
+}
 </pre></div>
 
 
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku">interval-function.raku</a>.</p>
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/functions/function-table.raku">function-table.raku</a>.</p>
 
 <h2 id="output">Output</h2>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/functions/interval-function.raku
-<span class="go">2
-0
-2.5
+<p>The program prints a long list of the x — f(x) table. A part of this output is shown here:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/functions/function-table.raku
+<span class="go">-3	9
+-2.9	8.41
+-2.8	7.84
+
+. . .
+
+-0.2	0.04
+-0.1	0.01
+0	0
+0.1	0.01
+0.2	0.04
+
+. . .
+
+2.7	7.29
+2.8	7.84
+2.9	8.41
+3	9
 </span></code></pre></div></div>
 
-<p><div class="exercises"></p>
-<h2 id="next-exercise">Next exercise</h2>
+<h2 id="visualisation">Visualisation</h2>
 
-<p>💪 <a href="/raku-course//essentials/functions/exercises/function-table">Function table</a>
-</div></p>
+<p>It is wise to visualise the output with some external program, for example, Excel or gnuplot.</p>
+
+<p><img src="../f-graph.png" style="width: 500px; height: auto" /></p>
 
 <h2 id="course-navigation">Course navigation</h2>
 

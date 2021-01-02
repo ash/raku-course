@@ -1,0 +1,85 @@
+---
+title: 'Solution: Leap year'
+---
+
+{% include menu.html %}
+
+The algorithm of the detection if the year is leap:
+
+1. if year is not divisible by 4 => common year
+1. if year is not divisible by 100 => leap year
+1. if year is not divisible by 400 => common year
+1. else => leap year
+
+## Code 1
+
+The first solution is using the above steps literary:
+
+```raku
+my $year = prompt 'Year: ';
+
+if $year % 4 {
+    say 'Common year';
+}
+elsif $year % 100 {
+    say 'Leap year';
+}
+elsif $year % 400 {
+    say 'Common year';
+}
+else {
+    say 'Leap year';
+}
+```
+
+🦋 Find the program in the file [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+
+## Code 2
+
+In the second solution, the logic is packed to a single expressions. Parentheses are not always needed by added here for clarity.
+
+```raku
+my $year = prompt 'Year: ';
+
+say (($year %% 400) | (($year %% 4) && ($year % 100))) ?? 'Leap year' !! 'Common year';
+```
+
+🦋 Find the program in the file [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+
+## Output
+
+Try both programs for the most important cases, for example: 1900, 2000, 2020, 2021.
+
+```console
+$ raku exercises/conditional-checks/leap-year.raku
+Year: 1900
+Common year
+
+$ raku exercises/conditional-checks/leap-year.raku
+Year: 2000
+Leap year
+```
+
+```console
+$ raku exercises/conditional-checks/leap-year-formula.raku
+Year: 2020
+Leap year
+
+$ raku exercises/conditional-checks/leap-year-formula.raku
+Year: 2021
+Common year
+```
+
+## Comments
+
+Note that in Boolean contexts, the `%%` and `%` operators are complementary. You can use this fact to chose one of the operators to avoid explicit comparison with zero.
+
+```
+say ?(100 % 3);    # True
+say 100 % 3 != 0;  # True
+
+say ?(100 %% 3);   # False
+say 100 %% 3 != 0; # Flase
+```
+
+{% include nav.html %}
