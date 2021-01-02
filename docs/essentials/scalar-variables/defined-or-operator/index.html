@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Declaration with initialization | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Declaration with initialization | A Complete Course of the Raku programming language" />
+    <title>The defined-or operator | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="The defined-or operator | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Declaration with initialization | A Complete Course of the Raku programming language</title>
+    <title>The defined-or operator | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -40,40 +40,44 @@
           
 <p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/scalar-variables">Scalar variables</a></p>
 
-<h1 id="declaration-with-initialization">Declaration with initialization</h1>
+<h1 id="the-defined-or-operator">The defined-or operator</h1>
 
-<p>If you know the value that you want to put in a variable at the time the variable is created, you can gain a line of code and write it in a single statement:</p>
+<p>The so-called <em>defined-or</em> operator <code class="language-plaintext highlighter-rouge">//</code> helps to assign a value to a variable that is not yet set.</p>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
-<span class="nb">say</span> <span class="nv">$name</span>;
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="s">&#39;alpha&#39;</span>;
+<span class="nb">say</span> <span class="nv">$a</span> // <span class="s">&#39;gamma&#39;</span>;
+
+<span class="k">my</span> <span class="nv">$b</span>;
+<span class="nb">say</span> <span class="nv">$b</span> // <span class="s">&#39;delta&#39;</span>;
 </pre></div>
 
 
-<h2 id="multiple-variables">Multiple variables</h2>
+<p>This program prints:</p>
 
-<p>To create and assign more than one variable, use the following pattern:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>alpha
+delta
+</code></pre></div></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$age</span>) = <span class="s">&#39;Carl&#39;</span>, <span class="mi">36</span>;
+<p>The value of <code class="language-plaintext highlighter-rouge">$a</code> is set in the first line, so in the expression <code class="language-plaintext highlighter-rouge">$a // 'gamma'</code>, the current value of <code class="language-plaintext highlighter-rouge">$a</code> is used. In contract, the <code class="language-plaintext highlighter-rouge">$b</code> variable was not initialised, so <code class="language-plaintext highlighter-rouge">$b // 'delta'</code> returns the right-hand-side operand, and the program prints <code class="language-plaintext highlighter-rouge">delta</code>.</p>
+
+<h2>//=</h2>
+
+<p>The combination of <code class="language-plaintext highlighter-rouge">//</code> and <code class="language-plaintext highlighter-rouge">=</code> gives the <code class="language-plaintext highlighter-rouge">//=</code> operator, that assignes a value if the variable is not defined.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span>;
+<span class="nv">$x</span> //= <span class="mi">42</span>;
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 42</span>
 </pre></div>
 
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
-<p>Complete the quizzes that cover the contents of this topic.</p>
-<ul>
-  <li><a href="/raku-course/essentials/scalar-variables/declaration-with-initialization/quiz1">Quiz 1: Declaration with initialization</a></li>
-  <li><a href="/raku-course/essentials/scalar-variables/declaration-with-initialization/quiz2">Quiz 2: Declaration and initialization or declaration with initialization</a></li>
-</ul>
 
 <p></div></p>
 
 <h2 id="course-navigation">Course navigation</h2>
 
 <p>←
-        <a href="/raku-course/essentials/scalar-variables">Scalar variables</a> / <a href="/raku-course/essentials/scalar-variables/defined-or-operator">The defined-or operator</a>
+        <a href="/raku-course/essentials/scalar-variables">Scalar variables</a> / <a href="/raku-course/essentials/scalar-variables/assigning-a-value">Assigning a value</a>
   |  
-        <a href="/raku-course/essentials/scalar-variables">Scalar variables</a> / <a href="/raku-course/essentials/scalar-variables/identifiers">Variable names</a>
+        <a href="/raku-course/essentials/scalar-variables">Scalar variables</a> / <a href="/raku-course/essentials/scalar-variables/declaration-with-initialization">Declaration with initialization</a>
 →</p>
 
 <p><br />

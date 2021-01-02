@@ -48,6 +48,6 @@ Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3
 
 The second assignment, `$s = $input`, will never break as a string can take any input.
 
-🦋 You can find the source code in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/essentials/data-types/allomorphs/allomorphs.raku).
+🦋 You can find the source code of this program in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/essentials/data-types/allomorphs/allomorphs.raku).
 
 {% include nav.html %}
