@@ -4,7 +4,7 @@ title: 'Solution: Factorial with multi-functions'
 
 {% include menu.html %}
 
-This exercise is again about factorial. Indeed, the task allows us to illustrate more interesting features of Raku.
+This exercise is again about factorials. Indeed, the task allows us to illustrate more interesting features of Raku.
 
 When computing a factorial by starting from the given number downwards, you need to stop when the number gets 1. With multi-functions, you can achieve that by extracting the case with `$n == 1` to a separate multi-function.
 

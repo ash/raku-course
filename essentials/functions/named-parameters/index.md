@@ -54,4 +54,17 @@ Again, the order is not strict here:
 say distance(:$to, :$from); # 20
 ```
 
+If the name of the variable differs from the name of the parameter, use one of the ways to pass a pair:
+
+```raku
+my $a = 20;
+my $b = 10;
+
+say distance(from => $a, to => $b);
+
+# or:
+
+say distance(:from($a), :to($b));
+```
+
 {% include nav.html %}

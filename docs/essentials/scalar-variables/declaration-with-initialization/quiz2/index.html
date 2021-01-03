@@ -295,6 +295,16 @@
     }
 
     function showanswers() {
+        document.querySelectorAll('table.quiz tr').forEach(function(item) {
+            let cells = item.querySelectorAll('td');
+            console.log(cells);
+            if (!cells.length) return;
+
+            let input = cells[1].querySelector('input');
+            if (!input) return;
+            input.checked = input.dataset.ok == '1';
+        });
+
         document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
             let inputs = item.querySelectorAll('input');
             if (!inputs.length) return;
