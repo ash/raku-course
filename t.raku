@@ -1,11 +1,4 @@
-sub x {
-    return 42;
-}
-
-say x;
- 		say(x);
- 		say x();
- 		say(x());
- 		# my $v = x ();
- 		my $w = x();
- 		my $u = x;
+multi sub f($x) {say "$x is not the answer"}
+multi sub f(42) {say 'This is the answer'}
+f(10); 
+f(42);

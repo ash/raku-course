@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quiz — Boolean type | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Quiz — Boolean type | A Complete Course of the Raku programming language" />
+    <title>Quiz — Typed parameters | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Quiz — Typed parameters | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Quiz — Boolean type | A Complete Course of the Raku programming language</title>
+    <title>Quiz — Typed parameters | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,68 +38,90 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/booleans">Boolean type</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/more-on-functions">More about functions</a> / <a href="/raku-course/essentials/more-on-functions/typed-parameters">Typed parameters</a></p>
 
-<h1 id="quizboolean-values">Quiz: Boolean values</h1>
+<h1 id="quiz-typed-parameters">Quiz — Typed parameters</h1>
 
-<p>Select all examples with correct Boolean values in Raku</p>
+<h2 id="1">1</h2>
+
+<p>Given the function:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nb">Rat</span> <span class="nv">$x</span>) {
+    <span class="nb">say</span> <span class="mi">2</span> * <span class="nv">$x</span>;
+}
+</pre></div>
+
+
+<p>Which calls are correct?</p>
 
 <table class="quiz">
   <tbody>
     <tr>
       <td>0</td>
-      <td>true</td>
+      <td>f(3);</td>
+      <td>Even if <code class="language-plaintext highlighter-rouge">3</code> can fit in a <code class="language-plaintext highlighter-rouge">Rat</code> container, the call is wrong as <code class="language-plaintext highlighter-rouge">3</code> is <code class="language-plaintext highlighter-rouge">Int</code>, not a <code class="language-plaintext highlighter-rouge">Rat</code>.</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>f(3.5);</td>
       <td> </td>
     </tr>
     <tr>
       <td>0</td>
-      <td>false</td>
+      <td>f(3e0);</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>f('3');</td>
       <td> </td>
     </tr>
     <tr>
       <td>1</td>
-      <td>True</td>
-      <td>This is the only correct form for the True value.</td>
+      <td>f(&lt;4/5&gt;);</td>
+      <td>This is a <code class="language-plaintext highlighter-rouge">Rat</code> number.</td>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>False</td>
-      <td>This is the only correct form for the False value.</td>
-    </tr>
+  </tbody>
+</table>
+
+<h2 id="2">2</h2>
+
+<p>Given the function:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">g</span>(<span class="nb">Int</span> <span class="nv">$a</span>, <span class="nb">Str</span> <span class="nv">$b</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Integer $a, string $b&quot;</span>;
+}
+</pre></div>
+
+
+<p>Which calls are correct?</p>
+
+<table class="quiz">
+  <tbody>
     <tr>
       <td>0</td>
-      <td>$True</td>
-      <td>This is variable, not a Boolean literal.</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>$False</td>
-      <td>As well as this one.</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>TRUE</td>
+      <td>g(10, 20);</td>
       <td> </td>
     </tr>
     <tr>
       <td>0</td>
-      <td>FALSE</td>
+      <td>g('10', 20);</td>
+      <td>Even if either argument can be casted, Raku demands the exact type.</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>g(10, '20');</td>
       <td> </td>
     </tr>
     <tr>
       <td>0</td>
-      <td>1</td>
-      <td>This may be OK in a Boolean check, but this is not a Boolean value by itself.</td>
+      <td>g('10, 20');</td>
+      <td>A single string passed.</td>
     </tr>
     <tr>
       <td>0</td>
-      <td>0</td>
-      <td>This one too.</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>null</td>
-      <td>There is no such thing in Raku.</td>
+      <td>g('10', '20');</td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
@@ -360,14 +382,18 @@
     <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
 </div>
 
+<p></div></p>
+
 <h2 id="course-navigation">Course navigation</h2>
 
 <p>←
-    <a href="/raku-course/essentials/numbers">Numbers</a>
-        / <a href="/raku-course/essentials/numbers/operations">Operations with numbers</a>
+        <a href="/raku-course/essentials/more-on-functions">More about functions</a> / <a href="/raku-course/essentials/more-on-functions/mind-the-space">Mind the space</a>
   |  
-        <a href="/raku-course/essentials/booleans/operations">Boolean operations</a>
+        <a href="/raku-course/essentials/more-on-functions">More about functions</a> / <a href="/raku-course/essentials/more-on-functions/return-type">Return type</a>
 →</p>
+
+<p><br />
+💪 Or jump directly <a href="/raku-course/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
 
 
         </div>

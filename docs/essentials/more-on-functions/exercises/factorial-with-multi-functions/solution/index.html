@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solution: Factorial with multi-functions | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Factorial with multi-functions | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
+    <title>Solution: Factorial with multi-functions | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/more-on-functions/">More about functions</a> / <a href="/raku-course/essentials/more-on-functions/exercises/">Exercises</a> / <a href="/raku-course/essentials/more-on-functions/exercises/factorial-with-multi-functions">Factorial with multi-functions</a></p>
+
+<h1 id="solution-factorial-with-multi-functions">Solution: Factorial with multi-functions</h1>
+
+<p>This exercise is again about factorial. Indeed, the task allows us to illustrate more interesting features of Raku.</p>
+
+<p>When computing a factorial by starting from the given number downwards, you need to stop when the number gets 1. With multi-functions, you can achieve that by extracting the case with <code class="language-plaintext highlighter-rouge">$n == 1</code> to a separate multi-function.</p>
+
+<h2 id="code">Code</h2>
+
+<p>Here is the solution:</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="n">factorial</span>(<span class="mi">1</span>)  { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">factorial</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">factorial</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
+
+<span class="nb">say</span> <span class="n">factorial</span>(<span class="vg">@*ARGS</span>[<span class="mi">0</span>].<span class="nb">Int</span>);
+</pre></div>
+
+
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/more-on-functions/factorial-with-multi-functions.raku">factorial-with-multi-functions.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/more-on-functions/factorial-with-multi-functions.raku 5
+<span class="go">120
+</span></code></pre></div></div>
+
+<h2 id="comment">Comment</h2>
+
+<p>Note that the input argument is explicitly converted to an integer: <code class="language-plaintext highlighter-rouge">@*ARGS[0].Int</code>. This is to prevent infinite loop when the input number is <code class="language-plaintext highlighter-rouge">1</code>. In this case, the type of the parameter passed to the <code class="language-plaintext highlighter-rouge">factorial</code> function is <a href="/raku-course/essentials/data-types/allomorphs"><code class="language-plaintext highlighter-rouge">IntStr</code></a>, and the first multi-variant is not able to catch the call. In contract, when <code class="language-plaintext highlighter-rouge">factorial(2 - 1)</code> is called recursively, the argument of the function is integer, which makes it possible to call the first variant.</p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+    <a href="/raku-course/essentials/functions">Creating and calling functions</a>
+        / <a href="/raku-course/essentials/functions/default-values">Default values</a>
+  |  
+    <a href="/raku-course/essentials/built-in-functions-for-printing">Built-in functions for printing</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

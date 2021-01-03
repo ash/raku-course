@@ -35,4 +35,15 @@ Such trivial and small functions are often formatted in a single line for a more
 sub add($x, $y) { $x + $y }
 ```
 
+## No return data
+
+If you need to return from a function before the end of its body, and the function does not return any result, just use `return`.
+
+```raku
+sub test($x) {
+    return if $x <= 10;
+    say "$x is above the limit";
+}
+```
+
 {% include nav.html %}
