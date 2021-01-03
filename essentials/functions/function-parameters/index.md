@@ -51,4 +51,8 @@ sub greet() {
 greet();
 ```
 
+## Signature
+
+The list of parameters of a function is called a _signature_.
+
 {% include nav.html %}

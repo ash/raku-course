@@ -1,0 +1,32 @@
+---
+title: 'Exercise: The value of e'
+---
+
+{% include menu.html %}
+
+## Problem
+
+Create a function that computes an approximate value of the mathematical constant _e_ using the following formula:
+
+<img src="e-formula.png" style="height: 4.5em; width: auto">
+
+This function should allow to be called in one of either forms.
+
+1. The argument defines the number of items in the formula: `e-approx(10)`.
+2. If no argument is passed, the sum contains 100 elements: `e-approx()`.
+
+Print two results, one for both of the above calls.
+
+## Example
+
+```console
+$ raku the-value-of-e.raku
+2.7182818
+2.718281828459045
+```
+
+## Solution
+
+✅ [See the solution](solution)
+
+{% include nav.html %}
