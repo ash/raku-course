@@ -106,7 +106,7 @@
     }
     table.quiz,
     table.quiz-code,
-    table.quiz-selecte,
+    table.quiz-select,
     table.quiz tr,
     table.quiz-code tr,
     table.quiz-select tr,
@@ -225,15 +225,17 @@
         let question = cells[2].innerHTML;
         let q_from = question.indexOf('(:');
         let q_to = question.indexOf(':)');
-        let values = question.substring(q_from + 2, q_to).trim();
-        let values_items = values.split(',');
-        let select = '<select data-ok="' + answer + '"><option value=""></option>';
-        for (let c = 0; c != values_items.length; c++) {
-            let value = values_items[c].trim();
-            select += '<option value="' + value + '">' + value + '</option>';
+        if (q_from != -1 && q_to != -1) {
+            let values = question.substring(q_from + 2, q_to).trim();
+            let values_items = values.split(',');
+            let select = '<select data-ok="' + answer + '"><option value=""></option>';
+            for (let c = 0; c != values_items.length; c++) {
+                let value = values_items[c].trim();
+                select += '<option value="' + value + '">' + value + '</option>';
+            }
+            select += '</select>';
+            cells[2].innerHTML = question.substring(0, q_from) + select + question.substring(q_to + 2);
         }
-        select += '</select>';
-        cells[2].innerHTML = question.substring(0, q_from) + select + question.substring(q_to + 2);
     });
 
     function checkquiz() {

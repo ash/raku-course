@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quiz: What is its type? | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Quiz: What is its type? | A Complete Course of the Raku programming language" />
+    <title>Quiz — Passing arguments | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Quiz — Passing arguments | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Quiz: What is its type? | A Complete Course of the Raku programming language</title>
+    <title>Quiz — Passing arguments | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,63 +38,120 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/data-types">Data types</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/function-parameters">Function parameters</a></p>
 
-<h1 id="quiz-what-is-its-type">Quiz: What is its type?</h1>
+<h1 id="passing-arguments">Passing arguments</h1>
 
-<p>Select the correct type for each of the listed literals.</p>
+<h2 id="1">1</h2>
 
-<table class="quiz-select">
+<p>There is a function with the following definition:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> {
+    <span class="nb">say</span> <span class="s">&#39;Function called&#39;</span>;
+}
+</pre></div>
+
+
+<p>Check the correct calls of this function.</p>
+
+<table class="quiz">
   <tbody>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">"Hello, World!"</code> is (: Int, Rat, Num, Str :)</td>
+      <td>1</td>
+      <td>f;</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">'Hello, World!'</code> is (: Int, Rat, Num, Str :)</td>
+      <td>0</td>
+      <td>f('');</td>
+      <td>Function does not accept any arguments, but one is received here.</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>f '';</td>
+      <td>The same as above.</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>f();</td>
+      <td>This is fine, no arguments passed;</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>f ();</td>
+      <td>Here, one argument (an empty list) is passed.</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>f(10);</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2">2</h2>
+
+<p>There is another function.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">g</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Called g($x, $y)&quot;</span>;
+}
+</pre></div>
+
+
+<p>Check the correct calls of this function.</p>
+
+<table class="quiz">
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>g(10, 20);</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Int</td>
-      <td><code class="language-plaintext highlighter-rouge">12345</code> is (: Int, Rat, Num, Str :)</td>
-      <td> </td>
+      <td>0</td>
+      <td>g 10 20;</td>
+      <td>No comma between arguments.</td>
     </tr>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">'12345'</code> is (: Int, Rat, Num, Str :)</td>
-      <td> </td>
+      <td>0</td>
+      <td>g(10);</td>
+      <td>Too few arguments: two required, one passed.</td>
     </tr>
     <tr>
-      <td>Rat</td>
-      <td><code class="language-plaintext highlighter-rouge">123.45</code> is (: Int, Rat, Num, Str :)</td>
-      <td>This is rational number in Raku, not a floating-point number.</td>
+      <td>1</td>
+      <td>g 10, 20;</td>
+      <td>Parentheses are not required when it is ambiguous.</td>
     </tr>
     <tr>
-      <td>Rat</td>
-      <td><code class="language-plaintext highlighter-rouge">500.000</code> is (: Int, Rat, Num, Str :)</td>
-      <td>Even if the number has no decimal part, it’s type is not <code class="language-plaintext highlighter-rouge">Int</code>.</td>
+      <td>0</td>
+      <td>g(10,);</td>
+      <td>Not a valid syntax.</td>
     </tr>
     <tr>
-      <td>Int</td>
-      <td><code class="language-plaintext highlighter-rouge">500_000</code> is (: Int, Rat, Num, Str :)</td>
-      <td><code class="language-plaintext highlighter-rouge">_</code> is a thousands separator for easier reading by a human.</td>
+      <td>0</td>
+      <td>g(,20);</td>
+      <td>Not a valid syntax either.</td>
     </tr>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">'3.14e2'</code> is (: Int, Rat, Num, Str :)</td>
-      <td>This is a quoted sequence of characters, so it is a string.</td>
+      <td>0</td>
+      <td>g('10, 20');</td>
+      <td>A single string argument passed.</td>
     </tr>
     <tr>
-      <td>Rat</td>
-      <td><code class="language-plaintext highlighter-rouge">3.14</code> is (: Int, Rat, Num, Str :)</td>
-      <td> </td>
+      <td>1</td>
+      <td>g('word', 20);</td>
+      <td>Parameters can be of different types.</td>
     </tr>
     <tr>
-      <td>Num</td>
-      <td><code class="language-plaintext highlighter-rouge">3.14e0</code> is (: Int, Rat, Num, Str :)</td>
-      <td> </td>
+      <td>0</td>
+      <td>g(10, 20, 30);</td>
+      <td>Too many arguments.</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>g 10, 20, 30;</td>
+      <td>Same here: three arguments are passed.</td>
     </tr>
   </tbody>
 </table>
@@ -350,14 +407,27 @@
     <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
 </div>
 
+<p><div class="practice"></p>
+<h2 id="more-practice">More practice</h2>
+
+<ul>
+  <li><a href="/raku-course/essentials/functions/quiz1">Quiz — Creating a function</a></li>
+</ul>
+
+<p></div></p>
+
+<p></div></p>
+
 <h2 id="course-navigation">Course navigation</h2>
 
 <p>←
-    <a href="/raku-course/essentials/topic">Topic variable</a>
-        / <a href="/raku-course/essentials/topic/postfix-for">Postfix form of <code class="language-plaintext highlighter-rouge">for</code></a>
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/identifiers">Function names</a>
   |  
-        <a href="/raku-course/essentials/data-types/what">Introspection with <code class="language-plaintext highlighter-rouge">WHAT</code></a>
+        <a href="/raku-course/essentials/functions">Creating and calling functions</a> / <a href="/raku-course/essentials/functions/return-result">Returning the result</a>
 →</p>
+
+<p><br />
+💪 Or jump directly <a href="/raku-course/essentials/functions/exercises">to the exercises to this section</a>.</p>
 
 
         </div>

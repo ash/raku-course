@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quiz: What is its type? | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Quiz: What is its type? | A Complete Course of the Raku programming language" />
+    <title>Quiz — Calling a function | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Quiz — Calling a function | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=3">
-    <title>Quiz: What is its type? | A Complete Course of the Raku programming language</title>
+    <title>Quiz — Calling a function | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,62 +38,90 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/data-types">Data types</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/functions">Creating and calling functions</a></p>
 
-<h1 id="quiz-what-is-its-type">Quiz: What is its type?</h1>
+<h1 id="quiz-calling-a-function">Quiz — Calling a function</h1>
 
-<p>Select the correct type for each of the listed literals.</p>
+<h2 id="1">1</h2>
 
-<table class="quiz-select">
+<p>Having the following function:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">abc</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span>) {
+    <span class="k">return</span> <span class="nv">$a</span> ~ <span class="nv">$b</span> ~ <span class="nv">$c</span>;
+}
+</pre></div>
+
+
+<p>How do you call it?</p>
+
+<table class="quiz-code">
   <tbody>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">"Hello, World!"</code> is (: Int, Rat, Num, Str :)</td>
+      <td>, ,</td>
+      <td>say abc($a␣ $b␣ $c);</td>
+    </tr>
+    <tr>
+      <td>=</td>
+      <td>my $s ␣ abc('a', 'b', 'c');</td>
+    </tr>
+    <tr>
+      <td>= abc )</td>
+      <td>my $z ␣ ␣␣␣($a, $b, $c␣;</td>
+    </tr>
+    <tr>
+      <td>, ,</td>
+      <td>say abc $a␣ $b␣ $c;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2">2</h2>
+
+<p>For the following function:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">x</span> {
+    <span class="k">return</span> <span class="mi">42</span>;
+}
+</pre></div>
+
+
+<p>Select the correct calls of it.</p>
+
+<table class="quiz">
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>say x;</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">'Hello, World!'</code> is (: Int, Rat, Num, Str :)</td>
+      <td>1</td>
+      <td>say(x);</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Int</td>
-      <td><code class="language-plaintext highlighter-rouge">12345</code> is (: Int, Rat, Num, Str :)</td>
+      <td>1</td>
+      <td>say x();</td>
+      <td>Parenthese around the arguments of <code class="language-plaintext highlighter-rouge">say</code> are ommited.</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>say(x());</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">'12345'</code> is (: Int, Rat, Num, Str :)</td>
+      <td>0</td>
+      <td>my $v = x ();</td>
+      <td>A space before <code class="language-plaintext highlighter-rouge">()</code> makes the <code class="language-plaintext highlighter-rouge">()</code> an argument.</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>my $w = x();</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Rat</td>
-      <td><code class="language-plaintext highlighter-rouge">123.45</code> is (: Int, Rat, Num, Str :)</td>
-      <td>This is rational number in Raku, not a floating-point number.</td>
-    </tr>
-    <tr>
-      <td>Rat</td>
-      <td><code class="language-plaintext highlighter-rouge">500.000</code> is (: Int, Rat, Num, Str :)</td>
-      <td>Even if the number has no decimal part, it’s type is not <code class="language-plaintext highlighter-rouge">Int</code>.</td>
-    </tr>
-    <tr>
-      <td>Int</td>
-      <td><code class="language-plaintext highlighter-rouge">500_000</code> is (: Int, Rat, Num, Str :)</td>
-      <td><code class="language-plaintext highlighter-rouge">_</code> is a thousands separator for easier reading by a human.</td>
-    </tr>
-    <tr>
-      <td>Str</td>
-      <td><code class="language-plaintext highlighter-rouge">'3.14e2'</code> is (: Int, Rat, Num, Str :)</td>
-      <td>This is a quoted sequence of characters, so it is a string.</td>
-    </tr>
-    <tr>
-      <td>Rat</td>
-      <td><code class="language-plaintext highlighter-rouge">3.14</code> is (: Int, Rat, Num, Str :)</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Num</td>
-      <td><code class="language-plaintext highlighter-rouge">3.14e0</code> is (: Int, Rat, Num, Str :)</td>
+      <td>1</td>
+      <td>my $u = x;</td>
       <td> </td>
     </tr>
   </tbody>
@@ -353,10 +381,10 @@
 <h2 id="course-navigation">Course navigation</h2>
 
 <p>←
-    <a href="/raku-course/essentials/topic">Topic variable</a>
-        / <a href="/raku-course/essentials/topic/postfix-for">Postfix form of <code class="language-plaintext highlighter-rouge">for</code></a>
+    <a href="/raku-course/essentials/typed-variables">Typed variables</a>
+        / <a href="/raku-course/essentials/typed-variables/coercion">Type conversion for typed variables</a>
   |  
-        <a href="/raku-course/essentials/data-types/what">Introspection with <code class="language-plaintext highlighter-rouge">WHAT</code></a>
+        <a href="/raku-course/essentials/functions/identifiers">Function names</a>
 →</p>
 
 

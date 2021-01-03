@@ -33,9 +33,6 @@ for %toc<toc><> -> %part {
                     }
                 }
             }
-            else {
-                # note "WARNING: No exercises in [%section<title>](%part<url>/%section<url>)";
-            }
         }
     }
 }

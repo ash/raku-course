@@ -1,19 +1,11 @@
-sub g($x, $y) {
-    say "Called g($x, $y)";
+sub x {
+    return 42;
 }
 
-g(10, 20);
-g 10, 20;
-
-# g 10 20;
-
-# g(10);
-# g(10,);
-# g(,20);
-
-# g(10, 20, 30);
-
-#g 10, 20, 30;
-
-1 | g('word', 20);
-g('word, 20');
+say x;
+ 		say(x);
+ 		say x();
+ 		say(x());
+ 		# my $v = x ();
+ 		my $w = x();
+ 		my $u = x;
