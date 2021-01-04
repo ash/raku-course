@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Digit ladder'
+title: 'Exercise: Digital stairs'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ The size of the stairs (which does not exceed 9) must be entered by the user.
 An example of using this program with the input value `3`:
 
 ```console
-$ raku digit-ladder.raku
+$ raku digital-stairs.raku
 Enter the size: 3
 1
 12

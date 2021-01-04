@@ -1,5 +1,5 @@
 ---
-title: 'Solution: Digit ladder'
+title: 'Solution: Digital stairs'
 ---
 
 {% include menu.html %}
@@ -19,14 +19,14 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Find the program in the file [digit-ladder.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digit-ladder.raku).
+🦋 Find the program in the file [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
 
 ## Output
 
 Run the program and enter the size of the structure:
 
 ```console
-$ raku exercises/loops/digit-ladder.raku
+$ raku exercises/loops/digital-stairs.raku
 Enter the size: 7
 1
 12

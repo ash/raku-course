@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: FizzBuzz in a loop | A Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="Solution: FizzBuzz in a loop | A Complete Course of the Raku programming language" />
+    <title>Solution: Digital stairs | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Digital stairs | A Complete Course of the Raku programming language" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/raku-course/assets/main.css">
     <link rel="stylesheet" href="/raku-course/assets/course.css?t=4">
-    <title>Solution: FizzBuzz in a loop | A Complete Course of the Raku programming language</title>
+    <title>Solution: Digital stairs | A Complete Course of the Raku programming language</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
@@ -38,41 +38,51 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           
-<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/loops/">Loops</a> / <a href="/raku-course/essentials/loops/exercises/">Exercises</a> / <a href="/raku-course/essentials/loops/exercises/fizbuzz-loop">FizzBuzz in a loop</a></p>
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/loops/">Loops</a> / <a href="/raku-course/essentials/loops/exercises/">Exercises</a> / <a href="/raku-course/essentials/loops/exercises/digital-stairs">Digital stairs</a></p>
 
-<h1 id="solution-fizzbuzz-in-a-loop">Solution: FizzBuzz in a loop</h1>
+<h1 id="solution-digital-stairs">Solution: Digital stairs</h1>
 
-<p>This time, a loop is organised around the divisibility checks. Instead of direct printing, the phrase is first built in a separate variable, which is later interpolated in a string.</p>
+<p>The program uses two loops and two ranges to loop over them.</p>
 
 <h2 id="code">Code</h2>
 
-<p>Here is the new solution:</p>
+<p>Here is one of the possible solutions:</p>
 
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">50</span> -&gt; <span class="nv">$n</span> {
-    <span class="k">my</span> <span class="nv">$fizzbuzz</span> = <span class="s">&#39;&#39;</span>;
-    <span class="nv">$fizzbuzz</span> ~= <span class="s">&#39;Fizz&#39;</span> <span class="k">if</span> <span class="nv">$n</span> %% <span class="mi">3</span>;
-    <span class="nv">$fizzbuzz</span> ~= <span class="s">&#39;Buzz&#39;</span> <span class="k">if</span> <span class="nv">$n</span> %% <span class="mi">5</span>;
-    <span class="nb">say</span> <span class="s">&quot;$n: $fizzbuzz&quot;</span>;
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$size</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter the size: &#39;</span>;
+
+<span class="k">for</span> <span class="mi">1</span>..<span class="nv">$size</span> -&gt; <span class="nv">$n</span> {
+    .<span class="nb">print</span> <span class="k">for</span> <span class="mi">1</span>..<span class="nv">$n</span>;
+    <span class="nb">print</span> <span class="s">&quot;\n&quot;</span>;
 }
 </pre></div>
 
 
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/loops/fizbuzz-loop.raku">fizbuzz-loop.raku</a>.</p>
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku">digital-stairs.raku</a>.</p>
 
 <h2 id="output">Output</h2>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/loops/fizbuzz-loop.raku
-</code></pre></div></div>
+<p>Run the program and enter the size of the structure:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/loops/digital-stairs.raku
+<span class="go">Enter the size: 7
+1
+12
+123
+1234
+12345
+123456
+1234567
+</span></code></pre></div></div>
 
 <h2 id="comment">Comment</h2>
 
-<p>For a pedantic problem solver, the solution may not be perfect as it prints a space after the colon for those numbers, which did not get any Fizz of Buzz. Modify the program to avoid that issue.</p>
+<p>Note how the current digit is printed:</p>
 
-<p><div class="exercises"></p>
-<h2 id="next-exercise">Next exercise</h2>
+<div class="highlight"><pre><span></span>.<span class="nb">print</span> <span class="k">for</span> <span class="mi">1</span>..<span class="nv">$n</span>;
+</pre></div>
 
-<p>💪 <a href="/raku-course//essentials/loops/exercises/digital-stairs">Digital stairs</a>
-</div></p>
+
+<p>As with <code class="language-plaintext highlighter-rouge">say</code>, the <code class="language-plaintext highlighter-rouge">print</code> routine can be called as a method. In this case, it is called on the <a href="/raku-course/essentials/loops/topic">topic variable</a> <code class="language-plaintext highlighter-rouge">$_</code>.</p>
 
 <h2 id="course-navigation">Course navigation</h2>
 
