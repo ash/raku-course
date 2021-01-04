@@ -25,14 +25,14 @@ sub f($a, $b) {
 What does this function return?
 
 ```raku
-sub f() {
+sub g() {
     return -1;
     1;
 }
 ```
 
 {:.quiz-select}
-−1 | `f()` returns (: −1, 1 :) | The last expression `1;` is never reached.
+−1 | `g()` returns (: −1, 1 :) | The last expression `1;` is never reached.
 
 
 {% include quiz.html %}

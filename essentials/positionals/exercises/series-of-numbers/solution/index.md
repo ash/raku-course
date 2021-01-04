@@ -17,7 +17,7 @@ my $end = prompt 'End: ';
 .say for $begin .. $end;
 ```
 
-🦋 Find the program in the file [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/topic/series-of-numbers.raku).
+🦋 Find the program in the file [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
 
 ## Code 2
 
@@ -32,20 +32,20 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Find the program in the file [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/topic/series-of-numbers-loop.raku).
+🦋 Find the program in the file [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
 
 As you can see, the first variant is significantly shorter and more expressive.
 
 ## Discussion
 
-In the first variant of the program, the [postfix form of the `for` loop](/raku-course/essentials/topic/postfix-for) is used. In the second program, a `loop` is chosen.
+In the first variant of the program, the [postfix form of the `for` loop](/raku-course/essentials/loops/postfix-for) is used. In the second program, a `loop` is chosen.
 
 ## Output
 
 Pass the two numbers in the console and run the program. Both variants produce the same output.
 
 ```console
-$ raku exercises/topic/series-of-numbers.raku
+$ raku exercises/positionals/series-of-numbers.raku
 Begin: 15
 End: 19
 15
