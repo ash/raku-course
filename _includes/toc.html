@@ -9,7 +9,7 @@
 #### {{subpart.title}}
 {%- for section in subpart.items %}
 * [{{section.title}}](/{{prefix}}/{{part.url}}/{{section.url}})
-{%-if extended %}
+{%-if extended_menu %}
     {%- if section.quizzes %} — <span class="has-q">[{{section.quizzes.size}} quiz{% if section.quizzes.size != 1 %}zes{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}#practice)</span>{% endif %}
     {%- if section.exercises %}
         {%if section.quizzes %} and {%- else %} — {%- endif %}
@@ -17,12 +17,14 @@
     {%- endif %}
 {%- endif %}
 
+{%- if compact_menu == nil %}
 {%- for topic in section.items %}
     - [{{topic.title}}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}})
-    {%- if extended %}
+    {%- if extended_menu %}
         {%- if topic.quizzes %} — <span class="has-q">[{{topic.quizzes.size}} quiz{% if topic.quizzes.size != 1 %}zes{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
     {%- endif %}
 {%- endfor %}
+{%- endif %}
 {%- endfor %}
 {% endfor %}
 {% endif %}

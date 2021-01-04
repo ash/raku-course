@@ -6,6 +6,7 @@ prefix: /raku-course
 
 * [About this course]({{page.prefix}}/about-this-course)
 
+{% comment %}{% assign compact_menu = true %}{% endcomment %}
 {% include toc.html %}
 
 

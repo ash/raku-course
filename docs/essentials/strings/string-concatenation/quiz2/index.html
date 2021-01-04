@@ -216,10 +216,18 @@
     table.quiz-select tr td.comment code {
         padding: 0;
     }
+    table.quiz-code tr td {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
     /* div.practice {
         background-color: #fffdeb;
         background-color: white;
     } */
+
+    table.quiz-code.nocode td.code {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+    }
 </style>
 
 <script>
@@ -243,7 +251,15 @@
         }
     });
 
+    document.querySelectorAll('table.quiz-code.fill').forEach(function(table) {
+        table.querySelectorAll('tr').forEach(function(tr) {
+            tr.className = 'fill';
+        });
+    });
+
     document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
+        let is_fill = item.className == 'fill';
+
         item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
 
         let cells = item.querySelectorAll('td');
@@ -256,14 +272,37 @@
             cells[3].className = 'comment';
         }
 
-        let answers = cells[1].innerHTML.split(' ');
+        let raw_answers = cells[1].innerHTML.split(' ');
+        for (let c = 0; c != raw_answers.length; c++) {
+            raw_answers[c] = raw_answers[c].replace(/␣/g, ' ');
+        }
+
+        let answers = [];
+        let fills = [];
+        if (!is_fill) {
+            answers = raw_answers;            
+        }
+        else {
+            for (let c = 0; c < raw_answers.length; c += 2) {
+                console.log('c=', c);
+                answers.push(raw_answers[c]);
+                fills.push(raw_answers[c + 1]);
+            }
+        }
+
         if (cells[2].innerHTML.indexOf('␣') != -1) {
             let c = 0;
             cells[2].innerHTML = cells[2].innerHTML.replace(/␣+/g, function(a, b) {
-                let ret = '<input type="text" class="mono" style="width: ' + a.length + 'em;" data-ok="' + answers[c] + '"/>';
+                let length = a.length * 1.2;
+                let ret = '<input type="text" class="mono" style="width: ' + length + 'em;" data-ok="' + answers[c] + '"';
+                if (is_fill) {
+                    ret += ' value="' + fills[c] + '"';
+                }
+                ret += '/>';
                 c++;
+
                 return ret;
-            });
+            });            
         }
     });
 
