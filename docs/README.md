@@ -57,7 +57,7 @@ The course is currently hosted as GitHub Pages at the following address: [ash.gi
 
 The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The material in the course is based on daily experience, particulary on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
 
-## Contribution, terms of use, and feedback
+## Contributing, terms of use, and feedback
 
 The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others.
 
