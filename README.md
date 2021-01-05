@@ -43,7 +43,7 @@ The five parts of the course are:
 
 At the moment, the first part is completely written and is available publically. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the futer (as well as the domain name). New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can also be slightly modified to achieve the best flow of the course.
 
-The course is currently hosted as GitHub Pages at the following URL: [ash.github.io/raku-course/about-this-course](https://ash.github.io/raku-course/about-this-course/).
+The course is currently hosted as GitHub Pages at the following URL: [ash.github.io/raku-course](https://ash.github.io/raku-course/).
 
 ## About the author
 
