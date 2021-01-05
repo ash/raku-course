@@ -94,6 +94,17 @@
     table.quiz-code.nocode td.code {
         font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
     }
+    table.quiz-code.spacier tr td {
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+    }
+    div.extended-explanation {
+        display: none;
+    }
+    div.comment {
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
 </style>
 
 <script>
@@ -265,6 +276,8 @@
         if (show_correct_button) {
             document.getElementById('ShowAnswers').style.display = '';
         }
+
+        show_extended_explanation();
     }
 
     function showanswers() {
@@ -294,6 +307,14 @@
             for (let c = 0; c != selects.length; c++) {
                 selects[c].value = selects[c].dataset.ok;
             }
+        });
+
+        show_extended_explanation();
+    }
+
+    function show_extended_explanation() {
+        document.querySelectorAll('.extended-explanation').forEach(function(item) {
+            item.className = 'comment';
         });
     }
 </script>
