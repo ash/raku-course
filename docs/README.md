@@ -18,14 +18,14 @@ The different installation options are described at the beginning of the first p
 
 The course is divided into five parts, each of the parts includes several sections, which in their turn include a number of topics (or, merely saying, different pages with their unique URL).
 
-The course includes materials of the following four types of pages:
+The course includes materials of the following four types:
 
 * Theory that covers the current topic
 * Quizzes that accomplish the theory of the topic and/or the section
 * Exercises for the material of the whole section
 * Answers to the exercises
 
-Sometimes, practical assignments (both quizzes and exercises), add additional material to the theoretical topic, so to make the most of the course, it is recommended you do not skip them.
+Sometimes, practical assignments (both quizzes and exercises) give additional information to the theoretical topic, so to make the most of the course, it is recommended you do not skip them.
 
 Below each page, there is a navigation block that you can use to traverse the entire course. You can also always jump to the desired section using the breadcrumbs menu at the top of the page.
 
@@ -41,7 +41,7 @@ The five parts of the course are:
 1. Regexes and grammars
 1. Functional, concurrent, and reactive programming
 
-At the moment, the first part is completely written and is available publically. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the future (as well as the domain name).
+At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the future (as well as the domain name).
 
 The first part, ‘Raku essentials’, contains:
 
@@ -49,7 +49,7 @@ The first part, ‘Raku essentials’, contains:
 - 73 quizzes
 - 65 exercises
 
-New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can also be slightly modified to achieve the best flow of the course.
+New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
 The course is currently hosted as GitHub Pages at the following address: [ash.github.io/raku-course](https://ash.github.io/raku-course/).
 

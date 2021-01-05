@@ -29,14 +29,14 @@ The different installation options are described at the beginning of the first p
 
 The course is divided into five parts, each of the parts includes several sections, which in their turn include a number of topics (or, merely saying, different pages with their unique URL).
 
-The course includes materials of the following four types of pages:
+The course includes materials of the following four types:
 
 * — Theory that covers the current topic
 * — Quizzes that accomplish the theory of the topic and/or the section
 * — Exercises for the material of the whole section
 * — Answers to the exercises
 
-Sometimes, practical assignments (both quizzes and exercises), add additional material to the theoretical topic, so to make the most of the course, it is recommended you do not skip them.
+Sometimes, practical assignments (both quizzes and exercises) give additional information to the theoretical topic, so to make the most of the course, it is recommended you do not skip them.
 
 Below each page, there is a navigation block that you can use to traverse the entire course. You can also always jump to the desired section using the breadcrumbs menu at the top of the page.
 
@@ -52,7 +52,7 @@ The five parts of the course are:
 1. Regexes and grammars
 1. Functional, concurrent, and reactive programming
 
-At the moment, the first part is completely written and is available publically. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the future (as well as the domain name).
+At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the future (as well as the domain name).
 
 The first part, ‘Raku essentials’, contains:
 
@@ -60,15 +60,15 @@ The first part, ‘Raku essentials’, contains:
 - 73 quizzes
 - 65 exercises
 
-New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can also be slightly modified to achieve the best flow of the course.
+New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
 ## About the author
 
-The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The course material based on daily experience, particularly on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
+The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The course material is based on daily experience, particularly on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
 
 ## Contributing, terms of use, and feedback
 
-The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others.
+The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others. The commercial usage in classes is allowed without permission. Releasing the course as a separate product must be first negotiated with the author.
 
 The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:andy@shitov.ru).
 
