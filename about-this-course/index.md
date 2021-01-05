@@ -52,11 +52,19 @@ The five parts of the course are:
 1. Regexes and grammars
 1. Functional, concurrent, and reactive programming
 
-At the moment, the first part is completely written and is available publically. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the futer (as well as the domain name). New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can also be slightly modified to achieve the best flow of the course.
+At the moment, the first part is completely written and is available publically. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the futer (as well as the domain name).
+
+The first part, ‘Raku essentials’, contains:
+
+- 91 topics
+- 73 quizzes
+- 65 exercises
+
+New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can also be slightly modified to achieve the best flow of the course.
 
 ## About the author
 
-The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The material in the course is based on daily experience, particulary on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
+The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The material in the course is based on daily experience, particulary on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
 
 ## Contribution, terms of use, and feedback
 
