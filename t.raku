@@ -8,6 +8,7 @@
 
 # ␣
 
-my @arr = 10, 9, 8, 3, 2, 1;
+sub MAIN(Str $name) {
+    say "Hello, $name!";
+}
 
-say "There are {@arr.elems} elements.";

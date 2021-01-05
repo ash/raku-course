@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solution: Perimeter of a rectangle | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solution: Perimeter of a rectangle | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/raku-course/assets/main.css">
+    <link rel="stylesheet" href="/raku-course/assets/course.css?t=4">
+    <title>Solution: Perimeter of a rectangle | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/raku-course/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/raku-course/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/raku-course/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/raku-course/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/raku-course/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/raku-course/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/raku-course/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/raku-course/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/raku-course/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/raku-course/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/raku-course/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/raku-course/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/raku-course/assets/favicon-16x16.png">
+    <link rel="manifest" href="/raku-course/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/raku-course/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/raku-course/">Course of Raku</a> / <a href="/raku-course/essentials">Essentials</a> / <a href="/raku-course/essentials/the-main-function/">The <code class="language-plaintext highlighter-rouge">MAIN</code> function</a> / <a href="/raku-course/essentials/the-main-function/exercises/">Exercises</a> / <a href="/raku-course/essentials/the-main-function/exercises/perimeter">Perimeter of a rectangle</a></p>
+
+<h1 id="solution-perimeter-of-a-rectangle">Solution: Perimeter of a rectangle</h1>
+
+<p>This program must be able to take either one or two command-line arguments. A new trick is shown in the solution here. The default value of the second variable is set to the value of the first variable: <code class="language-plaintext highlighter-rouge">sub MAIN($a, $b = $a)</code>. So, instead of creating the two multi-functions, we have a general function that sets the size of the second side if the figure is a square.</p>
+
+<h2 id="code">Code</h2>
+
+<p>Here is the solution:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$a</span>) {
+    <span class="k">my</span> <span class="nv">$perimeter</span> = <span class="mi">2</span> * (<span class="nv">$a</span> + <span class="nv">$b</span>);
+
+    <span class="k">my</span> <span class="nv">$shape</span> = <span class="nv">$a</span> == <span class="nv">$b</span> ?? <span class="s">&#39;square&#39;</span> !! <span class="s">&#39;rectangle&#39;</span>;
+    <span class="nb">say</span> <span class="s">&quot;The perimeter of a $shape is $perimeter.&quot;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku">perimeter.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<p>Try different input values to test both squares and rectangles.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1    
+<span class="go">The perimeter of a square is 4.
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1 2
+<span class="go">The perimeter of a rectangle is 6.
+</span></code></pre></div></div>
+
+<p>Note that there is the third case which should also be tested. If two equal numbers are passed, the program should still understands this was a square:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 2 2
+<span class="go">The perimeter of a square is 8.
+</span></code></pre></div></div>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+    <a href="/raku-course/essentials/built-in-functions-for-printing">Built-in functions for printing</a>
+        / <a href="/raku-course/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a>
+  |  
+    <a href="/raku-course/essentials/"></a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
