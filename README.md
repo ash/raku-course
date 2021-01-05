@@ -8,9 +8,9 @@ If you only start learning Raku, you are advised to go through all the parts in 
 
 To follow the course and run excercises, you need to have a working compiler. There are a number of options:
 
-* — Install the Rakudo compiler or the Rakudo Star package or
-* — Use online service or
-* — Use docker containers
+* Install the Rakudo compiler or the Rakudo Star package or
+* Use online service or
+* Use docker containers
 
 The different installation options are described in the beginning of the first part.
 
@@ -20,10 +20,10 @@ The course is divided into five parts, each of the part includes a number of sec
 
 The course include materials of the following four types of pages:
 
-* — Theory that covers the current topic
-* — Quizzes that accomplish the theory of the topic and/or the section
-* — Exercises for the material of the whole section
-* — Answers to the exercises
+* Theory that covers the current topic
+* Quizzes that accomplish the theory of the topic and/or the section
+* Exercises for the material of the whole section
+* Answers to the exercises
 
 Sometimes, practical assignments (both quizzes and exercises), add additional material to the theoretical topic, so to take the most of the course, it is recommended you do not skip them.
 
