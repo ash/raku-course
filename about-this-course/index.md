@@ -9,19 +9,60 @@ title: About this course
 
 # About this course
 
-This course covers all main aspects of the Raku programming language that you need to successfully use it in your daily practice. The course consists of separate chapters that explain the theory and offer a number of exercises. It is assumed that you solve the tasks before looking to the solution.
+Welcome to the course of the Raku programming language!
 
-If you only start learning Raku, you are advised to go through all the chapters in the given order. If you have some practice and you want to have some specific training, you are welcome to start with the desired section.
+This course covers all main aspects of the language that you need to successfully use it in your daily practice. The course consists of five parts that explain the theory and offer a number of practical assignments. It is assumed that you try solving the tasks yourself before looking to the solution.
+
+If you only start learning Raku, you are advised to go through all the parts in the order they are listed in the table of contents. If you have some practice and you want to have some specific training, you are welcome to start with the desired section.
+
+## Prerequisites
 
 To follow the course and run excercises, you need to have a working compiler. There are a number of options:
 
-* Install the Rakudo compiler or the Rakudo Star package or
-* Use online service or
-* Use docker containers.
+* — Install the Rakudo compiler or the Rakudo Star package or
+* — Use online service or
+* — Use docker containers
 
-We will look at the installation options just in a bit. 
+The different installation options are described in the beginning of the first part.
+
+## Structure
+
+The course is divided into five parts, each of the part includes a number of sections, which in their turn include a number of topics (or, simply saying, different pages with their unique URL).
+
+The course include materials of the following four types of pages:
+
+* — Theory that covers the current topic
+* — Quizzes that accomplish the theory of the topic and/or the section
+* — Exercises for the material of the whole section
+* — Answers to the exercises
+
+Sometimes, practical assignments (both quizzes and exercises), add additional material to the theoretical topic, so to take the most of the course, it is recommended you do not skip them.
 
 Below each page, there is a navigation block that you can use to traverse the entire course. You can also always jump to the desired section using the breadcrumbs menu at the top of the page.
+
+While the navigation guides you through the assignments in particular order, you can solve them in more or less random order withing the current section or topic.
+
+## Table of contents
+
+The five parts of the course are:
+
+1. [Raku essentials](/raku-course/essentials)
+1. Advanced Raku subjects
+1. Object-oriented programming in Raku
+1. Regexes and grammars
+1. Functional, concurrent, and reactive programming
+
+At the moment, the first part is completely written and is available publically. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the futer (as well as the domain name). New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can also be slightly modified to achieve the best flow of the course.
+
+## About the author
+
+The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The material in the course is based on daily experience, particulary on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
+
+## Contribution, terms of use, and feedback
+
+The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others.
+
+The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos, or to create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:andy@shitov.ru).
 
 ## Course navigation
 
