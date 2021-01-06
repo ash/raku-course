@@ -4,7 +4,7 @@ title: Quiz — Unicode digits and numbers
 
 {% include menu.html %}
 
-Try to find out, which of the following digits form integers that Raku accepts as values of the `Int` type.
+Try to find out which of the following digits form integers that Raku accepts as the `Int` type values.
 
 {:.quiz}
 1 | 3
@@ -14,7 +14,7 @@ Try to find out, which of the following digits form integers that Raku accepts a
 1 | ❷
 0 | ❸❹❺
 1 | ㊷ | A single Unicode character named `CIRCLED NUMBER FOURTY TWO`.
-0 | ⓸⓶ | But this is not two numbers already.
+0 | ⓸⓶ | But the two numbers are not a number.
 1 | ㊄ | Circled Chinese 5 and it is a number `CIRCLED IDEOGRAPH FIVE`.
 0 | 五 | While this means 5, the character is neither a digit nor a number.
 0 | 一二三四五

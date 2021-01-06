@@ -4,7 +4,7 @@ title: Quiz — Integer numbers
 
 {% include menu.html %}
 
-Mark all the examples with valid integer numbers.
+Select all the examples with valid integer numbers.
 
 {:.quiz}
 1 | `42`
@@ -19,7 +19,7 @@ Mark all the examples with valid integer numbers.
 0 | `_100` | A number cannot start with underscore.
 0 | `100_` | A number cannot end with underscore.
 1 | `1_0_0_0` | This is correct, but looks weird.
-1 | `10_00` | This is also correct, but is not the best choice.
+1 | `10_00` | This is also correct, but it is not the best choice.
 0 | `50,000` | A comma does not split the number into thousands.
 0 | `45 678 901` | Spaces are not allowed inside numbers.
 

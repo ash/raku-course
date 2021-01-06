@@ -14,11 +14,11 @@ In the previous section, we saw that numbers such as `1.5` are rational numbers.
 7.6e+15
 ```
 
-In this case, Raku creates instances of the `Num` data type and internally stores the data as an IEEE number.
+In this case, Raku creates instances of the `Num` data type and stores the data as an IEEE number internally.
 
 ## Built-in constants
 
-There are a few constants that you can use straight ahead, which are also the numbers of the `Num` type. Both ASCII and Unicode variants are available:
+There are a few constants listed below that you can use straight ahead. They are the numbers of the `Num` type. Both ASCII and Unicode variants are available:
 
 `pi` | `π` | 3.141592653589793
 `tau` | `τ` | equals to `2 * π`

@@ -4,7 +4,7 @@ title: 'Quiz: Rational numbers'
 
 {% include menu.html %}
 
-Mark the numbers, which are `Rat` in Raku.
+Select the numbers which are `Rat` in Raku.
 
 <!--0 | ↉ | This is an `Int` number, and its value is `0`.-->
 
