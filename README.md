@@ -51,7 +51,7 @@ The first part, ‘Raku essentials’, contains:
 
 New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
-The course is currently hosted as GitHub Pages at the following address: [ash.github.io/raku-course](https://ash.github.io/raku-course/).
+The course is currently hosted as GitHub Pages at the following address: [course.raku.online](https://course.raku.online/).
 
 ## About the author
 
