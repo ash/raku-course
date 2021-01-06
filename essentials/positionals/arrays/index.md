@@ -4,9 +4,9 @@ title: Arrays
 
 {% include menu.html %}
 
-Arrays are aggregate data types that can keep more than one value. Which differs arrays from [scalar items](/raku-course/essentials/scalar-variables). An array elements can be indexed (or _subscripted_). In other words, its elements have a position (which explains the general name for this kind of data: positionals).
+Arrays are aggregate data types that can keep more than one value. Which differs arrays from [scalar items](/essentials/scalar-variables). An array elements can be indexed (or _subscripted_). In other words, its elements have a position (which explains the general name for this kind of data: positionals).
 
-Array variables use another kind of sigil: `@`. The rules for the variable name is the same as [for scalars](/raku-course/essentials/scalar-variables/identifiers/).
+Array variables use another kind of sigil: `@`. The rules for the variable name is the same as [for scalars](/essentials/scalar-variables/identifiers/).
 
 ```raku
 my @cities;
@@ -57,6 +57,6 @@ If the array appears in a context, where the expected parameter is a number, the
 say +@cities; # 3
 ```
 
-Here, the [`+` prefix operator](/raku-course/essentials/coercion/prefixes) requires a numeric value from its argument, so the result of `+@cities` is `3`.
+Here, the [`+` prefix operator](/essentials/coercion/prefixes) requires a numeric value from its argument, so the result of `+@cities` is `3`.
 
 {% include nav.html %}

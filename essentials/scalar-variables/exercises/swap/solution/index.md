@@ -4,7 +4,7 @@ title: Solution of ’Swap the values‘
 
 {% include menu.html %}
 
-In this program, we are using the elements of Raku syntax from the section about [scalar variables](/raku-course/scalar-variables).
+In this program, we are using the elements of Raku syntax from the section about [scalar variables](/scalar-variables).
 
 ## Code
 

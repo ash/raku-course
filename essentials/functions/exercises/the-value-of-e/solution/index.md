@@ -6,9 +6,9 @@ title: 'Solution: The value of e'
 
 The formula in this task contains a factorial, and we already have at least two solutions to compute it (more to follow). This program defines two functions: one to compute factorial, another for the partial sum according to the formula.
 
-As it is required that the function can be called with no arguments, in which case it runs a predefined number of iterations, we can add a [default value](/raku-course/essentials/functions/default-values) of the parameter: `sub e-approx($max = 100)`.
+As it is required that the function can be called with no arguments, in which case it runs a predefined number of iterations, we can add a [default value](/essentials/functions/default-values) of the parameter: `sub e-approx($max = 100)`.
 
-In the code, notice the similarities in how the result values are accumulated in a [postfix `for` loop](/raku-course/essentials/topic/postfix-for) over a [range](/raku-course/essentials/positionals/ranges).
+In the code, notice the similarities in how the result values are accumulated in a [postfix `for` loop](/essentials/topic/postfix-for) over a [range](/essentials/positionals/ranges).
 
 ## Code
 

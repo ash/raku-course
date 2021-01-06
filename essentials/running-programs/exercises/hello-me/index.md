@@ -6,7 +6,7 @@ title: Exercise ’Hello, Me!‘
 
 ## Problem
 
-Create and run a program that prints a greeting with your name. Save the program in a file and run from the command line. If you prefer, you can [run the program](/raku-course/essentials/running-programs) online or directly from an IDE.
+Create and run a program that prints a greeting with your name. Save the program in a file and run from the command line. If you prefer, you can [run the program](/essentials/running-programs) online or directly from an IDE.
 
 ## Example
 

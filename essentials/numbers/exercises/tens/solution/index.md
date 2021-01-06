@@ -37,7 +37,7 @@ Enter a positive integer number: 234
 
 In this solution, the combination of the modulo `%` and integer division `div` is used again.
 
-Notice the space before the opening parenthesis. It has to be there, otherwise you get a syntax error. We’ll return to this aspect of Raku in the section about [functions](/raku-course/functions), but for now, type the code as shown above or add another pair of parentheses to surround the argument of the function — in this case, no space is needed:
+Notice the space before the opening parenthesis. It has to be there, otherwise you get a syntax error. We’ll return to this aspect of Raku in the section about [functions](/functions), but for now, type the code as shown above or add another pair of parentheses to surround the argument of the function — in this case, no space is needed:
 
 ```raku
     say(($n % 100) div 10);

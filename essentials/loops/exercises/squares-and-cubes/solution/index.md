@@ -4,7 +4,7 @@ title: 'Solution: Squares and cubes in a loop'
 
 {% include menu.html %}
 
-You already solved the task to print [the square and the cube of a single number](/raku-course/essentials/positionals/exercises/square-and-cubes/solution). This time, add a loop.
+You already solved the task to print [the square and the cube of a single number](/essentials/positionals/exercises/square-and-cubes/solution). This time, add a loop.
 
 ## Code
 

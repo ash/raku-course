@@ -30,6 +30,6 @@ $ raku exercises/more-on-functions/factorial-with-multi-functions.raku 5
 
 ## Comment
 
-Note that the input argument is explicitly converted to an integer: `@*ARGS[0].Int`. This is to prevent infinite loop when the input number is `1`. In this case, the type of the parameter passed to the `factorial` function is [`IntStr`](/raku-course/essentials/data-types/allomorphs), and the first multi-variant is not able to catch the call. In contract, when `factorial(2 - 1)` is called recursively, the argument of the function is integer, which makes it possible to call the first variant.
+Note that the input argument is explicitly converted to an integer: `@*ARGS[0].Int`. This is to prevent infinite loop when the input number is `1`. In this case, the type of the parameter passed to the `factorial` function is [`IntStr`](/essentials/data-types/allomorphs), and the first multi-variant is not able to catch the call. In contract, when `factorial(2 - 1)` is called recursively, the argument of the function is integer, which makes it possible to call the first variant.
 
 {% include nav.html %}

@@ -4,7 +4,7 @@ title: Typed parameters of functions
 
 {% include menu.html %}
 
-The parameters of functions in Raku can be made type restricted. This is very similar to [typed variables](/raku-course/essentials/typed-variables/type-constraints/).
+The parameters of functions in Raku can be made type restricted. This is very similar to [typed variables](/essentials/typed-variables/type-constraints/).
 
 ```raku
 sub add(Int $x, Int $y) { $x + $y }

@@ -45,6 +45,6 @@ Note how the current digit is printed:
 .print for 1..$n;
 ```
 
-As with `say`, the `print` routine can be called as a method. In this case, it is called on the [topic variable](/raku-course/essentials/loops/topic) `$_`.
+As with `say`, the `print` routine can be called as a method. In this case, it is called on the [topic variable](/essentials/loops/topic) `$_`.
 
 {% include nav.html %}

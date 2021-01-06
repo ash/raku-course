@@ -11,7 +11,7 @@ Fibonacci numbers are defined by the following algorithm.
 
 ## Code
 
-The code implements the algorithm literary. It uses a couple of variables to keep the current two Fibonacci numbers, and updates them in a loop. Note that both variables get updates [in a single assignment](/raku-course/essentials/scalar-variables/assigning-a-value/#multiple-assignment). 
+The code implements the algorithm literary. It uses a couple of variables to keep the current two Fibonacci numbers, and updates them in a loop. Note that both variables get updates [in a single assignment](/essentials/scalar-variables/assigning-a-value/#multiple-assignment). 
 
 ```raku
 my $a = 0;

@@ -12,7 +12,7 @@ Create a program to print the price table in the following format. Please use va
     Chairs  $20.57  4      $82.28
     Tables  $50.18  1      $50.18
 
-N.B. If you are not satisfied with the choice of the currency, feel free to use any other, but don’t forget that `$` [has special meaning](/raku-course/essentials/strings/escaping-special-characters) in Raku strings, that’s why it was chosen for the purpose of learning Raku better.
+N.B. If you are not satisfied with the choice of the currency, feel free to use any other, but don’t forget that `$` [has special meaning](/essentials/strings/escaping-special-characters) in Raku strings, that’s why it was chosen for the purpose of learning Raku better.
 
 ## Example
 

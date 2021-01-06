@@ -4,7 +4,7 @@ title: The MAIN function
 
 {% include menu.html %}
 
-A program in Raku does not need any boilerplate ritual, so you can immediately start writing useful instructions. This part of the program, which is located on the level above any [block of codes](/raku-course/essentials/code-blocks) (including [functions](/raku-course/essentials/functions), for example), is called _mainline_.
+A program in Raku does not need any boilerplate ritual, so you can immediately start writing useful instructions. This part of the program, which is located on the level above any [block of codes](/essentials/code-blocks) (including [functions](/essentials/functions), for example), is called _mainline_.
 
 If the program contains a function with the special name `MAIN`, Raku executes this function after it compiles everything and after the mainline code has been executed.
 

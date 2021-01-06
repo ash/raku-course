@@ -8,7 +8,7 @@ This is an exploratory assignment, which allows you to explore the features of R
 
 ## Task
 
-Write a program or use a [REPL shell](/raku-course/essentials/running-programs/from-repl) to find out, which numbers become `False` when they are converted to Boolean values.
+Write a program or use a [REPL shell](/essentials/running-programs/from-repl) to find out, which numbers become `False` when they are converted to Boolean values.
 
 ## Solution
 

@@ -14,7 +14,7 @@ There is no doubt you already know some of the operations that you can do with n
 `*` | Multiplication
 `/` | Division
 
-As Raku [supports Unicode](/raku-course/essentials/on-unicode) really well, some of these operators have non-ASCII equivalents:
+As Raku [supports Unicode](/essentials/on-unicode) really well, some of these operators have non-ASCII equivalents:
 
 `×` | Multiplication
 `÷` | Division

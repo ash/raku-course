@@ -22,7 +22,7 @@ for 1..5 {
 }
 ```
 
-As you [should remember](/raku-course/essentials/hello-world/), it is possible to use `say` as a method:
+As you [should remember](/essentials/hello-world/), it is possible to use `say` as a method:
 
 ```raku
 for 1..5 {

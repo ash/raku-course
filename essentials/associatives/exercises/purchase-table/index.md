@@ -6,7 +6,7 @@ title: 'Exercise: Purchase table'
 
 ## Problem
 
-Take the data layout from the earlier exercise (‘Purchase table’](/raku-course/essentials/strings/exercises/purchase-table):
+Take the data layout from the earlier exercise (‘Purchase table’](/essentials/strings/exercises/purchase-table):
 
     Item    Price   N      Total
     Chairs  $20.57  4      $82.28

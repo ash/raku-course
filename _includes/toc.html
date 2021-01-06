@@ -1,5 +1,3 @@
-{% assign prefix = site.data.toc.prefix %}
-
 {% assign part_n = 0 %}
 {% for part in site.data.toc.toc %}
 {% if (menu_for_part == nil) or (menu_for_part == part.url) %}
@@ -10,20 +8,20 @@
 {%- for subpart in part.items %}
 #### {{subpart.title}}
 {%- for section in subpart.items %}
-* [{{section.title}}](/{{prefix}}/{{part.url}}/{{section.url}})
+* [{{section.title}}](/{{part.url}}/{{section.url}})
 {%-if extended_menu %}
-    {%- if section.quizzes %} — <span class="has-q">[{{section.quizzes.size}} quiz{% if section.quizzes.size != 1 %}zes{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}#practice)</span>{% endif %}
+    {%- if section.quizzes %} — <span class="has-q">[{{section.quizzes.size}} quiz{% if section.quizzes.size != 1 %}zes{% endif %}](/{{part.url}}/{{section.url}}#practice)</span>{% endif %}
     {%- if section.exercises %}
         {%if section.quizzes %} and {%- else %} — {%- endif %}
-        <span class="has-e">[{{section.exercises.size}} exercise{% if section.exercises.size != 1 %}s{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}/exercises)</span>
+        <span class="has-e">[{{section.exercises.size}} exercise{% if section.exercises.size != 1 %}s{% endif %}](/{{part.url}}/{{section.url}}/exercises)</span>
     {%- endif %}
 {%- endif %}
 
 {%- if compact_menu == nil %}
 {%- for topic in section.items %}
-    - [{{topic.title}}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}})
+    - [{{topic.title}}](/{{part.url}}/{{section.url}}/{{topic.url}})
     {%- if extended_menu %}
-        {%- if topic.quizzes %} — <span class="has-q">[{{topic.quizzes.size}} quiz{% if topic.quizzes.size != 1 %}zes{% endif %}](/{{prefix}}/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
+        {%- if topic.quizzes %} — <span class="has-q">[{{topic.quizzes.size}} quiz{% if topic.quizzes.size != 1 %}zes{% endif %}](/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
     {%- endif %}
 {%- endfor %}
 {%- endif %}

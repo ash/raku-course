@@ -38,7 +38,7 @@ As you can see, the first variant is significantly shorter and more expressive.
 
 ## Discussion
 
-In the first variant of the program, the [postfix form of the `for` loop](/raku-course/essentials/loops/postfix-for) is used. In the second program, a `loop` is chosen.
+In the first variant of the program, the [postfix form of the `for` loop](/essentials/loops/postfix-for) is used. In the second program, a `loop` is chosen.
 
 ## Output
 

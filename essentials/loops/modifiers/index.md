@@ -4,7 +4,7 @@ title: while and until as statement modifiers
 
 {% include menu.html %}
 
-Both `while` and `until` can be used in a form of statement modifiers ([similarly](/raku-course/essentials/conditional-checks/modifiers) to `if` and `unless`).
+Both `while` and `until` can be used in a form of statement modifiers ([similarly](/essentials/conditional-checks/modifiers) to `if` and `unless`).
 
 Consider an example that emulates modulo division:
 

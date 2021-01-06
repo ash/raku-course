@@ -30,8 +30,8 @@ $ raku exercises/positionals/count-and-print-arguments.raku one two three four
 
 ## Discussion
 
-In this solution, a number of handy tricks are used. First, the `for` loop goes along the [range constructed with `^`](/raku-course/essentials/positionals/ranges#excluding-edges). So, the range starts from 0 and goes up to (but not including) the value of `@*ARGS`. In this context, [it returns](/raku-course/essentials/positionals/arrays#size) the lengths of the array.
+In this solution, a number of handy tricks are used. First, the `for` loop goes along the [range constructed with `^`](/essentials/positionals/ranges#excluding-edges). So, the range starts from 0 and goes up to (but not including) the value of `@*ARGS`. In this context, [it returns](/essentials/positionals/arrays#size) the lengths of the array.
 
-As the first element of an array has index `0`, and the task demands we count the lines from `1`, this simple shift is computed [inside a code block](/raku-course/essentials/strings/code-interpolation) in a string: `"{$n + 1} ..."`.
+As the first element of an array has index `0`, and the task demands we count the lines from `1`, this simple shift is computed [inside a code block](/essentials/strings/code-interpolation) in a string: `"{$n + 1} ..."`.
 
 {% include nav.html %}

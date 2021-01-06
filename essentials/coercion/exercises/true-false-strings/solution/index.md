@@ -4,7 +4,7 @@ title: Solution of ‘True and False strings’
 
 {% include menu.html %}
 
-This exercise is similar to [the previous one](/raku-course/coercion/exercises/true-false-numbers), but this time, the task is a bit trickier. There are more ’suspect’ strings that can be treated as `False`. Let us explore them.
+This exercise is similar to [the previous one](/coercion/exercises/true-false-numbers), but this time, the task is a bit trickier. There are more ’suspect’ strings that can be treated as `False`. Let us explore them.
 
 ```raku
 say ?'';

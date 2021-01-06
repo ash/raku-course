@@ -35,7 +35,7 @@ Notice that the program requires no change if you call it as an executable file:
 $ ./run.raku alpha beta
 ```
 
-The program in this case [should have a shebang](/raku-course/essentials/running-programs/from-command-line), but the most important thing is that the indices of `@*ARGS` still start with `0`:
+The program in this case [should have a shebang](/essentials/running-programs/from-command-line), but the most important thing is that the indices of `@*ARGS` still start with `0`:
 
 ```raku
 #!/usr/bin/env raku

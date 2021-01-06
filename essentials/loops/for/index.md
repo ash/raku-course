@@ -33,7 +33,7 @@ for 1..5 -> $n {
 }
 ```
 
-Now, the program iterates over all the values that the [range](/raku-course/essentials/positionals/ranges) `1..5` generates. These are `1`, `2`, `3`, `4`, and `5`.
+Now, the program iterates over all the values that the [range](/essentials/positionals/ranges) `1..5` generates. These are `1`, `2`, `3`, `4`, and `5`.
 
 ## Taking more than one value
 

@@ -42,7 +42,7 @@ drive
 
 ## Comments
 
-The `//` operator is the [defined-or operator](/raku-course/essentials/scalar-variables/defined-or-operator), which returns the first defined operand.
+The `//` operator is the [defined-or operator](/essentials/scalar-variables/defined-or-operator), which returns the first defined operand.
 
 In the hash, all the keys are words (i.e., they look like identifiers), so you don’t need to quote them in the hash. It is thus possible to create a hash as shown below:
 
