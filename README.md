@@ -25,7 +25,7 @@ The course includes materials of the following four types:
 * Exercises for the material of the whole section
 * Answers to the exercises
 
-Sometimes, practical assignments (both quizzes and exercises) give additional information to the theoretical topic, so to make the most of the course, it is recommended you do not skip them.
+Sometimes, practical assignments (both quizzes and exercises) give additional information on the subject, so to make the most of the course, it is recommended you do not skip them.
 
 Below each page, there is a navigation block that you can use to traverse the entire course. You can also always jump to the desired section using the breadcrumbs menu at the top of the page.
 

@@ -4,13 +4,13 @@ title: Hello, World! in Raku
 
 {% include menu.html %}
 
-Great, we have learnt the most essential things that are required to talk to Raku and to see the response, so let’s go straight to the first real program, ‘Hello, World!’.
+Great, we have learnt the essential things required to talk to Raku and see the response, so let’s go straight to the first real program, ‘Hello, World!’.
 
 ```raku
 say 'Hello, World!';
 ```
 
-Just before we learn the basics of functions in the second part of this couse, let us see a few different options that you can use in this program.
+Just before we learn the basics of functions, let us see a few different options you can use in this program.
 
 First of all, you can put parentheses around the function argument:
 
@@ -26,9 +26,9 @@ put 'Hello, World!';
 print("Hello, World!\n");
 ```
 
-Notice that in the case of `print`, you need to manyally add the newline character at the end of the message. But don’t worry, we’ll cover all these details later.
+Notice that you need to manually add the newline character at the end of the message in the case of `print`. But don’t worry, we’ll cover all these details later.
 
-But before we move on, let me show one more exciting option. You can call a function as a method directly on the string:
+Before we move on, let me show one more exciting option. You can call a function as a method directly on the string:
 
 ```raku
 'Hello, World!'.say;

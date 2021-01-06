@@ -9,7 +9,7 @@ title: Exercise ’Greet a person‘
 Write a program that does the following two actions:
 
 1. Asks the user for their name.
-2. Prints a message `Hello, Name!`, where `Name` is the named that was just entered.
+2. Prints a message `Hello, Name!`, where `Name` is the name that was just entered.
 
 In this program, please use variables.
 

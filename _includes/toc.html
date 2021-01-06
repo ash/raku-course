@@ -1,9 +1,11 @@
 {% assign prefix = site.data.toc.prefix %}
 
+{% assign part_n = 0 %}
 {% for part in site.data.toc.toc %}
 {% if (menu_for_part == nil) or (menu_for_part == part.url) %}
 {% if menu_for_part == nil %}
-## {% if part.long_title %}{{part.long_title}}{% else %}{{part.title}}{% endif %}
+{% assign part_n = part_n | plus: 1 %}
+## Part {{part_n}}. {% if part.long_title %}{{part.long_title}}{% else %}{{part.title}}{% endif %}
 {% endif %}
 {%- for subpart in part.items %}
 #### {{subpart.title}}
