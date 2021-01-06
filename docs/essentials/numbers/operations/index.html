@@ -42,7 +42,7 @@
 
 <h1 id="operations-with-numbers">Operations with numbers</h1>
 
-<p>There is no doubt you already know some of the operations that you can do with numbers in Raku. Just to mention that the symbol of the <em>operation</em> is called <em>operator</em>. The objects on which we perform operations are called <em>operands</em>.</p>
+<p>There is no doubt you already know some of the operations you can do with Raku numbers. Just to mention that the symbol of the <em>operation</em> is called an <em>operator</em>. The objects on which we perform operations are called <em>operands</em>.</p>
 
 <h2 id="arithmetics">Arithmetics</h2>
 
@@ -106,17 +106,17 @@
   </tbody>
 </table>
 
-<p>It returns the remainder of integer division of two numbers, so <code class="language-plaintext highlighter-rouge">10 % 3</code> is <code class="language-plaintext highlighter-rouge">1</code>. Note that <code class="language-plaintext highlighter-rouge">-10 % 3</code> is <code class="language-plaintext highlighter-rouge">2</code> as the result of the operation is defined as the difference between the first number and the rounded-down division multiplied by the second number. So, <code class="language-plaintext highlighter-rouge">$a % $b</code> is equivalent to <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
+<p>It returns the remainder of the integer division of two numbers, so <code class="language-plaintext highlighter-rouge">10 % 3</code> is <code class="language-plaintext highlighter-rouge">1</code>. Note that <code class="language-plaintext highlighter-rouge">-10 % 3</code> is <code class="language-plaintext highlighter-rouge">2</code> as the result of the operation is defined as the difference between the first number and the rounded-down division multiplied by the second number. So, <code class="language-plaintext highlighter-rouge">$a % $b</code> is equivalent to <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
 
 <h2 id="divisibility">Divisibility</h2>
 
-<p>Raku adds a useful operator to check if the number is divisible by another.</p>
+<p>Raku adds a useful operator to test if the number is divisible by another number.</p>
 
 <table>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">%%</code></td>
-      <td>Divisilibity</td>
+      <td>Divisibility</td>
     </tr>
   </tbody>
 </table>
@@ -142,7 +142,7 @@
 
 <p>The <code class="language-plaintext highlighter-rouge">div</code> operator rounds down the result, so <code class="language-plaintext highlighter-rouge">10 div 3</code> is <code class="language-plaintext highlighter-rouge">3</code>, and <code class="language-plaintext highlighter-rouge">-10 div 3</code> is <code class="language-plaintext highlighter-rouge">-4</code>.</p>
 
-<p>Both <code class="language-plaintext highlighter-rouge">div</code> and <code class="language-plaintext highlighter-rouge">mod</code> expect integer operands. So, the following program will not work if you uncomment the lines maked as <code class="language-plaintext highlighter-rouge">Error</code>:</p>
+<p>Both <code class="language-plaintext highlighter-rouge">div</code> and <code class="language-plaintext highlighter-rouge">mod</code> expect integer operands. So, the following program will not work if you uncomment the lines marked as <code class="language-plaintext highlighter-rouge">Error</code>:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 mod 3; # Error</span>
@@ -154,7 +154,7 @@
 
 <h2 id="power">Power</h2>
 
-<p>There are two ways of geting the result of <em>x</em> to the power of <em>y</em>. First, you can use the <code class="language-plaintext highlighter-rouge">**</code> operator:</p>
+<p>There are two ways of getting the result of <em>x</em> to the power of <em>y</em>. First, you can use the <code class="language-plaintext highlighter-rouge">**</code> operator:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
 </pre></div>
@@ -166,13 +166,13 @@
 </pre></div>
 
 
-<p>It is possible to have more than one superscript digit to get the value of power, which is bigger than 9, for example:</p>
+<p>It is possible to put more than one superscript digit to get the value of power bigger than 9. For example:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
 </pre></div>
 
 
-<p>A negative power is not a problem either:</p>
+<p>Negative power is not a problem either:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
 <span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
@@ -181,15 +181,19 @@
 
 <p>Notice that the result of the last two expressions is a <code class="language-plaintext highlighter-rouge">Rat</code> number.</p>
 
-<h2 id="operations-with-assignmnets">Operations with assignmnets</h2>
+<h2 id="operations-with-assignment">Operations with assignment</h2>
 
-<p>All the operations support the shortcut syntax when you need to update the same variable. Let us demonstrate it on the example of <code class="language-plaintext highlighter-rouge">+</code>:</p>
+<p>All the operations support the shortcut syntax when you need to update the variable. Let us demonstrate it on the example of <code class="language-plaintext highlighter-rouge">+</code>.</p>
+
+<p>The full form</p>
 
 <div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+</pre></div>
 
-<span class="c1"># is equivalent to:</span>
 
-<span class="nv">$a</span> += <span class="nv">$b</span>;
+<p>is equivalent to:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
 </pre></div>
 
 
