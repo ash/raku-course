@@ -8,7 +8,7 @@ Before we move further, let us spend some time on an interesting topic of the al
 
 ## Case sensitivity
 
-Names of the variables (or _identifiers_) are case censitive. That means that all of the below names refer to different scalar containers:
+Names of the variables (or _identifiers_) are case sensitive. That means that all of the below names refer to different scalar containers:
 
 ```raku
 $myname
@@ -20,11 +20,11 @@ $myName
 $MYNAME
 ```
 
-It is up to you to stick to a naming scheme, but at least the all-capital names are usually used for constants.
+It is up to you to stick to a naming scheme, but you can probably reserve the all-capital names for constants.
 
 ## Other characters
 
-Among the ASCII characters, you are allowed to use digits, underscore character `_`, a hyphen `-`, and single quote (that stands for apostrophe) `'`. Note that the first character of the identifier must be either a letter or an underscore. Both `-` and `'`' must be followed by an alphabetic character. Here are a few more valid identifiers:
+Among the ASCII characters, you can use digits, underscore character `_`, a hyphen `-`, and single quote (that stands for apostrophe) `'`. Note that the first character of the identifier must be either a letter or an underscore. Both `-` and `'` must be followed by an alphabetic character. Here are a few more valid identifiers:
 
 ```raku
 $___
@@ -40,7 +40,7 @@ Again, it is up to you to choose the names, but it is probably not a good practi
 
 ## Unicode characters
 
-The definition of letters and digits is actually extended to include all those characters that are considered letters and decimal digits accourding to their Unicode properties. For example, the next variables are valid in Raku:
+The definition of letters and digits is actually extended to include all those characters that are considered letters and decimal digits according to their Unicode properties. For example, the next variables are valid in Raku:
 
 ```raku
 $привет

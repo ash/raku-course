@@ -4,7 +4,7 @@ title: 'Quiz 1: Declaration with initialization'
 
 {% include menu.html %}
 
-Fill the missing part of the program that declares and initializes the variables.
+Fill the missing parts of the program to declare and initialise the variables.
 
 {:.quiz-code}
 = | my $radius ␣ 6378; # km

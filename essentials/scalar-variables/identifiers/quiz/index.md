@@ -4,7 +4,7 @@ title: Quiz — Variable names
 
 {% include menu.html %}
 
-Check the variables which are named correctly.
+Select the variables which are named correctly.
 
 {:.quiz}
 1 | $alpha
@@ -27,7 +27,7 @@ Check the variables which are named correctly.
 1 | $number-of-items
 1 | $numberofitems
 1 | $numberOfItems
-0 | $number--of--items | Two hyphes one after another are not OK.
+0 | $number<span>-</span>-of<span>-</span>-items | Two hyphes one after another are not OK.
 1 | $number__of__items
 
 {% include quiz.html %}

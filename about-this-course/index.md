@@ -2,10 +2,9 @@
 title: About this course
 ---
 
-{% assign prefix = site.data.toc.prefix %}
 {% assign course_title = site.data.toc.title %}
 
-[{{course_title}}](/{{prefix}}/)
+[{{course_title}}](/)
 
 # About this course
 
@@ -14,16 +13,6 @@ Welcome to the course of the Raku programming language!
 This course covers all the main aspects of the language that you need to use in your daily practice. The course consists of five parts that explain the theory and offer many practical assignments. It is assumed that you try solving the tasks yourself before looking to the solution.
 
 If you only start learning Raku, you are advised to go through all the parts in the order they are listed in the table of contents. If you have some practice and you want to have some specific training, you are welcome to start with the desired section.
-
-## Prerequisites
-
-To follow the course and run exercises, you need to have a working compiler. There are a number of options:
-
-* — Install the Rakudo compiler or the Rakudo Star package or
-* — Use online services or
-* — Use docker containers
-
-The different installation options are described at the beginning of the first part.
 
 ## Structure
 
@@ -61,6 +50,16 @@ The first part, ‘Raku essentials’, contains:
 - 65 exercises
 
 New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
+
+## Prerequisites
+
+To follow the course and run exercises, you need to have a working compiler. There are a number of options:
+
+* — Install the Rakudo compiler or the Rakudo Star package or
+* — Use online services or
+* — Use docker containers
+
+The different installation options are described at the beginning of the first part.
 
 ## About the author
 

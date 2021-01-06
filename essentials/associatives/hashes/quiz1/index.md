@@ -6,7 +6,7 @@ title: Quiz 1 — Hashes
 
 Correct the errors in the following program.
 
-{:.quiz-code .fill .spacier}
+{:.quiz-code .fill}
 % @ = => => = => = => =| my ␣data ␣␣ Jan ␣␣ 1045, Feb ␣␣ 2034, Mar ␣␣ 1987;
 < { > } | say %data␣␣Jan␣␣;
 < { > } | say %data␣␣Feb␣␣;

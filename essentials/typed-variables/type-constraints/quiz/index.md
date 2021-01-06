@@ -6,7 +6,7 @@ title: Quiz — Type constraints
 
 Make the variables in the below program typed-restricted. Choose the most narrow type required to keep the value;
 
-{:.quiz-code .spacier}
+{:.quiz-code}
 Int | my ␣␣␣ $a = 500;
 Int | my ␣␣␣ $b = 304839573985398539853535353; | Long numbers are supported out of the box.
 Rat | my ␣␣␣ $c = 3.5; | This is a `Rat`. Note that `Num` values are written in scientific notation.

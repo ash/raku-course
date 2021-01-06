@@ -17,7 +17,7 @@ say $answer;
 
 ## Output
 
-Run the program and enter a name when you get the prompt:
+Run the program and see what it prints:
 
 ```console
 $ raku exercises/scalar-variables/answer.raku 

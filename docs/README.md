@@ -4,16 +4,6 @@ This course covers all the main aspects of the language that you need to use in 
 
 If you only start learning Raku, you are advised to go through all the parts in the order they are listed in the table of contents. If you have some practice and you want to have some specific training, you are welcome to start with the desired section.
 
-## Prerequisites
-
-To follow the course and run exercises, you need to have a working compiler. There are a number of options:
-
-* Install the Rakudo compiler or the Rakudo Star package or
-* Use online services or
-* Use docker containers
-
-The different installation options are described at the beginning of the first part.
-
 ## Structure
 
 The course is divided into five parts, each of the parts includes several sections, which in their turn include a number of topics (or, merely saying, different pages with their unique URL).
@@ -51,7 +41,17 @@ The first part, ‘Raku essentials’, contains:
 
 New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
-The course is currently hosted as GitHub Pages at the following address: [ash.github.io/raku-course](https://ash.github.io/raku-course/).
+The course is currently hosted as GitHub Pages at the following address: [course.raku.online](https://course.raku.online/).
+
+## Prerequisites
+
+To follow the course and run exercises, you need to have a working compiler. There are a number of options:
+
+* Install the Rakudo compiler or the Rakudo Star package or
+* Use online services or
+* Use docker containers
+
+The different installation options are described at the beginning of the first part.
 
 ## About the author
 

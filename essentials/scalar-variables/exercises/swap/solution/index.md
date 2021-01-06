@@ -4,7 +4,7 @@ title: Solution of ’Swap the values‘
 
 {% include menu.html %}
 
-In this program, we are using the elements of Raku syntax from the section about [scalar variables](/scalar-variables).
+In this program, we are using the elements of Raku syntax from the section about [scalar variables](/essentials/scalar-variables).
 
 ## Code
 
@@ -27,7 +27,7 @@ $ raku exercises/scalar-variables/swap.raku
 
 ## Comments
 
-All the steps of this program (creating a variable and assigning the values, swapping them, and printing) use both variables in the same construction. The most interesting here is the way the variables swap their values:
+All the steps of this program (creating a variable and assigning the values, swapping them, and printing) use both variables in the same construction. The most interesting here is the way the variables exchange their values:
 
 ```raku
 ($a, $b) = $b, $a;
@@ -45,9 +45,9 @@ What happens if you omit parentheses?
 $a, $b = $b, $a;
 ```
 
-In this case, you get a warning about that `$a` on the right-hand side is not used.:
+In this case, you get a warning that `$a` on the right-hand side is not used:
 
-```console
+```
 $ raku exercises/scalar-variables/swap.raku
 WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
 Useless use of $a in sink context (lines 2, 2)
@@ -62,7 +62,7 @@ $a, $b = 2 * $b, 3 * $a;
 
 This program prints even more warnings, but you can also see that only `$b` changed its value:
 
-```console
+```
 $ raku exercises/scalar-variables/swap.raku
 WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
 Useless use of "*" in expression "3 * $a" in sink context (line 2)

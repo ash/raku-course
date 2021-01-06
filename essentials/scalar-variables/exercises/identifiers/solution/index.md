@@ -4,7 +4,7 @@ title: Solution of ’Correct the identifiers‘
 
 {% include menu.html %}
 
-There are more than one way to make the identifiers correct. Some possible options are shown here:
+There is more than one way to make the identifiers correct. Some possible options are shown here:
 
 ## Code
 
@@ -32,10 +32,10 @@ $ raku exercises/scalar-variables/identifiers.raku
 
 Let us list the problems with the original names:
 
-* Spaces are not allowed: `$ A G E`.
-* A variable needs a sigil: `Name` (it is possible to have sigilles variables in Raku, but they still cannot be declared as `my Name`).
-* An apostrophe (a single quote, actually) cannot start a name: `$'Middle'Name`.
-* A digit cannot start a name either: `$2address`.
-* Two hyphens cannot sit together: `$from--to`.
+1. Spaces are not allowed: `$ A G E`.
+1. A variable needs a sigil: `Name` (it is possible to have sigilless variables in Raku, but they still cannot be declared as `my Name`).
+1. An apostrophe (a single quote, actually) cannot start a name: `$'Middle'Name`.
+1. A digit cannot start a name either: `$2address`.
+1. Two hyphens cannot sit together: `$from--to`.
 
 {% include nav.html %}

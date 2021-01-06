@@ -6,7 +6,7 @@ title: Quiz 1 — Hash elements
 
 Correct the errors in the following program.
 
-{:.quiz-code .fill .spacier}
+{:.quiz-code .fill}
 . | my %data =
 . | &nbsp;&nbsp;&nbsp;&nbsp;Jan => 1045,
 . | &nbsp;&nbsp;&nbsp;&nbsp;Feb => 2034,

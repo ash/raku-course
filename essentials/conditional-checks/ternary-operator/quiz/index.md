@@ -6,7 +6,7 @@ title: Quiz — Ternary operator
 
 Complete the gaps in the program:
 
-{:.quiz-code .spacier}
+{:.quiz-code}
 . | my $color = prompt &apos;What colour is it? &apos;;
 ?? | say $color eq &apos;blue&apos; ␣␣
 !! | &nbsp;&nbsp;&nbsp;&nbsp;&apos;This is a sky!&apos; ␣␣ 

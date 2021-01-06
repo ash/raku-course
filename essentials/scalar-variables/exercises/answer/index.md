@@ -6,7 +6,7 @@ title: Exercise ’The answer to life, the Universe and everything‘
 
 ## Problem
 
-Create a program that writes The answer to life, the Universe and everything, which is stored in a variable.
+Create a program that prints The answer to life, the Universe and everything, which is stored in a variable.
 
 ## Example
 

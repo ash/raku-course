@@ -27,13 +27,8 @@ Hello, Inge!
 
 ## Comments
 
-This program uses a scalar variable `$name` to keep a string that was entered by the user in response to the prompt. When the variable is used in the list that you pass to the `say` routine, you get the name in a message.
+1. This program uses a scalar variable `$name` to keep a string that was entered by the user in response to the prompt. When the variable is used in the list that you pass to the `say` routine, you get the name in a message.
 
-## Notes
-
-1. The program does not end the output with a newline.
-2. There is better way to solve this problem using string interpolations.
-
-Let us return to this problem in the near future.
+1. There is a better way to solve this problem using string interpolation. Let us return to this problem shortly.
 
 {% include nav.html %}

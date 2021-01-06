@@ -17,9 +17,9 @@ You can now use the variable and, for example, print it:
 say $name;
 ```
 
-## Multiple assignment
+## Multiple assignments
 
-Multiple variables can be assigned at onces. For example, this is how to assign two scalars in a single statement:
+Multiple variables can be assigned at once. For example, this is how to assign two scalars in a single statement:
 
 ```raku
 my ($a, $b);

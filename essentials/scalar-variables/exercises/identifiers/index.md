@@ -6,7 +6,7 @@ title: Exercise ’Correct the identifiers‘
 
 ## Problem
 
-Make the nesessary corrections in the following program to make all variable names valid.
+Make the necessary corrections in the following program to make all variable names valid.
 
 ```raku
 my $ A G E = 30;
