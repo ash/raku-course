@@ -1,12 +1,12 @@
 ---
-title: Solution of ’Hello, Interpolation!‘
+title: Solution to ’Hello, Interpolation!‘
 ---
 
 {% include menu.html %}
 
 ## Code
 
-Here is a possible solution of this problem:
+Here is a possible solution to this problem:
 
 ```raku
 my $name = prompt 'What is your name? ';
@@ -17,7 +17,7 @@ say "Hello, $name!";
 
 ## Output
 
-Run the program and it will enter a mode when it waits for your input. After you type the name and press Enter, the program continues and prints the greeting:
+Run the program, and it will enter a mode when it waits for your input. After you type the name and press Enter, the program continues and prints the greeting:
 
 ```console
 $ raku exercises/strings/hello-concatenation.raku
@@ -27,6 +27,6 @@ Hello, Raku!
 
 ## Comments
 
-Notice that this time, the string is double-quoted. In double quotes, variables will be interpolated, so their content will be placed in the string.
+Notice that this time, the string is double-quoted. In double quotes, variables are interpolated, so their content is placed in the string.
 
 {% include nav.html %}

@@ -6,9 +6,9 @@ title: Exercise ’Hello, Concatenation!‘
 
 ## Problem
 
-Remember our test program called ‘[Greet a person](../../../scalar-variables/assignments/greet-a-person/)’? Let us repeat it on a new level.
+Remember our test program called ‘[Greet a person](/essentials/scalar-variables/exercises/greet-a-person/)’? Let us repeat it on a new level.
 
-Write a program that asks the user for their name and prints a greeting.
+Write a program that asks the user for their name and prints a greeting. Use string concatenation in the solution.
 
 ## Example
 
@@ -19,7 +19,7 @@ $ raku hello-concatenation.raku
 What is your name?
 ```
 
-Then you enter the name and get see greeting:
+Then you enter the name and get the greeting:
 
     Hello, Ella!
 

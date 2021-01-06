@@ -42,7 +42,7 @@
 
 <h1 id="string-length">String length</h1>
 
-<p>The Unicode nature of all the things, including strings, makes some trivial things it a bit more difficult. Or, at least, you need to think of it as of a less straightforward topic. Take, for example, the length of a string. Is it the number of characters or is it the number of bytes. Or what if the the same character is decomposed differently in different strings, is it still one characters?</p>
+<p>The Unicode nature of the strings makes some trivial things it a bit more difficult. Or, at least, you need to think of it as of a less straightforward topic. Take, for example, the length of a string. Is it the number of characters, or is it the number of bytes? Or what if the same character is decomposed differently in different strings, is it still one character?</p>
 
 <h2 id="length-in-characters">Length in characters</h2>
 
@@ -53,31 +53,31 @@
 </pre></div>
 
 
-<p>While we’ll talk about methods later, we already should be able to use it. In Raku, you can call methods on almost every object, including strings and scalar variables. To call a method, use dot, so, here we see the method called on a variable that keeps a string: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+<p>While we’ll talk about methods later, we already should be able to use them. In Raku, you can call methods on almost every object, including strings and scalar variables. To call a method, use a dot. So, here we see the method called on a variable that keeps a string: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
 
 <p>There are four characters in this Chinese greeting 你好世界. And <code class="language-plaintext highlighter-rouge">$str.chars</code> returns exactly <code class="language-plaintext highlighter-rouge">4</code>.</p>
 
 <h2 id="length-in-bytes">Length in bytes</h2>
 
-<p>Just for the reference, this is how you get the lengths of the string in bytes. In this case, it it important to know which encoding is used to keep the string:</p>
+<p>Just for the reference, this is how you get the lengths of the string in bytes. In this case, it is important to know which encoding is used to keep the string:</p>
 
 <div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
 <span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
 </pre></div>
 
 
-<p>This time, the program prints <code class="language-plaintext highlighter-rouge">12</code>. Notice that we have two chained method calles in the second line here.</p>
+<p>This time, the program prints <code class="language-plaintext highlighter-rouge">12</code>. Notice that we have two chained method calls in the second line here.</p>
 
 <h2 id="length-in-code-points">Length in code points</h2>
 
-<p>Just for the completeness, here is another useful method that also relates to string lengths: <code class="language-plaintext highlighter-rouge">codes</code>. It returns the number of code points in the string after it is being normalized. In many cases, <code class="language-plaintext highlighter-rouge">codes</code> and <code class="language-plaintext highlighter-rouge">chars</code> return the same, but in some rare cases, when, for example, you built ‘an impossible’ character, for which there is no single codepoint in the whole Unicode space, the methods give different results.</p>
+<p>Just for the completeness, here is another useful method that also relates to string lengths: <code class="language-plaintext highlighter-rouge">codes</code>. It returns the number of code points in the string after it is being normalized. In many cases, <code class="language-plaintext highlighter-rouge">codes</code> and <code class="language-plaintext highlighter-rouge">chars</code> return the same. Still, in some rare cases, when, for example, you built ‘an impossible’ character, for which there is no single codepoint in the whole Unicode space, the methods give different results.</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
 <span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
 </pre></div>
 
 
-<p>This character, <code class="language-plaintext highlighter-rouge">x̨</code>, does not have a dedicated code point and can only be constructed by two parts: lowercase letter <code class="language-plaintext highlighter-rouge">x</code> and the combining character with the code <code class="language-plaintext highlighter-rouge">0x0328</code>. So, there is still one character but two codepoints. So, the program prints:</p>
+<p>This character, <code class="language-plaintext highlighter-rouge">x̨</code>, does not have a dedicated code point and can only be constructed from the two parts: the lowercase letter <code class="language-plaintext highlighter-rouge">x</code> and the combining character <code class="language-plaintext highlighter-rouge">0x0328</code>. So, there is still one character but two codepoints. So, the program prints:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
 2

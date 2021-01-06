@@ -4,7 +4,7 @@ title: 'Quiz: String interpolation'
 
 {% include menu.html %}
 
-Select the strings, where the value of `$x` is interpolated once.
+Select the strings, where the value of `$x` is interpolated exactly one time.
 
 {:.quiz}
 1 | &quot;The temperature is $x degrees&quot;

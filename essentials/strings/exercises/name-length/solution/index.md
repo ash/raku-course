@@ -1,5 +1,5 @@
 ---
-title: Solution of ’Name length‘
+title: Solution to ’Name length‘
 ---
 
 {% include menu.html %}

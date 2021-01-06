@@ -4,7 +4,7 @@ title: 'Quiz: A backslash in the output'
 
 {% include menu.html %}
 
-From the below strings, check those that will have exactly one slash in the output if you print them.
+From the below strings, check those that will have precisely one slash in the output if you print them.
 
 {:.quiz}
 0 | &quot;Level\n\t2&quot;
@@ -20,6 +20,6 @@ From the below strings, check those that will have exactly one slash in the outp
 
 ## Comments
 
-The main thing to look at here is the quotes, which determines the way the `\`-prefixed characters are escaped.
+The main thing to look at here is the quotes. They determine the way the `\`-prefixed characters are escaped.
 
 {% include nav.html %}

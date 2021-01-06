@@ -42,14 +42,14 @@
 
 <h1 id="escaping-special-characters">Escaping special characters</h1>
 
-<p>Imagine you want to print a price label and you have both the name of the product and its price in scalar variables?</p>
+<p>Imagine you want to print a price label, and you keep both the name of the product and its price in scalar variables?</p>
 
 <div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
 <span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
 </pre></div>
 
 
-<p>How do you print the label if the price is meant to be in dollars? This is what is expected to be output: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. A dollar sign in a double-quoted strings is an indicator of a variable to be interpolated. To print the <code class="language-plaintext highlighter-rouge">$</code> character itself, you need to escape it:</p>
+<p>How do you print the label if the price is meant to be in dollars? The expected output is: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. A dollar sign in double-quoted strings is an indicator of a variable to be interpolated. To print the <code class="language-plaintext highlighter-rouge">$</code> character itself, you need to escape it:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
 </pre></div>
@@ -61,7 +61,7 @@
 </pre></div>
 
 
-<p>This variant prints exactly the same string, but in general strings with interpolated variables look more natural and easy to read. But what is important here is that as you see, the <code class="language-plaintext highlighter-rouge">$</code> was neither interpolated nor escaped in a string in single quotes: <code class="language-plaintext highlighter-rouge">' costs $'</code>. That’s tha main difference. Special characters in single quotes appear as-is.</p>
+<p>This variant prints exactly the same string, but interpolation look more natural and easier to read. Note that the <code class="language-plaintext highlighter-rouge">$</code> character was neither interpolated nor escaped in a single-quoted string: <code class="language-plaintext highlighter-rouge">' costs $'</code>. That’s the main difference. Special characters in single quotes appear as-is.</p>
 
 <p>Here is a few more special characters that have special meaning in double-quoted strings:</p>
 
@@ -73,7 +73,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">\n</code></td>
-      <td>New line</td>
+      <td>Newline</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">\r</code></td>
@@ -94,7 +94,7 @@
   </tbody>
 </table>
 
-<p>The way you quote the string defines how special characters are interpreted. Consider these two examples:</p>
+<p>The way you quote the string defines how Raku treats special characters. Consider these two examples:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
 <span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
@@ -110,13 +110,13 @@ Four
 
 <p>In double quotes, a special sequence <code class="language-plaintext highlighter-rouge">\n</code> was processed as a newline character, while in a string in single quotes it was a regular sequence of two characters: <code class="language-plaintext highlighter-rouge">\</code> and <code class="language-plaintext highlighter-rouge">n</code>.</p>
 
-<p>An interesting exception is for <code class="language-plaintext highlighter-rouge">'</code> and <code class="language-plaintext highlighter-rouge">\</code>. In single quotes, you can escape a single quote by prefixing it with another <code class="language-plaintext highlighter-rouge">\</code>:</p>
+<p>There’s an interesting exception for <code class="language-plaintext highlighter-rouge">'</code> and <code class="language-plaintext highlighter-rouge">\</code>. In single quotes, you can escape a single quote by prefixing it with another <code class="language-plaintext highlighter-rouge">\</code>:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
 </pre></div>
 
 
-<p>A backslash also has to be escaped it is followed by a single quote:</p>
+<p>A backslash also has to be escaped if a single quote follows it:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
 </pre></div>

@@ -6,7 +6,7 @@ title: Code interpolation in Raku strings
 
 The next level of interpolation is code interpolation. It allows you to have simple (and complex too!) code directly inside a double-quoted string.
 
-The interpolated code is placed inside curly braces:
+The interpolated code is placed between curly braces:
 
 ```raku
 my $a = 10;
@@ -23,7 +23,7 @@ The sum of 10 and 20 is 30.
 
 ## Variables again
 
-One of the application of this method is to help to disambiguate situations when a variable must be followed by a text that can be wrongly understood as the continuation of the name of the variable. To prevent that, use curly braces to enclose the variable:
+One of the applications of this method is to help to disambiguate situations when a variable must be followed by a text that can be wrongly understood as the continuation of the variable’s name. To prevent that, use curly braces to enclose the variable:
 
 ```raku
 my $how-many = 5;

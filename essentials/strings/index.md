@@ -4,7 +4,7 @@ title: Strings in Raku
 
 {% include menu.html %}
 
-Let’s talk about strings. We already used strings in a number of previous programs. All of them are also called string literals. A string literal is some text in quotes:
+Let’s talk about strings. We already used strings in the previous programs. All of them are also called string literals. A string literal is some text in quotes:
 
 ```raku
 say 'I am a string literal';

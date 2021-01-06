@@ -1,12 +1,12 @@
 ---
-title: Solution of ’Purchase table‘
+title: Solution to ’Purchase table‘
 ---
 
 {% include menu.html %}
 
 ## Code
 
-Here is a possible solution of this task:
+Here is a possible solution:
 
 ```raku
 my $chair-price = 20.57;
@@ -22,9 +22,9 @@ say "Chairs\t\$$chair-price\t$chairs\t\$$chairs-total";
 say "Tables\t\$$table-price\t$tables\t\$$tables-total";
 ```
 
-All the numbers are hard coded and saved in a number of variables. We are also using multiplication operator `*` to compute the result. We’ll learn more about operators in the next section of this course, but at this point the construction such as `$chair-price * $chairs` should not be something that you cannot understand.
+All the numbers are hardcoded and saved in a number of variables. We are also using the multiplication operator `*` to compute the result. We’ll learn more about operators in the next sections of this course, but at this point, the construction such as `$chair-price * $chairs` should not be something that causes questions.
 
-The three lines that generate output print the three lines of the table, including its header. Notice how the columns are separated by the tab characters `\t`. In the data rows, we also see an escaped dollar character: `\$` as well as different variables that we want to interpolate.
+The three lines generating the output print the three lines of the table, including its header. Notice how the columns are separated by the tab characters `\t`. In the data rows, we also see an escaped dollar character: `\$` as well as different variables that we want to interpolate.
 
 🦋 You can find the source code in the file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
 
@@ -32,7 +32,7 @@ The three lines that generate output print the three lines of the table, includi
 
 Run the program and see how it prints the table:
 
-```console
+```
 $ raku exercises/strings/purchase-table.raku
 Item    Price   N      Total
 Chairs  $20.57  4      $82.28
@@ -41,7 +41,7 @@ Tables  $50.18  1      $50.18
 
 ## Comments
 
-Did you notice the hyphens in the name of the variables such as `$chair-price` or `$tables-total`? This is an acceptable way of naming variables in Raku. We’ll touch this in one of the later sections soon.
+Did you notice the hyphens in the names of the variables such as `$chair-price` or `$tables-total`? This is a perfectly acceptable way of naming variables in Raku.
 
 Don’t be confused by the two adjacent dollar symbols. Raku reads them separately. For example, in the substring `\$$price`, the first dollar sign is escaped and thus represents itself, while the second one is a part of the variable name `$price`.
 

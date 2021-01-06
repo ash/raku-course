@@ -4,24 +4,24 @@ title: 'Quiz 1: Concatenating strings and numbers'
 
 {% include menu.html %}
 
-Notice that Raku will automatically convert a number if you want to concatenate it to a string. In each of the parts below, check the lines that print the given string.
+Raku automatically converts a number if you want to concatenate it to a string. In each of the parts below, select the lines that print the required string.
 
 ## 1
 
-Which lines print `Alpha2`?
+Which of the lines print `Alpha2`?
 
 {:.quiz}
 1 | say &apos;Alpha2&apos;;
 0 | say &apos;Alpha&apos; 2; | A space is a syntax error here.
 1 | say &apos;Alpha&apos;, &apos;2&apos;; | There is no string concatenation, but the result is correct.
 1 | say &apos;Alpha&apos; ~ &apos;2&apos;;
-1 | say &apos;Alpha&apos; ~ 2; | A number is converted to a string and then is concatenated.
-0 | say &apos;Alpha&apos; + 2; | A `+` does not concatenate strings.
+1 | say &apos;Alpha&apos; ~ 2; | A number is converted to a string and then concatenated.
+0 | say &apos;Alpha&apos; + 2; | A `+` does not do string concatenation.
 0 | say &apos;Alpha&apos; . 2; | Neither does a `.`.
 
 ## 2
 
-Which lines print `123`?
+Which of these lines print `123`?
 
 {:.quiz}
 1 | say 1 ~ 2 ~ 3; | String concatenation here, even for numbers.
