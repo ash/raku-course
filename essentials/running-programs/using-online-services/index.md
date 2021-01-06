@@ -6,7 +6,7 @@ title: Using online services to run Raku
 
 Online services do not require many explanations. Paste the text of the program into an online editor and press the `Run` button. You will see program’s output in a separate area. If there are some errors, you will see them too. 
 
-Such services can often send data to your program’s input stream STDIN from a separate textarea. Sometimes, the output is also shown split into STDOUT and STDERR.
+Such services can often send data to your program’s input stream STDIN from a separate textarea. Sometimes, the output is also shown split into `STDOUT` and `STDERR`.
 
 ## External links
 

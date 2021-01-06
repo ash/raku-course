@@ -4,9 +4,9 @@ title: Multi-line comments
 
 {% include menu.html %}
 
-As soon as you want to leave a comment that is more than a single line, you can choose either to have a few single-line comments or a single multi-line comment.
+As soon as you want to leave a comment that is bigger than a single line, you can choose either to have a few single-line comments or a single multi-line comment.
 
-Multi-line comments start with a two-character combination ``#` `` and are followed by a pair of enclosing characters `( )`, `{ }`, `[ ]`, or `< >` or their paird multiple copies: `(( ))`, `[[[ ]]]`, etc.
+Multi-line comments start with a two-character combination ``#` `` and are followed by a pair of enclosing characters `( )`, `{ }`, `[ ]`, or `< >` or their repeated copies: `(( ))`, `[[[ ]]]`, etc.
 
 For example:
 

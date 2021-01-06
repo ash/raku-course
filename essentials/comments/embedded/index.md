@@ -12,6 +12,6 @@ $name = #`[User input expected here] prompt 'What is your name? ';
 say $name;
 ```
 
-A good syntax highlighter helps a lot to visualize the presense of embedded comments.
+A good syntax highlighter helps a lot to visualize the comments.
 
 {% include nav.html %}

@@ -1,3 +1,1 @@
-for 1..10 -> $n {
-    say 'Line';
-}
+say 'You are going to learn ', prompt 'What language are you going to learn? ';        

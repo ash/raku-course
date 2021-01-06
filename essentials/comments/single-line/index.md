@@ -4,7 +4,7 @@ title: Single-line comments
 
 {% include menu.html %}
 
-The simplest form of a comment is a one-line comment, which starts by the `#` character and goes until the end of the current line.
+The simplest form of a comment is a one-line comment. It starts by the `#` character and goes until the end of the current line.
 
 ```raku
 my $name; # This variable is used to keep user’s name

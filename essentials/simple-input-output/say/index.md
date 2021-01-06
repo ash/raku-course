@@ -4,9 +4,9 @@ title: Output wth say
 
 {% include menu.html %}
 
-The `say` function (or a subroutine, or simply routine) prints the values to the standard output stream, `STDOUT`. If you run the program from a terminal, the output appears there. If you run in online services such as [glot.io](https://glot.io/new/perl6), the output appears in a dedicated area in the browser.
+The `say` function (or a subroutine, or simply routine) prints the values to the standard output stream, `STDOUT`. If you are running the program from a terminal, the output appears there. If you are using online services, the output is sent to a dedicated area of the web page.
 
-Here is an example of using say:
+Here is an example of using `say`:
 
 ```raku
 say 42;
@@ -22,18 +22,18 @@ say 'Hello, World!';
 
 Voilà, we got `Hello, World!` on the screen.
 
-The `say` routine can accept more than one argumnet, so we can print both values in one go:
+The `say` routine can accept more than one argument, so we can print more values in one go:
 
 ```raku
 say 42, 'Hello, World!';
 ```
 
-Just note that the parts of this output will be concatenated to a single string: `42Hello, World!`, so it’s better to add a space. And you should be able to solve this problem by now, for example, like this:
+Just note that the parts of this output are concatenated to a single string: `42Hello, World!`, so it’s better to add a space between them. And you should be able to solve this problem by now, for example, like this:
 
 ```raku
 say 42, ' ', 'Hello, World!';
 ```
 
-After printing all the argumnets, the `say` routine adds a newline character to the output.
+After printing all the arguments, the `say` routine adds a newline character to the output.
 
 {% include nav.html %}

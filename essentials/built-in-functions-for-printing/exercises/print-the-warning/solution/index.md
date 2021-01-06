@@ -35,7 +35,7 @@ What is your age? -1
 You entered a negative number!
 ```
 
-To make sure the error message is printed to STDERR, redirect the output. The prompt to enter the age will not appear, but you can still enter a number. The warning remains visible.
+To make sure the error message is printed to `STDERR`, redirect the output. The prompt to enter the age will not appear, but you can still enter a number. The warning remains visible.
 
 ```console
 $ raku exercises/built-in-functions-for-printing/print-the-warning.raku > /dev/null
