@@ -20,9 +20,9 @@ To exit type 'exit' or '^D'
 > 
 ```
 
-The output may depend on your current installed version of the compiler. In the above output, no package module called `zef` is installed, so you see the corresponding message.
+The output may depend on the currently installed version of the compiler. In the above output, the shell recommends to install some modules for better user experience, so you see the corresponding message.
 
-At the end you see the prompt character where you can type in your program or its parts. The shell will compile it line by line as soon as you press Enter.
+At the end, there’s a prompt character `>` where you can type in your program or its parts. The shell will compile it line by line as soon as you press Enter.
 
     > say 'Hello, World';
     Hello, World

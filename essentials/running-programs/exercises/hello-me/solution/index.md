@@ -4,7 +4,7 @@ title: Solution of ’Hello, Me!‘
 
 {% include menu.html %}
 
-Here is the solution of the problem ‘[Hello, me!](../)‘.
+Here is the solution to the problem ‘[Hello, me!](../)‘.
 
 ## Code
 
@@ -16,7 +16,7 @@ say 'Hello, Andrew!';
 
 ## Output
 
-To see the output, run the program as shown below:
+To see the output, run the program, as shown below:
 
 ```console
 $ raku exercises/running-programs/hello-me.raku 
@@ -25,6 +25,6 @@ Hello, Andrew!
 
 ## Discussion
 
-There’s no doubt you managed to create this program. Nevetheless, remember that there are often more than one way to implement it.
+There’s no doubt you managed to create this program. Nevertheless, remember that there is often more than one way to implement it.
 
 {% include nav.html %}
