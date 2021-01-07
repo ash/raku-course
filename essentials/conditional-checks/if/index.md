@@ -4,7 +4,7 @@ title: Conditional checks with if
 
 {% include menu.html %}
 
-The `if` conditional check test a condition and if it is `True`, runs a block of code.
+The `if` conditional check tests a condition and if it is `True`, runs a block of code.
 
 ```raku
 if 10 > 4 {
@@ -23,7 +23,7 @@ if $flag {
 }
 ```
 
-In the case there are more than one check that uses the same variable, it is possible to use chained comparisons:
+In the case when more than one check uses the same variable, it is possible to use chained comparisons:
 
 ```raku
 my $x = 42;
