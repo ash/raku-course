@@ -15,7 +15,7 @@ say $i;
 say $s;
 ```
 
-There are three scalar variables created there, two of them, `$i` and `$s` are typed variables. That means that `$i` can only store integers and `$s` can only store strings.
+There are three scalar variables created here. Two of them, `$i` and `$s` are typed variables. That means that `$i` can only store integers and `$s` can only store strings.
 
 The return type of `prompt` depends on the characters we typed. If the input string can represent an integer number, the result will be of the `IntStr` type, which is both `Int` and `Str`, and thus can be assigned to either an `Int` or a `Str` variable. So, if you enter, say, `1234`, the program does not break.
 
@@ -26,7 +26,7 @@ Enter something: 1234
 1234
 ```
 
-The `IntStr` type is an example of the so-called _allomorph_ — a data type that combine two other types. Here are a few more examples.
+The `IntStr` type is an example of the so-called _allomorph_ — a data type that combines two other types. Here are a few more examples.
 
 If you enter a string that cannot be an integer number, the program breaks at the moment we assign `$input` to `$i`:
 
@@ -37,7 +37,7 @@ Type check failed in assignment to $i; expected Int but got Str ("Hello, World!"
   in block <unit> at allomorphs.raku line 2
 ```
 
-Notice that you get an error even if the input string can be casted to a number, but not integer. As it is not possible to store a floating-point or a rational number in an integer container, Raku will emit an exception:
+Notice that you get an error even if the input string can be cast to a number, but not an integer. As it is not possible to store a floating-point or a rational number in an integer container, Raku will emit an exception:
 
 ```
 $ raku allomorphs.raku

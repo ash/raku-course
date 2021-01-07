@@ -4,9 +4,9 @@ title: Arrays
 
 {% include menu.html %}
 
-Arrays are aggregate data types that can keep more than one value. Which differs arrays from [scalar items](/essentials/scalar-variables). An array elements can be indexed (or _subscripted_). In other words, its elements have a position (which explains the general name for this kind of data: positionals).
+Arrays are aggregate data types that can keep more than one value. That differs arrays from [scalar items](/essentials/scalar-variables). Array’s elements can be indexed (or _subscripted_). In other words, its elements have a position (which explains the general name for this kind of data: positionals).
 
-Array variables use another kind of sigil: `@`. The rules for the variable name is the same as [for scalars](/essentials/scalar-variables/identifiers/).
+Array variables use another kind of sigil: `@`. The rules for the variable name are the same as [for scalars](/essentials/scalar-variables/identifiers/).
 
 ```raku
 my @cities;
@@ -18,7 +18,7 @@ So far, the array named `@cities` has been created. You can fill it with some va
 @cities = 'Paris', 'Rome', 'Berlin';
 ```
 
-Alternatively, it is possible to initialise the values at the time of creation of the variable:
+Alternatively, it is possible to initialise the values immediately:
 
 ```raku
 my @cities = 'Paris', 'Rome', 'Berlin';
@@ -26,7 +26,7 @@ my @cities = 'Paris', 'Rome', 'Berlin';
 
 ## Indexing
 
-To access a single item of an array, use a pair of brackets that you place immediately after the name of the variable:
+To access a single item of an array, use a pair of brackets that you place after the name of the variable:
 
 ```raku
 say @cities[1];
@@ -34,7 +34,7 @@ say @cities[1];
 
 Notice that the sigil always stays the same. As elements are counted from zero, the element `@cities[1]` is `'Rome'` in our example.
 
-Arrays are mutable, so you can easily modify the items of it by simply assigning a new value to it:
+Arrays are mutable, so you can easily modify the items of it by simply assigning a new value to them:
 
 ```raku
 @cities[0] = 'Rome';
