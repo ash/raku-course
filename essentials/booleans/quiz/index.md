@@ -11,7 +11,7 @@ Select all examples with correct Boolean values in Raku
 0 | false
 1 | True | This is the only correct form for the True value.
 1 | False | This is the only correct form for the False value.
-0 | $True | This is variable, not a Boolean literal.
+0 | $True | This is a variable, not a Boolean literal.
 0 | $False | As well as this one. 
 0 | TRUE
 0 | FALSE

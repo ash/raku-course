@@ -6,7 +6,7 @@ title: Exercise 'Boolean tables’
 
 ## Problem
 
-Create a program that prints the results of the three boolean operations for the four combinations of two Boolean values.
+Create a program that prints the results of the three Boolean operations for all the combinations of `True` and `False`.
 
 ## Example
 

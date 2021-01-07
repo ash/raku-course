@@ -20,7 +20,7 @@ say !!$value;
 
 ## Comments
 
-Before running the program, let us think what it will print. There are two negation operators before the variable. And they act as two negation operators. In the first case, the falue is flipped from `False` to `True`, and then immediately flipped back from `True` to `False`. In the second case, the algorithm is the same: after two negations, we get the initial Boolean value.
+Before running the program, let us think what it will print. There are two negation operators before the variable. They act as two negation operators. In the first case, the value is flipped from `False` to `True`, and then immediately flipped back from `True` to `False`. In the second case, the algorithm is the same: after two negations, we get the initial Boolean value.
 
 ## Output
 

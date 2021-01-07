@@ -6,7 +6,7 @@ title: Sum of numbers from 1 to 100
 
 ## Problem
 
-Creat the program that computes the sum of integer numbers from 1 to 100 (including both 1 and 100) and prints it.
+Create a program that computes the sum of integer numbers from 1 to 100 (including both 1 and 100) and prints it.
 
 ## Example
 

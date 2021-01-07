@@ -4,7 +4,7 @@ title: Matching against a range
 
 {% include menu.html %}
 
-Below are a number of matches agains the range. Try to find out the correct answers.
+Below are a number of matches against the range. Try to find out the correct answers.
 
 ## 1
 
@@ -24,6 +24,7 @@ A bit trickier. What if to match a range against another range?
 {:.quiz-select}
 True | `2..3 ~~ 1..5 ` is&nbsp; (: True, False :)
 False | `1..2 ~~ 5..6 ` is&nbsp; (: True, False :)
+False | `1..5 ~~ 3..7 ` is&nbsp; (: True, False :)
 
 {% include quiz.html %}
 

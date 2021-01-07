@@ -1,5 +1,5 @@
 ---
-title: Solution of ‘The value of π’
+title: Solution to ‘The value of π’
 ---
 
 {% include menu.html %}
@@ -25,7 +25,7 @@ $ raku exercises/numbers/pi.raku
 
 ## Comments
 
-Raku already offers us a built-in constant called `π`, which makes the program trivial. Nevertheless, consider other options of doing the same:
+Raku offers us a built-in constant called `π`, which makes the program trivial. Nevertheless, consider other options for doing the same:
 
 ```raku
     π.say;

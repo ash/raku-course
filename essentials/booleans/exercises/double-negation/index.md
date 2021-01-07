@@ -13,7 +13,7 @@ my $value = False;
 say !!$value;
 ```
 
-Extend the program to repeat the actions, but this time they should start with `True`.
+Extend the program to repeat the actions, but for the value of `True`.
 
 ## Solution
 

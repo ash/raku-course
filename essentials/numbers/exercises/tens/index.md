@@ -6,7 +6,7 @@ title: Number of tens
 
 ## Problem
 
-Create a program that asks to enter an positive integer number and prints the digit corresponding to the number of _tens_ in it.
+Create a program that asks to enter a positive integer number and prints the digit corresponding to the number of _tens_ in it.
 
 ## Example
 

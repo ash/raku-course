@@ -4,7 +4,7 @@ title: 'Solution: If the number is within the limits'
 
 {% include menu.html %}
 
-The program uses a range that is created from the numbers that the user enters. Then, the smartmatch check tests if the third number is withing the range borders.
+The program uses a range that is created from the numbers that the user enters. Then, the smartmatch check tests if the third number is within the range borders.
 
 ## Code
 
@@ -24,7 +24,7 @@ say $n ~~ $begin ..^ $end ??
 
 ## Output
 
-Test different cases, including when the number coinsides with the end of the range.
+Test different cases, including when the number coincides with the end of the range.
 
 ```console
 $ raku exercises/ranges/number-in-limits.raku

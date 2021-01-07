@@ -4,7 +4,7 @@ title: Solution to ‘Triple negation’
 
 {% include menu.html %}
 
-The program shown in the task won’t compile and requires a small fix. Here is the correct and working variant (a space added to separate `!` and `!!`):
+The program shown in the task won’t compile and requires a small fix. Here is the correct and working variant (space added to separate `!` and `!!`):
 
 ## Code
 
@@ -26,7 +26,7 @@ True
 
 ## Comments
 
-It was a bit unexpected the program with three exclamation signs did not compile:
+It was a bit unexpected the program with three exclamation marks did not compile:
 
 ```console
 $ raku triple-negation.raku
@@ -43,7 +43,7 @@ at /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
         statement modifier loop
 ```
 
-An added space solves this problem. But don’t fall into another trap. Consider the following program:
+An additional space solves this problem. But don’t fall into another trap. Consider the following program:
 
 ```raku
 my $value = False;
@@ -58,6 +58,6 @@ False
     in block <unit> at exercises/booleans/triple-negation.raku line 2
 ```
 
-This happens because `!!!` is a special operator for marking the part of the code as a stub code. It the program reaches this point, it terminates and prints the message, which in our case was the current value of the variable `$value`. Refer to 📖 [the documentation](https://docs.raku.org/routine/!!!) for more details.
+This happens because `!!!` is a special operator for marking the part of the code as stub code. It the program reaches this point, it terminates and prints the message, which in our case was the current value of the variable `$value`. Refer to 📖 [the documentation](https://docs.raku.org/routine/!!!) for more details.
 
 {% include nav.html %}

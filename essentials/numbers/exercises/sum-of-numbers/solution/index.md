@@ -1,10 +1,10 @@
 ---
-title: Solution of ‘Sum of numbers’
+title: Solution to ‘Sum of numbers’
 ---
 
 {% include menu.html %}
 
-Here is the solution of the problem.
+Here is the solution to the problem.
 
 ## Code
 
@@ -34,6 +34,6 @@ The sum of the numbers is 42.8.
 
 ## Comments
 
-Notice that we are directly using the value returned by the `prompt` routine. This may cause problems if the user enters a string that does not represent a value. We can make the program better in the future after we learn about exceptions.
+Notice that we are directly using the value returned by the `prompt` routine. That may cause problems if the user enters a string that does not represent a value. We can make the program better in the future after we learn about exceptions.
 
 {% include nav.html %}

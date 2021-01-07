@@ -11,7 +11,7 @@ my $r = 1..10;
 my $v = 7;
 ```
 
-Using the _smart-match operator_ `~~` you can check if the value is within the range:
+Using the _smart-match operator_ `~~`, you can check if the value is within the range:
 
 ```
 say $v ~~ $r;

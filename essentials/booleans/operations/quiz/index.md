@@ -51,6 +51,6 @@ say $value;
 
 ## Comments
 
-In the second the third programs, we have expressions with three Boolean values. The result depends on the order in which the operations are executed. The `&&` operator has tighter precedence than `||`, so it is executed first.
+In the second and third programs, we have expressions with three Boolean values. The result depends on the order in which the operations are executed. The `&&` operator has tighter precedence than `||`, so it is executed first.
 
 {% include nav.html %}

@@ -6,11 +6,11 @@ title: Sum of numbers
 
 ## Problem
 
-Write the program that asks to enter three numbers (one after another), and then prints the sum of them.
+Write a program that asks to enter three numbers (one after another), and then prints the sum.
 
 ## Example
 
-Here is an expected script of how the program is used:
+Here is an expected script of using the program:
 
 ```console
 $ raku sum-of-numbers.raku

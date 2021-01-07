@@ -4,7 +4,7 @@ title: Excluding the endpoints of a range
 
 {% include menu.html %}
 
-To exclude one of the edges or both of them, modify the range creation operator with the `^` character. There are three more operators that can be constructed in such a way. In the comment, the nubmers that the range generates are shown:
+To exclude one of the edges or both of them, modify the range creation operator with the `^` character. There are three more operators that can be constructed in such a way. The comments list the numbers that the ranges generate.
 
 ```raku
 1 ..^ 5;  # 1, 2, 3, 4

@@ -6,7 +6,7 @@ title: 'Exercise: The last digit'
 
 ## Problem
 
-Write the program that asks to enter an positive integer number and prints its last digit.
+Write a program that asks to enter a positive integer number and prints its last digit.
 
 ## Example
 

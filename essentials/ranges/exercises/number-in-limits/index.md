@@ -6,13 +6,13 @@ title: 'Exercise: If the number is within the limits'
 
 ## Problem
 
-Write a program that asks to enter three numbers: `$begin`, `$end`, and `$n` and prints if `$n` lays in the range `[$begin, $end)` (including `$being` and excluding `$end`).
+Write a program that asks to enter three numbers: `$begin`, `$end`, and `$n` and prints if `$n` lays in the range `[$begin, $end)` (including `$begin` but excluding `$end`).
 
-Assume that the entered numbers satisfy the condition: `$begin < $end + 1`, but do not add code to check it.
+Please assume that the entered numbers satisfy the condition: `$begin < $end + 1`, but do not add code to check it.
 
 ## Example
 
-The possible output of the program is shown below for both cases:
+The possible output of the program for both cases is shown below:
 
 ```console
 $ raku number-in-limits.raku

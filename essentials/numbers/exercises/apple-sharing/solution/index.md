@@ -1,10 +1,10 @@
 ---
-title: Solution of ‘Apple sharing’
+title: Solution to ‘Apple sharing’
 ---
 
 {% include menu.html %}
 
-Here is the solution of the problem.
+Here is the solution to the problem.
 
 ## Code
 
@@ -16,7 +16,7 @@ my $gets = $K div $N;
 my $remains = $K % $N;
 
 say "Each person gets $gets apple(s).";
-say "There are {$remains} apple(s) remaining.";
+say "There are $remains apple(s) remaining.";
 ```
 
 🦋 You can find the full code in the file [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
@@ -45,5 +45,7 @@ In the program, we are using the two operators: `div` to perform integer divisio
 my $gets = $K div $N;
 my $remains = $K - $N * $gets;
 ```
+
+Also note how the variables are interpolated in the string.
 
 {% include nav.html %}

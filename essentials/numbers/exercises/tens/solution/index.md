@@ -1,5 +1,5 @@
 ---
-title: Solution of ‘Number of tens’
+title: Solution to ‘Number of tens’
 ---
 
 {% include menu.html %}
@@ -21,11 +21,11 @@ say ($n % 100) div 10;
 Run the program and test a few different cases:
 
 * A three-digit round number such as 120;
-* A number multiple of 100, for example, 400;
-* A number, which is bigger than 10 but smaller than 100.
+* A multiple of 100, for example, 400;
+* A number which is bigger than 10 but smaller than 100.
 * A number less than 10.
 
-For the input number 234, the program’s output looks like this:
+For number 234, the program’s output looks like this:
 
 ```console
 $ raku exercises/numbers/tens.raku
@@ -37,7 +37,7 @@ Enter a positive integer number: 234
 
 In this solution, the combination of the modulo `%` and integer division `div` is used again.
 
-Notice the space before the opening parenthesis. It has to be there, otherwise you get a syntax error. We’ll return to this aspect of Raku in the section about [functions](/functions), but for now, type the code as shown above or add another pair of parentheses to surround the argument of the function — in this case, no space is needed:
+Notice the space before the opening parenthesis. It has to be there; otherwise, you get a syntax error. We’ll return to [this aspect](/essentials/more-on-functions/mind-the-space) of Raku in the section about functions, but for now, type the code as shown above or add another pair of parentheses to surround the argument of the function — in this case, no space is needed:
 
 ```raku
     say(($n % 100) div 10);

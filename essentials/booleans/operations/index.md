@@ -4,7 +4,7 @@ title: Boolean operations
 
 {% include menu.html %}
 
-All standard operations are defined for Boolean values: Booleand AND, OR, and exclusive OR or XOR:
+You can do all standard operations with Boolean values: Boolean AND, OR, and exclusive OR (or XOR):
 
 ```raku
 say False && True; # AND

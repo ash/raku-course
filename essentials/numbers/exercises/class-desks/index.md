@@ -6,9 +6,9 @@ title: Class desks
 
 ## Problem
 
-A school is preparing to the year after coronavirus and is going to buy new desks. A desk is designed for two students. Given the number of students in the class, print the smallest possible number of desks that must be purchased for the class.
+A school is preparing for the year after coronavirus and is going to order new desks. A desk is designed for two students. Given the number of students in the class, print the smallest possible number of desks that the school must buy for the class.
 
-Use a variable to hard code the number of students.
+Use a variable to hardcode the number of students.
 
 ## Example
 

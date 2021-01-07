@@ -6,13 +6,13 @@ title: Ranges
 
 Ranges in Raku generate lists of sequential items.
 
-In the simplest case, a range is a list of incrementing integers numbers. To create a range, use the `..` operator and the two values that define the minimum and maximum value of the range:
+In the simplest case, a range is a list of incrementing integers numbers. To create a range, use the `..` operator and the two values that define the minimum and maximum values of the range:
 
 ```raku
 1 .. 5
 ```
 
-Spaces here are optional. The following construction can be written as:
+Spaces around the operator are optional. The following construction can be written as:
 
 ```raku
 1..5
@@ -26,7 +26,7 @@ my $r = 1 .. 5;
 
 ## Not only numbers
 
-It is possible to construct a range from other datatypes, for which Raku knows how to increment them. For example:
+It is possible to construct a range from other data types, for which Raku knows how to increment them. For example:
 
 ```raku
 my $letters = 'a' .. 'z';

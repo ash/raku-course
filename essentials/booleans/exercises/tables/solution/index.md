@@ -49,12 +49,12 @@ False ^^ False is False
 
 ## Comments
 
-Notice that due to higher precedence of the Boolean operations, you do not need to put them in parentheses. This, though, is not the case if you choose to use string concatenation:
+Notice that due to higher precedence of the Boolean operations, you do not need to put them in parentheses. This, though, is not the case if you are using string concatenation:
 
 ```raku
 say 'True && True is ' ~ (True && True);
 ```
 
-You can return to this exercise after we review interpolating code blocks in strings.
+Alternatively, you can use [code interpolation](/essentials/strings/code-interpolation).
 
 {% include nav.html %}
