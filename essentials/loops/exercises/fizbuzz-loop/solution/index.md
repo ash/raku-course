@@ -4,7 +4,7 @@ title: 'Solution: FizzBuzz in a loop'
 
 {% include menu.html %}
 
-This time, a loop is organised around the divisibility checks. Instead of direct printing, the phrase is first built in a separate variable, which is later interpolated in a string.
+This time, the divisibility check happens in a loop. Instead of direct printing, the phrase is first accumulated in a separate variable and is later interpolated in a string.
 
 ## Code
 
@@ -29,6 +29,6 @@ $ raku exercises/loops/fizbuzz-loop.raku
 
 ## Comment
 
-For a pedantic problem solver, the solution may not be perfect as it prints a space after the colon for those numbers, which did not get any Fizz of Buzz. Modify the program to avoid that issue.
+For a pedantic problem solver, the solution may not be perfect as it prints a space after the colon even for those numbers, which did not get any Fizz of Buzz. Modify the program to avoid that issue.
 
 {% include nav.html %}

@@ -6,7 +6,7 @@ title: 'Exercise: Squares and cubes in a loop'
 
 ## Problem
 
-Write a program that prints the square and cubes of the numbers between −5 and 5 inclusive. On each line, there should be three value: the number itself, its square and its cube. Use a loop.
+Write a program that prints squares and cubes of the numbers between −5 and 5 inclusive. There should be three values on each line: the number itself, its square and its cube. Use a loop.
 
 ## Example
 

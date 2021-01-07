@@ -4,7 +4,7 @@ title: 'Solution: Digital stairs'
 
 {% include menu.html %}
 
-The program uses two loops and two ranges to loop over them.
+The program uses two loops and two ranges.
 
 ## Code
 

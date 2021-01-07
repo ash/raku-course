@@ -6,7 +6,7 @@ title: 'Exercise: Factorial'
 
 ## Problem
 
-Create a program that computes factorial of 8 using a loop and then prints it.
+Create a program that computes the factorial of 8 using a loop and then prints it.
 
 ## Example
 

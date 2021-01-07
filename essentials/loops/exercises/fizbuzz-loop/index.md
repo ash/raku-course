@@ -6,7 +6,7 @@ title: 'Exercise: FizzBuzz in a loop'
 
 ## Problem
 
-Modify the program from the earlier [exercise ‘FizzBuzz’](/essentials/conditional-checks/exercises/fizz-buzz) to print the result for the all integer numbers between 1 and 50. Each number appears on a separate line followed by a possible `Fizz` or `Buzz`.
+Modify the program from the earlier [exercise ‘FizzBuzz’](/essentials/conditional-checks/exercises/fizz-buzz) to print the result for all integer numbers between 1 and 50. Each number appears on a separate line followed by `Fizz` and/or `Buzz`.
 
 ## Example
 

@@ -4,8 +4,6 @@ title: 'Solution: Squares and cubes in a loop'
 
 {% include menu.html %}
 
-You already solved the task to print [the square and the cube of a single number](/essentials/positionals/exercises/square-and-cubes/solution). This time, add a loop.
-
 ## Code
 
 Here is the code of the solution. The `for` loop is using a range that spans from `-5` to `5`.
@@ -20,7 +18,7 @@ for -5 .. 5 -> $n {
 
 ## Example
 
-Run the program and check the result. By the way, did you know that _10!_ is the exact number of seconds in six weeks?
+Run the program and check the result.
 
 ```console
 $ raku exercises/loops/squares-and-cubes-loop.raku

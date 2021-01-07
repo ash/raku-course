@@ -6,14 +6,14 @@ title: 'Exercise: Digital stairs'
 
 ## Problem
 
-Create the program that prints the following structure:
+Create a program that prints the following structure:
 
     1
     12
     123
     1234
 
-The size of the stairs (which does not exceed 9) must be entered by the user.
+The user must enter the size of the stairs (which does not exceed 9).
 
 ## Example
 

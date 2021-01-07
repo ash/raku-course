@@ -4,7 +4,7 @@ title: 'Solution: Division via subtraction'
 
 {% include menu.html %}
 
-Division is a repeated subtraction. The program has a `while` loop that diminishes `$a` by the value of `$b` and repeat it while the current value of `$a` is not less than `$b`. The variable `$n` counts the number of iterations, and it is also the result that we need.
+The division is repeated subtraction. The program has a `while` loop that reduces `$a` by the value of `$b` and repeats it while the current value of `$a` is not less than `$b`. The variable `$n` counts the number of iterations, and it is also the result that we need.
 
 ## Code
 
