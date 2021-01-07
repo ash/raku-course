@@ -24,9 +24,9 @@ else {
 }
 ```
 
-In this program, there are three branches and three tests which are executed one after another. Only one of the blocks is executed. If neither check is `True`, the `else` block is run.
+In this program, there are three branches and three tests one after another. As soon as one of the conditions is turned out to be `True`, the corresponding code block is run. If neither check is `True`, the `else` block is run.
 
-Here are a few test run of the program that triggers all of the blocks:
+Here are a few test runs of the program that triggers all of the blocks:
 
 ```console
 $ raku t.raku

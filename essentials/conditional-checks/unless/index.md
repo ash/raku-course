@@ -4,7 +4,7 @@ title: Using unless
 
 {% include menu.html %}
 
-All Boolean conditions can be easily negated with the [`!` operator](/essentials/booleans/operations#negation). However, in some cases, an explicit negation makes the expression hevier and less readable. In these cases, `unless` can be a friend.
+All Boolean conditions can be easily negated with the [`!` operator](/essentials/booleans/operations#negation). However, in some cases, an explicit negation makes the expression heavier and less readable. In these cases, `unless` can be a friend.
 
 The `unless` block is executed when its condition is `False`.
 

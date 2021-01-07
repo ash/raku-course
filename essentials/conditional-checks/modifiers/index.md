@@ -4,7 +4,7 @@ title: Postfix forms of if and unless
 
 {% include menu.html %}
 
-Raku offers a very handy solution when you want to conditionally execute a simple statement. In thise case, there’s no need to create a separate block of code. Just put `if` or `unless` immediately after the statement. In Raku, such constructs are called _statement modifiers_.enigma
+Raku offers a very handy solution when you want to conditionally execute a simple statement. In thise case, there’s no need to create a separate block of code. Just put `if` or `unless` immediately after the statement. In Raku, such constructs are called _statement modifiers_.
 
 ```raku
 say 'Good afternoon' if $hours > 12;

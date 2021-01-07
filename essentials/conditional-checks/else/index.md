@@ -4,7 +4,7 @@ title: The else block
 
 {% include menu.html %}
 
-An `if` block can be combined with an `else` block, which is run when the condition is not satisfied.
+An `if` block can be followed by an `else` block, which is run when the condition is not satisfied.
 
 ```raku
 my $t = 36.6;
