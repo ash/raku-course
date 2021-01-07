@@ -17,6 +17,6 @@ my $x = 1;
 say $x;
 ```
 
-In this case, the `$x` variable is global (it is located in the global scope), and the program prints `42` two times.
+In this case, `$x` is a global variable (it is located in the global scope), and the program prints `42` twice.
 
 {% include nav.html %}
