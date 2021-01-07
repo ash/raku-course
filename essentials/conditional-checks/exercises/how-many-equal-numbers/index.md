@@ -6,7 +6,7 @@ title: 'Exercise: How many numbers are equal?'
 
 ## Problem
 
-Creat a program that takes three integer numbers from the user and tells how many of them are equal to each other. The program should be able to work with both positive and negative numbers.
+Create a program that takes three integer numbers from the user and tells how many of them are equal. The program should be able to work with both positive and negative numbers.
 
 ## Example
 

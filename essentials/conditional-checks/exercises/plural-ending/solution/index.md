@@ -4,7 +4,7 @@ title: Solution of ‘Plural ending’
 
 {% include menu.html %}
 
-The program should check if the entered number is bigger then one and put the noun in the plural form.
+The program should check if the entered number is bigger then one and put it in the plural form.
 
 ## Code
 

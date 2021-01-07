@@ -4,7 +4,7 @@ title: Quiz — Ternary operator
 
 {% include menu.html %}
 
-Complete the gaps in the program:
+Fill in the gaps in the program:
 
 {:.quiz-code}
 . | my $color = prompt &apos;What colour is it? &apos;;

@@ -4,7 +4,7 @@ title: 'Solution: FizzBuzz'
 
 {% include menu.html %}
 
-This task is a classical interview task that helps to check if you think of the cases when both conditions are True. In this case, if the number if divisible by both 3 and 5, the program should print `FizzBuzz`.
+This task is a classical interview task that helps to check if you think of the cases when both conditions are `True`. If the number is divisible by both 3 and 5, the program should print `FizzBuzz`.
 
 ## Code
 
@@ -24,9 +24,9 @@ print "\n";
 
 You need to test a few classes of input data:
 
-* The numbers that are divisible by 3, e.g.: 3, 6, 9, 12.
-* The numbers that are divisible by 5, e.g.: 5, 10, 15, 20.
-* The numbers that are divisible by 3 and by 5, e.g.: 15, 30, 45.
+* The numbers divisible by 3, e.g.: 3, 6, 9, 12.
+* The numbers divisible by 5, e.g.: 5, 10, 15, 20.
+* The numbers divisible by 3 and by 5, e.g.: 15, 30, 45.
 * Other numbers, which are divisible by neither 3 nor 5, e.g.: 4, 7, 11.
 
 ```console

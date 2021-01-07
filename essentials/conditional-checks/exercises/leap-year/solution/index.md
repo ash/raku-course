@@ -4,7 +4,13 @@ title: 'Solution: Leap year'
 
 {% include menu.html %}
 
-The algorithm of the detection if the year is leap:
+## Disclaimer
+
+The solution shown below aims to train you using conditional checks. In real life, you can learn the methods of the bulit-in `Date` class. We will learn it in the second part of the course.
+
+## Solution
+
+The algorithm of the detection if a year is leap:
 
 1. if year is not divisible by 4 => common year
 1. if year is not divisible by 100 => leap year
@@ -15,7 +21,7 @@ Note that you can use the built-in types for working with date and time, so weâ€
 
 ## Code 1
 
-The first solution is using the above steps literary:
+The first solution reproduces the above steps literary:
 
 ```raku
 my $year = prompt 'Year: ';
@@ -38,7 +44,7 @@ else {
 
 ## Code 2
 
-In the second solution, the logic is packed to a single expressions. Parentheses are not always needed by added here for clarity.
+In the second solution, the logic is packed to a single expression. Parentheses are not always needed by added here for clarity.
 
 ```raku
 my $year = prompt 'Year: ';
@@ -50,7 +56,7 @@ say (($year %% 400) | (($year %% 4) && ($year % 100))) ?? 'Leap year' !! 'Common
 
 ## Output
 
-Try both programs for the most important cases, for example: 1900, 2000, 2020, 2021.
+Try both programs with the most critical cases, for example, 1900, 2000, 2020, 2021.
 
 ```console
 $ raku exercises/conditional-checks/leap-year.raku
@@ -72,16 +78,18 @@ Year: 2021
 Common year
 ```
 
-## Comments
+%%tipblock
+## `%%` vs `%`
 
 Note that in Boolean contexts, the `%%` and `%` operators are complementary. You can use this fact to chose one of the operators to avoid explicit comparison with zero.
 
-```
+```raku
 say ?(100 % 3);    # True
 say 100 % 3 != 0;  # True
 
 say ?(100 %% 3);   # False
 say 100 %% 3 != 0; # Flase
 ```
+%%/tipblock
 
 {% include nav.html %}

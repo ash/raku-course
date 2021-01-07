@@ -4,7 +4,7 @@ title: Comparing strings
 
 {% include menu.html %}
 
-String comparison uses their own set of operators:
+String comparison uses its own set of operators:
 
 `eq` | Equal
 `ne` | Not equal

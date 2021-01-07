@@ -6,12 +6,12 @@ title: 'Exercise: Lite FizzBuzz'
 
 ## Problem
 
-This is a simplified version of the standard [FizzBuzz problem](https://en.wikipedia.org/wiki/Fizz_buzz). 
+Here is a simplified version of the standard [FizzBuzz problem](https://en.wikipedia.org/wiki/Fizz_buzz). 
 
 Create a program that asks to enter a positive integer number and prints:
 
 * `Fizz` if the number is divisible by 3.
-* `Buzz` if the number if divisible by 5.
+* `Buzz` if the number is divisible by 5.
 
 ## Example
 

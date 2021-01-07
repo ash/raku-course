@@ -4,7 +4,7 @@ title: Comparing numbers
 
 {% include menu.html %}
 
-To compare two numbers, use the following operators, which are quite obvious if you are familiar with other programming languages.
+To compare two numbers, use the following operators. All of them are quite obvious if you are familiar with other programming languages.
 
 `==` | Equal
 `!=` | Not equal
@@ -15,7 +15,7 @@ To compare two numbers, use the following operators, which are quite obvious if 
 
 ## Approximately-equal
 
-In addition to a set of standard operators, Raku adds the approximately-equal operator `=~=`, which compares the numbers approximately. Its result is `True` if the two numbers are relatively close to each other, the maximum relative difference must not exceed the built-in value `$*TOLERANCE`, which is equal to `1e-15`.
+In addition to standard operators, Raku adds the approximately-equal operator `=~=`, which compares the numbers approximately. Its result is `True` if the two numbers are relatively close to each other. The maximum relative difference must not exceed the built-in value `$*TOLERANCE`, which is equal to `1e-15`.
 
 ## Unicode versions
 
@@ -28,7 +28,7 @@ Some of the above operators have their Unicode equivalents:
 
 ## Examples
 
-Some examples with the operators that comprare numbers:
+Some examples with the operators that compare numbers:
 
 ```raku
 say 10 == 10; # True

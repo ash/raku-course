@@ -6,7 +6,7 @@ title: 'Exercise: Leap year'
 
 ## Problem
 
-Write a program that tells if the given year is a leap year or not. Use `prompt` to enter a year.
+Write a program that tells if the given year is a leap year. Use `prompt` to enter a year.
 
 ## Example
 
