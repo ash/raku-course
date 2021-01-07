@@ -31,7 +31,7 @@ The five parts of the course are:
 1. Regexes and grammars
 1. Functional, concurrent, and reactive programming
 
-At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the future (as well as the domain name).
+At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.
 
 The first part, ‘Raku essentials’, contains:
 
@@ -41,7 +41,7 @@ The first part, ‘Raku essentials’, contains:
 
 New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
-The course is currently hosted as GitHub Pages at the following address: [course.raku.online](https://course.raku.online/).
+The course is hosted as GitHub Pages at the following address: [course.raku.org](https://course.raku.org/).
 
 ## Prerequisites
 
