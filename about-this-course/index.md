@@ -41,7 +41,7 @@ The five parts of the course are:
 1. Regexes and grammars
 1. Functional, concurrent, and reactive programming
 
-At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may change in the future (as well as the domain name).
+At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.
 
 The first part, ‘Raku essentials’, contains:
 
