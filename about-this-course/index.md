@@ -35,7 +35,7 @@ While the navigation guides you through the assignments in a particular order, y
 
 The five parts of the course are:
 
-1. [Raku essentials](/raku-course/essentials)
+1. [Raku essentials](/essentials)
 1. Advanced Raku subjects
 1. Object-oriented programming in Raku
 1. Regexes and grammars
