@@ -4,7 +4,7 @@ title: while
 
 {% include menu.html %}
 
-The `while` construct has a Boolean condition and a code block. The code block is executed repeatedly _while_ the condition is `True`.
+The `while` construct has a Boolean condition and a code block. Raku executes the code block repeatedly _while_ the condition is `True`.
 
 ```raku
 my $x = 0;
@@ -15,7 +15,7 @@ while $x <= 10 {
 say "$x is bigger than 10.";
 ```
 
-In the loop, the program asks to enter a number, and if the number is not bigger than 10, the loop body repeats. As soon as the entered number breaks the condition `$x <= 10`, the loop ends, and the next line of the program is executed.
+The program asks to enter a number, and if the number is not bigger than 10, the loop body repeats. As soon as the entered number breaks the condition `$x <= 10`, the loop ends, and the next line of the program is executed.
 
 ```console
 $ raku t.raku

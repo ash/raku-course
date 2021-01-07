@@ -6,7 +6,7 @@ title: Quiz — The repeat loop
 
 ## 1
 
-Choose `until` or `while` for this program. The program should enter into an infinite loop.
+Choose `until` or `while` for this program. The program should not enter into an infinite loop.
 
 {:.quiz-code}
 . | my $n = 0;

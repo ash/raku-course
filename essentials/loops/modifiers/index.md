@@ -4,7 +4,7 @@ title: while and until as statement modifiers
 
 {% include menu.html %}
 
-Both `while` and `until` can be used in a form of statement modifiers ([similarly](/essentials/conditional-checks/modifiers) to `if` and `unless`).
+Both `while` and `until` can be used in the form of statement modifiers ([similarly](/essentials/conditional-checks/modifiers) to `if` and `unless`).
 
 Consider an example that emulates modulo division:
 
@@ -18,7 +18,7 @@ Here, `-=` is the operator that combines both subtraction and assignment. In thi
 
 The `while` modifier lets the statement `$x -= 3` to repeat while the condition `$x > 2` remains `True`. As soon as it becomes `False`, the loop stops. 
 
-Notice that if the condition was `False` initially, the statement is not executed at all.
+Notice that if the condition is `False` initially, the statement is not executed at all.
 
 The same program can be rewritten with `until`. For this, the condition must be inverted:
 

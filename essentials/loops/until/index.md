@@ -42,6 +42,6 @@ while $x <= 10 { . . . }
 until $x > 10 { . . . }
 ```
 
-As you see, the conditions are simply negated versions of each other. In this sense, `while` and `until` are in the same relations as `if` and `unless`.
+As you see, the conditions are negated versions of each other. In this sense, `while` and `until` are in the same relations as `if` and `unless`.
 
 {% include nav.html %}

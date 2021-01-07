@@ -4,7 +4,7 @@ title: loop
 
 {% include menu.html %}
 
-The `loop` statement is a construct in Raku that has a lot of common with traditional loops in the C programming language and its relatives. It takes three statements: initialiser, the test, and the statement to modify the loop variable. The body of the loop is repeatedly executed while the test remains `True`.
+The `loop` statement is a construct in Raku that has a lot of common with traditional loops in the C programming language and its relatives. It takes three statements: the initialiser, the test, and the statement to modify the loop variable. The body of the loop is repeatedly executed while the test remains `True`.
 
 ```raku
 loop (my $c = 0; $c < 5; $c++) {
@@ -25,7 +25,7 @@ The current value of the counter is 3.
 The current value of the counter is 4.
 ```
 
-Some, or even all, of the statements in `loop` header may be ommited. For instance, here is the same program:
+Some, or even all, of the statements in `loop`’s header may be omitted. For instance, here is the same program:
 
 ```raku
 my $c = 0;
@@ -37,6 +37,6 @@ loop (; $c < 5;) {
 
 ## * * *
 
-The `loop` loops are, probably, the least used loops in Raku. They can be used, for example, in an automated translator from C to Raku. In Raku, though, there are handier loops, such as `for`, which we are examining on the next page.
+The `loop` loops are, probably, the least used loops in Raku. They can be found, for example, in an automated translator from C to Raku. In Raku, though, there are handier loops such as `for`, which we are examining very soon.
 
 {% include nav.html %}

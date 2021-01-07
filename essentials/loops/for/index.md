@@ -4,16 +4,15 @@ title: '"for" loop'
 
 {% include menu.html %}
 
-The `for` loop is a power tool to iterate over multiple elements. For example, let us take an array first:
+The `for` loop is a powerful tool to iterate over multiple elements. For example, let us take a range:
 
 ```raku
-my @numbers = 1, 3, 5, 7;
-for @numbers -> $n {
+for 1..5 -> $n {
     say $n;
 }
 ```
 
-In this program, the variable `$n` takes the next value from the `@numbers` array on each iteration. Notice that you do not have to explicitly declare the variable with `my`. The block of code is repeated as many times as the number of elements in the data source. So, the program prints the numbers line by line:
+In this program, the variable `$n` takes the next value from the range on each iteration. Notice that you do not have to declare the variable with `my` explicitly. The block of code is repeated as many times as the number of elements in the data source. So, the program prints the numbers line by line:
 
 ```console
 $ raku t.raku 
@@ -23,17 +22,7 @@ $ raku t.raku
 7
 ```
 
-## `for` with ranges
-
-Let us take a range as data source:
-
-```raku
-for 1..5 -> $n {
-    say $n;
-}
-```
-
-Now, the program iterates over all the values that the [range](/essentials/positionals/ranges) `1..5` generates. These are `1`, `2`, `3`, `4`, and `5`.
+The program iterates over all the values that the [range](/essentials/ranges) `1..5` generates. These are `1`, `2`, `3`, `4`, and `5`.
 
 ## Taking more than one value
 

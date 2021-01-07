@@ -21,7 +21,7 @@ say $n;
 
 ## 2
 
-How to make this program to have exactly five iterations?
+How to make this program to have precisely five iterations?
 
 {:.quiz-code .fill}
 . | my $n = 1;
