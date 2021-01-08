@@ -4,11 +4,11 @@ title: Solution of ‘Create variables of all known types’
 
 {% include menu.html %}
 
-Probably, this is not a kind of programs that you will create in your practice. Nevertheless, it is important to know the methods to introspect the parts of real programs.
+Probably, this is not a kind of programs that you will create in your practice. Nevertheless, it is important to know how to introspect the parts of real programs.
 
 ## Code
 
-One of the possible solution that creates the variables of the four mentioned types and prints their types is here.
+Here is a possible solution that creates the variables of the four mentioned types and prints their types.
 
 ```raku
 my $a = 10;

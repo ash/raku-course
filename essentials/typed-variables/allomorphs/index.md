@@ -17,7 +17,7 @@ say $s;
 
 There are three scalar variables created here. Two of them, `$i` and `$s` are typed variables. That means that `$i` can only store integers and `$s` can only store strings.
 
-The return type of `prompt` depends on the characters we typed. If the input string can represent an integer number, the result will be of the `IntStr` type, which is both `Int` and `Str`, and thus can be assigned to either an `Int` or a `Str` variable. So, if you enter, say, `1234`, the program does not break.
+The return type of `prompt` depends on the characters we typed. If the input string can represent an integer number, the result will be of the `IntStr` type, which is _both_ `Int` and `Str`, and thus can be assigned to either an `Int` or a `Str` variable. So, if you enter, say, `1234`, the program does not break.
 
 ```
 $ raku allomorphs.raku
@@ -48,6 +48,6 @@ Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3
 
 The second assignment, `$s = $input`, will never break as a string can take any input.
 
-🦋 You can find the source code of this program in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/essentials/data-types/allomorphs/allomorphs.raku).
+🦋 You can find the source code of this program in the file [allomorphs.raku](https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku).
 
 {% include nav.html %}

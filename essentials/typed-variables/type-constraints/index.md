@@ -4,13 +4,13 @@ title: Type constraints
 
 {% include menu.html %}
 
-In some cases, though, you may want to restrict the type for the given variable, and you can do it by specifying the type as shown below:
+Raku is a language with the so-called gradual type system. In most cases, you don’t need to worry about specifying the type of the variable. In some cases, though, you may want to restrict the type for the given variable, and you can do it by specifying the type as shown below:
 
 ```raku
 my Int $var = 42;
 ```
 
-Now, it is possible to assign another integer value to `$var`, but and attempt to put a string or even a floating-point number into the variable ends with an exception:
+Now, it is possible to assign another integer value to `$var`, but an attempt to put a string or even a floating-point number ends with an exception:
 
 ```raku
 my Int $var = 42;

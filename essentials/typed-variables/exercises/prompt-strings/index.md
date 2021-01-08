@@ -6,7 +6,7 @@ title: Examining the result of prompt — Strings
 
 ## Task
 
-Complete the following program so that it repeats the entered name and then prints the type of the value in the variable `$name`.
+Complete the following program to repeat the entered name and print the type of the value in the variable `$name`.
 
 ```raku
 my $name = prompt 'What is your name? ';

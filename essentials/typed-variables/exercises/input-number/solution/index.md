@@ -27,7 +27,7 @@ Enter a number: -42
 
 ## Comments
 
-As we’ve [seen](/essentials/typed-variables/allomorphs), the return value of `prompt` is `IntStr`, which can be assigned to an `Int` variable with no problems. 
+As we’ve [seen](/essentials/typed-variables/allomorphs), the return value of `prompt` is `IntStr`, which can be assigned to an `Int` variable with no coercion. 
 
 Notice, though, that the program will be terminated with an exception if you enter a string that cannot be converted to an integer number.
 

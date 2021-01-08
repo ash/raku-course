@@ -4,7 +4,7 @@ title: Quiz — Type constraints
 
 {% include menu.html %}
 
-Select those assignments that are allowed in Raku.
+Select the allowed assignments in Raku.
 
 {:.quiz}
 1 | my Int $a = π.Int;

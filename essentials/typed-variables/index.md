@@ -4,25 +4,14 @@ title: Typed variables
 
 {% include menu.html %}
 
-In Raku, a scalar variable (or, a scalar container) can keep a single object of different types. For example, the same variable can first contain a number, and ten a string:
+In Raku, a scalar variable (or, a scalar container) can keep a single object of different types. For example, the same variable can first contain a number, and then a string:
 
 ```raku
 my $var = 42;
 $var = 'Hello';
 ```
 
-This is, probably, not the best coding practice, but it is a perfectly valid Raku program.
-
-Raku is a language with the so-called gradual type system. In most cases, you don’t need to worry about specifying the type of the variable. You can reuse the same variable to first store a string and then a number, or convert a number to the string implicitly:
-
-This is a valid program that does not break:
-
-```raku
-my $var = 42;
-$var = 'string';
-```
-
-So is this program:
+Here is another example of mixing different data types in the same expression:
 
 ```raku
 my $a = '100';
@@ -30,10 +19,8 @@ my $b = 200;
 say $a + $b; # 300
 ```
 
-Nevertheless, Raku allows you to specify the type of things that you can keep in the given variable, if you want to. Also, sometimes you need to convert the values of one type to another type. There are a few ways you can do that.
+This is, probably, not the best coding practice, but it is a perfectly valid Raku program.
 
-## Exercises
-
-Please do not skip the exercises after this section as they reveal some additional information about the data types of Raku.
+Nevertheless, Raku allows you to specify what a given variable may keep. There are more details in the below topics.
 
 {% include nav.html %}
