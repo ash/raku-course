@@ -81,12 +81,12 @@
     <tr>
       <td>1</td>
       <td><a href="/essentials">Raku essentials</a></td>
-      <td>Proofreading</td>
+      <td>Published</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Advanced Raku subjects</td>
-      <td>In progress</td>
+      <td>In progress<span id="ProgressBar">…</span></td>
     </tr>
     <tr>
       <td>3</td>
@@ -105,6 +105,28 @@
     </tr>
   </tbody>
 </table>
+
+<script>
+    let ProgressBar = document.getElementById('ProgressBar');
+    let current_progress = 0;
+    setInterval(function() {
+        current_progress++;
+        current_progress %= 6;
+
+        let bar = '';
+        for (let c = 0; c < current_progress; c++) {
+            bar += ',';
+        }
+        bar += '...';
+        for (let c = current_progress; c < 6; c++) {
+            bar += ',';
+        }
+        
+        bar = bar.substr(3, 3);
+        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
+        ProgressBar.innerHTML = bar;
+    }, 200);
+</script>
 
 <p>At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.</p>
 

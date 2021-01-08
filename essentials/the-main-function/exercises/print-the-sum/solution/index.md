@@ -27,6 +27,6 @@ $ raku exercises/the-main-function/print-the-sum.raku 500 700
 1200
 ```
 
-You can also try running the program without the arguments or with the arguments of different types and see what happens. We’ll talk about handling those case in the second part of the course.
+You can also try running the program without the arguments or with the arguments of different types and see what happens. We’ll talk about handling those cases in the second part of the course.
 
 {% include nav.html %}

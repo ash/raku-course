@@ -4,7 +4,7 @@ title: Multi MAIN functions
 
 {% include menu.html %}
 
-As any other function in Raku, the `MAIN` function can have its `multi` variants. This allows the program to react differently to different number of different types of input parameters.
+Like any other function in Raku, the `MAIN` function can have its `multi` variants. It allows the program to individually react to a different number or different types of input parameters.
 
 ```raku
 multi sub MAIN($a) {

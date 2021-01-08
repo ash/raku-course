@@ -1,5 +1,7 @@
-multi sub f(42) {say 'This is the answer'}
-multi sub f($x) {say "$x is not the answer"}
+say '1. Mainline code';
 
-f(42);
-f('42');
+sub MAIN {
+    say '3. MAIN called';
+}
+
+say '2. Also mainline';

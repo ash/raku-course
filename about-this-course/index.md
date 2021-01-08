@@ -37,7 +37,7 @@ The course includes five parts:
 
 | N | Name | Status
 | 1 | [Raku essentials](/essentials) | Published
-| 2 | Advanced Raku subjects | In progress<span id="ProgressBar"></span>
+| 2 | Advanced Raku subjects | In progress<span id="ProgressBar">...</span>
 | 3 | Object-oriented programming in Raku | 
 | 4 | Regexes and grammars | 
 | 5 | Functional, concurrent, and reactive programming | 

@@ -6,7 +6,7 @@ title: 'Exercise: Print the sum'
 
 ## Problem
 
-Write a program that takes two integer numbers from the command line and prints their sum. Use the `MAIN` function.
+Write a program that takes two integer numbers from the command line and prints their sum. Use the `MAIN` function with typed parameters.
 
 ## Example
 

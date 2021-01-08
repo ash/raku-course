@@ -4,7 +4,7 @@ title: Quiz — Multi-MAIN
 
 {% include menu.html %}
 
-There is a program with three versions of the `MAIN` function:
+There are three versions of the `MAIN` function in this program:
 
 ```raku
 multi sub MAIN() { say 'Default mode' }
@@ -12,7 +12,7 @@ multi sub MAIN('help') { say 'Help mode' }
 multi sub MAIN(Str $mode) { say "Mode '$mode'" }
 ```
 
-What will the program print if it is run by one of the following commands:
+What does the program print if it is run by one of the following commands:
 
 ## 1
 

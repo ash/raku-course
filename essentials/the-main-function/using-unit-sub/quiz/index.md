@@ -6,7 +6,7 @@ title: Quiz — Using the unit-scoped definition
 
 ## 1
 
-Choose the correct declarator to make the program correct.
+Choose one of the declarators to make the program correct.
 
 {:.quiz-select}
 unit | (: my, multi, unit :) `sub MAIN(Str $name);`
@@ -23,7 +23,7 @@ unit sub MAIN(Str $name) {
 ```
 
 {:.quiz-select}
-valid | This prigram is (: valid, invalid :) | Despite the presence of `unit`, you can still add braces, but that is way redundant.
+valid | This prigram is&nbsp; (: valid, invalid :) | Despite the presence of `unit`, you can still add braces, but that is way redundant.
 
 ## 3
 
@@ -40,7 +40,7 @@ unit multi sub MAIN($name) {
 ```
 
 {:.quiz-select}
-invalid | This prigram is (: valid, invalid :) | Error: `Cannot use 'unit' with individual multi candidates.`
+invalid | This prigram is&nbsp; (: valid, invalid :) | Error: `Cannot use 'unit' with individual multi candidates.`
 
 {% include quiz.html %}
 

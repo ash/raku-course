@@ -6,7 +6,7 @@ title: 'Exercise: Perimeter of a rectangle'
 
 ## Problem
 
-Write a program that computes and prints the perimeter of a rectangle. The lengths of the two sides are passed in command-line arguments. In the case of a square, it is possible to enter only a single value. Use the `MAIN` function.
+Write a program that computes and prints the perimeter of a rectangle. Pass the lengths of two sides in command-line arguments. If it is a square, pass a single value. Use the `MAIN` function.
 
 ## Example
 

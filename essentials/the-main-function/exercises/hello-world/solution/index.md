@@ -4,7 +4,7 @@ title: 'Solution: Hello World!'
 
 {% include menu.html %}
 
-After a long way through the course, we had to return to this program again, as there we’ve just learnt the new way of writing Raku programs.
+After a long way through the course, we had to return to this program again, as we’ve just learnt the new way of writing Raku programs.
 
 ## Code 1
 
