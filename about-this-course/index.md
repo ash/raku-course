@@ -36,11 +36,33 @@ While the navigation guides you through the assignments in a particular order, y
 The course includes five parts:
 
 | N | Name | Status
-| 1 | [Raku essentials](/essentials) | Proofreading
-| 2 | Advanced Raku subjects | In progress
+| 1 | [Raku essentials](/essentials) | Published
+| 2 | Advanced Raku subjects | In progress<span id="ProgressBar"></span>
 | 3 | Object-oriented programming in Raku | 
 | 4 | Regexes and grammars | 
 | 5 | Functional, concurrent, and reactive programming | 
+
+<script>
+    let ProgressBar = document.getElementById('ProgressBar');
+    let current_progress = 0;
+    setInterval(function() {
+        current_progress++;
+        current_progress %= 6;
+
+        let bar = '';
+        for (let c = 0; c < current_progress; c++) {
+            bar += ',';
+        }
+        bar += '...';
+        for (let c = current_progress; c < 6; c++) {
+            bar += ',';
+        }
+        
+        bar = bar.substr(3, 3);
+        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
+        ProgressBar.innerHTML = bar;
+    }, 200);
+</script>
 
 At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.
 
