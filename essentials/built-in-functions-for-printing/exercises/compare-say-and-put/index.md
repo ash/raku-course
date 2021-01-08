@@ -6,7 +6,7 @@ title: 'Exercise: Compare `say` and `put`'
 
 ## Problem
 
-Write a program that allows to see the differences between the output that `say` and `put` do for the data types we’ve learned so far: `Int`, `Rat`, `Num`, `Str`, `Array`, `List`, `Range`, and `Hash`. For scalar items, used [typed variables](/essentials/typed-variables).
+Write a program that allows to see the differences between `say` and `put` for the data types we’ve learned so far: `Int`, `Rat`, `Num`, `Str`, `Array`, `List`, `Range`, and `Hash`. For scalar items, use [typed variables](/essentials/typed-variables).
 
 ## Example
 

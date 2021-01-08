@@ -38,7 +38,7 @@ Which calls are correct?
 
 {:.quiz}
 0 | g(10, 20);
-0 | g(&apos;10&apos;, 20); | Even if either argument can be casted, Raku demands the exact type.
+0 | g(&apos;10&apos;, 20); | Even if either argument can be cast, Raku demands the exact type.
 1 | g(10, &apos;20&apos;);
 0 | g(&apos;10, 20&apos;); | A single string passed.
 0 | g(&apos;10&apos;, &apos;20&apos;); 

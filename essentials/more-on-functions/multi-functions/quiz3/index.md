@@ -18,16 +18,16 @@ Which calls are valid?
 1 | func(4)
 1 | func(4e4)
 1 | func(4/4)
-0 | func(&apos;4&apos;) | There is no `func(Str $a`).
+0 | func(&apos;4&apos;) | There is no `multi sub func(Str $a`).
 1 | func(4.4)
 
 What do the calls return?
 
 {:.quiz-select}
-1 | `func(4)` returns&nbsp;(: 1, 2, 3 :)
-2 | `func(4.4)` returns&nbsp;(: 1, 2, 3 :) | `4.4` is a `Rat`.
-2 | `func(4/4)` returns&nbsp;(: 1, 2, 3 :) | `4/4` is also a `Rat` number.
-3 | `func(4e4)` returns&nbsp;(: 1, 2, 3 :) | A number in scientific notation is `Num`.
+1 | `func(4)` returns&nbsp; (: 1, 2, 3 :)
+2 | `func(4.4)` returns&nbsp; (: 1, 2, 3 :) | `4.4` is a `Rat`.
+2 | `func(4/4)` returns&nbsp; (: 1, 2, 3 :) | `4/4` is also a `Rat` number.
+3 | `func(4e4)` returns&nbsp; (: 1, 2, 3 :) | A number in scientific notation is `Num`.
 
 {% include quiz.html %}
 

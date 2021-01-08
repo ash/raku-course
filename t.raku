@@ -1,6 +1,5 @@
-sub greet(:$name = 'World') {
-    say "Hello, $name!";
-}
+multi sub f(42) {say 'This is the answer'}
+multi sub f($x) {say "$x is not the answer"}
 
-greet(name => 'Merinda'); # Hello, Merinda!
-greet(); # Hello, World!
+f(42);
+f('42');

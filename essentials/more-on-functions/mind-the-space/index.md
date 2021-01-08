@@ -4,7 +4,7 @@ title: Mind the space
 
 {% include menu.html %}
 
-Using functions in Raku in general is intuitive and causes no problems, but you must be warned about the following aspect.
+Using functions in Raku is mostly intuitive and causes no problems, but you must be warned about the following aspect.
 
 ## TL;DR
 
@@ -20,7 +20,7 @@ sub f($x, $y) {
 }
 ```
 
-First of all, note the absense of spaces between the name of the function and the opening parentheses that keeps the parameters. Some coding styles in other languages may require a space there. Raku is fine with that, but this is not a practice to follow:
+First of all, note the absence of spaces between the name of the function and the opening parentheses that keeps the parameters. Some coding styles in other languages may require a space there. Raku is fine with that, but this is not a practice to follow:
 
 ```raku
 sub f ($x, $y) {
@@ -28,9 +28,7 @@ sub f ($x, $y) {
 }
 ```
 
-But on the calling side, the absense of space is important.
-
-If you call the function and omit the parentheses, then the space after the name of the function is unavoidable:
+On the calling side, the absence of space is important. If you call the function and omit the parentheses, then the space after the name of the function is unavoidable:
 
 ```raku
 f 5, 6;
@@ -54,7 +52,7 @@ Such code causes an exception:
       sub f at t.raku line 1
       in block <unit> at t.raku line 5
 
-Raku understands the call with a space `f (5, 6)` as an attempt to pass a single argument `(5, 6)` to the function. You can easily check the type of this argument if you rewrite the function to accept only one argument:
+Raku sees the call with a space `f (5, 6)` as an attempt to pass a single argument `(5, 6)` to the function. You can easily check the type of this argument if you rewrite the function to accept only one argument:
 
 ```raku
 sub f($param) {
@@ -64,11 +62,11 @@ sub f($param) {
 f (5, 6); # (List)
 ```
 
-So, calling `f (5, 6)` means that we are passing a list to the function. A list as a single entity. (`List` is a data type that will be covered in the second part of the course.)
+So, calling `f (5, 6)` means that we are passing a [list](/essentials/positionals/lists) to the function. The list as a single entity. 
 
-## When the space is needed
+## When space is needed
 
-In some cases, the space is needed. This happens when you use parentheses with one of the keywords such as `if` or `for` or `loop`. The following code is wrong:
+In some cases, the space character is needed. That happens when you use parentheses with one of the keywords, such as `if` or `for` or `loop`. The following code is wrong:
 
 ```raku
 if(True != False) {
@@ -76,7 +74,7 @@ if(True != False) {
 }
 ```
 
-The error message explain what’s wrong:
+The error message explains what’s wrong:
 
     ===SORRY!===
     The word 'if' is interpreted as a 'if()' function call.  Please use
@@ -93,10 +91,10 @@ With the case of `if`, parentheses are not required at all, so the problem have 
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 
-In this code, the same thing happens: `loop(...)` is understood by the compiler as a function call. Add a space to fix the issue. Or better rewrite the fragment using `for`.
+In this code, the same thing happens: `loop(...)` is understood by the compiler as a function call. Add a space to resolve the issue. Or better rewrite the fragment using `for`.
 
 ## Conclusion
 
-The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function, and try to avoid parentheses if that’s possible with other language constructions such as control flow.
+The bottom line: to avoid such issues, do not add a space between the name of the function and the parentheses with the arguments of the function and try to avoid parentheses if that’s possible with other language constructions such as control flow.
 
 {% include nav.html %}

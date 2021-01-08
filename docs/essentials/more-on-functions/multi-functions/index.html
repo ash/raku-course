@@ -42,27 +42,27 @@
 
 <h1 id="multi-functions">Multi-functions</h1>
 
-<p>Raku offers multiple dispatch based on function’s signature. It allows to create more than one function that share the name but has different types of their input data. Use the <code class="language-plaintext highlighter-rouge">multi</code> declarator for each of the variants of the function.</p>
+<p>Raku implements <em>multiple dispatch</em> based on function’s signature. It allows creating functions that share the name but have different types of their input data. Use the <code class="language-plaintext highlighter-rouge">multi</code> declarator for each of the variants of the function.</p>
 
 <div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
 <span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
 </pre></div>
 
 
-<p>(It is fine to omit <code class="language-plaintext highlighter-rouge">sub</code> if there is <code class="language-plaintext highlighter-rouge">multi</code>.)</p>
+<p>(It is fine to omit <code class="language-plaintext highlighter-rouge">sub</code> after <code class="language-plaintext highlighter-rouge">multi</code>.)</p>
 
-<p>Having the two variants of the same functions, the compiler will perform multiple dispatch depending on which arguments it sees in the function call. Compare the following two calls:</p>
+<p>If you have the two variants of the same function, the compiler performs multiple dispatch depending on which arguments it sees in the function call. Compare the following two calls:</p>
 
 <div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
 <span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
 </pre></div>
 
 
-<p>The first call triggers the function with integer parameters, while the second call runs the second variant of the funciton that expects two strings.</p>
+<p>The first call triggers the function with integer parameters, while the second call runs the second variant of the function that expects two strings.</p>
 
 <h2 id="literal-parameters">Literal parameters</h2>
 
-<p>An interesting case for multi-functions is to have variants that hav literal values as parameters. Consider the following two variants:</p>
+<p>An interesting case for multi-functions is to have variants that have literal values as parameters. Consider the following two variants:</p>
 
 <div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;This is the answer&#39;</span>}
 <span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x is not the answer&quot;</span>}

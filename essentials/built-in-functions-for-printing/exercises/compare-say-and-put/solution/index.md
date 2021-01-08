@@ -69,7 +69,7 @@ B	beta
 
 ## Comments
 
-By examining the output of the program, you can clearly see that for the given examples, there is no difference in the output for simple data types such as numbers and strings. For aggregate data types, `say` produces a bit more ’noisy’ output comparing to `put`. On the other side, for hashes, `put` prints it as a table comparing to a single line that `say` does.
+By examining the output of the program, you can clearly see that there is no difference when printing simple data types such as numbers and strings. For aggregate data types, `say` produces a bit more ’noisy’ output comparing to `put`. On the other side, for hashes, `put` prints it as a table compared to a single line of  `say`.
 
 The difference between the output format is determined by how the `Str` and `gist` methods are implemented for the type in hand. We will talk more about this later in the course.
 

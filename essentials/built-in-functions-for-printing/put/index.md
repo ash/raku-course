@@ -4,7 +4,7 @@ title: The put routine
 
 {% include menu.html %}
 
-By default, the `put` routine does the same job as [`print`](../print), but adds a newline at the end:
+By default, the `put` routine does the same job as [`print`](../print) but adds a newline at the end:
 
 1. Converts its arguments to a string by calling the `Str` method on them.
 1. Adds a newline character.
@@ -23,7 +23,7 @@ my %hash = a => 'b', c => 'd';
 %hash.put;
 ```
 
-The program outputs:
+The outputs of the program:
 
 ```console
 $ raku t.raku

@@ -54,7 +54,7 @@ multi sub func($b) {. . .}
 ```
 
 {:.quiz-select}
-incorrect | These definitions are&nbsp; (: correct, incorrect :) | The same signature even despite different parameter names.
+incorrect | These definitions are&nbsp; (: correct, incorrect :) | The signatures cannot be distinguished at multiple dispatch.
 
 
 {% include quiz.html %}

@@ -4,13 +4,13 @@ title: Typed parameters of functions
 
 {% include menu.html %}
 
-The parameters of functions in Raku can be made type restricted. This is very similar to [typed variables](/essentials/typed-variables/type-constraints/).
+Function parameters in Raku can be made type restricted. This is very similar to [typed variables](/essentials/typed-variables/type-constraints/).
 
 ```raku
 sub add(Int $x, Int $y) { $x + $y }
 ```
 
-This function demands its arguments to be integer numbers.
+The function now demands its arguments to be integer numbers.
 
 ```raku
 say add(10, 20);
@@ -36,7 +36,7 @@ say '3' + '4'; # OK and is 7
 
 %%tipblock
 ## How to tell if it’s a compile-time error
-If the error message starts with `===SORRY!=== Error while compiling`, it means that the error happend at compile time.
+If the error message starts with `===SORRY!=== Error while compiling`, it means that the error happened at compile time.
 %%/tipblock
 
 {% include nav.html %}

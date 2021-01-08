@@ -11,7 +11,7 @@ The `say` built-in routine does the following actions:
 1. Converts the result to UTF-8.
 1. Sends it to the `STDOUT` stream.
 
-From the user perspective, `say` simply prints the contents of a variable to the terminal.
+From the user perspective, `say` simply prints the contents of a variable to the terminal and adds the newline.
 
 The first step requires some explanations. The `gist` method is a method that is defined for every built-in data type, such as integers or strings. For such simple types, the return result is a human-readable value that represents the item.
 
@@ -20,7 +20,7 @@ say 42; # 42
 say 'Raku'; # Raku
 ```
 
-For more complex data, such as arrays or hashes, the `gist` method adds some simple formatting.
+For more complex data, such as arrays or hashes, the `gist` method adds some formatting.
 
 ```raku
 my @data = 'alpha', 'beta', 'gamma';

@@ -4,27 +4,27 @@ title: Multi-functions
 
 {% include menu.html %}
 
-Raku offers multiple dispatch based on function’s signature. It allows to create more than one function that share the name but has different types of their input data. Use the `multi` declarator for each of the variants of the function.
+Raku implements _multiple dispatch_ based on function’s signature. It allows creating functions that share the name but have different types of their input data. Use the `multi` declarator for each of the variants of the function.
 
 ```raku
 multi sub add(Int $x, Int $y) { $x + $y }
 multi sub add(Str $x, Str $y) { $x ~ $y }
 ```
 
-(It is fine to omit `sub` if there is `multi`.)
+(It is fine to omit `sub` after `multi`.)
 
-Having the two variants of the same functions, the compiler will perform multiple dispatch depending on which arguments it sees in the function call. Compare the following two calls:
+If you have the two variants of the same function, the compiler performs multiple dispatch depending on which arguments it sees in the function call. Compare the following two calls:
 
 ```raku
 say add(10, 20); # 30
 say add('10', '20'); # 1020
 ```
 
-The first call triggers the function with integer parameters, while the second call runs the second variant of the funciton that expects two strings.
+The first call triggers the function with integer parameters, while the second call runs the second variant of the function that expects two strings.
 
 ## Literal parameters
 
-An interesting case for multi-functions is to have variants that hav literal values as parameters. Consider the following two variants:
+An interesting case for multi-functions is to have variants that have literal values as parameters. Consider the following two variants:
 
 ```raku
 multi sub f(42) {say 'This is the answer'}

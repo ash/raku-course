@@ -24,7 +24,7 @@ multi sub func(Int $a, Int $b, Int $c) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | Number of parameters differ.
+correct | These definitions are&nbsp; (: correct, incorrect :) | Number of parameters differs.
 
 ## 3
 

@@ -4,9 +4,9 @@ title: 'Solution: Factorial with multi-functions'
 
 {% include menu.html %}
 
-This exercise is again about factorials. Indeed, the task allows us to illustrate more interesting features of Raku.
+This exercise is about factorials again. Indeed, the task allows us to illustrate more features of Raku.
 
-When computing a factorial by starting from the given number downwards, you need to stop when the number gets 1. With multi-functions, you can achieve that by extracting the case with `$n == 1` to a separate multi-function.
+When computing a factorial by starting from the given number and going downwards, you need to stop when the number gets 1. With multi-functions, you can achieve that by extracting the case with `$n == 1` to a separate multi-function.
 
 ## Code
 
@@ -30,6 +30,6 @@ $ raku exercises/more-on-functions/factorial-with-multi-functions.raku 5
 
 ## Comment
 
-Note that the input argument is explicitly converted to an integer: `@*ARGS[0].Int`. This is to prevent infinite loop when the input number is `1`. In this case, the type of the parameter passed to the `factorial` function is [`IntStr`](/essentials/data-types/allomorphs), and the first multi-variant is not able to catch the call. In contract, when `factorial(2 - 1)` is called recursively, the argument of the function is integer, which makes it possible to call the first variant.
+Note that the input argument is explicitly converted to an integer: `@*ARGS[0].Int`. This is to prevent infinite loop when the input number is `1`. In this case, the type of parameter passed to the `factorial` function is [`IntStr`](/essentials/typed-variables/allomorphs), and the first multi-variant cannot catch the call. In contract, when `factorial(2 - 1)` is called recursively, the argument of the function is an integer, which makes it possible to call the first variant.
 
 {% include nav.html %}

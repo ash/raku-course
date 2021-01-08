@@ -6,7 +6,7 @@ title: 'Exercise: Print the warning'
 
 ## Problem
 
-Create a program that asks for your age and prints one or two warnings in the case the entered value is negative. Make sure the warning is printed to `STDERR`.
+Create a program that asks for your age and prints one or two warnings if the entered value is negative. Make sure the warning is printed to `STDERR`.
 
 ## Example
 

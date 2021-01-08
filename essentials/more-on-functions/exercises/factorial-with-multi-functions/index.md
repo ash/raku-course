@@ -6,7 +6,7 @@ title: 'Exercise: Factorial with multi-functions'
 
 ## Problem
 
-Write a program that computes a factorial using multi-functions. Take the input number from command line.
+Write a program that computes the factorial using multi-functions. Take the input number from the command line.
 
 ## Example
 
