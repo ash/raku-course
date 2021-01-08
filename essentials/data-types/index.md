@@ -4,7 +4,7 @@ title: Data types
 
 {% include menu.html %}
 
-So far, we have seen a number of data types that Raku supports. These are different kind of [numbers](/essentials/numbers) (integers, rational numbers, and floating-point numbers), [strings](/essentials/strings), and [Boolean](/essentials/booleans) types. Each data type has its name in the Raku type system.
+So far, we have seen a number of data types that Raku supports. Those were different kinds of [numbers](/essentials/numbers) (integers, rational numbers, and floating-point numbers), [strings](/essentials/strings), and [Boolean](/essentials/booleans) type. Each data type has its name in the Raku type system.
 
 `Str` | String of characters
 `Int` | Integer number

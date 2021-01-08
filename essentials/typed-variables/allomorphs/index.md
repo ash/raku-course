@@ -4,7 +4,7 @@ title: Allomorphs
 
 {% include menu.html %}
 
-Consider the following program. Before running it, can you tell which input values will break it and at which line?
+Consider the following program. Before running it, can you tell which input values would break it and at which line?
 
 ```raku
 my $input = prompt 'Enter something: ';

@@ -24,6 +24,6 @@ say 'Hello'.WHAT; # (Str)
 say True.WHAT;    # (Bool)
 ```
 
-Notice that in the case of `-1` we put the number in parentheses, as `say -1.WHAT` would try to negate the result of `1.WHAT`, which leads to an exception.
+Notice that in the case of `-1`, we put the number in parentheses, as `say -1.WHAT` would try to negate the result of `1.WHAT`, which leads to an exception.
 
 {% include nav.html %}
