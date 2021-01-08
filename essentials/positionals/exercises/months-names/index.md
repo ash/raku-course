@@ -6,7 +6,7 @@ title: 'Exercise: Months names'
 
 ## Problem
 
-Create a program that converts an integer number between 1 and 12 to a name of month. The number is read from command line. The result is printed to the console.
+Create a program that converts an integer number between 1 and 12 to a name of the month. The number is read from the command line. The result is printed to the console.
 
 ## Example
 

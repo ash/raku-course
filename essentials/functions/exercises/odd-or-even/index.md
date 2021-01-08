@@ -6,7 +6,7 @@ title: 'Exercise: Odd or even'
 
 ## Problem
 
-Create a function that takes an integer number as an argument and returns the string `'Odd'` or `'Even'`. Write a program that uses this function to print the property of a few numbers, for example: `10`, `5`, `0`, and `3`.
+Create a function that takes an integer number as an argument and returns the string `'Odd'` or `'Even'`. Write a program that uses this function to print the property of a few numbers, for example, `10`, `5`, `0`, and `3`.
 
 ## Example
 

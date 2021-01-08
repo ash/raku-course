@@ -8,7 +8,7 @@ Which functions are defined correctly?
 
 ## 1
 
-Functions with positional parameters
+Functions with positional parameters:
 
 {:.quiz}
 1 | sub p1($a = 3) {}
@@ -18,7 +18,7 @@ Functions with positional parameters
 
 ## 2 
 
-Functions with named parameters
+Functions with named parameters:
 
 {:.quiz}
 1 | sub n1(:$a = 3) {}

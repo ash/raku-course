@@ -24,7 +24,7 @@ say @months[@*ARGS[0] - 1];
 
 ## Output
 
-Try a few runs of the program to see different month names.
+Try a few runs of the program to see different names of the months.
 
 ```console
 $ raku exercises/positionals/months-names.raku 5

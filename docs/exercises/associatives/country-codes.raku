@@ -231,6 +231,6 @@ my %cc =
     ZW => 'Zimbabwe'
 ;
 
-my @codes = < FR IT DE EE LV US CN IN BR>;
+my @codes = < FR IT DE EE LV US CN IN BR >;
 
 say %cc{$_} for @codes;

@@ -10,12 +10,12 @@ Create a function that computes an approximate value of the mathematical constan
 
 <img src="e-formula.png" style="height: 4.5em; width: auto">
 
-This function should allow to be called in one of either forms.
+This function should allow being called in one of the forms:
 
 1. The argument defines the number of items in the formula: `e-approx(10)`.
 2. If no argument is passed, the sum contains 100 elements: `e-approx()`.
 
-Print two results, one for both of the above calls.
+Print the results for both cases.
 
 ## Example
 

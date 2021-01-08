@@ -32,9 +32,9 @@ my %people =
     };
 ```
 
-Having a comma helps when you edit the structure by copying and pasting lines.
+Having a comma helps when you edit the structure by copying and pasting the lines.
 
-To get the elements from the inner hashes, use two pairs of curly braces for the keys:
+To get the elements from the inner hashes, use two keys one after another.
 
 ```raku
 say %people<John><city>; # Madrid

@@ -4,7 +4,7 @@ title: 'Solution: Seen before?'
 
 {% include menu.html %}
 
-This task is a classical example of using a hash to keep track of items. Before a loop, a hash `%seen` is created. Inside the loop, the entered `$word` serves a key of the hash.
+This task is a classic example of using a hash to keep track of items. Before a loop, a hash `%seen` is created. Inside the loop, the entered `$word` serves a key of the hash.
 
 ## Code
 
@@ -49,6 +49,6 @@ Word: ^C
 
 ## Comment
 
-The construct `%seen{$word}++` not only increments the value, but also creates it if it did not exist yet. The process of creating is called _autovivification_. Notice that it does not happen when you only read the value as in the condition: `if %seen{$word}`.
+The construct `%seen{$word}++` not only increments the value but also creates it if it did not exist yet. The process of creating is called _autovivification_. Notice that it does not happen when you only _read_ the value as in the condition: `if %seen{$word}`.
 
 {% include nav.html %}

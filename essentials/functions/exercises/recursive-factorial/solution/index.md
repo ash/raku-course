@@ -27,7 +27,7 @@ say factorial(10);
 
 ## Code 2
 
-In the cases as shown in this code, it is often better to use posftix forms of `if` to immediately return from the function. This approach clears the code and removes a lot of indintation and punctuation.
+In the cases, as shown in this code, it is often better to use postfix forms of `if` to immediately return from the function. This approach clears the code and removes a lot of indentation and punctuation.
 
 ```raku
 sub factorial($n) {

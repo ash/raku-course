@@ -10,7 +10,7 @@ Create a program that starts a loop with the following actions:
 
 1. Ask to enter a word.
 2. If the word has been seen once already, print `Seen!`.
-3. If the words has been seen more than once, print `Seen 2 times!`, etc.
+3. If the word has been seen more than once, print `Seen 2 times!`, etc.
 3. Repeat the loop.
 
 ## Example

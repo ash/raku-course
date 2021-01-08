@@ -6,7 +6,7 @@ title: Quiz — Pairs
 
 ## 1
 
-Complete the program so that it prints the following output:
+Complete the program to print the following output:
 
     India
     New Delhi
@@ -14,7 +14,7 @@ Complete the program so that it prints the following output:
 Here is the program:
 
 {:.quiz-code}
-. | my $city = India => 'New Dehli';
+. | my $city = India => &apos;New Dehli&apos;;
 key | say $city.␣␣␣␣;
 value | say $city.␣␣␣␣;
 

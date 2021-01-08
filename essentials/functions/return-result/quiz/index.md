@@ -16,9 +16,9 @@ sub f($a, $b) {
 ```
 
 {:.quiz-select}
-42 | `f(1, 2)` returns (: 1, 2, 3, 42 :)
-3 | `f(2, 1)` returns (: 1, 2, 3, 42 :)
-42 | `f(2, 2)` returns (: 1, 2, 3, 42 :)
+42 | `f(1, 2)` returns&nbsp; (: 1, 2, 3, 42 :)
+3 | `f(2, 1)` returns&nbsp; (: 1, 2, 3, 42 :)
+42 | `f(2, 2)` returns&nbsp; (: 1, 2, 3, 42 :)
 
 ## 2
 
@@ -32,7 +32,7 @@ sub g() {
 ```
 
 {:.quiz-select}
-−1 | `g()` returns (: −1, 1 :) | The last expression `1;` is never reached.
+−1 | `g()` returns&nbsp; (: −1, 1 :) | The last expression `1;` is never reached.
 
 
 {% include quiz.html %}

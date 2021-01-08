@@ -6,11 +6,11 @@ title: 'Exercise: Interval function'
 
 ## Problem
 
-Create a program that implements the function according to this definition:
+Create a program that implements a function according to this definition:
 
 <img src="f.png" style="height: 4em; width: auto" />
 
-Print the result of the the function for the arguments `-2`, `0`, and `3`.
+Print the result of the function for the arguments `-2`, `0`, and `3`.
 
 
 ## Example

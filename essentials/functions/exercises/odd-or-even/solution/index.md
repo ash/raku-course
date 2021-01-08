@@ -4,7 +4,7 @@ title: 'Solution: Odd or even'
 
 {% include menu.html %}
 
-The body of the function is quite small, which is a valid reason to omit both the `return` routine and the semicolon at the end of the line.
+The function's body is quite small, which is a valid reason to omit both the `return` routine and the semicolon at the end of the line.
 
 ## Code
 

@@ -6,7 +6,7 @@ title: 'Exercise: Spell a number'
 
 ## Problem
 
-Write a program that takes a positive integer number from command line and spells it in English. Solve the problem for the numbers below 100.
+Write a program that takes a positive integer number from the command line and spells it in English. Solve the problem for the numbers below 100.
 
 ## Example
 

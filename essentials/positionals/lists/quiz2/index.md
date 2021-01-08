@@ -4,7 +4,7 @@ title: Quiz 2 — List and scalar vs. list and array
 
 {% include menu.html %}
 
-There ara lists on the right-hand side in the below assignmnets. Objects of which type do the variables keep?
+There ara lists on the right-hand side in the below assignments. Objects of which type do the variables keep?
 
 ### 1
 
@@ -24,7 +24,7 @@ Choose the correct answers:
 
 ## 2*
 
-Here is a more difficult case. Do not worry if you do not understand it now. We will return to this topic in the second part of the course.
+Here is a more complicated case. Do not worry if you do not understand it now. We will return to this topic in the second part of the course.
 
 ```raku
 my $x = [100, 200, 300];

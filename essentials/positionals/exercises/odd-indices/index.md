@@ -6,10 +6,10 @@ title: 'Exercise: Odd indices'
 
 ## Problem
 
-You have a array of numbers with the :
+You have a array of numbers:
 
 ```raku
-my @data = 10, 12, 1, 5, -9, 8, 36, 18;
+my @data = 10, 12, 1, 5, -9, 8, 36, 18, 21;
 ```
 
 Complete the program to print only the elements with odd indices. Make sure the program still works if you change the number of items in `@data`.
@@ -19,9 +19,10 @@ Complete the program to print only the elements with odd indices. Make sure the 
 
 ```console
 $ raku odd-indices.raku
-1
--9
-36
+12
+5
+8
+18
 ```
 
 ## Solution

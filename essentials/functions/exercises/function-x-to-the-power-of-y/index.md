@@ -10,7 +10,7 @@ Create a function with two arguments that returns the value of `$x` to the power
 
 ## Example
 
-For the above-mentioned input values, the program should print:
+For the above-mentioned values, the program should print:
 
 ```
 $ raku function-x-to-the-power-of-y.raku

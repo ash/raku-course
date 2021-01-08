@@ -33,13 +33,14 @@ While the navigation guides you through the assignments in a particular order, y
 
 ## Contents
 
-The five parts of the course are:
+The course includes five parts:
 
-1. [Raku essentials](/essentials)
-1. Advanced Raku subjects
-1. Object-oriented programming in Raku
-1. Regexes and grammars
-1. Functional, concurrent, and reactive programming
+| N | Name | Status
+| 1 | [Raku essentials](/essentials) | Proofreading
+| 2 | Advanced Raku subjects | In progress
+| 3 | Object-oriented programming in Raku | 
+| 4 | Regexes and grammars | 
+| 5 | Functional, concurrent, and reactive programming | 
 
 At the moment, the first part is completely written and published. The rest parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.
 

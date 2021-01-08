@@ -21,7 +21,7 @@ Print the third element (the item with index `2`).
 
 ## 2
 
-Print all elements (without listing all the individual items).
+Print all elements (without indexing all of them explicitly).
 
 {:.quiz-code}
 arr[] | say &quot;This array contains: @␣␣␣␣.&quot;; | The output is ”This array contains: 10 9 8 3 2 1.“

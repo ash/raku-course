@@ -4,7 +4,7 @@ title: Interpolating hashes
 
 {% include menu.html %}
 
-To interpolate an array elements in double-quoted strings write it as you do in a program itself: `%data<FR>`. To interpolate the whole hash, add a pair of empty angle or curly brackets: `@data{}`. The following program illustrates this approach:
+To interpolate array elements in double-quoted strings spell them as you do in the program itself: `%data<FR>`. To interpolate the whole hash, add a pair of empty angles or curly brackets: `@data{}`. The following program illustrates this approach:
 
 ```raku
 my %data = FR => 'Paris', IT => 'Rome';

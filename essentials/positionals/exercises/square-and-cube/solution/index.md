@@ -6,7 +6,7 @@ title: Solution of ‘Square and cubes’
 
 ## Code 1
 
-The straigtforward solution is to use the `**` operator.
+A straightforward solution is to use the `**` operator.
 
 ```raku
 my $n = @*ARGS[0];
@@ -33,7 +33,7 @@ say $n³;
 Run the program a few times and test it with different numbers.
 
 ```console
-$ raku squares-and-cubes.raku 5
+$ raku exercises/positionals/square-and-cube.raku 5
 25
 125
 ```

@@ -22,7 +22,7 @@ Select the lines which provide correct access to the data item for February of 1
 
 {:.quiz}
 1 | say %statistics<1900>&lt;Feb&gt;;
-1 | say %statistics{1900}&lt;Feb&gt;; | This is correct, as `1900` can be implicitly casted to a string.
+1 | say %statistics{1900}&lt;Feb&gt;; | This is correct, as `1900` can be implicitly cast to a string.
 0 | say %statistics{1900}{Feb}; | Incorrect, as `Feb` must be a string.
 1 | say %statistics{&apos;1900&apos;}{&apos;Feb&apos;};
 

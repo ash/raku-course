@@ -4,7 +4,7 @@ title: 'Solution: Function table'
 
 {% include menu.html %}
 
-This program is, probably, a good example for using the `loop` loop. With it, you can set both the edges of the interval and the step directly in the units you need. Note that you can return to this task later after learning Raku _sequences_.
+This program is, probably, a good example of using the `loop` loop. With it, you can set both the edges and the step directly in the units you need. Note that you can return to this task later after learning Raku _sequences_.
 
 ## Code
 

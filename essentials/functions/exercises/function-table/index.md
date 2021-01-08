@@ -6,7 +6,7 @@ title: 'Exercise: Function table'
 
 ## Problem
 
-Create a program that prints the values of a function `f(x) = x²` on the interval [−3, 3] with the step 0.1.
+Create a program that prints the values of a function `f(x) = x²` on the interval [−3, 3] with step 0.1.
 
 ## Example
 

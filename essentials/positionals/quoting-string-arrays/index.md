@@ -10,7 +10,7 @@ For string arrays, where the items are short strings with no spaces, Raku offers
 my @digits = <zero one two three four five six seven eight nine>;
 ```
 
-It is up to you to decide to add additional spaces around the angle brackets or not. Both options are accepted by the compiler.
+It is up to you to decide to add additional spaces around the angle brackets or not. The compiler accepts both options.
 
 ```raku
 my @digits = < zero one two three four five six seven eight nine >;

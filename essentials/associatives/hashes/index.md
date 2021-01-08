@@ -4,7 +4,7 @@ title: Hashes
 
 {% include menu.html %}
 
-Another example of associative data types in Raku are hashes. This is an aggregate data type that maps the names of its items to their values. Let us introduce the new sigil that hash variables use: `%`.
+A _hash_ is another example of associative data types in Raku. It is an aggregate data type that maps the names of its items to their values. Let us introduce the new sigil that hash variables use: `%`.
 
 ```raku
 my %capitals;
@@ -22,16 +22,16 @@ As with other data types, both actions can be done together:
 my %capitals = France => 'Paris', Italy => 'Rome';
 ```
 
-## Accessing elements
+## Accessing the elements
 
-Subscripting key elements is similar to what we’ve seen for [pairs](../pairs). Use a pair of angle brackets or curly braces:
+Subscripting the elements is similar to what we’ve seen for [pairs](../pairs). Use a pair of angle brackets or curly braces with a string:
 
 ```raku
 say %capitals<France>;
 say %capitals{'Italy'};
 ```
 
-Hashes are immutable, so you can both change the existing values and add the new ones:
+Hashes are mutable, so you can both change the existing values as well as add the new ones:
 
 ```raku
 %capitals<Germany> = 'Berlin';

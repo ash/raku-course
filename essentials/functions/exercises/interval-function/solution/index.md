@@ -4,7 +4,7 @@ title: 'Solution: Interval function'
 
 {% include menu.html %}
 
-In this function, a three-branch `if` construct is used. The first two branches have a Boolean test, but the third check is not needed as if the number did not pass either of the first two tests, it is negative.
+In this function, a three-branch `if` construct is used. The first two branches have a Boolean test, but the third check is not needed as it is the only remaining option if the number did not pass either of the first two tests.
 
 ## Code
 

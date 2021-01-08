@@ -4,11 +4,11 @@ title: Solution of ‘Print a series of numbers’
 
 {% include menu.html %}
 
-There are more than one ways to solve the given problem.
+There is more than one way to solve the given problem.
 
 ## Code 1
 
-The first sollution is more Raku-ish and compact.
+The first solution is more Raku-ish and compact.
 
 ```raku
 my $begin = prompt 'Begin: ';

@@ -4,7 +4,7 @@ title: Returning the result
 
 {% include menu.html %}
 
-Functions often not just do something but also return a result. Actually, in functional programming, functions should not produce any side effects such as printing to console. But nevertheless, Raku does not limit you from doing so. Anyways, let’s see how to return a value from a function and how to get it from a calling code.
+Functions often not just do something but also return a result. For example, in functional programming, functions should not produce any side effects such as printing to console. Nevertheless, Raku does not limit you from doing so. Let’s see how to return a value from a function and how to get it in the calling code.
 
 ```raku
 sub add($x, $y) {
@@ -19,7 +19,7 @@ Here, the function called `add` takes two numbers and returns their sum. An expl
 
 ## The last evaluated value
 
-In Raku, an explicit `return` is not required if the result that you want to return from a funciton is the last computed value in its body. Our `add` funciton can be simplified in this manner:
+In Raku, an explicit `return` is not required if the result that you want to return from a function is the last computed value in its body. Our `add` function can be simplified:
 
 ```raku
 sub add($x, $y) {
@@ -37,7 +37,7 @@ sub add($x, $y) { $x + $y }
 
 ## No return data
 
-If you need to return from a function before the end of its body, and the function does not return any result, just use `return`.
+If you need to return from a function before the end of its body, and the function does not return any result, use a bare `return`.
 
 ```raku
 sub test($x) {

@@ -18,13 +18,13 @@ Now, to call the function, you need to name the arguments:
 say distance(from => 30, to => 10); # 20
 ```
 
-It is an error to pass the parameters as if they were positional. The call `distance(30, 10)` generates an error:
+It is an error to pass the arguments as if they were positional. For example, a call `distance(30, 10)` generates an error:
 
     Too many positionals passed; expected 0 arguments but got 2
         in sub distance at t.raku line 1
         in block <unit> at t.raku line 2
 
-The good part is that named parameters can be listed in any order. The following two calls are totally equivalent:
+The good part is that named arguments can be listed in any order. The following two calls are totally equivalent:
 
 ```raku
 say distance(from => 30, to => 10); # 20
@@ -34,7 +34,7 @@ say distance(to => 10, from => 30); # 20
 
 ## Passing variables
 
-When the value that you want to pass to a function is kept in a variable, whose name coinsides with the name of the parameter, you can enjoy a special syntax that reduces typing:
+When the value that you want to pass to a function is kept in a variable, whose name coincides with the name of the parameter, you can enjoy a special syntax that reduces typing:
 
 ```raku
 my $from = 30;

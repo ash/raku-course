@@ -15,7 +15,7 @@ my %employee =
     salary => 3000;
 ```
 
-Increase the salary by 5% and print it together with the name of the employee. Make sure the `%employee` hash keeps correct values after the raise.
+Increase the salary by 5&thinsp;% and print it together with the employee’s name. Make sure the `%employee` hash keeps correct values after the raise.
 
 ## Example
 

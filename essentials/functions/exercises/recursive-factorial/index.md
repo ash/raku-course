@@ -6,7 +6,7 @@ title: 'Exercise: Recursive factorial'
 
 ## Problem
 
-Create a program that uses recursion to compute a factorial of 10.
+Create a program that uses recursion to compute the factorial of 10.
 
 ## Example
 

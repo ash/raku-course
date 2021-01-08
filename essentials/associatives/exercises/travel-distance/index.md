@@ -12,9 +12,9 @@ Create a program that finds the total distance of the trip that is defined by th
 my @itinerary = < Berlin Prague Vienna Zurich Paris >;
 ```
 
-Print the distance of each segment of the ininerary and the total distance.
+Print the distance of each segment of the itinerary and the total distance.
 
-Use the file [distances.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/travel-distance/distances.raku) with the _hash of hashes_ for distances between the cities.
+Use the file [distances.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/travel-distance/distances.raku) with the _hash of hashes_ that lists the distances between the cities.
 
 ## Example
 

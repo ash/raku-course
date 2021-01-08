@@ -6,7 +6,7 @@ title: Count and print command-line arguments
 
 ## Task
 
-Write a program that reads arbitrary number of arguments from command line and prints them on separate, numbered lines.
+Write a program that reads an arbitrary number of arguments from the command line and prints them on separate, numbered lines.
 
 ## Example
 

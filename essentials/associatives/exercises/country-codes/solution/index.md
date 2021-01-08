@@ -21,7 +21,7 @@ my %cc =
     ZW => 'Zimbabwe'
 ;
 
-my @codes = < FR IT DE EE LV US CN IN BR>;
+my @codes = < FR IT DE EE LV US CN IN BR >;
 
 say %cc{$_} for @codes;
 ```
@@ -30,7 +30,7 @@ say %cc{$_} for @codes;
 
 ## Output
 
-For the given input codes, the program prints the following list of country names:
+For the given input codes, the program prints the following list of countries:
 
 ```console
 $ raku exercises/associatives/country-codes.raku

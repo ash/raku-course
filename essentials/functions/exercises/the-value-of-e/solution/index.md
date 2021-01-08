@@ -4,13 +4,17 @@ title: 'Solution: The value of e'
 
 {% include menu.html %}
 
-The formula in this task contains a factorial, and we already have at least two solutions to compute it (more to follow). This program defines two functions: one to compute factorial, another for the partial sum according to the formula.
+## Disclaimer
+
+In Raku, there is a built-in constant `e` that gives the immediate answer to the task. The solution shown below is designed for education.
+
+## Code
+
+The formula in this task contains a factorial, and we already have at least two solutions to compute it (more to follow). The program below defines two functions: one to compute factorial, another one for the partial sum according to the formula.
 
 As it is required that the function can be called with no arguments, in which case it runs a predefined number of iterations, we can add a [default value](/essentials/functions/default-values) of the parameter: `sub e-approx($max = 100)`.
 
-In the code, notice the similarities in how the result values are accumulated in a [postfix `for` loop](/essentials/topic/postfix-for) over a [range](/essentials/positionals/ranges).
-
-## Code
+In the code, notice the similarities in how the result values are accumulated in a [postfix `for` loop](/essentials/loops/postfix-for) over a [range](/essentials/ranges).
 
 Here is the solution:
 
@@ -37,7 +41,7 @@ say e-approx();
 
 ## Output
 
-With 10 and 100 iterations, we get the following results. Also try other values of `$max`.
+With 10 and 100 iterations, we get the following results. Additionally, try other values of `$max`.
 
 ```console
 $ raku exercises/functions/the-value-of-e.raku

@@ -4,7 +4,7 @@ title: 'Solution: Spell a number'
 
 {% include menu.html %}
 
-The program below has a built-in array with the names of numbers from 0 to 20 and the names of the tens 20, 30, etc. In the chain of conditional checks, the number is distributed to a different algorithm to create and print a full spellt version of the number.
+The program below has a built-in array with the names of numbers from 0 to 20 and the names of the tens: 20, 30, etc. In the chain of conditional checks, the number is distributed to one of the rules of spelling.
 
 ## Code
 

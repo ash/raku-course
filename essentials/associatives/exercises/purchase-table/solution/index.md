@@ -4,17 +4,17 @@ title: 'Solution: Purchase table'
 
 {% include menu.html %}
 
-The table contains a header (which you simply print with a single `say`) and a number of rows with the similar structure: item name, item price, quantity and the total cost for these items.
+The table contains a header (which you simply print with a single `say`) and a number of rows with a similar structure: item name, item price, quantity and the total cost of these items.
 
 As you want to preserve the order of rows, an array is a good choice to keep the items. So, each line of the table corresponds to a single element of an array. 
 
-On the second level, a record can be saved in a hash strucutre with a few named fields: `name`, `price`, and `quantity`.
+On the second level, a record can be saved in a hash structure with a few named fields: `name`, `price`, and `quantity`.
 
-The rest of the program is to loop over the items, calculate the totals and print the table row.
+The rest of the program is to loop over the items, calculate the totals and print the table rows.
 
 ## Code
 
-Here is one of the possible solution of this task:
+Here is one of the possible solutions to this task:
 
 ```raku
 my @items = [

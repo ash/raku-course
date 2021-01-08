@@ -21,7 +21,7 @@ Using the hash, print the name of the Greek letter `β`. Use the form without qu
 
 ## 2
 
-Using the hash, print the name of the Greek letter `β`. Use the form where the key is quoted in single quites.
+Using the hash, print the name of the Greek letter `β`. Use the form where the key is quoted in single quotes.
 
 {:.quiz-code}
 {&apos;β&apos;} | say &quot;The letter β is called %letters␣␣␣␣.&quot;;
@@ -32,7 +32,7 @@ Using the hash, print the name of the Greek letter `β`. Use the form where the 
 Print the letters and their names as a table.
 
 {:.quiz-code}
-letters{} | say &quot;Here are some Greek letters:\n%␣␣␣␣␣␣\netc.&quot;; | Note that the output may be not sorted.
+letters{ | say &quot;Here are some Greek letters:\n%␣␣␣␣␣}\netc.&quot;; | Note that the output may be not sorted.
 
 The possible output for this case is:
 

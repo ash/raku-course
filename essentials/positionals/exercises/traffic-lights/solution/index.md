@@ -4,7 +4,7 @@ title: 'Solution: Traffic lights'
 
 {% include menu.html %}
 
-The idea of the solution is to ’loop the indexing’ of the array with the four elements that reflect the state of the traffic lights:
+The idea of the solution is to ’loop the indexing’ of the array with the four states of the traffic lights:
 
 ```raku
 my @lights = <yellow red yellow green>;

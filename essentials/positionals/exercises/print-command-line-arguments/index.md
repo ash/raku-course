@@ -6,11 +6,11 @@ title: Print command-line arguments
 
 ## Task
 
-Write a program that prints all the arguments it gets from command line. The arguments should be printed one at a line.
+Write a program that prints all the arguments it gets from the command line. Print them one at a line.
 
 ## Example
 
-This is how the program is supposed to react:
+This is how the program is supposed to work:
 
 ```console
 $ raku print-command-line-arguments.raku words to display

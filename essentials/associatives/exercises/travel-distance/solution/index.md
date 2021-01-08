@@ -4,13 +4,13 @@ title: 'Solution: Travel distance'
 
 {% include menu.html %}
 
-The hash of hashes that you find in the file [distances.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/travel-distance/distances.raku) is a bit redundant but very handy data structure that you can use to get the distance between any pair of cities.
+The hash of hashes you find in the file [distances.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/travel-distance/distances.raku) is a bit redundant but very handy data structure that you can use to get the distance between any pair of cities.
 
-The rest of the program is a couple of nested loops to scan all the pairs of the ininerary and to add up to the totals.
+The rest of the program is a couple of nested loops to scan all the segments of the itinerary and to add up to the totals.
 
 ## Code
 
-Here is the solution, where the big data set is shown only partially.
+Here is the solution where the big data set is shown only partially.
 
 ```raku
 my %distance = 

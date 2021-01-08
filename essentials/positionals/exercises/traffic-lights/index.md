@@ -6,7 +6,7 @@ title: 'Exercise: Traffic lights'
 
 ## Problem
 
-The traffic lights changes its colour every second. When it is turned on, the colour is yellow. Then, every second the colour changed in the order yellow — red — yellow — green and the cycle starts over.
+The traffic light changes its colour every second. When it was first turned on, it started as yellow. Then, every second the colour changed in the order yellow — red — yellow — green and the cycle starts over.
 
 Write a program that prints the state of the traffic lights on the 51<sup>st</sup>, 102<sup>nd</sup> and 305<sup>th</sup> second, assuming that the colour on the 1<sup>st</sup> second is red.
 

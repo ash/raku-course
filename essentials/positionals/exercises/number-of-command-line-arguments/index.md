@@ -6,7 +6,7 @@ title: The number of command-line arguments
 
 ## Task
 
-Write a program that prints the number of arguments passed to the program in command line.
+Write a program that prints the number of arguments passed to the program in the command line.
 
 ## Example
 

@@ -4,7 +4,7 @@ title: Solution of ‘Print command line arguments’
 
 {% include menu.html %}
 
-The program gets the arguments from command line in the array `@*ARGS`. So, we have to loop over its elements.
+The program gets the arguments from the command line in the array `@*ARGS`. So, we have to loop over its elements.
 
 ## Code
 

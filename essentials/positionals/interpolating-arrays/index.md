@@ -4,7 +4,7 @@ title: Interpolating arrays
 
 {% include menu.html %}
 
-To interpolate an array elements in double-quoted strings write it as you do in a program itself: `@data[1]`. To interpolate the whole array, add a pair of empty brackets: `@data[]`. The following program illustrates this approach:
+To interpolate array elements in double-quoted strings write it as you do in a program itself: `@data[1]`. To interpolate the whole array, add a pair of empty brackets: `@data[]`. The following program illustrates this approach:
 
 ```raku
 my @data = 10, 20, 30;
