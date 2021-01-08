@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 You can find the source code in the file [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/what/prompt-numbers.raku).
+🦋 You can find the source code in the file [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
 
 ## Test runs
 

@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/data-types/prompt-strings.raku).
+🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
 
 ## Test runs
 

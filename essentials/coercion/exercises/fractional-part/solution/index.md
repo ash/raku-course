@@ -15,7 +15,7 @@ my $n = 15.8972;
 say $n - $n.Int;
 ```
 
-🦋 Find the program in the file [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/coersion/fractional-part.raku).
+🦋 Find the program in the file [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/fractional-part.raku).
 
 ## Output
 
