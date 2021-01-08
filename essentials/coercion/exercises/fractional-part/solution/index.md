@@ -4,7 +4,7 @@ title: 'Solution: Fractional part'
 
 {% include menu.html %}
 
-To get a fractional part of a number, you can subtract the integer part, which you can get by casting the number to an `Int`.
+To get the fractional part of a number, you can subtract the integer part, which you can get by casting the number to an `Int`.
 
 ## Code
 
@@ -33,7 +33,7 @@ my $n = -15.8972;
 say $n - $n.Int;
 ```
 
-In this case, the result should be also correct:
+In this case, the result should also be correct:
 
 ```console
 $ raku exercises/coercion/fractional-part.raku

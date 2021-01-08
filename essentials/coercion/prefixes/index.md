@@ -24,7 +24,7 @@ my $s = ~$n;
 say $s.chars; # 3, as "-30" has 3 characters
 ```
 
-Notice that with the case of numeric conversion, the type of the converted value differes depending on the number in question. Compare the following conversions from strings:
+Notice that with numeric conversion, the type of the converted value differs depending on the number in question. Compare the following conversions from strings:
 
 ```raku
 say (+'100').WHAT;   # (Int)
@@ -32,7 +32,7 @@ say (+'3.14').WHAT;  # (Rat)
 say (+'27E-1').WHAT; # (Num)
 ```
 
-For Boolean conversions, there is also another prefix operator called `so`, and you can call this routine as a method too:
+For Boolean conversions, there is another routine called `so`. You can use it as a prefix operator or as a method:
 
 ```raku
 my $value = 42;

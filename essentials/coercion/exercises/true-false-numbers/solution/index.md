@@ -4,7 +4,7 @@ title: Solution of ‘True and False integers’
 
 {% include menu.html %}
 
-To convert a number to a Boolean value, you can use either the `?` prefix operator or a constructor form, or call the `Bool` method, or using the `so` routine as either a function or a method:
+To convert a number to a Boolean value, you can use either the `?` prefix operator or a constructor form, or call the `Bool` method, or the `so` routine as either a prefix operator or a method:
 
 ```raku
 my $value = 42;
@@ -15,9 +15,9 @@ say so $value;
 say $value.so;
 ```
 
-It is quite obvious that non-zero values will be converted to `True`. We are thus most interested in looking at those options that become `False`.
+It is quite obvious that non-zero values are converted to `True`. We are thus most interested in looking at those options that become `False`.
 
-All zeroes, integer, floating-point, or rational, are casted to `False`:
+All zeroes, integer, floating-point, or rational, are cast to `False`:
 
 ```raku
 my Int $int-zero = 0;
