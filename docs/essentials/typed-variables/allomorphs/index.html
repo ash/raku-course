@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Allomorphs | A Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Allomorphs | A Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="A Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Allomorphs | A Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/typed-variables">Typed variables</a></p>
+
+<h1 id="allomorphs">Allomorphs</h1>
+
+<p>Consider the following program. Before running it, can you tell which input values would break it and at which line?</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter something: &#39;</span>;
+<span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="nv">$input</span>;
+<span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="nv">$input</span>;
+
+<span class="nb">say</span> <span class="nv">$i</span>;
+<span class="nb">say</span> <span class="nv">$s</span>;
+</pre></div>
+
+
+<p>There are three scalar variables created here. Two of them, <code class="language-plaintext highlighter-rouge">$i</code> and <code class="language-plaintext highlighter-rouge">$s</code> are typed variables. That means that <code class="language-plaintext highlighter-rouge">$i</code> can only store integers and <code class="language-plaintext highlighter-rouge">$s</code> can only store strings.</p>
+
+<p>The return type of <code class="language-plaintext highlighter-rouge">prompt</code> depends on the characters we typed. If the input string can represent an integer number, the result will be of the <code class="language-plaintext highlighter-rouge">IntStr</code> type, which is both <code class="language-plaintext highlighter-rouge">Int</code> and <code class="language-plaintext highlighter-rouge">Str</code>, and thus can be assigned to either an <code class="language-plaintext highlighter-rouge">Int</code> or a <code class="language-plaintext highlighter-rouge">Str</code> variable. So, if you enter, say, <code class="language-plaintext highlighter-rouge">1234</code>, the program does not break.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: 1234
+1234
+1234
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">IntStr</code> type is an example of the so-called <em>allomorph</em> — a data type that combines two other types. Here are a few more examples.</p>
+
+<p>If you enter a string that cannot be an integer number, the program breaks at the moment we assign <code class="language-plaintext highlighter-rouge">$input</code> to <code class="language-plaintext highlighter-rouge">$i</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: Hello, World!
+Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
+  in block &lt;unit&gt; at allomorphs.raku line 2
+</code></pre></div></div>
+
+<p>Notice that you get an error even if the input string can be cast to a number, but not an integer. As it is not possible to store a floating-point or a rational number in an integer container, Raku will emit an exception:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: 3.14
+Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
+  in block &lt;unit&gt; at allomorphs.raku line 2
+</code></pre></div></div>
+
+<p>The second assignment, <code class="language-plaintext highlighter-rouge">$s = $input</code>, will never break as a string can take any input.</p>
+
+<p>🦋 You can find the source code of this program in the file <a href="https://github.com/ash/raku-course/blob/master/essentials/data-types/allomorphs/allomorphs.raku">allomorphs.raku</a>.</p>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/essentials/typed-variables">Typed variables</a> / <a href="/essentials/typed-variables/coercion">Type conversion for typed variables</a>
+  |  
+        💪 <a href="/essentials/typed-variables/exercises">Exercises: Typed variables</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
