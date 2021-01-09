@@ -25,7 +25,7 @@ The value of `$a` is set in the first line, so in the expression `$a // 'gamma'`
 
 ## //=
 
-The combination of `//` and `=` gives the `//=` operator that assignes a value if the variable is not defined.
+The combination of `//` and `=` gives the `//=` operator that assigns a value if the variable is not defined.
 
 ```raku
 my $x;
