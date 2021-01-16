@@ -1,5 +1,5 @@
 ---
-title: Part 1. Raku essentials
+title: Part 2. Advanced Raku Subjects
 ---
 
 {% assign menu_for_part = page.url | replace: "/", "" %}

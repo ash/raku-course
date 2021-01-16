@@ -1,0 +1,56 @@
+## Course navigation
+
+←
+{%- if prev_section == nil %}
+[Start](/)
+{%- endif %}
+{%- if curr_topic %}
+    {%- if prev_topic_section.url == curr_section.url %}
+        [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}}) / [{{prev_topic.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{prev_topic.url}})
+    {%- else %}
+        [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}})
+    {%- endif %}
+{%- else %}
+    [{{prev_section.title}}](/{{prev_section_part.url}}/{{prev_section.url}})
+    {%- if prev_section.items.size != nil %}
+        / [{{prev_section.items.last.title}}](/{{prev_section_part.url}}/{{prev_section.url}}/{{prev_section.items.last.url}})
+    {%- endif %}
+{%- endif %}
+&nbsp;&nbsp;|&nbsp;&nbsp;
+{%- if L3 == 'exercises' %}
+[{{next_section.title}}](/{{next_section_part.url}}/{{next_section.url}})
+{%- elsif curr_section.exercises and curr_section.items.last.url == curr_topic.url %}
+{%-if curr_section.exercises.size != 1 %}
+💪 [Exercises: {{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises)
+{%- else %}
+💪 [Exercise: {{curr_section.exercises[0].title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}})
+{%- endif %}
+{%- else %}
+{%- if next_part.url != curr_part.url and next_section_part == nil %}
+    [{{next_part.title}}]({{next_part.url}})
+{%- endif %}
+{%- if curr_topic %}
+    {%- if next_topic_section.url == curr_section.url %}
+        [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}}) / [{{next_topic.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{next_topic.url}})
+    {%- else %}
+        [{{next_section.title}}](/{{next_section_part.url}}/{{next_section.url}})
+    {%- endif %}
+{%- else %}
+    {%- if curr_section.items.size != nil %}
+        [{{curr_section.items[0].title}}](/{{curr_part.url}}/{{curr_section.url}}/{{curr_section.items[0].url}})
+    {%- else %}
+        [{{next_section.title}}](/{{next_section_part.url}}/{{next_section.url}})
+    {%- endif %}
+{%- endif %}
+{%- endif %}
+→
+
+{% if curr_section.exercises and curr_section.items.last.url != curr_topic.url and curr_topic != nil %}
+{%if curr_section.exercises.size != 1 %}
+<br />
+💪 Or jump directly [to the exercises to this section](/{{curr_part.url}}/{{curr_section.url}}/exercises).
+{% else %}
+<br />
+💪 Or jump directly [to the exercise to this section](/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}}).
+{% endif %}
+{% endif %}

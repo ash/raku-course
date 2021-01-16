@@ -1,0 +1,55 @@
+{%- if curr_exercise %}
+    {% if curr_exercise_n < curr_section.exercises.size %}
+        {% assign next_exercise_n = curr_exercise_n | plus: 1 %}
+        {% assign next_exercise = curr_section.exercises[next_exercise_n] %}
+    {% endif %}
+{%- endif %}
+
+
+{% if curr_quiz == nil and curr_exercise == nil %}
+{% if curr_section.exercises and curr_section.items.last.url != curr_topic.url and curr_topic == nil %}
+%%exercisesblock
+{% if curr_section.exercises.size != 1 %}
+{% if L3 != 'exercises' %}
+## Exercises
+{% endif %}
+This section contains {%if L3 != 'exercises' %}[{{curr_section.exercises.size}} exercises](/{{curr_part.url}}/{{curr_section.url}}/exercises){% else %}{{curr_section.exercises.size}} exercises{% endif %}. {% if L3 != 'exercises' %}Examine all the topics of this section before going to the coding practice.{% endif %}
+
+{%- for exercise in curr_section.exercises %}
+1. [{{exercise.title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises/{{exercise.url}})
+{%- endfor %}
+{% else %}
+{% if L3 != 'exercises' %}
+## Exercise
+{% endif %}
+{% if L3 != 'exercises' %}This section contains an exercise, which you are supposed to do after studying all the topics of this section.{% else %}There is one exercise in this section. Here it is:{% endif %}
+
+💪 [{{curr_section.exercises[0].title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}})
+{% endif %}
+%%/exercisesblock
+{% endif %}
+
+{% if L3 == 'exercises' %}
+## Refresh your knowledge
+
+Refer to the contents of this section to find the answers if needed.
+
+* [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}})
+{%- if curr_section.items.size %}
+{%- for topic in curr_section.items %}
+    - [{{topic.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{topic.url}})
+{%- endfor %}
+
+{% endif %}
+
+
+{% endif %}
+{% endif %}
+
+{% if next_exercise %}
+%%exercisesblock
+## Next exercise
+
+💪 [{{next_exercise.title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises/{{next_exercise.url}})
+%%/exercisesblock
+{% endif %}

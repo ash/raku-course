@@ -1,0 +1,42 @@
+{%- if page_type == 'section' and curr_section.quizzes %}
+%%practiceblock
+## Practice
+
+Complete the {% if curr_section.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this section.
+
+{%- for quiz in curr_section.quizzes %}
+* [{{quiz.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{quiz.url}})
+{%- endfor %}
+%%/practiceblock
+
+{%- elsif page_type == 'topic' and curr_topic.quizzes %}
+%%practiceblock
+## Practice
+
+Complete the {% if curr_topic.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
+
+{%- for quiz in curr_topic.quizzes %}
+* [{{quiz.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}/{{quiz.url}})
+{%- endfor %}
+%%/practiceblock
+
+{%- elsif page_type == 'topic_quiz' %}
+{% assign last_quiz_n = curr_topic.quizzes.size | minus: 1 %}
+{%- if curr_topic_quiz_n < last_quiz_n %}
+{%- assign next_topic_quiz_n = curr_topic_quiz_n | plus: 1 %}
+{%- assign next_topic_quiz = curr_topic.quizzes[next_topic_quiz_n] %}
+%%practiceblock 
+## More practice
+
+* [{{next_topic_quiz.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}/{{next_topic_quiz.url}})
+
+%%/practiceblock
+{%- endif %}
+
+{%- elsif page_type == 'section_quiz' and next_section_quiz %}
+## More practice
+
+* [{{next_section_quiz.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{next_section_quiz.url}})
+
+%%/practiceblock
+{%- endif %}
