@@ -1,7 +1,6 @@
-say '1. Mainline code';
-
-sub MAIN {
-    say '3. MAIN called';
+my $x = 0;
+while $x <= 10 {
+    $x = prompt 'Enter a number, which is not bigger than 10: ';
+    say "You entered $x.";
 }
-
-say '2. Also mainline';
+say "$x is bigger than 10.";

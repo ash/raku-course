@@ -9,8 +9,8 @@ The `while` construct has a Boolean condition and a code block. Raku executes th
 ```raku
 my $x = 0;
 while $x <= 10 {
-    $x = prompt 'Enter a number: ';
-    say "You entered $x, which is not bigger than 10.";
+    $x = prompt 'Enter a number, which is not bigger than 10: ';
+    say "You entered $x.";
 }
 say "$x is bigger than 10.";
 ```
@@ -19,14 +19,14 @@ The program asks to enter a number, and if the number is not bigger than 10, the
 
 ```console
 $ raku t.raku
-Enter a number: 10
-You entered 10, which is not bigger than 10.
-Enter a number: 4
-You entered 4, which is not bigger than 10.
-Enter a number: 1
-You entered 1, which is not bigger than 10.
-Enter a number: 20
-You entered 20, which is not bigger than 10.
+Enter a number, which is not bigger than 10: 10
+You entered 10.
+Enter a number, which is not bigger than 10: 4
+You entered 4.
+Enter a number, which is not bigger than 10: 1
+You entered 1.
+Enter a number, which is not bigger than 10: 20
+You entered 20.
 20 is bigger than 10.
 ```
 
