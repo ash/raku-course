@@ -17,9 +17,10 @@ In this program, the variable `$n` takes the next value from the range on each i
 ```console
 $ raku t.raku 
 1
+2
 3
+4
 5
-7
 ```
 
 The program iterates over all the values that the [range](/essentials/ranges) `1..5` generates. These are `1`, `2`, `3`, `4`, and `5`.
