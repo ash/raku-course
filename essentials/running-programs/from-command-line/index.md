@@ -17,7 +17,7 @@ $ raku hello.raku
 Hello, World!
 ```
 
-When working with the Unix-based systems, you can add a shebang and make the file executable:
+When working with Unix-based systems, you can add a shebang and make the file executable:
 
 ```raku
 #!/usr/bin/env raku

@@ -4,7 +4,7 @@ title: 'Quiz: A backslash in the output'
 
 {% include menu.html %}
 
-From the below strings, check those that will have precisely one slash in the output if you print them.
+From the below strings, check those that will have precisely one backslash `\` in the output if you print them.
 
 {:.quiz}
 0 | &quot;Level\n\t2&quot;

@@ -16,6 +16,6 @@ else {
 }
 ```
 
-The `else` block cannot be used by its own (there is a better alternative called [`unless`](../unless), which will be introduced just in a minute).
+The `else` block cannot be used on its own (there is a better alternative called [`unless`](../unless), which will be introduced just in a minute).
 
 {% include nav.html %}
