@@ -31,6 +31,6 @@ Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
 Built on MoarVM version 2020.10.
 ```
 
-You can see three version numbers here. The first one is the version of Rakudo itself: `v2020.10`. Then comes the version of the Raku language: `v6.d`. The updates will currently get the new letter as a minor version part, e.g., `v6.e`, etc. Finally, we see the name of the virtual machine used in this compiler: MoarVM version `2020.10`.
+You can see three version numbers here. The first one is the version of Rakudo itself: `v2020.10`. Then comes the version of the Raku language: `v6.d`. The updates will currently get the next letter as a minor version part, e.g., `v6.e`, etc. Finally, we see the name of the virtual machine used in this compiler: MoarVM version `2020.10`.
 
 {% include nav.html %}

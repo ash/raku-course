@@ -4,7 +4,7 @@ title: String concatenation in Raku
 
 {% include menu.html %}
 
-If you have two strings, you can join them together and get a new longer string. This action is called string concatenation. In Raku, you concatenate strings using—guess what?—concatenation operator. This operator is a tilda: `~`. To concatenate two strings, put `~` between them:
+If you have two strings, you can join them together and get a new longer string. This action is called string concatenation. In Raku, you concatenate strings using—guess what?—concatenation operator. This operator is a tilde: `~`. To concatenate two strings, put `~` between them:
 
 ```raku
 say 'Hello, ' ~ 'World!';
