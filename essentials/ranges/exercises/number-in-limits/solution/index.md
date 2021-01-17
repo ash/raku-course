@@ -16,8 +16,7 @@ my $end = prompt 'To (excluding): ';
 
 my $n = prompt 'What is the number? ';
 
-say $n ~~ $begin ..^ $end ??
-    'Within the limits.' !! 'Out of limits.';
+say $n ~~ $begin ..^ $end;
 ```
 
 🦋 Find the program in the file [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
