@@ -2,7 +2,7 @@
 
 This course covers all the main aspects of the language that you need to use in your daily practice. The course consists of five parts that explain the theory and offer many practical assignments. It is assumed that you try solving the tasks yourself before looking at the solution.
 
-If you're only starting to learn Raku, you are advised to go through all the parts in the order they are listed in the table of contents. If you have some practice and you want to have some specific training, you are welcome to start with the desired section.
+If you’re only starting to learn Raku, you are advised to go through all the parts in the order they are listed in the table of contents. If you have some practice and you want to have some specific training, you are welcome to start with the desired section.
 
 ## Structure
 

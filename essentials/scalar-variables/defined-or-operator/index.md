@@ -4,7 +4,7 @@ title: The defined-or operator
 
 {% include menu.html %}
 
-The so-called _defined-or_ operator `//` can be used to get a "fallback" value if a variable is not yet set.
+Use the so-called _defined-or_ operator `//` to get a fallback value if a variable is not yet set.
 
 ```raku
 my $a = 'alpha';
