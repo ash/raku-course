@@ -23,7 +23,7 @@ unit sub MAIN(Str $name) {
 ```
 
 {:.quiz-select}
-valid | This prigram is&nbsp; (: valid, invalid :) | Despite the presence of `unit`, you can still add braces, but that is way redundant.
+valid | This program is&nbsp; (: valid, invalid :) | Despite the presence of `unit`, you can still add braces, but that is way redundant.
 
 ## 3
 
@@ -40,7 +40,7 @@ unit multi sub MAIN($name) {
 ```
 
 {:.quiz-select}
-invalid | This prigram is&nbsp; (: valid, invalid :) | Error: `Cannot use 'unit' with individual multi candidates.`
+invalid | This program is&nbsp; (: valid, invalid :) | Error: `Cannot use 'unit' with individual multi candidates.`
 
 {% include quiz.html %}
 
