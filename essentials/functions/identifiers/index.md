@@ -20,6 +20,6 @@ Below is a short list of examples of valid function names.
 
     is-valid
 
-    to_bo-or-not_to_be
+    to_be-or-not_to_be
 
 {% include nav.html %}
