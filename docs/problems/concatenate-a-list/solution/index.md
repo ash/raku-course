@@ -23,7 +23,7 @@ To see the output, run the program as shown below:
 
 ## Discussion
 
-The program works with the built-in array of strigns, which is hard coded as a quoted list of strings:
+The program works with the built-in array of strings, which is hard coded as a quoted list of strings:
 
     my @strings = < neun hundert fünf und zwanzig >
 
