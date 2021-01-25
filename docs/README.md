@@ -62,3 +62,7 @@ The course is written by [Andrew Shitov](https://andrewshitov.com), who is follo
 The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others. The commercial usage in classes is allowed without permission. Releasing the course as a separate product must be first negotiated with the author.
 
 The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:andy@shitov.ru).
+
+## Running locally
+
+For the instructions on how to run the site locally, please read [INSTALL.md](INSTALL.md).
