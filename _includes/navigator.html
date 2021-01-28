@@ -1,5 +1,13 @@
+PAGE_TYPE=[{{page_type}}]
+
 {% if page_type == 'part' %}
 {% elsif page_type == 'section' %}
+    {% if curr_section.items == nil %}
+        {% assign next_section_n = curr_section_n | plus: 1 %}
+        {% assign next_page = curr_subpart.items[next_section_n] %}
+    {% else %}
+    {% endif %}
+
 {% elsif page_type == 'topic' %}
 {% elsif page_type == 'section_quiz' %}
 {% elsif page_type == 'topic_quiz' %}
@@ -9,6 +17,8 @@
 {% else %}
 {% endif %}
 
+
+NEXT_PAGE=[{{next_page.title}}]
 
 ## Course navigation
 
