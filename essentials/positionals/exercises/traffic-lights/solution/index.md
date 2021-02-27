@@ -32,9 +32,9 @@ Run the program. Additionally, try other values in the program.
 
 ```console
 $ raku exercises/positionals/traffic-lights.raku
+green
 yellow
 red
-green
 ```
 
 {% include nav.html %}
