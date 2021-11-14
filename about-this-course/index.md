@@ -29,7 +29,7 @@ Sometimes, practical assignments (both quizzes and exercises) give additional in
 
 Below each page, there is a navigation block that you can use to traverse the entire course. You can also always jump to the desired section using the breadcrumbs menu at the top of the page.
 
-While the navigation guides you through the assignments in a particular order, you can solve them in more or less random order withing the current section or topic.
+While the navigation guides you through the assignments in a particular order, you can solve them in more or less random order within the current section or topic.
 
 ## Contents
 
