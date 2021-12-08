@@ -22,7 +22,7 @@ Print the results for both cases.
 ```console
 $ raku the-value-of-e.raku
 2.7182818
-2.718281828459045
+2.7182818284590453
 ```
 
 ## Solution
