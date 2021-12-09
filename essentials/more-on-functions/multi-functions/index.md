@@ -4,7 +4,7 @@ title: Multi-functions
 
 {% include menu.html %}
 
-Raku implements _multiple dispatch_ based on function’s signature. It allows creating functions that share the name but have different types of their input data. Use the `multi` declarator for each of the variants of the function.
+Raku implements _multiple dispatch_ based on function signature. It allows creating functions that share the name but have different types of input data. Use the `multi` declarator for each of the variants of the function.
 
 ```raku
 multi sub add(Int $x, Int $y) { $x + $y }
