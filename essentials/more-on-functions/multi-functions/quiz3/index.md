@@ -4,7 +4,7 @@ title: Quiz 2 — Multi-functions with typed parameters
 
 {% include menu.html %}
 
-Here are the three variants of the function.
+Here are three variants of a function:
 
 ```raku
 multi sub func(Int $a) { 1 }
