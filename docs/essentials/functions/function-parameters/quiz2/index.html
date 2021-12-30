@@ -244,7 +244,11 @@
         padding-top: 0.4em;
         padding-bottom: 0.4em;
     }
-    /* div.practice {
+    table.quiz-code tr td input {
+        border: 1px solid lightgray;
+        text-align: center;
+    }
+   /* div.practice {
         background-color: #fffdeb;
         background-color: white;
     } */
@@ -262,6 +266,8 @@
 </style>
 
 <script>
+    let replacements = [];
+
     document.querySelectorAll('table.quiz tr').forEach(function(item) {
         item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
 
@@ -386,7 +392,12 @@
 
             let correct = 0;
             for (let c = 0; c != inputs.length; c++) {
-                if (inputs[c].value == inputs[c].dataset.ok) {
+                let curr_value = inputs[c].value.trim();
+                for (var ir = 0; ir != replacements.length; ir++) {
+                    curr_value = curr_value.replace(replacements[ir][0], replacements[ir][1]); // once only
+                }
+
+                if (curr_value == inputs[c].dataset.ok) {
                     correct++;
                 }
                 else {

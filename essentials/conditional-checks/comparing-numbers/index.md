@@ -43,6 +43,6 @@ say 1.000000000000000000000001 =~= 1.000000000000000000000002; # True
 say 2e17 + 1 =~= 2e17 + 100; # True
 ```
 
-Note that the number `1.000000000000000000000001` is a `Rat` number, so you do not loose precision in an expression with a close number `1.000000000000000000000002`. The last example with `2e17` operates with `Num` numbers, which have restricted precision.
+Note that the number `1.000000000000000000000001` is a `Rat` number, so you do not lose precision in an expression with a close number `1.000000000000000000000002`. The last example with `2e17` operates with `Num` numbers, which have restricted precision.
 
 {% include nav.html %}

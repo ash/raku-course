@@ -22,4 +22,22 @@ Both constructions are equivalent to a straightforward variant:
 my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine';
 ```
 
+%%tipblock
+## Array vs List
+
+Notice that in the examples above, the quotation `< . . . >` creates a `List`, not an `Array`. You can confirm it by calling the `WHAT` method:
+
+```raku
+say <a b c>.WHAT; # (List)
+```
+
+Nevertheless, when you assign it to an array, you get an array with the elements from the list.
+
+```raku
+my @a = <a b c>;
+say @a.WHAT; # (Array)
+```
+
+%%/tipblock
+
 {% include nav.html %}

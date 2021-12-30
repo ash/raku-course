@@ -8,7 +8,7 @@ Raku assumes that all your program files are saved as UTF-8 files. From the prac
 
 The next thing you want to know is that you can use non-Latin or non-English letters for identifiers. You can name your variable `$ι` instead of `$i` if you prefer, and the compiler will parse it correctly.
 
-Raku treats the Unicode properties of the characters pedantically enough. For example, it not only knows if a character is a letter or a digit, but also correctly identifies pair characters such as parentheses or different kind of brackets. In many cases, you can choose a different type of brackets for separate parts of the program. For instance, you can use modify our ‘Hello, World!’ program to use these fancy quoting characters:
+Raku treats the Unicode properties of the characters pedantically enough. For example, it not only knows if a character is a letter or a digit, but also correctly identifies pair characters such as parentheses or different kind of brackets. In many cases, you can choose a different type of brackets for separate parts of the program. For instance, you can modify our ‘Hello, World!’ program to use these non-Latin quoting characters (you will see them again when we’ll work with Raku grammars):
 
 ```raku
 say ｢Hello, World!｣;

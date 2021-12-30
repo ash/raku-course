@@ -18,7 +18,7 @@ Yes, a bare `0` is considered an integer by default.
 
 ## Groups of digits
 
-Raku has a cute feature that lets you spelling big numbers with some visual helpers that split the digits into groups of thousands:
+Raku has a cute feature that lets you spell big numbers with some visual helpers that split the digits into groups of thousands:
 
 ```raku
 1_000_000

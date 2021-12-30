@@ -2,7 +2,7 @@ my $n = @*ARGS[0];
 
 my @names = <
     zero one two three four five six seven eight nine ten
-    eleven twelve thirteen fourteen fivteen sixteen seventeen eighteen nineteen twenty
+    eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty
     thirty fourty fifty sixty seventy eighty ninety
     >;
 

@@ -4,7 +4,7 @@ title: Subscripting ranges
 
 {% include menu.html %}
 
-A `Range` is a positional data type. As with arrays, you can assess its individual elements.
+A `Range` is a positional data type. As with arrays, you can access its individual elements.
 
 For example, this is how you print the third element in the sequence of items that the range generates:
 

@@ -47,6 +47,6 @@ Don’t be confused by the two adjacent dollar symbols. Raku reads them separate
 
 All the strings are quoted in double quotes to allow interpolation of the variables and the special characters.
 
-Let us return to this task again after we get familiar with arrays.
+Let us return to this task again after we get familiar with arrays and hashes.
 
 {% include nav.html %}

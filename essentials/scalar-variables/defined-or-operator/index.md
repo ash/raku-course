@@ -4,7 +4,7 @@ title: The defined-or operator
 
 {% include menu.html %}
 
-The so-called _defined-or_ operator `//` helps to assign a value to a variable that is not yet set.
+Use the so-called _defined-or_ operator `//` to get a fallback value if a variable is not yet set.
 
 ```raku
 my $a = 'alpha';
@@ -21,7 +21,7 @@ alpha
 delta
 ```
 
-The value of `$a` is set in the first line, so in the expression `$a // 'gamma'`, the current value of `$a` is used. In contract, the `$b` variable was not initialised, so `$b // 'delta'` returns the right-hand-side operand, and the program prints `delta`.
+The value of `$a` is set in the first line, so in the expression `$a // 'gamma'`, the current value of `$a` is used. In contrast, the `$b` variable was not initialised, so `$b // 'delta'` returns the right-hand-side operand, and the program prints `delta`.
 
 ## //=
 
