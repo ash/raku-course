@@ -23,6 +23,12 @@ Do not close the terminal window with `bundle` running. As soon as you update on
 
 Note that this works well if you are modifying independent `index.md` files. If you modify one of the files in `_includes`, `_data`, or `_layout` that affect the whole site, you’ll need to regenerate the site again. So either run it without `--incremental` or break it with `Ctrl+C` and start it again.
 
+# Re-building menu navigation
+
+After you have changed `_data/toc.yaml`, run the following command to rebuild a helper file `_data/navigation.toc`:
+
+    raku build-menu.raku
+
 # Syntax highlighting
 
 There is no built-in Raku syntax highlighting in the above scheme. Jekyll generates static files and saves them in the directory `_site`. A server running at http://localhost:4000 reads the files from there. The production server, https://course.raku.org/, takes the files from the `docs` directory, which contains the same files as in `_site` but with syntax-highlighted code. To generate `docs`, you need to install Pygments:

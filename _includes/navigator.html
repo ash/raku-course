@@ -1,70 +1,20 @@
-PAGE_TYPE=[{{page_type}}]
+{% assign this_page = site.data.navigation | where: "url", page.url %}
+{% assign this_page = this_page[0] %}
 
-{% if page_type == 'part' %}
-{% elsif page_type == 'section' %}
-    {% if curr_section.items == nil %}
-        {% assign next_section_n = curr_section_n | plus: 1 %}
-        {% assign next_page = curr_subpart.items[next_section_n] %}
-    {% else %}
-    {% endif %}
+{% assign prev_page = site.data.navigation | where: "url", this_page.prev %}
+{% assign prev_page = prev_page[0] %}
 
-{% elsif page_type == 'topic' %}
-{% elsif page_type == 'section_quiz' %}
-{% elsif page_type == 'topic_quiz' %}
-{% elsif page_type == 'exercises' %}
-{% elsif page_type == 'exercise' %}
-{% elsif page_type == 'solution' %}
-{% else %}
-{% endif %}
-
-
-NEXT_PAGE=[{{next_page_type}} {{next_page.title}}]
+{% assign next_page = site.data.navigation | where: "url", this_page.next %}
+{% assign next_page = next_page[0] %}
 
 ## Course navigation
 
 ←
-{%- if prev_section == nil %}
-[Start](/)
-{%- endif %}
-{%- if curr_topic %}
-    {%- if prev_topic_section.url == curr_section.url %}
-        [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}}) / [{{prev_topic.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{prev_topic.url}})
-    {%- else %}
-        [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}})
-    {%- endif %}
-{%- else %}
-    [{{prev_section.title}}](/{{prev_section_part.url}}/{{prev_section.url}})
-    {%- if prev_section.items.size != nil %}
-        / [{{prev_section.items.last.title}}](/{{prev_section_part.url}}/{{prev_section.url}}/{{prev_section.items.last.url}})
-    {%- endif %}
-{%- endif %}
+{%- if prev_page.type == "exercise" %} Exercise:{% endif %}
+[{{ prev_page.title }}]({{ prev_page.url }})
 &nbsp;&nbsp;|&nbsp;&nbsp;
-{%- if L3 == 'exercises' %}
-[{{next_section.title}}](/{{next_section_part.url}}/{{next_section.url}})
-{%- elsif curr_section.exercises and curr_section.items.last.url == curr_topic.url %}
-{%-if curr_section.exercises.size != 1 %}
-💪 [Exercises: {{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises)
-{%- else %}
-💪 [Exercise: {{curr_section.exercises[0].title}}](/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}})
-{%- endif %}
-{%- else %}
-{%- if next_part.url != curr_part.url and next_section_part == nil %}
-    [{{next_part.title}}]({{next_part.url}})
-{%- endif %}
-{%- if curr_topic %}
-    {%- if next_topic_section.url == curr_section.url %}
-        [{{curr_section.title}}](/{{curr_part.url}}/{{curr_section.url}}) / [{{next_topic.title}}](/{{curr_part.url}}/{{curr_section.url}}/{{next_topic.url}})
-    {%- else %}
-        [{{next_section.title}}](/{{next_section_part.url}}/{{next_section.url}})
-    {%- endif %}
-{%- else %}
-    {%- if curr_section.items.size != nil %}
-        [{{curr_section.items[0].title}}](/{{curr_part.url}}/{{curr_section.url}}/{{curr_section.items[0].url}})
-    {%- else %}
-        [{{next_section.title}}](/{{next_section_part.url}}/{{next_section.url}})
-    {%- endif %}
-{%- endif %}
-{%- endif %}
+{%- if next_page.type == "exercise" %} Exercise:{% endif %}
+[{{ next_page.title }}]({{ next_page.url }})
 →
 
 {% if curr_section.exercises and curr_section.items.last.url != curr_topic.url and curr_topic != nil %}
