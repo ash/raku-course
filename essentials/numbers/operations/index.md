@@ -58,7 +58,7 @@ say 10.3 % 3;     # OK
 # say 10.3 mod 3; # Error
 
 say 10.3 / 3.3;     # OK
-# say 10.3 mod 3.3; # Error
+# say 10.3 div 3.3; # Error
 ```
 
 ## Power
