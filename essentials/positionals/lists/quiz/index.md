@@ -4,7 +4,7 @@ title: Quiz 2 — List and scalar vs. list and array
 
 {% include menu.html %}
 
-There ara lists on the right-hand side in the below assignments. Objects of which type do the variables keep?
+There are lists on the right-hand side in the below assignments. Objects of which type do the variables keep?
 
 ### 1
 
