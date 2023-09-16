@@ -6,7 +6,7 @@ title: Print command-line arguments
 
 ## Task
 
-Write a program that prints all the arguments it gets from the command line. Print them one at a line.
+Write a program that prints all the arguments it gets from the command line. Print them one per line.
 
 ## Example
 
