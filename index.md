@@ -162,4 +162,4 @@
 
 <center>•</center>
 
-© 2021
+© 2021–2023 by <a href="https://andrewshitov.com/">Andrew Shitov</a>
