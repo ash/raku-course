@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Default values of scalars in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Default values of scalars in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Default values of scalars in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> / <a href="/advanced/scalar">Scalar containers</a></p>
+
+<h1 id="default-values">Default values</h1>
+
+<p>When a new scalar variable is created without immediate value assignment, the variable in the scalar container gets some default value. The exact value depends on the type of the variable.</p>
+
+<p>Uninitialized values get default values depending on their type. The following program though is not the best way of using Raku:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$int</span>;
+<span class="nb">say</span> <span class="nv">$int</span> + <span class="mi">5</span>;
+</pre></div>
+
+
+<p>While the output will contain <code class="language-plaintext highlighter-rouge">5</code>, which may be the desired output assuming that the initial default value of <code class="language-plaintext highlighter-rouge">$int</code> would be <code class="language-plaintext highlighter-rouge">0</code>, it also has an error message:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Use of uninitialized value of type Any in numeric context
+  in block &lt;unit&gt; at t.raku line 2
+5
+</code></pre></div></div>
+
+<p>To eliminate any uncertainty, either assign a value explicitly:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$int</span> = <span class="mi">0</span>;
+<span class="nb">say</span> <span class="nv">$int</span> + <span class="mi">5</span>; <span class="c1"># 5</span>
+</pre></div>
+
+
+<p>Or determine a default value:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$int</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">0</span>);
+<span class="nb">say</span> <span class="nv">$int</span> + <span class="mi">5</span>; <span class="c1"># 5</span>
+</pre></div>
+
+
+<p>The default value is not limited to zero values only. It can be any value you thing is a good candidate for being default. For example:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$int</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$int</span> + <span class="mi">5</span>; <span class="c1"># 6</span>
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/advanced/scalar">Scalar containers</a> / <a href="/advanced/scalar/proxying">Proxying method calls</a>
+  |  
+        <a href="/advanced/introspection">Introspection with MOP</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

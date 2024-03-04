@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Data type and scalar containers | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Data type and scalar containers | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Data type and scalar containers | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> / <a href="/advanced/scalar">Scalar containers</a></p>
+
+<h1 id="type-constraints">Type constraints</h1>
+
+<p>In the Essentials chapter, it was shown on how to set the type of the variable using <a href="/essentials/typed-variables/type-constraints/">type constraints</a>. It is now worth noting that it is container that is the container who starts limiting the data values that it can accept.</p>
+
+<p>The following code creates a scalar container that only allows hosting integer data in it:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$int</span>;
+</pre></div>
+
+
+<p>Containers with a clearly mentioned type can only accept the values that fit in it. So the following assignments are all valid:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$int</span>;
+
+<span class="nv">$int</span> = <span class="mi">123</span>; <span class="c1"># Directly an integer</span>
+<span class="nb">say</span> <span class="nv">$int</span>;
+
+<span class="nv">$int</span> = <span class="mi">100</span> + <span class="mi">23</span>; <span class="c1"># The result is integer</span>
+<span class="nb">say</span> <span class="nv">$int</span>;
+
+<span class="nv">$int</span> = <span class="s">&#39;123&#39;</span>.<span class="nb">Int</span>; <span class="c1"># A string converted to an integer</span>
+<span class="nb">say</span> <span class="nv">$int</span>;
+</pre></div>
+
+
+<p>Raku does not perform automatic type casting. So assigning a floating-point number (which is a <code class="language-plaintext highlighter-rouge">Rat</code> value in Raku) is not possible:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$int</span>;
+<span class="nv">$int</span> = <span class="mf">123.45</span>;
+</pre></div>
+
+
+<p>You get an error:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!=== Error while compiling t.raku
+Cannot assign a literal of type Rat (123.45) to a variable of type Int. You can declare the variable to be of type Real, or try to coerce the value with 123.45.Int or Int(123.45), or just write the value as 123
+at t.raku:3
+------&gt; &lt;BOL&gt;⏏$int = 123.45;
+</code></pre></div></div>
+
+<p>To avoid an error, use explicit type conversion:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$int</span>;
+
+<span class="nv">$int</span> = <span class="mf">123.45</span>.<span class="nb">Int</span>;
+<span class="nb">say</span> <span class="nv">$int</span>; <span class="c1"># 123</span>
+</pre></div>
+
+
+<p>Don’t be confused by two dots in <code class="language-plaintext highlighter-rouge">123.45.Int</code>. The first dot is the decimal point, the second one is used to call the method <code class="language-plaintext highlighter-rouge">Int</code> on a rational (<code class="language-plaintext highlighter-rouge">Rat</code>) value.</p>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/advanced/scalar">Scalar containers</a> / <a href="/advanced/scalar/types">Data types and scalars containers</a>
+  |  
+        <a href="/advanced/scalar">Scalar containers</a> / <a href="/advanced/scalar/proxying">Proxying method calls</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

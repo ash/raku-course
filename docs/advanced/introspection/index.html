@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Introspecting scalar containers in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Introspecting scalar containers in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Introspecting scalar containers in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
+
+<h1 id="introspection-with-mop">Introspection with MOP</h1>
+
+<p>MOP stands for Meta-object protocol. In Raku, it allows to get additional information about the objects in the program, such as containers or variables.</p>
+
+<p>Condider a type-constrained variable:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my Int $int;
+</code></pre></div></div>
+
+<p>Debugging this variable using <code class="language-plaintext highlighter-rouge">.^name</code> reveals its type.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my Int $int;
+say $int.^name; # Int
+</code></pre></div></div>
+
+<p>In this program, <code class="language-plaintext highlighter-rouge">^name</code> is a built-in method that returns the type of the value kept in the container. This is a part of the so-called metaobject that contains meta-information about the container.</p>
+
+<p>Here is a modified example from the <a href="/advanced/scalar/types/">earlier topic</a>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>;
+
+<span class="nv">$value</span> = <span class="mi">42</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>;
+
+<span class="nv">$value</span> = <span class="s">&#39;fourty-two&#39;</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>;
+</pre></div>
+
+
+<p>This time, the program only prints type names:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Any
+Int
+Str
+</code></pre></div></div>
+
+<p><div class="topics"></p>
+<h2 id="topics-in-this-section">Topics in this section</h2>
+<ul>
+  <li><a href="/advanced/introspection/what"><code class="language-plaintext highlighter-rouge">WHAT</code> and <code class="language-plaintext highlighter-rouge">^name</code></a></li>
+  <li><a href="/advanced/introspection/var"><code class="language-plaintext highlighter-rouge">VAR</code></a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+    <a href="/advanced/scalar">Scalar containers</a>
+        / <a href="/advanced/scalar/default">Default values</a>
+  |  
+        <a href="/advanced/introspection/what"><code class="language-plaintext highlighter-rouge">WHAT</code> and <code class="language-plaintext highlighter-rouge">^name</code></a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

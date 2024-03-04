@@ -1,4 +1,4 @@
-# A Complete Course of the Raku programming language
+# The Complete Course of the Raku programming language
 
 * [About this course](/about-this-course)
 
@@ -162,4 +162,4 @@
 
 <center>•</center>
 
-© 2021
+© 2021–{{ site.time | date: '%Y' }} by <a href="https://andrewshitov.com/">Andrew Shitov</a>
