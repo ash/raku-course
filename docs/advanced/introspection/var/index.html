@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Using VAR in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Using VAR in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Using VAR in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> / <a href="/advanced/introspection">Introspection with MOP</a></p>
+
+<h1 id="var"><code class="language-plaintext highlighter-rouge">VAR</code></h1>
+
+<p><code class="language-plaintext highlighter-rouge">VAR</code> is a pseudo-method that retuns the underlying container object. The <code class="language-plaintext highlighter-rouge">.VAR</code> call returns a <code class="language-plaintext highlighter-rouge">Scalar</code> object of the container.</p>
+
+<h2 id="name"><code class="language-plaintext highlighter-rouge">^name</code></h2>
+
+<p>After calling <code class="language-plaintext highlighter-rouge">.VAR</code>, you can further get the name of its class by calling <code class="language-plaintext highlighter-rouge">.^name</code> on it.</p>
+
+<p>Examine the following program:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
+<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">&#39;42&#39;</span>;
+
+<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="nb">name</span>;     <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
+
+<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="nb">name</span>;     <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var2</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
+</pre></div>
+
+
+<p>Here, two variables are filled with an integer and a string. The <code class="language-plaintext highlighter-rouge">.^name</code> meta-object method returns the name of the type, which is correspondently <code class="language-plaintext highlighter-rouge">Int</code> or <code class="language-plaintext highlighter-rouge">Str</code>.</p>
+
+<h2 id="default"><code class="language-plaintext highlighter-rouge">default</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">default</code> method returns the default value of the variable.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># Raku</span>
+</pre></div>
+
+
+<p>If the default value is not defined explicitly, you see the name of the class of the value kept in the container:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
+</pre></div>
+
+
+<p>Or its type constraint:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
+</pre></div>
+
+
+<h2 id="name-1"><code class="language-plaintext highlighter-rouge">name</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">name</code> method returns the name of the container, including the sigil.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="nb">name</span>; <span class="c1"># $language</span>
+</pre></div>
+
+
+<p>Make sure to not mix <code class="language-plaintext highlighter-rouge">^name</code> and <code class="language-plaintext highlighter-rouge">name</code>.</p>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+        <a href="/advanced/introspection">Introspection with MOP</a> / <a href="/advanced/introspection/what"><code class="language-plaintext highlighter-rouge">WHAT</code> and <code class="language-plaintext highlighter-rouge">^name</code></a>
+  |  
+        <a href="//"></a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dumping function signatures in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Dumping function signatures in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Dumping function signatures in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> / <a href="/advanced/dd">Debugging with <code class="language-plaintext highlighter-rouge">dd</code></a></p>
+
+<h1 id="function-signatures">Function signatures</h1>
+
+<p>A bare <code class="language-plaintext highlighter-rouge">dd</code> called inside a function prints its signature: the name and the list of arguments it it has them. Examine the following example with two different functions.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">f1</span> {
+    <span class="n">dd</span>
+}
+
+<span class="n">f1</span>();
+
+<span class="k">sub</span> <span class="n">f2</span>(<span class="nv">$x</span>) {
+    <span class="n">dd</span>
+}
+
+<span class="n">f2</span>(<span class="mi">42</span>);
+</pre></div>
+
+
+<p>The program prints:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub f1()
+sub f2($x)
+</code></pre></div></div>
+
+<p>If you have multi-function, this method helps to debug and see which multi-variant was called.</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">g</span> {
+    <span class="n">dd</span>
+}
+
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">g</span>(<span class="nv">$x</span>) {
+    <span class="n">dd</span>
+}
+
+<span class="n">g</span>();
+<span class="n">g</span>(<span class="mi">42</span>);
+</pre></div>
+
+
+<p>The output is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub g()
+sub g($x)
+</code></pre></div></div>
+
+<p></div></p>
+
+<h2 id="course-navigation">Course navigation</h2>
+
+<p>←
+<a href="/">Start</a>
+        <a href="/advanced/dd">Debugging with <code class="language-plaintext highlighter-rouge">dd</code></a> / <a href="/advanced/dd/variables">Dumping variables</a>
+  |  
+        <a href="/advanced/containers">Understanding Raku containers</a>
+→</p>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
