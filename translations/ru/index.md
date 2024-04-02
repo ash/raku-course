@@ -1,6 +1,6 @@
-# The Complete Course of the Raku programming language
+# Полный курс языка программирования Raku
 
-* [About this course](/about-this-course)
+* [Об этом курсе](/about-this-course)
 
 {% comment %}{% assign compact_menu = true %}{% endcomment %}
 {% include toc.html %}
