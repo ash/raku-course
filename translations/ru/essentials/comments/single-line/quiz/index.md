@@ -9,10 +9,10 @@ title: 'Тест: Однострочные комментарии'
 
 {:.quiz}
 1 | `my $name = 'John'; # Setting the name`
-1 | `my $age = 23; ## Change it next year` | Everything after the first `#` is a comment.
-0 | `say $name; Printing name` | A comment must start with a `#`.
-0 | `my $city = 'TBA'; // Not yet known` | C++-style comments are not recognised in Raku.
-1 | `# say $age;` | The whole line has been commented out.
+1 | `my $age = 23; ## Change it next year` | Все после первого `#` является комментарием.
+0 | `say $name; Printing name` | Комментарий должен начинаться с `#`.
+0 | `my $city = 'TBA'; // Not yet known` | Комментарии в стиле C++ не работают в Raku.
+1 | `# say $age;` | Вся строка была закомментирована.
 1 | `#say $age;`
 
 {% include quiz.html %}
