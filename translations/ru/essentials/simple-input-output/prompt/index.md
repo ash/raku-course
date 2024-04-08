@@ -24,7 +24,7 @@ say prompt;
 prompt 'What language are you going to learn? '
 ```
 
-До того, как мы закончим эту секцию, давайте попробуем собрать все части воедино
+До того, как мы закончим эту главу, давайте попробуем собрать все части воедино
 и сотворить программу, которая спрашивает о пожеланиях пользователя и после
 этого напечатает фразу, используя текст, введенный пользователем.
 
@@ -34,7 +34,7 @@ say 'You are going to learn ', prompt 'What language are you going to learn? ';
 
 Если вы ввели `Raku`, вы увидите следующую фразу:
 
-```console
+```
 You are going to learn Raku
 ```
 
@@ -46,7 +46,7 @@ You are going to learn Raku
 будет идти в правильном порядке:
 
 ```console
-$ raku t.raku 
+$ raku t.raku
 What language are you going to learn? Raku
 You are going to learn Raku
 ```
