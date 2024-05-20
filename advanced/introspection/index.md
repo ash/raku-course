@@ -22,7 +22,7 @@ say $int.^name; # Int
 
 In this program, `^name` is a built-in method that returns the type of the value kept in the container. This is a part of the so-called metaobject that contains meta-information about the container.
 
-Here is a modified example from the [earlier topic](/advanced/scalar/types/):
+Here is a modified example from the [earlier topic](/advanced/scalar-containers/types/):
 
 ```raku
 my $value;

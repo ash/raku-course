@@ -9,6 +9,6 @@ Containers in the Raku programming language serve to keep data, but their role a
 
 It is crusial to understand the concept of containers, otherwise it may seem that in some cases the program uses, for example, scalars instead of arrays or vice versa.
 
-Different types of containers can host data of different nature, size, or even different number of data items. Correspondently, different types of containers have their own sets of methods to manupulate the data. Visually, containers are distinguished with a sigil used. Learn more in the below pages.
+Different types of containers can host data of different nature, size, or even different number of data items. Correspondently, different types of containers have their own methods to manupulate the data.
 
 {% include nav.html %}
