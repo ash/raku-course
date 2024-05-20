@@ -3,7 +3,7 @@
 * [Об этом курсе](/ru/about-this-course)
 
 {% comment %}{% assign compact_menu = true %}{% endcomment %}
-{% include toc.html lang="ru" %}
+{% include toc.html %}
 
 ## Part 2. Advanced Raku subjects
 
