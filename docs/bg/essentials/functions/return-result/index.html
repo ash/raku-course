@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Връщане на резултата | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Връщане на резултата | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Връщане на резултата | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/functions">Създаване и извикване на функции</a></p>
+
+<h1 id="връщане-на-резултат">Връщане на резултат</h1>
+
+<p>Функциите често не само правят нещо, но и връщат резултат. Например, във функционалното програмиране, функциите не трябва да произвеждат никакви странични ефекти като печатане на конзолата. Въпреки това, Raku не ви ограничава да го правите. Нека видим как да върнем стойност от функция и как да я получим в извикващия код.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+
+<span class="k">my</span> <span class="nv">$sum</span> = <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>);
+<span class="nb">say</span> <span class="nv">$sum</span>; <span class="c1"># 30</span>
+</pre></div>
+
+
+<p>Тук, функцията наречена <code class="language-plaintext highlighter-rouge">add</code> приема две числа и връща тяхната сума. Използва се явен <code class="language-plaintext highlighter-rouge">return</code>. От страната на извикването, стойността, която функцията връща, може да се използва като всяка друга стойност. В горната програма, тя се присвоява на променлива.</p>
+
+<h2 id="последната-оценена-стойност">Последната оценена стойност</h2>
+
+<p>В Raku, явен <code class="language-plaintext highlighter-rouge">return</code> не е необходим, ако резултатът, който искате да върнете от функцията, е последната изчислена стойност в нейното тяло. Нашата функция <code class="language-plaintext highlighter-rouge">add</code> може да бъде опростена:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nv">$x</span> + <span class="nv">$y</span>
+}
+</pre></div>
+
+
+<p>Както може би сте забелязали, няма точка и запетая в края на реда, тъй като не е необходима, когато редът завършва текущия блок код.</p>
+
+<p>Такива тривиални и малки функции често се форматират в един ред за по-компактен код:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+</pre></div>
+
+
+<h2 id="няма-данни-за-връщане">Няма данни за връщане</h2>
+
+<p>Ако трябва да върнете от функцията преди края на нейното тяло и функцията не връща никакъв резултат, използвайте празен <code class="language-plaintext highlighter-rouge">return</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">test</span>(<span class="nv">$x</span>) {
+    <span class="k">return</span> <span class="k">if</span> <span class="nv">$x</span> &lt;= <span class="mi">10</span>;
+    <span class="nb">say</span> <span class="s">&quot;$x е над лимита&quot;</span>;
+}
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/bg/essentials/functions/return-result/quiz">Тест — Връщане от функция</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+        <a href="/bg/essentials/functions">Създаване и извикване на функции</a> / <a href="/bg/essentials/functions/function-parameters">Параметри на функции</a>
+  |  
+        <a href="/bg/essentials/functions">Създаване и извикване на функции</a> / <a href="/bg/essentials/functions/positional-parameters">Позиционни параметри</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/bg/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/functions/return-result/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/functions/return-result/">English</a> • <a href="/de/essentials/functions/return-result/">Deutsch</a> • <a href="/es/essentials/functions/return-result/">Español</a> • <a href="/it/essentials/functions/return-result/">Italiano</a> • <a href="/lv/essentials/functions/return-result/">Latviešu</a> • <a href="/nl/essentials/functions/return-result/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/functions/return-result/">Русский</a> • <a href="/uk/essentials/functions/return-result/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -18,7 +18,7 @@ Tables  $50.18  1      $50.18
 
 Если вам не нравится выбор валюты, не стесняйтесь выбрать любую другую, но не
 забывайте, что `$` [имеет особое
-значение](/essentials/strings/escaping-special-characters) в строках Raku,
+значение](/ru/essentials/strings/escaping-special-characters) в строках Raku,
 поэтому был выбран именно он, чтобы лучше познакомиться с Raku.
 
 ## Пример
@@ -34,4 +34,5 @@ $ raku purchase-table.raku
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

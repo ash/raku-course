@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Операции с числами в Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Операции с числами в Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Операции с числами в Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/numbers">Числа</a></p>
+
+<h1 id="операции-с-числами">Операции с числами</h1>
+
+<p>Безусловно вы уже знакомы с некоторыми операциями, которые можно совершать с
+числами в Raku. Отметим, что символ <em>операции</em> называется <em>оператором</em>. Объекты,
+над которыми совершается операция, называются <em>операндами</em>.</p>
+
+<h2 id="арифметика">Арифметика</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Оператор</strong></td>
+      <td><strong>Операция</strong></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td>Сложение</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td>Вычитание</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td>Умножение</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td>Деление</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Так как Raku очень хорошо <a href="/ru/essentials/on-unicode">поддерживает Юникод</a>,
+некоторые операторы имеют эквивалент в Юникоде:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">×</code></td>
+      <td>Умножение</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
+      <td>Деление</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Используйте скобки, чтобы изменить порядок выполнения:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
+</pre></div>
+
+
+<h2 id="остаток-от-деления">Остаток от деления</h2>
+
+<p>Оператор остатка от деления — это <code class="language-plaintext highlighter-rouge">%</code>, как и во многих других языках.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td>Остаток от деления</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Он возвращает остаток от целочисленного деления двух чисел, например <code class="language-plaintext highlighter-rouge">10 % 3</code>
+равно <code class="language-plaintext highlighter-rouge">1</code>. Отметим, что <code class="language-plaintext highlighter-rouge">-10 % 3</code> равно <code class="language-plaintext highlighter-rouge">2</code> так как результат операции определен
+как разница между первым числом и округленным вниз частным, умноженным на
+второе число. Другими словами, <code class="language-plaintext highlighter-rouge">$a % $b</code> эквивалентно <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
+
+<h2 id="делимость">Делимость</h2>
+
+<p>Raku добавляет полезный оператор, чтобы проверить, если число делится на другое
+число.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
+      <td>Делимость</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Это инфиксный оператор, которому требуется два операнда: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Если первый
+операнд кратен второму операнду, то результат будет булевым значением
+<code class="language-plaintext highlighter-rouge">True</code>. Иначе — <code class="language-plaintext highlighter-rouge">False</code>.</p>
+
+<h2 id="целочисленные-операции">Целочисленные операции</h2>
+
+<p>Есть несколько специальных операций, которые возвращают целые числа. Их
+операторы являются словами, а не символами.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">div</code></td>
+      <td>Целочисленное деление</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
+      <td>Целочисленный остаток от деления</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Оператор <code class="language-plaintext highlighter-rouge">div</code> округляет результат к низу, поэтому <code class="language-plaintext highlighter-rouge">10 div 3</code> равно <code class="language-plaintext highlighter-rouge">3</code> и <code class="language-plaintext highlighter-rouge">-10 div 3</code> равно <code class="language-plaintext highlighter-rouge">-4</code>.</p>
+
+<h2 id="степень">Степень</h2>
+
+<p>Есть два варианта возведения <em>x</em> в степень <em>y</em>. В первом варианте используется
+оператор <code class="language-plaintext highlighter-rouge">**</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
+</pre></div>
+
+
+<p>Во втором используется верхний индекс, например:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
+</pre></div>
+
+
+<p>В верхний регистр возможно поместить больше одной цифры, чтобы получить степень
+больше девяти. Например:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
+</pre></div>
+
+
+<p>Также не составляет проблем и отрицательная степень:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
+</pre></div>
+
+
+<p>Отметим, что результат последний двух выражений является числом типа <code class="language-plaintext highlighter-rouge">Rat</code>.</p>
+
+<h2 id="операции-с-присвоением">Операции с присвоением</h2>
+
+<p>Все операции поддерживают сокращенный синтаксис для обновления
+переменной. Давайте продемонстрируем это на примере <code class="language-plaintext highlighter-rouge">+</code>.</p>
+
+<p>Полная форма</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+</pre></div>
+
+
+<p>эквивалентна</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/numbers">Числа</a> / <a href="/ru/essentials/numbers/numeric">Числа с плавающей точкой</a>
+  |  
+        💪 <a href="/ru/essentials/numbers/exercises">Exercises: Числа</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница переведена с английского человеком. <a href="/essentials/numbers/operations/">Оригинальный текст на английском языке.</a> <a href="/ru/about-this-course/credits">О переводе.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/numbers/operations/">English</a> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+</div>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

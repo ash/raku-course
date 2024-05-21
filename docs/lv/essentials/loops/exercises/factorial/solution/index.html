@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Risinājums ‘Faktoriāls’ | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Risinājums ‘Faktoriāls’ | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Risinājums ‘Faktoriāls’ | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/loops/">Cikli</a> / <a href="/lv/essentials/loops/exercises/">Vingrinājumi</a> / <a href="/lv/essentials/loops/exercises/factorial">Faktoriāls</a></p>
+
+<h1 id="risinājums-faktoriāls">Risinājums: Faktoriāls</h1>
+
+<p>Faktoriāls no <code class="language-plaintext highlighter-rouge">N</code> ir veselu skaitļu reizinājums no 1 līdz ieskaitot <code class="language-plaintext highlighter-rouge">N</code>. Piemēram, 4 faktoriāls ir 1 * 2 * 3 * 4 = 24.</p>
+
+<h2 id="kods">Kods</h2>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">8</span>;
+
+<span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+<span class="nv">$f</span> *= <span class="nv">$_</span> <span class="k">for</span> <span class="mi">2</span>..<span class="nv">$n</span>;
+
+<span class="nb">say</span> <span class="nv">$f</span>;
+</pre></div>
+
+
+<p>🦋 Atrodi programmu failā <a href="https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku">factorial.raku</a>.</p>
+
+<h2 id="izvade">Izvade</h2>
+
+<p>Palaid programmu vairākas reizes un izmēģini dažādas <code class="language-plaintext highlighter-rouge">$n</code> vērtības.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/loops/factorial.raku
+<span class="go">40320
+</span></code></pre></div></div>
+
+<h2 id="komentāri">Komentāri</h2>
+
+<p>Šī programma izmanto <code class="language-plaintext highlighter-rouge">*=</code> operatoru, kas ir saīsinājums reizināšanai ar piešķiršanu: <code class="language-plaintext highlighter-rouge">$x *= $y</code> ir ekvivalents <code class="language-plaintext highlighter-rouge">$x = $x * $y</code>.</p>
+
+<p>Tu vari izmantot ‘pilnu’ ciklu postfix formas vietā:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">8</span>;
+
+<span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+<span class="k">for</span> <span class="mi">2</span>..<span class="nv">$n</span> -&gt; <span class="nv">$x</span> {
+    <span class="nv">$f</span> *= <span class="nv">$x</span>;
+}
+
+<span class="nb">say</span> <span class="nv">$f</span>;
+</pre></div>
+
+
+<h2 id="vairāk-par-šo-tēmu">Vairāk par šo tēmu</h2>
+
+<p>Mēs atgriezīsimies pie šī uzdevuma vairākas reizes. Šajā kursa daļā mēs arī atrisināsim šo problēmu rekursīvi.</p>
+
+<p>Kursa otrajā daļā mēs uzzināsim par tā sauktajiem reducēšanas operatoriem, kas padara risinājumu triviālu. Tāpat būs veids, kā definēt pielāgotu operatoru <code class="language-plaintext highlighter-rouge">!</code>, lai tu varētu rakstīt <code class="language-plaintext highlighter-rouge">$n!</code>, lai aprēķinātu faktoriālu. Visbeidzot, būs vēl viena iespēja redzēt interesantu risinājumu, kad runāsim par <code class="language-plaintext highlighter-rouge">where</code> klauzulu.</p>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/lv/essentials/loops/exercises/fibonacci-numbers">Fibonači skaitļi</a>
+</div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+    <a href="/lv/essentials/conditional-checks">Nosacījumu pārbaudes</a>
+        / <a href="/lv/essentials/conditional-checks/ternary-operator">Trīsvērtīgais operators</a>
+  |  
+    <a href="/lv/advanced/coercion">Datu tipu konvertēšana</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/loops/exercises/factorial/solution/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/loops/exercises/factorial/solution/">English</a> • <a href="/de/essentials/loops/exercises/factorial/solution/">Deutsch</a> • <a href="/es/essentials/loops/exercises/factorial/solution/">Español</a> • <a href="/it/essentials/loops/exercises/factorial/solution/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/loops/exercises/factorial/solution/">Nederlands</a> • <a href="/bg/essentials/loops/exercises/factorial/solution/">Български</a> • <a href="/ru/essentials/loops/exercises/factorial/solution/">Русский</a> • <a href="/uk/essentials/loops/exercises/factorial/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -63,4 +63,5 @@ say 'x̨'.codes;
 2
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

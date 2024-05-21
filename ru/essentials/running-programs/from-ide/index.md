@@ -23,4 +23,5 @@ $ raku hello.raku
 [инструкциям](https://commaide.com/docs/running)
 по установке и настройке IDE на сайте Comma перед первым запуском программы.
 
+{% assign human=1 %}
 {% include nav.html %}

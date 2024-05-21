@@ -28,4 +28,5 @@ and presses Enter. }
 say $name; #`( And now we can print it )
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

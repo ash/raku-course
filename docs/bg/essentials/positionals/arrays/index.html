@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Масиви | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Масиви | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Масиви | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/positionals">Позиционни типове данни</a></p>
+
+<h1 id="масиви">Масиви</h1>
+
+<p>Масивите са агрегатни типове данни, които могат да съдържат повече от една стойност. Това ги различава от <a href="/bg/essentials/scalar-variables">скаларните елементи</a>. Елементите на масива могат да бъдат индексирани (или <em>подписани</em>). С други думи, техните елементи имат позиция (което обяснява общото име за този вид данни: позиционни).</p>
+
+<p>Масивните променливи използват друг вид сигил: <code class="language-plaintext highlighter-rouge">@</code>. Правилата за името на променливата са същите като <a href="/bg/essentials/scalar-variables/identifiers/">за скаларите</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;
+</pre></div>
+
+
+<p>Досега е създаден масив с име <code class="language-plaintext highlighter-rouge">@cities</code>. Можете да го запълните с някои стойности:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@cities</span> = <span class="s">&#39;Paris&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlin&#39;</span>;
+</pre></div>
+
+
+<p>Алтернативно, възможно е да инициализирате стойностите веднага:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">&#39;Paris&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlin&#39;</span>;
+</pre></div>
+
+
+<h2 id="индексиране">Индексиране</h2>
+
+<p>За да получите достъп до един елемент от масива, използвайте чифт скоби, които поставяте след името на променливата:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p>Забележете, че сигилът винаги остава същият. Тъй като елементите се броят от нула, елементът <code class="language-plaintext highlighter-rouge">@cities[1]</code> е <code class="language-plaintext highlighter-rouge">'Rome'</code> в нашия пример.</p>
+
+<p>Масивите са променливи, така че можете лесно да модифицирате техните елементи, като просто им присвоите нова стойност:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">&#39;Rome&#39;</span>;
+<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">&#39;Paris&#39;</span>;
+</pre></div>
+
+
+<p>След това, изразът <code class="language-plaintext highlighter-rouge">say @cities[1]</code> ще отпечата новата стойност <code class="language-plaintext highlighter-rouge">'Paris'</code>.</p>
+
+<h2 id="размер">Размер</h2>
+
+<p>За да получите текущата дължина на масива, или, с други думи, броя на неговите елементи, използвайте метода <code class="language-plaintext highlighter-rouge">elems</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Ако масивът се появи в контекст, където очакваният параметър е число, върнатата стойност е размерът на масива:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Тук, <a href="/bg/essentials/coercion/prefixes"><code class="language-plaintext highlighter-rouge">+</code> префиксният оператор</a> изисква числова стойност от своя аргумент, така че резултатът от <code class="language-plaintext highlighter-rouge">+@cities</code> е <code class="language-plaintext highlighter-rouge">3</code>.</p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/bg/essentials/positionals/arrays/quiz">Тест — Масиви</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+        <a href="/bg/essentials/positionals">Позиционни типове данни</a>
+  |  
+        <a href="/bg/essentials/positionals">Позиционни типове данни</a> / <a href="/bg/essentials/positionals/nested-arrays">Вложени масиви</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/bg/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/positionals/arrays/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <a href="/es/essentials/positionals/arrays/">Español</a> • <a href="/it/essentials/positionals/arrays/">Italiano</a> • <a href="/lv/essentials/positionals/arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/arrays/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

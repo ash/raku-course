@@ -29,4 +29,5 @@ at /Users/ash/raku-course/t.raku:6
 ------> say ⏏$x;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

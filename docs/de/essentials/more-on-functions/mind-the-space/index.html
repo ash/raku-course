@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Achten Sie auf den Abstand | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Achten Sie auf den Abstand | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Achten Sie auf den Abstand | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/more-on-functions">Mehr über Funktionen</a></p>
+
+<h1 id="achte-auf-den-abstand">Achte auf den Abstand</h1>
+
+<p>Die Verwendung von Funktionen in Raku ist meist intuitiv und verursacht keine Probleme, aber Sie müssen auf den folgenden Aspekt achten.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>Fügen Sie keinen Abstand zwischen dem Namen der Funktion und den Klammern mit ihren Argumenten hinzu. Verwenden Sie jedoch einen Abstand nach <code class="language-plaintext highlighter-rouge">for</code> und <code class="language-plaintext highlighter-rouge">if</code>.</p>
+
+<h2 id="lange-geschichte">Lange Geschichte</h2>
+
+<p>Nehmen wir eine einfache Funktion:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Beachten Sie zunächst das Fehlen von Leerzeichen zwischen dem Namen der Funktion und den öffnenden Klammern, die die Parameter enthalten. Einige Codierungsstile in anderen Sprachen erfordern dort möglicherweise ein Leerzeichen. Raku ist damit einverstanden, aber dies ist keine Praxis, der man folgen sollte:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Auf der Aufrufseite ist das Fehlen von Leerzeichen wichtig. Wenn Sie die Funktion aufrufen und die Klammern weglassen, ist das Leerzeichen nach dem Namen der Funktion unvermeidlich:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>Aber wenn Sie Klammern hinzufügen, dürfen Sie kein Leerzeichen davor haben. Dies ist ein korrekter Aufruf:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Und dieser Aufruf ist falsch:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Solcher Code verursacht eine Ausnahme:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Zu wenige Positionsparameter übergeben; erwartet wurden 2 Argumente, aber es wurde 1 übergeben
+  sub f bei t.raku Zeile 1
+  in Block &lt;unit&gt; bei t.raku Zeile 5
+</code></pre></div></div>
+
+<p>Raku sieht den Aufruf mit einem Leerzeichen <code class="language-plaintext highlighter-rouge">f (5, 6)</code> als Versuch, ein einzelnes Argument <code class="language-plaintext highlighter-rouge">(5, 6)</code> an die Funktion zu übergeben. Sie können den Typ dieses Arguments leicht überprüfen, wenn Sie die Funktion so umschreiben, dass sie nur ein Argument akzeptiert:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+}
+
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Das Aufrufen von <code class="language-plaintext highlighter-rouge">f (5, 6)</code> bedeutet also, dass wir eine <a href="/de/essentials/positionals/lists">Liste</a> an die Funktion übergeben. Die Liste als eine einzelne Entität.</p>
+
+<h2 id="wann-ein-leerzeichen-benötigt-wird">Wann ein Leerzeichen benötigt wird</h2>
+
+<p>In einigen Fällen ist das Leerzeichen erforderlich. Das passiert, wenn Sie Klammern mit einem der Schlüsselwörter wie <code class="language-plaintext highlighter-rouge">if</code> oder <code class="language-plaintext highlighter-rouge">for</code> oder <code class="language-plaintext highlighter-rouge">loop</code> verwenden. Der folgende Code ist falsch:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>Die Fehlermeldung erklärt, was falsch ist:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+Das Wort 'if' wird als Funktionsaufruf 'if()' interpretiert. Bitte verwenden Sie
+Leerzeichen anstelle von Klammern.
+bei /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unerwarteter Block in Infix-Position (zwei Terme hintereinander)
+bei /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>Im Fall von <code class="language-plaintext highlighter-rouge">if</code> sind Klammern überhaupt nicht erforderlich, sodass das Problem nicht auftreten kann, wenn Sie sie nicht verwenden. Aber in einigen Fällen, wie zum Beispiel bei <code class="language-plaintext highlighter-rouge">loop</code>, müssen Sie sie haben, und das Leerzeichen wird obligatorisch:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>In diesem Code passiert dasselbe: <code class="language-plaintext highlighter-rouge">loop(...)</code> wird vom Compiler als Funktionsaufruf verstanden. Fügen Sie ein Leerzeichen hinzu, um das Problem zu lösen. Oder besser, schreiben Sie das Fragment mit <code class="language-plaintext highlighter-rouge">for</code> um.</p>
+
+<h2 id="fazit">Fazit</h2>
+
+<p>Das Fazit: Um solche Probleme zu vermeiden, fügen Sie keinen Abstand zwischen dem Namen der Funktion und den Klammern mit den Argumenten der Funktion hinzu und versuchen Sie, Klammern zu vermeiden, wenn dies mit anderen Sprachkonstruktionen wie Kontrollfluss möglich ist.</p>
+
+<p></div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+        <a href="/de/essentials/more-on-functions">Mehr über Funktionen</a>
+  |  
+        <a href="/de/essentials/more-on-functions">Mehr über Funktionen</a> / <a href="/de/essentials/more-on-functions/typed-parameters">Typisierte Parameter</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/de/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/more-on-functions/mind-the-space/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/mind-the-space/">Български</a> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

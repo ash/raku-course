@@ -46,4 +46,5 @@ pi.say;
 say pi;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

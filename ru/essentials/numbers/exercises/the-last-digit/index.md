@@ -23,4 +23,5 @@ The last digit of 123 is 3.
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

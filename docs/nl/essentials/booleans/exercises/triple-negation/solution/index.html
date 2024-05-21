@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Oplossing voor ‘Driedubbele negatie’ | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Oplossing voor ‘Driedubbele negatie’ | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Oplossing voor ‘Driedubbele negatie’ | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/booleans/">Boolean type</a> / <a href="/nl/essentials/booleans/exercises/">Oefeningen</a> / <a href="/nl/essentials/booleans/exercises/triple-negation">Drievoudige negatie</a></p>
+
+<h1 id="oplossing-drievoudige-negatie">Oplossing: Drievoudige negatie</h1>
+
+<p>Het programma dat in de taak wordt getoond, zal niet compileren en vereist een kleine aanpassing. Hier is de correcte en werkende variant (spatie toegevoegd om <code class="language-plaintext highlighter-rouge">!</code> en <code class="language-plaintext highlighter-rouge">!!</code> te scheiden):</p>
+
+<h2 id="code">Code</h2>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="nb">False</span>;
+<span class="nb">say</span> ! !!<span class="nv">$value</span>;
+</pre></div>
+
+
+<p>🦋 Je kunt de volledige code vinden in het bestand <a href="https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku">triple-negation.raku</a>.</p>
+
+<h2 id="uitvoer">Uitvoer</h2>
+
+<p>Het programma print een omgekeerde Booleaanse waarde zoals je waarschijnlijk had verwacht:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku triple-negation.raku
+<span class="go">True
+</span></code></pre></div></div>
+
+<h2 id="opmerkingen">Opmerkingen</h2>
+
+<p>Het was een beetje onverwacht dat het programma met drie uitroeptekens niet compileerde:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku triple-negation.raku
+<span class="go">===SORRY!=== Fout tijdens het compileren van /Users/ash/raku-course/exercises/booleans/triple-negation.raku
+Twee termen op een rij
+op /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
+</span><span class="gp">------&gt;</span><span class="w"> </span>say <span class="o">!!!</span>⏏<span class="nv">$value</span><span class="p">;</span>
+<span class="go">    verwacht een van:
+        infix
+        infix stopper
+        postfix
+        statement einde
+        statement modifier
+        statement modifier lus
+</span></code></pre></div></div>
+
+<p>Een extra spatie lost dit probleem op. Maar val niet in een andere valkuil. Overweeg het volgende programma:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="nb">False</span>;
+<span class="nb">say</span> !!! <span class="nv">$value</span>;
+</pre></div>
+
+
+<p>Dit programma compileert maar eindigt met de volgende boodschap:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku triple-negation.raku
+<span class="go">False
+</span><span class="gp">    in block &lt;unit&gt;</span><span class="w"> </span>at exercises/booleans/triple-negation.raku line 2
+</code></pre></div></div>
+
+<p>Dit gebeurt omdat <code class="language-plaintext highlighter-rouge">!!!</code> een speciale operator is voor het markeren van een deel van de code als stubcode. Als het programma dit punt bereikt, eindigt het en print het de boodschap, die in ons geval de huidige waarde van de variabele <code class="language-plaintext highlighter-rouge">$value</code> was. Raadpleeg 📖 <a href="https://docs.raku.org/routine/!!!">de documentatie</a> voor meer details.</p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+    <a href="/nl/essentials/numbers">Getallen</a>
+        / <a href="/nl/essentials/numbers/operations">Bewerkingen met getallen</a>
+  |  
+    <a href="/nl/advanced/ranges">Reeksen</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/booleans/exercises/triple-negation/solution/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/booleans/exercises/triple-negation/solution/">English</a> • <a href="/de/essentials/booleans/exercises/triple-negation/solution/">Deutsch</a> • <a href="/es/essentials/booleans/exercises/triple-negation/solution/">Español</a> • <a href="/it/essentials/booleans/exercises/triple-negation/solution/">Italiano</a> • <a href="/lv/essentials/booleans/exercises/triple-negation/solution/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/booleans/exercises/triple-negation/solution/">Български</a> • <a href="/ru/essentials/booleans/exercises/triple-negation/solution/">Русский</a> • <a href="/uk/essentials/booleans/exercises/triple-negation/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -39,4 +39,5 @@ $ raku exercises/numbers/class-desks.raku
 целым числом из-за использования `div` заместо `/`, тогда как второе слагаемое
 добавляет дополнительную парту.
 
+{% assign human=1 %}
 {% include nav.html %}

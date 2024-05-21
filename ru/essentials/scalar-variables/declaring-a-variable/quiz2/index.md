@@ -13,4 +13,5 @@ title: 'Тест 2: Объявление нескольких переменны
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

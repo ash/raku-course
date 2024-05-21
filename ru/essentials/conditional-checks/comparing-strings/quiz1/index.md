@@ -17,4 +17,5 @@ title: 'Тест 1: Сравнение строк'
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

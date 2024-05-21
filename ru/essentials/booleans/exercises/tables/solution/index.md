@@ -57,6 +57,7 @@ False ^^ False is False
 say 'True && True is ' ~ (True && True);
 ```
 
-Еще один вариант — это использование [интерполяции кода](/essentials/strings/code-interpolation).
+Еще один вариант — это использование [интерполяции кода](/ru/essentials/strings/code-interpolation).
 
+{% assign human=1 %}
 {% include nav.html %}

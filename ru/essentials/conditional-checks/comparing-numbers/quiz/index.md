@@ -18,4 +18,5 @@ title: 'Тест: Сравнение чисел'
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

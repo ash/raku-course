@@ -5,7 +5,7 @@ title: 'Использование `unless`'
 {% include menu.html %}
 
 Все логические проверки могут быть легко инвертированы с помощью
-[оператора `!`](/essentials/booleans/operations#negation). Однако в некоторых
+[оператора `!`](/ru/essentials/booleans/operations#negation). Однако в некоторых
 случаях явное отрицание делает выражение более читабельным. В этих случаях
 `unless` — ваш лучший друг.
 
@@ -42,4 +42,5 @@ unless $broken { . . . }
 Отметим, что за `unless` не может следовать `else` или `elseif` блоки. В этом
 случае можно использовать только `if`.
 
+{% assign human=1 %}
 {% include nav.html %}

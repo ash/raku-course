@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Risinājums: Taisnstūra perimetrs | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Risinājums: Taisnstūra perimetrs | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Risinājums: Taisnstūra perimetrs | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/the-main-function/"><code class="language-plaintext highlighter-rouge">MAIN</code> funkcija</a> / <a href="/lv/essentials/the-main-function/exercises/">Vingrinājumi</a> / <a href="/lv/essentials/the-main-function/exercises/perimeter">Taisnstūra perimetrs</a></p>
+
+<h1 id="risinājums-taisnstūra-perimetrs">Risinājums: Taisnstūra perimetrs</h1>
+
+<p>Šai programmai jāspēj pieņemt vienu vai divus komandrindas argumentus. Risinājumā tiek parādīts jauns triks. Otrā mainīgā noklusējuma vērtība tiek iestatīta uz pirmā mainīgā vērtību: <code class="language-plaintext highlighter-rouge">sub MAIN($a, $b = $a)</code>. Tātad, tā vietā, lai izveidotu divas multi-funkcijas, mums ir vispārēja funkcija, kas nosaka otrās malas izmēru, ja figūra ir kvadrāts.</p>
+
+<h2 id="kods">Kods</h2>
+
+<p>Šeit ir risinājums:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$a</span>) {
+    <span class="k">my</span> <span class="nv">$perimeter</span> = <span class="mi">2</span> * (<span class="nv">$a</span> + <span class="nv">$b</span>);
+
+    <span class="k">my</span> <span class="nv">$shape</span> = <span class="nv">$a</span> == <span class="nv">$b</span> ?? <span class="s">&#39;square&#39;</span> !! <span class="s">&#39;rectangle&#39;</span>;
+    <span class="nb">say</span> <span class="s">&quot;The perimeter of a $shape is $perimeter.&quot;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Atrodiet programmu failā <a href="https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku">perimeter.raku</a>.</p>
+
+<h2 id="izvade">Izvade</h2>
+
+<p>Izmēģiniet dažādas ievades vērtības, lai pārbaudītu gan kvadrātus, gan taisnstūrus.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1    
+<span class="go">The perimeter of a square is 4.
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1 2
+<span class="go">The perimeter of a rectangle is 6.
+</span></code></pre></div></div>
+
+<p>Ņemiet vērā, ka ir arī trešais gadījums, kas būtu jāpārbauda. Ja tiek ievadīti divi vienādi skaitļi, programmai joprojām vajadzētu saprast, ka tas ir kvadrāts:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 2 2
+<span class="go">The perimeter of a square is 8.
+</span></code></pre></div></div>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+    <a href="/lv/essentials/built-in-functions-for-printing">Iebūvētās drukāšanas funkcijas</a>
+        / <a href="/lv/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a>
+  |  
+    <a href="/lv/advanced/"></a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/the-main-function/exercises/perimeter/solution/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/the-main-function/exercises/perimeter/solution/">English</a> • <a href="/de/essentials/the-main-function/exercises/perimeter/solution/">Deutsch</a> • <a href="/es/essentials/the-main-function/exercises/perimeter/solution/">Español</a> • <a href="/it/essentials/the-main-function/exercises/perimeter/solution/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/the-main-function/exercises/perimeter/solution/">Nederlands</a> • <a href="/bg/essentials/the-main-function/exercises/perimeter/solution/">Български</a> • <a href="/ru/essentials/the-main-function/exercises/perimeter/solution/">Русский</a> • <a href="/uk/essentials/the-main-function/exercises/perimeter/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

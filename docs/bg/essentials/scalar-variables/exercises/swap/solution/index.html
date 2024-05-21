@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Решение на „Размяна на стойностите“ | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Решение на „Размяна на стойностите“ | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Решение на „Размяна на стойностите“ | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/scalar-variables/">Скаларни променливи</a> / <a href="/bg/essentials/scalar-variables/exercises/">Упражнения</a> / <a href="/bg/essentials/scalar-variables/exercises/swap">Размяна на стойности</a></p>
+
+<h1 id="решение-размяна-на-стойности">Решение: Размяна на стойности</h1>
+
+<p>В тази програма използваме елементи от синтаксиса на Raku от секцията за <a href="/bg/essentials/scalar-variables">скаларни променливи</a>.</p>
+
+<h2 id="код">Код</h2>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> (<span class="nv">$a</span>, <span class="nv">$b</span>) = <span class="mi">10</span>, <span class="mi">20</span>;
+(<span class="nv">$a</span>, <span class="nv">$b</span>) = <span class="nv">$b</span>, <span class="nv">$a</span>;
+<span class="nb">say</span> <span class="s">&quot;$a, $b&quot;</span>;
+</pre></div>
+
+
+<p>🦋 Можете да намерите изходния код във файла <a href="https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku">swap.raku</a>.</p>
+
+<h2 id="изход">Изход</h2>
+
+<p>Стартирайте програмата и потвърдете, че тя отпечатва стойностите в различен ред.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/scalar-variables/swap.raku
+<span class="go">20, 10
+</span></code></pre></div></div>
+
+<h2 id="коментари">Коментари</h2>
+
+<p>Всички стъпки на тази програма (създаване на променлива и присвояване на стойности, размяна на стойностите и отпечатване) използват и двете променливи в една и съща конструкция. Най-интересното тук е начинът, по който променливите разменят своите стойности:</p>
+
+<div class="highlight"><pre><span></span>(<span class="nv">$a</span>, <span class="nv">$b</span>) = <span class="nv">$b</span>, <span class="nv">$a</span>;
+</pre></div>
+
+
+<p>Обърнете внимание, че трябва да използвате скоби от лявата страна, но можете да ги добавите и от дясната страна:</p>
+
+<div class="highlight"><pre><span></span>(<span class="nv">$a</span>, <span class="nv">$b</span>) = (<span class="nv">$b</span>, <span class="nv">$a</span>);
+</pre></div>
+
+
+<p>Какво се случва, ако пропуснете скобите?</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$b</span>, <span class="nv">$a</span>;
+</pre></div>
+
+
+<p>В този случай ще получите предупреждение, че <code class="language-plaintext highlighter-rouge">$a</code> от дясната страна не се използва:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/scalar-variables/swap.raku
+WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+Useless use of $a in sink context (lines 2, 2)
+10, 20
+</code></pre></div></div>
+
+<p>Горният ред всъщност е еквивалентен на безполезно присвояване <code class="language-plaintext highlighter-rouge">$b = $b</code>. Лесно можете да го видите, ако промените стойностите от дясната страна, например:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span>, <span class="nv">$b</span> = <span class="mi">2</span> * <span class="nv">$b</span>, <span class="mi">3</span> * <span class="nv">$a</span>;
+</pre></div>
+
+
+<p>Тази програма отпечатва още повече предупреждения, но също така можете да видите, че само <code class="language-plaintext highlighter-rouge">$b</code> е променил своята стойност:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/scalar-variables/swap.raku
+WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+Useless use of "*" in expression "3 * $a" in sink context (line 2)
+Useless use of $a in sink context (line 2)
+10, 40
+</code></pre></div></div>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/bg/essentials/scalar-variables/exercises/identifiers">Поправете идентификаторите</a>
+</div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+    <a href="/bg/essentials/comments">Коментари</a>
+        / <a href="/bg/essentials/comments/embedded">Вградени коментари</a>
+  |  
+    <a href="/bg/advanced/strings">Стрингове</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/scalar-variables/exercises/swap/solution/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/scalar-variables/exercises/swap/solution/">English</a> • <a href="/de/essentials/scalar-variables/exercises/swap/solution/">Deutsch</a> • <a href="/es/essentials/scalar-variables/exercises/swap/solution/">Español</a> • <a href="/it/essentials/scalar-variables/exercises/swap/solution/">Italiano</a> • <a href="/lv/essentials/scalar-variables/exercises/swap/solution/">Latviešu</a> • <a href="/nl/essentials/scalar-variables/exercises/swap/solution/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/scalar-variables/exercises/swap/solution/">Русский</a> • <a href="/uk/essentials/scalar-variables/exercises/swap/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Izmantojot repeat | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Izmantojot repeat | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Izmantojot repeat | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/loops">Cikli</a></p>
+
+<h1 id="izmantojot-repeat">Izmantojot <code class="language-plaintext highlighter-rouge">repeat</code></h1>
+
+<p><code class="language-plaintext highlighter-rouge">while</code> un <code class="language-plaintext highlighter-rouge">until</code> bloki var nekad netikt izpildīti, ja nosacījums sākotnēji ir <code class="language-plaintext highlighter-rouge">False</code>. Pretstatā, <code class="language-plaintext highlighter-rouge">repeat</code> bloks vienmēr tiek izpildīts vismaz vienu reizi. Apstāšanās nosacījums tiek pārbaudīts pēc koda bloka. Jūs izmantojat tos pašus vārdus <code class="language-plaintext highlighter-rouge">while</code> vai <code class="language-plaintext highlighter-rouge">until</code> testam.</p>
+
+<p>Apsveriet šo programmu.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">100</span>;
+<span class="k">repeat</span> {
+    <span class="nv">$x</span> = <span class="nb">prompt</span> <span class="s">&#39;Ievadiet skaitli: &#39;</span>;
+    <span class="nb">say</span> <span class="s">&quot;Jūs ievadījāt $x.&quot;</span>;
+} <span class="k">while</span> <span class="nv">$x</span> &lt;= <span class="mi">10</span>;
+<span class="nb">say</span> <span class="s">&quot;$x ir lielāks par 10.&quot;</span>;
+</pre></div>
+
+
+<p>Mainīgais <code class="language-plaintext highlighter-rouge">$x</code> sākotnēji tiek iestatīts uz <code class="language-plaintext highlighter-rouge">100</code>, un <code class="language-plaintext highlighter-rouge">while</code> nosacījums pārbauda, vai <code class="language-plaintext highlighter-rouge">$x</code> ir mazāks vai vienāds ar <code class="language-plaintext highlighter-rouge">10</code>. Ar mainīgā doto vērtību nosacījums jau ir <code class="language-plaintext highlighter-rouge">False</code>, bet koda bloks joprojām tiek izpildīts vispirms.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
+<span class="go">Ievadiet skaitli: 10
+Jūs ievadījāt 10.
+Ievadiet skaitli: 20
+Jūs ievadījāt 20.
+20 ir lielāks par 10.
+</span></code></pre></div></div>
+
+<p>Modificēsim programmu, lai izmantotu <code class="language-plaintext highlighter-rouge">until</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">0</span>;
+<span class="k">repeat</span> {
+    <span class="nv">$x</span> = <span class="nb">prompt</span> <span class="s">&#39;Ievadiet skaitli: &#39;</span>;
+    <span class="nb">say</span> <span class="s">&quot;Jūs ievadījāt $x.&quot;</span>;
+} <span class="k">until</span> <span class="nv">$x</span> &gt; <span class="mi">10</span>;
+<span class="nb">say</span> <span class="s">&quot;$x ir lielāks par 10.&quot;</span>;
+</pre></div>
+
+
+<p>Palaidiet to, lai pārliecinātos, ka tā darbojas, kā paredzēts:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
+<span class="go">Ievadiet skaitli: 5
+Jūs ievadījāt 5.
+Ievadiet skaitli: 15
+Jūs ievadījāt 15.
+15 ir lielāks par 10.
+</span></code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/loops/repeat/quiz">Tests — <code class="language-plaintext highlighter-rouge">repeat</code> cikls</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/loops">Cikli</a> / <a href="/lv/essentials/loops/until">Izmantojot <code class="language-plaintext highlighter-rouge">until</code></a>
+  |  
+        <a href="/lv/essentials/loops">Cikli</a> / <a href="/lv/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> un <code class="language-plaintext highlighter-rouge">until</code> kā izteiksmes modifikatori</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/lv/essentials/loops/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/loops/repeat/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/loops/repeat/">English</a> • <a href="/de/essentials/loops/repeat/">Deutsch</a> • <a href="/es/essentials/loops/repeat/">Español</a> • <a href="/it/essentials/loops/repeat/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/loops/repeat/">Nederlands</a> • <a href="/bg/essentials/loops/repeat/">Български</a> • <a href="/ru/essentials/loops/repeat/">Русский</a> • <a href="/uk/essentials/loops/repeat/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

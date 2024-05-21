@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Значення за замовчуванням | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Значення за замовчуванням | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Значення за замовчуванням | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/functions">Створення та виклик функцій</a></p>
+
+<h1 id="значення-за-замовчуванням">Значення за замовчуванням</h1>
+
+<p>І позиційні, і іменовані параметри можуть мати значення за замовчуванням. Якщо функція має значення за замовчуванням для заданого параметра, цей параметр можна пропустити при виклику функції.</p>
+
+<h2 id="позиційні-параметри">Позиційні параметри</h2>
+
+<p>Приклад значення за замовчуванням для функції з позиційними параметрами:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="s">&#39;Merinda&#39;</span>);
+<span class="n">greet</span>();
+</pre></div>
+
+
+<p>Перший виклик використовує ім’я, передане як єдиний аргумент, і тому виводить <code class="language-plaintext highlighter-rouge">Hello, Merinda!</code>. Другий виклик використовує значення за замовчуванням і виводить <code class="language-plaintext highlighter-rouge">Hello, World!</code>.</p>
+
+<p>Якщо функція має більше одного параметра, то значення за замовчуванням можуть використовуватися лише в кінці списку параметрів:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># правильно</span>
+<span class="c1"># sub f($a = 10, $b = 20, $c, $d) { . . . } # НЕПРАВИЛЬНО</span>
+</pre></div>
+
+
+<h2 id="іменовані-параметри">Іменовані параметри</h2>
+
+<p>Такий самий синтаксис використовується для встановлення значень за замовчуванням для іменованих параметрів:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Merinda&#39;</span>); <span class="c1"># Hello, Merinda!</span>
+<span class="n">greet</span>(); <span class="c1"># Hello, World!</span>
+</pre></div>
+
+
+<p>Порядок іменованих параметрів не має значення, тому будь-який з них може мати значення за замовчуванням, навіть перший у списку:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$greeting</span> = <span class="s">&#39;Hello&#39;</span>, :<span class="nv">$name</span>) {
+    <span class="nb">say</span> <span class="s">&quot;$greeting, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Alla&#39;</span>); <span class="c1"># Hello, Alla!</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/uk/essentials/functions/default-values/quiz1">Тест — Визначення значень за замовчуванням</a></li>
+  <li><a href="/uk/essentials/functions/default-values/quiz2">Тест — Функції зі значеннями за замовчуванням</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/functions">Створення та виклик функцій</a> / <a href="/uk/essentials/functions/named-parameters">Іменовані параметри</a>
+  |  
+        💪 <a href="/uk/essentials/functions/exercises">Exercises: Створення та виклик функцій</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/functions/default-values/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/functions/default-values/">English</a> • <a href="/de/essentials/functions/default-values/">Deutsch</a> • <a href="/es/essentials/functions/default-values/">Español</a> • <a href="/it/essentials/functions/default-values/">Italiano</a> • <a href="/lv/essentials/functions/default-values/">Latviešu</a> • <a href="/nl/essentials/functions/default-values/">Nederlands</a> • <a href="/bg/essentials/functions/default-values/">Български</a> • <a href="/ru/essentials/functions/default-values/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

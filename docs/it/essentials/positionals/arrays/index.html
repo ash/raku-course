@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Arrays | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Arrays | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Arrays | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/positionals">Tipi di dati posizionali</a></p>
+
+<h1 id="array">Array</h1>
+
+<p>Gli array sono tipi di dati aggregati che possono contenere più di un valore. Questo differenzia gli array dagli <a href="/it/essentials/scalar-variables">elementi scalari</a>. Gli elementi di un array possono essere indicizzati (o <em>sottoscritti</em>). In altre parole, i suoi elementi hanno una posizione (il che spiega il nome generale per questo tipo di dati: posizionali).</p>
+
+<p>Le variabili array utilizzano un altro tipo di sigillo: <code class="language-plaintext highlighter-rouge">@</code>. Le regole per il nome della variabile sono le stesse <a href="/it/essentials/scalar-variables/identifiers/">degli scalari</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;
+</pre></div>
+
+
+<p>Finora, l’array chiamato <code class="language-plaintext highlighter-rouge">@cities</code> è stato creato. Puoi riempirlo con alcuni valori:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@cities</span> = <span class="s">&#39;Parigi&#39;</span>, <span class="s">&#39;Roma&#39;</span>, <span class="s">&#39;Berlino&#39;</span>;
+</pre></div>
+
+
+<p>In alternativa, è possibile inizializzare i valori immediatamente:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">&#39;Parigi&#39;</span>, <span class="s">&#39;Roma&#39;</span>, <span class="s">&#39;Berlino&#39;</span>;
+</pre></div>
+
+
+<h2 id="indicizzazione">Indicizzazione</h2>
+
+<p>Per accedere a un singolo elemento di un array, usa una coppia di parentesi quadre che posizioni dopo il nome della variabile:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p>Nota che il sigillo rimane sempre lo stesso. Poiché gli elementi sono contati da zero, l’elemento <code class="language-plaintext highlighter-rouge">@cities[1]</code> è <code class="language-plaintext highlighter-rouge">'Roma'</code> nel nostro esempio.</p>
+
+<p>Gli array sono mutabili, quindi puoi facilmente modificare i loro elementi semplicemente assegnando loro un nuovo valore:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">&#39;Roma&#39;</span>;
+<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">&#39;Parigi&#39;</span>;
+</pre></div>
+
+
+<p>Dopo questo, l’istruzione <code class="language-plaintext highlighter-rouge">say @cities[1]</code> stamperà il nuovo valore <code class="language-plaintext highlighter-rouge">'Parigi'</code>.</p>
+
+<h2 id="dimensione">Dimensione</h2>
+
+<p>Per ottenere la lunghezza attuale di un array, o, in altre parole, il numero dei suoi elementi, usa il metodo <code class="language-plaintext highlighter-rouge">elems</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Se l’array appare in un contesto in cui il parametro previsto è un numero, il valore restituito è la dimensione dell’array:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Qui, l’<a href="/it/essentials/coercion/prefixes">operatore prefisso <code class="language-plaintext highlighter-rouge">+</code></a> richiede un valore numerico dal suo argomento, quindi il risultato di <code class="language-plaintext highlighter-rouge">+@cities</code> è <code class="language-plaintext highlighter-rouge">3</code>.</p>
+
+<p><div class="practice"></p>
+<h2 id="pratica">Pratica</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/it/essentials/positionals/arrays/quiz">Quiz — Array</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+        <a href="/it/essentials/positionals">Tipi di dati posizionali</a>
+  |  
+        <a href="/it/essentials/positionals">Tipi di dati posizionali</a> / <a href="/it/essentials/positionals/nested-arrays">Array annidati</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/it/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/positionals/arrays/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <a href="/es/essentials/positionals/arrays/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/positionals/arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/arrays/">Nederlands</a> • <a href="/bg/essentials/positionals/arrays/">Български</a> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

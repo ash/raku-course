@@ -53,4 +53,5 @@ False
 
 Заметьте, как правая граница исключена из интервала:`$begin ..^ $end`.
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Notes on using Unicode | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Notes on using Unicode | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Notes on using Unicode | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a></p>
+
+<h1 id="примітки-щодо-використання-юнікоду">Примітки щодо використання Юнікоду</h1>
+
+<p>Raku передбачає, що всі ваші програмні файли збережені як файли UTF-8. З практичної точки зору це означає, що вам не потрібно турбуватися про не-ASCII символи, наприклад, у рядкових літералах. Але це не все. Найімовірніше, вам не потрібно буде турбуватися, якщо ваша програма читає текстовий файл, який також є файлом UTF-8. Це також означає, що довжина рядка правильно визначається як кількість символів, а не кількість байтів. (Ми детальніше розглянемо це пізніше.)</p>
+
+<p>Наступне, що вам потрібно знати, це те, що ви можете використовувати не латинські або не англійські літери для ідентифікаторів. Ви можете назвати свою змінну <code class="language-plaintext highlighter-rouge">$ι</code> замість <code class="language-plaintext highlighter-rouge">$i</code>, якщо вам так зручніше, і компілятор правильно її розпізнає.</p>
+
+<p>Raku досить педантично ставиться до властивостей символів Unicode. Наприклад, він не тільки знає, чи є символ літерою або цифрою, але також правильно ідентифікує парні символи, такі як дужки або різні види кронштейнів. У багатьох випадках ви можете вибрати інший тип кронштейнів для окремих частин програми. Наприклад, ви можете змінити нашу програму «Hello, World!» для використання цих не латинських символів цитування (ви побачите їх знову, коли ми працюватимемо з граматиками Raku):</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ｢<span class="n">Hello</span>, <span class="n">World</span>!｣;
+</pre></div>
+
+
+<p>Деякі вбудовані оператори мають дві форми: версію Unicode та версію ASCII. Наприклад, можна написати заперечене порівняння як <code class="language-plaintext highlighter-rouge">!=</code> або як <code class="language-plaintext highlighter-rouge">≠</code>. Те ж саме стосується операцій з множинами: наприклад, <code class="language-plaintext highlighter-rouge">∈</code> має чисто ASCII еквівалент <code class="language-plaintext highlighter-rouge">(elem)</code>. Або, є вбудована константа, до якої можна звертатися як <code class="language-plaintext highlighter-rouge">pi</code> або <code class="language-plaintext highlighter-rouge">π</code>.</p>
+
+<p>Працюючи з числами, ви можете вибрати використання дробів у формі <code class="language-plaintext highlighter-rouge">½</code> замість <code class="language-plaintext highlighter-rouge">0.5</code>. Або, обчислюючи квадрат <code class="language-plaintext highlighter-rouge">$x</code> як <code class="language-plaintext highlighter-rouge">$x²</code>, використовуючи символ надрядкового індексу.</p>
+
+<p>Знайдіть повний список таких пар на наступній сторінці документації: 📖 <a href="https://docs.raku.org/language/unicode_ascii">Unicode versus ASCII symbols</a>.</p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+    <a href="/uk/essentials/hello-world">Привіт, Світ!</a>
+  |  
+        <a href="/uk/essentials/running-programs">Запуск програм</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/on-unicode/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/on-unicode/">English</a> • <a href="/de/essentials/on-unicode/">Deutsch</a> • <a href="/es/essentials/on-unicode/">Español</a> • <a href="/it/essentials/on-unicode/">Italiano</a> • <a href="/lv/essentials/on-unicode/">Latviešu</a> • <a href="/nl/essentials/on-unicode/">Nederlands</a> • <a href="/bg/essentials/on-unicode/">Български</a> • <a href="/ru/essentials/on-unicode/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

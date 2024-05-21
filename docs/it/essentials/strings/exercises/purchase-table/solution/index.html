@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Soluzione a 'Tabella degli acquisti' | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Soluzione a 'Tabella degli acquisti' | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Soluzione a 'Tabella degli acquisti' | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/strings/">Stringhe</a> / <a href="/it/essentials/strings/exercises/">Esercizi</a> / <a href="/it/essentials/strings/exercises/purchase-table">Tabella degli acquisti</a></p>
+
+<h1 id="soluzione-tabella-degli-acquisti">Soluzione: Tabella degli acquisti</h1>
+
+<h2 id="codice">Codice</h2>
+
+<p>Ecco una possibile soluzione:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$chair-price</span> = <span class="mf">20.57</span>;
+<span class="k">my</span> <span class="nv">$chairs</span> = <span class="mi">4</span>;
+<span class="k">my</span> <span class="nv">$chairs-total</span> = <span class="nv">$chair-price</span> * <span class="nv">$chairs</span>;
+
+<span class="k">my</span> <span class="nv">$table-price</span> = <span class="mf">50.18</span>;
+<span class="k">my</span> <span class="nv">$tables</span> = <span class="mi">1</span>;
+<span class="k">my</span> <span class="nv">$tables-total</span> = <span class="nv">$table-price</span> * <span class="nv">$tables</span>;
+
+<span class="nb">say</span> <span class="s">&quot;Item\tPrice\tN\tTotal&quot;</span>;
+<span class="nb">say</span> <span class="s">&quot;Chairs\t\$$chair-price\t$chairs\t\$$chairs-total&quot;</span>;
+<span class="nb">say</span> <span class="s">&quot;Tables\t\$$table-price\t$tables\t\$$tables-total&quot;</span>;
+</pre></div>
+
+
+<p>Tutti i numeri sono hardcoded e salvati in un numero di variabili. Usiamo anche l’operatore di moltiplicazione <code class="language-plaintext highlighter-rouge">*</code> per calcolare il risultato. Impareremo di più sugli operatori nelle prossime sezioni di questo corso, ma a questo punto, la costruzione come <code class="language-plaintext highlighter-rouge">$chair-price * $chairs</code> non dovrebbe essere qualcosa che causa domande.</p>
+
+<p>Le tre righe che generano l’output stampano le tre righe della tabella, incluso il suo header. Nota come le colonne sono separate dai caratteri di tabulazione <code class="language-plaintext highlighter-rouge">\t</code>. Nelle righe dei dati, vediamo anche un carattere dollaro escapato: <code class="language-plaintext highlighter-rouge">\$</code> così come diverse variabili che vogliamo interpolare.</p>
+
+<p>🦋 Puoi trovare il codice sorgente nel file <a href="https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku">purchase-table.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<p>Esegui il programma e vedi come stampa la tabella:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/strings/purchase-table.raku
+Item    Price   N      Total
+Chairs  $20.57  4      $82.28
+Tables  $50.18  1      $50.18
+</code></pre></div></div>
+
+<h2 id="commenti">Commenti</h2>
+
+<p>Hai notato i trattini nei nomi delle variabili come <code class="language-plaintext highlighter-rouge">$chair-price</code> o <code class="language-plaintext highlighter-rouge">$tables-total</code>? Questo è un modo perfettamente accettabile di nominare variabili in Raku.</p>
+
+<p>Non essere confuso dai due simboli del dollaro adiacenti. Raku li legge separatamente. Ad esempio, nella sottostringa <code class="language-plaintext highlighter-rouge">\$$price</code>, il primo simbolo del dollaro è escapato e quindi rappresenta se stesso, mentre il secondo fa parte del nome della variabile <code class="language-plaintext highlighter-rouge">$price</code>.</p>
+
+<p>Tutte le stringhe sono quotate tra doppi apici per permettere l’interpolazione delle variabili e dei caratteri speciali.</p>
+
+<p>Torniamo a questo compito di nuovo dopo che ci siamo familiarizzati con array e hash.</p>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/it/essentials/strings/exercises/name-length">Lunghezza del nome</a>
+</div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+    <a href="/it/essentials/scalar-variables">Variabili scalari</a>
+        / <a href="/it/essentials/scalar-variables/identifiers">Nomi delle variabili</a>
+  |  
+    <a href="/it/advanced/numbers">Numeri</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/strings/exercises/purchase-table/solution/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/strings/exercises/purchase-table/solution/">English</a> • <a href="/de/essentials/strings/exercises/purchase-table/solution/">Deutsch</a> • <a href="/es/essentials/strings/exercises/purchase-table/solution/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/strings/exercises/purchase-table/solution/">Latviešu</a> • <a href="/nl/essentials/strings/exercises/purchase-table/solution/">Nederlands</a> • <a href="/bg/essentials/strings/exercises/purchase-table/solution/">Български</a> • <a href="/ru/essentials/strings/exercises/purchase-table/solution/">Русский</a> • <a href="/uk/essentials/strings/exercises/purchase-table/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

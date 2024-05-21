@@ -27,4 +27,5 @@ at /Users/ash/raku-course/t.raku:2
 ------> say $color eq 'blue' ?⏏ 'This is a sky!' : 'I need more informa
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

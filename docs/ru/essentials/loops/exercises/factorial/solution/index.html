@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Решение задачи «Факториал» | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Решение задачи «Факториал» | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Решение задачи «Факториал» | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/loops/">Циклы</a> / <a href="/ru/essentials/loops/exercises/">Упражнения</a> / <a href="/ru/essentials/loops/exercises/factorial">Факториал</a></p>
+
+<h1 id="решение-факториал">Решение: Факториал</h1>
+
+<p>Факториал числа <code class="language-plaintext highlighter-rouge">N</code> — это произведение целых чисел от 1 до <code class="language-plaintext highlighter-rouge">N</code> включительно. Например, факториал числа 4 равен 1 * 2 * 3 * 4 = 24.</p>
+
+<h2 id="код">Код</h2>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">8</span>;
+
+<span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+<span class="nv">$f</span> *= <span class="nv">$_</span> <span class="k">for</span> <span class="mi">2</span>..<span class="nv">$n</span>;
+
+<span class="nb">say</span> <span class="nv">$f</span>;
+</pre></div>
+
+
+<p>🦋 Найдите программу в файле <a href="https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku">factorial.raku</a>.</p>
+
+<h2 id="вывод">Вывод</h2>
+
+<p>Запустите программу несколько раз и попробуйте разные значения переменной <code class="language-plaintext highlighter-rouge">$n</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/loops/factorial.raku
+<span class="go">40320
+</span></code></pre></div></div>
+
+<h2 id="комментарии">Комментарии</h2>
+
+<p>Эта программа использует оператор <code class="language-plaintext highlighter-rouge">*=</code>, который является сокращением для умножения с присваиванием: <code class="language-plaintext highlighter-rouge">$x *= $y</code> эквивалентно <code class="language-plaintext highlighter-rouge">$x = $x * $y</code>.</p>
+
+<p>Вы можете использовать «полный» цикл вместо постфиксной формы:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">8</span>;
+
+<span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+<span class="k">for</span> <span class="mi">2</span>..<span class="nv">$n</span> -&gt; <span class="nv">$x</span> {
+    <span class="nv">$f</span> *= <span class="nv">$x</span>;
+}
+
+<span class="nb">say</span> <span class="nv">$f</span>;
+</pre></div>
+
+
+<h2 id="подробнее-на-эту-тему">Подробнее на эту тему</h2>
+
+<p>Мы будем возвращаться к этой задаче несколько раз. В этой части курса мы также решим эту проблему рекурсивно.</p>
+
+<p>Во второй части курса мы узнаем о так называемых операторах редукции, которые делают решение тривиальным. Также будет способ определить пользовательский оператор <code class="language-plaintext highlighter-rouge">!</code>, чтобы можно было писать <code class="language-plaintext highlighter-rouge">$n!</code> для вычисления факториала. Наконец, будет еще одна возможность увидеть интересное решение, когда мы будем говорить о клаузе <code class="language-plaintext highlighter-rouge">where</code>.</p>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/ru/essentials/loops/exercises/fibonacci-numbers">Числа Фибоначчи</a>
+</div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+    <a href="/ru/essentials/conditional-checks">Проверка условий</a>
+        / <a href="/ru/essentials/conditional-checks/ternary-operator">Тернарный оператор</a>
+  |  
+    <a href="/ru/advanced/coercion">Приведение типов данных</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/loops/exercises/factorial/solution/">Оригинальный текст на английском языке.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/loops/exercises/factorial/solution/">English</a> • <a href="/de/essentials/loops/exercises/factorial/solution/">Deutsch</a> • <a href="/es/essentials/loops/exercises/factorial/solution/">Español</a> • <a href="/it/essentials/loops/exercises/factorial/solution/">Italiano</a> • <a href="/lv/essentials/loops/exercises/factorial/solution/">Latviešu</a> • <a href="/nl/essentials/loops/exercises/factorial/solution/">Nederlands</a> • <a href="/bg/essentials/loops/exercises/factorial/solution/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/loops/exercises/factorial/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

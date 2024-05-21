@@ -68,4 +68,5 @@ False
 `$value`). [В документации 📖](https://docs.raku.org/routine/!!!) вы найдете
 больше.
 
+{% assign human=1 %}
 {% include nav.html %}

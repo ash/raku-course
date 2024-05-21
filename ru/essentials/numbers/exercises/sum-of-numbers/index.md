@@ -25,4 +25,5 @@ The sum of the numbers is 60.
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

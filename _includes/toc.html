@@ -12,10 +12,10 @@
 {%- for section in subpart.items %}
 * [{{section.title}}]({{top}}/{{part.url}}/{{section.url}})
 {%-if extended_menu %}
-    {%- if section.quizzes %} — <span class="has-q">[{{section.quizzes.size}} {{strings.quiz}}{% if lang == "" %}{% if section.quizzes.size != 1 %}zes{% endif %}{% endif %}]({{top}}/{{part.url}}/{{section.url}}#practice)</span>{% endif %}
+    {%- if section.quizzes %} — <span class="has-q">[{% include decline.html number=section.quizzes.size word=strings.quiz %}]({{top}}/{{part.url}}/{{section.url}}#practice)</span>{% endif %}
     {%- if section.exercises %}
         {%if section.quizzes %} {{strings.and}} {%- else %} — {%- endif %}
-        <span class="has-e">[{{section.exercises.size}} {{strings.exercise}}{% if lang == "" %}{% if section.exercises.size != 1 %}s{% endif %}{% endif %}]({{top}}/{{part.url}}/{{section.url}}/exercises)</span>
+        <span class="has-e">[{% include decline.html number=section.exercises.size word=strings.exercise %}]({{top}}/{{part.url}}/{{section.url}}/exercises)</span>
     {%- endif %}
 {%- endif %}
 
@@ -23,7 +23,7 @@
 {%- for topic in section.items %}
     - [{{topic.title}}]({{top}}/{{part.url}}/{{section.url}}/{{topic.url}})
     {%- if extended_menu %}
-        {%- if topic.quizzes %} — <span class="has-q">[{{topic.quizzes.size}} {{strings.quiz}}{% if lang == "" %}{% if topic.quizzes.size != 1 %}zes{% endif %}{% endif %}]({{top}}/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
+        {%- if topic.quizzes %} — <span class="has-q">[{% include decline.html number=topic.quizzes.size word=strings.quiz %}]({{top}}/{{part.url}}/{{section.url}}/{{topic.url}}#practice)</span>{% endif %}
     {%- endif %}
 {%- endfor %}
 {%- endif %}

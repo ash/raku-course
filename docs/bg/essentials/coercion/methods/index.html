@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Преобразуване на типове чрез методи за принудително преобразуване | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Преобразуване на типове чрез методи за принудително преобразуване | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Преобразуване на типове чрез методи за принудително преобразуване | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/coercion">Преобразуване на типове данни</a></p>
+
+<h1 id="преобразуване-на-типове-с-методи-за-преобразуване-на-типове">Преобразуване на типове с методи за преобразуване на типове</h1>
+
+<p>За да преобразувате, или <em>принудително преобразувате</em> тип, извикайте метод с името на типа данни. Например, за да преобразувате низ в цяло число:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$howmany</span> = <span class="s">&#39;42&#39;</span>;
+<span class="k">my</span> <span class="nv">$n</span> = <span class="nv">$howmany</span>.<span class="nb">Int</span>;
+<span class="nb">say</span> <span class="nv">$n</span>;
+</pre></div>
+
+
+<p>В много случаи не е необходимо да преобразувате стойностите изрично, тъй като Raku върши тази работа вместо вас. Следният код работи правилно и предсказуемо:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="s">&#39;10&#39;</span>;
+<span class="k">my</span> <span class="nv">$b</span> = <span class="s">&#39;20&#39;</span>;
+<span class="k">my</span> <span class="nv">$c</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+<span class="nb">say</span> <span class="s">&quot;Резултатът е $c.&quot;</span>; <span class="c1"># Резултатът е 30.</span>
+</pre></div>
+
+
+<p>Двете променливи, <code class="language-plaintext highlighter-rouge">$a</code> и <code class="language-plaintext highlighter-rouge">$b</code>, съдържат низове, но се използват в аритметично изразяване с <code class="language-plaintext highlighter-rouge">+</code>. В този момент и двата низа се преобразуват в цели числа, и следователно <code class="language-plaintext highlighter-rouge">$c</code> също получава цяло число. Променлива, съдържаща цяло число, се интерполира в низ в последния ред, където Raku извършва необходимите операции, за да представи числото като поредица от цифрови символи.</p>
+
+<p></div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+        <a href="/bg/essentials/coercion">Преобразуване на типове данни</a> / <a href="/bg/essentials/coercion/what">Интроспекция с <code class="language-plaintext highlighter-rouge">WHAT</code></a>
+  |  
+        <a href="/bg/essentials/coercion">Преобразуване на типове данни</a> / <a href="/bg/essentials/coercion/new">Преобразуване на типове с форми на конструктора</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/bg/essentials/coercion/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/coercion/methods/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/coercion/methods/">English</a> • <a href="/de/essentials/coercion/methods/">Deutsch</a> • <a href="/es/essentials/coercion/methods/">Español</a> • <a href="/it/essentials/coercion/methods/">Italiano</a> • <a href="/lv/essentials/coercion/methods/">Latviešu</a> • <a href="/nl/essentials/coercion/methods/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/coercion/methods/">Русский</a> • <a href="/uk/essentials/coercion/methods/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

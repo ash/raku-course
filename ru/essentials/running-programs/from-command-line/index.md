@@ -37,4 +37,5 @@ $ ./hello.raku
 Hello, World!
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

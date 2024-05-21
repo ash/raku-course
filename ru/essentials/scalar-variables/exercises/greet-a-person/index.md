@@ -28,4 +28,5 @@ Hello, John!
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

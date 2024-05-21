@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Attenzione allo spazio | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Attenzione allo spazio | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Attenzione allo spazio | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/more-on-functions">Più sulle funzioni</a></p>
+
+<h1 id="attenzione-agli-spazi">Attenzione agli spazi</h1>
+
+<p>Usare le funzioni in Raku è per lo più intuitivo e non causa problemi, ma devi essere avvertito riguardo al seguente aspetto.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>Non aggiungere uno spazio tra il nome della funzione e le parentesi con i suoi argomenti. Ma usa uno spazio dopo <code class="language-plaintext highlighter-rouge">for</code> e <code class="language-plaintext highlighter-rouge">if</code>.</p>
+
+<h2 id="storia-lunga">Storia lunga</h2>
+
+<p>Prendiamo una semplice funzione:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Prima di tutto, nota l’assenza di spazi tra il nome della funzione e la parentesi aperta che contiene i parametri. Alcuni stili di codifica in altre lingue possono richiedere uno spazio lì. Raku va bene con questo, ma non è una pratica da seguire:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Dal lato della chiamata, l’assenza di spazio è importante. Se chiami la funzione e ometti le parentesi, allora lo spazio dopo il nome della funzione è inevitabile:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>Ma se aggiungi le parentesi, non puoi avere uno spazio prima di esse. Questa è una chiamata corretta:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>E questa chiamata è sbagliata:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Tale codice causa un’eccezione:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+  sub f at t.raku line 1
+  in block &lt;unit&gt; at t.raku line 5
+</code></pre></div></div>
+
+<p>Raku vede la chiamata con uno spazio <code class="language-plaintext highlighter-rouge">f (5, 6)</code> come un tentativo di passare un singolo argomento <code class="language-plaintext highlighter-rouge">(5, 6)</code> alla funzione. Puoi facilmente controllare il tipo di questo argomento se riscrivi la funzione per accettare solo un argomento:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+}
+
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Quindi, chiamare <code class="language-plaintext highlighter-rouge">f (5, 6)</code> significa che stiamo passando una <a href="/it/essentials/positionals/lists">lista</a> alla funzione. La lista come entità singola.</p>
+
+<h2 id="quando-è-necessario-lo-spazio">Quando è necessario lo spazio</h2>
+
+<p>In alcuni casi, il carattere spazio è necessario. Questo accade quando usi le parentesi con una delle parole chiave, come <code class="language-plaintext highlighter-rouge">if</code> o <code class="language-plaintext highlighter-rouge">for</code> o <code class="language-plaintext highlighter-rouge">loop</code>. Il seguente codice è sbagliato:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>Il messaggio di errore spiega cosa c’è di sbagliato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+The word 'if' is interpreted as a 'if()' function call.  Please use
+whitespace instead of parentheses.
+at /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unexpected block in infix position (two terms in a row)
+at /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>Nel caso di <code class="language-plaintext highlighter-rouge">if</code>, le parentesi non sono affatto necessarie, quindi il problema non ha possibilità di apparire se non le usi. Ma in alcuni casi, come, ad esempio, con <code class="language-plaintext highlighter-rouge">loop</code>, devi averle, e lo spazio diventa obbligatorio:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>In questo codice, accade la stessa cosa: <code class="language-plaintext highlighter-rouge">loop(...)</code> è interpretato dal compilatore come una chiamata di funzione. Aggiungi uno spazio per risolvere il problema. O meglio riscrivi il frammento usando <code class="language-plaintext highlighter-rouge">for</code>.</p>
+
+<h2 id="conclusione">Conclusione</h2>
+
+<p>In sintesi: per evitare tali problemi, non aggiungere uno spazio tra il nome della funzione e le parentesi con gli argomenti della funzione e cerca di evitare le parentesi se possibile con altre costruzioni del linguaggio come il controllo del flusso.</p>
+
+<p></div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+        <a href="/it/essentials/more-on-functions">Più sulle funzioni</a>
+  |  
+        <a href="/it/essentials/more-on-functions">Più sulle funzioni</a> / <a href="/it/essentials/more-on-functions/typed-parameters">Parametri tipizzati</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/it/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/more-on-functions/mind-the-space/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/mind-the-space/">Български</a> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

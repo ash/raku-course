@@ -15,4 +15,5 @@ title: 'Тест: Интерполяция в строках'
 0 | &quot;The value of $x is $x&quot; | `$x` интерполирован дважды.
 
 {% include quiz.html %}
+{% assign human=1 %}
 {% include nav.html %}

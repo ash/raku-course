@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Решение на „Истински и Лъжливи цели числа“ | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Решение на „Истински и Лъжливи цели числа“ | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Решение на „Истински и Лъжливи цели числа“ | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/coercion/">Преобразуване на типове данни</a> / <a href="/bg/essentials/coercion/exercises/">Упражнения</a> / <a href="/bg/essentials/coercion/exercises/true-false-numbers">Истински и фалшиви числа</a></p>
+
+<h1 id="решение-истински-и-фалшиви-числа">Решение: Истински и фалшиви числа</h1>
+
+<p>За да конвертирате число в булева стойност, можете да използвате или префиксния оператор <code class="language-plaintext highlighter-rouge">?</code>, или конструкторната форма, или да извикате метода <code class="language-plaintext highlighter-rouge">Bool</code>, или рутината <code class="language-plaintext highlighter-rouge">so</code> като префиксен оператор или метод:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="mi">42</span>;
+<span class="nb">say</span> ?<span class="nv">$value</span>;
+<span class="nb">say</span> <span class="nb">Bool</span>(<span class="nv">$value</span>);
+<span class="nb">say</span> <span class="nv">$value</span>.<span class="nb">Bool</span>;
+<span class="nb">say</span> <span class="nb">so</span> <span class="nv">$value</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.<span class="nb">so</span>;
+</pre></div>
+
+
+<p>Очевидно е, че не-нулевите стойности се конвертират в <code class="language-plaintext highlighter-rouge">True</code>. Затова най-много ни интересуват опциите, които стават <code class="language-plaintext highlighter-rouge">False</code>.</p>
+
+<p>Всички нули, цели числа, числа с плаваща запетая или рационални числа, се преобразуват в <code class="language-plaintext highlighter-rouge">False</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$int-zero</span> = <span class="mi">0</span>;
+<span class="nb">say</span> ?<span class="nv">$int-zero</span>; <span class="c1"># False</span>
+
+<span class="k">my</span> <span class="nb">Rat</span> <span class="nv">$rat-zero</span> = <span class="mf">0.0</span>;
+<span class="nb">say</span> ?<span class="nv">$rat-zero</span>; <span class="c1"># False</span>
+
+<span class="k">my</span> <span class="nb">Num</span> <span class="nv">$num-zero</span> = <span class="mf">0e0</span>;
+<span class="nb">say</span> ?<span class="nv">$num-zero</span>; <span class="c1"># False</span>
+</pre></div>
+
+
+<p>Разбира се, нищо не се променя, ако първо опитате да негатирате числото:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$int</span> = <span class="mi">0</span>;
+<span class="nb">say</span> ?(-<span class="nv">$int</span>); <span class="c1"># False</span>
+</pre></div>
+
+
+<p>🦋 Можете да намерите пълната програма с горния пример във файла <a href="https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku">true-false-numbers.raku</a>.</p>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/bg/essentials/coercion/exercises/true-false-strings">Истински и фалшиви стрингове</a>
+</div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+    <a href="/bg/essentials/loops">Цикли</a>
+        / <a href="/bg/essentials/loops/postfix-for">Постфиксна форма на <code class="language-plaintext highlighter-rouge">for</code></a>
+  |  
+    <a href="/bg/advanced/typed-variables">Типизирани променливи</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/coercion/exercises/true-false-numbers/solution/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/coercion/exercises/true-false-numbers/solution/">English</a> • <a href="/de/essentials/coercion/exercises/true-false-numbers/solution/">Deutsch</a> • <a href="/es/essentials/coercion/exercises/true-false-numbers/solution/">Español</a> • <a href="/it/essentials/coercion/exercises/true-false-numbers/solution/">Italiano</a> • <a href="/lv/essentials/coercion/exercises/true-false-numbers/solution/">Latviešu</a> • <a href="/nl/essentials/coercion/exercises/true-false-numbers/solution/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/coercion/exercises/true-false-numbers/solution/">Русский</a> • <a href="/uk/essentials/coercion/exercises/true-false-numbers/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

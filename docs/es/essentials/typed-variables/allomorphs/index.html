@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Alomorfos | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Alomorfos | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Alomorfos | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/typed-variables">Variables tipadas</a></p>
+
+<h1 id="alomorfos">Alomorfos</h1>
+
+<p>Considera el siguiente programa. Antes de ejecutarlo, ¿puedes decir qué valores de entrada lo romperían y en qué línea?</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter something: &#39;</span>;
+<span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="nv">$input</span>;
+<span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="nv">$input</span>;
+
+<span class="nb">say</span> <span class="nv">$i</span>;
+<span class="nb">say</span> <span class="nv">$s</span>;
+</pre></div>
+
+
+<p>Aquí se crean tres variables escalares. Dos de ellas, <code class="language-plaintext highlighter-rouge">$i</code> y <code class="language-plaintext highlighter-rouge">$s</code>, son variables tipadas. Eso significa que <code class="language-plaintext highlighter-rouge">$i</code> solo puede almacenar enteros y <code class="language-plaintext highlighter-rouge">$s</code> solo puede almacenar cadenas.</p>
+
+<p>El tipo de retorno de <code class="language-plaintext highlighter-rouge">prompt</code> depende de los caracteres que escribimos. Si la cadena de entrada puede representar un número entero, el resultado será del tipo <code class="language-plaintext highlighter-rouge">IntStr</code>, que es <em>tanto</em> <code class="language-plaintext highlighter-rouge">Int</code> como <code class="language-plaintext highlighter-rouge">Str</code>, y por lo tanto, puede asignarse a una variable <code class="language-plaintext highlighter-rouge">Int</code> o <code class="language-plaintext highlighter-rouge">Str</code>. Así que, si ingresas, por ejemplo, <code class="language-plaintext highlighter-rouge">1234</code>, el programa no se rompe.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: 1234
+1234
+1234
+</code></pre></div></div>
+
+<p>El tipo <code class="language-plaintext highlighter-rouge">IntStr</code> es un ejemplo del llamado <em>alomorfo</em> — un tipo de dato que combina dos otros tipos. Aquí hay algunos ejemplos más.</p>
+
+<p>Si ingresas una cadena que no puede ser un número entero, el programa se rompe en el momento en que asignamos <code class="language-plaintext highlighter-rouge">$input</code> a <code class="language-plaintext highlighter-rouge">$i</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: Hello, World!
+Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
+  in block &lt;unit&gt; at allomorphs.raku line 2
+</code></pre></div></div>
+
+<p>Nota que obtienes un error incluso si la cadena de entrada puede convertirse a un número, pero no a un entero. Como no es posible almacenar un número de punto flotante o racional en un contenedor entero, Raku emitirá una excepción:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: 3.14
+Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
+  in block &lt;unit&gt; at allomorphs.raku line 2
+</code></pre></div></div>
+
+<p>La segunda asignación, <code class="language-plaintext highlighter-rouge">$s = $input</code>, nunca se romperá ya que una cadena puede tomar cualquier entrada.</p>
+
+<p>🦋 Puedes encontrar el código fuente de este programa en el archivo <a href="https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku">allomorphs.raku</a>.</p>
+
+<p></div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+        <a href="/es/essentials/typed-variables">Variables tipadas</a> / <a href="/es/essentials/typed-variables/coercion">Conversión de tipos para variables tipadas</a>
+  |  
+        💪 <a href="/es/essentials/typed-variables/exercises">Exercises: Variables tipadas</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/typed-variables/allomorphs/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/typed-variables/allomorphs/">English</a> • <a href="/de/essentials/typed-variables/allomorphs/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/typed-variables/allomorphs/">Italiano</a> • <a href="/lv/essentials/typed-variables/allomorphs/">Latviešu</a> • <a href="/nl/essentials/typed-variables/allomorphs/">Nederlands</a> • <a href="/bg/essentials/typed-variables/allomorphs/">Български</a> • <a href="/ru/essentials/typed-variables/allomorphs/">Русский</a> • <a href="/uk/essentials/typed-variables/allomorphs/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -25,4 +25,5 @@ How many files to copy? 15
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

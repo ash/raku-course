@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Решение: Високосна година | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Решение: Високосна година | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Решение: Високосна година | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/conditional-checks/">Условни проверки</a> / <a href="/bg/essentials/conditional-checks/exercises/">Упражнения</a> / <a href="/bg/essentials/conditional-checks/exercises/leap-year">Високосна година</a></p>
+
+<h1 id="решение-високосна-година">Решение: Високосна година</h1>
+
+<h2 id="отказ-от-отговорност">Отказ от отговорност</h2>
+
+<p>Решението, показано по-долу, има за цел да ви обучи да използвате условни проверки. В реалния живот можете да научите методите на вградената класа <code class="language-plaintext highlighter-rouge">Date</code>. Ще го изучим във втората част на курса.</p>
+
+<h2 id="решение">Решение</h2>
+
+<p>Алгоритъмът за откриване дали годината е високосна:</p>
+
+<ol>
+  <li>ако годината не се дели на 4 =&gt; обикновена година</li>
+  <li>ако годината не се дели на 100 =&gt; високосна година</li>
+  <li>ако годината не се дели на 400 =&gt; обикновена година</li>
+  <li>иначе =&gt; високосна година</li>
+</ol>
+
+<p>Имайте предвид, че можете да използвате вградените типове за работа с дата и час, така че ще се върнем към тази задача във втората част на курса.</p>
+
+<h2 id="код-1">Код 1</h2>
+
+<p>Първото решение възпроизвежда горните стъпки буквално:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+
+<span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
+    <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">100</span> {
+    <span class="nb">say</span> <span class="s">&#39;Leap year&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">400</span> {
+    <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
+}
+<span class="k">else</span> {
+    <span class="nb">say</span> <span class="s">&#39;Leap year&#39;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Намерете програмата във файла <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
+
+<h2 id="код-2">Код 2</h2>
+
+<p>Във второто решение логиката е събрана в едно изразяване. Скобите не винаги са необходими, но са добавени тук за яснота.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+
+<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Leap year&#39;</span> !! <span class="s">&#39;Common year&#39;</span>;
+</pre></div>
+
+
+<p>🦋 Намерете програмата във файла <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
+
+<h2 id="изход">Изход</h2>
+
+<p>Опитайте и двете програми с най-критичните случаи, например, 1900, 2000, 2020, 2021.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Year: 1900
+Common year
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Year: 2000
+Leap year
+</span></code></pre></div></div>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Year: 2020
+Leap year
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Year: 2021
+Common year
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+<h2 id="-срещу-"><code class="language-plaintext highlighter-rouge">%%</code> срещу <code class="language-plaintext highlighter-rouge">%</code></h2>
+
+<p>Имайте предвид, че в логически контексти операторите <code class="language-plaintext highlighter-rouge">%%</code> и <code class="language-plaintext highlighter-rouge">%</code> са допълващи се. Можете да използвате този факт, за да изберете един от операторите, за да избегнете явното сравнение с нула.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># Вярно</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># Вярно</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># Невярно</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># Невярно</span>
+</pre></div>
+
+<p></div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+    <a href="/bg/essentials/code-blocks">Кодови блокове</a>
+        / <a href="/bg/essentials/code-blocks/local-variables">Локални променливи</a>
+  |  
+    <a href="/bg/advanced/loops">Цикли</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/conditional-checks/exercises/leap-year/solution/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/conditional-checks/exercises/leap-year/solution/">English</a> • <a href="/de/essentials/conditional-checks/exercises/leap-year/solution/">Deutsch</a> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <a href="/it/essentials/conditional-checks/exercises/leap-year/solution/">Italiano</a> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/exercises/leap-year/solution/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <a href="/uk/essentials/conditional-checks/exercises/leap-year/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

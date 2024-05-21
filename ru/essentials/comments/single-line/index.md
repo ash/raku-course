@@ -17,4 +17,5 @@ say $name; # We see the name now
 также будет комментарием для Raku, хотя он может быть прочитан и выполнен
 командной оболочкой.
 
+{% assign human=1 %}
 {% include nav.html %}

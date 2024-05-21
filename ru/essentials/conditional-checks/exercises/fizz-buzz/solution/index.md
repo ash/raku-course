@@ -48,4 +48,5 @@ Enter a number: 30
 FizzBuzz
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

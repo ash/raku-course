@@ -7,8 +7,9 @@
 
 
 
+## Still to go
 
-## Part 2. Advanced Raku subjects
+### Part 2. Advanced Raku subjects
 
 
 ### Containers
@@ -161,5 +162,7 @@
 
 
 <center>•</center>
+
+{% include translations.html %}
 
 © 2021–{{ site.time | date: '%Y' }} by <a href="https://andrewshitov.com/">Andrew Shitov</a>

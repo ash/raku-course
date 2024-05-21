@@ -23,4 +23,5 @@ Enter a positive integer number: 234
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

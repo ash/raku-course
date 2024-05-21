@@ -30,4 +30,5 @@ $ raku exercises/numbers/sum1-100.raku
 The sum of the numbers from 1 to 100 is 5050.
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

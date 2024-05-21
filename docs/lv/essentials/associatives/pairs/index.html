@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pāri | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Pāri | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Pāri | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/associatives">Asociatīvie datu tipi</a></p>
+
+<h1 id="pāri">Pāri</h1>
+
+<p>Pāris ir datu struktūra, kas saglabā vārdu un vērtību. Tie veido cietu objektu, kuru var glabāt skalārā mainīgajā. Šeit ir piemērs, kā izveidot pāri:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$pair</span> = <span class="nb">name</span> =&gt; <span class="s">&#39;Anna&#39;</span>;
+</pre></div>
+
+
+<p>Mainīgā <code class="language-plaintext highlighter-rouge">$pair</code> tips ir <code class="language-plaintext highlighter-rouge">Pair</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">WHAT</span>; <span class="c1"># (Pair)</span>
+</pre></div>
+
+
+<p>Ir iespējams piekļūt vārdam un vērtībai atsevišķi, izmantojot atbilstošās metodes <code class="language-plaintext highlighter-rouge">key</code> un <code class="language-plaintext highlighter-rouge">value</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">key</span>; <span class="c1"># name</span>
+<span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">value</span>; <span class="c1"># Anna</span>
+</pre></div>
+
+
+<p>Svarīga pāru īpašība ir tā, ka tie ir nemainīgi objekti. Tas nozīmē, ka nevar piešķirt jaunu vērtību vai dot jaunu vārdu esošam pārim. Bet, protams, var piešķirt pilnīgi jaunu pāri tam pašam mainīgajam:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$pair</span> = <span class="nb">name</span> =&gt; <span class="s">&#39;Anna&#39;</span>;
+<span class="nv">$pair</span> = <span class="nb">name</span> =&gt; <span class="s">&#39;John&#39;</span>;
+<span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">value</span>; <span class="c1"># John</span>
+</pre></div>
+
+
+<h2 id="indeksēšana">Indeksēšana</h2>
+
+<p>Ir vēl viena metode, kā nolasīt pāra vērtību. Varat to indeksēt ar tā atslēgas nosaukumu leņķa iekavās. Lūk, kā to izdarīt:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$pair&lt;name&gt;</span>;
+</pre></div>
+
+
+<p>Pamaniet, ka nav nepieciešams citēt atslēgas nosaukumu, ja tajā nav atstarpju. Ja tās ir, lietas kļūst nedaudz stingrākas:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$pair</span> = <span class="s">&#39;employee name&#39;</span> =&gt; <span class="s">&#39;Julie Madelon&#39;</span>;
+<span class="nb">say</span> <span class="nv">$pair</span>{<span class="s">&#39;employee name&#39;</span>};
+</pre></div>
+
+
+<p>Nepalaidiet garām faktu, ka šoreiz tiek izmantotas līkās iekavas.</p>
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/associatives/pairs/quiz">Tests — Pāri</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/associatives">Asociatīvie datu tipi</a>
+  |  
+        <a href="/lv/essentials/associatives">Asociatīvie datu tipi</a> / <a href="/lv/essentials/associatives/hashes">Hashes</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/lv/essentials/associatives/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/associatives/pairs/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/associatives/pairs/">English</a> • <a href="/de/essentials/associatives/pairs/">Deutsch</a> • <a href="/es/essentials/associatives/pairs/">Español</a> • <a href="/it/essentials/associatives/pairs/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/associatives/pairs/">Nederlands</a> • <a href="/bg/essentials/associatives/pairs/">Български</a> • <a href="/ru/essentials/associatives/pairs/">Русский</a> • <a href="/uk/essentials/associatives/pairs/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

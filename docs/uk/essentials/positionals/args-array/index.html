@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Масив @*ARGS | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Масив @*ARGS | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Масив @*ARGS | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/positionals">Позиційні типи даних</a></p>
+
+<h1 id="масив-args">Масив <code class="language-plaintext highlighter-rouge">@*ARGS</code></h1>
+
+<p>Оскільки ми вже познайомилися з масивами, настав час зустріти один з вбудованих масивів, <code class="language-plaintext highlighter-rouge">@*ARGS</code>. Символ <code class="language-plaintext highlighter-rouge">*</code> у його назві є другим сигілом, або <em>твигілом</em>, і ми побачимо більше їх у майбутньому. Але зараз давайте скористаємося перевагами використання цього спеціального масиву. Він містить аргументи, які програма отримує з командного рядка.</p>
+
+<p>Розглянемо наступний запуск програми:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku run.raku alpha beta
+</code></pre></div></div>
+
+<p>Програма <code class="language-plaintext highlighter-rouge">run.raku</code> отримує два параметри: <code class="language-plaintext highlighter-rouge">alpha</code> та <code class="language-plaintext highlighter-rouge">beta</code>. Їх можна прочитати з <code class="language-plaintext highlighter-rouge">@*ARGS</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>];
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p>Ця програма виводить кількість переданих їй аргументів та самі аргументи:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku run.raku alpha beta
+<span class="go">2
+alpha
+beta
+</span></code></pre></div></div>
+
+<p>Зверніть увагу, що програму не потрібно змінювати, якщо ви викликаєте її як виконуваний файл:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./run.raku alpha beta
+</code></pre></div></div>
+
+<p>У цьому випадку програма <a href="/uk/essentials/running-programs/from-command-line">повинна мати shebang</a>, але найважливіше те, що індекси <code class="language-plaintext highlighter-rouge">@*ARGS</code> все ще починаються з <code class="language-plaintext highlighter-rouge">0</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env raku</span>
+
+<span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>];
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/uk/essentials/positionals/args-array/quiz">Тест — Масив <code class="language-plaintext highlighter-rouge">@*ARGS</code></a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/positionals">Позиційні типи даних</a> / <a href="/uk/essentials/positionals/nested-arrays">Вкладені масиви</a>
+  |  
+        <a href="/uk/essentials/positionals">Позиційні типи даних</a> / <a href="/uk/essentials/positionals/interpolating-arrays">Інтерполяція масивів</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/uk/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/positionals/args-array/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/positionals/args-array/">English</a> • <a href="/de/essentials/positionals/args-array/">Deutsch</a> • <a href="/es/essentials/positionals/args-array/">Español</a> • <a href="/it/essentials/positionals/args-array/">Italiano</a> • <a href="/lv/essentials/positionals/args-array/">Latviešu</a> • <a href="/nl/essentials/positionals/args-array/">Nederlands</a> • <a href="/bg/essentials/positionals/args-array/">Български</a> • <a href="/ru/essentials/positionals/args-array/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

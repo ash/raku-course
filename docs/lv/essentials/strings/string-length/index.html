@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Virknes garums Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Virknes garums Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Virknes garums Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/strings">Virknes</a></p>
+
+<h1 id="virknes-garums">Virknes garums</h1>
+
+<p>Virkņu Unicode daba padara dažas triviālas lietas nedaudz sarežģītākas. Vai, vismaz, jums jādomā par to kā par mazāk vienkāršu tēmu. Piemēram, ņemiet virknes garumu. Vai tas ir rakstzīmju skaits, vai tas ir baitu skaits? Vai arī, ja tā pati rakstzīme ir sadalīta dažādi dažādās virknēs, vai tā joprojām ir viena rakstzīme?</p>
+
+<h2 id="garums-rakstzīmēs">Garums rakstzīmēs</h2>
+
+<p>Lai iegūtu virknes garumu rakstzīmēs, izmantojiet <code class="language-plaintext highlighter-rouge">chars</code> <em>metodi</em>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
+</pre></div>
+
+
+<p>Lai gan mēs runāsim par metodēm vēlāk, mums jau vajadzētu būt spējīgiem tās izmantot. Raku valodā jūs varat izsaukt metodes gandrīz uz katra objekta, ieskaitot virknes un skalārus mainīgos. Lai izsauktu metodi, izmantojiet punktu. Tātad, šeit mēs redzam metodi, kas tiek izsaukta uz mainīgā, kas satur virkni: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>Šajā ķīniešu sveicienā 你好世界 ir četras rakstzīmes. Un <code class="language-plaintext highlighter-rouge">$str.chars</code> atgriež tieši <code class="language-plaintext highlighter-rouge">4</code>.</p>
+
+<h2 id="garums-baitos">Garums baitos</h2>
+
+<p>Tikai atsauces nolūkos, šeit ir veids, kā iegūt virknes garumu baitos. Šajā gadījumā ir svarīgi zināt, kura kodēšana tiek izmantota, lai saglabātu virkni:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
+</pre></div>
+
+
+<p>Šoreiz programma izdrukā <code class="language-plaintext highlighter-rouge">12</code>. Ņemiet vērā, ka otrajā rindā mums ir divi saistīti metožu izsaukumi.</p>
+
+<h2 id="garums-koda-punktos">Garums koda punktos</h2>
+
+<p>Pilnības labad, šeit ir vēl viena noderīga metode, kas arī attiecas uz virknes garumiem: <code class="language-plaintext highlighter-rouge">codes</code>. Tā atgriež koda punktu skaitu virknē pēc tās normalizēšanas. Daudzos gadījumos <code class="language-plaintext highlighter-rouge">codes</code> un <code class="language-plaintext highlighter-rouge">chars</code> atgriež to pašu. Tomēr dažos retos gadījumos, piemēram, kad esat izveidojis ‘neiespējamu’ rakstzīmi, kurai nav viena koda punkta visā Unicode telpā, metodes dod atšķirīgus rezultātus.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
+</pre></div>
+
+
+<p>Šai rakstzīmei, <code class="language-plaintext highlighter-rouge">x̨</code>, nav īpaša koda punkta un to var konstruēt tikai no divām daļām: mazā burta <code class="language-plaintext highlighter-rouge">x</code> un kombinējošās rakstzīmes <code class="language-plaintext highlighter-rouge">0x0328</code>. Tātad, joprojām ir viena rakstzīme, bet divi koda punkti. Tātad, programma izdrukā:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/strings/string-length/quiz">Tests: Frāzes garums</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/strings">Virknes</a> / <a href="/lv/essentials/strings/escaping-special-characters">Speciālo rakstzīmju izbēgšana</a>
+  |  
+        💪 <a href="/lv/essentials/strings/exercises">Exercises: Virknes</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/strings/string-length/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/strings/string-length/">English</a> • <a href="/de/essentials/strings/string-length/">Deutsch</a> • <a href="/es/essentials/strings/string-length/">Español</a> • <a href="/it/essentials/strings/string-length/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <a href="/ru/essentials/strings/string-length/">Русский</a> • <a href="/uk/essentials/strings/string-length/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

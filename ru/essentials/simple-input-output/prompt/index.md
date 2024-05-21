@@ -51,4 +51,5 @@ What language are you going to learn? Raku
 You are going to learn Raku
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

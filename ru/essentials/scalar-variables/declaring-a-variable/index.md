@@ -24,4 +24,5 @@ my $name;
 my ($x, $y);
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

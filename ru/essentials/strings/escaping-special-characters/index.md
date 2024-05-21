@@ -78,4 +78,5 @@ say '\''; # '
 say 'a\b\c\\'; # a\b\c\
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

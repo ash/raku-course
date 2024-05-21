@@ -15,4 +15,5 @@ say 'Good afternoon' if $hours > 12;
 say 'All systems work' unless $broken;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

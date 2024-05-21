@@ -35,4 +35,5 @@ Raku автоматически приводит число к строке, е�
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

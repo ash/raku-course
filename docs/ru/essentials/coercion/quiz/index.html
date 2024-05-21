@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Викторина: Какой это тип? | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Викторина: Какой это тип? | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Викторина: Какой это тип? | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/coercion">Приведение типов данных</a></p>
+
+<h1 id="тест-какой-у-нее-тип">Тест: Какой у нее тип?</h1>
+
+<p>Выберите правильный тип для каждого из перечисленных литералов.</p>
+
+<table class="quiz-select">
+  <tbody>
+    <tr>
+      <td>Str</td>
+      <td><code class="language-plaintext highlighter-rouge">"Hello, World!"</code> это (: Int, Rat, Num, Str :)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Str</td>
+      <td><code class="language-plaintext highlighter-rouge">'Hello, World!'</code> это (: Int, Rat, Num, Str :)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Int</td>
+      <td><code class="language-plaintext highlighter-rouge">12345</code> это (: Int, Rat, Num, Str :)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Str</td>
+      <td><code class="language-plaintext highlighter-rouge">'12345'</code> это (: Int, Rat, Num, Str :)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rat</td>
+      <td><code class="language-plaintext highlighter-rouge">123.45</code> это (: Int, Rat, Num, Str :)</td>
+      <td>Это рациональное число в Raku, а не число с плавающей запятой.</td>
+    </tr>
+    <tr>
+      <td>Rat</td>
+      <td><code class="language-plaintext highlighter-rouge">500.000</code> это (: Int, Rat, Num, Str :)</td>
+      <td>Даже если число не имеет фактической дробной части, его тип не <code class="language-plaintext highlighter-rouge">Int</code>.</td>
+    </tr>
+    <tr>
+      <td>Int</td>
+      <td><code class="language-plaintext highlighter-rouge">500_000</code> это (: Int, Rat, Num, Str :)</td>
+      <td><code class="language-plaintext highlighter-rouge">_</code> это разделитель тысяч для удобства чтения человеком.</td>
+    </tr>
+    <tr>
+      <td>Str</td>
+      <td><code class="language-plaintext highlighter-rouge">'3.14e2'</code> это (: Int, Rat, Num, Str :)</td>
+      <td>Это последовательность символов в кавычках, так что это строка.</td>
+    </tr>
+    <tr>
+      <td>Rat</td>
+      <td><code class="language-plaintext highlighter-rouge">3.14</code> это (: Int, Rat, Num, Str :)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Num</td>
+      <td><code class="language-plaintext highlighter-rouge">3.14e0</code> это (: Int, Rat, Num, Str :)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+    /* body {
+        background: #fffdeb;
+    } */
+    /* div.practice {
+        padding: 0;
+    } */
+    span.yesno {
+        font-family:'Courier New', Courier, monospace;
+        font-size: 120%;
+    }
+    span.yes {
+        font-family:'Courier New', Courier, monospace;
+        color: #14be10;
+        font-size: 120%;
+    }
+    span.no {
+        font-family:'Courier New', Courier, monospace;
+        color: #ec3030;
+        font-weight: bold;
+        font-size: 120%;
+    }
+    input.mono {
+        font-family: monospace;
+    }
+    table.quiz,
+    table.quiz-code,
+    table.quiz-select,
+    table.quiz tr,
+    table.quiz-code tr,
+    table.quiz-select tr,
+    table.quiz tr td,
+    table.quiz-code tr td,
+    table.quiz-select tr td {
+        /* background-color: #fffdeb; */
+        background-color: white;
+        border: none;
+    }
+    table.quiz,
+    table.quiz-code,
+    table.quiz-select {
+        /* background-color: #fffdeb; */
+        background-color: white;
+    }
+    table.quiz tr,
+    table.quiz-code tr,
+    table.quiz-select tr {
+        border: none;
+    }
+    table.quiz td,
+    table.quiz-code td,
+    table.quiz-select td {
+        border: none;
+        /* background-color: #fffdeb; */
+        background-color: white;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        padding: 0.3em 1em 0.3em 1em;
+    }
+    table.quiz tr td code,
+    table.quiz-code tr td code,
+    table.quiz-select tr td code,
+    table.quiz tr td tt,
+    table.quiz-code tr td tt,
+    table.quiz-select tr td tt {
+        /* background-color: #fffdeb !important; */
+        background-color: white !important;
+    }
+    table.quiz tr td.code,
+    table.quiz-code tr td.code,
+    table.quiz-select tr td.code {
+        font-family: monospace;
+        font-size: 95%;
+    }
+    table.quiz tr td.comment,
+    table.quiz-code tr td.comment,
+    table.quiz-select tr td.comment {
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
+    table.quiz tr td.comment code,
+    table.quiz-code tr td.comment code,
+    table.quiz-select tr td.comment code {
+        padding: 0;
+    }
+    table.quiz-code tr td {
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+    }
+    table.quiz-code tr td input {
+        border: 1px solid lightgray;
+        text-align: center;
+    }
+   /* div.practice {
+        background-color: #fffdeb;
+        background-color: white;
+    } */
+
+    table.quiz-code.nocode td.code {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+    }
+    div.extended-explanation {
+        display: none;
+    }
+    div.comment {
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
+</style>
+
+<script>
+    let replacements = [];
+
+    document.querySelectorAll('table.quiz tr').forEach(function(item) {
+        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
+
+        let cells = item.querySelectorAll('td');
+
+        if (cells[1].innerHTML == '1') {
+            cells[1].innerHTML = '<input type="checkbox" data-ok="1">';
+        }
+        else if (cells[1].innerHTML == '0') {
+            cells[1].innerHTML = '<input type="checkbox" data-ok="0">';
+        }
+
+        cells[2].className = 'code';
+
+        if (cells.length > 3) {
+            cells[3].style.display = 'none';
+            cells[3].className = 'comment';
+        }
+    });
+
+    document.querySelectorAll('table.quiz-code.fill').forEach(function(table) {
+        table.querySelectorAll('tr').forEach(function(tr) {
+            tr.className = 'fill';
+        });
+    });
+
+    document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
+        let is_fill = item.className == 'fill';
+
+        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
+
+        let cells = item.querySelectorAll('td');
+        let answer = cells[1].innerHTML;
+        cells[1].style.display = 'none';
+        
+        cells[2].className = 'code';
+        if (cells.length > 3) {
+            cells[3].style.display = 'none';
+            cells[3].className = 'comment';
+        }
+
+        let raw_answers = cells[1].innerHTML.split(' ');
+        for (let c = 0; c != raw_answers.length; c++) {
+            raw_answers[c] = raw_answers[c].replace(/␣/g, ' ');
+        }
+
+        let answers = [];
+        let fills = [];
+        if (!is_fill) {
+            answers = raw_answers;            
+        }
+        else {
+            for (let c = 0; c < raw_answers.length; c += 2) {
+                console.log('c=', c);
+                answers.push(raw_answers[c]);
+                fills.push(raw_answers[c + 1]);
+            }
+        }
+
+        if (cells[2].innerHTML.indexOf('␣') != -1) {
+            let c = 0;
+            cells[2].innerHTML = cells[2].innerHTML.replace(/␣+/g, function(a, b) {
+                let length = a.length * 1.2;
+                let ret = '<input type="text" class="mono" style="width: ' + length + 'em;" data-ok="' + answers[c] + '"';
+                if (is_fill) {
+                    ret += ' value="' + fills[c] + '"';
+                }
+                ret += '/>';
+                c++;
+
+                return ret;
+            });            
+        }
+    });
+
+    document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
+        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
+
+        let cells = item.querySelectorAll('td');
+        let answer = cells[1].innerHTML.trim();
+        cells[1].style.display = 'none';
+        
+        // cells[2].className = 'code';
+        if (cells.length > 3) {
+            cells[3].style.display = 'none';
+            cells[3].className = 'comment';
+        }
+
+        let question = cells[2].innerHTML;
+        let q_from = question.indexOf('(:');
+        let q_to = question.indexOf(':)');
+        if (q_from != -1 && q_to != -1) {
+            let values = question.substring(q_from + 2, q_to).trim();
+            let values_items = values.split(',');
+            let select = '<select data-ok="' + answer + '"><option value=""></option>';
+            for (let c = 0; c != values_items.length; c++) {
+                let value = values_items[c].trim();
+                select += '<option value="' + value + '">' + value + '</option>';
+            }
+            select += '</select>';
+            cells[2].innerHTML = question.substring(0, q_from) + select + question.substring(q_to + 2);
+        }
+    });
+
+    function checkquiz() {
+        document.getElementById('ShowAnswers').style.display = 'none';
+
+        document.querySelectorAll('table.quiz input[type="checkbox"]').forEach(function(item) {
+            let is_correct = (item.checked && item.dataset.ok == 1) || (!item.checked && item.dataset.ok == 0);
+            let row = item.parentElement.parentElement;
+            row.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+        });
+        document.querySelectorAll('table.quiz tr td').forEach(function(item) {
+            item.style.display = '';
+        });
+
+        let show_correct_button = false;
+
+        document.querySelectorAll('table.quiz-code tr').forEach(function(item) {            
+            let inputs = item.querySelectorAll('input');
+            if (!inputs.length) return;
+
+            let correct = 0;
+            for (let c = 0; c != inputs.length; c++) {
+                let curr_value = inputs[c].value.trim();
+                for (var ir = 0; ir != replacements.length; ir++) {
+                    curr_value = curr_value.replace(replacements[ir][0], replacements[ir][1]); // once only
+                }
+
+                if (curr_value == inputs[c].dataset.ok) {
+                    correct++;
+                }
+                else {
+                    show_correct_button = true;
+                    break;
+                }
+            }
+
+            let is_correct = correct == inputs.length;
+
+            let tds = item.querySelectorAll('td');            
+            tds[0].innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+            if (tds.length > 3) {
+                tds[3].style.display = '';
+            }
+        });
+
+        document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
+            let selects = item.querySelectorAll('select');
+            if (!selects.length) return;
+
+            let correct = 0;
+            for (let c = 0; c != selects.length; c++) {
+                if (selects[c].value == selects[c].dataset.ok) {
+                    correct++;
+                }
+                else {
+                    show_correct_button = true;
+                    break;
+                }
+            }
+
+            let is_correct = correct == selects.length;
+            let tds = item.querySelectorAll('td');            
+            tds[0].innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+            if (tds.length > 3) {
+                tds[3].style.display = '';
+            }
+        });
+
+        if (show_correct_button) {
+            document.getElementById('ShowAnswers').style.display = '';
+        }
+
+        show_extended_explanation();
+    }
+
+    function showanswers() {
+        document.querySelectorAll('table.quiz tr').forEach(function(item) {
+            let cells = item.querySelectorAll('td');
+            console.log(cells);
+            if (!cells.length) return;
+
+            let input = cells[1].querySelector('input');
+            if (!input) return;
+            input.checked = input.dataset.ok == '1';
+        });
+
+        document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
+            let inputs = item.querySelectorAll('input');
+            if (!inputs.length) return;
+
+            for (let c = 0; c != inputs.length; c++) {
+                inputs[c].value = inputs[c].dataset.ok;
+            }
+        });
+
+        document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
+            let selects = item.querySelectorAll('select');
+            if (!selects.length) return;
+
+            for (let c = 0; c != selects.length; c++) {
+                selects[c].value = selects[c].dataset.ok;
+            }
+        });
+
+        show_extended_explanation();
+    }
+
+    function show_extended_explanation() {
+        document.querySelectorAll('.extended-explanation').forEach(function(item) {
+            item.className = 'comment';
+        });
+    }
+</script>
+
+<div style="margin: 3em 0;">
+    <button onclick="checkquiz()">Check the answers</button>
+    <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
+</div>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+    <a href="/ru/essentials/loops">Циклы</a>
+        / <a href="/ru/essentials/loops/postfix-for">Постфиксная форма <code class="language-plaintext highlighter-rouge">for</code></a>
+  |  
+        <a href="/ru/essentials/coercion/what">Интроспекция с помощью <code class="language-plaintext highlighter-rouge">WHAT</code></a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/coercion/quiz/">Оригинальный текст на английском языке.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/coercion/quiz/">English</a> • <a href="/de/essentials/coercion/quiz/">Deutsch</a> • <a href="/es/essentials/coercion/quiz/">Español</a> • <a href="/it/essentials/coercion/quiz/">Italiano</a> • <a href="/lv/essentials/coercion/quiz/">Latviešu</a> • <a href="/nl/essentials/coercion/quiz/">Nederlands</a> • <a href="/bg/essentials/coercion/quiz/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/coercion/quiz/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

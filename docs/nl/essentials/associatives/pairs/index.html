@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pairs | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Pairs | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Pairs | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/associatives">Associatieve datentypen</a></p>
+
+<h1 id="paren">Paren</h1>
+
+<p>Een paar is een datastructuur die een naam en een waarde bewaart. Ze vormen een solide object dat in een scalair variabele kan worden opgeslagen. Hier is een voorbeeld van hoe je een paar maakt:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$pair</span> = <span class="nb">name</span> =&gt; <span class="s">&#39;Anna&#39;</span>;
+</pre></div>
+
+
+<p>Het type van de variabele <code class="language-plaintext highlighter-rouge">$pair</code> is <code class="language-plaintext highlighter-rouge">Pair</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">WHAT</span>; <span class="c1"># (Pair)</span>
+</pre></div>
+
+
+<p>Het is mogelijk om de naam en de waarde afzonderlijk te benaderen door gebruik te maken van de corresponderende methoden <code class="language-plaintext highlighter-rouge">key</code> en <code class="language-plaintext highlighter-rouge">value</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">key</span>; <span class="c1"># name</span>
+<span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">value</span>; <span class="c1"># Anna</span>
+</pre></div>
+
+
+<p>Een belangrijk kenmerk van paren is dat ze onveranderlijke objecten zijn. Dit betekent dat je geen nieuwe waarde kunt toewijzen of een nieuwe naam kunt geven aan een bestaand paar. Maar je kunt natuurlijk wel een volledig nieuw paar toewijzen aan dezelfde variabele:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$pair</span> = <span class="nb">name</span> =&gt; <span class="s">&#39;Anna&#39;</span>;
+<span class="nv">$pair</span> = <span class="nb">name</span> =&gt; <span class="s">&#39;John&#39;</span>;
+<span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">value</span>; <span class="c1"># John</span>
+</pre></div>
+
+
+<h2 id="subscriptie">Subscriptie</h2>
+
+<p>Er is een andere methode om de waarde van een paar te lezen. Je kunt het subscripten met de naam van de sleutel tussen hoekige haken. Dit is hoe je dat doet:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$pair&lt;name&gt;</span>;
+</pre></div>
+
+
+<p>Merk op dat het niet nodig is om de naam van de sleutel te citeren als deze geen spaties bevat. Als dat wel het geval is, worden de regels iets strikter:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$pair</span> = <span class="s">&#39;employee name&#39;</span> =&gt; <span class="s">&#39;Julie Madelon&#39;</span>;
+<span class="nb">say</span> <span class="nv">$pair</span>{<span class="s">&#39;employee name&#39;</span>};
+</pre></div>
+
+
+<p>Mis niet het feit dat deze keer accolades worden gebruikt.</p>
+
+<p><div class="practice"></p>
+<h2 id="oefening">Oefening</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/nl/essentials/associatives/pairs/quiz">Quiz — Paren</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+        <a href="/nl/essentials/associatives">Associatieve datentypen</a>
+  |  
+        <a href="/nl/essentials/associatives">Associatieve datentypen</a> / <a href="/nl/essentials/associatives/hashes">Hashes</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/nl/essentials/associatives/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/associatives/pairs/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/associatives/pairs/">English</a> • <a href="/de/essentials/associatives/pairs/">Deutsch</a> • <a href="/es/essentials/associatives/pairs/">Español</a> • <a href="/it/essentials/associatives/pairs/">Italiano</a> • <a href="/lv/essentials/associatives/pairs/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/associatives/pairs/">Български</a> • <a href="/ru/essentials/associatives/pairs/">Русский</a> • <a href="/uk/essentials/associatives/pairs/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

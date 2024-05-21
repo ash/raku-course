@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Решение: Изписване на число | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Решение: Изписване на число | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Решение: Изписване на число | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/positionals/">Позиционни типове данни</a> / <a href="/bg/essentials/positionals/exercises/">Упражнения</a> / <a href="/bg/essentials/positionals/exercises/spell-a-number">Спелуване на число</a></p>
+
+<h1 id="решение-спелуване-на-число">Решение: Спелуване на число</h1>
+
+<p>Програмата по-долу има вграден масив с имената на числата от 0 до 20 и имената на десетиците: 20, 30 и т.н. В редицата от условни проверки числото се разпределя към едно от правилата за изписване.</p>
+
+<h2 id="код">Код</h2>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="vg">@*ARGS</span>[<span class="mi">0</span>];
+
+<span class="k">my</span> <span class="nv">@names</span> = &lt;
+    <span class="n">zero</span> <span class="nb">one</span> <span class="n">two</span> <span class="n">three</span> <span class="n">four</span> <span class="n">five</span> <span class="n">six</span> <span class="n">seven</span> <span class="n">eight</span> <span class="n">nine</span> <span class="n">ten</span>
+    <span class="n">eleven</span> <span class="n">twelve</span> <span class="n">thirteen</span> <span class="n">fourteen</span> <span class="n">fifteen</span> <span class="n">sixteen</span> <span class="n">seventeen</span> <span class="n">eighteen</span> <span class="n">nineteen</span> <span class="n">twenty</span>
+    <span class="n">thirty</span> <span class="n">fourty</span> <span class="n">fifty</span> <span class="n">sixty</span> <span class="n">seventy</span> <span class="n">eighty</span> <span class="n">ninety</span> &gt;;
+
+<span class="k">if</span> <span class="nv">$n</span> &lt; <span class="mi">20</span> {
+    <span class="nb">say</span> <span class="nv">@names</span>[<span class="nv">$n</span>];
+}
+<span class="k">elsif</span> <span class="nv">$n</span> % <span class="mi">10</span> { <span class="c1"># Двузначни неокръглени числа, напр. 34</span>
+    <span class="nb">say</span> <span class="nv">@names</span>[<span class="nv">$n</span> / <span class="mi">10</span> + <span class="mi">18</span>] ~ <span class="s">&#39;-&#39;</span> ~ <span class="nv">@names</span>[<span class="nv">$n</span> % <span class="mi">10</span>];
+}
+<span class="k">else</span> { <span class="c1"># Кратни на 10, напр. 50</span>
+    <span class="nb">say</span> <span class="nv">@names</span>[<span class="nv">$n</span> / <span class="mi">10</span> + <span class="mi">18</span>];
+}
+</pre></div>
+
+
+<p>🦋 Намерете програмата във файла <a href="https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku">spell-a-number.raku</a>.</p>
+
+<h2 id="пример">Пример</h2>
+
+<p>Стартирайте програмата няколко пъти, за да проверите всички три клона на конструкцията <code class="language-plaintext highlighter-rouge">if</code>—<code class="language-plaintext highlighter-rouge">elsif</code>—<code class="language-plaintext highlighter-rouge">else</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/spell-a-number.raku 5
+<span class="go">five
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/spell-a-number.raku 12
+<span class="go">twelve
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/spell-a-number.raku 67
+<span class="go">sixty-seven
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/spell-a-number.raku 80
+<span class="go">eighty
+</span></code></pre></div></div>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+    <a href="/bg/essentials/typed-variables">Типизирани променливи</a>
+        / <a href="/bg/essentials/typed-variables/allomorphs">Аломорфи</a>
+  |  
+    <a href="/bg/advanced/associatives">Асоциативни типове данни</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/positionals/exercises/spell-a-number/solution/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/positionals/exercises/spell-a-number/solution/">English</a> • <a href="/de/essentials/positionals/exercises/spell-a-number/solution/">Deutsch</a> • <a href="/es/essentials/positionals/exercises/spell-a-number/solution/">Español</a> • <a href="/it/essentials/positionals/exercises/spell-a-number/solution/">Italiano</a> • <a href="/lv/essentials/positionals/exercises/spell-a-number/solution/">Latviešu</a> • <a href="/nl/essentials/positionals/exercises/spell-a-number/solution/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/positionals/exercises/spell-a-number/solution/">Русский</a> • <a href="/uk/essentials/positionals/exercises/spell-a-number/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

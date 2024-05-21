@@ -28,4 +28,5 @@ string &apos;Alpha&apos; | `'Alpha' || 'Beta'` is a (: Boolean True, Boolean Fal
 Nil | `100 ^^ 200` is (: 100, 200, True, False, Nil :) | `Nil` — это значение, которое обозначает отсутствие значения.
 
 {% include quiz.html %}
+{% assign human=1 %}
 {% include nav.html %}

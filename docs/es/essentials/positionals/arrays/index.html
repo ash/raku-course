@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Arrays | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Arrays | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Arrays | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/positionals">Tipos de datos posicionales</a></p>
+
+<h1 id="arrays">Arrays</h1>
+
+<p>Los arreglos son tipos de datos agregados que pueden contener más de un valor. Eso diferencia a los arreglos de los <a href="/es/essentials/scalar-variables">elementos escalares</a>. Los elementos del arreglo pueden ser indexados (o <em>subscriptos</em>). En otras palabras, sus elementos tienen una posición (lo que explica el nombre general para este tipo de datos: posicionales).</p>
+
+<p>Las variables de arreglo usan otro tipo de sigil: <code class="language-plaintext highlighter-rouge">@</code>. Las reglas para el nombre de la variable son las mismas que <a href="/es/essentials/scalar-variables/identifiers/">para los escalares</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@ciudades</span>;
+</pre></div>
+
+
+<p>Hasta ahora, se ha creado el arreglo llamado <code class="language-plaintext highlighter-rouge">@ciudades</code>. Puedes llenarlo con algunos valores:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@ciudades</span> = <span class="s">&#39;París&#39;</span>, <span class="s">&#39;Roma&#39;</span>, <span class="s">&#39;Berlín&#39;</span>;
+</pre></div>
+
+
+<p>Alternativamente, es posible inicializar los valores inmediatamente:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@ciudades</span> = <span class="s">&#39;París&#39;</span>, <span class="s">&#39;Roma&#39;</span>, <span class="s">&#39;Berlín&#39;</span>;
+</pre></div>
+
+
+<h2 id="indexación">Indexación</h2>
+
+<p>Para acceder a un solo elemento de un arreglo, usa un par de corchetes que colocas después del nombre de la variable:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@ciudades</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p>Nota que el sigil siempre permanece igual. Como los elementos se cuentan desde cero, el elemento <code class="language-plaintext highlighter-rouge">@ciudades[1]</code> es <code class="language-plaintext highlighter-rouge">'Roma'</code> en nuestro ejemplo.</p>
+
+<p>Los arreglos son mutables, por lo que puedes modificar fácilmente sus elementos simplemente asignándoles un nuevo valor:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@ciudades</span>[<span class="mi">0</span>] = <span class="s">&#39;Roma&#39;</span>;
+<span class="nv">@ciudades</span>[<span class="mi">1</span>] = <span class="s">&#39;París&#39;</span>;
+</pre></div>
+
+
+<p>Después de esto, la declaración <code class="language-plaintext highlighter-rouge">say @ciudades[1]</code> imprimirá el nuevo valor <code class="language-plaintext highlighter-rouge">'París'</code>.</p>
+
+<h2 id="tamaño">Tamaño</h2>
+
+<p>Para obtener la longitud actual de un arreglo, o, en otras palabras, el número de sus elementos, usa el método <code class="language-plaintext highlighter-rouge">elems</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@ciudades</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Si el arreglo aparece en un contexto donde se espera un parámetro numérico, el valor de retorno es el tamaño del arreglo:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@ciudades</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Aquí, el <a href="/es/essentials/coercion/prefixes">operador prefijo <code class="language-plaintext highlighter-rouge">+</code></a> requiere un valor numérico de su argumento, por lo que el resultado de <code class="language-plaintext highlighter-rouge">+@ciudades</code> es <code class="language-plaintext highlighter-rouge">3</code>.</p>
+
+<p><div class="practice"></p>
+<h2 id="práctica">Práctica</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/es/essentials/positionals/arrays/quiz">Quiz — Arrays</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+        <a href="/es/essentials/positionals">Tipos de datos posicionales</a>
+  |  
+        <a href="/es/essentials/positionals">Tipos de datos posicionales</a> / <a href="/es/essentials/positionals/nested-arrays">Arrays anidados</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/es/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/positionals/arrays/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/positionals/arrays/">Italiano</a> • <a href="/lv/essentials/positionals/arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/arrays/">Nederlands</a> • <a href="/bg/essentials/positionals/arrays/">Български</a> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

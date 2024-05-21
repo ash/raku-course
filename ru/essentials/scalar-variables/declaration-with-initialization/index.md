@@ -21,4 +21,5 @@ say $name;
 my ($name, $age) = 'Carl', 36;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

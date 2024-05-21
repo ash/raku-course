@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Conversione dei tipi con operatori prefissi | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Conversione dei tipi con operatori prefissi | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Conversione dei tipi con operatori prefissi | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/coercion">Conversione dei tipi di dati</a></p>
+
+<h1 id="conversione-dei-tipi-con-operatori-prefissi">Conversione dei tipi con operatori prefissi</h1>
+
+<p>Un altro modo per trasformare il tipo di un oggetto è utilizzare gli operatori prefissi. Questi sono operatori a un carattere che vengono posizionati immediatamente prima del valore (o di una variabile).</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">~</code></td>
+      <td>Coercizione a stringa</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td>Coercizione numerica</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">?</code></td>
+      <td>Coercizione booleana</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Considera un esempio di creazione di un valore Booleano a partire da un intero:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ?<span class="mi">42</span>; <span class="c1"># True</span>
+</pre></div>
+
+
+<p>La conversione in una stringa è simile:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = -<span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$s</span> = ~<span class="nv">$n</span>;
+<span class="nb">say</span> <span class="nv">$s</span>.<span class="nb">chars</span>; <span class="c1"># 3, poiché &quot;-30&quot; ha 3 caratteri</span>
+</pre></div>
+
+
+<p>Nota che con la conversione numerica, il tipo del valore convertito varia a seconda del numero in questione. Confronta le seguenti conversioni da stringhe:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> (+<span class="s">&#39;100&#39;</span>).<span class="nb">WHAT</span>;   <span class="c1"># (Int)</span>
+<span class="nb">say</span> (+<span class="s">&#39;3.14&#39;</span>).<span class="nb">WHAT</span>;  <span class="c1"># (Rat)</span>
+<span class="nb">say</span> (+<span class="s">&#39;27E-1&#39;</span>).<span class="nb">WHAT</span>; <span class="c1"># (Num)</span>
+</pre></div>
+
+
+<p>Per le conversioni booleane, esiste un’altra routine chiamata <code class="language-plaintext highlighter-rouge">so</code>. Puoi usarla come operatore prefisso o come metodo:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="mi">42</span>;
+<span class="nb">say</span> <span class="nb">so</span> <span class="nv">$value</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$value</span>.<span class="nb">so</span>; <span class="c1"># True</span>
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+        <a href="/it/essentials/coercion">Conversione dei tipi di dati</a> / <a href="/it/essentials/coercion/new">Conversione dei tipi usando le forme del costruttore</a>
+  |  
+        💪 <a href="/it/essentials/coercion/exercises">Exercises: Conversione dei tipi di dati</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/coercion/prefixes/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/coercion/prefixes/">English</a> • <a href="/de/essentials/coercion/prefixes/">Deutsch</a> • <a href="/es/essentials/coercion/prefixes/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/coercion/prefixes/">Latviešu</a> • <a href="/nl/essentials/coercion/prefixes/">Nederlands</a> • <a href="/bg/essentials/coercion/prefixes/">Български</a> • <a href="/ru/essentials/coercion/prefixes/">Русский</a> • <a href="/uk/essentials/coercion/prefixes/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

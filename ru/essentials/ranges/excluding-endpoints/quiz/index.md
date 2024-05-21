@@ -29,4 +29,5 @@ title: 'Тест: Создание интервалов'
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>while и until как модификаторы выражений | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="while и until как модификаторы выражений | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>while и until как модификаторы выражений | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/loops">Циклы</a></p>
+
+<h1 id="while-и-until-как-модификаторы-инструкций"><code class="language-plaintext highlighter-rouge">while</code> и <code class="language-plaintext highlighter-rouge">until</code> как модификаторы инструкций</h1>
+
+<p>Оба <code class="language-plaintext highlighter-rouge">while</code> и <code class="language-plaintext highlighter-rouge">until</code> могут использоваться в форме модификаторов выражений (<a href="/ru/essentials/conditional-checks/modifiers">аналогично</a> <code class="language-plaintext highlighter-rouge">if</code> и <code class="language-plaintext highlighter-rouge">unless</code>).</p>
+
+<p>Рассмотрим пример, который эмулирует деление по модулю:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
+<span class="nv">$x</span> -= <span class="mi">3</span> <span class="k">while</span> <span class="nv">$x</span> &gt; <span class="mi">2</span>;
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 1</span>
+</pre></div>
+
+
+<p>Здесь <code class="language-plaintext highlighter-rouge">-=</code> является оператором, который сочетает вычитание и присваивание. В этом случае <code class="language-plaintext highlighter-rouge">$x -= 3</code> эквивалентно <code class="language-plaintext highlighter-rouge">$x = $x - 3</code>.</p>
+
+<p>Модификатор <code class="language-plaintext highlighter-rouge">while</code> позволяет выражению <code class="language-plaintext highlighter-rouge">$x -= 3</code> повторяться, пока условие <code class="language-plaintext highlighter-rouge">$x &gt; 2</code> остается <code class="language-plaintext highlighter-rouge">True</code>. Как только оно становится <code class="language-plaintext highlighter-rouge">False</code>, цикл прекращается.</p>
+
+<p>Обратите внимание, что если условие изначально <code class="language-plaintext highlighter-rouge">False</code>, выражение не выполняется вообще.</p>
+
+<p>Ту же программу можно переписать с использованием <code class="language-plaintext highlighter-rouge">until</code>. Для этого условие должно быть инвертировано:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
+<span class="nv">$x</span> -= <span class="mi">3</span> <span class="k">until</span> <span class="nv">$x</span> &lt;= <span class="mi">2</span>;
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 1</span>
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/loops">Циклы</a> / <a href="/ru/essentials/loops/repeat">Использование <code class="language-plaintext highlighter-rouge">repeat</code></a>
+  |  
+        <a href="/ru/essentials/loops">Циклы</a> / <a href="/ru/essentials/loops/loop"><code class="language-plaintext highlighter-rouge">loop</code> с тремя инструкциями</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/ru/essentials/loops/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/loops/modifiers/">Оригинальный текст на английском языке.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/loops/modifiers/">English</a> • <a href="/de/essentials/loops/modifiers/">Deutsch</a> • <a href="/es/essentials/loops/modifiers/">Español</a> • <a href="/it/essentials/loops/modifiers/">Italiano</a> • <a href="/lv/essentials/loops/modifiers/">Latviešu</a> • <a href="/nl/essentials/loops/modifiers/">Nederlands</a> • <a href="/bg/essentials/loops/modifiers/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/loops/modifiers/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Длина строки в Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Длина строки в Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Длина строки в Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/strings">Строки</a></p>
+
+<h1 id="длина-строки">Длина строки</h1>
+
+<p>Природа Юникода в строках делает кое-какие тривиальные вещи несколько более
+сложными. По крайней мере, вам следует думать об этом, как о чем-то не самом
+простом. Возьмем, для примера, длину строки. Это количество букв, или количество
+байтов? Или что если один и тот же символ можно разложить по-разному в разных
+строках, это все еще один символ?</p>
+
+<h2 id="длина-в-символах">Длина в символах</h2>
+
+<p>Чтобы получить длину строки в символах, используйте <em>метод</em> <code class="language-plaintext highlighter-rouge">chars</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
+</pre></div>
+
+
+<p>И хотя мы поговорим о методах позже, вы уже должны уметь их использовать. В Raku
+вы можете вызвать метод почти для любого объекта, включая строки и скалярные
+переменные. Чтобы вызвать метод, используйте точку. Здесь мы видим метод,
+вызванный для переменной, в которой хранится строка: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>В этом китайском приветствии четыре символа 你好世界. И <code class="language-plaintext highlighter-rouge">$str.chars</code> вернет
+ровно <code class="language-plaintext highlighter-rouge">4</code>.</p>
+
+<h2 id="длина-в-байтах">Длина в байтах</h2>
+
+<p>Только для ссылки, вот как можно получить длину строки в байтах. В этом случае
+важно знать, какая кодировка была использована для хранения строки:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
+</pre></div>
+
+
+<p>В этот раз программа напишет <code class="language-plaintext highlighter-rouge">12</code>. Отметим, что на второй строке мы вызываем два
+метода в цепочке друг за другом.</p>
+
+<h2 id="длина-в-кодовых-позициях">Длина в кодовых позициях</h2>
+
+<p>И для полноты картины, вот еще один полезный метод, который тоже относится к
+длине строки: <code class="language-plaintext highlighter-rouge">codes</code>. Он возвращает количество кодовых позиций в строке после
+ее нормализации. В большинстве случаев методы <code class="language-plaintext highlighter-rouge">codes</code> и <code class="language-plaintext highlighter-rouge">chars</code> вернут одно и то
+же значение. Но в некоторых редких случаях, когда, например, вы склеили
+“несуществующий” символ, для которого нет ни одной кодовой позиции во всем
+пространстве Юникода, методы вернут разные значения.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
+</pre></div>
+
+
+<p>Буква <code class="language-plaintext highlighter-rouge">x̨</code> не имеет отдельной кодовой позиции и может быть только составлена из
+частей: строчная буква <code class="language-plaintext highlighter-rouge">x</code> и комбинирующий символ <code class="language-plaintext highlighter-rouge">0x0328</code>. Поэтому здесь все
+еще один символ, но две кодовые позиции. Программа выводит:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/ru/essentials/strings/string-length/quiz">Тест: Длина фразы</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/strings">Строки</a> / <a href="/ru/essentials/strings/escaping-special-characters">Экранирование специальных символов</a>
+  |  
+        💪 <a href="/ru/essentials/strings/exercises">Exercises: Строки</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница переведена с английского человеком. <a href="/essentials/strings/string-length/">Оригинальный текст на английском языке.</a> <a href="/ru/about-this-course/credits">О переводе.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/strings/string-length/">English</a> • <a href="/de/essentials/strings/string-length/">Deutsch</a> • <a href="/es/essentials/strings/string-length/">Español</a> • <a href="/it/essentials/strings/string-length/">Italiano</a> • <a href="/lv/essentials/strings/string-length/">Latviešu</a> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/strings/string-length/">Українська</a></p>
+</div>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

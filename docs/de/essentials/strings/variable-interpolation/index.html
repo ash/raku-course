@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Variableninterpolation in Raku-Strings | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Variableninterpolation in Raku-Strings | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Variableninterpolation in Raku-Strings | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/strings">Zeichenketten</a></p>
+
+<h1 id="variableninterpolation">Variableninterpolation</h1>
+
+<p>Haben Sie in den vorherigen Abschnitten bereits bemerkt, dass die Strings manchmal in einfachen, aber manchmal in doppelten Anführungszeichen gesetzt waren? Der Unterschied ist entscheidend.</p>
+
+<p>Natürlich können Sie doppelte Anführungszeichen verwenden, wenn Sie mit minimalem Aufwand ein einfaches Anführungszeichen in den String einfügen möchten:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;O&#39;Henry&quot;</span>;
+</pre></div>
+
+
+<p>Übrigens ist es immer noch besser, ein richtiges Apostroph anstelle eines einfachen Anführungszeichens zu verwenden, da <a href="../../on-unicode">Raku gut mit Unicode umgehen kann</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;O’Henry&#39;</span>;
+</pre></div>
+
+
+<p>Aber die wahre Stärke der doppelten Anführungszeichen liegt in ihrer Fähigkeit, Variablen zu <em>interpolieren</em> und—wie wir bald sehen werden—Code auszuführen! Betrachten Sie das folgende Programm:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Karl&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hallo, $name!&quot;</span>;
+</pre></div>
+
+
+<p>Wie Sie vielleicht erwarten, druckt das Programm <code class="language-plaintext highlighter-rouge">Hallo, Karl!</code>. Der Name der Variablen <code class="language-plaintext highlighter-rouge">$name</code> (zusammen mit ihrem Sigil <code class="language-plaintext highlighter-rouge">$</code>) wurde durch den Wert der Variablen ersetzt.</p>
+
+<p>Die Variable wurde mit dem Wert interpoliert, den die Variable zum Zeitpunkt der Interpolation hatte. Wenn Sie also den Inhalt von <code class="language-plaintext highlighter-rouge">$name</code> ändern und ihn erneut interpolieren, wird der neue Wert ersetzt. Testen wir es:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Karl&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hallo, $name!&quot;</span>;
+
+<span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hallo, $name!&quot;</span>;
+</pre></div>
+
+
+<p>Diesmal erzeugt derselbe String unterschiedliche Nachrichten:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hallo, Karl!
+Hallo, Anna!
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/de/essentials/strings/variable-interpolation/quiz">Quiz: Zeichenketteninterpolation</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+        <a href="/de/essentials/strings">Zeichenketten</a> / <a href="/de/essentials/strings/string-concatenation">Zeichenkettenverkettung</a>
+  |  
+        <a href="/de/essentials/strings">Zeichenketten</a> / <a href="/de/essentials/strings/code-interpolation">Code-Interpolation</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/de/essentials/strings/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/strings/variable-interpolation/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/strings/variable-interpolation/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/strings/variable-interpolation/">Español</a> • <a href="/it/essentials/strings/variable-interpolation/">Italiano</a> • <a href="/lv/essentials/strings/variable-interpolation/">Latviešu</a> • <a href="/nl/essentials/strings/variable-interpolation/">Nederlands</a> • <a href="/bg/essentials/strings/variable-interpolation/">Български</a> • <a href="/ru/essentials/strings/variable-interpolation/">Русский</a> • <a href="/uk/essentials/strings/variable-interpolation/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

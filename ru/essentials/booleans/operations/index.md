@@ -36,4 +36,5 @@ my $did = True;
 my $didn't = !$did;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

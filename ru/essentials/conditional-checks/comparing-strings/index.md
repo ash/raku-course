@@ -23,4 +23,5 @@ say 'word' ne 'Word';  # True
 say 'xyz' gt 'xvw';    # True
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

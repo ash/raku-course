@@ -21,4 +21,5 @@ title: 'Тест: Булевы значения'
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

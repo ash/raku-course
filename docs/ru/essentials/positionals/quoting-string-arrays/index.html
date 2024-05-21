@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Quoting string arrays | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Quoting string arrays | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Quoting string arrays | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/positionals">Позиционные типы данных</a></p>
+
+<h1 id="взятие-в-кавычки-массивов-строк">Взятие в кавычки массивов строк</h1>
+
+<p>Для строковых массивов, где элементы являются короткими строками без пробелов, Raku предлагает удобный синтаксис для их инициализации.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = <span class="s">&lt;zero one two three four five six seven eight nine&gt;</span>;
+</pre></div>
+
+
+<p>Вы можете сами решить, добавлять ли дополнительные пробелы вокруг угловых скобок или нет. Компилятор принимает оба варианта.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = &lt; <span class="n">zero</span> <span class="nb">one</span> <span class="n">two</span> <span class="n">three</span> <span class="n">four</span> <span class="n">five</span> <span class="n">six</span> <span class="n">seven</span> <span class="n">eight</span> <span class="n">nine</span> &gt;;
+</pre></div>
+
+
+<p>Обе конструкции эквивалентны простому варианту:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = <span class="s">&#39;zero&#39;</span>, <span class="s">&#39;one&#39;</span>, <span class="s">&#39;two&#39;</span>, <span class="s">&#39;three&#39;</span>, <span class="s">&#39;four&#39;</span>, <span class="s">&#39;five&#39;</span>, <span class="s">&#39;six&#39;</span>, <span class="s">&#39;seven&#39;</span>, <span class="s">&#39;eight&#39;</span>, <span class="s">&#39;nine&#39;</span>;
+</pre></div>
+
+
+<p><div class="tip"></p>
+<h2 id="массив-vs-список">Массив vs Список</h2>
+
+<p>Обратите внимание, что в приведенных выше примерах, кавычки <code class="language-plaintext highlighter-rouge">&lt; . . . &gt;</code> создают <code class="language-plaintext highlighter-rouge">List</code>, а не <code class="language-plaintext highlighter-rouge">Array</code>. Вы можете подтвердить это, вызвав метод <code class="language-plaintext highlighter-rouge">WHAT</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">WHAT</span>; <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Тем не менее, когда вы присваиваете это массиву, вы получаете массив с элементами из списка.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="s">&lt;a b c&gt;</span>;
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">WHAT</span>; <span class="c1"># (Array)</span>
+</pre></div>
+
+
+<p></div></p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/ru/essentials/positionals/quoting-string-arrays/quiz1">Тест 1: Взятие в кавычки массивов строк</a></li>
+  <li><a href="/ru/essentials/positionals/quoting-string-arrays/quiz2">Тест 2: Распознование списков</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/positionals">Позиционные типы данных</a> / <a href="/ru/essentials/positionals/lists">Списки</a>
+  |  
+        <a href="/ru/essentials/positionals">Позиционные типы данных</a> / <a href="/ru/essentials/positionals/subscripting-ranges">Индексирование интервалов</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/ru/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/positionals/quoting-string-arrays/">Оригинальный текст на английском языке.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/positionals/quoting-string-arrays/">English</a> • <a href="/de/essentials/positionals/quoting-string-arrays/">Deutsch</a> • <a href="/es/essentials/positionals/quoting-string-arrays/">Español</a> • <a href="/it/essentials/positionals/quoting-string-arrays/">Italiano</a> • <a href="/lv/essentials/positionals/quoting-string-arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/quoting-string-arrays/">Nederlands</a> • <a href="/bg/essentials/positionals/quoting-string-arrays/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/positionals/quoting-string-arrays/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

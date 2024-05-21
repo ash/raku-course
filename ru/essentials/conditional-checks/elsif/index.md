@@ -55,4 +55,5 @@ Enter the number: 10
 Другой способ — это использовать пару `given` и `when`, с которыми мы еще
 познакомимся.
 
+{% assign human=1 %}
 {% include nav.html %}

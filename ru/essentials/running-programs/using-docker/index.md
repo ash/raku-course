@@ -29,4 +29,5 @@ $ docker run -v "$(pwd):/script" rakudo-star raku /script/hello.raku
 * [Docker образ](https://hub.docker.com/_/rakudo-star/)
 * [Raku Docker проект на GitHub](https://github.com/Raku/docker)
 
+{% assign human=1 %}
 {% include nav.html %}

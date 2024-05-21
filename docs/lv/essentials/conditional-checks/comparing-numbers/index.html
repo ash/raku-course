@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Salīdzināt skaitļus | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Salīdzināt skaitļus | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Salīdzināt skaitļus | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/conditional-checks">Nosacījumu pārbaudes</a></p>
+
+<h1 id="skaitļu-salīdzināšana">Skaitļu salīdzināšana</h1>
+
+<p>Lai salīdzinātu divus skaitļus, izmantojiet šādus operatorus. Visi tie ir diezgan acīmredzami, ja esat pazīstams ar citām programmēšanas valodām.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td>Vienāds</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td>Nav vienāds</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td>Mazāks par</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td>Mazāks vai vienāds</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td>Lielāks par</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td>Lielāks vai vienāds</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="aptuveni-vienāds">Aptuveni vienāds</h2>
+
+<p>Papildus standarta operatoriem, Raku pievieno aptuveni vienādo operatoru <code class="language-plaintext highlighter-rouge">=~=</code>, kas salīdzina skaitļus aptuveni. Tā rezultāts ir <code class="language-plaintext highlighter-rouge">True</code>, ja abi skaitļi ir relatīvi tuvu viens otram. Maksimālā relatīvā atšķirība nedrīkst pārsniegt iebūvēto vērtību <code class="language-plaintext highlighter-rouge">$*TOLERANCE</code>, kas ir vienāda ar <code class="language-plaintext highlighter-rouge">1e-15</code>.</p>
+
+<h2 id="unicode-versijas">Unicode versijas</h2>
+
+<p>Dažiem no iepriekš minētajiem operatoriem ir Unicode ekvivalenti:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≠</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≤</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≥</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">=~=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≅</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="piemēri">Piemēri</h2>
+
+<p>Daži piemēri ar operatoriem, kas salīdzina skaitļus:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">10</span> == <span class="mi">10</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">10</span> != <span class="mi">10</span>; <span class="c1"># False</span>
+
+<span class="nb">say</span> <span class="mi">15</span> &lt; <span class="mi">10</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="mi">10</span> &lt;= <span class="mi">10</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">16</span> &gt; <span class="mi">10</span>;  <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">10</span> &gt;= <span class="mi">14</span>; <span class="c1"># False</span>
+
+<span class="nb">say</span> <span class="mf">1.000000000000000000000001</span> =~= <span class="mf">1.000000000000000000000002</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mf">2e17</span> + <span class="mi">1</span> =~= <span class="mf">2e17</span> + <span class="mi">100</span>; <span class="c1"># True</span>
+</pre></div>
+
+
+<p>Ņemiet vērā, ka skaitlis <code class="language-plaintext highlighter-rouge">1.000000000000000000000001</code> ir <code class="language-plaintext highlighter-rouge">Rat</code> skaitlis, tāpēc jūs nezaudējat precizitāti izteiksmē ar tuvu skaitli <code class="language-plaintext highlighter-rouge">1.000000000000000000000002</code>. Pēdējais piemērs ar <code class="language-plaintext highlighter-rouge">2e17</code> darbojas ar <code class="language-plaintext highlighter-rouge">Num</code> skaitļiem, kuriem ir ierobežota precizitāte.</p>
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/conditional-checks/comparing-numbers/quiz">Tests — skaitļu salīdzināšana</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/conditional-checks">Nosacījumu pārbaudes</a> / <a href="/lv/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> un <code class="language-plaintext highlighter-rouge">unless</code> kā izteiksmes modifikatori</a>
+  |  
+        <a href="/lv/essentials/conditional-checks">Nosacījumu pārbaudes</a> / <a href="/lv/essentials/conditional-checks/comparing-strings">Virkņu salīdzināšana</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/lv/essentials/conditional-checks/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/conditional-checks/comparing-numbers/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/conditional-checks/comparing-numbers/">English</a> • <a href="/de/essentials/conditional-checks/comparing-numbers/">Deutsch</a> • <a href="/es/essentials/conditional-checks/comparing-numbers/">Español</a> • <a href="/it/essentials/conditional-checks/comparing-numbers/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/conditional-checks/comparing-numbers/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/comparing-numbers/">Български</a> • <a href="/ru/essentials/conditional-checks/comparing-numbers/">Русский</a> • <a href="/uk/essentials/conditional-checks/comparing-numbers/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

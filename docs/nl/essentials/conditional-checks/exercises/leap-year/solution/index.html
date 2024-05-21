@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Oplossing: Schrikkeljaar | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Oplossing: Schrikkeljaar | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Oplossing: Schrikkeljaar | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/conditional-checks/">Voorwaardelijke controles</a> / <a href="/nl/essentials/conditional-checks/exercises/">Oefeningen</a> / <a href="/nl/essentials/conditional-checks/exercises/leap-year">Schrikkeljaar</a></p>
+
+<h1 id="oplossing-schrikkeljaar">Oplossing: Schrikkeljaar</h1>
+
+<h2 id="disclaimer">Disclaimer</h2>
+
+<p>De onderstaande oplossing is bedoeld om je te trainen in het gebruik van conditionele controles. In het echte leven kun je de methoden van de ingebouwde <code class="language-plaintext highlighter-rouge">Date</code>-klasse leren. We zullen dit in het tweede deel van de cursus leren.</p>
+
+<h2 id="oplossing">Oplossing</h2>
+
+<p>Het algoritme voor de detectie of een jaar een schrikkeljaar is:</p>
+
+<ol>
+  <li>als het jaar niet deelbaar is door 4 =&gt; gewoon jaar</li>
+  <li>als het jaar niet deelbaar is door 100 =&gt; schrikkeljaar</li>
+  <li>als het jaar niet deelbaar is door 400 =&gt; gewoon jaar</li>
+  <li>anders =&gt; schrikkeljaar</li>
+</ol>
+
+<p>Let op dat je de ingebouwde types kunt gebruiken voor het werken met datum en tijd, dus we zullen in het tweede deel van de cursus terugkomen op deze taak.</p>
+
+<h2 id="code-1">Code 1</h2>
+
+<p>De eerste oplossing reproduceert de bovenstaande stappen letterlijk:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+
+<span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
+    <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">100</span> {
+    <span class="nb">say</span> <span class="s">&#39;Leap year&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">400</span> {
+    <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
+}
+<span class="k">else</span> {
+    <span class="nb">say</span> <span class="s">&#39;Leap year&#39;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Vind het programma in het bestand <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
+
+<h2 id="code-2">Code 2</h2>
+
+<p>In de tweede oplossing is de logica verpakt in één enkele expressie. Haakjes zijn niet altijd nodig, maar zijn hier toegevoegd voor de duidelijkheid.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+
+<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Leap year&#39;</span> !! <span class="s">&#39;Common year&#39;</span>;
+</pre></div>
+
+
+<p>🦋 Vind het programma in het bestand <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<p>Probeer beide programma’s met de meest kritieke gevallen, bijvoorbeeld 1900, 2000, 2020, 2021.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Year: 1900
+Common year
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Year: 2000
+Leap year
+</span></code></pre></div></div>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Year: 2020
+Leap year
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Year: 2021
+Common year
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+<h2 id="-vs-"><code class="language-plaintext highlighter-rouge">%%</code> vs <code class="language-plaintext highlighter-rouge">%</code></h2>
+
+<p>Let op dat in Booleaanse contexten de <code class="language-plaintext highlighter-rouge">%%</code> en <code class="language-plaintext highlighter-rouge">%</code> operatoren complementair zijn. Je kunt dit feit gebruiken om een van de operatoren te kiezen om expliciete vergelijking met nul te vermijden.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># True</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># False</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># False</span>
+</pre></div>
+
+<p></div></p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+    <a href="/nl/essentials/code-blocks">Code blokken</a>
+        / <a href="/nl/essentials/code-blocks/local-variables">Lokale variabelen</a>
+  |  
+    <a href="/nl/advanced/loops">Lussen</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/conditional-checks/exercises/leap-year/solution/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/conditional-checks/exercises/leap-year/solution/">English</a> • <a href="/de/essentials/conditional-checks/exercises/leap-year/solution/">Deutsch</a> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <a href="/it/essentials/conditional-checks/exercises/leap-year/solution/">Italiano</a> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/conditional-checks/exercises/leap-year/solution/">Български</a> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <a href="/uk/essentials/conditional-checks/exercises/leap-year/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

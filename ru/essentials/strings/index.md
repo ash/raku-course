@@ -20,4 +20,5 @@ my $message = 'This is my message';
 
 Давайте посмотрим, что еще мы можем узнать об основных особенностях строк.
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Рациональные числа в Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Рациональные числа в Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Рациональные числа в Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/numbers">Числа</a></p>
+
+<h1 id="рациональные-числа">Рациональные числа</h1>
+
+<p>Рациональные числа — это уникальная особенность Raku. Такие числа представлены
+типом данных <code class="language-plaintext highlighter-rouge">Rat</code>.</p>
+
+<p>Внутри Raku рациональные числа являются дробями с двумя целыми частями:
+числитель и знаменатель. Поэтому вы можете с легкость представить такие числа,
+как 1/3, без потери точности.</p>
+
+<p>Есть несколько способов записи числа <code class="language-plaintext highlighter-rouge">Rat</code> в программе Raku:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>;
+<span class="k">my</span> <span class="nv">$y</span> = <span class="s">&lt;2/3&gt;</span>;
+</pre></div>
+
+
+<p>Отметим, что косая черта здесь является частью нотации. Это не оператор деления,
+поэтому <code class="language-plaintext highlighter-rouge">1/2</code> не означает деление 1 на 2. Хотя при печати рациональные числа
+показаны как десятичные числа или целые:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>; <span class="c1"># 0.5</span>
+<span class="nb">say</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>; <span class="c1"># 0.75</span>
+</pre></div>
+
+
+<p>Часть строки после знака <code class="language-plaintext highlighter-rouge">#</code> является комментарием, который игнорируется
+компилятором. Такие комментарии будут использованы в этом курсе, чтобы показать
+вывод программы.</p>
+
+<h2 id="десятичная-форма">Десятичная форма</h2>
+
+<p>Важно понимать, что когда вы записываете число в десятичной форме, например
+<code class="language-plaintext highlighter-rouge">0.5</code>, Raku создает число типа <code class="language-plaintext highlighter-rouge">Rat</code>. Это не целое число, но и не число с
+плавающей точкой (<code class="language-plaintext highlighter-rouge">float</code> или <code class="language-plaintext highlighter-rouge">double</code> в других языках). Это все еще
+рациональное число!</p>
+
+<p>Давайте посмотрим на следующий пример:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">0.1</span> + <span class="mf">0.2</span> - <span class="mf">0.3</span>;
+</pre></div>
+
+
+<p>Если язык программирования использует арифметику с плавающей точкой для таких
+вычислений, результат не будет равен 0. На сайте
+<a href="https://0.30000000000000004.com">0.30000000000000004.com</a> приведен
+исчерпывающий список примеров, когда арифметика с плавающей точкой не дает
+ожидаемый результат.</p>
+
+<p>Но Raku выведет ровно <code class="language-plaintext highlighter-rouge">0</code>. Так получается, потому что числа <code class="language-plaintext highlighter-rouge">0.1</code>, <code class="language-plaintext highlighter-rouge">0.2</code> и <code class="language-plaintext highlighter-rouge">0.3</code>
+являются рациональными числами, и Raku хранит их внутри как <code class="language-plaintext highlighter-rouge">1/10</code>, <code class="language-plaintext highlighter-rouge">2/10</code> и
+<code class="language-plaintext highlighter-rouge">3/10</code>. Запустите следующее из командной строки, чтобы удостовериться в этом:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku <span class="nt">-e</span> <span class="s1">'say 0.1 + 0.2 - 0.3'</span>
+<span class="go">0
+</span></code></pre></div></div>
+
+<h2 id="символы-юникода">Символы Юникода</h2>
+
+<p>В качестве дробей также возможно использовать символы Юникода, такие как <code class="language-plaintext highlighter-rouge">½</code>,
+<code class="language-plaintext highlighter-rouge">¼</code> или <code class="language-plaintext highlighter-rouge">¾</code>. Наверное, такие дроби не всегда легко набрать с клавиатуры, но они
+полностью соответствуют своим ASCII альтернативам, записанным как дробь или как
+десятичное число:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">½</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1/2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;1/2&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.5</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">¼</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1/4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;1/4&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.25</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">¾</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3/4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;3/4&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.75</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>С некоторыми дробями, как например <code class="language-plaintext highlighter-rouge">1/3</code>, у вас меньше опций, только <code class="language-plaintext highlighter-rouge">⅓</code> или
+<code class="language-plaintext highlighter-rouge">&lt;1/3&gt;</code>, так как десятичная форма бы требовала бесконечное количество цифр.</p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/ru/essentials/numbers/rats/quiz">Тест: Рациональные числа</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/numbers">Числа</a> / <a href="/ru/essentials/numbers/integers">Целые числа</a>
+  |  
+        <a href="/ru/essentials/numbers">Числа</a> / <a href="/ru/essentials/numbers/numeric">Числа с плавающей точкой</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/ru/essentials/numbers/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница переведена с английского человеком. <a href="/essentials/numbers/rats/">Оригинальный текст на английском языке.</a> <a href="/ru/about-this-course/credits">О переводе.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/numbers/rats/">English</a> • <a href="/de/essentials/numbers/rats/">Deutsch</a> • <a href="/es/essentials/numbers/rats/">Español</a> • <a href="/it/essentials/numbers/rats/">Italiano</a> • <a href="/lv/essentials/numbers/rats/">Latviešu</a> • <a href="/nl/essentials/numbers/rats/">Nederlands</a> • <a href="/bg/essentials/numbers/rats/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/numbers/rats/">Українська</a></p>
+</div>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

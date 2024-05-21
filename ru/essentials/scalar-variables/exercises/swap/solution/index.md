@@ -5,7 +5,7 @@ title: Решение для ’Замена значений‘
 {% include menu.html %}
 
 В этой программы мы используем элементы синтаксиса Raku из прошлой главы о
-[скалярных переменных](/essentials/scalar-variables).
+[скалярных переменных](/ru/essentials/scalar-variables).
 
 ## Код
 
@@ -76,4 +76,5 @@ Useless use of $a in sink context (line 2)
 10, 40
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

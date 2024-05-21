@@ -43,4 +43,5 @@ $ raku exercises/scalar-variables/identifiers.raku
 4. Цифра тоже не может быть в начале: `$2address`.
 5. Два дефиса не могут следовать друг за другом: `$from--to`.
 
+{% assign human=1 %}
 {% include nav.html %}

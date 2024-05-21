@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Зверніть увагу на пробіл | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Зверніть увагу на пробіл | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Зверніть увагу на пробіл | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/more-on-functions">Більше про функції</a></p>
+
+<h1 id="зверніть-увагу-на-пробіли">Зверніть увагу на пробіли</h1>
+
+<p>Використання функцій у Raku здебільшого інтуїтивне і не викликає проблем, але ви повинні бути попереджені про наступний аспект.</p>
+
+<h2 id="коротко">Коротко</h2>
+
+<p>Не додавайте пробіл між назвою функції та дужками з її аргументами. Але використовуйте пробіл після <code class="language-plaintext highlighter-rouge">for</code> та <code class="language-plaintext highlighter-rouge">if</code>.</p>
+
+<h2 id="детально">Детально</h2>
+
+<p>Візьмемо просту функцію:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Перш за все, зверніть увагу на відсутність пробілів між назвою функції та відкриваючими дужками, які містять параметри. Деякі стилі кодування в інших мовах можуть вимагати пробіл там. Raku це допускає, але це не практика, яку слід дотримуватися:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>На стороні виклику відсутність пробілу є важливою. Якщо ви викликаєте функцію і опускаєте дужки, то пробіл після назви функції є неминучим:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>Але якщо ви додаєте дужки, то не можна мати пробіл перед ними. Це правильний виклик:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>А цей виклик неправильний:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Такий код викликає виняток:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+  sub f at t.raku line 1
+  in block &lt;unit&gt; at t.raku line 5
+</code></pre></div></div>
+
+<p>Raku бачить виклик з пробілом <code class="language-plaintext highlighter-rouge">f (5, 6)</code> як спробу передати один аргумент <code class="language-plaintext highlighter-rouge">(5, 6)</code> до функції. Ви можете легко перевірити тип цього аргументу, якщо перепишете функцію так, щоб вона приймала лише один аргумент:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+}
+
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Отже, виклик <code class="language-plaintext highlighter-rouge">f (5, 6)</code> означає, що ми передаємо <a href="/uk/essentials/positionals/lists">список</a> до функції. Список як єдину сутність.</p>
+
+<h2 id="коли-потрібен-пробіл">Коли потрібен пробіл</h2>
+
+<p>У деяких випадках пробіл необхідний. Це відбувається, коли ви використовуєте дужки з одним із ключових слів, таких як <code class="language-plaintext highlighter-rouge">if</code> або <code class="language-plaintext highlighter-rouge">for</code> або <code class="language-plaintext highlighter-rouge">loop</code>. Наступний код неправильний:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>Повідомлення про помилку пояснює, що не так:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+The word 'if' is interpreted as a 'if()' function call.  Please use
+whitespace instead of parentheses.
+at /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unexpected block in infix position (two terms in a row)
+at /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>У випадку з <code class="language-plaintext highlighter-rouge">if</code>, дужки взагалі не потрібні, тому проблема не виникає, якщо ви їх не використовуєте. Але в деяких випадках, як, наприклад, з <code class="language-plaintext highlighter-rouge">loop</code>, вам потрібно мати їх, і пробіл стає обов’язковим:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>У цьому коді відбувається те ж саме: <code class="language-plaintext highlighter-rouge">loop(...)</code> розуміється компілятором як виклик функції. Додайте пробіл, щоб вирішити проблему. Або краще перепишіть фрагмент, використовуючи <code class="language-plaintext highlighter-rouge">for</code>.</p>
+
+<h2 id="висновок">Висновок</h2>
+
+<p>Основна ідея: щоб уникнути таких проблем, не додавайте пробіл між назвою функції та дужками з аргументами функції і намагайтеся уникати дужок, якщо це можливо з іншими конструкціями мови, такими як керування потоком.</p>
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/more-on-functions">Більше про функції</a>
+  |  
+        <a href="/uk/essentials/more-on-functions">Більше про функції</a> / <a href="/uk/essentials/more-on-functions/typed-parameters">Типізовані параметри</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/uk/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/more-on-functions/mind-the-space/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/mind-the-space/">Български</a> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -14,4 +14,5 @@ my $ = | ␣␣ ␣age ␣ 4.5; # миллиардов лет
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

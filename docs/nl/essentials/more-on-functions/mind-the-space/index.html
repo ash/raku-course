@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Let op de spatie | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Let op de spatie | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Let op de spatie | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/more-on-functions">Meer over functies</a></p>
+
+<h1 id="let-op-de-spatie">Let op de spatie</h1>
+
+<p>Het gebruik van functies in Raku is meestal intuïtief en veroorzaakt geen problemen, maar je moet gewaarschuwd worden voor het volgende aspect.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>Voeg geen spatie toe tussen de naam van de functie en de haakjes met de argumenten. Maar gebruik een spatie na <code class="language-plaintext highlighter-rouge">for</code> en <code class="language-plaintext highlighter-rouge">if</code>.</p>
+
+<h2 id="lang-verhaal">Lang verhaal</h2>
+
+<p>Laten we een eenvoudige functie nemen:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Let allereerst op de afwezigheid van spaties tussen de naam van de functie en de openingshaakjes die de parameters bevatten. Sommige codestijlen in andere talen kunnen daar een spatie vereisen. Raku vindt dat prima, maar dit is geen praktijk om te volgen:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Aan de aanroepzijde is de afwezigheid van spatie belangrijk. Als je de functie aanroept en de haakjes weglaat, dan is de spatie na de naam van de functie onvermijdelijk:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>Maar als je haakjes toevoegt, kun je geen spatie ervoor hebben. Dit is een correcte aanroep:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>En deze aanroep is fout:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Dergelijke code veroorzaakt een uitzondering:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+  sub f at t.raku line 1
+  in block &lt;unit&gt; at t.raku line 5
+</code></pre></div></div>
+
+<p>Raku ziet de aanroep met een spatie <code class="language-plaintext highlighter-rouge">f (5, 6)</code> als een poging om een enkel argument <code class="language-plaintext highlighter-rouge">(5, 6)</code> aan de functie door te geven. Je kunt het type van dit argument gemakkelijk controleren als je de functie herschrijft om slechts één argument te accepteren:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+}
+
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Dus, het aanroepen van <code class="language-plaintext highlighter-rouge">f (5, 6)</code> betekent dat we een <a href="/nl/essentials/positionals/lists">lijst</a> aan de functie doorgeven. De lijst als een enkele entiteit.</p>
+
+<h2 id="wanneer-spatie-nodig-is">Wanneer spatie nodig is</h2>
+
+<p>In sommige gevallen is het spatiekarakter nodig. Dat gebeurt wanneer je haakjes gebruikt met een van de sleutelwoorden, zoals <code class="language-plaintext highlighter-rouge">if</code> of <code class="language-plaintext highlighter-rouge">for</code> of <code class="language-plaintext highlighter-rouge">loop</code>. De volgende code is fout:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>Het foutbericht legt uit wat er mis is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+The word 'if' is interpreted as a 'if()' function call.  Please use
+whitespace instead of parentheses.
+at /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unexpected block in infix position (two terms in a row)
+at /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>In het geval van <code class="language-plaintext highlighter-rouge">if</code> zijn haakjes helemaal niet nodig, dus het probleem heeft geen kans om te verschijnen als je ze niet gebruikt. Maar in sommige gevallen, zoals bijvoorbeeld met <code class="language-plaintext highlighter-rouge">loop</code>, moet je ze hebben, en wordt de spatie verplicht:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>In deze code gebeurt hetzelfde: <code class="language-plaintext highlighter-rouge">loop(...)</code> wordt door de compiler begrepen als een functieaanroep. Voeg een spatie toe om het probleem op te lossen. Of herschrijf het fragment beter met <code class="language-plaintext highlighter-rouge">for</code>.</p>
+
+<h2 id="conclusie">Conclusie</h2>
+
+<p>Kortom: om dergelijke problemen te vermijden, voeg geen spatie toe tussen de naam van de functie en de haakjes met de argumenten van de functie en probeer haakjes te vermijden als dat mogelijk is met andere taalconstructies zoals controleflow.</p>
+
+<p></div></p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+        <a href="/nl/essentials/more-on-functions">Meer over functies</a>
+  |  
+        <a href="/nl/essentials/more-on-functions">Meer over functies</a> / <a href="/nl/essentials/more-on-functions/typed-parameters">Getypte parameters</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/nl/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/more-on-functions/mind-the-space/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/more-on-functions/mind-the-space/">Български</a> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

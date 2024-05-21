@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Typed parameters of functions | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Typed parameters of functions | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Typed parameters of functions | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/more-on-functions">Більше про функції</a></p>
+
+<h1 id="типізовані-параметри">Типізовані параметри</h1>
+
+<p>Параметри функцій у Raku можуть бути обмежені типами. Це дуже схоже на <a href="/uk/essentials/typed-variables/type-constraints/">типізовані змінні</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+</pre></div>
+
+
+<p>Тепер функція вимагає, щоб її аргументи були цілими числами.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>);
+<span class="c1"># say add(pi, e); # Помилка</span>
+</pre></div>
+
+
+<p>Спроба передати параметр будь-якого іншого типу, ніж <code class="language-plaintext highlighter-rouge">Int</code>, призведе до помилки під час компіляції.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku t.raku
+===SORRY!=== Error while compiling t.raku
+Calling add(Num, Num) will never work with declared signature (Int $x, Int $y)
+at t.raku:5
+------&gt; say ⏏add(pi, e);
+</code></pre></div></div>
+
+<p>Зверніть увагу, що Raku не буде автоматично конвертувати типи, навіть якщо це можливо в інших випадках.</p>
+
+<div class="highlight"><pre><span></span><span class="c1"># say add(&#39;3&#39;, &#39;4&#39;); # Помилка</span>
+<span class="nb">say</span> <span class="s">&#39;3&#39;</span> + <span class="s">&#39;4&#39;</span>; <span class="c1"># OK і результат 7</span>
+</pre></div>
+
+
+<p><div class="tip"></p>
+<h2 id="як-визначити-що-це-помилка-під-час-компіляції">Як визначити, що це помилка під час компіляції</h2>
+<p>Якщо повідомлення про помилку починається з <code class="language-plaintext highlighter-rouge">===SORRY!=== Error while compiling</code>, це означає, що помилка сталася під час компіляції.
+</div></p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/uk/essentials/more-on-functions/typed-parameters/quiz">Тест — Типізовані параметри</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/more-on-functions">Більше про функції</a> / <a href="/uk/essentials/more-on-functions/mind-the-space">Зверніть увагу на пробіли</a>
+  |  
+        <a href="/uk/essentials/more-on-functions">Більше про функції</a> / <a href="/uk/essentials/more-on-functions/return-type">Тип повернення</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/uk/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/more-on-functions/typed-parameters/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/more-on-functions/typed-parameters/">English</a> • <a href="/de/essentials/more-on-functions/typed-parameters/">Deutsch</a> • <a href="/es/essentials/more-on-functions/typed-parameters/">Español</a> • <a href="/it/essentials/more-on-functions/typed-parameters/">Italiano</a> • <a href="/lv/essentials/more-on-functions/typed-parameters/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/typed-parameters/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/typed-parameters/">Български</a> • <a href="/ru/essentials/more-on-functions/typed-parameters/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

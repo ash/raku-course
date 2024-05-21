@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Перетворення типів за допомогою префіксних операторів | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Перетворення типів за допомогою префіксних операторів | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Перетворення типів за допомогою префіксних операторів | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/coercion">Перетворення типів даних</a></p>
+
+<h1 id="перетворення-типів-за-допомогою-префіксних-операторів">Перетворення типів за допомогою префіксних операторів</h1>
+
+<p>Ще один спосіб перетворення типу об’єкта — використання префіксних операторів. Це однобуквені оператори, які розташовуються безпосередньо перед значенням (або змінною).</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">~</code></td>
+      <td>Приведення до рядка</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td>Числове приведення</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">?</code></td>
+      <td>Логічне приведення</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Розглянемо приклад створення логічного значення з цілого числа:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ?<span class="mi">42</span>; <span class="c1"># True</span>
+</pre></div>
+
+
+<p>Перетворення до рядка виглядає схоже:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = -<span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$s</span> = ~<span class="nv">$n</span>;
+<span class="nb">say</span> <span class="nv">$s</span>.<span class="nb">chars</span>; <span class="c1"># 3, оскільки &quot;-30&quot; має 3 символи</span>
+</pre></div>
+
+
+<p>Зверніть увагу, що при числовому перетворенні тип перетвореного значення відрізняється залежно від числа. Порівняйте наступні перетворення з рядків:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> (+<span class="s">&#39;100&#39;</span>).<span class="nb">WHAT</span>;   <span class="c1"># (Int)</span>
+<span class="nb">say</span> (+<span class="s">&#39;3.14&#39;</span>).<span class="nb">WHAT</span>;  <span class="c1"># (Rat)</span>
+<span class="nb">say</span> (+<span class="s">&#39;27E-1&#39;</span>).<span class="nb">WHAT</span>; <span class="c1"># (Num)</span>
+</pre></div>
+
+
+<p>Для логічних перетворень існує ще одна процедура під назвою <code class="language-plaintext highlighter-rouge">so</code>. Ви можете використовувати її як префіксний оператор або як метод:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="mi">42</span>;
+<span class="nb">say</span> <span class="nb">so</span> <span class="nv">$value</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$value</span>.<span class="nb">so</span>; <span class="c1"># True</span>
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/coercion">Перетворення типів даних</a> / <a href="/uk/essentials/coercion/new">Перетворення типів за допомогою конструкторів</a>
+  |  
+        💪 <a href="/uk/essentials/coercion/exercises">Exercises: Перетворення типів даних</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/coercion/prefixes/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/coercion/prefixes/">English</a> • <a href="/de/essentials/coercion/prefixes/">Deutsch</a> • <a href="/es/essentials/coercion/prefixes/">Español</a> • <a href="/it/essentials/coercion/prefixes/">Italiano</a> • <a href="/lv/essentials/coercion/prefixes/">Latviešu</a> • <a href="/nl/essentials/coercion/prefixes/">Nederlands</a> • <a href="/bg/essentials/coercion/prefixes/">Български</a> • <a href="/ru/essentials/coercion/prefixes/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

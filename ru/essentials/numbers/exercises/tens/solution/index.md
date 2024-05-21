@@ -40,7 +40,7 @@ Enter a positive integer number: 234
 
 Обратите внимание на пробел перед открывающейся скобкой. Он обязателен, иначе
 будет синтаксическая ошибка. Мы вернемся к [этой
-особенности](/essentials/more-on-functions/mind-the-space) Raku в главе про
+особенности](/ru/essentials/more-on-functions/mind-the-space) Raku в главе про
 функции, но пока что, напишите код как показано выше, либо добавьте еще одну
 пару скобок вокруг аргумента функции. Пробел в таком случае не нужен:
 
@@ -48,4 +48,5 @@ Enter a positive integer number: 234
     say(($n % 100) div 10);
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

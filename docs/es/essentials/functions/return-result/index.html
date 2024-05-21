@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Devolviendo el resultado | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Devolviendo el resultado | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Devolviendo el resultado | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/functions">Crear y llamar funciones</a></p>
+
+<h1 id="devolver-el-resultado">Devolver el resultado</h1>
+
+<p>Las funciones a menudo no solo hacen algo, sino que también devuelven un resultado. Por ejemplo, en la programación funcional, las funciones no deben producir efectos secundarios como imprimir en la consola. Sin embargo, Raku no te limita de hacerlo. Veamos cómo devolver un valor de una función y cómo obtenerlo en el código que llama.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+
+<span class="k">my</span> <span class="nv">$sum</span> = <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>);
+<span class="nb">say</span> <span class="nv">$sum</span>; <span class="c1"># 30</span>
+</pre></div>
+
+
+<p>Aquí, la función llamada <code class="language-plaintext highlighter-rouge">add</code> toma dos números y devuelve su suma. Se usa un <code class="language-plaintext highlighter-rouge">return</code> explícito. En el lado de la llamada, el valor que la función devuelve se puede usar como cualquier otro valor. En el programa anterior, se asigna a una variable.</p>
+
+<h2 id="el-último-valor-evaluado">El último valor evaluado</h2>
+
+<p>En Raku, un <code class="language-plaintext highlighter-rouge">return</code> explícito no es necesario si el resultado que deseas devolver de una función es el último valor calculado en su cuerpo. Nuestra función <code class="language-plaintext highlighter-rouge">add</code> se puede simplificar:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nv">$x</span> + <span class="nv">$y</span>
+}
+</pre></div>
+
+
+<p>Como habrás notado, no hay punto y coma al final de la línea ya que no es necesario cuando la línea termina el bloque de código actual.</p>
+
+<p>Funciones tan triviales y pequeñas a menudo se formatean en una sola línea para un código más compacto:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+</pre></div>
+
+
+<h2 id="sin-datos-de-retorno">Sin datos de retorno</h2>
+
+<p>Si necesitas devolver desde una función antes del final de su cuerpo, y la función no devuelve ningún resultado, usa un <code class="language-plaintext highlighter-rouge">return</code> vacío.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">test</span>(<span class="nv">$x</span>) {
+    <span class="k">return</span> <span class="k">if</span> <span class="nv">$x</span> &lt;= <span class="mi">10</span>;
+    <span class="nb">say</span> <span class="s">&quot;$x está por encima del límite&quot;</span>;
+}
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="práctica">Práctica</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/es/essentials/functions/return-result/quiz">Quiz — Devolver desde una función</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+        <a href="/es/essentials/functions">Crear y llamar funciones</a> / <a href="/es/essentials/functions/function-parameters">Parámetros de funciones</a>
+  |  
+        <a href="/es/essentials/functions">Crear y llamar funciones</a> / <a href="/es/essentials/functions/positional-parameters">Parámetros posicionales</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/es/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/functions/return-result/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/functions/return-result/">English</a> • <a href="/de/essentials/functions/return-result/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/functions/return-result/">Italiano</a> • <a href="/lv/essentials/functions/return-result/">Latviešu</a> • <a href="/nl/essentials/functions/return-result/">Nederlands</a> • <a href="/bg/essentials/functions/return-result/">Български</a> • <a href="/ru/essentials/functions/return-result/">Русский</a> • <a href="/uk/essentials/functions/return-result/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

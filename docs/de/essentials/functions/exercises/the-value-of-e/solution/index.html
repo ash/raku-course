@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lösung: Der Wert von e | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Lösung: Der Wert von e | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Lösung: Der Wert von e | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/functions/">Erstellen und Aufrufen von Funktionen</a> / <a href="/de/essentials/functions/exercises/">Übungen</a> / <a href="/de/essentials/functions/exercises/the-value-of-e">Der Wert von e</a></p>
+
+<h1 id="lösung-der-wert-von-e">Lösung: Der Wert von e</h1>
+
+<h2 id="haftungsausschluss">Haftungsausschluss</h2>
+
+<p>In Raku gibt es eine eingebaute Konstante <code class="language-plaintext highlighter-rouge">e</code>, die die sofortige Antwort auf die Aufgabe liefert. Die unten gezeigte Lösung ist zu Bildungszwecken gedacht.</p>
+
+<h2 id="code">Code</h2>
+
+<p>Die Formel in dieser Aufgabe enthält eine Fakultät, und wir haben bereits mindestens zwei Lösungen, um sie zu berechnen (weitere folgen). Das folgende Programm definiert zwei Funktionen: eine zur Berechnung der Fakultät und eine weitere für die Teilsumme gemäß der Formel.</p>
+
+<p>Da es erforderlich ist, dass die Funktion ohne Argumente aufgerufen werden kann, in welchem Fall sie eine vordefinierte Anzahl von Iterationen ausführt, können wir einen <a href="/de/essentials/functions/default-values">Standardwert</a> des Parameters hinzufügen: <code class="language-plaintext highlighter-rouge">sub e-approx($max = 100)</code>.</p>
+
+<p>Beachten Sie im Code die Ähnlichkeiten, wie die Ergebniswerte in einer <a href="/de/essentials/loops/postfix-for">postfix <code class="language-plaintext highlighter-rouge">for</code> Schleife</a> über einen <a href="/de/essentials/ranges">Bereich</a> akkumuliert werden.</p>
+
+<p>Hier ist die Lösung:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">factorial</span>(<span class="nv">$n</span>) {
+    <span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+    <span class="nv">$f</span> *= <span class="nv">$_</span> <span class="k">for</span> <span class="mi">1</span>..<span class="nv">$n</span>;
+
+    <span class="k">return</span> <span class="nv">$f</span>;
+}
+
+<span class="k">sub</span> <span class="n">e-approx</span>(<span class="nv">$max</span> = <span class="mi">100</span>) {
+    <span class="k">my</span> <span class="nv">$e</span> = <span class="mi">1</span>;
+    <span class="nv">$e</span> += <span class="mi">1</span> / <span class="n">factorial</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>..<span class="nv">$max</span>;
+
+    <span class="k">return</span> <span class="nv">$e</span>;
+}
+
+<span class="nb">say</span> <span class="n">e-approx</span>(<span class="mi">10</span>);
+<span class="nb">say</span> <span class="n">e-approx</span>();
+</pre></div>
+
+
+<p>🦋 Finden Sie das Programm in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku">the-value-of-e.raku</a>.</p>
+
+<h2 id="ausgabe">Ausgabe</h2>
+
+<p>Mit 10 und 100 Iterationen erhalten wir die folgenden Ergebnisse. Versuchen Sie auch andere Werte für <code class="language-plaintext highlighter-rouge">$max</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/functions/the-value-of-e.raku
+<span class="go">2.7182818
+2.718281828459045
+</span></code></pre></div></div>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+    <a href="/de/essentials/associatives">Assoziative Datentypen</a>
+        / <a href="/de/essentials/associatives/interpolating-hashes">Interpolation von Hashes</a>
+  |  
+    <a href="/de/advanced/more-on-functions">Mehr über Funktionen</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/functions/exercises/the-value-of-e/solution/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/functions/exercises/the-value-of-e/solution/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/functions/exercises/the-value-of-e/solution/">Español</a> • <a href="/it/essentials/functions/exercises/the-value-of-e/solution/">Italiano</a> • <a href="/lv/essentials/functions/exercises/the-value-of-e/solution/">Latviešu</a> • <a href="/nl/essentials/functions/exercises/the-value-of-e/solution/">Nederlands</a> • <a href="/bg/essentials/functions/exercises/the-value-of-e/solution/">Български</a> • <a href="/ru/essentials/functions/exercises/the-value-of-e/solution/">Русский</a> • <a href="/uk/essentials/functions/exercises/the-value-of-e/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

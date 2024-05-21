@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Multi-functies | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Multi-functies | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Multi-functies | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/more-on-functions">Meer over functies</a></p>
+
+<h1 id="multi-functies">Multi-functies</h1>
+
+<p>Raku implementeert <em>meervoudige dispatch</em> op basis van functiesignatuur. Het stelt je in staat om functies te creëren die dezelfde naam delen maar verschillende soorten invoergegevens hebben. Gebruik de <code class="language-plaintext highlighter-rouge">multi</code> declarator voor elk van de varianten van de functie.</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
+</pre></div>
+
+
+<p>(Het is prima om <code class="language-plaintext highlighter-rouge">sub</code> weg te laten na <code class="language-plaintext highlighter-rouge">multi</code>.)</p>
+
+<p>Als je twee varianten van dezelfde functie hebt, voert de compiler meervoudige dispatch uit afhankelijk van welke argumenten hij ziet in de functieaanroep. Vergelijk de volgende twee aanroepen:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
+</pre></div>
+
+
+<p>De eerste aanroep activeert de functie met integer parameters, terwijl de tweede aanroep de tweede variant van de functie uitvoert die twee strings verwacht.</p>
+
+<h2 id="letterlijke-parameters">Letterlijke parameters</h2>
+
+<p>Een interessant geval voor multi-functies is om varianten te hebben die letterlijke waarden als parameters hebben. Overweeg de volgende twee varianten:</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Dit is het antwoord&#39;</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x is niet het antwoord&quot;</span>}
+</pre></div>
+
+
+<p>De eerste variant wordt alleen uitgevoerd wanneer je de functie aanroept met de exacte waarde van 42. In andere gevallen wordt de tweede variant gebruikt. De volgorde waarin deze functies zijn gedefinieerd maakt niet uit.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 is niet het antwoord</span>
+<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Dit is het antwoord</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="oefening">Oefening</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/nl/essentials/more-on-functions/multi-functions/quiz1">Quiz 1 — Eenvoudige multi-functies</a></li>
+  <li><a href="/nl/essentials/more-on-functions/multi-functions/quiz2">Quiz 2 — Multi-functies met getypte parameters</a></li>
+  <li><a href="/nl/essentials/more-on-functions/multi-functions/quiz3">Quiz 3 — Aanroepen van multi-functies</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+        <a href="/nl/essentials/more-on-functions">Meer over functies</a> / <a href="/nl/essentials/more-on-functions/return-type">Return type</a>
+  |  
+        💪 <a href="/nl/essentials/more-on-functions/exercises/factorial-with-multi-functions">Exercise: Faculteit met multi-functies</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/more-on-functions/multi-functions/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/more-on-functions/multi-functions/">English</a> • <a href="/de/essentials/more-on-functions/multi-functions/">Deutsch</a> • <a href="/es/essentials/more-on-functions/multi-functions/">Español</a> • <a href="/it/essentials/more-on-functions/multi-functions/">Italiano</a> • <a href="/lv/essentials/more-on-functions/multi-functions/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/more-on-functions/multi-functions/">Български</a> • <a href="/ru/essentials/more-on-functions/multi-functions/">Русский</a> • <a href="/uk/essentials/more-on-functions/multi-functions/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

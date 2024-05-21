@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Довжина рядка в Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Довжина рядка в Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Довжина рядка в Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/strings">Рядки</a></p>
+
+<h1 id="довжина-рядка">Довжина рядка</h1>
+
+<p>Юнікодна природа рядків робить деякі тривіальні речі трохи складнішими. Або, принаймні, потрібно думати про це як про менш прямолінійну тему. Візьмемо, наприклад, довжину рядка. Це кількість символів, чи кількість байтів? Або що, якщо той самий символ розкладений по-різному в різних рядках, чи все ще це один і той самий символ?</p>
+
+<h2 id="довжина-в-символах">Довжина в символах</h2>
+
+<p>Щоб отримати довжину рядка в символах, використовуйте <em>метод</em> <code class="language-plaintext highlighter-rouge">chars</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
+</pre></div>
+
+
+<p>Хоча ми поговоримо про методи пізніше, ми вже повинні вміти їх використовувати. У Raku ви можете викликати методи майже на кожному об’єкті, включаючи рядки та скалярні змінні. Щоб викликати метод, використовуйте крапку. Отже, тут ми бачимо метод, викликаний на змінній, яка містить рядок: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>У цьому китайському привітанні 你好世界 є чотири символи. І <code class="language-plaintext highlighter-rouge">$str.chars</code> повертає саме <code class="language-plaintext highlighter-rouge">4</code>.</p>
+
+<h2 id="довжина-в-байтах">Довжина в байтах</h2>
+
+<p>Для довідки, ось як отримати довжину рядка в байтах. У цьому випадку важливо знати, яке кодування використовується для зберігання рядка:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
+</pre></div>
+
+
+<p>Цього разу програма виводить <code class="language-plaintext highlighter-rouge">12</code>. Зверніть увагу, що у другому рядку ми маємо два виклики методів, з’єднані разом.</p>
+
+<h2 id="довжина-в-кодових-точках">Довжина в кодових точках</h2>
+
+<p>Для повноти картини, ось ще один корисний метод, який також стосується довжини рядків: <code class="language-plaintext highlighter-rouge">codes</code>. Він повертає кількість кодових точок у рядку після його нормалізації. У багатьох випадках <code class="language-plaintext highlighter-rouge">codes</code> і <code class="language-plaintext highlighter-rouge">chars</code> повертають одне й те саме. Проте в деяких рідкісних випадках, коли, наприклад, ви створили ‘неможливий’ символ, для якого немає єдиної кодової точки у всьому просторі Юнікоду, методи дають різні результати.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
+</pre></div>
+
+
+<p>Цей символ, <code class="language-plaintext highlighter-rouge">x̨</code>, не має окремої кодової точки і може бути сконструйований лише з двох частин: маленької літери <code class="language-plaintext highlighter-rouge">x</code> і комбінованого символу <code class="language-plaintext highlighter-rouge">0x0328</code>. Отже, це все ще один символ, але дві кодові точки. Тому програма виводить:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/uk/essentials/strings/string-length/quiz">Тест: Довжина фрази</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/strings">Рядки</a> / <a href="/uk/essentials/strings/escaping-special-characters">Екранування спеціальних символів</a>
+  |  
+        💪 <a href="/uk/essentials/strings/exercises">Exercises: Рядки</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/strings/string-length/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/strings/string-length/">English</a> • <a href="/de/essentials/strings/string-length/">Deutsch</a> • <a href="/es/essentials/strings/string-length/">Español</a> • <a href="/it/essentials/strings/string-length/">Italiano</a> • <a href="/lv/essentials/strings/string-length/">Latviešu</a> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <a href="/ru/essentials/strings/string-length/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

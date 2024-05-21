@@ -15,4 +15,5 @@ title: 'Тест 2: Присвоение двух значений'
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

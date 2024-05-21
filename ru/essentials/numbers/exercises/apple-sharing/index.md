@@ -41,4 +41,5 @@ There are 2 apple(s) remaining.
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

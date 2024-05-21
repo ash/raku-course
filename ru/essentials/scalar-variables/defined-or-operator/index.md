@@ -38,4 +38,5 @@ $x //= 42;
 say $x; # 42
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -99,4 +99,5 @@ say 100 %% 3 != 0; # Flase
 ```
 %%/tipblock
 
+{% assign human=1 %}
 {% include nav.html %}

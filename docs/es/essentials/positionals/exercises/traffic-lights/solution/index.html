@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solución: Semáforos | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solución: Semáforos | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Solución: Semáforos | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/positionals/">Tipos de datos posicionales</a> / <a href="/es/essentials/positionals/exercises/">Ejercicios</a> / <a href="/es/essentials/positionals/exercises/traffic-lights">Semáforos</a></p>
+
+<h1 id="solución-semáforos">Solución: Semáforos</h1>
+
+<p>La idea de la solución es ‘circular el índice’ del array con los cuatro estados de los semáforos:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@lights</span> = <span class="s">&lt;yellow red yellow green&gt;</span>;
+</pre></div>
+
+
+<p>Durante los primeros segundos, el número de segundos desde el inicio se puede usar directamente como un índice en el array. Cuando excede 3, puedes circularlo al comienzo del array con el operador módulo <code class="language-plaintext highlighter-rouge">%</code>. La longitud del array es <code class="language-plaintext highlighter-rouge">@lights.elems</code>, pero cuando se usa como un operando de <code class="language-plaintext highlighter-rouge">%</code>, no es necesario llamar al método <code class="language-plaintext highlighter-rouge">elems</code>, ya que el nombre del array se convertirá en un número, y esa conversión está diseñada para devolver el número de elementos.</p>
+
+<h2 id="código">Código</h2>
+
+<p>Aquí está la solución:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@lights</span> = <span class="s">&lt;yellow red yellow green&gt;</span>;
+
+<span class="nb">say</span> <span class="nv">@lights</span>[<span class="mi">51</span> % <span class="nv">@lights</span>];
+<span class="nb">say</span> <span class="nv">@lights</span>[<span class="mi">102</span> % <span class="nv">@lights</span>];
+<span class="nb">say</span> <span class="nv">@lights</span>[<span class="mi">305</span> % <span class="nv">@lights</span>];
+</pre></div>
+
+
+<p>🦋 Encuentra el programa en el archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/positionals/traffic-lights.raku">traffic-lights.raku</a>.</p>
+
+<h2 id="salida">Salida</h2>
+
+<p>Ejecuta el programa. Además, prueba otros valores en el programa.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/traffic-lights.raku
+<span class="go">green
+yellow
+red
+</span></code></pre></div></div>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/es/essentials/positionals/exercises/number-of-command-line-arguments">El número de argumentos de línea de comandos</a>
+</div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+    <a href="/es/essentials/typed-variables">Variables tipadas</a>
+        / <a href="/es/essentials/typed-variables/allomorphs">Alomorfos</a>
+  |  
+    <a href="/es/advanced/associatives">Tipos de datos asociativos</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/positionals/exercises/traffic-lights/solution/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/positionals/exercises/traffic-lights/solution/">English</a> • <a href="/de/essentials/positionals/exercises/traffic-lights/solution/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/positionals/exercises/traffic-lights/solution/">Italiano</a> • <a href="/lv/essentials/positionals/exercises/traffic-lights/solution/">Latviešu</a> • <a href="/nl/essentials/positionals/exercises/traffic-lights/solution/">Nederlands</a> • <a href="/bg/essentials/positionals/exercises/traffic-lights/solution/">Български</a> • <a href="/ru/essentials/positionals/exercises/traffic-lights/solution/">Русский</a> • <a href="/uk/essentials/positionals/exercises/traffic-lights/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

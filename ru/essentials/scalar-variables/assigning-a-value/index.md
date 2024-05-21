@@ -34,4 +34,5 @@ my ($a, $b);
 ($a, $b) = (10, 20);
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -23,4 +23,5 @@ The sum of the numbers from 1 to 10 is 55.
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Escaping special characters in Raku strings | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Escaping special characters in Raku strings | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Escaping special characters in Raku strings | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/strings">Stringhe</a></p>
+
+<h1 id="escape-dei-caratteri-speciali">Escape dei caratteri speciali</h1>
+
+<p>Immagina di voler stampare un’etichetta del prezzo e di conservare sia il nome del prodotto che il suo prezzo in variabili scalari?</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
+
+
+<p>Come stampi l’etichetta se il prezzo deve essere in dollari? L’output previsto è: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. Un segno di dollaro nelle stringhe tra doppi apici è un indicatore di una variabile da interpolare. Per stampare il carattere <code class="language-plaintext highlighter-rouge">$</code> stesso, devi eseguirne l’escape:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
+
+
+<p>Ovviamente, puoi usare la concatenazione di stringhe ed evitare l’escape di <code class="language-plaintext highlighter-rouge">$</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
+
+
+<p>Questa variante stampa esattamente la stessa stringa, ma l’interpolazione sembra più naturale e facile da leggere. Nota che il carattere <code class="language-plaintext highlighter-rouge">$</code> non è stato né interpolato né eseguito l’escape in una stringa tra apici singoli: <code class="language-plaintext highlighter-rouge">' costs $'</code>. Questa è la principale differenza. I caratteri speciali tra apici singoli appaiono così come sono.</p>
+
+<p>Ecco alcuni altri caratteri speciali che hanno un significato speciale nelle stringhe tra doppi apici:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
+      <td>Segno di dollaro</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
+      <td>Nuova riga</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
+      <td>Ritorno a capo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
+      <td>Tabulazione orizzontale</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
+      <td>Doppio apice</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
+      <td>Barra rovesciata</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Il modo in cui citi la stringa definisce come Raku tratta i caratteri speciali. Considera questi due esempi:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
+
+
+<p>Se esegui questo programma, vedrai che la prima stringa appare così com’è su una singola riga. La seconda stringa è stata divisa in due parti:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>One\nTwo
+Three
+Four
+</code></pre></div></div>
+
+<p>Tra doppi apici, una sequenza speciale <code class="language-plaintext highlighter-rouge">\n</code> è stata elaborata come un carattere di nuova riga, mentre in una stringa tra apici singoli era una normale sequenza di due caratteri: <code class="language-plaintext highlighter-rouge">\</code> e <code class="language-plaintext highlighter-rouge">n</code>.</p>
+
+<p>C’è un’eccezione interessante per <code class="language-plaintext highlighter-rouge">'</code> e <code class="language-plaintext highlighter-rouge">\</code>. Tra apici singoli, puoi eseguire l’escape di un apice singolo prefissandolo con un altro <code class="language-plaintext highlighter-rouge">\</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
+
+
+<p>Anche una barra rovesciata deve essere eseguita l’escape se segue un apice singolo:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="pratica">Pratica</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/it/essentials/strings/escaping-special-characters/quiz">Quiz: Una barra rovesciata nell’output</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+        <a href="/it/essentials/strings">Stringhe</a> / <a href="/it/essentials/strings/code-interpolation">Interpolazione del codice</a>
+  |  
+        <a href="/it/essentials/strings">Stringhe</a> / <a href="/it/essentials/strings/string-length">Lunghezza della stringa</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/it/essentials/strings/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/strings/escaping-special-characters/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/strings/escaping-special-characters/">Latviešu</a> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

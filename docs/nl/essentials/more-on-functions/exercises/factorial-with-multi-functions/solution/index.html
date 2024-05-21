@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Oplossing: Faculteit met multi-functies | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Oplossing: Faculteit met multi-functies | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Oplossing: Faculteit met multi-functies | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/more-on-functions/">Meer over functies</a> / <a href="/nl/essentials/more-on-functions/exercises/">Oefeningen</a> / <a href="/nl/essentials/more-on-functions/exercises/factorial-with-multi-functions">Faculteit met multi-functies</a></p>
+
+<h1 id="oplossing-faculteit-met-multi-functies">Oplossing: Faculteit met multi-functies</h1>
+
+<p>Deze oefening gaat weer over faculteiten. Inderdaad, de taak stelt ons in staat om meer functies van Raku te illustreren.</p>
+
+<p>Bij het berekenen van een faculteit door te beginnen vanaf het gegeven getal en naar beneden te gaan, moet je stoppen wanneer het getal 1 wordt. Met multi-functies kun je dat bereiken door het geval met <code class="language-plaintext highlighter-rouge">$n == 1</code> naar een aparte multi-functie te extraheren.</p>
+
+<h2 id="code">Code</h2>
+
+<p>Hier is de oplossing:</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">factorial</span>(<span class="mi">1</span>)  { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">factorial</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">factorial</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
+
+<span class="nb">say</span> <span class="n">factorial</span>(<span class="vg">@*ARGS</span>[<span class="mi">0</span>].<span class="nb">Int</span>);
+</pre></div>
+
+
+<p>🦋 Vind het programma in het bestand <a href="https://github.com/ash/raku-course/blob/master/exercises/more-on-functions/factorial-with-multi-functions.raku">factorial-with-multi-functions.raku</a>.</p>
+
+<h2 id="uitvoer">Uitvoer</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/more-on-functions/factorial-with-multi-functions.raku 5
+<span class="go">120
+</span></code></pre></div></div>
+
+<h2 id="opmerking">Opmerking</h2>
+
+<p>Merk op dat het invoerargument expliciet wordt omgezet naar een integer: <code class="language-plaintext highlighter-rouge">@*ARGS[0].Int</code>. Dit is om een oneindige lus te voorkomen wanneer het invoernummer <code class="language-plaintext highlighter-rouge">1</code> is. In dit geval is het type parameter dat aan de <code class="language-plaintext highlighter-rouge">factorial</code> functie wordt doorgegeven een <a href="/nl/essentials/typed-variables/allomorphs"><code class="language-plaintext highlighter-rouge">IntStr</code></a>, en de eerste multi-variant kan de oproep niet opvangen. Daarentegen, wanneer <code class="language-plaintext highlighter-rouge">factorial(2 - 1)</code> recursief wordt aangeroepen, is het argument van de functie een integer, wat het mogelijk maakt om de eerste variant aan te roepen.</p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+    <a href="/nl/essentials/functions">Functies maken en aanroepen</a>
+        / <a href="/nl/essentials/functions/default-values">Standaardwaarden</a>
+  |  
+    <a href="/nl/advanced/built-in-functions-for-printing">Ingebouwde functies voor het afdrukken</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">English</a> • <a href="/de/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Deutsch</a> • <a href="/es/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Español</a> • <a href="/it/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Italiano</a> • <a href="/lv/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Български</a> • <a href="/ru/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Русский</a> • <a href="/uk/essentials/more-on-functions/exercises/factorial-with-multi-functions/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

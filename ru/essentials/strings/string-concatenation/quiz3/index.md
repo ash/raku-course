@@ -16,4 +16,5 @@ title: 'Тест 3: Снова конкатенация строк'
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

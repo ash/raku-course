@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Сравняване на числа | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Сравняване на числа | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Сравняване на числа | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/conditional-checks">Условни проверки</a></p>
+
+<h1 id="сравняване-на-числа">Сравняване на числа</h1>
+
+<p>За да сравните две числа, използвайте следните оператори. Всички те са доста очевидни, ако сте запознати с други програмни езици.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td>Равно</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td>Не е равно</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td>По-малко от</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td>По-малко или равно</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td>По-голямо от</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td>По-голямо или равно</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="приблизително-равно">Приблизително равно</h2>
+
+<p>В допълнение към стандартните оператори, Raku добавя оператора за приблизително равенство <code class="language-plaintext highlighter-rouge">=~=</code>, който сравнява числата приблизително. Резултатът му е <code class="language-plaintext highlighter-rouge">True</code>, ако двете числа са относително близки едно до друго. Максималната относителна разлика не трябва да надвишава вградената стойност <code class="language-plaintext highlighter-rouge">$*TOLERANCE</code>, която е равна на <code class="language-plaintext highlighter-rouge">1e-15</code>.</p>
+
+<h2 id="unicode-версии">Unicode версии</h2>
+
+<p>Някои от горните оператори имат своите Unicode еквиваленти:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≠</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≤</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≥</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">=~=</code></td>
+      <td><code class="language-plaintext highlighter-rouge">≅</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="примери">Примери</h2>
+
+<p>Някои примери с операторите, които сравняват числа:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">10</span> == <span class="mi">10</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">10</span> != <span class="mi">10</span>; <span class="c1"># False</span>
+
+<span class="nb">say</span> <span class="mi">15</span> &lt; <span class="mi">10</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="mi">10</span> &lt;= <span class="mi">10</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">16</span> &gt; <span class="mi">10</span>;  <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">10</span> &gt;= <span class="mi">14</span>; <span class="c1"># False</span>
+
+<span class="nb">say</span> <span class="mf">1.000000000000000000000001</span> =~= <span class="mf">1.000000000000000000000002</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mf">2e17</span> + <span class="mi">1</span> =~= <span class="mf">2e17</span> + <span class="mi">100</span>; <span class="c1"># True</span>
+</pre></div>
+
+
+<p>Забележете, че числото <code class="language-plaintext highlighter-rouge">1.000000000000000000000001</code> е <code class="language-plaintext highlighter-rouge">Rat</code> число, така че не губите прецизност в израз с близко число <code class="language-plaintext highlighter-rouge">1.000000000000000000000002</code>. Последният пример с <code class="language-plaintext highlighter-rouge">2e17</code> работи с <code class="language-plaintext highlighter-rouge">Num</code> числа, които имат ограничена прецизност.</p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/bg/essentials/conditional-checks/comparing-numbers/quiz">Тест — Сравняване на числа</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+        <a href="/bg/essentials/conditional-checks">Условни проверки</a> / <a href="/bg/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> и <code class="language-plaintext highlighter-rouge">unless</code> като модификатори на изречения</a>
+  |  
+        <a href="/bg/essentials/conditional-checks">Условни проверки</a> / <a href="/bg/essentials/conditional-checks/comparing-strings">Сравняване на стрингове</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/bg/essentials/conditional-checks/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/conditional-checks/comparing-numbers/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/conditional-checks/comparing-numbers/">English</a> • <a href="/de/essentials/conditional-checks/comparing-numbers/">Deutsch</a> • <a href="/es/essentials/conditional-checks/comparing-numbers/">Español</a> • <a href="/it/essentials/conditional-checks/comparing-numbers/">Italiano</a> • <a href="/lv/essentials/conditional-checks/comparing-numbers/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/comparing-numbers/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/conditional-checks/comparing-numbers/">Русский</a> • <a href="/uk/essentials/conditional-checks/comparing-numbers/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

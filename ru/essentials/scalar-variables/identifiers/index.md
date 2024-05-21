@@ -64,4 +64,5 @@ $αβγ
 $Δ۲ # где ۲ это число
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

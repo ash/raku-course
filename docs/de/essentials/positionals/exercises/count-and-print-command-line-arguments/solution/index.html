@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lösung des Programms ‘Zähle und drucke Kommandozeilenargumente’ | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Lösung des Programms ‘Zähle und drucke Kommandozeilenargumente’ | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Lösung des Programms ‘Zähle und drucke Kommandozeilenargumente’ | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/positionals/">Positionale Datentypen</a> / <a href="/de/essentials/positionals/exercises/">Übungen</a> / <a href="/de/essentials/positionals/exercises/count-and-print-command-line-arguments">Befehlszeilenargumente zählen und drucken</a></p>
+
+<h1 id="lösung-befehlszeilenargumente-zählen-und-drucken">Lösung: Befehlszeilenargumente zählen und drucken</h1>
+
+<p>In diesem Programm ist eine <code class="language-plaintext highlighter-rouge">for</code>-Schleife eine gute Wahl.</p>
+
+<h2 id="code">Code</h2>
+
+<div class="highlight"><pre><span></span><span class="k">for</span> ^<span class="vg">@*ARGS</span> -&gt; <span class="nv">$n</span> {
+    <span class="nb">say</span> <span class="s">&quot;{$n + 1}. @*ARGS[$n]&quot;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Finde das Programm in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku">count-and-print-arguments.raku</a>.</p>
+
+<h2 id="ausgabe">Ausgabe</h2>
+
+<p>Führe das Programm aus und bestätige, dass es die Argumente und Zeilennummern druckt:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/count-and-print-arguments.raku one two three four
+<span class="go">1. one
+2. two
+3. three
+4. four
+</span></code></pre></div></div>
+
+<h2 id="diskussion">Diskussion</h2>
+
+<p>Dieses Programm verwendet ein paar nützliche Tricks. Zuerst geht die <code class="language-plaintext highlighter-rouge">for</code>-Schleife entlang des <a href="/de/essentials/ranges/excluding-endpoints">Bereichs, der mit <code class="language-plaintext highlighter-rouge">^</code> konstruiert wurde</a>. Der Bereich beginnt also bei 0 und geht bis (aber nicht einschließlich) zum Wert von <code class="language-plaintext highlighter-rouge">@*ARGS</code>. In diesem Kontext <a href="/de/essentials/positionals/arrays#size">gibt er die Länge des Arrays zurück</a>.</p>
+
+<p>Da das erste Element eines Arrays den Index <code class="language-plaintext highlighter-rouge">0</code> hat und die Aufgabe verlangt, dass wir die Zeilen ab <code class="language-plaintext highlighter-rouge">1</code> zählen, wird diese einfache Verschiebung <a href="/de/essentials/strings/code-interpolation">innerhalb eines Codeblocks</a> in einem String berechnet: <code class="language-plaintext highlighter-rouge">"{$n + 1} ..."</code>.</p>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/de/essentials/positionals/exercises/months-names">Monatsnamen</a>
+</div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+    <a href="/de/essentials/typed-variables">Typisierte Variablen</a>
+        / <a href="/de/essentials/typed-variables/allomorphs">Allomorphe</a>
+  |  
+    <a href="/de/advanced/associatives">Assoziative Datentypen</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Español</a> • <a href="/it/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Italiano</a> • <a href="/lv/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Latviešu</a> • <a href="/nl/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Nederlands</a> • <a href="/bg/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Български</a> • <a href="/ru/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Русский</a> • <a href="/uk/essentials/positionals/exercises/count-and-print-command-line-arguments/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

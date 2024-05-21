@@ -7,7 +7,7 @@ title: Упражнение ’Привет, Конкатенация!‘
 ## Проблема
 
 Помните нашу тестовую проблему ‘[Greet a
-person](/essentials/scalar-variables/exercises/greet-a-person/)’? Давайте
+person](/ru/essentials/scalar-variables/exercises/greet-a-person/)’? Давайте
 выведем ее на новый уровень.
 
 Напишите программу, которая спрашивает у пользователя его имя и выводит
@@ -32,4 +32,5 @@ Hello, Ella!
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

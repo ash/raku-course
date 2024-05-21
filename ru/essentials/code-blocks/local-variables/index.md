@@ -30,4 +30,5 @@ $ raku t.raku
 1
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Operationen mit Zahlen | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Operationen mit Zahlen | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Operationen mit Zahlen | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/numbers">Zahlen</a></p>
+
+<h1 id="operationen-mit-zahlen">Operationen mit Zahlen</h1>
+
+<p>Es besteht kein Zweifel, dass Sie bereits einige der Operationen kennen, die Sie mit Raku-Zahlen durchführen können. Nur um zu erwähnen, dass das Symbol der <em>Operation</em> als <em>Operator</em> bezeichnet wird. Die Objekte, auf denen wir Operationen ausführen, werden <em>Operanden</em> genannt.</p>
+
+<h2 id="arithmetik">Arithmetik</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Operator</strong></td>
+      <td><strong>Operation</strong></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td>Addition</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td>Subtraktion</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td>Multiplikation</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td>Division</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Da Raku <a href="/de/essentials/on-unicode">Unicode wirklich gut unterstützt</a>, haben einige dieser Operatoren nicht-ASCII-Äquivalente:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">×</code></td>
+      <td>Multiplikation</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
+      <td>Division</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Um die Reihenfolge der Ausführung zu ändern, verwenden Sie Klammern:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
+</pre></div>
+
+
+<h2 id="modulo">Modulo</h2>
+
+<p>Der Modulo-Operator ist <code class="language-plaintext highlighter-rouge">%</code> wie in vielen anderen Sprachen.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td>Modulo</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Er gibt den Rest der ganzzahligen Division zweier Zahlen zurück, also ist <code class="language-plaintext highlighter-rouge">10 % 3</code> <code class="language-plaintext highlighter-rouge">1</code>. Beachten Sie, dass <code class="language-plaintext highlighter-rouge">-10 % 3</code> <code class="language-plaintext highlighter-rouge">2</code> ist, da das Ergebnis der Operation als die Differenz zwischen der ersten Zahl und der abgerundeten Division multipliziert mit der zweiten Zahl definiert ist. Also ist <code class="language-plaintext highlighter-rouge">$a % $b</code> äquivalent zu <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
+
+<h2 id="teilbarkeit">Teilbarkeit</h2>
+
+<p>Raku fügt einen nützlichen Operator hinzu, um zu testen, ob die Zahl durch eine andere Zahl teilbar ist.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
+      <td>Teilbarkeit</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Dies ist ein Infix-Operator, der zwei Operanden benötigt: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Wenn der erste Operand durch den zweiten Operand teilbar ist, ist das Ergebnis ein boolesches <code class="language-plaintext highlighter-rouge">True</code>. Andernfalls <code class="language-plaintext highlighter-rouge">False</code>.</p>
+
+<h2 id="ganzzahloperationen">Ganzzahloperationen</h2>
+
+<p>Es gibt spezielle Operationen, die ganzzahlige Ergebnisse zurückgeben. Ihre Operatoren sind Wörter anstelle von Symbolen.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">div</code></td>
+      <td>Ganzzahldivision</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
+      <td>Ganzzahlmodulo</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Der <code class="language-plaintext highlighter-rouge">div</code>-Operator rundet das Ergebnis ab, also ist <code class="language-plaintext highlighter-rouge">10 div 3</code> <code class="language-plaintext highlighter-rouge">3</code>, und <code class="language-plaintext highlighter-rouge">-10 div 3</code> ist <code class="language-plaintext highlighter-rouge">-4</code>.</p>
+
+<p>Sowohl <code class="language-plaintext highlighter-rouge">div</code> als auch <code class="language-plaintext highlighter-rouge">mod</code> erwarten ganzzahlige Operanden. Das folgende Programm funktioniert also nicht, wenn Sie die als <code class="language-plaintext highlighter-rouge">Error</code> markierten Zeilen auskommentieren:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<span class="c1"># say 10.3 mod 3; # Error</span>
+
+<span class="nb">say</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
+<span class="c1"># say 10.3 div 3.3; # Error</span>
+</pre></div>
+
+
+<h2 id="potenz">Potenz</h2>
+
+<p>Es gibt zwei Möglichkeiten, das Ergebnis von <em>x</em> hoch <em>y</em> zu erhalten. Erstens können Sie den <code class="language-plaintext highlighter-rouge">**</code>-Operator verwenden:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
+</pre></div>
+
+
+<p>Zweitens können Sie hochgestellte Ziffern verwenden, zum Beispiel:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
+</pre></div>
+
+
+<p>Es ist möglich, mehr als eine hochgestellte Ziffer zu setzen, um den Wert der Potenz größer als 9 zu erhalten. Zum Beispiel:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
+</pre></div>
+
+
+<p>Negative Potenzen sind ebenfalls kein Problem:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
+</pre></div>
+
+
+<p>Beachten Sie, dass das Ergebnis der letzten beiden Ausdrücke eine <code class="language-plaintext highlighter-rouge">Rat</code>-Zahl ist.</p>
+
+<h2 id="operationen-mit-zuweisung">Operationen mit Zuweisung</h2>
+
+<p>Alle Operationen unterstützen die Abkürzungssyntax, wenn Sie die Variable aktualisieren müssen. Lassen Sie uns dies am Beispiel von <code class="language-plaintext highlighter-rouge">+</code> demonstrieren.</p>
+
+<p>Die vollständige Form</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+</pre></div>
+
+
+<p>ist äquivalent zu:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+        <a href="/de/essentials/numbers">Zahlen</a> / <a href="/de/essentials/numbers/numeric">Fließkommazahlen</a>
+  |  
+        💪 <a href="/de/essentials/numbers/exercises">Exercises: Zahlen</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/numbers/operations/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/numbers/operations/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

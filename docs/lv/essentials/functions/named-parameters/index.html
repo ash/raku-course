@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Nosauktie parametri | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Nosauktie parametri | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Nosauktie parametri | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a></p>
+
+<h1 id="nosauktie-parametri">Nosauktie parametri</h1>
+
+<p>Atšķirībā no <a href="../positional-parameters">pozicionālajiem parametriem</a>, <em>nosauktie</em> parametri tiek norādīti pēc to nosaukumiem.</p>
+
+<p>Šī funkcija pieņem divus parametrus, kas saucas <code class="language-plaintext highlighter-rouge">$from</code> un <code class="language-plaintext highlighter-rouge">$to</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
+
+
+<p>Tagad, lai izsauktu funkciju, jums ir jānorāda argumentu nosaukumi:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Ir kļūda nodot argumentus tā, it kā tie būtu pozicionāli. Piemēram, izsaukums <code class="language-plaintext highlighter-rouge">distance(30, 10)</code> radīs kļūdu:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Pārāk daudz pozicionālo argumentu; tika gaidīti 0 argumenti, bet tika saņemti 2
+    sub distance pie t.raku 1. rindas
+    blokā &lt;unit&gt; pie t.raku 2. rindas
+</code></pre></div></div>
+
+<p>Labā ziņa ir tā, ka nosauktos argumentus var uzskaitīt jebkurā secībā. Šie divi izsaukumi ir pilnīgi ekvivalenti:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<h2 id="mainīgo-nodošana">Mainīgo nodošana</h2>
+
+<p>Kad vērtība, kuru vēlaties nodot funkcijai, ir saglabāta mainīgajā, kura nosaukums sakrīt ar parametra nosaukumu, jūs varat izmantot īpašu sintaksi, kas samazina rakstīšanu:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Tas ir līdzīgi kā izsaukums ar vairāk vārdiem:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Atkal, secība šeit nav stingra:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Ja mainīgā nosaukums atšķiras no parametra nosaukuma, izmantojiet vienu no veidiem, kā nodot pāri:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
+<span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
+
+<span class="c1"># vai:</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/functions/named-parameters/quiz1">Tests 1 — Nosauktie parametri</a></li>
+  <li><a href="/lv/essentials/functions/named-parameters/quiz2">Tests 2 — Mainīgie kā nosauktie parametri</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a> / <a href="/lv/essentials/functions/positional-parameters">Pozicionālie parametri</a>
+  |  
+        <a href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a> / <a href="/lv/essentials/functions/default-values">Noklusējuma vērtības</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/lv/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/functions/named-parameters/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/functions/named-parameters/">English</a> • <a href="/de/essentials/functions/named-parameters/">Deutsch</a> • <a href="/es/essentials/functions/named-parameters/">Español</a> • <a href="/it/essentials/functions/named-parameters/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/functions/named-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/named-parameters/">Български</a> • <a href="/ru/essentials/functions/named-parameters/">Русский</a> • <a href="/uk/essentials/functions/named-parameters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -33,4 +33,5 @@ title: 'Тест: `if`'
     replacements = [['≥', '>=']];
 </script>
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Внимавайте с интервалите | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Внимавайте с интервалите | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Внимавайте с интервалите | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/more-on-functions">Повече за функциите</a></p>
+
+<h1 id="внимание-към-пространството">Внимание към пространството</h1>
+
+<p>Използването на функции в Raku е предимно интуитивно и не създава проблеми, но трябва да бъдете предупредени за следния аспект.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>Не добавяйте интервал между името на функцията и скобите с нейните аргументи. Но използвайте интервал след <code class="language-plaintext highlighter-rouge">for</code> и <code class="language-plaintext highlighter-rouge">if</code>.</p>
+
+<h2 id="дълга-история">Дълга история</h2>
+
+<p>Нека вземем една проста функция:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Първо, обърнете внимание на отсъствието на интервали между името на функцията и отварящите скоби, които съдържат параметрите. Някои стилове на кодиране в други езици може да изискват интервал там. Raku е добре с това, но това не е практика, която да следвате:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>От страната на извикването, отсъствието на интервал е важно. Ако извикате функцията и пропуснете скобите, тогава интервалът след името на функцията е неизбежен:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>Но ако добавите скоби, не можете да имате интервал преди тях. Това е правилното извикване:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>А това извикване е грешно:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Такъв код предизвиква изключение:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+  sub f at t.raku line 1
+  in block &lt;unit&gt; at t.raku line 5
+</code></pre></div></div>
+
+<p>Raku вижда извикването с интервал <code class="language-plaintext highlighter-rouge">f (5, 6)</code> като опит да се предаде един аргумент <code class="language-plaintext highlighter-rouge">(5, 6)</code> на функцията. Можете лесно да проверите типа на този аргумент, ако пренапишете функцията да приема само един аргумент:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+}
+
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Така че, извикването <code class="language-plaintext highlighter-rouge">f (5, 6)</code> означава, че предаваме <a href="/bg/essentials/positionals/lists">списък</a> на функцията. Списък като единична същност.</p>
+
+<h2 id="кога-е-нужен-интервал">Кога е нужен интервал</h2>
+
+<p>В някои случаи, интервалът е необходим. Това се случва, когато използвате скоби с една от ключовите думи, като <code class="language-plaintext highlighter-rouge">if</code> или <code class="language-plaintext highlighter-rouge">for</code> или <code class="language-plaintext highlighter-rouge">loop</code>. Следният код е грешен:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>Съобщението за грешка обяснява какво не е наред:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+The word 'if' is interpreted as a 'if()' function call.  Please use
+whitespace instead of parentheses.
+at /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unexpected block in infix position (two terms in a row)
+at /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>В случая с <code class="language-plaintext highlighter-rouge">if</code>, скобите изобщо не са необходими, така че проблемът няма шанс да се появи, ако не ги използвате. Но в някои случаи, като например с <code class="language-plaintext highlighter-rouge">loop</code>, трябва да ги имате, и интервалът става задължителен:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>В този код се случва същото: <code class="language-plaintext highlighter-rouge">loop(...)</code> се разбира от компилатора като извикване на функция. Добавете интервал, за да разрешите проблема. Или по-добре пренапишете фрагмента, използвайки <code class="language-plaintext highlighter-rouge">for</code>.</p>
+
+<h2 id="заключение">Заключение</h2>
+
+<p>В крайна сметка: за да избегнете такива проблеми, не добавяйте интервал между името на функцията и скобите с аргументите на функцията и се опитайте да избягвате скобите, ако това е възможно с други конструкции на езика като контролен поток.</p>
+
+<p></div></p>
+
+<h2 id="навигация-по-курса">Навигация по курса</h2>
+
+<p>←
+        <a href="/bg/essentials/more-on-functions">Повече за функциите</a>
+  |  
+        <a href="/bg/essentials/more-on-functions">Повече за функциите</a> / <a href="/bg/essentials/more-on-functions/typed-parameters">Типизирани параметри</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/bg/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/more-on-functions/mind-the-space/">Оригинален текст на английски</a></p>
+
+  <p>Преводи на тази страница: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -39,4 +39,5 @@ print("Hello, World!\n");
 'Hello, World!'.say;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

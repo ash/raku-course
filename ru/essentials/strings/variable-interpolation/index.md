@@ -51,4 +51,5 @@ Hello, Karl!
 Hello, Anna!
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -25,4 +25,5 @@ eq = | if $password ␣␣ &apos;*&(#&$#Y&apos; {
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

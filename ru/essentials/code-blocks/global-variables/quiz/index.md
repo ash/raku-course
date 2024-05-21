@@ -48,4 +48,5 @@ None | Ответ: (: Sun, Moon, None :) | Программа ссылается
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

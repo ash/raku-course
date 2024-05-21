@@ -25,4 +25,5 @@ Rakudo является самым продвинутым и готовым к �
 * [moarvm.org](https://moarvm.org)
 * [Roast](https://github.com/Raku/roast)
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Allomorfen | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Allomorfen | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Allomorfen | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/typed-variables">Getypte variabelen</a></p>
+
+<h1 id="allomorfen">Allomorfen</h1>
+
+<p>Overweeg het volgende programma. Kun je, voordat je het uitvoert, aangeven welke invoerwaarden het zouden breken en op welke regel?</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter something: &#39;</span>;
+<span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="nv">$input</span>;
+<span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="nv">$input</span>;
+
+<span class="nb">say</span> <span class="nv">$i</span>;
+<span class="nb">say</span> <span class="nv">$s</span>;
+</pre></div>
+
+
+<p>Er worden hier drie scalairen variabelen aangemaakt. Twee daarvan, <code class="language-plaintext highlighter-rouge">$i</code> en <code class="language-plaintext highlighter-rouge">$s</code>, zijn getypeerde variabelen. Dat betekent dat <code class="language-plaintext highlighter-rouge">$i</code> alleen gehele getallen kan opslaan en <code class="language-plaintext highlighter-rouge">$s</code> alleen strings.</p>
+
+<p>Het retourtype van <code class="language-plaintext highlighter-rouge">prompt</code> hangt af van de tekens die we hebben getypt. Als de invoerstring een geheel getal kan vertegenwoordigen, zal het resultaat van het type <code class="language-plaintext highlighter-rouge">IntStr</code> zijn, wat <em>zowel</em> <code class="language-plaintext highlighter-rouge">Int</code> als <code class="language-plaintext highlighter-rouge">Str</code> is, en dus kan worden toegewezen aan zowel een <code class="language-plaintext highlighter-rouge">Int</code> als een <code class="language-plaintext highlighter-rouge">Str</code> variabele. Dus, als je bijvoorbeeld <code class="language-plaintext highlighter-rouge">1234</code> invoert, breekt het programma niet.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: 1234
+1234
+1234
+</code></pre></div></div>
+
+<p>Het <code class="language-plaintext highlighter-rouge">IntStr</code> type is een voorbeeld van de zogenaamde <em>allomorf</em> — een gegevenstype dat twee andere typen combineert. Hier zijn nog een paar voorbeelden.</p>
+
+<p>Als je een string invoert die geen geheel getal kan zijn, breekt het programma op het moment dat we <code class="language-plaintext highlighter-rouge">$input</code> toewijzen aan <code class="language-plaintext highlighter-rouge">$i</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: Hello, World!
+Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
+  in block &lt;unit&gt; at allomorphs.raku line 2
+</code></pre></div></div>
+
+<p>Merk op dat je een foutmelding krijgt, zelfs als de invoerstring naar een getal kan worden gecast, maar geen geheel getal is. Aangezien het niet mogelijk is om een drijvend-komma of een rationeel getal in een geheel getal container op te slaan, zal Raku een uitzondering genereren:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+Enter something: 3.14
+Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
+  in block &lt;unit&gt; at allomorphs.raku line 2
+</code></pre></div></div>
+
+<p>De tweede toewijzing, <code class="language-plaintext highlighter-rouge">$s = $input</code>, zal nooit breken omdat een string elke invoer kan accepteren.</p>
+
+<p>🦋 Je kunt de broncode van dit programma vinden in het bestand <a href="https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku">allomorphs.raku</a>.</p>
+
+<p></div></p>
+
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+
+<p>←
+        <a href="/nl/essentials/typed-variables">Getypte variabelen</a> / <a href="/nl/essentials/typed-variables/coercion">Type conversie voor getypte variabelen</a>
+  |  
+        💪 <a href="/nl/essentials/typed-variables/exercises">Exercises: Getypte variabelen</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/typed-variables/allomorphs/">Originele Engelse tekst.</a></p>
+
+  <p>Vertalingen van deze pagina: <a href="/essentials/typed-variables/allomorphs/">English</a> • <a href="/de/essentials/typed-variables/allomorphs/">Deutsch</a> • <a href="/es/essentials/typed-variables/allomorphs/">Español</a> • <a href="/it/essentials/typed-variables/allomorphs/">Italiano</a> • <a href="/lv/essentials/typed-variables/allomorphs/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/typed-variables/allomorphs/">Български</a> • <a href="/ru/essentials/typed-variables/allomorphs/">Русский</a> • <a href="/uk/essentials/typed-variables/allomorphs/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

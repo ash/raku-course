@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lösung: Schaltjahr | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Lösung: Schaltjahr | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Lösung: Schaltjahr | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/conditional-checks/">Bedingte Überprüfungen</a> / <a href="/de/essentials/conditional-checks/exercises/">Übungen</a> / <a href="/de/essentials/conditional-checks/exercises/leap-year">Schaltjahr</a></p>
+
+<h1 id="lösung-schaltjahr">Lösung: Schaltjahr</h1>
+
+<h2 id="haftungsausschluss">Haftungsausschluss</h2>
+
+<p>Die unten gezeigte Lösung soll Ihnen helfen, bedingte Überprüfungen zu trainieren. Im wirklichen Leben können Sie die Methoden der eingebauten <code class="language-plaintext highlighter-rouge">Date</code>-Klasse lernen. Wir werden dies im zweiten Teil des Kurses lernen.</p>
+
+<h2 id="lösung">Lösung</h2>
+
+<p>Der Algorithmus zur Erkennung, ob ein Jahr ein Schaltjahr ist:</p>
+
+<ol>
+  <li>Wenn das Jahr nicht durch 4 teilbar ist =&gt; Gemeinjahr</li>
+  <li>Wenn das Jahr nicht durch 100 teilbar ist =&gt; Schaltjahr</li>
+  <li>Wenn das Jahr nicht durch 400 teilbar ist =&gt; Gemeinjahr</li>
+  <li>Andernfalls =&gt; Schaltjahr</li>
+</ol>
+
+<p>Beachten Sie, dass Sie die eingebauten Typen für die Arbeit mit Datum und Uhrzeit verwenden können, daher werden wir in der zweiten Hälfte des Kurses zu dieser Aufgabe zurückkehren.</p>
+
+<h2 id="code-1">Code 1</h2>
+
+<p>Die erste Lösung reproduziert die obigen Schritte wörtlich:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Jahr: &#39;</span>;
+
+<span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
+    <span class="nb">say</span> <span class="s">&#39;Gemeinjahr&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">100</span> {
+    <span class="nb">say</span> <span class="s">&#39;Schaltjahr&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">400</span> {
+    <span class="nb">say</span> <span class="s">&#39;Gemeinjahr&#39;</span>;
+}
+<span class="k">else</span> {
+    <span class="nb">say</span> <span class="s">&#39;Schaltjahr&#39;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Finden Sie das Programm in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
+
+<h2 id="code-2">Code 2</h2>
+
+<p>In der zweiten Lösung ist die Logik in einem einzigen Ausdruck verpackt. Klammern sind nicht immer erforderlich, wurden hier jedoch zur Klarheit hinzugefügt.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Jahr: &#39;</span>;
+
+<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Schaltjahr&#39;</span> !! <span class="s">&#39;Gemeinjahr&#39;</span>;
+</pre></div>
+
+
+<p>🦋 Finden Sie das Programm in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
+
+<h2 id="ausgabe">Ausgabe</h2>
+
+<p>Versuchen Sie beide Programme mit den kritischsten Fällen, zum Beispiel 1900, 2000, 2020, 2021.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Jahr: 1900
+Gemeinjahr
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Jahr: 2000
+Schaltjahr
+</span></code></pre></div></div>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Jahr: 2020
+Schaltjahr
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Jahr: 2021
+Gemeinjahr
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+<h2 id="-vs-"><code class="language-plaintext highlighter-rouge">%%</code> vs <code class="language-plaintext highlighter-rouge">%</code></h2>
+
+<p>Beachten Sie, dass in booleschen Kontexten die Operatoren <code class="language-plaintext highlighter-rouge">%%</code> und <code class="language-plaintext highlighter-rouge">%</code> komplementär sind. Sie können diese Tatsache nutzen, um einen der Operatoren auszuwählen, um einen expliziten Vergleich mit Null zu vermeiden.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># Wahr</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># Wahr</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># Falsch</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># Falsch</span>
+</pre></div>
+
+<p></div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+    <a href="/de/essentials/code-blocks">Codeblöcke</a>
+        / <a href="/de/essentials/code-blocks/local-variables">Lokale Variablen</a>
+  |  
+    <a href="/de/advanced/loops">Schleifen</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/conditional-checks/exercises/leap-year/solution/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/conditional-checks/exercises/leap-year/solution/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <a href="/it/essentials/conditional-checks/exercises/leap-year/solution/">Italiano</a> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/exercises/leap-year/solution/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/exercises/leap-year/solution/">Български</a> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <a href="/uk/essentials/conditional-checks/exercises/leap-year/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

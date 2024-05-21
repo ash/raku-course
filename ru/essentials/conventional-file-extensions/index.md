@@ -13,4 +13,5 @@ title: Стандартные расширения файлов Raku
 * `.rakutest` и `.t` для тестов
 * `.rakudoc` для документов в формате POD6
 
+{% assign human=1 %}
 {% include nav.html %}

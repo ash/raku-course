@@ -1,22 +1,16 @@
 {% assign url_lang = page.url | split: "/" %}
 {% assign lang = url_lang[1] %}
-{% if lang == "lv" %}
-    {% assign url = page.url | replace_first: "/lv", "" %}
-    {% assign top = "/lv" %}
-    {% assign toc = site.data.toc_lv.toc %}
-    {% assign course_title = site.data.toc_lv.title %}
-    {% assign strings = site.data.strings_lv %}
-{% elsif lang == "ru" %}
-    {% assign url = page.url | replace_first: "/ru", "" %}
-    {% assign top = "/ru" %}
-    {% assign toc = site.data.toc_ru.toc %}
-    {% assign course_title = site.data.toc_ru.title %}
-    {% assign strings = site.data.strings_ru %}
+{% if lang.size == 2 %}
+    {% assign top = "/" | append: lang %}
+    {% assign url = page.url | replace_first: top, "" %}
+    {% assign toc = site.data.toc[lang].toc %}
+    {% assign course_title = site.data.toc[lang].title %}
+    {% assign strings = site.data.strings[lang] %}
 {% else %}
     {% assign lang = "" %}
     {% assign url = page.url %}
     {% assign top = "" %}
-    {% assign toc = site.data.toc.toc %}
-    {% assign course_title = site.data.toc.title %}
-    {% assign strings = site.data.strings %}
+    {% assign toc = site.data.toc["en"]toc %}
+    {% assign course_title = site.data.toc["en"].title %}
+    {% assign strings = site.data.strings["en"] %}
 {% endif %}

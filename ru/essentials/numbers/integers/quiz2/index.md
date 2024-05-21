@@ -56,4 +56,5 @@ say $x;
 
 🦋 Возьмите код с GitHub: [unicode-digits.raku](https://github.com/ash/raku-course/blob/master/essentials/numbers/integers/quiz2/unicode-digits.raku).
 
+{% assign human=1 %}
 {% include nav.html %}

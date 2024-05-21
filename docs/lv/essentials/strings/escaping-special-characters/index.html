@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Speciālo rakstzīmju izvairīšanās Raku virknēs | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Speciālo rakstzīmju izvairīšanās Raku virknēs | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Speciālo rakstzīmju izvairīšanās Raku virknēs | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/strings">Virknes</a></p>
+
+<h1 id="speciālo-rakstzīmju-izbēgšana">Speciālo rakstzīmju izbēgšana</h1>
+
+<p>Iedomājieties, ka vēlaties izdrukāt cenu zīmi, un jūs saglabājat gan produkta nosaukumu, gan tā cenu skalārajos mainīgajos?</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
+
+
+<p>Kā izdrukāt zīmi, ja cena ir domāta dolāros? Paredzētā izvade ir: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. Dolāra zīme dubultajās pēdiņās ir mainīgā interpolācijas indikators. Lai izdrukātu pašu <code class="language-plaintext highlighter-rouge">$</code> rakstzīmi, jums tā jāizvairās:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
+
+
+<p>Protams, jūs varat izmantot virknes savienošanu un izvairīties no <code class="language-plaintext highlighter-rouge">$</code> izvairīšanās:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
+
+
+<p>Šis variants izdrukā tieši tādu pašu virkni, bet interpolācija izskatās dabiskāk un ir vieglāk lasāma. Ņemiet vērā, ka <code class="language-plaintext highlighter-rouge">$</code> rakstzīme netika interpolēta vai izvairīta vienkāršajās pēdiņās: <code class="language-plaintext highlighter-rouge">' costs $'</code>. Tā ir galvenā atšķirība. Speciālās rakstzīmes vienkāršajās pēdiņās parādās tādas, kādas tās ir.</p>
+
+<p>Šeit ir vēl dažas speciālās rakstzīmes, kurām dubultajās pēdiņās ir īpaša nozīme:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
+      <td>Dolāra zīme</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
+      <td>Jauna rinda</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
+      <td>Karietes atgriešana</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
+      <td>Horizontāla tabulācija</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
+      <td>Dubultā pēdiņa</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
+      <td>Atpakaļslīpsvītra</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Tas, kā jūs citējat virkni, nosaka, kā Raku apstrādā speciālās rakstzīmes. Apsveriet šos divus piemērus:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
+
+
+<p>Ja jūs palaidīsiet šo programmu, jūs redzēsiet, ka pirmā virkne parādās tāda, kāda tā ir vienā rindā. Otrā virkne tika sadalīta divās daļās:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>One\nTwo
+Three
+Four
+</code></pre></div></div>
+
+<p>Dubultajās pēdiņās speciālā secība <code class="language-plaintext highlighter-rouge">\n</code> tika apstrādāta kā jaunas rindas rakstzīme, savukārt virknei vienkāršajās pēdiņās tā bija parasta divu rakstzīmju secība: <code class="language-plaintext highlighter-rouge">\</code> un <code class="language-plaintext highlighter-rouge">n</code>.</p>
+
+<p>Ir interesants izņēmums priekš <code class="language-plaintext highlighter-rouge">'</code> un <code class="language-plaintext highlighter-rouge">\</code>. Vienkāršajās pēdiņās jūs varat izvairīties no vienkāršās pēdiņas, pievienojot tai priekšā vēl vienu <code class="language-plaintext highlighter-rouge">\</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
+
+
+<p>Arī atpakaļslīpsvītra ir jāizvairās, ja tai seko vienkāršā pēdiņa:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/strings/escaping-special-characters/quiz">Tests: Atpakaļslīpsvītra izvades rindā</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/strings">Virknes</a> / <a href="/lv/essentials/strings/code-interpolation">Koda interpolācija</a>
+  |  
+        <a href="/lv/essentials/strings">Virknes</a> / <a href="/lv/essentials/strings/string-length">Virknes garums</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/lv/essentials/strings/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/strings/escaping-special-characters/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

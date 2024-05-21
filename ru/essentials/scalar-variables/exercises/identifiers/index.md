@@ -21,4 +21,5 @@ my $from--to = 'London to Paris';
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

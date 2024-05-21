@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rationale Zahlen in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Rationale Zahlen in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Rationale Zahlen in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/numbers">Zahlen</a></p>
+
+<h1 id="rationale-zahlen">Rationale Zahlen</h1>
+
+<p>Rationale Zahlen sind ein einzigartiges Merkmal von Raku. Der <code class="language-plaintext highlighter-rouge">Rat</code>-Datentyp repräsentiert solche Zahlen.</p>
+
+<p>Intern sind rationale Zahlen Brüche mit zwei ganzzahligen Teilen: Zähler und Nenner. So können Sie Zahlen wie 1/3 problemlos darstellen, ohne an Präzision zu verlieren.</p>
+
+<p>Es gibt einige Möglichkeiten, eine <code class="language-plaintext highlighter-rouge">Rat</code>-Zahl in einem Raku-Programm zu schreiben:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>;
+<span class="k">my</span> <span class="nv">$y</span> = <span class="s">&lt;2/3&gt;</span>;
+</pre></div>
+
+
+<p>Beachten Sie, dass der Schrägstrich hier Teil der Notation ist. Es ist kein Divisionsoperator, daher bedeutet <code class="language-plaintext highlighter-rouge">1/2</code> nicht, dass Sie 1 durch 2 teilen. Beim Ausdrucken werden rationale Zahlen jedoch als Dezimalzahlen oder ganze Zahlen angezeigt:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>; <span class="c1"># 0.5</span>
+<span class="nb">say</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>; <span class="c1"># 0.75</span>
+</pre></div>
+
+
+<p>Der Teil der Zeile nach dem <code class="language-plaintext highlighter-rouge">#</code>-Symbol ist ein Kommentar und wird vom Compiler ignoriert. Solche Kommentare werden im Kurs verwendet, um die Ausgabe des Programms zu zeigen.</p>
+
+<h2 id="dezimalform">Dezimalform</h2>
+
+<p>Es ist wichtig zu verstehen, dass, wenn Sie die Zahl in Dezimalform schreiben, z.B. <code class="language-plaintext highlighter-rouge">0.5</code>, Raku an diesem Punkt eine <code class="language-plaintext highlighter-rouge">Rat</code>-Zahl erstellt. Es ist keine ganze Zahl, aber es ist auch keine Gleitkommazahl (<code class="language-plaintext highlighter-rouge">float</code> oder <code class="language-plaintext highlighter-rouge">double</code> in anderen Sprachen). Es ist immer noch eine rationale Zahl!</p>
+
+<p>Betrachten Sie das folgende Beispiel:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">0.1</span> + <span class="mf">0.2</span> - <span class="mf">0.3</span>;
+</pre></div>
+
+
+<p>Wenn eine Programmiersprache Gleitkommaarithmetik für diese Berechnungen verwendet, wird das Ergebnis nicht gleich 0 sein. Die Website <a href="https://0.30000000000000004.com">0.30000000000000004.com</a> gibt eine umfassende Liste von Beispielen, bei denen die Gleitkommaarithmetik kein erwartetes Ergebnis liefert.</p>
+
+<p>Aber Raku gibt genau <code class="language-plaintext highlighter-rouge">0</code> aus. Dies geschieht, weil es die Zahlen <code class="language-plaintext highlighter-rouge">0.1</code>, <code class="language-plaintext highlighter-rouge">0.2</code> und <code class="language-plaintext highlighter-rouge">0.3</code> als rationale Zahlen behandelt und sie intern als <code class="language-plaintext highlighter-rouge">1/10</code>, <code class="language-plaintext highlighter-rouge">2/10</code> und <code class="language-plaintext highlighter-rouge">3/10</code> speichert. Führen Sie es von der Kommandozeile aus, um es zu bestätigen:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku <span class="nt">-e</span> <span class="s1">'say 0.1 + 0.2 - 0.3'</span>
+<span class="go">0
+</span></code></pre></div></div>
+
+<h2 id="unicode-formen">Unicode-Formen</h2>
+
+<p>Es ist auch möglich, Unicode-Zeichen zu verwenden, die die Brüche darstellen, wie <code class="language-plaintext highlighter-rouge">½</code> oder <code class="language-plaintext highlighter-rouge">¼</code> oder <code class="language-plaintext highlighter-rouge">¾</code>. Wahrscheinlich ist es nicht immer einfach, diese mit der Tastatur einzugeben, aber diese Brüche sind genau die gleichen Werte wie ihre ASCII-Versionen, die als Bruch oder als Dezimalzahl geschrieben sind:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">½</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1/2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;1/2&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.5</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">¼</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1/4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;1/4&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.25</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">¾</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3/4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;3/4&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.75</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Bei einigen Brüchen, wie <code class="language-plaintext highlighter-rouge">1/3</code>, haben Sie weniger Optionen, <code class="language-plaintext highlighter-rouge">⅓</code> oder <code class="language-plaintext highlighter-rouge">&lt;1/3&gt;</code>, da die Dezimalform eine unendliche Anzahl von Ziffern erfordern würde.</p>
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/de/essentials/numbers/rats/quiz">Quiz: Rationale Zahlen in Raku</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+        <a href="/de/essentials/numbers">Zahlen</a> / <a href="/de/essentials/numbers/integers">Ganze Zahlen</a>
+  |  
+        <a href="/de/essentials/numbers">Zahlen</a> / <a href="/de/essentials/numbers/numeric">Fließkommazahlen</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/de/essentials/numbers/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/numbers/rats/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/numbers/rats/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/numbers/rats/">Español</a> • <a href="/it/essentials/numbers/rats/">Italiano</a> • <a href="/lv/essentials/numbers/rats/">Latviešu</a> • <a href="/nl/essentials/numbers/rats/">Nederlands</a> • <a href="/bg/essentials/numbers/rats/">Български</a> • <a href="/ru/essentials/numbers/rats/">Русский</a> • <a href="/uk/essentials/numbers/rats/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

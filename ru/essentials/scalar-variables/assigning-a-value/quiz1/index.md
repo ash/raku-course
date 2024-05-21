@@ -17,4 +17,5 @@ $ | my ␣last-name;
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

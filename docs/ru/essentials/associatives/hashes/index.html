@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Хэши | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Хэши | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Хэши | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/associatives">Ассоциативные типы данных</a></p>
+
+<h1 id="словари">Словари</h1>
+
+<p><em>Хэш</em> — это еще один пример ассоциативных типов данных в Raku. Это агрегированный тип данных, который отображает имена своих элементов на их значения. Давайте введем новый сигил, который используют переменные хэша: <code class="language-plaintext highlighter-rouge">%</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%capitals</span>;
+</pre></div>
+
+
+<p>Теперь вы можете использовать хэш и присвоить ему некоторые начальные значения.</p>
+
+<div class="highlight"><pre><span></span><span class="nv">%capitals</span> = <span class="n">France</span> =&gt; <span class="s">&#39;Paris&#39;</span>, <span class="n">Italy</span> =&gt; <span class="s">&#39;Rome&#39;</span>;
+</pre></div>
+
+
+<p>Как и с другими типами данных, оба действия можно выполнить вместе:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%capitals</span> = <span class="n">France</span> =&gt; <span class="s">&#39;Paris&#39;</span>, <span class="n">Italy</span> =&gt; <span class="s">&#39;Rome&#39;</span>;
+</pre></div>
+
+
+<h2 id="доступ-к-элементам">Доступ к элементам</h2>
+
+<p>Индексация элементов аналогична тому, что мы видели для <a href="../pairs">пар</a>. Используйте пару угловых скобок или фигурных скобок со строкой:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">%capitals&lt;France&gt;</span>;
+<span class="nb">say</span> <span class="nv">%capitals</span>{<span class="s">&#39;Italy&#39;</span>};
+</pre></div>
+
+
+<p>Хэши изменяемы, поэтому вы можете как изменять существующие значения, так и добавлять новые:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">%capitals&lt;Germany&gt;</span> = <span class="s">&#39;Berlin&#39;</span>;
+</pre></div>
+
+
+<h2 id="ключи-и-значения">Ключи и значения</h2>
+
+<p>Два встроенных метода, <code class="language-plaintext highlighter-rouge">keys</code> и <code class="language-plaintext highlighter-rouge">values</code>, возвращают списки ключей и значений хэша:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">%capitals</span>.<span class="nb">keys</span>;
+<span class="nb">say</span> <span class="nv">%capitals</span>.<span class="nb">values</span>;
+</pre></div>
+
+
+<p>Вот пример вывода этой программы:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(Germany Italy France)
+(Berlin Rome Paris)
+</code></pre></div></div>
+
+<p>Обратите внимание, что элементы хэша не упорядочены, но порядок ключей и значений, возвращаемых вышеуказанными методами, идентичен.</p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/ru/essentials/associatives/hashes/quiz1">Тест 1: Словари</a></li>
+  <li><a href="/ru/essentials/associatives/hashes/quiz2">Тест 2: Элементы словаря</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/associatives">Ассоциативные типы данных</a> / <a href="/ru/essentials/associatives/pairs">Пары</a>
+  |  
+        <a href="/ru/essentials/associatives">Ассоциативные типы данных</a> / <a href="/ru/essentials/associatives/nested-hashes">Вложенные словари</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/ru/essentials/associatives/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/associatives/hashes/">Оригинальный текст на английском языке.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/associatives/hashes/">English</a> • <a href="/de/essentials/associatives/hashes/">Deutsch</a> • <a href="/es/essentials/associatives/hashes/">Español</a> • <a href="/it/essentials/associatives/hashes/">Italiano</a> • <a href="/lv/essentials/associatives/hashes/">Latviešu</a> • <a href="/nl/essentials/associatives/hashes/">Nederlands</a> • <a href="/bg/essentials/associatives/hashes/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/associatives/hashes/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

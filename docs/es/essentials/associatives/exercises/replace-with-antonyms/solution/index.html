@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solución: Reemplazar con antónimos | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solución: Reemplazar con antónimos | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Solución: Reemplazar con antónimos | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/associatives/">Tipos de datos asociativos</a> / <a href="/es/essentials/associatives/exercises/">Ejercicios</a> / <a href="/es/essentials/associatives/exercises/replace-with-antonyms">Reemplazar con antónimos</a></p>
+
+<h1 id="solución-reemplazar-con-antónimos">Solución: Reemplazar con antónimos</h1>
+
+<p>Para resolver la tarea, el contenido del archivo <a href="https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku">dictionary.raku</a> se copia al archivo de solución <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku">replace-with-antonyms.raku</a>. Después de eso, un bucle sobre los argumentos de entrada intenta encontrar la palabra en el diccionario, y si puede, toma el antónimo. Si no existe tal palabra en el diccionario, se usa la palabra original.</p>
+
+<h2 id="código">Código</h2>
+
+<p>La solución se presenta a continuación. El diccionario se muestra solo parcialmente aquí.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%dictionary</span> =
+    <span class="s">&#39;above&#39;</span> =&gt; <span class="s">&#39;below&#39;</span>,
+    <span class="s">&#39;absent&#39;</span> =&gt; <span class="s">&#39;present&#39;</span>,
+    <span class="s">&#39;achieve&#39;</span> =&gt; <span class="s">&#39;fail&#39;</span>,
+    <span class="c1"># . . .</span>
+    <span class="s">&#39;wrong&#39;</span> =&gt; <span class="s">&#39;right&#39;</span>,
+    <span class="s">&#39;young&#39;</span> =&gt; <span class="s">&#39;old&#39;</span>    
+;
+
+<span class="k">for</span> <span class="vg">@*ARGS</span> -&gt; <span class="nv">$word</span> {
+    <span class="nb">say</span> <span class="nv">%dictionary</span>{<span class="nv">$word</span>} // <span class="nv">$word</span>;
+}
+</pre></div>
+
+
+<p>🦋 Encuentra el programa en el archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku">replace-with-antonyms.raku</a>.</p>
+
+<h2 id="salida">Salida</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/replace-with-antonyms.raku early morning
+<span class="go">late
+evening
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/replace-with-antonyms.raku big soft drive
+<span class="go">small
+hard
+drive
+</span></code></pre></div></div>
+
+<h2 id="comentarios">Comentarios</h2>
+
+<ol>
+  <li>El operador <code class="language-plaintext highlighter-rouge">//</code> es el <a href="/es/essentials/scalar-variables/defined-or-operator">operador definido-o</a>, que devuelve el primer operando definido.</li>
+  <li>En el hash, todas las claves son palabras (es decir, parecen identificadores), por lo que no es necesario entrecomillarlas en el hash. Es posible crear un hash, como se muestra a continuación:</li>
+</ol>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%dictionary</span> =
+    <span class="n">above</span> =&gt; <span class="s">&#39;below&#39;</span>,
+    <span class="n">absent</span> =&gt; <span class="s">&#39;present&#39;</span>,
+    <span class="n">achieve</span> =&gt; <span class="s">&#39;fail&#39;</span>,
+    <span class="c1"># . . .</span>
+    <span class="n">wrong</span> =&gt; <span class="s">&#39;right&#39;</span>,
+    <span class="n">young</span> =&gt; <span class="s">&#39;old&#39;</span>    
+;
+</pre></div>
+
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/es/essentials/associatives/exercises/purchase-table">Tabla de compras</a>
+</div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+    <a href="/es/essentials/positionals">Tipos de datos posicionales</a>
+        / <a href="/es/essentials/positionals/subscripting-ranges">Subíndice de rangos</a>
+  |  
+    <a href="/es/advanced/functions">Crear y llamar funciones</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/associatives/exercises/replace-with-antonyms/solution/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/associatives/exercises/replace-with-antonyms/solution/">English</a> • <a href="/de/essentials/associatives/exercises/replace-with-antonyms/solution/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/associatives/exercises/replace-with-antonyms/solution/">Italiano</a> • <a href="/lv/essentials/associatives/exercises/replace-with-antonyms/solution/">Latviešu</a> • <a href="/nl/essentials/associatives/exercises/replace-with-antonyms/solution/">Nederlands</a> • <a href="/bg/essentials/associatives/exercises/replace-with-antonyms/solution/">Български</a> • <a href="/ru/essentials/associatives/exercises/replace-with-antonyms/solution/">Русский</a> • <a href="/uk/essentials/associatives/exercises/replace-with-antonyms/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

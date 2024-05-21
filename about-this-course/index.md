@@ -2,7 +2,7 @@
 title: About this course
 ---
 
-{% assign course_title = site.data.toc.title %}
+{% assign course_title = site.data.toc["en"].title %}
 
 [{{course_title}}](/)
 
@@ -96,6 +96,9 @@ The source files are available on GitHub: [github.com/ash/raku-course](https://g
 
 ## Course navigation
 
-← [Start](../) 
+← [Start](/) 
 &nbsp;&nbsp;|&nbsp;&nbsp;
-[What is Raku](../essentials/what-is-raku) →
+[What is Raku](/essentials/what-is-raku) →
+
+{% include languages.html %}
+{% include translations.html %}

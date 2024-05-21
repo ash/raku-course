@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Soluzione: Visto prima? | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Soluzione: Visto prima? | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Soluzione: Visto prima? | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/associatives/">Tipi di dati associativi</a> / <a href="/it/essentials/associatives/exercises/">Esercizi</a> / <a href="/it/essentials/associatives/exercises/seen-before">Già visto?</a></p>
+
+<h1 id="soluzione-già-visto">Soluzione: Già visto?</h1>
+
+<p>Questo compito è un classico esempio di utilizzo di un hash per tenere traccia degli elementi. Prima di un ciclo, viene creato un hash <code class="language-plaintext highlighter-rouge">%seen</code>. All’interno del ciclo, la parola inserita <code class="language-plaintext highlighter-rouge">$word</code> serve come chiave dell’hash.</p>
+
+<h2 id="codice">Codice</h2>
+
+<p>Ecco la soluzione:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%seen</span>;
+<span class="k">loop</span> {
+    <span class="k">my</span> <span class="nv">$word</span> = <span class="nb">prompt</span> <span class="s">&#39;Parola: &#39;</span>;
+    <span class="k">if</span> <span class="nv">%seen</span>{<span class="nv">$word</span>} {
+        <span class="nb">say</span> <span class="nv">%seen</span>{<span class="nv">$word</span>} == <span class="mi">1</span> ?? <span class="s">&#39;Visto!&#39;</span> !! <span class="nb">say</span> <span class="s">&quot;Visto %seen{$word} volte!&quot;</span>;
+    }
+    <span class="nv">%seen</span>{<span class="nv">$word</span>}++;
+}
+</pre></div>
+
+
+<p>🦋 Trova il programma nel file <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku">seen-before.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/seen-before.raku
+<span class="go">Parola: Io
+Parola: mai
+Parola: visto
+Parola: un
+Parola: visto
+Visto!
+Parola: che
+Parola: visto
+Visto 2 volte!
+Vero
+Parola: come
+Parola: che
+Visto!
+Parola: visto
+Visto 3 volte!
+Vero
+Parola: segato
+Parola: ^C
+</span></code></pre></div></div>
+
+<h2 id="commento">Commento</h2>
+
+<p>La costruzione <code class="language-plaintext highlighter-rouge">%seen{$word}++</code> non solo incrementa il valore ma lo crea anche se non esiste ancora. Il processo di creazione è chiamato <em>autovivificazione</em>. Nota che non accade quando si legge solo il valore come nella condizione: <code class="language-plaintext highlighter-rouge">if %seen{$word}</code>.</p>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/it/essentials/associatives/exercises/country-codes">Codici dei paesi</a>
+</div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+    <a href="/it/essentials/positionals">Tipi di dati posizionali</a>
+        / <a href="/it/essentials/positionals/subscripting-ranges">Sottoscrizione degli intervalli</a>
+  |  
+    <a href="/it/advanced/functions">Creazione e chiamata di funzioni</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/associatives/exercises/seen-before/solution/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/associatives/exercises/seen-before/solution/">English</a> • <a href="/de/essentials/associatives/exercises/seen-before/solution/">Deutsch</a> • <a href="/es/essentials/associatives/exercises/seen-before/solution/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/associatives/exercises/seen-before/solution/">Latviešu</a> • <a href="/nl/essentials/associatives/exercises/seen-before/solution/">Nederlands</a> • <a href="/bg/essentials/associatives/exercises/seen-before/solution/">Български</a> • <a href="/ru/essentials/associatives/exercises/seen-before/solution/">Русский</a> • <a href="/uk/essentials/associatives/exercises/seen-before/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

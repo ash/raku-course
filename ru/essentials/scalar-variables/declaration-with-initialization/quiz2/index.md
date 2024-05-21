@@ -14,4 +14,5 @@ title: 'Тест 2: Объявление и инициализация или о
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

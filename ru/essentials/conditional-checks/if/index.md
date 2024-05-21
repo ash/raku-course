@@ -48,4 +48,5 @@ say 'End';
 
 Эта программа выводит только `Begin` и `End`.
 
+{% assign human=1 %}
 {% include nav.html %}

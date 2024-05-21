@@ -15,4 +15,5 @@ title: Упражнение ’Замена значений‘
 
 ✅ [Посмотреть решение](solution)
 
+{% assign human=1 %}
 {% include nav.html %}

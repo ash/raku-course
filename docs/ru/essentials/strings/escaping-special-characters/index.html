@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Экранирование специальных символов в строках Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Экранирование специальных символов в строках Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Экранирование специальных символов в строках Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/strings">Строки</a></p>
+
+<h1 id="экранирование-специальных-символов">Экранирование специальных символов</h1>
+
+<p>Представьте, что вы хотите напечатать ценник, и вы храните имя и цену продукта в
+скалярных переменных:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
+
+
+<p>Как напечатать ценник, если цена должна быть в долларах? Ожидаемый вывод
+<code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. Знак доллара в двойных кавычках — это индикатор
+переменной, которую нужно интерполировать. Чтобы вывести сам символ <code class="language-plaintext highlighter-rouge">$</code>, его
+нужно экранировать:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
+
+
+<p>Конечно же, вы можете использовать конкатенацию строк и избежать экранирования
+<code class="language-plaintext highlighter-rouge">$</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
+
+
+<p>Этот подход выведет ту же самую строку, но интерполяция выглядит более
+естественной и ее проще прочитать. Отметим, что символ <code class="language-plaintext highlighter-rouge">$</code> не был ни
+интерполирован, ни экранирован в строке с одинарными кавычками: <code class="language-plaintext highlighter-rouge">' costs
+$'</code>. Это и есть основная разница. Специальные символы в одинарных кавычках
+пишутся без изменений.</p>
+
+<p>Вот еще несколько специальных символов, у которых есть особенное значение в
+строке с двойными кавычками.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
+      <td>Знак доллара</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
+      <td>Новая строка</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
+      <td>Возврат каретки</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
+      <td>Горизонтальный таб</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
+      <td>Двойная кавычка</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
+      <td>Обратный слэш</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Выбранные кавычки диктуют, как Raku видит специальные символы. Рассмотрим эти
+два примера:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
+
+
+<p>Если вы запустите эту программу, вы увидите, что первая строчка выводится как
+есть, на одной строке. Вторая же строчка была разбита на две части:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>One\nTwo
+Three
+Four
+</code></pre></div></div>
+
+<p>В двойных кавычках специальная последовательность <code class="language-plaintext highlighter-rouge">\n</code> была интерпретирована как
+символ новой строки, тогда как в одинарных кавычках это была обычная
+последовательность двух символов: <code class="language-plaintext highlighter-rouge">\</code> и <code class="language-plaintext highlighter-rouge">n</code>.</p>
+
+<p>Есть интересное исключение для <code class="language-plaintext highlighter-rouge">'</code> и <code class="language-plaintext highlighter-rouge">\</code>. В одинарных кавычках вы можете
+экранировать другую одинарную кавычку, поставив перед ней <code class="language-plaintext highlighter-rouge">\</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
+
+
+<p>Обратный слэш тоже должен быть экранирован, если сразу за ним следует одинарная кавычка:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/ru/essentials/strings/escaping-special-characters/quiz">Тест: Обратный слэш в выводе</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навигация-по-курсу">Навигация по курсу</h2>
+
+<p>←
+        <a href="/ru/essentials/strings">Строки</a> / <a href="/ru/essentials/strings/code-interpolation">Интерполяция кода</a>
+  |  
+        <a href="/ru/essentials/strings">Строки</a> / <a href="/ru/essentials/strings/string-length">Длина строки</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/ru/essentials/strings/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Эта страница переведена с английского человеком. <a href="/essentials/strings/escaping-special-characters/">Оригинальный текст на английском языке.</a> <a href="/ru/about-this-course/credits">О переводе.</a></p>
+
+  <p>Переводы этой страницы: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <a href="/lv/essentials/strings/escaping-special-characters/">Latviešu</a> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+</div>
+
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

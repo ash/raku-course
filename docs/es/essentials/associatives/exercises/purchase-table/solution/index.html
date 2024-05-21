@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solución: Tabla de compras | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solución: Tabla de compras | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Solución: Tabla de compras | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/associatives/">Tipos de datos asociativos</a> / <a href="/es/essentials/associatives/exercises/">Ejercicios</a> / <a href="/es/essentials/associatives/exercises/purchase-table">Tabla de compras</a></p>
+
+<h1 id="solución-tabla-de-compras">Solución: Tabla de compras</h1>
+
+<p>La tabla contiene un encabezado (que simplemente imprimes con un solo <code class="language-plaintext highlighter-rouge">say</code>) y una serie de filas con una estructura similar: nombre del artículo, precio del artículo, cantidad y el costo total de estos artículos.</p>
+
+<p>Como deseas preservar el orden de las filas, un array es una buena opción para mantener los artículos. Entonces, cada línea de la tabla corresponde a un solo elemento de un array.</p>
+
+<p>En el segundo nivel, un registro puede guardarse en una estructura hash con algunos campos nombrados: <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">price</code> y <code class="language-plaintext highlighter-rouge">quantity</code>.</p>
+
+<p>El resto del programa consiste en iterar sobre los artículos, calcular los totales e imprimir las filas de la tabla.</p>
+
+<h2 id="código">Código</h2>
+
+<p>Aquí tienes una de las posibles soluciones para esta tarea:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@items</span> = [
+    {
+        <span class="nb">name</span> =&gt; <span class="s">&#39;Chairs&#39;</span>,
+        <span class="n">price</span> =&gt; <span class="mf">20.57</span>,
+        <span class="n">quantity</span> =&gt; <span class="mi">4</span>,
+    },
+    {
+        <span class="nb">name</span> =&gt; <span class="s">&#39;Tables&#39;</span>,
+        <span class="n">price</span> =&gt; <span class="mf">50.18</span>,
+        <span class="n">quantity</span> =&gt; <span class="mi">1</span>,
+    }
+];
+
+<span class="nb">say</span> <span class="s">&quot;Item\tPrice\tN\tTotal&quot;</span>;
+<span class="k">for</span> <span class="nv">@items</span> -&gt; <span class="nv">$item</span> {
+    <span class="k">my</span> <span class="nv">$total</span> = <span class="nv">$item&lt;price&gt;</span> * <span class="nv">$item&lt;quantity&gt;</span>;
+    <span class="nb">say</span> <span class="s">&quot;$item&lt;name&gt;\t\$$item&lt;price&gt;\t$item&lt;quantity&gt;\t\$$total&quot;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Encuentra el programa en el archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku">purchase-table.raku</a>.</p>
+
+<h2 id="salida">Salida</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/associatives/purchase-table.raku
+<span class="go">Item	Price	N	Total
+</span><span class="gp">Chairs	$</span>20.57	4	<span class="nv">$82</span>.28
+<span class="gp">Tables	$</span>50.18	1	<span class="nv">$50</span>.18
+</code></pre></div></div>
+
+<p><div class="exercises"></p>
+<h2 id="next-exercise">Next exercise</h2>
+
+<p>💪 <a href="/es/essentials/associatives/exercises/travel-distance">Distancia de viaje*</a>
+</div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+    <a href="/es/essentials/positionals">Tipos de datos posicionales</a>
+        / <a href="/es/essentials/positionals/subscripting-ranges">Subíndice de rangos</a>
+  |  
+    <a href="/es/advanced/functions">Crear y llamar funciones</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/associatives/exercises/purchase-table/solution/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/associatives/exercises/purchase-table/solution/">English</a> • <a href="/de/essentials/associatives/exercises/purchase-table/solution/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/associatives/exercises/purchase-table/solution/">Italiano</a> • <a href="/lv/essentials/associatives/exercises/purchase-table/solution/">Latviešu</a> • <a href="/nl/essentials/associatives/exercises/purchase-table/solution/">Nederlands</a> • <a href="/bg/essentials/associatives/exercises/purchase-table/solution/">Български</a> • <a href="/ru/essentials/associatives/exercises/purchase-table/solution/">Русский</a> • <a href="/uk/essentials/associatives/exercises/purchase-table/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

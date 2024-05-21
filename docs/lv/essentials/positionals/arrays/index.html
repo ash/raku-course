@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Masīvi | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Masīvi | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Masīvi | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/positionals">Pozicionālie datu tipi</a></p>
+
+<h1 id="masīvi">Masīvi</h1>
+
+<p>Masīvi ir agregātu datu tipi, kas var saturēt vairāk nekā vienu vērtību. Tas atšķir masīvus no <a href="/lv/essentials/scalar-variables">skalārajiem elementiem</a>. Masīva elementus var indeksēt (vai <em>apzīmēt ar apakšindeksiem</em>). Citiem vārdiem sakot, tā elementiem ir pozīcija (kas izskaidro vispārējo nosaukumu šāda veida datiem: pozicionālie dati).</p>
+
+<p>Masīva mainīgajiem tiek izmantots cits sigils: <code class="language-plaintext highlighter-rouge">@</code>. Noteikumi mainīgā nosaukumam ir tādi paši kā <a href="/lv/essentials/scalar-variables/identifiers/">skalārajiem mainīgajiem</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;
+</pre></div>
+
+
+<p>Līdz šim ir izveidots masīvs ar nosaukumu <code class="language-plaintext highlighter-rouge">@cities</code>. Jūs varat to aizpildīt ar dažām vērtībām:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@cities</span> = <span class="s">&#39;Parīze&#39;</span>, <span class="s">&#39;Roma&#39;</span>, <span class="s">&#39;Berlīne&#39;</span>;
+</pre></div>
+
+
+<p>Alternatīvi, ir iespējams uzreiz inicializēt vērtības:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">&#39;Parīze&#39;</span>, <span class="s">&#39;Roma&#39;</span>, <span class="s">&#39;Berlīne&#39;</span>;
+</pre></div>
+
+
+<h2 id="indeksēšana">Indeksēšana</h2>
+
+<p>Lai piekļūtu vienam masīva elementam, izmantojiet pāri iekavu, kuras novietojat pēc mainīgā nosaukuma:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p>Pamaniet, ka sigils vienmēr paliek nemainīgs. Tā kā elementi tiek skaitīti no nulles, elements <code class="language-plaintext highlighter-rouge">@cities[1]</code> mūsu piemērā ir <code class="language-plaintext highlighter-rouge">'Roma'</code>.</p>
+
+<p>Masīvi ir maināmi, tāpēc jūs varat viegli modificēt to elementus, vienkārši piešķirot tiem jaunu vērtību:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">&#39;Roma&#39;</span>;
+<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">&#39;Parīze&#39;</span>;
+</pre></div>
+
+
+<p>Pēc tam izteiksme <code class="language-plaintext highlighter-rouge">say @cities[1]</code> izdrukās jauno vērtību <code class="language-plaintext highlighter-rouge">'Parīze'</code>.</p>
+
+<h2 id="izmērs">Izmērs</h2>
+
+<p>Lai iegūtu pašreizējo masīva garumu, vai, citiem vārdiem sakot, tā elementu skaitu, izmantojiet metodi <code class="language-plaintext highlighter-rouge">elems</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Ja masīvs parādās kontekstā, kur gaidāms skaitlisks parametrs, atgrieztā vērtība ir masīva izmērs:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span>
+</pre></div>
+
+
+<p>Šeit, <a href="/lv/essentials/coercion/prefixes"><code class="language-plaintext highlighter-rouge">+</code> prefiksa operators</a> pieprasa skaitlisku vērtību no tā argumenta, tāpēc <code class="language-plaintext highlighter-rouge">+@cities</code> rezultāts ir <code class="language-plaintext highlighter-rouge">3</code>.</p>
+
+<p><div class="practice"></p>
+<h2 id="prakse">Prakse</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/lv/essentials/positionals/arrays/quiz">Tests — Masīvi</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+
+<p>←
+        <a href="/lv/essentials/positionals">Pozicionālie datu tipi</a>
+  |  
+        <a href="/lv/essentials/positionals">Pozicionālie datu tipi</a> / <a href="/lv/essentials/positionals/nested-arrays">Ligzdoti masīvi</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/lv/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/positionals/arrays/">Oriģinālais teksts angļu valodā.</a></p>
+
+  <p>Šīs lapas tulkojumi: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <a href="/es/essentials/positionals/arrays/">Español</a> • <a href="/it/essentials/positionals/arrays/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/positionals/arrays/">Nederlands</a> • <a href="/bg/essentials/positionals/arrays/">Български</a> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

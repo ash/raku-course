@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Parámetros de función | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Parámetros de función | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Parámetros de función | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/functions">Crear y llamar funciones</a></p>
+
+<h1 id="parámetros-de-funciones">Parámetros de funciones</h1>
+
+<p>Es hora de pasar algunos datos a una función. Puede tomar parámetros listados entre paréntesis inmediatamente después del nombre de la función.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span>) {
+    <span class="nb">say</span> <span class="s">&quot;¡Hola, $name!&quot;</span>;
+}
+</pre></div>
+
+
+<p>Ahora puedes usar la función y pasarle diferentes argumentos:</p>
+
+<div class="highlight"><pre><span></span><span class="n">greet</span>(<span class="s">&#39;Alla&#39;</span>);
+<span class="n">greet</span>(<span class="s">&#39;Karl&#39;</span>);
+</pre></div>
+
+
+<p>Las dos llamadas a la misma función ahora producirán resultados diferentes:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
+<span class="go">¡Hola, Alla!
+¡Hola, Karl!
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+
+<h2 id="parámetro-o-argumento">Parámetro o argumento</h2>
+
+<p>Estos términos a menudo se usan indistintamente. Ambos se refieren a ‘lo mismo’, pero lo miran desde diferentes perspectivas.</p>
+
+<ul>
+  <li>Un parámetro es lo que la función espera.</li>
+  <li>Un argumento es lo que le pasas.</li>
+</ul>
+
+<p>En el ejemplo anterior, <code class="language-plaintext highlighter-rouge">$name</code> es el parámetro de la función, mientras que <code class="language-plaintext highlighter-rouge">'Alla'</code> y <code class="language-plaintext highlighter-rouge">'Karl'</code> son sus argumentos.</p>
+
+<p></div></p>
+
+<h2 id="más-parámetros">Más parámetros</h2>
+
+<p>Una función puede tomar más de un solo parámetro. En este caso, enumera todos ellos separados por comas:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+
+<span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+</pre></div>
+
+
+<h2 id="sin-parámetros">Sin parámetros</h2>
+
+<p>Es un caso válido cuando la función no toma ningún parámetro. En este caso, puedes agregar un par de paréntesis vacío o omitirlos por completo, como hicimos al <a href="../">principio de esta sección</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>() {
+    <span class="nb">say</span> <span class="s">&#39;¡Hola, Mundo!&#39;</span>;
+}
+
+<span class="n">greet</span>();
+</pre></div>
+
+
+<h2 id="firma">Firma</h2>
+
+<p>La lista de parámetros de una función se llama <em>firma</em>.</p>
+
+<p><div class="practice"></p>
+<h2 id="práctica">Práctica</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/es/essentials/functions/function-parameters/quiz1">Parámetros de funciones</a></li>
+  <li><a href="/es/essentials/functions/function-parameters/quiz2">Pasar argumentos</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+
+<p>←
+        <a href="/es/essentials/functions">Crear y llamar funciones</a> / <a href="/es/essentials/functions/identifiers">Nombres de funciones</a>
+  |  
+        <a href="/es/essentials/functions">Crear y llamar funciones</a> / <a href="/es/essentials/functions/return-result">Devolver el resultado</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/es/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/functions/function-parameters/">Texto original en inglés.</a></p>
+
+  <p>Traducciones de esta página: <a href="/essentials/functions/function-parameters/">English</a> • <a href="/de/essentials/functions/function-parameters/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/functions/function-parameters/">Italiano</a> • <a href="/lv/essentials/functions/function-parameters/">Latviešu</a> • <a href="/nl/essentials/functions/function-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/function-parameters/">Български</a> • <a href="/ru/essentials/functions/function-parameters/">Русский</a> • <a href="/uk/essentials/functions/function-parameters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

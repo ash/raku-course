@@ -39,4 +39,5 @@ say "There are $how-many {$what}s."; # There are 5 suits.
 В отсутствие фигурных скобок Raku бы попытался подставить несуществующую
 переменную `$whats`.
 
+{% assign human=1 %}
 {% include nav.html %}

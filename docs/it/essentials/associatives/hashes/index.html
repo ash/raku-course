@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hashes | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Hashes | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Hashes | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/associatives">Tipi di dati associativi</a></p>
+
+<h1 id="hash">Hash</h1>
+
+<p>Un <em>hash</em> è un altro esempio di tipi di dati associativi in Raku. È un tipo di dato aggregato che mappa i nomi dei suoi elementi ai loro valori. Introduciamo il nuovo sigillo che le variabili hash usano: <code class="language-plaintext highlighter-rouge">%</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%capitals</span>;
+</pre></div>
+
+
+<p>Ora puoi usare l’hash e assegnargli alcuni valori iniziali.</p>
+
+<div class="highlight"><pre><span></span><span class="nv">%capitals</span> = <span class="n">France</span> =&gt; <span class="s">&#39;Paris&#39;</span>, <span class="n">Italy</span> =&gt; <span class="s">&#39;Rome&#39;</span>;
+</pre></div>
+
+
+<p>Come con altri tipi di dati, entrambe le azioni possono essere fatte insieme:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%capitals</span> = <span class="n">France</span> =&gt; <span class="s">&#39;Paris&#39;</span>, <span class="n">Italy</span> =&gt; <span class="s">&#39;Rome&#39;</span>;
+</pre></div>
+
+
+<h2 id="accesso-agli-elementi">Accesso agli elementi</h2>
+
+<p>L’indicizzazione degli elementi è simile a quanto visto per le <a href="../pairs">coppie</a>. Usa una coppia di parentesi angolari o parentesi graffe con una stringa:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">%capitals&lt;France&gt;</span>;
+<span class="nb">say</span> <span class="nv">%capitals</span>{<span class="s">&#39;Italy&#39;</span>};
+</pre></div>
+
+
+<p>Gli hash sono mutabili, quindi puoi sia cambiare i valori esistenti che aggiungere nuovi elementi:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">%capitals&lt;Germany&gt;</span> = <span class="s">&#39;Berlin&#39;</span>;
+</pre></div>
+
+
+<h2 id="chiavi-e-valori">Chiavi e valori</h2>
+
+<p>I due metodi incorporati, <code class="language-plaintext highlighter-rouge">keys</code> e <code class="language-plaintext highlighter-rouge">values</code>, restituiscono le liste delle chiavi e dei valori di un hash:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">%capitals</span>.<span class="nb">keys</span>;
+<span class="nb">say</span> <span class="nv">%capitals</span>.<span class="nb">values</span>;
+</pre></div>
+
+
+<p>Ecco un esempio dell’output di questo programma:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(Germany Italy France)
+(Berlin Rome Paris)
+</code></pre></div></div>
+
+<p>Nota che gli elementi dell’hash non sono ordinati, ma l’ordine delle chiavi e dei valori, restituito dai metodi sopra, è identico.</p>
+
+<p><div class="practice"></p>
+<h2 id="pratica">Pratica</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/it/essentials/associatives/hashes/quiz1">Quiz 1 — Hash</a></li>
+  <li><a href="/it/essentials/associatives/hashes/quiz2">Quiz 2 — Elementi di hash</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+        <a href="/it/essentials/associatives">Tipi di dati associativi</a> / <a href="/it/essentials/associatives/pairs">Coppie</a>
+  |  
+        <a href="/it/essentials/associatives">Tipi di dati associativi</a> / <a href="/it/essentials/associatives/nested-hashes">Hash annidati</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/it/essentials/associatives/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/associatives/hashes/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/associatives/hashes/">English</a> • <a href="/de/essentials/associatives/hashes/">Deutsch</a> • <a href="/es/essentials/associatives/hashes/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/associatives/hashes/">Latviešu</a> • <a href="/nl/essentials/associatives/hashes/">Nederlands</a> • <a href="/bg/essentials/associatives/hashes/">Български</a> • <a href="/ru/essentials/associatives/hashes/">Русский</a> • <a href="/uk/essentials/associatives/hashes/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

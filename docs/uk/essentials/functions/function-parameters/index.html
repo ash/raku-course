@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Параметри функції | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Параметри функції | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Параметри функції | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/functions">Створення та виклик функцій</a></p>
+
+<h1 id="параметри-функцій">Параметри функцій</h1>
+
+<p>Час передати деякі дані до функції. Вона може приймати параметри, які вказуються в дужках одразу після назви функції.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+}
+</pre></div>
+
+
+<p>Тепер ви можете використовувати функцію і передавати їй різні аргументи:</p>
+
+<div class="highlight"><pre><span></span><span class="n">greet</span>(<span class="s">&#39;Алла&#39;</span>);
+<span class="n">greet</span>(<span class="s">&#39;Карл&#39;</span>);
+</pre></div>
+
+
+<p>Два виклики тієї ж функції тепер дадуть різні результати:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
+<span class="go">Hello, Алла!
+Hello, Карл!
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+
+<h2 id="параметр-чи-аргумент">Параметр чи аргумент</h2>
+
+<p>Ці терміни часто використовуються взаємозамінно. Вони обидва стосуються «одного й того ж», але розглядають це з різних точок зору.</p>
+
+<ul>
+  <li>Параметр — це те, що очікує функція.</li>
+  <li>Аргумент — це те, що ви передаєте їй.</li>
+</ul>
+
+<p>У наведеному вище прикладі, <code class="language-plaintext highlighter-rouge">$name</code> є параметром функції, тоді як <code class="language-plaintext highlighter-rouge">'Алла'</code> і <code class="language-plaintext highlighter-rouge">'Карл'</code> є її аргументами.</p>
+
+<p></div></p>
+
+<h2 id="більше-параметрів">Більше параметрів</h2>
+
+<p>Функція може приймати більше ніж один параметр. У цьому випадку, перелічіть всі з них через кому:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+
+<span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+</pre></div>
+
+
+<h2 id="без-параметрів">Без параметрів</h2>
+
+<p>Це допустимий випадок, коли функція не приймає жодних параметрів. У цьому випадку ви можете або додати порожню пару дужок, або зовсім їх опустити, як ми зробили на <a href="../">початку цього розділу</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>() {
+    <span class="nb">say</span> <span class="s">&#39;Hello, World!&#39;</span>;
+}
+
+<span class="n">greet</span>();
+</pre></div>
+
+
+<h2 id="підпис">Підпис</h2>
+
+<p>Список параметрів функції називається <em>підписом</em>.</p>
+
+<p><div class="practice"></p>
+<h2 id="практика">Практика</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/uk/essentials/functions/function-parameters/quiz1">Параметри функцій</a></li>
+  <li><a href="/uk/essentials/functions/function-parameters/quiz2">Передача аргументів</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="навігація-по-курсу">Навігація по курсу</h2>
+
+<p>←
+        <a href="/uk/essentials/functions">Створення та виклик функцій</a> / <a href="/uk/essentials/functions/identifiers">Імена функцій</a>
+  |  
+        <a href="/uk/essentials/functions">Створення та виклик функцій</a> / <a href="/uk/essentials/functions/return-result">Повернення результату</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/uk/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/functions/function-parameters/">Оригінальний текст англійською мовою.</a></p>
+
+  <p>Переклади цієї сторінки: <a href="/essentials/functions/function-parameters/">English</a> • <a href="/de/essentials/functions/function-parameters/">Deutsch</a> • <a href="/es/essentials/functions/function-parameters/">Español</a> • <a href="/it/essentials/functions/function-parameters/">Italiano</a> • <a href="/lv/essentials/functions/function-parameters/">Latviešu</a> • <a href="/nl/essentials/functions/function-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/function-parameters/">Български</a> • <a href="/ru/essentials/functions/function-parameters/">Русский</a> • <strong>Українська</strong></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -29,4 +29,5 @@ False | `1..5 ~~ 3..7 ` is&nbsp; (: True, False :)
 
 {% include quiz.html %}
 
+{% assign human=1 %}
 {% include nav.html %}

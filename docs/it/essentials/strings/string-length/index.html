@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lunghezza delle stringhe in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Lunghezza delle stringhe in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Lunghezza delle stringhe in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/strings">Stringhe</a></p>
+
+<h1 id="lunghezza-della-stringa">Lunghezza della stringa</h1>
+
+<p>La natura Unicode delle stringhe rende alcune cose banali un po’ più difficili. O, almeno, devi considerarle come un argomento meno diretto. Prendi, per esempio, la lunghezza di una stringa. È il numero di caratteri, o è il numero di byte? Oppure, cosa succede se lo stesso carattere è scomposto diversamente in stringhe diverse, è ancora un solo carattere?</p>
+
+<h2 id="lunghezza-in-caratteri">Lunghezza in caratteri</h2>
+
+<p>Per ottenere la lunghezza della stringa in caratteri, usa il <em>metodo</em> <code class="language-plaintext highlighter-rouge">chars</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
+</pre></div>
+
+
+<p>Anche se parleremo dei metodi più avanti, dovremmo già essere in grado di usarli. In Raku, puoi chiamare metodi su quasi ogni oggetto, comprese le stringhe e le variabili scalari. Per chiamare un metodo, usa un punto. Quindi, qui vediamo il metodo chiamato su una variabile che contiene una stringa: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>Ci sono quattro caratteri in questo saluto cinese 你好世界. E <code class="language-plaintext highlighter-rouge">$str.chars</code> restituisce esattamente <code class="language-plaintext highlighter-rouge">4</code>.</p>
+
+<h2 id="lunghezza-in-byte">Lunghezza in byte</h2>
+
+<p>Solo per riferimento, ecco come ottenere la lunghezza della stringa in byte. In questo caso, è importante sapere quale codifica viene utilizzata per mantenere la stringa:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
+</pre></div>
+
+
+<p>Questa volta, il programma stampa <code class="language-plaintext highlighter-rouge">12</code>. Nota che abbiamo due chiamate di metodo concatenate nella seconda riga qui.</p>
+
+<h2 id="lunghezza-in-punti-di-codice">Lunghezza in punti di codice</h2>
+
+<p>Solo per completezza, ecco un altro metodo utile che si riferisce anche alla lunghezza delle stringhe: <code class="language-plaintext highlighter-rouge">codes</code>. Restituisce il numero di punti di codice nella stringa dopo che è stata normalizzata. In molti casi, <code class="language-plaintext highlighter-rouge">codes</code> e <code class="language-plaintext highlighter-rouge">chars</code> restituiscono lo stesso valore. Tuttavia, in alcuni casi rari, quando, per esempio, hai costruito ‘un carattere impossibile’, per il quale non esiste un singolo punto di codice in tutto lo spazio Unicode, i metodi danno risultati diversi.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
+</pre></div>
+
+
+<p>Questo carattere, <code class="language-plaintext highlighter-rouge">x̨</code>, non ha un punto di codice dedicato e può essere costruito solo dalle due parti: la lettera minuscola <code class="language-plaintext highlighter-rouge">x</code> e il carattere combinante <code class="language-plaintext highlighter-rouge">0x0328</code>. Quindi, c’è ancora un carattere ma due punti di codice. Quindi, il programma stampa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="pratica">Pratica</h2>
+
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+  <li><a href="/it/essentials/strings/string-length/quiz">Quiz: La lunghezza di una frase</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+
+<p>←
+        <a href="/it/essentials/strings">Stringhe</a> / <a href="/it/essentials/strings/escaping-special-characters">Escape dei caratteri speciali</a>
+  |  
+        💪 <a href="/it/essentials/strings/exercises">Exercises: Stringhe</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/strings/string-length/">Testo originale in inglese.</a></p>
+
+  <p>Traduzioni di questa pagina: <a href="/essentials/strings/string-length/">English</a> • <a href="/de/essentials/strings/string-length/">Deutsch</a> • <a href="/es/essentials/strings/string-length/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/strings/string-length/">Latviešu</a> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <a href="/ru/essentials/strings/string-length/">Русский</a> • <a href="/uk/essentials/strings/string-length/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

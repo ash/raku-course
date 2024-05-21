@@ -47,4 +47,5 @@ $str = $str ~ $another-str;
 $str ~= $another-str;
 ```
 
+{% assign human=1 %}
 {% include nav.html %}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Benannte Parameter | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Benannte Parameter | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Benannte Parameter | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/functions">Erstellen und Aufrufen von Funktionen</a></p>
+
+<h1 id="benannte-parameter">Benannte Parameter</h1>
+
+<p>Im Gegensatz zu <a href="../positional-parameters">positionsbasierten Parametern</a> werden <em>benannte</em> Parameter durch ihre Namen referenziert.</p>
+
+<p>Die folgende Funktion nimmt zwei Parameter namens <code class="language-plaintext highlighter-rouge">$from</code> und <code class="language-plaintext highlighter-rouge">$to</code> entgegen.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
+
+
+<p>Um die Funktion aufzurufen, müssen Sie die Argumente benennen:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Es ist ein Fehler, die Argumente so zu übergeben, als wären sie positionsbasiert. Zum Beispiel erzeugt ein Aufruf <code class="language-plaintext highlighter-rouge">distance(30, 10)</code> einen Fehler:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Zu viele positionsbasierte Argumente übergeben; erwartete 0 Argumente, aber 2 erhalten
+    in sub distance bei t.raku Zeile 1
+    in Block &lt;unit&gt; bei t.raku Zeile 2
+</code></pre></div></div>
+
+<p>Der Vorteil ist, dass benannte Argumente in beliebiger Reihenfolge aufgelistet werden können. Die folgenden beiden Aufrufe sind völlig gleichwertig:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<h2 id="variablen-übergeben">Variablen übergeben</h2>
+
+<p>Wenn der Wert, den Sie an eine Funktion übergeben möchten, in einer Variablen gespeichert ist, deren Name mit dem Namen des Parameters übereinstimmt, können Sie eine spezielle Syntax verwenden, die das Tippen reduziert:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Dies ist ähnlich wie ein ausführlicher Aufruf:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Auch hier ist die Reihenfolge nicht streng:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Wenn der Name der Variablen vom Namen des Parameters abweicht, verwenden Sie eine der Möglichkeiten, ein Paar zu übergeben:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
+<span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
+
+<span class="c1"># oder:</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Complete the quizzes that cover the contents of this topic.</p>
+<ul>
+  <li><a href="/de/essentials/functions/named-parameters/quiz1">Quiz 1 — Benannte Parameter</a></li>
+  <li><a href="/de/essentials/functions/named-parameters/quiz2">Quiz 2 — Variablen als benannte Parameter</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kursnavigation">Kursnavigation</h2>
+
+<p>←
+        <a href="/de/essentials/functions">Erstellen und Aufrufen von Funktionen</a> / <a href="/de/essentials/functions/positional-parameters">Positionsparameter</a>
+  |  
+        <a href="/de/essentials/functions">Erstellen und Aufrufen von Funktionen</a> / <a href="/de/essentials/functions/default-values">Standardwerte</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/de/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/functions/named-parameters/">Originaler englischer Text.</a></p>
+
+  <p>Übersetzungen dieser Seite: <a href="/essentials/functions/named-parameters/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/functions/named-parameters/">Español</a> • <a href="/it/essentials/functions/named-parameters/">Italiano</a> • <a href="/lv/essentials/functions/named-parameters/">Latviešu</a> • <a href="/nl/essentials/functions/named-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/named-parameters/">Български</a> • <a href="/ru/essentials/functions/named-parameters/">Русский</a> • <a href="/uk/essentials/functions/named-parameters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
