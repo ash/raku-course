@@ -1,6 +1,6 @@
 # De Complete Cursus van de Raku programmeertaal
 
-* [Over deze cursus](/about-this-course)
+* [Over deze cursus](/ru/about-this-course)
 
 {% comment %}{% assign compact_menu = true %}{% endcomment %}
 {% include toc.html %}

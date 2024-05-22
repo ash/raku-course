@@ -1,6 +1,6 @@
 # Pilns Raku programmēšanas valodas kurss
 
-* [Par šo kursu](/about-this-course)
+* [Par šo kursu](/lv/about-this-course)
 
 {% comment %}{% assign compact_menu = true %}{% endcomment %}
 {% include toc.html %}

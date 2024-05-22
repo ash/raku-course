@@ -1,6 +1,6 @@
 # El Curso Completo del lenguaje de programación Raku
 
-* [Sobre este curso](/about-this-course)
+* [Sobre este curso](/es/about-this-course)
 
 {% comment %}{% assign compact_menu = true %}{% endcomment %}
 {% include toc.html %}

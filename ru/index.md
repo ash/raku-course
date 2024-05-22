@@ -1,6 +1,6 @@
 # Полный курс по языку программирования Raku
 
-* [О курсе](/about-this-course)
+* [О курсе](/ru/about-this-course)
 
 {% comment %}{% assign compact_menu = true %}{% endcomment %}
 {% include toc.html %}
