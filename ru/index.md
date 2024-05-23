@@ -9,4 +9,4 @@
 
 {% include translations.html %}
 
-© 2021–{{ site.time | date: '%Y' }} от <a href="https://andreyshitov.com/">Андрей Шитов</a>
+© 2021–{{ site.time | date: '%Y' }} <a href="https://andreyshitov.com/">Андрей Шитов</a>
