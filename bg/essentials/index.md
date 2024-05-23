@@ -7,3 +7,5 @@ title: Основи на Raku
 
 {% assign extended_menu = true %}
 {% include toc.html %}
+
+{% include translations.html %}

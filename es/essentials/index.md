@@ -7,3 +7,5 @@ title: Esenciales de Raku
 
 {% assign extended_menu = true %}
 {% include toc.html %}
+
+{% include translations.html %}

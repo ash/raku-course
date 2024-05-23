@@ -7,3 +7,5 @@ title: Raku essentials
 
 {% assign extended_menu = true %}
 {% include toc.html %}
+
+{% include translations.html %}

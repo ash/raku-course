@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>String length in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="String length in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>String length in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/strings">Stringoj</a></p>
+
+<h1 id="stringa-longo">Stringa longo</h1>
+
+<p>La Unikoda naturo de la ŝnuroj faras kelkajn trivialajn aferojn iom pli malfacilaj. Aŭ, almenaŭ, vi devas pensi pri ĝi kiel pri malpli rekta temo. Ekzemple, prenu la longecon de ŝnuro. Ĉu ĝi estas la nombro de karakteroj, aŭ ĉu ĝi estas la nombro de bajtoj? Aŭ kio se la sama karaktero estas malkomponita malsame en malsamaj ŝnuroj, ĉu ĝi ankoraŭ estas unu karaktero?</p>
+
+<h2 id="longeco-en-karakteroj">Longeco en karakteroj</h2>
+
+<p>Por akiri la longecon de la ŝnuro en karakteroj, uzu la metodon <code class="language-plaintext highlighter-rouge">chars</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
+</pre></div>
+
+
+<p>Dum ni parolos pri metodoj poste, ni jam devus povi uzi ilin. En Raku, vi povas voki metodojn sur preskaŭ ĉiu objekto, inkluzive de ŝnuroj kaj skalaj variabloj. Por voki metodon, uzu punkton. Do, ĉi tie ni vidas la metodon vokitan sur variablo, kiu konservas ŝnuron: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>Estas kvar karakteroj en ĉi tiu ĉina saluto 你好世界. Kaj <code class="language-plaintext highlighter-rouge">$str.chars</code> redonas ĝuste <code class="language-plaintext highlighter-rouge">4</code>.</p>
+
+<h2 id="longeco-en-bajtoj">Longeco en bajtoj</h2>
+
+<p>Nur por referenco, jen kiel vi akiras la longecon de la ŝnuro en bajtoj. En ĉi tiu kazo, gravas scii kiu kodado estas uzata por konservi la ŝnuron:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
+</pre></div>
+
+
+<p>Ĉi-foje, la programo presas <code class="language-plaintext highlighter-rouge">12</code>. Rimarku, ke ni havas du ĉenitajn metodvokojn en la dua linio ĉi tie.</p>
+
+<h2 id="longeco-en-kodpunktoj">Longeco en kodpunktoj</h2>
+
+<p>Nur por kompletiĝo, jen alia utila metodo, kiu ankaŭ rilatas al ŝnurlongecoj: <code class="language-plaintext highlighter-rouge">codes</code>. Ĝi redonas la nombron de kodpunktoj en la ŝnuro post kiam ĝi estas normaligita. En multaj kazoj, <code class="language-plaintext highlighter-rouge">codes</code> kaj <code class="language-plaintext highlighter-rouge">chars</code> redonas la saman. Tamen, en iuj maloftaj kazoj, kiam, ekzemple, vi konstruis ‘neeblan’ karakteron, por kiu ne ekzistas unuopa kodpunkto en la tuta Unikoda spaco, la metodoj donas malsamajn rezultojn.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
+</pre></div>
+
+
+<p>Ĉi tiu karaktero, <code class="language-plaintext highlighter-rouge">x̨</code>, ne havas dediĉitan kodpunkton kaj povas esti konstruita nur el la du partoj: la minuskla litero <code class="language-plaintext highlighter-rouge">x</code> kaj la kombina karaktero <code class="language-plaintext highlighter-rouge">0x0328</code>. Do, ankoraŭ estas unu karaktero sed du kodpunktoj. Do, la programo presas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="praktiko">Praktiko</h2>
+
+<p>Plenumu la kvizon, kiu kovras la enhavon de ĉi tiu temo.</p>
+<ul>
+  <li><a href="/eo/essentials/strings/string-length/quiz">Kvizo: La longo de frazo</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kurso-navigado">Kurso navigado</h2>
+
+<p>←
+        <a href="/eo/essentials/strings">Stringoj</a> / <a href="/eo/essentials/strings/escaping-special-characters">Eskapado de specialaj karakteroj</a>
+  |  
+        💪 <a href="/eo/essentials/strings/exercises">Ekzercoj: Stringoj</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/strings/string-length/">Originala angla teksto</a></p>
+
+  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/strings/string-length/">English</a> • <a href="/de/essentials/strings/string-length/">Deutsch</a> • <a href="/es/essentials/strings/string-length/">Español</a> • <a href="/it/essentials/strings/string-length/">Italiano</a> • <a href="/lv/essentials/strings/string-length/">Latviešu</a> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <a href="/ru/essentials/strings/string-length/">Русский</a> • <a href="/uk/essentials/strings/string-length/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

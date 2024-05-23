@@ -8,5 +8,4 @@ title: Raku-Grundlagen
 {% assign extended_menu = true %}
 {% include toc.html %}
 
-
-{% include decline.html number=7 word=strings.exercise %}
+{% include translations.html %}

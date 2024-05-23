@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Multi-functions | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Multi-functions | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Multi-functions | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/more-on-functions">Plus de functionibus</a></p>
+
+<h1 id="multi-functiones">Multi-functiones</h1>
+
+<p>Raku implementat <em>multiplicem distributionem</em> secundum functionis signaturam. Permittit creare functiones quae nomen communicant sed diversos generum inputorum habent. Utere <code class="language-plaintext highlighter-rouge">multi</code> declaratore pro singulis variantibus functionis.</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
+</pre></div>
+
+
+<p>(Bene est omittere <code class="language-plaintext highlighter-rouge">sub</code> post <code class="language-plaintext highlighter-rouge">multi</code>.)</p>
+
+<p>Si duas variantes eiusdem functionis habes, compilator multiplicem distributionem facit secundum argumenta quae in vocatione functionis videt. Compara sequentes duas vocationes:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
+</pre></div>
+
+
+<p>Prima vocatio functionem cum parametris integris excitat, dum secunda vocatio alteram variantem functionis quae duos chordas exspectat currit.</p>
+
+<h2 id="literales-parametri">Literales parametri</h2>
+
+<p>Casu interessante pro multi-functionibus est habere variantes quae valores literales ut parametros habent. Considera sequentes duas variantes:</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Hoc est responsum&#39;</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x non est responsum&quot;</span>}
+</pre></div>
+
+
+<p>Prima varians solum curritur cum functionem cum exacto valore 42 vocas. In aliis casibus, secunda varians adhibetur. Ordo in quo hae functiones definiuntur non refert.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 non est responsum</span>
+<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Hoc est responsum</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Perfice quaestiones quae argumenta huius thematis comprehendunt.</p>
+<ul>
+  <li><a href="/la/essentials/more-on-functions/multi-functions/quiz1">Quiz 1 — Simple multi-functiones</a></li>
+  <li><a href="/la/essentials/more-on-functions/multi-functions/quiz2">Quiz 2 — Multi-functiones cum typis parametra</a></li>
+  <li><a href="/la/essentials/more-on-functions/multi-functions/quiz3">Quiz 3 — Vocando multi-functiones</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/more-on-functions">Plus de functionibus</a> / <a href="/la/essentials/more-on-functions/return-type">Redonare typus</a>
+  |  
+        💪 <a href="/la/essentials/more-on-functions/exercises/factorial-with-multi-functions">Exercitatio: Factorial cum multi-functiones</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/more-on-functions/multi-functions/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/more-on-functions/multi-functions/">English</a> • <a href="/de/essentials/more-on-functions/multi-functions/">Deutsch</a> • <a href="/es/essentials/more-on-functions/multi-functions/">Español</a> • <a href="/it/essentials/more-on-functions/multi-functions/">Italiano</a> • <a href="/lv/essentials/more-on-functions/multi-functions/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/multi-functions/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/multi-functions/">Български</a> • <a href="/ru/essentials/more-on-functions/multi-functions/">Русский</a> • <a href="/uk/essentials/more-on-functions/multi-functions/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

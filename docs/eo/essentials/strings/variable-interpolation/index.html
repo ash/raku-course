@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Variabla interpolado en Raku-ŝnuroj | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Variabla interpolado en Raku-ŝnuroj | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Variabla interpolado en Raku-ŝnuroj | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/strings">Stringoj</a></p>
+
+<h1 id="variabla-interpolado">Variabla interpolado</h1>
+
+<p>Ĉu vi jam rimarkis en la antaŭaj sekcioj, ke kelkfoje la ŝnuroj estis cititaj en unuopaj, sed kelkfoje en duoblaj citiloj? La diferenco estas esenca.</p>
+
+<p>Kompreneble, vi povas uzi duoblajn citilojn se vi volas meti unuopan citilon ene de la ŝnuro kun minimuma peno:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;O&#39;Henry&quot;</span>;
+</pre></div>
+
+
+<p>Cetere, estas ankoraŭ pli bone uzi ĝustan apostrofon anstataŭ unuopan citilon ĉar <a href="../../on-unicode">Raku estas bona pri Unikodo</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;O’Henry&#39;</span>;
+</pre></div>
+
+
+<p>Sed la vera potenco de duoblaj citiloj estas ilia kapablo <em>interpoli</em> variablojn kaj—kiel ni baldaŭ vidos—ekzekuti kodon! Ekzamenigu la sekvan programon:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Karl&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+</pre></div>
+
+
+<p>Kiel vi eble atendis, la programo presas <code class="language-plaintext highlighter-rouge">Hello, Karl!</code>. La nomo de la variablo <code class="language-plaintext highlighter-rouge">$name</code> (kune kun ĝia sigelo <code class="language-plaintext highlighter-rouge">$</code>) estis anstataŭigita per la valoro de la variablo.</p>
+
+<p>La variablo estis interpolita kun la valoro, kiun la variablo havis en la momento de interpolado, do se vi ŝanĝas la enhavon de <code class="language-plaintext highlighter-rouge">$name</code> kaj interpolas ĝin denove, la nova valoro estos anstataŭigita. Ni testu ĝin:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Karl&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+
+<span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
+</pre></div>
+
+
+<p>La sama ŝnuro generas malsamajn mesaĝojn ĉi-foje:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, Karl!
+Hello, Anna!
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="praktiko">Praktiko</h2>
+
+<p>Plenumu la kvizon, kiu kovras la enhavon de ĉi tiu temo.</p>
+<ul>
+  <li><a href="/eo/essentials/strings/variable-interpolation/quiz">Kvizo: Stringa interpolado</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kurso-navigado">Kurso navigado</h2>
+
+<p>←
+        <a href="/eo/essentials/strings">Stringoj</a> / <a href="/eo/essentials/strings/string-concatenation">Stringa concatenado</a>
+  |  
+        <a href="/eo/essentials/strings">Stringoj</a> / <a href="/eo/essentials/strings/code-interpolation">Koda interpolado</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/eo/essentials/strings/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/strings/variable-interpolation/">Originala angla teksto</a></p>
+
+  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/strings/variable-interpolation/">English</a> • <a href="/de/essentials/strings/variable-interpolation/">Deutsch</a> • <a href="/es/essentials/strings/variable-interpolation/">Español</a> • <a href="/it/essentials/strings/variable-interpolation/">Italiano</a> • <a href="/lv/essentials/strings/variable-interpolation/">Latviešu</a> • <a href="/nl/essentials/strings/variable-interpolation/">Nederlands</a> • <a href="/bg/essentials/strings/variable-interpolation/">Български</a> • <a href="/ru/essentials/strings/variable-interpolation/">Русский</a> • <a href="/uk/essentials/strings/variable-interpolation/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

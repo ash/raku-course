@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solutio: Annus bissextilis | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solutio: Annus bissextilis | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Solutio: Annus bissextilis | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/conditional-checks/">Conditiones comprobationes</a> / <a href="/la/essentials/conditional-checks/exercises/">Exercitationes</a> / <a href="/la/essentials/conditional-checks/exercises/leap-year">Annus bisextilis</a></p>
+
+<h1 id="solutio-annus-bisextilis">Solutio: Annus bisextilis</h1>
+
+<h2 id="disclaimer">Disclaimer</h2>
+
+<p>Solutio infra proposita intendit te exercere utendo conditionibus. In vita reali, potes discere methodos classis <code class="language-plaintext highlighter-rouge">Date</code> in-builtae. Hoc discemus in secunda parte cursus.</p>
+
+<h2 id="solutio">Solutio</h2>
+
+<p>Algorithmus detectionis si annus est bissextilis:</p>
+
+<ol>
+  <li>si annus non est divisibilis per 4 =&gt; annus communis</li>
+  <li>si annus non est divisibilis per 100 =&gt; annus bissextilis</li>
+  <li>si annus non est divisibilis per 400 =&gt; annus communis</li>
+  <li>aliter =&gt; annus bissextilis</li>
+</ol>
+
+<p>Nota quod potes uti typis in-builta ad operandum cum data et tempore, itaque ad hanc quaestionem redibimus in secunda parte cursus.</p>
+
+<h2 id="codex-1">Codex 1</h2>
+
+<p>Prima solutio reproduciit gradus supra litteratim:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Annus: &#39;</span>;
+
+<span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
+    <span class="nb">say</span> <span class="s">&#39;Annus communis&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">100</span> {
+    <span class="nb">say</span> <span class="s">&#39;Annus bissextilis&#39;</span>;
+}
+<span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">400</span> {
+    <span class="nb">say</span> <span class="s">&#39;Annus communis&#39;</span>;
+}
+<span class="k">else</span> {
+    <span class="nb">say</span> <span class="s">&#39;Annus bissextilis&#39;</span>;
+}
+</pre></div>
+
+
+<p>🦋 Inveni programmam in archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
+
+<h2 id="codex-2">Codex 2</h2>
+
+<p>In secunda solutione, logica compacta est in unam expressionem. Parentheses non semper necessariae sunt sed hic additae sunt pro claritate.</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Annus: &#39;</span>;
+
+<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Annus bissextilis&#39;</span> !! <span class="s">&#39;Annus communis&#39;</span>;
+</pre></div>
+
+
+<p>🦋 Inveni programmam in archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<p>Experire utrumque programma cum casibus criticis, exempli gratia, 1900, 2000, 2020, 2021.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Annus: 1900
+Annus communis
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
+<span class="go">Annus: 2000
+Annus bissextilis
+</span></code></pre></div></div>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Annus: 2020
+Annus bissextilis
+
+</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
+<span class="go">Annus: 2021
+Annus communis
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+<h2 id="-vs-"><code class="language-plaintext highlighter-rouge">%%</code> vs <code class="language-plaintext highlighter-rouge">%</code></h2>
+
+<p>Nota quod in contextibus Booleanis, operatores <code class="language-plaintext highlighter-rouge">%%</code> et <code class="language-plaintext highlighter-rouge">%</code> sunt complementarii. Potes uti hoc facto ad eligendum unum ex operatoribus ad vitandum explicitum comparationem cum zero.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># Verum</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># Verum</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># Falsum</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># Falsum</span>
+</pre></div>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+    <a href="/la/essentials/code-blocks">Codicis sectiones</a>
+        / <a href="/la/essentials/code-blocks/local-variables">Locales variabiles</a>
+  |  
+    <a href="/la/advanced/loops">Ansae</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/conditional-checks/exercises/leap-year/solution/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/conditional-checks/exercises/leap-year/solution/">English</a> • <a href="/de/essentials/conditional-checks/exercises/leap-year/solution/">Deutsch</a> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <a href="/it/essentials/conditional-checks/exercises/leap-year/solution/">Italiano</a> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/exercises/leap-year/solution/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/exercises/leap-year/solution/">Български</a> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <a href="/uk/essentials/conditional-checks/exercises/leap-year/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Operations with numbers | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Operations with numbers | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Operations with numbers | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/numbers">Numeri</a></p>
+
+<h1 id="operationes-cum-numeris">Operationes cum numeris</h1>
+
+<p>Non est dubium quin iam scias quasdam operationes quas cum numeris Raku facere possis. Modo dicendum est symbolum <em>operationis</em> vocari <em>operator</em>. Obiecta quibus operationes perficimus vocantur <em>operandum</em>.</p>
+
+<h2 id="arithmetic">Arithmetic</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Operator</strong></td>
+      <td><strong>Operatio</strong></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td>Additio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td>Subtractio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td>Multiplicatio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td>Divisio</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Cum Raku <a href="/la/essentials/on-unicode">Unicode</a> optime sustineat, nonnulli ex his operatoribus aequivalentes non-ASCII habent:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">×</code></td>
+      <td>Multiplicatio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
+      <td>Divisio</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ut ordinem executionis mutare possis, parenthesibus utere:</p>
+
+<div class="highlight"><pre><span></span><span class="n">dic</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="n">dic</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
+</pre></div>
+
+
+<h2 id="modulo">Modulo</h2>
+
+<p>Operator modulo est <code class="language-plaintext highlighter-rouge">%</code> ut in multis aliis linguis.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td>Modulo</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Reddit reliquum divisionis integrae duorum numerorum, ita <code class="language-plaintext highlighter-rouge">10 % 3</code> est <code class="language-plaintext highlighter-rouge">1</code>. Nota quod <code class="language-plaintext highlighter-rouge">-10 % 3</code> est <code class="language-plaintext highlighter-rouge">2</code> quia exitus operationis definitur ut differentia inter primum numerum et divisionem rotundatam multiplicatam per secundum numerum. Ita, <code class="language-plaintext highlighter-rouge">$a % $b</code> aequivalet <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
+
+<h2 id="divisibilitas">Divisibilitas</h2>
+
+<p>Raku addit utilem operatorem ad probandum si numerus divisibilis est per alium numerum.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
+      <td>Divisibilitas</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Hic est operator infixus qui duos operandos requirit: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Si primus operandus divisibilis est per secundum operandum, exitus est Booleanus <code class="language-plaintext highlighter-rouge">Verum</code>. Alioquin, <code class="language-plaintext highlighter-rouge">Falsum</code>.</p>
+
+<h2 id="operationes-integrae">Operationes Integrae</h2>
+
+<p>Sunt speciales operationes quae reddunt exitus integros. Eorum operatores sunt verba pro symbolis.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">div</code></td>
+      <td>Divisio integra</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
+      <td>Modulo integer</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Operator <code class="language-plaintext highlighter-rouge">div</code> rotundat exitum deorsum, ita <code class="language-plaintext highlighter-rouge">10 div 3</code> est <code class="language-plaintext highlighter-rouge">3</code>, et <code class="language-plaintext highlighter-rouge">-10 div 3</code> est <code class="language-plaintext highlighter-rouge">-4</code>.</p>
+
+<p>Utrumque <code class="language-plaintext highlighter-rouge">div</code> et <code class="language-plaintext highlighter-rouge">mod</code> operandos integros expectant. Ita, sequens programma non operabitur si lineas notatas <code class="language-plaintext highlighter-rouge">Error</code> uncommentaveris:</p>
+
+<div class="highlight"><pre><span></span><span class="n">dic</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<span class="c1"># dic 10.3 mod 3; # Error</span>
+
+<span class="n">dic</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
+<span class="c1"># dic 10.3 div 3.3; # Error</span>
+</pre></div>
+
+
+<h2 id="potentia">Potentia</h2>
+
+<p>Sunt duo modi ad exitum <em>x</em> ad potentiam <em>y</em> obtinendum. Primum, potes uti operatore <code class="language-plaintext highlighter-rouge">**</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="n">dic</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
+</pre></div>
+
+
+<p>Secundum, potes uti digitis superscriptis, exempli gratia:</p>
+
+<div class="highlight"><pre><span></span><span class="n">dic</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
+</pre></div>
+
+
+<p>Possibile est plures quam unum digitum superscriptum ponere ut valorem potentiae maiorem quam 9 obtineas. Exempli gratia:</p>
+
+<div class="highlight"><pre><span></span><span class="n">dic</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
+</pre></div>
+
+
+<p>Potentia negativa non est problema quoque:</p>
+
+<div class="highlight"><pre><span></span><span class="n">dic</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="n">dic</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
+</pre></div>
+
+
+<p>Nota quod exitus duarum ultimarum expressionum est numerus <code class="language-plaintext highlighter-rouge">Rat</code>.</p>
+
+<h2 id="operationes-cum-assignatione">Operationes cum assignatione</h2>
+
+<p>Omnes operationes sustinent compendiariam syntaxin cum variabilem renovare debes. Demonstramus id in exemplo <code class="language-plaintext highlighter-rouge">+</code>.</p>
+
+<p>Forma plena</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+</pre></div>
+
+
+<p>aequivalet:</p>
+
+<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
+</pre></div>
+
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/numbers">Numeri</a> / <a href="/la/essentials/numbers/numeric">Numeri fluitantes</a>
+  |  
+        💪 <a href="/la/essentials/numbers/exercises">Exercitationes: Numeri</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/numbers/operations/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/numbers/operations/">English</a> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Parametri nominati | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Parametri nominati | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Parametri nominati | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/functions">Creando et vocando functiones</a></p>
+
+<h1 id="nominate-parametra">Nominate parametra</h1>
+
+<p>Contrarium ad <a href="../positional-parameters">parametros posicionales</a>, <em>nominati</em> parametri nominibus suis referuntur.</p>
+
+<p>Sequens functio duos parametros vocatos <code class="language-plaintext highlighter-rouge">$from</code> et <code class="language-plaintext highlighter-rouge">$to</code> accipit.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
+
+
+<p>Nunc, ut functionem vocare, debes argumenta nominare:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Error est argumenta quasi posicionalia transmittere. Exempli gratia, vocatio <code class="language-plaintext highlighter-rouge">distance(30, 10)</code> errorem generat:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Troppi positionale transmissi; expectati 0 argumenti sed accepti 2
+    in sub distance ad t.raku linea 1
+    in block &lt;unit&gt; ad t.raku linea 2
+</code></pre></div></div>
+
+<p>Bona pars est quod argumenta nominata in quolibet ordine enumerari possunt. Sequentes duae vocationes omnino aequivalentes sunt:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<h2 id="variabiles-transmittentes">Variabiles transmittentes</h2>
+
+<p>Cum valor quem vis transmittere ad functionem in variabili servatur, cuius nomen cum nomine parametri coincidit, frui potes speciali syntaxi quae scribendi laborem minuit:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
+<span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Hoc simile est vocatio verbosae:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Iterum, ordo hic non est strictus:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
+
+
+<p>Si nomen variabilis differt a nomine parametri, utere uno modorum ad par transmittendum:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
+<span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
+
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
+
+<span class="c1"># vel:</span>
+
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Perfice quaestiones quae argumenta huius thematis comprehendunt.</p>
+<ul>
+  <li><a href="/la/essentials/functions/named-parameters/quiz1">Quiz 1 — Nominate parametra</a></li>
+  <li><a href="/la/essentials/functions/named-parameters/quiz2">Quiz 2 — Variabiles ut nominate parametra</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/functions">Creando et vocando functiones</a> / <a href="/la/essentials/functions/positional-parameters">Positional parametra</a>
+  |  
+        <a href="/la/essentials/functions">Creando et vocando functiones</a> / <a href="/la/essentials/functions/default-values">Defaulte valores</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/la/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/functions/named-parameters/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/functions/named-parameters/">English</a> • <a href="/de/essentials/functions/named-parameters/">Deutsch</a> • <a href="/es/essentials/functions/named-parameters/">Español</a> • <a href="/it/essentials/functions/named-parameters/">Italiano</a> • <a href="/lv/essentials/functions/named-parameters/">Latviešu</a> • <a href="/nl/essentials/functions/named-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/named-parameters/">Български</a> • <a href="/ru/essentials/functions/named-parameters/">Русский</a> • <a href="/uk/essentials/functions/named-parameters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -7,3 +7,5 @@ title: Elementi essenziali di Raku
 
 {% assign extended_menu = true %}
 {% include toc.html %}
+
+{% include translations.html %}

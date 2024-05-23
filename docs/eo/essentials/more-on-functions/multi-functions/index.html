@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Multi-funkcioj | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Multi-funkcioj | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Multi-funkcioj | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a></p>
+
+<h1 id="multi-funkcioj">Multi-funkcioj</h1>
+
+<p>Raku efektivigas <em>multoblan sendon</em> bazitan sur funkcia subskribo. Ĝi permesas krei funkciojn kiuj dividas la nomon sed havas malsamajn tipojn de eniraj datumoj. Uzu la <code class="language-plaintext highlighter-rouge">multi</code> deklarilon por ĉiu el la variantoj de la funkcio.</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
+</pre></div>
+
+
+<p>(Estas bone preterlasi <code class="language-plaintext highlighter-rouge">sub</code> post <code class="language-plaintext highlighter-rouge">multi</code>.)</p>
+
+<p>Se vi havas la du variantojn de la sama funkcio, la kompililo plenumas multoblan sendon depende de kiuj argumentoj estas viditaj en la funkcia voko. Komparu la jenajn du vokojn:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
+</pre></div>
+
+
+<p>La unua voko ekigas la funkcion kun entjeraj parametroj, dum la dua voko funkciigas la duan varianton de la funkcio kiu atendas du ĉenojn.</p>
+
+<h2 id="literalaj-parametroj">Literalaj parametroj</h2>
+
+<p>Interesa kazo por multi-funkcioj estas havi variantojn kiuj havas literalajn valorojn kiel parametroj. Konsideru la jenajn du variantojn:</p>
+
+<div class="highlight"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Ĉi tio estas la respondo&#39;</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x ne estas la respondo&quot;</span>}
+</pre></div>
+
+
+<p>La unua varianto estas nur funkciigita kiam vi vokas la funkcion kun la ĝusta valoro de 42. En aliaj kazoj, la dua varianto estas uzata. La ordo en kiu ĉi tiuj funkcioj estas difinitaj ne gravas.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 ne estas la respondo</span>
+<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Ĉi tio estas la respondo</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praktiko">Praktiko</h2>
+
+<p>Plenumu la kvizojn, kiuj kovras la enhavon de ĉi tiu temo.</p>
+<ul>
+  <li><a href="/eo/essentials/more-on-functions/multi-functions/quiz1">Kvizo 1 — Simplaj multi-funkcioj</a></li>
+  <li><a href="/eo/essentials/more-on-functions/multi-functions/quiz2">Kvizo 2 — Multi-funkcioj kun tipitaj parametroj</a></li>
+  <li><a href="/eo/essentials/more-on-functions/multi-functions/quiz3">Kvizo 3 — Vokante multi-funkciojn</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kurso-navigado">Kurso navigado</h2>
+
+<p>←
+        <a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a> / <a href="/eo/essentials/more-on-functions/return-type">Redontipo</a>
+  |  
+        💪 <a href="/eo/essentials/more-on-functions/exercises/factorial-with-multi-functions">Ekzerco: Faktorialo kun multi-funkcioj</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/more-on-functions/multi-functions/">Originala angla teksto</a></p>
+
+  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/more-on-functions/multi-functions/">English</a> • <a href="/de/essentials/more-on-functions/multi-functions/">Deutsch</a> • <a href="/es/essentials/more-on-functions/multi-functions/">Español</a> • <a href="/it/essentials/more-on-functions/multi-functions/">Italiano</a> • <a href="/lv/essentials/more-on-functions/multi-functions/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/multi-functions/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/multi-functions/">Български</a> • <a href="/ru/essentials/more-on-functions/multi-functions/">Русский</a> • <a href="/uk/essentials/more-on-functions/multi-functions/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

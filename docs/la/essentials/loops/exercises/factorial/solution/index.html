@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Solutio ‘Factorialis’ | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Solutio ‘Factorialis’ | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Solutio ‘Factorialis’ | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/loops/">Ansae</a> / <a href="/la/essentials/loops/exercises/">Exercitationes</a> / <a href="/la/essentials/loops/exercises/factorial">Factorial</a></p>
+
+<h1 id="solutio-factorial">Solutio: Factorial</h1>
+
+<p>Factorialis <code class="language-plaintext highlighter-rouge">N</code> est productum numerorum integrorum ab 1 usque ad et includens <code class="language-plaintext highlighter-rouge">N</code>. Exempli gratia, factorialis 4 est 1 * 2 * 3 * 4 = 24.</p>
+
+<h2 id="codex">Codex</h2>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">8</span>;
+
+<span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+<span class="nv">$f</span> *= <span class="nv">$_</span> <span class="n">pro</span> <span class="mi">2</span>..<span class="nv">$n</span>;
+
+<span class="n">dic</span> <span class="nv">$f</span>;
+</pre></div>
+
+
+<p>🦋 Inveni programmatum in archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku">factorial.raku</a>.</p>
+
+<h2 id="output">Output</h2>
+
+<p>Curre programmatum aliquoties et tenta valores diversos <code class="language-plaintext highlighter-rouge">$n</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/loops/factorial.raku
+<span class="go">40320
+</span></code></pre></div></div>
+
+<h2 id="commentarii">Commentarii</h2>
+
+<p>Hoc programma utitur operatore <code class="language-plaintext highlighter-rouge">*=</code>, qui est compendiaria forma multiplicationis cum assignatione: <code class="language-plaintext highlighter-rouge">$x *= $y</code> aequivalet <code class="language-plaintext highlighter-rouge">$x = $x * $y</code>.</p>
+
+<p>Potes uti ‘pleno’ circulo loco formae postfixae:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">8</span>;
+
+<span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
+<span class="n">pro</span> <span class="mi">2</span>..<span class="nv">$n</span> -&gt; <span class="nv">$x</span> {
+    <span class="nv">$f</span> *= <span class="nv">$x</span>;
+}
+
+<span class="n">dic</span> <span class="nv">$f</span>;
+</pre></div>
+
+
+<h2 id="plus-de-hoc-argumento">Plus de hoc argumento</h2>
+
+<p>Ad hanc quaestionem pluries revertemus. In hac parte cursus, etiam hanc quaestionem recursive solvemus.</p>
+
+<p>In secunda parte cursus, discemus de sic dictis operatoribus reductionis, qui solutionem trivialis faciunt. Etiam erit modus definire operatorem custom <code class="language-plaintext highlighter-rouge">!</code> ut possis scribere <code class="language-plaintext highlighter-rouge">$n!</code> ad computandum factorialem. Denique erit alia occasio videre solutionem interesting cum de clausula <code class="language-plaintext highlighter-rouge">where</code> loquemur.</p>
+
+<p><div class="exercises"></p>
+<h2 id="proximum-exercitium">Proximum exercitium</h2>
+
+<p>💪 <a href="/la/essentials/loops/exercises/fibonacci-numbers">Fibonacci numeri</a>
+</div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+    <a href="/la/essentials/conditional-checks">Conditiones comprobationes</a>
+        / <a href="/la/essentials/conditional-checks/ternary-operator">Ternarius operator</a>
+  |  
+    <a href="/la/advanced/coercion">Data typus conversio</a>
+→</p>
+
+<!-- <style>
+    body {
+        background-color: #f6fdff;
+    }
+</style> -->
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/loops/exercises/factorial/solution/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/loops/exercises/factorial/solution/">English</a> • <a href="/de/essentials/loops/exercises/factorial/solution/">Deutsch</a> • <a href="/es/essentials/loops/exercises/factorial/solution/">Español</a> • <a href="/it/essentials/loops/exercises/factorial/solution/">Italiano</a> • <a href="/lv/essentials/loops/exercises/factorial/solution/">Latviešu</a> • <a href="/nl/essentials/loops/exercises/factorial/solution/">Nederlands</a> • <a href="/bg/essentials/loops/exercises/factorial/solution/">Български</a> • <a href="/ru/essentials/loops/exercises/factorial/solution/">Русский</a> • <a href="/uk/essentials/loops/exercises/factorial/solution/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

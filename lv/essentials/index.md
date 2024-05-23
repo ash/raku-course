@@ -7,3 +7,5 @@ title: Raku pamati
 
 {% assign extended_menu = true %}
 {% include toc.html %}
+
+{% include translations.html %}

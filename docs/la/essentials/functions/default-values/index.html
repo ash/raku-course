@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Valores praedefiniti | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Valores praedefiniti | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Valores praedefiniti | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/functions">Creando et vocando functiones</a></p>
+
+<h1 id="defaulte-valores">Defaulte valores</h1>
+
+<p>Tam parametri positionis quam nominati valores praedefiniti habere possunt. Si functio valorem praedefinitum pro parametro dato habet, ille parameter omitti potest cum functionem vocas.</p>
+
+<h2 id="parametri-positionis">Parametri positionis</h2>
+
+<p>Exemplum valoris praedefiniti pro functione cum parametris positionis:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">saluta</span>(<span class="nv">$nomen</span> = <span class="s">&#39;Mundus&#39;</span>) {
+    <span class="n">dic</span> <span class="s">&quot;Salve, $nomen!&quot;</span>;
+}
+
+<span class="n">saluta</span>(<span class="s">&#39;Merinda&#39;</span>);
+<span class="n">saluta</span>();
+</pre></div>
+
+
+<p>Prima vocatio nomen datum ut solum argumentum utitur et sic imprimit <code class="language-plaintext highlighter-rouge">Salve, Merinda!</code>. Secunda vocatio valorem praedefinitum utitur et imprimit <code class="language-plaintext highlighter-rouge">Salve, Mundus!</code>.</p>
+
+<p>Si functio plus quam unum parametron habet, tunc valores praedefiniti tantum in fine eorum indicis adhiberi possunt:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># rectum</span>
+<span class="c1"># sub f($a = 10, $b = 20, $c, $d) { . . . } # FALSUM</span>
+</pre></div>
+
+
+<h2 id="parametri-nominati">Parametri nominati</h2>
+
+<p>Eadem syntaxi adhibetur ad valores praedefinitos pro parametris nominatis statuendos:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">saluta</span>(:<span class="nv">$nomen</span> = <span class="s">&#39;Mundus&#39;</span>) {
+    <span class="n">dic</span> <span class="s">&quot;Salve, $nomen!&quot;</span>;
+}
+
+<span class="n">saluta</span>(<span class="n">nomen</span> =&gt; <span class="s">&#39;Merinda&#39;</span>); <span class="c1"># Salve, Merinda!</span>
+<span class="n">saluta</span>(); <span class="c1"># Salve, Mundus!</span>
+</pre></div>
+
+
+<p>Ordo parametron nominatorum non refert, ita quilibet eorum valores praedefinitos habere potest, etiam primus in indice:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">saluta</span>(:<span class="nv">$salutatio</span> = <span class="s">&#39;Salve&#39;</span>, :<span class="nv">$nomen</span>) {
+    <span class="n">dic</span> <span class="s">&quot;$salutatio, $nomen!&quot;</span>;
+}
+
+<span class="n">saluta</span>(<span class="n">nomen</span> =&gt; <span class="s">&#39;Alla&#39;</span>); <span class="c1"># Salve, Alla!</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Perfice quaestiones quae argumenta huius thematis comprehendunt.</p>
+<ul>
+  <li><a href="/la/essentials/functions/default-values/quiz1">Quiz — Definire defaulte valores</a></li>
+  <li><a href="/la/essentials/functions/default-values/quiz2">Quiz — Functiones cum defaulte valores</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/functions">Creando et vocando functiones</a> / <a href="/la/essentials/functions/named-parameters">Nominate parametra</a>
+  |  
+        💪 <a href="/la/essentials/functions/exercises">Exercitationes: Creando et vocando functiones</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/functions/default-values/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/functions/default-values/">English</a> • <a href="/de/essentials/functions/default-values/">Deutsch</a> • <a href="/es/essentials/functions/default-values/">Español</a> • <a href="/it/essentials/functions/default-values/">Italiano</a> • <a href="/lv/essentials/functions/default-values/">Latviešu</a> • <a href="/nl/essentials/functions/default-values/">Nederlands</a> • <a href="/bg/essentials/functions/default-values/">Български</a> • <a href="/ru/essentials/functions/default-values/">Русский</a> • <a href="/uk/essentials/functions/default-values/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

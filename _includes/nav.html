@@ -23,7 +23,7 @@
 
 {%- if next_quiz and next_quiz_topic and next_quiz_topic.url == curr_topic.url %}
 %%practiceblock
-## More practice
+## {{strings.More_practice}}
 
 * [{{next_quiz.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}/{{next_quiz.url}})
 
@@ -31,7 +31,7 @@
 {%- endif %}
 {%- if next_quiz and next_quiz_section and next_quiz_section.url == curr_section.url and curr_quiz_topic == nil %}
 %%practiceblock
-## More practice
+## {{strings.More_practice}}
 
 * [{{next_quiz.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/{{next_quiz.url}})
 
@@ -43,7 +43,7 @@
 %%practiceblock
 ## {{strings.Practice}}
 
-Complete the {% if curr_topic.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
+{% include decline.html number=curr_topic.quizzes.size word=strings.Complete_the_quiz text_only=1 %}
 
         {%- for quiz in curr_topic.quizzes %}
 * [{{quiz.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/{{curr_topic.url}}/{{quiz.url}})
@@ -55,7 +55,7 @@ Complete the {% if curr_topic.quizzes.size != 1%}quizzes that cover{% else %}qui
 %%practiceblock
 ## {{strings.Practice}}
 
-Complete the {% if curr_section.quizzes.size != 1%}quizzes that cover{% else %}quiz that covers{% endif %} the contents of this topic.
+{% include decline.html number=curr_section.quizzes.size word=strings.Complete_the_quiz text_only=1 %}
 
         {%- for quiz in curr_section.quizzes %}
 * [{{quiz.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/{{quiz.url}})
@@ -72,16 +72,16 @@ Complete the {% if curr_section.quizzes.size != 1%}quizzes that cover{% else %}q
 {% if L3 != 'exercises' %}
 ## {{strings.Exercises}}
 {% endif %}
-This section contains {%if L3 != 'exercises' %}[{{curr_section.exercises.size}} exercises]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises){% else %}{{curr_section.exercises.size}} exercises{% endif %}. {% if L3 != 'exercises' %}Examine all the topics of this section before going to the coding practice.{% endif %}
+{% if L3 != 'exercises' %}{{strings.This_section_contains}} [{% include decline.html number=curr_section.exercises.size word=strings.exercise %}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises){% else %}{{strings.This_section_contains}} {% include decline.html number=curr_section.exercises.size word=strings.exercise %}{% endif %}. {% if L3 != 'exercises' %}{{strings.Examine_the_topics}}{% endif %}
 
 {%- for exercise in curr_section.exercises %}
 1. [{{exercise.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises/{{exercise.url}})
 {%- endfor %}
 {% else %}
 {% if L3 != 'exercises' %}
-## Exercise
+## {{strings.Exercise}}
 {% endif %}
-{% if L3 != 'exercises' %}This section contains an exercise, which you are supposed to do after studying all the topics of this section.{% else %}There is one exercise in this section. Here it is:{% endif %}
+{% if L3 != 'exercises' %}{{strings.Contains_an_exercise}}{% else %}{{strings.One_exercise}}{% endif %}
 
 💪 [{{curr_section.exercises[0].title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}})
 {% endif %}
@@ -89,9 +89,9 @@ This section contains {%if L3 != 'exercises' %}[{{curr_section.exercises.size}} 
 {% endif %}
 
 {% if L3 == 'exercises' %}
-## Refresh your knowledge
+## {{strings.Refresh_your_knowledge}}
 
-Refer to the contents of this section to find the answers if needed.
+{{strings.Refer_to_contents}}
 
 * [{{curr_section.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}})
 {%- if curr_section.items.size %}
@@ -107,7 +107,7 @@ Refer to the contents of this section to find the answers if needed.
 
 {% if next_exercise %}
 %%exercisesblock
-## Next exercise
+## {{strings.Next_exercise}}
 
 💪 [{{next_exercise.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises/{{next_exercise.url}})
 %%/exercisesblock
@@ -136,9 +136,9 @@ Refer to the contents of this section to find the answers if needed.
     [{{next_section.title}}]({{top}}/{%- if next_part == nil %}{{curr_part.url}}{%- else %}{{next_part.url}}{%- endif %}/{{next_section.url}})
 {%- elsif curr_section.exercises and curr_section.items.last.url == curr_topic.url %}
     {%-if curr_section.exercises.size != 1 %}
-        💪 [Exercises: {{curr_section.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises)
+        💪 [{{strings.Exercises}}: {{curr_section.title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises)
     {%- else %}
-        💪 [Exercise: {{curr_section.exercises[0].title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}})
+        💪 [{{strings.Exercise}}: {{curr_section.exercises[0].title}}]({{top}}/{{curr_part.url}}/{{curr_section.url}}/exercises/{{curr_section.exercises[0].url}})
     {%- endif %}
 {%- else %}
 {%- if curr_topic %}

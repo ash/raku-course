@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Fuga characterum specialium in chordis Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Fuga characterum specialium in chordis Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Fuga characterum specialium in chordis Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/strings">Catenae</a></p>
+
+<h1 id="escapatio-specialium-characterum">Escapatio specialium characterum</h1>
+
+<p>Imagina te velle imprimere titulum pretii, et servas et nomen producti et pretium eius in variabilibus scalaribus?</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricitas&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
+
+
+<p>Quomodo imprimes titulum si pretium destinatur in dollaris? Exitus expectatus est: <code class="language-plaintext highlighter-rouge">Electricitas costs $3.14</code>. Signum dollari in chordis duplici-quotatis est indicator variabilis interpolandi. Ad imprimendum characterem <code class="language-plaintext highlighter-rouge">$</code> ipsum, necesse est eum effugere:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
+
+
+<p>Certe, potes uti concatenatione chorda et evitare effugium <code class="language-plaintext highlighter-rouge">$</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
+
+
+<p>Haec varietas exacte eandem chordam imprimit, sed interpolatio videtur naturalior et facilius legitur. Nota quod character <code class="language-plaintext highlighter-rouge">$</code> neque interpolatus neque effugitus est in chorda simplici-quotata: <code class="language-plaintext highlighter-rouge">' costs $'</code>. Haec est differentia principalis. Characteres speciales in simplicibus quotatis apparent ut sunt.</p>
+
+<p>Hic sunt aliquot characteres speciales qui habent significationem specialem in chordis duplici-quotatis:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
+      <td>Signum dollari</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
+      <td>Linea nova</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
+      <td>Reditus currus</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
+      <td>Tabula horizontalis</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
+      <td>Quotatio duplici</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
+      <td>Retroversus</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Modus quo chorda quotatur definit quomodo Raku tractet characteres speciales. Considera haec duo exempla:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Unus\nDuo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Tres\nQuattuor&quot;</span>;
+</pre></div>
+
+
+<p>Si curris hoc programma, videbis primam chordam apparere ut est in una linea. Secunda chorda divisa est in duas partes:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unus\nDuo
+Tres
+Quattuor
+</code></pre></div></div>
+
+<p>In duplicibus quotatis, sequens specialis <code class="language-plaintext highlighter-rouge">\n</code> processa est ut character novae lineae, dum in chorda simplici-quotata erat regularis sequens duorum characterum: <code class="language-plaintext highlighter-rouge">\</code> et <code class="language-plaintext highlighter-rouge">n</code>.</p>
+
+<p>Est exceptio interesting pro <code class="language-plaintext highlighter-rouge">'</code> et <code class="language-plaintext highlighter-rouge">\</code>. In simplicibus quotatis, potes effugere simplicem quotationem praefigendo eam cum alio <code class="language-plaintext highlighter-rouge">\</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
+
+
+<p>Retroversus etiam effugere debet si sequitur simplicis quotatio:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Perfice quaestionem quae argumenta huius thematis comprehendit.</p>
+<ul>
+  <li><a href="/la/essentials/strings/escaping-special-characters/quiz">Quiz: Inversus punctus in output</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/strings">Catenae</a> / <a href="/la/essentials/strings/code-interpolation">Codice interpolatio</a>
+  |  
+        <a href="/la/essentials/strings">Catenae</a> / <a href="/la/essentials/strings/string-length">Catena longitudo</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/la/essentials/strings/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/strings/escaping-special-characters/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <a href="/lv/essentials/strings/escaping-special-characters/">Latviešu</a> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

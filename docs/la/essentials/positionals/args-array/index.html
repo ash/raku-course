@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>The @*ARGS array | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="The @*ARGS array | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>The @*ARGS array | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/positionals">Positionalia data genera</a></p>
+
+<h1 id="args-array"><code class="language-plaintext highlighter-rouge">@*ARGS</code> array</h1>
+
+<p>Quatenus arrays introductae sunt, bonum tempus est ut unum ex inbuilt arrays, <code class="language-plaintext highlighter-rouge">@*ARGS</code>, cognoscamus. <code class="language-plaintext highlighter-rouge">*</code> in nomine suo est secundus sigil, vel <em>twigil</em>, et plura de eis in futuro videbimus. Sed nunc, commoda utendi illo speciali array capiamus. Continet argumenta quae programma ex linea mandati accipit.</p>
+
+<p>Considera sequentem programmatum currere:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku run.raku alpha beta
+</code></pre></div></div>
+
+<p>Programma <code class="language-plaintext highlighter-rouge">run.raku</code> duo parametra accipit: <code class="language-plaintext highlighter-rouge">alpha</code> et <code class="language-plaintext highlighter-rouge">beta</code>. Legi possunt ex <code class="language-plaintext highlighter-rouge">@*ARGS</code>.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>];
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p>Hoc programma numerum argumentorum ei praeteritorum et argumenta ipsa imprimit:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku run.raku alpha beta
+<span class="go">2
+alpha
+beta
+</span></code></pre></div></div>
+
+<p>Nota quod programma nullam mutationem requirit si vocas illud ut executable file:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./run.raku alpha beta
+</code></pre></div></div>
+
+<p>Programma, in hoc casu, <a href="/la/essentials/running-programs/from-command-line">shebang habere debet</a>, sed res maximi momenti est quod indices <code class="language-plaintext highlighter-rouge">@*ARGS</code> adhuc incipiunt cum <code class="language-plaintext highlighter-rouge">0</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env raku</span>
+
+<span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">0</span>];
+<span class="nb">say</span> <span class="vg">@*ARGS</span>[<span class="mi">1</span>];
+</pre></div>
+
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Perfice quaestionem quae argumenta huius thematis comprehendit.</p>
+<ul>
+  <li><a href="/la/essentials/positionals/args-array/quiz">Quiz — <code class="language-plaintext highlighter-rouge">@*ARGS</code> array</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/positionals">Positionalia data genera</a> / <a href="/la/essentials/positionals/nested-arrays">Nidificata array</a>
+  |  
+        <a href="/la/essentials/positionals">Positionalia data genera</a> / <a href="/la/essentials/positionals/interpolating-arrays">Interpolando array</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/la/essentials/positionals/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/positionals/args-array/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/positionals/args-array/">English</a> • <a href="/de/essentials/positionals/args-array/">Deutsch</a> • <a href="/es/essentials/positionals/args-array/">Español</a> • <a href="/it/essentials/positionals/args-array/">Italiano</a> • <a href="/lv/essentials/positionals/args-array/">Latviešu</a> • <a href="/nl/essentials/positionals/args-array/">Nederlands</a> • <a href="/bg/essentials/positionals/args-array/">Български</a> • <a href="/ru/essentials/positionals/args-array/">Русский</a> • <a href="/uk/essentials/positionals/args-array/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

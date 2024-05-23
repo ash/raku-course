@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cave ne spatium | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Cave ne spatium | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Cave ne spatium | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/more-on-functions">Plus de functionibus</a></p>
+
+<h1 id="cave-spatium">Cave spatium</h1>
+
+<p>Usus functionum in Raku plerumque intuitivus est et nullas difficultates affert, sed de sequenti aspectu monendus es.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>Noli addere spatium inter nomen functionis et parenthesin cum argumentis eius. Sed utere spatio post <code class="language-plaintext highlighter-rouge">for</code> et <code class="language-plaintext highlighter-rouge">if</code>.</p>
+
+<h2 id="longa-fabula">Longa fabula</h2>
+
+<p>Simplicem functionem accipiamus:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>Primum omnium, nota absentiam spatii inter nomen functionis et parenthesin apertam quae parametros continet. Aliquae styli codicis in aliis linguis spatium ibi requirere possunt. Raku hoc admittit, sed non est praxis sequenda:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+</pre></div>
+
+
+<p>In parte vocandi, absentia spatii est momenti. Si functionem vocas et parenthesin omittis, tunc spatium post nomen functionis inevitabile est:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
+
+
+<p>Sed si parenthesin addis, non potes habere spatium ante eas. Haec est vocatio correcta:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Et haec vocatio est falsa:</p>
+
+<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
+
+
+<p>Talis codex exceptionem causat:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+  sub f at t.raku line 1
+  in block &lt;unit&gt; at t.raku line 5
+</code></pre></div></div>
+
+<p>Raku videt vocationem cum spatio <code class="language-plaintext highlighter-rouge">f (5, 6)</code> ut conatum tradendi unum argumentum <code class="language-plaintext highlighter-rouge">(5, 6)</code> functioni. Facile potes typum huius argumenti explorare si functionem rescribas ut solum unum argumentum accipiat:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+}
+
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
+
+
+<p>Itaque, vocatio <code class="language-plaintext highlighter-rouge">f (5, 6)</code> significat nos tradere <a href="/la/essentials/positionals/lists">indicem</a> functioni. Index ut una entitas.</p>
+
+<h2 id="quando-spatium-necessarium-est">Quando spatium necessarium est</h2>
+
+<p>In aliquibus casibus, character spatii necessarius est. Id fit cum uteris parenthesin cum uno ex verbis clavibus, ut <code class="language-plaintext highlighter-rouge">if</code> vel <code class="language-plaintext highlighter-rouge">for</code> vel <code class="language-plaintext highlighter-rouge">loop</code>. Sequens codex est falsus:</p>
+
+<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
+
+
+<p>Nuntius erroris explicat quid sit falsum:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
+The word 'if' is interpreted as a 'if()' function call.  Please use
+whitespace instead of parentheses.
+at /Users/ash/raku-course/t.raku:1
+------&gt; if⏏(True != False) {
+Unexpected block in infix position (two terms in a row)
+at /Users/ash/raku-course/t.raku:1
+------&gt; if(True != False)⏏ {
+</code></pre></div></div>
+
+<p>In casu <code class="language-plaintext highlighter-rouge">if</code>, parenthesin omnino non requiruntur, ita problema nullas occasiones habet apparendi si non uteris eis. Sed in aliquibus casibus, ut, exempli gratia, cum <code class="language-plaintext highlighter-rouge">loop</code>, necesse est eas habere, et spatium fit mandatorius:</p>
+
+<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
+</code></pre>
+
+<p>In hoc codice, idem fit: <code class="language-plaintext highlighter-rouge">loop(...)</code> a compilatore intellegitur ut vocatio functionis. Addere spatium ad solvendum problema. Vel melius rescribe fragmentum utendo <code class="language-plaintext highlighter-rouge">for</code>.</p>
+
+<h2 id="conclusio">Conclusio</h2>
+
+<p>Conclusio: ut tales quaestiones evites, noli addere spatium inter nomen functionis et parenthesin cum argumentis functionis et conare evitare parenthesin si possibile est cum aliis structuris linguae ut fluxus imperii.</p>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/more-on-functions">Plus de functionibus</a>
+  |  
+        <a href="/la/essentials/more-on-functions">Plus de functionibus</a> / <a href="/la/essentials/more-on-functions/typed-parameters">Typis parametra</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/la/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/more-on-functions/mind-the-space/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/mind-the-space/">Български</a> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

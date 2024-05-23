@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Funkciaj parametroj | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Funkciaj parametroj | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Funkciaj parametroj | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a></p>
+
+<h1 id="funkciaj-parametroj">Funkciaj parametroj</h1>
+
+<p>Estas tempo transdoni iom da datumoj al funkcio. Ĝi povas preni parametrojn listigitajn en krampoj tuj post la nomo de la funkcio.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span>) {
+    <span class="nb">say</span> <span class="s">&quot;Saluton, $name!&quot;</span>;
+}
+</pre></div>
+
+
+<p>Vi nun povas uzi la funkcion kaj transdoni malsamajn argumentojn al ĝi:</p>
+
+<div class="highlight"><pre><span></span><span class="n">greet</span>(<span class="s">&#39;Alla&#39;</span>);
+<span class="n">greet</span>(<span class="s">&#39;Karl&#39;</span>);
+</pre></div>
+
+
+<p>La du vokoj de la sama funkcio nun produktos malsamajn rezultojn:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
+<span class="go">Saluton, Alla!
+Saluton, Karl!
+</span></code></pre></div></div>
+
+<p><div class="tip"></p>
+
+<h2 id="parametro-aŭ-argumento">Parametro aŭ argumento</h2>
+
+<p>Ĉi tiuj terminoj ofte estas uzataj interŝanĝeble. Ili ambaŭ rilatas al ‘la sama afero’, sed rigardas ĝin el malsamaj perspektivoj.</p>
+
+<ul>
+  <li>Parametro estas tio, kion la funkcio atendas.</li>
+  <li>Argumento estas tio, kion vi transdonas al ĝi.</li>
+</ul>
+
+<p>En la supra ekzemplo, <code class="language-plaintext highlighter-rouge">$name</code> estas la parametro de la funkcio, dum <code class="language-plaintext highlighter-rouge">'Alla'</code> kaj <code class="language-plaintext highlighter-rouge">'Karl'</code> estas ĝiaj argumentoj.</p>
+
+<p></div></p>
+
+<h2 id="pli-da-parametroj">Pli da parametroj</h2>
+
+<p>Funkcio povas preni pli ol unu solan parametron. En ĉi tiu kazo, listigu ĉiujn ilin kom-separitaj:</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+    <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
+}
+
+<span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+</pre></div>
+
+
+<h2 id="sen-parametroj">Sen parametroj</h2>
+
+<p>Estas valida kazo kiam la funkcio tute ne prenas parametrojn. En ĉi tiu kazo, vi povas aŭ aldoni malplenan paron de krampoj aŭ tute preterlasi ilin, kiel ni faris ĉe <a href="../">la komenco de ĉi tiu sekcio</a>.</p>
+
+<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>() {
+    <span class="nb">say</span> <span class="s">&#39;Saluton, Mondo!&#39;</span>;
+}
+
+<span class="n">greet</span>();
+</pre></div>
+
+
+<h2 id="subskribo">Subskribo</h2>
+
+<p>La listo de parametroj de funkcio nomiĝas <em>subskribo</em>.</p>
+
+<p><div class="practice"></p>
+<h2 id="praktiko">Praktiko</h2>
+
+<p>Plenumu la kvizojn, kiuj kovras la enhavon de ĉi tiu temo.</p>
+<ul>
+  <li><a href="/eo/essentials/functions/function-parameters/quiz1">Funkciaj parametroj</a></li>
+  <li><a href="/eo/essentials/functions/function-parameters/quiz2">Pasante argumentojn</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="kurso-navigado">Kurso navigado</h2>
+
+<p>←
+        <a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a> / <a href="/eo/essentials/functions/identifiers">Funkciaj nomoj</a>
+  |  
+        <a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a> / <a href="/eo/essentials/functions/return-result">Redonante la rezulton</a>
+→</p>
+
+<p><br />
+💪 Or jump directly <a href="/eo/essentials/functions/exercises">to the exercises to this section</a>.</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/functions/function-parameters/">Originala angla teksto</a></p>
+
+  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/functions/function-parameters/">English</a> • <a href="/de/essentials/functions/function-parameters/">Deutsch</a> • <a href="/es/essentials/functions/function-parameters/">Español</a> • <a href="/it/essentials/functions/function-parameters/">Italiano</a> • <a href="/lv/essentials/functions/function-parameters/">Latviešu</a> • <a href="/nl/essentials/functions/function-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/function-parameters/">Български</a> • <a href="/ru/essentials/functions/function-parameters/">Русский</a> • <a href="/uk/essentials/functions/function-parameters/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

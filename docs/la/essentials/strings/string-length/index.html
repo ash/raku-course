@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Longitudo filae in Raku | The Complete Course of the Raku programming language</title>
+    <meta property="og:title" content="Longitudo filae in Raku | The Complete Course of the Raku programming language" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?t=5">
+    <title>Longitudo filae in Raku | The Complete Course of the Raku programming language</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          
+<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/strings">Catenae</a></p>
+
+<h1 id="catena-longitudo">Catena longitudo</h1>
+
+<p>Natura Unicode filarum facit quaedam levia paulo difficiliora. Vel, saltem, debes cogitare de ea tamquam de re minus directa. Accipe, exempli gratia, longitudinem filae. Estne numerus characterum, an est numerus byteorum? Vel quid si idem character diversimode in diversis filis decompositus est, estne adhuc unus character?</p>
+
+<h2 id="longitudo-in-characteribus">Longitudo in characteribus</h2>
+
+<p>Ut longitudines filae in characteribus obtineas, utere <em>methodo</em> <code class="language-plaintext highlighter-rouge">chars</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
+</pre></div>
+
+
+<p>Dum de methodis postea loquemur, iam eas uti debemus. In Raku, potes methodos in fere omni obiecto vocare, inclusis filis et variabilibus scalaribus. Ut methodum vocares, utere puncto. Ita, hic videmus methodum vocatam in variabili quae filam continet: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
+
+<p>Quattuor characteres sunt in hoc salutatione Sinensi 你好世界. Et <code class="language-plaintext highlighter-rouge">$str.chars</code> exacte <code class="language-plaintext highlighter-rouge">4</code> reddit.</p>
+
+<h2 id="longitudo-in-byteis">Longitudo in byteis</h2>
+
+<p>Ad referentiam, hoc modo longitudines filae in byteis obtines. Hoc casu, interest scire quae codificatio ad filam tenendam adhibetur:</p>
+
+<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
+</pre></div>
+
+
+<p>Hoc tempore, programma <code class="language-plaintext highlighter-rouge">12</code> imprimit. Nota quod duas methodi vocationes concatenatas in secunda linea hic habemus.</p>
+
+<h2 id="longitudo-in-punctis-codicis">Longitudo in punctis codicis</h2>
+
+<p>Ad plenitudinem, hic est alia utilis methodus quae etiam ad longitudines filarum pertinet: <code class="language-plaintext highlighter-rouge">codes</code>. Reddit numerum punctorum codicis in fila postquam normalizata est. In multis casibus, <code class="language-plaintext highlighter-rouge">codes</code> et <code class="language-plaintext highlighter-rouge">chars</code> idem reddunt. Tamen, in quibusdam raris casibus, cum, exempli gratia, ‘impossibilem’ characterem aedificas, cuius nullus singularis punctus codicis in toto spatio Unicode est, methodi diversos eventus dant.</p>
+
+<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
+</pre></div>
+
+
+<p>Hic character, <code class="language-plaintext highlighter-rouge">x̨</code>, nullum punctum codicis dedicatum habet et solum ex duabus partibus construi potest: littera minuscula <code class="language-plaintext highlighter-rouge">x</code> et character combinans <code class="language-plaintext highlighter-rouge">0x0328</code>. Ita, adhuc unus character est sed duo puncta codicis. Ita, programma imprimit:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+</code></pre></div></div>
+
+<p><div class="practice"></p>
+<h2 id="praxis">Praxis</h2>
+
+<p>Perfice quaestionem quae argumenta huius thematis comprehendit.</p>
+<ul>
+  <li><a href="/la/essentials/strings/string-length/quiz">Quiz: Longitudo sententiae</a></li>
+</ul>
+
+<p></div></p>
+
+<h2 id="cursus-navigatio">Cursus navigatio</h2>
+
+<p>←
+        <a href="/la/essentials/strings">Catenae</a> / <a href="/la/essentials/strings/escaping-special-characters">Escapatio specialium characterum</a>
+  |  
+        💪 <a href="/la/essentials/strings/exercises">Exercitationes: Catenae</a>
+→</p>
+
+<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+
+  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/strings/string-length/">Originalis Anglicus textus</a></p>
+
+  <p>Translationes huius paginae: <a href="/essentials/strings/string-length/">English</a> • <a href="/de/essentials/strings/string-length/">Deutsch</a> • <a href="/es/essentials/strings/string-length/">Español</a> • <a href="/it/essentials/strings/string-length/">Italiano</a> • <a href="/lv/essentials/strings/string-length/">Latviešu</a> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <a href="/ru/essentials/strings/string-length/">Русский</a> • <a href="/uk/essentials/strings/string-length/">Українська</a></p>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
