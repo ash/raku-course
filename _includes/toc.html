@@ -3,8 +3,9 @@
 {% assign part_n = 0 %}
 {% for part in toc %}
 {% if (menu_for_part == nil) or (menu_for_part == part.url) %}
-{% if menu_for_part == nil %}
+
 {% assign part_n = part_n | plus: 1 %}
+{% if part_n == 1 or lang == "" %}
 ## {{strings.Part}} {{part_n}}. {% if part.long_title %}{{part.long_title}}{% else %}{{part.title}}{% endif %}
 
 {%- for subpart in part.items %}
