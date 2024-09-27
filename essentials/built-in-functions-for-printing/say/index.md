@@ -38,7 +38,7 @@ say(42);
 42.say;
 ```
 
-You can pass more than one argument to `say`. The output pieces are joint with no spaces between them.
+You can pass more than one argument to `say`. The output pieces are joined with no spaces between them.
 
 ```raku
 say(100, 500); # 100500
