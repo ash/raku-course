@@ -3,6 +3,8 @@
 use YAMLish;
 use Markdown::Grammar;
 
+my %toc;
+
 sub get-toc($lang) returns Hash {
 
     # URL levels:
@@ -11,7 +13,7 @@ sub get-toc($lang) returns Hash {
     #  ^ part     ^ section        ^ topic
     #   | subpart is not part of URL
 
-    my %toc;
+    my $prev-url = '';
 
     sub read-toc($lang) {
         my $yaml-content = "_data/toc/$lang.yaml".IO.slurp;
@@ -32,8 +34,10 @@ sub get-toc($lang) returns Hash {
 
             %toc{$part-url} = {
                 title => $part-title,
-                url => $part-url
+                url => $part-url,
+                prev-url => $prev-url,
             };
+            $prev-url = $part-url;
 
             scan-subparts($part<items>, $part-url) if $part<items>;
         }
@@ -55,15 +59,26 @@ sub get-toc($lang) returns Hash {
 
             say "\t\t$section-title $section-url";
 
-            %toc{"$part-url/$section-url"} = {
+            my $url = "$part-url/$section-url";
+            %toc{$url} = {
                 title => $section-title,
                 url => $section-url,
+                prev-url => $prev-url,
             };
+            $prev-url = $url;
+        }
+    }
+
+    sub link-toc() {
+        for %toc.kv -> $url, $item {
+            %toc{$item<prev-url>}<next-url> = $url if $item<prev-url>;
         }
     }
 
     my $toc = read-toc('en');
     scan-parts($toc<toc>);
+
+    link-toc();
 
     return %toc;
 }
@@ -82,6 +97,7 @@ sub generate-pages(%toc, $lang, $destination) {
             my $html = md-to-html(
                 md => $md,
                 title => $title,
+                url => $dir,
                 path => $path,
                 lang => $lang,
                 locale => %locale{$lang},
@@ -143,16 +159,44 @@ sub md-to-html(*%content) {
     }
 
     sub include-nav() {
-        my $nav = "## Course navigation\n\n←\n\n";
+        my $url = %content<url>;
 
-        return $nav;
+        my $prev-page = %toc{%toc{$url}<prev-url>};
+        my $next-page = %toc{%toc{$url}<next-url>};
+
+        return qq:to/NAV/;
+        ## Course navigation
+        
+        ← [$prev-page<title>](/$prev-page<url>)
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        [$next-page<title>](/$next-page<url>) →
+        NAV
+    }
+
+    sub pre-convert-markdown($html is copy) {
+        # Because Markdown::Grammar fail when there are two _italic_ words in a paragraph etc.
+        $html ~~ s:g/'_' (.+?) '_'/{'<em>' ~ $0 ~ '</em>'}/;
+        $html ~~ s:g/'**' (.+?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
+
+        return $html;
+    }
+
+    sub post-convert-markdown($html is copy) {
+        # Markdown::Grammar adds a space after a </tag> for some reason.
+        $html ~~ s:g/'</code> .'/{'</code>.'}/;
+
+        return $html;
     }
 
     sub prepare-content($md is copy) {
         $md ~~ s/ '---'\n .*? '---'\n //;
         $md ~~ s:g/ '{%' \s* 'include' \s+ (\S+) \s* '%}' /{ process-includes($0.trim) }/;
 
-        return from-markdown($md, to => 'html');
+        $md = pre-convert-markdown($md);
+        my $html = from-markdown($md, to => 'html');
+        $html = post-convert-markdown($html);
+
+        return $html;
     }
 
     my $html = $template;
