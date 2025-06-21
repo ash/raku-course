@@ -174,7 +174,7 @@ sub md-to-html(*%content) {
     }
 
     sub pre-convert-markdown($html is copy) {
-        # Because Markdown::Grammar fail when there are two _italic_ words in a paragraph etc.
+        # Because Markdown::Grammar does it wrong when there are more than one _italic_ word in a paragraph etc.
         $html ~~ s:g/'_' (.+?) '_'/{'<em>' ~ $0 ~ '</em>'}/;
         $html ~~ s:g/'**' (.+?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
 
