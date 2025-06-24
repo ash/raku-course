@@ -87,7 +87,7 @@ Nuntius erroris explicat quid sit falsum:
 
 In casu `if`, parenthesin omnino non requiruntur, ita problema nullas occasiones habet apparendi si non uteris eis. Sed in aliquibus casibus, ut, exempli gratia, cum `loop`, necesse est eas habere, et spatium fit mandatorius:
 
-```for
+```raku
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 

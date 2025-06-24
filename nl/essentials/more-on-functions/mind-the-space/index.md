@@ -87,7 +87,7 @@ Het foutbericht legt uit wat er mis is:
 
 In het geval van `if` zijn haakjes helemaal niet nodig, dus het probleem heeft geen kans om te verschijnen als je ze niet gebruikt. Maar in sommige gevallen, zoals bijvoorbeeld met `loop`, moet je ze hebben, en wordt de spatie verplicht:
 
-```for
+```raku
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 

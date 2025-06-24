@@ -87,7 +87,7 @@ Il messaggio di errore spiega cosa c'è di sbagliato:
 
 Nel caso di `if`, le parentesi non sono affatto necessarie, quindi il problema non ha possibilità di apparire se non le usi. Ma in alcuni casi, come, ad esempio, con `loop`, devi averle, e lo spazio diventa obbligatorio:
 
-```for
+```raku
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 
