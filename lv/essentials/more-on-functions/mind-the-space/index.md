@@ -87,7 +87,7 @@ Kļūdas ziņojums izskaidro, kas ir nepareizi:
 
 Gadījumā ar `if`, iekavas nav nepieciešamas vispār, tāpēc problēma nevar rasties, ja jūs tās neizmantojat. Bet dažos gadījumos, piemēram, ar `loop`, jums tās ir nepieciešamas, un atstarpe kļūst obligāta:
 
-```for
+```raku
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 

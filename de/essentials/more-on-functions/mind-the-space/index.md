@@ -87,7 +87,7 @@ Die Fehlermeldung erklärt, was falsch ist:
 
 Im Fall von `if` sind Klammern überhaupt nicht erforderlich, sodass das Problem nicht auftreten kann, wenn Sie sie nicht verwenden. Aber in einigen Fällen, wie zum Beispiel bei `loop`, müssen Sie sie haben, und das Leerzeichen wird obligatorisch:
 
-```for
+```raku
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 
