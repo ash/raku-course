@@ -146,6 +146,7 @@ sub generate-pages(%toc, $lang, $destination) {
     }
 
     for %toc.keys -> $dir {
+next unless $dir ~~ /'quiz'/;
         generate-page(%toc, $lang, $dir);
     }
 }
@@ -158,6 +159,8 @@ sub md-to-html(*%content) {
             when / 'title' | 'lang' | 'locale' /   { return %content{$from} }
 
             when 'content' { return prepare-content(%content<md>) }
+
+            when 'head-includes' { return head-includes(%content) }
 
             default {
                 say "\e[31mERROR: Unknown command '$from' in '%content<path>'\e[0m";
@@ -176,14 +179,45 @@ sub md-to-html(*%content) {
         return '/tmp/highlight.raku.html'.IO.slurp;
     }
 
+    sub format-quiz($class is copy, $body) {
+        my $rows;
+        for $body.split("\n") -> $row {
+            $rows ~= '<tr>';
+            for $row.split(/\s* '|' \s*/) -> $cell {
+                $rows ~= "<td>{$cell}</td>";
+            }
+            $rows ~= "</tr>\n";
+        }
+
+        $class ~~ s:g/'.'//;
+
+        return qq:to/QUIZ/;
+        <table class="$class">
+        $rows
+        </table>
+        QUIZ
+    }
+
     sub process-includes($filename) {
         state %includes =
             'languages.html' => sub { '' },
             'nav.html' => &include-nav,
-            'menu.html' => &include-menu
+            'menu.html' => &include-menu,
+            'quiz.html' => &include-quiz
         ;
 
         return %includes{$filename} ?? %includes{$filename}() !! '';
+    }
+
+    sub head-includes(%content) {
+        if %toc{%content<url>}<type> == Quiz {
+            return qq:to/INCLUDE/;
+            <link rel="stylesheet" href="/assets/quiz.css">
+            <script type="text/javascript" src="/assets/quiz.js"></script>
+            INCLUDE
+        }
+        
+        return '';
     }
 
     sub include-menu() {
@@ -203,6 +237,18 @@ sub md-to-html(*%content) {
 
         # {%content<title>}
         MENU
+    }
+
+    sub include-quiz() {
+        return qq:to/QUIZ/;
+        <script>
+            prepare_quiz();
+        </script>
+        <div style="margin: 3em 0;">
+            <button onclick="checkquiz()">Check the answers</button>
+            <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
+        </div>
+        QUIZ
     }
 
     sub include-nav() {
@@ -226,7 +272,7 @@ sub md-to-html(*%content) {
             $topics
             </div>
             TOPICS
-        }
+        }        
 
         sub quizzes-list() {
             return '' unless %toc{$url}<quizzes>;
@@ -334,23 +380,44 @@ sub md-to-html(*%content) {
         $md ~~ s/ '---'\n .*? '---'\n //;
         $md ~~ s:g/ '{%' \s* 'include' \s+ (\S+) \s* '%}' /{ process-includes($0.trim) }/;
 
-        my @code;
-        $md ~~ s:g/ '```' (\S+)? \n+ (.*?) \n+ '```' /{
-            @code.push([~$0 // 'raku', ~$1]);
-            'CodeBlockPlaceholder' ~ @code.elems
-        }/;
+        my @code = extract-code($md);
+        my @quiz = extract-quiz($md);
 
         $md = pre-convert-markdown($md);
         my $html = from-markdown($md, to => 'html');
         $html = post-convert-markdown($html);
 
-        @code = @code.map({
-            format-code($_[0], $_[1])
-        });
-
         $html ~~ s:g/ '<p>' \n 'CodeBlockPlaceholder' (\d+) \n '</p>'/@code[$0 - 1]/;
+        $html ~~ s:g/ '<p>' \n 'QuizPlaceholder' (\d+) \n '</p>'/@quiz[$0 - 1]/;
 
         return $html;
+    }
+
+    sub extract-code($md is rw) {
+        my @code;
+
+        $md ~~ s:g/ '```' (\S+)? \n+ (.*?) \n+ '```' /{
+            @code.push([~$0 // 'raku', ~$1]);
+            'CodeBlockPlaceholder' ~ @code.elems
+        }/;
+
+        return @code.map({
+            format-code($_[0], $_[1])
+        });
+    }
+
+    sub extract-quiz($md is rw) {
+        my @quiz;
+
+        $md ~~ s:g/ '{:' ('.quiz' .*?) '}' \n (.*?) \n\n /{
+            @quiz.push([~$0, ~$1]);
+            'QuizPlaceholder' ~ @quiz.elems
+            ~ "\n\n"
+        }/;
+
+        return @quiz.map({
+            format-quiz($_[0], $_[1])
+        });
     }
 
     my $html = $template;
