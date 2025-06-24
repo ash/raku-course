@@ -87,7 +87,7 @@ The error message explains what’s wrong:
 
 With the case of `if`, parentheses are not required at all, so the problem have no chances to appear if you do not use them. But in some cases, as, for example, with `loop`, you need to have them, and the space becomes mandatory:
 
-```for
+```raku
 loop(my $c = 0; $c != 10; $c++) { say $c }
 ```
 
