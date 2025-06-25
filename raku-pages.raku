@@ -79,7 +79,10 @@ sub get-toc($lang) returns Hash {
             my $level-title = $level<title>;
             my $level-url = $level<url>;
 
-            my $url = "$parent-url/$level-url";
+            my $url =
+                $type == Exercise ?? "$parent-url/exercises/$level-url"
+                !! "$parent-url/$level-url";
+
             %toc{$url} = {
                 title => $level-title,
                 url => $level-url,
@@ -150,7 +153,6 @@ sub generate-pages(%toc, $lang, $destination) {
     }
 
     for %toc.keys -> $dir {
-next unless $dir ~~ /'quiz'/;
         generate-page(%toc, $lang, $dir);
     }
 
@@ -311,7 +313,7 @@ next unless $dir ~~ /'quiz'/;
                 my $exercises;
                 for @exercises -> $exercise-url {
                     my $exercise = %toc{$exercise-url};
-                    $exercises ~= "1. [$exercise<title>]($lang-prefix/exercises/$exercise-url)\n";
+                    $exercises ~= "1. [$exercise<title>]($lang-prefix/$exercise-url)\n";
                 }
 
                 return qq:to/EXERCISES/;
