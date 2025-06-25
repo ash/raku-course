@@ -116,6 +116,10 @@ sub get-toc($lang) returns Hash {
 }
 
 sub generate-pages(%toc, $lang, $destination) {
+    my $which-pygments = run 'which', 'pygmentize', :out;
+    my $pygmentize-path = $which-pygments.out.slurp.trim;
+    say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mPygments not installed, skipping syntax highlighting.\e[0m";
+
     sub generate-page(%toc, $lang, $dir) {
 
         my $path = $lang eq 'en' ?? "$dir/index.md" !! "$lang/$dir/index.md";
@@ -149,281 +153,283 @@ sub generate-pages(%toc, $lang, $destination) {
 next unless $dir ~~ /'quiz'/;
         generate-page(%toc, $lang, $dir);
     }
-}
 
-sub md-to-html(*%content) {
-    state $template = "_templates/default.html".IO.slurp;
+    sub md-to-html(*%content) {
+        state $template = "_templates/default.html".IO.slurp;
 
-    sub field-substitute($from) {
-        given $from {
-            when / 'title' | 'lang' | 'locale' /   { return %content{$from} }
+        sub field-substitute($from) {
+            given $from {
+                when / 'title' | 'lang' | 'locale' /   { return %content{$from} }
 
-            when 'content' { return prepare-content(%content<md>) }
+                when 'content' { return prepare-content(%content<md>) }
 
-            when 'head-includes' { return head-includes(%content) }
+                when 'head-includes' { return head-includes(%content) }
 
-            default {
-                say "\e[31mERROR: Unknown command '$from' in '%content<path>'\e[0m";
-                return '';
+                default {
+                    say "\e[31mERROR: Unknown command '$from' in '%content<path>'\e[0m";
+                    return '';
+                }
             }
         }
-    }
 
-    sub format-code($language is copy, $code) {
-        # $language = 'bash' if $language eq 'console';
-        $language = 'raku' unless $language;
+        sub format-code($language is copy, $code) {
+            return $code unless $pygmentize-path;
 
-        '/tmp/highlight.raku'.IO.spurt($code);
-        run '/usr/local/bin/pygmentize', '-f', 'html', '-l', $language, '-O', 'style=vs', '-o', '/tmp/highlight.raku.html', '/tmp/highlight.raku';
+            # $language = 'bash' if $language eq 'console';
+            $language = 'raku' unless $language;
 
-        return '/tmp/highlight.raku.html'.IO.slurp;
-    }
+            '/tmp/highlight.raku'.IO.spurt($code);
+            run $pygmentize-path, '-f', 'html', '-l', $language, '-O', 'style=vs', '-o', '/tmp/highlight.raku.html', '/tmp/highlight.raku';
 
-    sub format-quiz($class is copy, $body) {
-        my $rows;
-        for $body.split("\n") -> $row {
-            $rows ~= '<tr>';
-            for $row.split(/\s* '|' \s*/) -> $cell {
-                $rows ~= "<td>{$cell}</td>";
-            }
-            $rows ~= "</tr>\n";
+            return '/tmp/highlight.raku.html'.IO.slurp;
         }
 
-        $class ~~ s:g/'.'//;
-
-        return qq:to/QUIZ/;
-        <table class="$class">
-        $rows
-        </table>
-        QUIZ
-    }
-
-    sub process-includes($filename) {
-        state %includes =
-            'languages.html' => sub { '' },
-            'nav.html' => &include-nav,
-            'menu.html' => &include-menu,
-            'quiz.html' => &include-quiz
-        ;
-
-        return %includes{$filename} ?? %includes{$filename}() !! '';
-    }
-
-    sub head-includes(%content) {
-        if %toc{%content<url>}<type> == Quiz {
-            return qq:to/INCLUDE/;
-            <link rel="stylesheet" href="/assets/quiz.css">
-            <script type="text/javascript" src="/assets/quiz.js"></script>
-            INCLUDE
-        }
-        
-        return '';
-    }
-
-    sub include-menu() {
-        my @crumbs = "[Course of Raku](/)";
-
-        my @url_items = %content<url>.split('/');
-        pop @url_items;
-
-        for ^@url_items {
-            my $crumb_url = @url_items[0..$_].join('/');
-            my $toc_item = %toc{$crumb_url};
-            @crumbs.push: "[$toc_item<title>](/$toc_item<url>)";
-        }
-
-        return qq:to/MENU/;
-        {@crumbs.join(' / ')}
-
-        # {%content<title>}
-        MENU
-    }
-
-    sub include-quiz() {
-        return qq:to/QUIZ/;
-        <script>
-            prepare_quiz();
-        </script>
-        <div style="margin: 3em 0;">
-            <button onclick="checkquiz()">Check the answers</button>
-            <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
-        </div>
-        QUIZ
-    }
-
-    sub include-nav() {
-        my $url = %content<url>;
-
-        sub topics-list() {
-            return '' unless %toc{$url}<topics>;
-
-            my @topics = @(%toc{$url}<topics>);
-
-            my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
-            my $topics;
-            for @topics -> $topic-url {
-                my $topic = %toc{$topic-url};
-                $topics ~= "* [$topic<title>]($lang-prefix/$topic-url)\n";
+        sub format-quiz($class is copy, $body) {
+            my $rows;
+            for $body.split("\n") -> $row {
+                $rows ~= '<tr>';
+                for $row.split(/\s* '|' \s*/) -> $cell {
+                    $rows ~= "<td>{$cell}</td>";
+                }
+                $rows ~= "</tr>\n";
             }
 
-            return qq:to/TOPICS/;
-            <div class="topics" markdown="1">
-            ## {@topics.elems > 1 ?? "Topics in this section" !! "Also in this section"}
-            $topics
+            $class ~~ s:g/'.'//;
+
+            return qq:to/QUIZ/;
+            <table class="$class">
+            $rows
+            </table>
+            QUIZ
+        }
+
+        sub process-includes($filename) {
+            state %includes =
+                'languages.html' => sub { '' },
+                'nav.html' => &include-nav,
+                'menu.html' => &include-menu,
+                'quiz.html' => &include-quiz
+            ;
+
+            return %includes{$filename} ?? %includes{$filename}() !! '';
+        }
+
+        sub head-includes(%content) {
+            if %toc{%content<url>}<type> == Quiz {
+                return qq:to/INCLUDE/;
+                <link rel="stylesheet" href="/assets/quiz.css">
+                <script type="text/javascript" src="/assets/quiz.js"></script>
+                INCLUDE
+            }
+
+            return '';
+        }
+
+        sub include-menu() {
+            my @crumbs = "[Course of Raku](/)";
+
+            my @url_items = %content<url>.split('/');
+            pop @url_items;
+
+            for ^@url_items {
+                my $crumb_url = @url_items[0..$_].join('/');
+                my $toc_item = %toc{$crumb_url};
+                @crumbs.push: "[$toc_item<title>](/$toc_item<url>)";
+            }
+
+            return qq:to/MENU/;
+            {@crumbs.join(' / ')}
+
+            # {%content<title>}
+            MENU
+        }
+
+        sub include-quiz() {
+            return qq:to/QUIZ/;
+            <script>
+                prepare_quiz();
+            </script>
+            <div style="margin: 3em 0;">
+                <button onclick="checkquiz()">Check the answers</button>
+                <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
             </div>
-            TOPICS
-        }        
+            QUIZ
+        }
 
-        sub quizzes-list() {
-            return '' unless %toc{$url}<quizzes>;
+        sub include-nav() {
+            my $url = %content<url>;
 
-            my @quizzes = @(%toc{$url}<quizzes>);
+            sub topics-list() {
+                return '' unless %toc{$url}<topics>;
 
-            my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
-            my $quizzes;
-            for @quizzes -> $quiz-url {
-                my $quiz = %toc{$quiz-url};
-                $quizzes ~= "* [$quiz<title>]($lang-prefix/$quiz-url)\n";
+                my @topics = @(%toc{$url}<topics>);
+
+                my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+                my $topics;
+                for @topics -> $topic-url {
+                    my $topic = %toc{$topic-url};
+                    $topics ~= "* [$topic<title>]($lang-prefix/$topic-url)\n";
+                }
+
+                return qq:to/TOPICS/;
+                <div class="topics" markdown="1">
+                ## {@topics.elems > 1 ?? "Topics in this section" !! "Also in this section"}
+                $topics
+                </div>
+                TOPICS
             }
 
-            return qq:to/QUIZZES/;
-            <div class="practice" markdown="1">
-            ## Practice
+            sub quizzes-list() {
+                return '' unless %toc{$url}<quizzes>;
 
-            Complete the quiz{@quizzes.elems > 1 ?? 'zes' !! ''} that cover{@quizzes.elems == 1 ?? 's' !! ''} the contents of this topic.
+                my @quizzes = @(%toc{$url}<quizzes>);
 
-            $quizzes
+                my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+                my $quizzes;
+                for @quizzes -> $quiz-url {
+                    my $quiz = %toc{$quiz-url};
+                    $quizzes ~= "* [$quiz<title>]($lang-prefix/$quiz-url)\n";
+                }
+
+                return qq:to/QUIZZES/;
+                <div class="practice" markdown="1">
+                ## Practice
+
+                Complete the quiz{@quizzes.elems > 1 ?? 'zes' !! ''} that cover{@quizzes.elems == 1 ?? 's' !! ''} the contents of this topic.
+
+                $quizzes
+                </div>
+                QUIZZES
+            }
+
+            sub exercises-list() {
+                return '' unless %toc{$url}<exercises>;
+
+                my @exercises = @(%toc{$url}<exercises>);
+
+                my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+                my $exercises;
+                for @exercises -> $exercise-url {
+                    my $exercise = %toc{$exercise-url};
+                    $exercises ~= "1. [$exercise<title>]($lang-prefix/exercises/$exercise-url)\n";
+                }
+
+                return qq:to/EXERCISES/;
+                <div class="exercises" markdown="1">
+                ## Exercises
+
+                This section contains [{@exercises.elems} exercises](exercises). Examine all the topics of this section before doing the coding practice.
+
+                $exercises
+                </div>
+                EXERCISES
+            }
+
+            my $prev-page = %toc{%toc{$url}<prev-url>};
+            my $next-page = %toc{%toc{$url}<next-url>};
+
+            return qq:to/NAV/;
+            {topics-list()}
+
+            {quizzes-list()}
+
+            {exercises-list()}
+
+            ## Course navigation
+
+            ← [$prev-page<title>](/%toc{$url}<prev-url>)
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            [$next-page<title>](/%toc{$url}<next-url>) →
+
+            {include-translations()}
+            NAV
+        }
+
+        sub include-translations() {
+            my @links;
+            for @languages -> $language {
+                my $code = $language.key;
+                my $name = $language.value;
+
+                if $code eq %content<lang> {
+                    @links.push: "**{$name}**";
+                }
+                else {
+                    @links.push: $code eq 'en' ?? "[$name](/%content<url>)" !! "[$name](/$code/%content<url>)";
+                }
+            }
+
+            return qq:to/TRANSLATIONS/;
+            <div markdown="1" style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+            Translations of this page: {@links.join(' • ')}
             </div>
-            QUIZZES
+            TRANSLATIONS
         }
 
-        sub exercises-list() {
-            return '' unless %toc{$url}<exercises>;
+        sub pre-convert-markdown($html is copy) {
+            # Because Markdown::Grammar does it wrong when there are more than one _italic_ word in a paragraph etc.
+            $html ~~ s:g/'_' (.+?) '_'/{'<em>' ~ $0 ~ '</em>'}/;
+            $html ~~ s:g/'**' (.+?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
 
-            my @exercises = @(%toc{$url}<exercises>);
-
-            my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
-            my $exercises;
-            for @exercises -> $exercise-url {
-                my $exercise = %toc{$exercise-url};
-                $exercises ~= "1. [$exercise<title>]($lang-prefix/exercises/$exercise-url)\n";
-            }
-
-            return qq:to/EXERCISES/;
-            <div class="exercises" markdown="1">
-            ## Exercises
-
-            This section contains [{@exercises.elems} exercises](exercises). Examine all the topics of this section before doing the coding practice.
-
-            $exercises
-            </div>
-            EXERCISES
+            return $html;
         }
 
-        my $prev-page = %toc{%toc{$url}<prev-url>};
-        my $next-page = %toc{%toc{$url}<next-url>};
+        sub post-convert-markdown($html is copy) {
+            # Markdown::Grammar adds a space after a </tag> for some reason.
+            $html ~~ s:g/'</' (\w+) '> ' (<[.,]>)/{"</$0>$1"}/;
 
-        return qq:to/NAV/;
-        {topics-list()}
-
-        {quizzes-list()}
-
-        {exercises-list()}
-
-        ## Course navigation
-
-        ← [$prev-page<title>](/%toc{$url}<prev-url>)
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        [$next-page<title>](/%toc{$url}<next-url>) →
-
-        {include-translations()}
-        NAV
-    }
-
-    sub include-translations() {
-        my @links;
-        for @languages -> $language {
-            my $code = $language.key;
-            my $name = $language.value;
-
-            if $code eq %content<lang> {
-                @links.push: "**{$name}**";
-            }
-            else {
-                @links.push: $code eq 'en' ?? "[$name](/%content<url>)" !! "[$name](/$code/%content<url>)";
-            }
+            return $html;
         }
 
-        return qq:to/TRANSLATIONS/;
-        <div markdown="1" style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-        Translations of this page: {@links.join(' • ')}
-        </div>
-        TRANSLATIONS
-    }
+        sub prepare-content($md is copy) {
+            $md ~~ s/ '---'\n .*? '---'\n //;
+            $md ~~ s:g/ '{%' \s* 'include' \s+ (\S+) \s* '%}' /{ process-includes($0.trim) }/;
 
-    sub pre-convert-markdown($html is copy) {
-        # Because Markdown::Grammar does it wrong when there are more than one _italic_ word in a paragraph etc.
-        $html ~~ s:g/'_' (.+?) '_'/{'<em>' ~ $0 ~ '</em>'}/;
-        $html ~~ s:g/'**' (.+?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
+            my @code = extract-code($md);
+            my @quiz = extract-quiz($md);
+
+            $md = pre-convert-markdown($md);
+            my $html = from-markdown($md, to => 'html');
+            $html = post-convert-markdown($html);
+
+            $html ~~ s:g/ '<p>' \n 'CodeBlockPlaceholder' (\d+) \n '</p>'/@code[$0 - 1]/;
+            $html ~~ s:g/ '<p>' \n 'QuizPlaceholder' (\d+) \n '</p>'/@quiz[$0 - 1]/;
+
+            return $html;
+        }
+
+        sub extract-code($md is rw) {
+            my @code;
+
+            $md ~~ s:g/ '```' (\S+)? \n+ (.*?) \n+ '```' /{
+                @code.push([~$0 // 'raku', ~$1]);
+                'CodeBlockPlaceholder' ~ @code.elems
+            }/;
+
+            return @code.map({
+                format-code($_[0], $_[1])
+            });
+        }
+
+        sub extract-quiz($md is rw) {
+            my @quiz;
+
+            $md ~~ s:g/ '{:' ('.quiz' .*?) '}' \n (.*?) \n\n /{
+                @quiz.push([~$0, ~$1]);
+                'QuizPlaceholder' ~ @quiz.elems
+                ~ "\n\n"
+            }/;
+
+            return @quiz.map({
+                format-quiz($_[0], $_[1])
+            });
+        }
+
+        my $html = $template;
+        $html ~~ s:g/ '{{' (.*?) '}}' /{ field-substitute($0.trim) }/;
 
         return $html;
     }
-
-    sub post-convert-markdown($html is copy) {
-        # Markdown::Grammar adds a space after a </tag> for some reason.
-        $html ~~ s:g/'</' (\w+) '> ' (<[.,]>)/{"</$0>$1"}/;
-
-        return $html;
-    }
-
-    sub prepare-content($md is copy) {
-        $md ~~ s/ '---'\n .*? '---'\n //;
-        $md ~~ s:g/ '{%' \s* 'include' \s+ (\S+) \s* '%}' /{ process-includes($0.trim) }/;
-
-        my @code = extract-code($md);
-        my @quiz = extract-quiz($md);
-
-        $md = pre-convert-markdown($md);
-        my $html = from-markdown($md, to => 'html');
-        $html = post-convert-markdown($html);
-
-        $html ~~ s:g/ '<p>' \n 'CodeBlockPlaceholder' (\d+) \n '</p>'/@code[$0 - 1]/;
-        $html ~~ s:g/ '<p>' \n 'QuizPlaceholder' (\d+) \n '</p>'/@quiz[$0 - 1]/;
-
-        return $html;
-    }
-
-    sub extract-code($md is rw) {
-        my @code;
-
-        $md ~~ s:g/ '```' (\S+)? \n+ (.*?) \n+ '```' /{
-            @code.push([~$0 // 'raku', ~$1]);
-            'CodeBlockPlaceholder' ~ @code.elems
-        }/;
-
-        return @code.map({
-            format-code($_[0], $_[1])
-        });
-    }
-
-    sub extract-quiz($md is rw) {
-        my @quiz;
-
-        $md ~~ s:g/ '{:' ('.quiz' .*?) '}' \n (.*?) \n\n /{
-            @quiz.push([~$0, ~$1]);
-            'QuizPlaceholder' ~ @quiz.elems
-            ~ "\n\n"
-        }/;
-
-        return @quiz.map({
-            format-quiz($_[0], $_[1])
-        });
-    }
-
-    my $html = $template;
-    $html ~~ s:g/ '{{' (.*?) '}}' /{ field-substitute($0.trim) }/;
-
-    return $html;
 }
 
 sub MAIN($language?) {
@@ -433,6 +439,7 @@ sub MAIN($language?) {
         %toc = get-toc($lang);
         generate-pages(%toc, $lang, '_out');
     }
+
+    say "Done";
 }
 
-say "Done";
