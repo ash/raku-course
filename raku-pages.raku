@@ -16,11 +16,12 @@ my @languages =
     ru => 'Русский',
     uk => 'Українська';
 
-enum PageType < Part Subpart Section Topic Exercise Quiz >;
+enum PageType < Part Subpart Section Topic Exercise Solution Quiz >;
 my %pagetype-key =
     Section => 'sections',
     Topic => 'topics',
     Exercise => 'exercises',
+    # Solution => '',
     Quiz => 'quizzes';
 
 
@@ -79,9 +80,8 @@ sub get-toc($lang) returns Hash {
             my $level-title = $level<title>;
             my $level-url = $level<url>;
 
-            my $url =
-                $type == Exercise ?? "$parent-url/exercises/$level-url"
-                !! "$parent-url/$level-url";
+            my $url = $type == Exercise ?? "$parent-url/exercises/$level-url"
+                                        !! "$parent-url/$level-url";
 
             %toc{$url} = {
                 title => $level-title,
@@ -97,6 +97,17 @@ sub get-toc($lang) returns Hash {
 
             my $indent = "    " x $parent-url.comb('/').elems + 2;
             say "$indent $type \e[1m$level-title\e[0m \e[34m$url\e[0m";
+
+            if $type eq Exercise {
+                my $solution-url = "$url/solution";
+                %toc{$solution-url} = {
+                    title => "Solution: $level-title",
+                    url => 'solution',
+                    prev-url => $url,
+                    type => Solution,
+                };
+                $prev-url = $solution-url;
+            }
 
             scan-levels($level<items>, $url, Topic) if $level<items>;
             scan-levels($level<exercises>, $url, Exercise) if $level<exercises>;
@@ -118,13 +129,13 @@ sub get-toc($lang) returns Hash {
     return %toc;
 }
 
-sub generate-pages(%toc, $lang, $destination) {
+sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
     my $which-pygments = run 'which', 'pygmentize', :out;
     my $pygmentize-path = $which-pygments.out.slurp.trim;
     say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mPygments not installed, skipping syntax highlighting.\e[0m";
+    $pygmentize-path = '' if $quick;
 
-    sub generate-page(%toc, $lang, $dir) {
-
+    sub generate-page(%toc, $lang, $dir) {        
         my $path = $lang eq 'en' ?? "$dir/index.md" !! "$lang/$dir/index.md";
         my $title = %toc{$dir}<title>;
 
@@ -153,6 +164,7 @@ sub generate-pages(%toc, $lang, $destination) {
     }
 
     for %toc.keys -> $dir {
+        next if $filter && $dir !~~ /$filter/;
         generate-page(%toc, $lang, $dir);
     }
 
@@ -229,12 +241,13 @@ sub generate-pages(%toc, $lang, $destination) {
 
         sub include-menu() {
             my @crumbs = "[Course of Raku](/)";
-
+            
             my @url_items = %content<url>.split('/');
             pop @url_items;
 
             for ^@url_items {
                 my $crumb_url = @url_items[0..$_].join('/');
+                say "\t$crumb_url";
                 my $toc_item = %toc{$crumb_url};
                 @crumbs.push: "[$toc_item<title>](/$toc_item<url>)";
             }
@@ -371,7 +384,7 @@ sub generate-pages(%toc, $lang, $destination) {
         sub pre-convert-markdown($html is copy) {
             # Because Markdown::Grammar does it wrong when there are more than one _italic_ word in a paragraph etc.
             $html ~~ s:g/'_' (.+?) '_'/{'<em>' ~ $0 ~ '</em>'}/;
-            $html ~~ s:g/'**' (.+?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
+            $html ~~ s:g/'**' (\N?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
 
             return $html;
         }
@@ -434,12 +447,12 @@ sub generate-pages(%toc, $lang, $destination) {
     }
 }
 
-sub MAIN($language?) {
+sub MAIN(:$language = '', :$quick = False, :$filter = '') {
     for @languages.map: *.key -> $lang {
         next if $language && $lang ne $language;
 
         %toc = get-toc($lang);
-        generate-pages(%toc, $lang, '_out');
+        generate-pages(%toc, $lang, '_out', $quick, $filter);
     }
 
     say "Done";

@@ -44,7 +44,7 @@ tree of HTML files in the `docs` directory.
 By default, all languages will be generated. To build a single language, specify it
 in the command line:
 
-    raku raku-pages.raku eo
+    raku raku-pages.raku --language eo
 
 # Viewing site locally
 
