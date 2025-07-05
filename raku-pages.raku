@@ -16,12 +16,11 @@ my @languages =
     ru => 'Русский',
     uk => 'Українська';
 
-enum PageType < Part Subpart Section Topic Exercise Solution Quiz >;
+enum PageType < Part Subpart Section Topic Exercise Exercises Solution Quiz >;
 my %pagetype-key =
     Section => 'sections',
     Topic => 'topics',
     Exercise => 'exercises',
-    # Solution => '',
     Quiz => 'quizzes';
 
 
@@ -99,6 +98,8 @@ sub get-toc($lang) returns Hash {
             say "$indent $type \e[1m$level-title\e[0m \e[34m$url\e[0m";
 
             if $type eq Exercise {
+                add-exercises-page($url);
+
                 my $solution-url = "$url/solution";
                 %toc{$solution-url} = {
                     title => "Solution: $level-title",
@@ -112,6 +113,18 @@ sub get-toc($lang) returns Hash {
             scan-levels($level<items>, $url, Topic) if $level<items>;
             scan-levels($level<exercises>, $url, Exercise) if $level<exercises>;
             scan-levels($level<quizzes>, $url, Quiz) if $level<quizzes>;
+        }
+
+        sub add-exercises-page($url) {
+            my $exercises-url = $url;
+            $exercises-url ~~ s/ '/' <-[/]>+ $ //;
+
+            %toc<$exercises-url> //= {
+                title => "Exercises",
+                url => 'exercises',
+                prev-url => $url,
+                type => Exercises,
+            };
         }
     }
 
@@ -242,14 +255,18 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
         sub include-menu() {
             my @crumbs = "[Course of Raku](/)";
             
-            my @url_items = %content<url>.split('/');
-            pop @url_items;
+            my $full-url = %content<url>;
+            my @url-items = $full-url.split('/');
+            pop @url-items;
 
-            for ^@url_items {
-                my $crumb_url = @url_items[0..$_].join('/');
-                say "\t$crumb_url";
-                my $toc_item = %toc{$crumb_url};
-                @crumbs.push: "[$toc_item<title>](/$toc_item<url>)";
+            my $crumb-url = '';
+            for @url-items -> $current-url-part {
+                $crumb-url = $crumb-url ?? "$crumb-url/$current-url-part" !! $current-url-part;
+                say "\t$crumb-url";
+
+                my $toc-item = %toc{$crumb-url};
+                my $title = $toc-item<title> // 'Exercises';
+                @crumbs.push: "[$title](/$crumb-url)";
             }
 
             return qq:to/MENU/;
@@ -457,4 +474,3 @@ sub MAIN(:$language = '', :$quick = False, :$filter = '') {
 
     say "Done";
 }
-
