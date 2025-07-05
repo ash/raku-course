@@ -7,7 +7,7 @@ of HTML files to get the browsable website.
 
 To run the site locally, install the Raku compiler, Rakudo:
 
-    brew install raku
+    brew install rakudo
 
 You also need a couple of modules, which you can install with `zef`.
 
