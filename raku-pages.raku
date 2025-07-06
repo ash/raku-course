@@ -405,21 +405,6 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             TRANSLATIONS
         }
 
-        sub pre-convert-markdown($html is copy) {
-            # Because Markdown::Grammar does it wrong when there are more than one _italic_ word in a paragraph etc.
-            $html ~~ s:g/'_' (.+?) '_'/{'<em>' ~ $0 ~ '</em>'}/;
-            $html ~~ s:g/'**' (\N?) '**'/{'<strong>' ~ $0 ~ '</strong>'}/;
-
-            return $html;
-        }
-
-        sub post-convert-markdown($html is copy) {
-            # Markdown::Grammar adds a space after a </tag> for some reason.
-            $html ~~ s:g/'</' (\w+) '> ' (<[.,]>)/{"</$0>$1"}/;
-
-            return $html;
-        }
-
         sub prepare-content($md is copy) {
             $md ~~ s/ '---'\n .*? '---'\n //;
             $md ~~ s:g/ '{%' \s* 'include' \s+ (\S+) \s* '%}' /{ process-includes($0.trim) }/;
@@ -427,9 +412,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             my @code = extract-code($md);
             my @quiz = extract-quiz($md);
 
-            $md = pre-convert-markdown($md);
             my $html = markdown2html($md);
-            $html = post-convert-markdown($html);
 
             $html ~~ s:g/ '<p>' 'CodeBlockPlaceholder' (\d+) '</p>'/@code[$0 - 1]/;
             $html ~~ s:g/ '<p>' 'QuizPlaceholder' (\d+) '</p>'/@quiz[$0 - 1]/;
