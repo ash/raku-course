@@ -269,7 +269,6 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             my $crumb-url = '';
             for @url-items -> $current-url-part {
                 $crumb-url = $crumb-url ?? "$crumb-url/$current-url-part" !! $current-url-part;
-                say "\t$crumb-url";
 
                 my $toc-item = %toc{$crumb-url};
                 my $title = $toc-item<title> // 'Exercises';
