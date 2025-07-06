@@ -9,7 +9,11 @@ To run the site locally, install the Raku compiler, Rakudo:
 
     brew install rakudo
 
-You also need a couple of modules, which you can install with `zef`.
+Or with Mac ports:
+
+    sudo port install rakudo
+
+You also need an additional module, which you can install with `zef`.
 
 Install the package maneger `zef` itself if you don't have one yet:
 
@@ -17,10 +21,17 @@ Install the package maneger `zef` itself if you don't have one yet:
     cd zef
     raku -I. bin/zef install .
 
-Make sure that `zef/bin/zef` can be found by your shell. Then, install the modules:
+Make sure that `zef/bin/zef` can be found by your shell. Then, install the module:
 
     zef install YAMLish
-    zef install Markdown::Grammar
+
+Finally, have installed a tool for processing Markdown, `pandoc`:
+
+    brew install pandoc
+
+Or:
+
+    sudo port install pandoc
 
 # Syntax highlighting
 

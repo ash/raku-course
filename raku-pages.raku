@@ -1,7 +1,6 @@
 #!/usr/local/bin/raku
 
 use YAMLish;
-use Markdown::Grammar;
 
 my %toc;
 
@@ -147,6 +146,14 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
     my $pygmentize-path = $which-pygments.out.slurp.trim;
     say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mPygments not installed, skipping syntax highlighting.\e[0m";
     $pygmentize-path = '' if $quick;
+
+    my $which-pandoc = run 'which', 'pandoc', :out;
+    my $pandoc-path = $which-pandoc.out.slurp.trim;
+    unless $pandoc-path {
+        say "No pandoc found.";
+        exit;
+    }
+    say "Pandoc found at $pandoc-path";
 
     sub generate-page(%toc, $lang, $dir) {        
         my $path = $lang eq 'en' ?? "$dir/index.md" !! "$lang/$dir/index.md";
@@ -421,13 +428,21 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             my @quiz = extract-quiz($md);
 
             $md = pre-convert-markdown($md);
-            my $html = from-markdown($md, to => 'html');
+            my $html = markdown2html($md);
             $html = post-convert-markdown($html);
 
-            $html ~~ s:g/ '<p>' \n 'CodeBlockPlaceholder' (\d+) \n '</p>'/@code[$0 - 1]/;
-            $html ~~ s:g/ '<p>' \n 'QuizPlaceholder' (\d+) \n '</p>'/@quiz[$0 - 1]/;
+            $html ~~ s:g/ '<p>' 'CodeBlockPlaceholder' (\d+) '</p>'/@code[$0 - 1]/;
+            $html ~~ s:g/ '<p>' 'QuizPlaceholder' (\d+) '</p>'/@quiz[$0 - 1]/;
 
             return $html;
+        }
+
+        sub markdown2html($md) {
+            my $run = run $pandoc-path, :in, :out;
+            $run.in.print($md);
+            $run.in.close;
+
+            return $run.out.slurp;
         }
 
         sub extract-code($md is rw) {
