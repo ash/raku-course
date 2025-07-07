@@ -118,8 +118,11 @@ sub get-toc($lang) returns Hash {
             my $exercises-url = $url;
             $exercises-url ~~ s/ '/' <-[/]>+ $ //;
 
-            %toc<$exercises-url> //= {
-                title => "Exercises",
+            my $parent-url = $exercises-url;
+            $parent-url ~~ s/ '/' <-[/]>+ $ //;
+
+            %toc{$exercises-url} //= {
+                title => "Exercises: %toc{$parent-url}<title>",
                 url => 'exercises',
                 prev-url => $url,
                 type => Exercises,
@@ -298,9 +301,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             my $url = %content<url>;
 
             sub topics-list() {
-                return '' unless %toc{$url}<topics>;
+                my $curr = %toc{$url};
+                return '' unless $curr<topics>;
 
-                my @topics = @(%toc{$url}<topics>);
+                my @topics = @($curr<topics>);
 
                 my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
                 my $topics;
@@ -309,10 +313,16 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
                     $topics ~= "* [$topic<title>]($lang-prefix/$topic-url)\n";
                 }
 
+                my $exercises;
+                if $curr<type> == Exercises {
+                    $exercises = "abc";
+                }
+
                 return qq:to/TOPICS/;
                 <div class="topics" markdown="1">
                 ## {@topics.elems > 1 ?? "Topics in this section" !! "Also in this section"}
                 $topics
+                $exercises
                 </div>
                 TOPICS
             }
@@ -341,9 +351,17 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             }
 
             sub exercises-list() {
-                return '' unless %toc{$url}<exercises>;
+                my $curr = %toc{$url};
 
-                my @exercises = @(%toc{$url}<exercises>);
+                my $parent-url = $url;
+                if $curr<type> == Exercises {
+                    $parent-url ~~ s/ '/exercises' $ //;
+                    $curr = %toc{$parent-url};
+                }
+
+                return '' unless $curr<exercises>;
+
+                my @exercises = @($curr<exercises>);
 
                 my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
                 my $exercises;
@@ -352,15 +370,33 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
                     $exercises ~= "1. [$exercise<title>]($lang-prefix/$exercise-url)\n";
                 }
 
-                return qq:to/EXERCISES/;
-                <div class="exercises" markdown="1">
-                ## Exercises
+                if $url ne $parent-url {
+                    return qq:to/EXERCISES/;
+                    <div class="exercises" markdown="1">
+                    <p></p>
 
-                This section contains [{@exercises.elems} exercises](exercises). Examine all the topics of this section before doing the coding practice.
+                    This section contains {@exercises.elems} exercises.
 
-                $exercises
-                </div>
-                EXERCISES
+                    $exercises
+                    </div>
+
+                    ## Refresh your knowledge
+
+                    Refer to the contents of this section to find the answers if needed.
+
+                    EXERCISES
+                }
+                else {
+                    return qq:to/EXERCISES/;
+                    <div class="exercises" markdown="1">
+                    ## Exercises
+
+                    This section contains [{@exercises.elems} exercises](exercises). Examine all the topics of this section before doing the coding practice.
+
+                    $exercises
+                    </div>
+                    EXERCISES
+                }
             }
 
             my $prev-page = %toc{%toc{$url}<prev-url>};
