@@ -123,6 +123,7 @@ sub get-toc($lang) returns Hash {
 
             %toc{$exercises-url} //= {
                 title => "Exercises: %toc{$parent-url}<title>",
+                short-title => 'Exercises',
                 url => 'exercises',
                 prev-url => $url,
                 type => Exercises,
@@ -173,6 +174,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
                 locale => $lang,
             );
 
+            $html = post-process-html($html) if $html ~~ /'%%'/;
+
             my $output-dir = $lang eq 'en' ?? "$destination/$dir" !! "$destination/$lang/$dir";
             $output-dir.IO.mkdir(:parent);
 
@@ -183,6 +186,12 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
         }
         else {
             say "\e[31mERROR: File '$path' '$title' not found\e[0m";
+        }
+
+        sub post-process-html($html) {
+            return $html
+                .subst('<p>%%tipblock</p>', '<div class="tip"><p></p>')
+                .subst('<p>%%/tipblock</p>', '</div>');
         }
     }
 
@@ -274,7 +283,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
                 $crumb-url = $crumb-url ?? "$crumb-url/$current-url-part" !! $current-url-part;
 
                 my $toc-item = %toc{$crumb-url};
-                my $title = $toc-item<title> // 'Exercises';
+                my $title = $toc-item<short-title> // $toc-item<title>;
                 @crumbs.push: "[$title](/$crumb-url)";
             }
 
@@ -371,6 +380,15 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
                 }
 
                 if $url ne $parent-url {
+                    my $parent = %toc{$parent-url};
+                    my $local-toc;
+                    for @($parent<topics>) -> $topic-url {
+                        my $topic = %toc{$topic-url};
+                        $local-toc ~= qq:to/LOCAL-TOC/;
+                            * [$topic<title>](/$parent-url/$topic<url>)
+                        LOCAL-TOC
+                    }
+
                     return qq:to/EXERCISES/;
                     <div class="exercises" markdown="1">
                     <p></p>
@@ -383,6 +401,9 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
                     ## Refresh your knowledge
 
                     Refer to the contents of this section to find the answers if needed.
+
+                    * [$parent<title>](/$parent-url)
+                    $local-toc
 
                     EXERCISES
                 }
