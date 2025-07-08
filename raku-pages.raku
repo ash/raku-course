@@ -115,11 +115,8 @@ sub get-toc($lang) returns Hash {
         }
 
         sub add-exercises-page($url) {
-            my $exercises-url = $url;
-            $exercises-url ~~ s/ '/' <-[/]>+ $ //;
-
-            my $parent-url = $exercises-url;
-            $parent-url ~~ s/ '/' <-[/]>+ $ //;
+            my $exercises-url = parent-level-url($url);
+            my $parent-url = parent-level-url($exercises-url);
 
             %toc{$exercises-url} //= {
                 title => "Exercises: %toc{$parent-url}<title>",
@@ -350,6 +347,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
 
                 return qq:to/QUIZZES/;
                 <div class="practice" markdown="1">
+                <p></p>
+
                 ## Practice
 
                 Complete the quiz{@quizzes.elems > 1 ?? 'zes' !! ''} that cover{@quizzes.elems == 1 ?? 's' !! ''} the contents of this topic.
@@ -436,6 +435,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             &nbsp;&nbsp;|&nbsp;&nbsp;
             [$next-page<title>](/%toc{$url}<next-url>) →
 
+            {link-exercises-if-any()}
+
             {include-translations()}
             NAV
         }
@@ -459,6 +460,35 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             Translations of this page: {@links.join(' • ')}
             </div>
             TRANSLATIONS
+        }
+
+        sub link-exercises-if-any() {
+            my $url = %content<url>;
+            my $curr = %toc{$url};
+
+            return '' unless $curr<type> == Topic;
+
+            my $section-url = parent-level-url($url);
+            my $section = %toc{$section-url};
+
+            return '' unless $section<exercises>;
+
+            if $section<exercises>.elems == 1 {
+                return qq:to/GOTOEXERCICE/;
+
+                <br />
+                💪 Or jump directly [to the exercise to this section](/$section-url/exercises/$section<exercises>[0]<url>).
+
+                GOTOEXERCICE
+            }
+            else {
+                return qq:to/GOTOEXERCICES/;
+
+                <br />
+                💪 Or jump directly [to the exercises in this section](/$section-url/exercises).
+
+                GOTOEXERCICES
+            }
         }
 
         sub prepare-content($md is copy) {
@@ -516,6 +546,12 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
 
         return $html;
     }
+
+}
+
+sub parent-level-url($url is copy) {
+    $url ~~ s/ '/' <-[/]>+ $ //;
+    return $url;
 }
 
 sub MAIN(:$language = '', :$quick = False, :$filter = '') {
