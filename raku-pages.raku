@@ -67,6 +67,12 @@ sub get-toc($lang) returns Hash {
             my $subpart-title = $subpart<title>;
             say "    Subpart \e[1m$subpart-title\e[0m";
 
+            %toc{$parent-url}<subparts> //= [];
+            @(%toc{$parent-url}<subparts>).push: {
+                type => Subpart,
+                title => $subpart-title,
+            };
+
             scan-levels($subpart<items>, $parent-url, Section) if $subpart<items>;
             scan-levels($subpart<exercises>, $parent-url, Exercise) if $subpart<exercises>;
             scan-levels($subpart<quizzes>, $parent-url, Quiz) if $subpart<quizzes>;
@@ -142,7 +148,7 @@ sub get-toc($lang) returns Hash {
     return %toc;
 }
 
-sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
+sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
     my $which-pygments = run 'which', 'pygmentize', :out;
     my $pygmentize-path = $which-pygments.out.slurp.trim;
     say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mPygments not installed, skipping syntax highlighting.\e[0m";
@@ -194,6 +200,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
 
     for %toc.keys -> $dir {
         next if $filter && $dir !~~ /$filter/;
+        next if $uri && $dir ne $uri;
+
         generate-page(%toc, $lang, $dir);
     }
 
@@ -250,8 +258,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             state %includes =
                 'languages.html' => sub { '' },
                 'nav.html' => &include-nav,
+                'toc.html' => &include-toc,
                 'menu.html' => &include-menu,
-                'quiz.html' => &include-quiz
+                'quiz.html' => &include-quiz,
+                'translations.html' => &include-translations,
             ;
 
             return %includes{$filename} ?? %includes{$filename}() !! '';
@@ -441,6 +451,20 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter) {
             NAV
         }
 
+        sub include-toc() {
+            my $url = %content<url>;
+            my $part = %toc{$url};
+
+            my $toc;            
+            for @($part<subparts>) -> $subpart {
+                $toc ~= qq:to/TOC/;
+                * $subpart
+                TOC
+            }
+
+            return $toc;
+        }
+
         sub include-translations() {
             my @links;
             for @languages -> $language {
@@ -554,12 +578,12 @@ sub parent-level-url($url is copy) {
     return $url;
 }
 
-sub MAIN(:$language = '', :$quick = False, :$filter = '') {
+sub MAIN(:$language = '', :$quick = False, :$filter = '', :$uri = '') {
     for @languages.map: *.key -> $lang {
         next if $language && $lang ne $language;
 
         %toc = get-toc($lang);
-        generate-pages(%toc, $lang, '_out', $quick, $filter);
+        generate-pages(%toc, $lang, '_out', $quick, $filter, $uri);
     }
 
     say "Done";

@@ -2,11 +2,7 @@
 title: About this course
 ---
 
-{% assign course_title = site.data.toc["en"].title %}
-
-[{{course_title}}](/)
-
-# About this course
+{% include menu.html %}
 
 Welcome to the course of the Raku programming language!
 
@@ -35,12 +31,11 @@ While the navigation guides you through the assignments in a particular order, y
 
 The course includes five parts:
 
-| N | Name | Status
-| 1 | [Raku essentials](/essentials) | Published
-| 2 | [Advanced Raku subjects](/advanced) | In progress<span id="ProgressBar">...</span>
-| 3 | Object-oriented programming in Raku | 
-| 4 | Regexes and grammars | 
-| 5 | Functional, concurrent, and reactive programming | 
+1. [Raku essentials](/essentials) — Published
+1. [Advanced Raku subjects](/advanced) — In progress<span id="ProgressBar">...</span>
+1. Object-oriented programming in Raku
+1. Regexes and grammars
+1. Functional, concurrent, and reactive programming
 
 <script>
     let ProgressBar = document.getElementById('ProgressBar');
