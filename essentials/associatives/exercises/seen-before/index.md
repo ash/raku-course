@@ -27,14 +27,12 @@ Word: saw
 Seen!
 Word: that
 Word: saw
-Seen 2 times!
-True
+Seen 3 times!
 Word: as
 Word: that
 Seen!
 Word: saw
-Seen 3 times!
-True
+Seen 4 times!
 Word: sawed
 Word: ^C
 ```
