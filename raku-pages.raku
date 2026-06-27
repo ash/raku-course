@@ -44,17 +44,23 @@ sub get-toc($lang) returns Hash {
         my $part-number = 0;
 
         for @$toc -> $part {
-            $part-number++;
             my $part-title = $part<title>;
             my $part-url = $part<url>;
+
+            # Only parts that hold content ('items') are numbered; intro pages
+            # such as "About this course" are not counted.
+            $part-number++ if $part<items>;
 
             say "Part $part-number. \e[1m$part-title\e[0m \e[34m$part-url\e[0m";
 
             %toc{$part-url} = {
                 title => $part-title,
+                long-title => $part<long_title>,
                 url => $part-url,
                 prev-url => $prev-url,
                 type => Part,
+                part-number => ($part<items> ?? $part-number !! Nil),
+                items => $part<items>,
             };
             $prev-url = $part-url;
 
@@ -145,13 +151,22 @@ sub get-toc($lang) returns Hash {
 
     link-toc();
 
+    # The home page ('' / the site root). It is not a Part itself; it holds the
+    # ordered list of parts so include-toc can render the whole-course TOC.
+    %toc{''} = {
+        title    => $toc<title>,
+        url      => '',
+        type     => Part,
+        parts    => $toc<toc>,
+        next-url => %toc{''}<next-url>,
+    };
+
     return %toc;
 }
 
 sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
-    my $which-pygments = run 'which', 'pygmentize', :out;
-    my $pygmentize-path = $which-pygments.out.slurp.trim;
-    say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mPygments not installed, skipping syntax highlighting.\e[0m";
+    my $pygmentize-path = find-pygmentize();
+    say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mNo working pygmentize found, code blocks will not be colour-highlighted.\e[0m";
     $pygmentize-path = '' if $quick;
 
     my $which-pandoc = run 'which', 'pandoc', :out;
@@ -162,8 +177,14 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
     }
     say "Pandoc found at $pandoc-path";
 
-    sub generate-page(%toc, $lang, $dir) {        
-        my $path = $lang eq 'en' ?? "$dir/index.md" !! "$lang/$dir/index.md";
+    my $saved-count   = 0;
+    my $pending-count = 0;
+    my @pending-pages;
+
+    sub generate-page(%toc, $lang, $dir) {
+        # $dir is '' for the home page, so join carefully to avoid a leading '/'.
+        my $src-dir = ($lang eq 'en' ?? $dir !! ($dir ?? "$lang/$dir" !! $lang));
+        my $path = $src-dir ?? "$src-dir/index.md" !! 'index.md';
         my $title = %toc{$dir}<title>;
 
         if $path.IO.f {
@@ -185,10 +206,13 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             my $output-path = "$output-dir/index.html";
             $output-path.IO.spurt($html);
 
+            $saved-count++;
             say "\e[32mSaved to $output-path\e[0m";
         }
         else {
-            say "\e[31mERROR: File '$path' '$title' not found\e[0m";
+            $pending-count++;
+            @pending-pages.push: "$dir ($title)";
+            say "\e[33mTODO: '$dir' — '$title' not yet written ($path)\e[0m";
         }
 
         sub post-process-html($html) {
@@ -204,6 +228,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
 
         generate-page(%toc, $lang, $dir);
     }
+
+    say "\e[1m\e[32m$saved-count page(s) generated for '$lang'.\e[0m"
+        ~ ($pending-count ?? " \e[33m$pending-count page(s) still to write:\e[0m" !! '');
+    say "  \e[33m• $_\e[0m" for @pending-pages.sort;
 
     sub md-to-html(*%content) {
         state $template = "_templates/default.html".IO.slurp;
@@ -224,22 +252,36 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }
 
         sub format-code($language is copy, $code) {
-            return $code unless $pygmentize-path;
+            # Plain, HTML-escaped code block — matching the wrapper pygments uses
+            # — so the code is always marked up and styled even without a
+            # highlighter (--quick, no pygments, or a per-block failure).
+            my $plain = '<div class="highlight"><pre>' ~ html-escape($code) ~ '</pre></div>';
+
+            return $plain unless $pygmentize-path;
 
             # $language = 'bash' if $language eq 'console';
             $language = 'raku' unless $language;
 
-            '/tmp/highlight.raku'.IO.spurt($code);
-            run $pygmentize-path, '-f', 'html', '-l', $language, '-O', 'style=vs', '-o', '/tmp/highlight.raku.html', '/tmp/highlight.raku';
+            # Pipe the code through pygmentize via stdin/stdout. (Using a shared
+            # temp file here races: an async read can pick up another block's
+            # output.) Write input, then drain stdout/stderr, then check status.
+            my $proc = run $pygmentize-path, '-f', 'html', '-l', $language,
+                '-O', 'style=vs', :in, :out, :err;
+            $proc.in.spurt($code, :close);
+            my $html = $proc.out.slurp(:close);
+            $proc.err.slurp(:close);
 
-            return '/tmp/highlight.raku.html'.IO.slurp;
+            return ($proc.exitcode == 0 && $html.trim) ?? $html !! $plain;
         }
 
         sub format-quiz($class is copy, $body) {
             my $rows;
             for $body.split("\n") -> $row {
                 $rows ~= '<tr>';
-                for $row.split(/\s* '|' \s*/) -> $cell {
+                for $row.split(/\s* '|' \s*/) -> $cell is copy {
+                    # Render inline `code` spans in cells, as kramdown did.
+                    $cell ~~ s:g/ '`' $<c>=(<-[`]>*) '`'
+                        /{ '<code>' ~ html-escape(~$<c>) ~ '</code>' }/;
                     $rows ~= "<td>{$cell}</td>";
                 }
                 $rows ~= "</tr>\n";
@@ -302,13 +344,15 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }
 
         sub include-quiz() {
+            # NB: keep every line flush-left. Markdown turns indented lines into
+            # a code block, which would print the button tags as text.
             return qq:to/QUIZ/;
             <script>
-                prepare_quiz();
+            prepare_quiz();
             </script>
             <div style="margin: 3em 0;">
-                <button onclick="checkquiz()">Check the answers</button>
-                <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
+            <button onclick="checkquiz()">Check the answers</button>
+            <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
             </div>
             QUIZ
         }
@@ -329,16 +373,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                     $topics ~= "* [$topic<title>]($lang-prefix/$topic-url)\n";
                 }
 
-                my $exercises;
-                if $curr<type> == Exercises {
-                    $exercises = "abc";
-                }
-
                 return qq:to/TOPICS/;
                 <div class="topics" markdown="1">
                 ## {@topics.elems > 1 ?? "Topics in this section" !! "Also in this section"}
                 $topics
-                $exercises
                 </div>
                 TOPICS
             }
@@ -390,8 +428,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
 
                 if $url ne $parent-url {
                     my $parent = %toc{$parent-url};
-                    my $local-toc;
-                    for @($parent<topics>) -> $topic-url {
+                    my $local-toc = '';
+                    for @($parent<topics> // []) -> $topic-url {
                         my $topic = %toc{$topic-url};
                         $local-toc ~= qq:to/LOCAL-TOC/;
                             * [$topic<title>](/$parent-url/$topic<url>)
@@ -402,7 +440,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                     <div class="exercises" markdown="1">
                     <p></p>
 
-                    This section contains {@exercises.elems} exercises.
+                    This section contains {decline(@exercises.elems, 'exercise')}.
 
                     $exercises
                     </div>
@@ -421,7 +459,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                     <div class="exercises" markdown="1">
                     ## Exercises
 
-                    This section contains [{@exercises.elems} exercises](exercises). Examine all the topics of this section before doing the coding practice.
+                    This section contains [{decline(@exercises.elems, 'exercise')}](exercises). Examine all the topics of this section before doing the coding practice.
 
                     $exercises
                     </div>
@@ -429,8 +467,15 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 }
             }
 
-            my $prev-page = %toc{%toc{$url}<prev-url>};
-            my $next-page = %toc{%toc{$url}<next-url>};
+            my $prev-url  = %toc{$url}<prev-url>;
+            my $next-url  = %toc{$url}<next-url>;
+            my $prev-page = $prev-url ?? %toc{$prev-url} !! Nil;
+            my $next-page = $next-url ?? %toc{$next-url} !! Nil;
+
+            my $course-nav = '';
+            $course-nav ~= "← [$prev-page<title>](/$prev-url)" if $prev-page;
+            $course-nav ~= "\n&nbsp;&nbsp;|&nbsp;&nbsp;\n"      if $prev-page && $next-page;
+            $course-nav ~= "[$next-page<title>](/$next-url) →" if $next-page;
 
             return qq:to/NAV/;
             {topics-list()}
@@ -441,9 +486,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
 
             ## Course navigation
 
-            ← [$prev-page<title>](/%toc{$url}<prev-url>)
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            [$next-page<title>](/%toc{$url}<next-url>) →
+            {$course-nav}
 
             {link-exercises-if-any()}
 
@@ -452,17 +495,61 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }
 
         sub include-toc() {
-            my $url = %content<url>;
-            my $part = %toc{$url};
+            my $top = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
 
-            my $toc;            
-            for @($part<subparts>) -> $subpart {
-                $toc ~= qq:to/TOC/;
-                * $subpart
-                TOC
+            # On a part-landing page each section shows its quiz/exercise counts
+            # ($extended); on the home page the whole-course TOC omits them.
+            sub counts($node, $base) {
+                my @parts;
+                @parts.push: "<span class=\"has-q\">[{decline($node<quizzes>.elems, 'quiz')}]($base#practice)</span>"
+                    if $node<quizzes>;
+                @parts.push: "<span class=\"has-e\">[{decline($node<exercises>.elems, 'exercise')}]($base/exercises)</span>"
+                    if $node<exercises>;
+                return @parts ?? ' — ' ~ @parts.join(' and ') !! '';
             }
 
-            return $toc;
+            sub render-part($part, Bool $extended) {
+                my $part-url = $part<url>;
+                my $long     = $part<long-title> // $part<title>;
+                my $toc      = "## Part {$part<part-number>}. $long\n\n";
+
+                for @($part<items> // []) -> $subpart {
+                    $toc ~= "#### $subpart<title>\n\n";
+
+                    for @($subpart<items> // []) -> $section {
+                        my $surl = "$top/$part-url/$section<url>";
+                        $toc ~= "* [$section<title>]($surl)"
+                            ~ ($extended ?? counts($section, $surl) !! '') ~ "\n";
+
+                        for @($section<items> // []) -> $topic {
+                            my $turl = "$surl/$topic<url>";
+                            my $tq = ($extended && $topic<quizzes>)
+                                ?? " — <span class=\"has-q\">[{decline($topic<quizzes>.elems, 'quiz')}]($turl#practice)</span>"
+                                !! '';
+                            $toc ~= "    - [$topic<title>]($turl)$tq\n";
+                        }
+                    }
+
+                    $toc ~= "\n";
+                }
+
+                return $toc;
+            }
+
+            my $url = %content<url>;
+
+            # Home page: list every content part (those with items), no counts.
+            if $url eq '' {
+                my $toc = '';
+                for @(%toc{''}<parts> // []) -> $raw-part {
+                    next unless $raw-part<items>;
+                    $toc ~= render-part(%toc{$raw-part<url>}, False);
+                }
+                return $toc;
+            }
+
+            # Part-landing page: just this part, with quiz/exercise counts.
+            return render-part(%toc{$url}, True);
         }
 
         sub include-translations() {
@@ -501,7 +588,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 return qq:to/GOTOEXERCICE/;
 
                 <br />
-                💪 Or jump directly [to the exercise to this section](/$section-url/exercises/$section<exercises>[0]<url>).
+                💪 Or jump directly [to the exercise to this section](/$section<exercises>[0]).
 
                 GOTOEXERCICE
             }
@@ -518,6 +605,12 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         sub prepare-content($md is copy) {
             $md ~~ s/ '---'\n .*? '---'\n //;
             $md ~~ s:g/ '{%' \s* 'include' \s+ (\S+) \s* '%}' /{ process-includes($0.trim) }/;
+            # Resolve the only Liquid output tag still used in content: the
+            # copyright year ({{ site.time | date: '%Y' }} on the home page).
+            $md ~~ s:g/ '{{' \s* 'site.time' .*? '}}' /{ Date.today.year }/;
+            # Drop any remaining Liquid tags ({% assign %}, {% comment %}, …) — the
+            # Raku generator does its own logic, so these would otherwise leak as text.
+            $md ~~ s:g/ '{%' .*? '%}' //;
 
             my @code = extract-code($md);
             my @quiz = extract-quiz($md);
@@ -531,7 +624,9 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }
 
         sub markdown2html($md) {
-            my $run = run $pandoc-path, :in, :out;
+            # Disable pandoc's $…$ TeX-math extension: Raku code and prose are
+            # full of $variables, which must stay literal (kramdown did the same).
+            my $run = run $pandoc-path, '-f', 'markdown-tex_math_dollars', :in, :out;
             $run.in.print($md);
             $run.in.close;
 
@@ -542,7 +637,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             my @code;
 
             $md ~~ s:g/ '```' (\S+)? \n+ (.*?) \n+ '```' /{
-                @code.push([~$0 // 'raku', ~$1]);
+                @code.push([($0 // 'raku').Str, ~$1]);
                 'CodeBlockPlaceholder' ~ @code.elems
             }/;
 
@@ -571,6 +666,41 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         return $html;
     }
 
+}
+
+#| Locate a pygmentize that actually runs. `which` may return a broken script
+#| (e.g. a wrong shebang), so each candidate is verified with `-V`.
+sub find-pygmentize() {
+    my @candidates;
+
+    my $which = run 'which', '-a', 'pygmentize', :out, :err;
+    @candidates.append: $which.out.slurp.lines».trim.grep(*.chars);
+
+    @candidates.append: </opt/local/bin/pygmentize
+                         /opt/homebrew/bin/pygmentize
+                         /usr/local/bin/pygmentize>;
+
+    my $frameworks = '/Library/Frameworks/Python.framework/Versions'.IO;
+    @candidates.append: $frameworks.dir.map(*.add('bin/pygmentize').Str) if $frameworks.d;
+
+    for @candidates.unique -> $path {
+        next unless $path.IO.f;
+        my $test = run $path, '-V', :out, :err;
+        return $path if $test.exitcode == 0;
+    }
+
+    return '';
+}
+
+#| Escape the three characters that matter in HTML text/code.
+sub html-escape($s) {
+    return $s.subst('&', '&amp;', :g).subst('<', '&lt;', :g).subst('>', '&gt;', :g);
+}
+
+#| "1 exercise", "2 exercises", "1 quiz", "2 quizzes" — pick singular/plural.
+sub decline($n, $word) {
+    my %forms = quiz => <quiz quizzes>, exercise => <exercise exercises>;
+    return "$n " ~ %forms{$word}[$n == 1 ?? 0 !! 1];
 }
 
 sub parent-level-url($url is copy) {
