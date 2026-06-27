@@ -110,9 +110,26 @@ function checkquiz() {
     document.getElementById('ShowAnswers').style.display = 'none';
 
     document.querySelectorAll('table.quiz input[type="checkbox"]').forEach(function(item) {
-        let is_correct = (item.checked && item.dataset.ok == 1) || (!item.checked && item.dataset.ok == 0);
+        let correct_option = item.dataset.ok == 1;
         let row = item.parentElement.parentElement;
-        row.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
+
+        // (b) Show the truth of each option, independently of what was picked:
+        //     a green tick for a correct answer, a red cross for a false one.
+        row.querySelector('td').innerHTML = correct_option
+            ? '<span class="yes">✓</span>'
+            : '<span class="no">✘</span>';
+
+        // (a) Highlight how the reader answered this particular row.
+        row.classList.remove('quiz-ok', 'quiz-wrong', 'quiz-missed');
+        if (item.checked && correct_option) {
+            row.classList.add('quiz-ok');       // picked, and it is correct
+        }
+        else if (item.checked && !correct_option) {
+            row.classList.add('quiz-wrong');     // picked, but it is false
+        }
+        else if (!item.checked && correct_option) {
+            row.classList.add('quiz-missed');    // a correct answer that was not picked
+        }
     });
     document.querySelectorAll('table.quiz tr td').forEach(function(item) {
         item.style.display = '';

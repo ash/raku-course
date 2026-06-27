@@ -312,8 +312,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         sub head-includes(%content) {
             if %toc{%content<url>}<type> == Quiz {
                 return qq:to/INCLUDE/;
-                <link rel="stylesheet" href="/assets/quiz.css">
-                <script type="text/javascript" src="/assets/quiz.js"></script>
+                <link rel="stylesheet" href="/assets/quiz.css?v=2">
+                <script type="text/javascript" src="/assets/quiz.js?v=2"></script>
                 INCLUDE
             }
 
