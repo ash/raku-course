@@ -21,7 +21,7 @@ greet();
 
 The first call uses the name passed as the only argument and thus prints `Hello, Merinda!`. The second call uses the default value and prints `Hello, World!`.
 
-If a function has more than one parameters, then the default values can only be used at the end of the list of them:
+If a function has more than one parameter, then the default values can only be used at the end of the list of them:
 
 ```raku
 sub f($a, $b, $c = 42, $d = 50) { . . . } # correct

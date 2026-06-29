@@ -34,7 +34,7 @@ There are 2 apple(s) remaining.
 Modify the initial value of `$N` and `$K` to model other situations:
 
 * `$K` is multiple of `$N`, for example, `12` and `3`;
-* `$K` is equals to `$N`;
+* `$K` is equal to `$N`;
 * `$K` is less than `$N`.
 
 ## Comments

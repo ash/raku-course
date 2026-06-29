@@ -6,7 +6,7 @@ title: Ranges
 
 Ranges in Raku generate lists of sequential items.
 
-In the simplest case, a range is a list of incrementing integers numbers. To create a range, use the `..` operator and the two values that define the minimum and maximum values of the range:
+In the simplest case, a range is a list of incrementing integer numbers. To create a range, use the `..` operator and the two values that define the minimum and maximum values of the range:
 
 ```raku
 1 .. 5
@@ -18,7 +18,7 @@ Spaces around the operator are optional. The following construction can be writt
 1..5
 ```
 
-While a range is a mean to generate lists, it is still a single object, so it can be saved in a scalar variable:
+While a range is a means to generate lists, it is still a single object, so it can be saved in a scalar variable:
 
 ```raku
 my $r = 1 .. 5;

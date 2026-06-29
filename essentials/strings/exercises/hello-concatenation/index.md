@@ -8,20 +8,21 @@ title: Exercise ’Hello, Concatenation!‘
 
 Remember our test program called ‘[Greet a person](/essentials/scalar-variables/exercises/greet-a-person/)’? Let us repeat it on a new level.
 
-Write a program that asks the user for their name and prints a greeting. Use string concatenation in the solution.
+Write a program that asks the user for their name and for the city they come from, and then prints a greeting that mentions both. Use string concatenation in the solution.
 
 ## Example
 
-If you run the program, you get a prompt:
+If you run the program, you get two prompts:
 
 ```console
 $ raku hello-concatenation.raku
-What is your name?
+What is your name? Ella
+Where are you from? Lisbon
 ```
 
-Then you enter the name and get the greeting:
+Then the program prints the greeting:
 
-    Hello, Ella!
+    Hello, Ella from Lisbon!
 
 ## Solution
 

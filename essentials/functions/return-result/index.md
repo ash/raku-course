@@ -4,7 +4,7 @@ title: Returning the result
 
 {% include menu.html %}
 
-Functions often not just do something but also return a result. For example, in functional programming, functions should not produce any side effects such as printing to console. Nevertheless, Raku does not limit you from doing so. Let’s see how to return a value from a function and how to get it in the calling code.
+Functions often not only do something but also return a result. For example, in functional programming, functions should not produce any side effects such as printing to console. Nevertheless, Raku does not limit you from doing so. Let’s see how to return a value from a function and how to get it in the calling code.
 
 ```raku
 sub add($x, $y) {

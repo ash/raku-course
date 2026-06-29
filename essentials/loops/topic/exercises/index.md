@@ -1,5 +1,5 @@
 ---
-title: 'Execises: Topic variable'
+title: 'Exercises: Topic variable'
 ---
 
 {% include menu.html %}

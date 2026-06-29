@@ -42,6 +42,6 @@ if False {
 say 'End';
 ```
 
-This program just prints `Begin` and `End`.;
+This program just prints `Begin` and `End`.
 
 {% include nav.html %}

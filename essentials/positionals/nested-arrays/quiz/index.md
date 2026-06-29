@@ -4,7 +4,7 @@ title: Quiz — Nested arrays
 
 {% include menu.html %}
 
-There is an array of array:
+An array of arrays keeps the temperatures measured on four days, three readings per day:
 
 ```raku
 my @data =
@@ -33,7 +33,7 @@ True | `@data[1][1] == @data[2][0]` is&nbsp; (: False, True :)
 
 ## Lengths
 
-What value do the following calls of the `size` method return?
+What value do the following calls of the `elems` method return?
 
 {:.quiz-select}
 4 | `@data.elems` —&nbsp; (: 1, 2, 3, 4, 5 :)

@@ -1,5 +1,5 @@
 ---
-title: Exercise 'Double and tripple negations’
+title: Exercise 'Double and triple negations’
 ---
 
 {% include menu.html %}

@@ -9,7 +9,7 @@ In this program, we are using the elements of Raku syntax from the section about
 ## Code
 
 ```raku
-my ($a, $b) = 10, 20;
+my ($a, $b) = 3, 8;
 ($a, $b) = $b, $a;
 say "$a, $b";
 ```
@@ -22,7 +22,7 @@ Run the program and confirm it prints the values in different order.
 
 ```console
 $ raku exercises/scalar-variables/swap.raku
-20, 10
+8, 3
 ```
 
 ## Comments
@@ -51,7 +51,7 @@ In this case, you get a warning that `$a` on the right-hand side is not used:
 $ raku exercises/scalar-variables/swap.raku
 WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
 Useless use of $a in sink context (lines 2, 2)
-10, 20
+3, 8
 ```
 
 The above line is actually equivalent to a useless assignment `$b = $b`. You can easily see it if you modify the values on the right side, for example:
@@ -67,7 +67,7 @@ $ raku exercises/scalar-variables/swap.raku
 WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
 Useless use of "*" in expression "3 * $a" in sink context (line 2)
 Useless use of $a in sink context (line 2)
-10, 40
+3, 16
 ```
 
 {% include nav.html %}

@@ -4,7 +4,7 @@ title: The @*ARGS array
 
 {% include menu.html %}
 
-So far as arrays are introduced, it is a good time to meet one of the built-in arrays, `@*ARGS`. The `*` in its name is the second sigil, or _twigil_, and we’ll see more of them in the future. But for now, let’s get the advantages of using that special array. It contains the arguments that the program gets from the command line.
+Now that arrays have been introduced, it is a good time to meet one of the built-in arrays, `@*ARGS`. The `*` in its name is the second sigil, or _twigil_, and we’ll see more of them in the future. But for now, let’s get the advantages of using that special array. It contains the arguments that the program gets from the command line.
 
 Consider the following program run:
 

@@ -4,7 +4,7 @@ title: 'Solution: How many numbers are equal?'
 
 {% include menu.html %}
 
-The program should make a few comparisons. For three input numbers, there are two possible cases:
+The program should make a few comparisons. For three input numbers, there are three possible cases:
 
 1. All three numbers are equal,
 1. Only two numbers are equal, and

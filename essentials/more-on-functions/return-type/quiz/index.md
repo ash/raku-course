@@ -1,26 +1,26 @@
 ---
-title: Quiz — Functions with default values
+title: Quiz — Return type of functions
 ---
 
 {% include menu.html %}
 
-There is a function:
+A function returns the number of seconds in a given number of whole minutes:
 
 ```raku
-sub add(Int $x, Int $y) returns Int {
-    $x + $y
+sub seconds(Int $minutes) returns Int {
+    $minutes * 60
 }
 ```
 
 Check which of the following assignments will work.
 
 {:.quiz}
-1 | my $a = add(4, 6); | Assigning to an untyped variable works.
-0 | my Rat $b = add(5, 6); | An `Int` value cannot be assigned to a `Rat` typed variable.
-1 | my Int $c = add(7, 8);
-0 | my Num $d = add(9, 10);
-1 | my Str $e = add(9, 10).Str; | Explicit type conversion helps.
-0 | my Str $f = add(9, 10);
+1 | my $a = seconds(3); | Assigning to an untyped variable works.
+0 | my Rat $b = seconds(4); | An `Int` value cannot be assigned to a `Rat` typed variable.
+1 | my Int $c = seconds(5);
+0 | my Num $d = seconds(6);
+1 | my Str $e = seconds(7).Str; | Explicit type conversion helps.
+0 | my Str $f = seconds(8);
 
 {% include quiz.html %}
 

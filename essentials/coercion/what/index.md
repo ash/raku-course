@@ -15,7 +15,7 @@ say $s.WHAT; # (Str)
 
 The type is printed in parentheses, as shown in the comments. For example, `(Int)` or `(Str)`.
 
-There is no problem to call a method on a literal itself. For example:
+There is no problem calling a method on a literal itself. For example:
 
 ```raku
 say 42.WHAT;      # (Int)

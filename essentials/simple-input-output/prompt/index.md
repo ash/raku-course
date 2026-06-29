@@ -4,7 +4,7 @@ title: Input with prompt
 
 {% include menu.html %}
 
-The opposite of `say` is `prompt`. It waits when the user enters something and presses Enter. Then, it sends the input to the program as a string. You can take the result of `prompt` and pass it to `say`. In this case, you echo what the user types. Let us create such a program:
+The opposite of `say` is `prompt`. It waits until the user enters something and presses Enter. Then, it sends the input to the program as a string. You can take the result of `prompt` and pass it to `say`. In this case, you echo what the user types. Let us create such a program:
 
 ```raku
 say prompt;
@@ -16,7 +16,7 @@ If you run this program, you may be confused as the program enters the state, in
 prompt 'What language are you going to learn? '
 ```
 
-Before wrapping up this section, let us combine all the pieces and create a program that asks about user's wishes and then prints a phrase using the text that the user entered.
+Before wrapping up this section, let us combine all the pieces and create a program that asks about the user's wishes and then prints a phrase using the text that the user entered.
 
 ```raku
 say 'You are going to learn ', prompt 'What language are you going to learn? ';

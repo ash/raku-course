@@ -20,7 +20,7 @@ say "$a$b$c";
 ```
 
 {:.quiz-select}
-146 | Ouput of the program: (: 125, 126, 145, 146, 325, 326, 345, 346 :)
+146 | Output of the program: (: 125, 126, 145, 146, 325, 326, 345, 346 :)
 
 {% include quiz.html %}
 

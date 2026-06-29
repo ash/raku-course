@@ -4,7 +4,7 @@ title: Integer numbers in Raku
 
 {% include menu.html %}
 
-The `Int` data type represents integer numbers. Numbers can be positive and negatives, and you can use an explicit `+` sign if you want to. Here are a few obvious examples:
+The `Int` data type represents integer numbers. Numbers can be positive and negative, and you can use an explicit `+` sign if you want to. Here are a few obvious examples:
 
 ```raku
 42
@@ -25,7 +25,7 @@ Raku has a cute feature that lets you spell big numbers with some visual helpers
 -3_141_592
 ```
 
-Although you can construct a number such as `34_56`, you’d better avoid it as this may confuse other people reading your code. But you cannot have two adjacent underscores, neither you can start nor end the number with it.
+Although you can construct a number such as `34_56`, you’d better avoid it as this may confuse other people reading your code. But you cannot have two adjacent underscores, nor can you start or end the number with it.
 
 ## Arbitrary long integers
 

@@ -6,7 +6,7 @@ title: 'Exercise: Compare `say` and `put`'
 
 ## Problem
 
-Write a program that allows to see the differences between `say` and `put` for the data types we’ve learned so far: `Int`, `Rat`, `Num`, `Str`, `Array`, `List`, `Range`, and `Hash`. For scalar items, use [typed variables](/essentials/typed-variables).
+Write a program that allows you to see the differences between `say` and `put` for the data types we’ve learned so far: `Int`, `Rat`, `Num`, `Str`, `Array`, `List`, `Range`, and `Hash`. For scalar items, use [typed variables](/essentials/typed-variables).
 
 ## Example
 
@@ -14,10 +14,10 @@ The program should print at least one result for every data type using both `say
 
 ```console
 $ raku compare-say-and-put.raku
-42
-42
-0.75
-0.75
+256
+256
+0.125
+0.125
 . . .
 ```
 

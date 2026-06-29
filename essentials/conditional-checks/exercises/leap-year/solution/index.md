@@ -6,7 +6,7 @@ title: 'Solution: Leap year'
 
 ## Disclaimer
 
-The solution shown below aims to train you using conditional checks. In real life, you can learn the methods of the bulit-in `Date` class. We will learn it in the second part of the course.
+The solution shown below aims to train you using conditional checks. In real life, you can learn the methods of the built-in `Date` class. We will learn it in the second part of the course.
 
 ## Solution
 
@@ -21,7 +21,7 @@ Note that you can use the built-in types for working with date and time, so weâ€
 
 ## Code 1
 
-The first solution reproduces the above steps literary:
+The first solution reproduces the above steps literally:
 
 ```raku
 my $year = prompt 'Year: ';
@@ -44,7 +44,7 @@ else {
 
 ## Code 2
 
-In the second solution, the logic is packed to a single expression. Parentheses are not always needed by added here for clarity.
+In the second solution, the logic is packed to a single expression. Parentheses are not always needed but added here for clarity.
 
 ```raku
 my $year = prompt 'Year: ';
@@ -81,7 +81,7 @@ Common year
 %%tipblock
 ## `%%` vs `%`
 
-Note that in Boolean contexts, the `%%` and `%` operators are complementary. You can use this fact to chose one of the operators to avoid explicit comparison with zero.
+Note that in Boolean contexts, the `%%` and `%` operators are complementary. You can use this fact to choose one of the operators to avoid explicit comparison with zero.
 
 ```raku
 say ?(100 % 3);    # True

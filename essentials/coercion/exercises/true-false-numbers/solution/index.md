@@ -4,20 +4,25 @@ title: Solution of ‘True and False integers’
 
 {% include menu.html %}
 
-To convert a number to a Boolean value, you can use either the `?` prefix operator or a constructor form, or call the `Bool` method, or the `so` routine as either a prefix operator or a method:
+The fastest way to explore the question is to throw a handful of candidate numbers at the `?` operator at once and look at the results side by side:
 
 ```raku
-my $value = 42;
-say ?$value;
-say Bool($value);
-say $value.Bool;
-say so $value;
-say $value.so;
+for -2, -0.5, -1/3, 0, 1/3, 0.5, 2 -> $n {
+    say "$n -> {?$n}";
+}
 ```
 
-It is quite obvious that non-zero values are converted to `True`. We are thus most interested in looking at those options that become `False`.
+The output makes the pattern obvious — every value prints `True` except the one in the middle:
 
-All zeroes, integer, floating-point, or rational, are cast to `False`:
+    -2 -> True
+    -0.5 -> True
+    -0.333333 -> True
+    0 -> False
+    0.333333 -> True
+    0.5 -> True
+    2 -> True
+
+So the sign and the magnitude do not matter at all: only zero is falsy. The next question is whether that holds for every numeric type, because `0`, `0.0`, and `0e0` are an `Int`, a `Rat`, and a `Num` respectively:
 
 ```raku
 my Int $int-zero = 0;

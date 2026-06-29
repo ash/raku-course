@@ -6,7 +6,7 @@ title: The number of command-line arguments
 
 ## Task
 
-Write a program that prints the number of arguments passed to the program in the command line.
+Write a program that reports how many arguments it received from the command line in a complete sentence. Make the grammar correct: use the word `argument` when exactly one was passed and `arguments` in all other cases.
 
 ## Example
 
@@ -14,10 +14,11 @@ This is how the program is supposed to react:
 
 ```console
 $ raku number-of-command-line-arguments.raku make them count us now
-5
-```
+You passed 5 arguments.
 
-The program gets five words in the command line and prints `5`.
+$ raku number-of-command-line-arguments.raku solo
+You passed 1 argument.
+```
 
 ## Solution
 

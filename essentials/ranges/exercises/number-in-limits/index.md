@@ -6,7 +6,7 @@ title: 'Exercise: If the number is within the limits'
 
 ## Problem
 
-Write a program that asks to enter three numbers: `$begin`, `$end`, and `$n` and prints `True` of `False` depending of whether `$n` is in the range `[$begin, $end)` (including `$begin` but excluding `$end`).
+Write a program that asks to enter three numbers: `$begin`, `$end`, and `$n` and prints `True` or `False` depending on whether `$n` is in the range `[$begin, $end)` (including `$begin` but excluding `$end`).
 
 Please assume that the entered numbers satisfy the condition: `$begin < $end + 1`, but do not add code to check it.
 

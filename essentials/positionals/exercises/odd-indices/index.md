@@ -6,7 +6,7 @@ title: 'Exercise: Odd indices'
 
 ## Problem
 
-You have a array of numbers:
+You have an array of numbers:
 
 ```raku
 my @data = 10, 12, 1, 5, -9, 8, 36, 18, 21;

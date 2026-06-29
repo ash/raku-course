@@ -4,7 +4,7 @@ title: Quiz — Postfix for
 
 {% include menu.html %}
 
-Try to complete the program so that it uses the posftix form of `for` and prints the following text:
+Try to complete the program so that it uses the postfix form of `for` and prints the following text:
 
     A
     A

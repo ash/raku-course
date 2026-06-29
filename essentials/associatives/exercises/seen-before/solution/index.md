@@ -4,7 +4,7 @@ title: 'Solution: Seen before?'
 
 {% include menu.html %}
 
-This task is a classic example of using a hash to keep track of items. Before a loop, a hash `%seen` is created. Inside the loop, the entered `$word` serves a key of the hash.
+This task is a classic example of using a hash to keep track of items. Before a loop, a hash `%seen` is created. Inside the loop, the entered `$word` serves as a key of the hash.
 
 ## Code
 

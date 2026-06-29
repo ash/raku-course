@@ -12,7 +12,7 @@ Select the numbers which are `Rat` in Raku.
 1 | 3/64 | This is a `Rat` number, not a division of two integers.
 1 | ⅞
 1 | 2.718281828459045 | That‘s an approximate value of the Euler constant, but this is a `Rat` still, as it is not infinitely long.
-1 | 10_230/50_245 | You can use the `_` separate here too.
+1 | 10_230/50_245 | You can use the `_` separator here too.
 1 | 10.345_678 | And here.
 0 | 10.345,678 | A comma here is neither a decimal comma nor a separator.
 1 | <33/44> | Another form of writing rational numbers in Raku.

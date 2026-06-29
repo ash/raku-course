@@ -30,7 +30,7 @@ my %data = alpha => 1, beta => 2, gamma => 3;
 say %data; # {alpha => 1, beta => 2, gamma => 3}
 ```
 
-The `say` routine can be called as both a function or a method:
+The `say` routine can be called as both a function and a method:
 
 ```raku
 say 42;
@@ -38,7 +38,7 @@ say(42);
 42.say;
 ```
 
-You can pass more than one argument to `say`. The output pieces are joint with no spaces between them.
+You can pass more than one argument to `say`. The output pieces are joined with no spaces between them.
 
 ```raku
 say(100, 500); # 100500

@@ -4,7 +4,7 @@ title: Arrays
 
 {% include menu.html %}
 
-Arrays are aggregate data types that can keep more than one value. That differs arrays from [scalar items](/essentials/scalar-variables). Array elements can be indexed (or _subscripted_). In other words, its elements have a position (which explains the general name for this kind of data: positionals).
+Arrays are aggregate data types that can keep more than one value. That distinguishes arrays from [scalar items](/essentials/scalar-variables). Array elements can be indexed (or _subscripted_). In other words, its elements have a position (which explains the general name for this kind of data: positionals).
 
 Array variables use another kind of sigil: `@`. The rules for the variable name are the same as [for scalars](/essentials/scalar-variables/identifiers/).
 
@@ -34,7 +34,7 @@ say @cities[1];
 
 Notice that the sigil always stays the same. As elements are counted from zero, the element `@cities[1]` is `'Rome'` in our example.
 
-Arrays are mutable, so you can easily modify the items of it by simply assigning a new value to them:
+Arrays are mutable, so you can easily modify its items by simply assigning a new value to them:
 
 ```raku
 @cities[0] = 'Rome';

@@ -26,7 +26,7 @@ True
 
 ## Comments
 
-It was a bit unexpected the program with three exclamation marks did not compile:
+It was a bit unexpected that the program with three exclamation marks did not compile:
 
 ```console
 $ raku triple-negation.raku
@@ -58,6 +58,6 @@ False
     in block <unit> at exercises/booleans/triple-negation.raku line 2
 ```
 
-This happens because `!!!` is a special operator for marking the part of the code as stub code. It the program reaches this point, it terminates and prints the message, which in our case was the current value of the variable `$value`. Refer to 📖 [the documentation](https://docs.raku.org/routine/!!!) for more details.
+This happens because `!!!` is a special operator for marking the part of the code as stub code. If the program reaches this point, it terminates and prints the message, which in our case was the current value of the variable `$value`. Refer to 📖 [the documentation](https://docs.raku.org/routine/!!!) for more details.
 
 {% include nav.html %}

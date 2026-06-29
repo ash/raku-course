@@ -31,7 +31,7 @@ else { # Multiples of 10, e.g., 50
 
 ## Example
 
-Run the program a few times to check all the three branches of the `if`—`elsif`—`elses` construction.
+Run the program a few times to check all three branches of the `if`—`elsif`—`else` construction.
 
 ```console
 $ raku exercises/positionals/spell-a-number.raku 5

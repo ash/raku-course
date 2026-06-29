@@ -35,6 +35,6 @@ unless $broken { . . . }
 
 Having the alternatives, you can always choose what feels better to you in the current situation.
 
-Notice that `unless` cannot be followed by an `else` or `elsif` blocks. In this case, the only way is to use `if`.
+Notice that `unless` cannot be followed by an `else` or `elsif` block. In this case, the only way is to use `if`.
 
 {% include nav.html %}

@@ -44,7 +44,7 @@ my $visible = 'Sun';
 ```
 
 {:.quiz-select}
-None | Answer: (: Sun, Moon, None :) | The same global variable is referred in all blocks.
+None | Answer: (: Sun, Moon, None :) | The same global variable is referred to in all blocks.
 
 {% include quiz.html %}
 

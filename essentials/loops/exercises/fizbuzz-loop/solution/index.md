@@ -29,6 +29,6 @@ $ raku exercises/loops/fizbuzz-loop.raku
 
 ## Comment
 
-For a pedantic problem solver, the solution may not be perfect as it prints a space after the colon even for those numbers, which did not get any Fizz of Buzz. Modify the program to avoid that issue.
+For a pedantic problem solver, the solution may not be perfect as it prints a space after the colon even for those numbers, which did not get any Fizz or Buzz. Modify the program to avoid that issue.
 
 {% include nav.html %}

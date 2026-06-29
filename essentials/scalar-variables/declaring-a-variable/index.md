@@ -10,7 +10,7 @@ Variables must be announced before you use them. Raku has special _declarators_ 
 my $name;
 ```
 
-Having that said, you introduced a new variable, which keeps no payload so far. But it is already known to the compiler to identify it when it sees the same name later in the program.
+Having said that, you introduced a new variable, which keeps no payload so far. But it is already known to the compiler to identify it when it sees the same name later in the program.
 
 ## More than one variable
 

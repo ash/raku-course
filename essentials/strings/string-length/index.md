@@ -4,11 +4,11 @@ title: String length in Raku
 
 {% include menu.html %}
 
-The Unicode nature of the strings makes some trivial things it a bit more difficult. Or, at least, you need to think of it as of a less straightforward topic. Take, for example, the length of a string. Is it the number of characters, or is it the number of bytes? Or what if the same character is decomposed differently in different strings, is it still one character?
+The Unicode nature of the strings makes some trivial things a bit more difficult. Or, at least, you need to think of it as a less straightforward topic. Take, for example, the length of a string. Is it the number of characters, or is it the number of bytes? Or what if the same character is decomposed differently in different strings, is it still one character?
 
 ## Length in characters
 
-To get the lengths of the string in characters, use the `chars` _method_:
+To get the length of the string in characters, use the `chars` _method_:
 
 ```raku
 my $str = '你好世界';
@@ -21,7 +21,7 @@ There are four characters in this Chinese greeting 你好世界. And `$str.chars
 
 ## Length in bytes
 
-Just for the reference, this is how you get the lengths of the string in bytes. In this case, it is important to know which encoding is used to keep the string:
+Just for reference, this is how you get the length of the string in bytes. In this case, it is important to know which encoding is used to keep the string:
 
 ```raku
 my $str = '你好世界';
@@ -32,7 +32,7 @@ This time, the program prints `12`. Notice that we have two chained method calls
 
 ## Length in code points
 
-Just for the completeness, here is another useful method that also relates to string lengths: `codes`. It returns the number of code points in the string after it is being normalized. In many cases, `codes` and `chars` return the same. Still, in some rare cases, when, for example, you built ‘an impossible’ character, for which there is no single codepoint in the whole Unicode space, the methods give different results.
+Just for completeness, here is another useful method that also relates to string lengths: `codes`. It returns the number of code points in the string after it is normalized. In many cases, `codes` and `chars` return the same. Still, in some rare cases, when, for example, you built ‘an impossible’ character, for which there is no single codepoint in the whole Unicode space, the methods give different results.
 
 ```raku
 say 'x̨'.chars;

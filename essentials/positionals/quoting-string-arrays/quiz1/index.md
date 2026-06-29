@@ -4,7 +4,7 @@ title: Quiz — Quoting string arrays
 
 {% include menu.html %}
 
-Check, for which of the arrays, the element with index `1` contains the letter `B`. In other words, `say @array[1]` prints `B`.
+Check for which of the arrays the element with index `1` contains the letter `B`. In other words, `say @array[1]` prints `B`.
 
 {:.quiz}
 1 | my @array = &lt;A B C&gt;;

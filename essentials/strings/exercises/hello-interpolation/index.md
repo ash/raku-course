@@ -6,16 +6,16 @@ title: Exercise ’Hello, Interpolation!‘
 
 ## Problem
 
-OK, let us greet a person once again. But this time try using string interpolation. So, the task is to ask the person to enter the name and print a greeting message.
+OK, let us greet a person once again. But this time try using string interpolation. Ask the person to enter their name, then print a greeting that also tells them how many letters their name has. Use code interpolation — the `{ }` form — to compute the length right inside the string.
 
 ## Example
 
 If you run the program, you get a prompt:
 
 ```console
-$ raku hello-concatenation.raku
-What is your name? Marek
-Hello, Marek!
+$ raku hello-interpolation.raku
+What is your name? Raku
+Hello, Raku! Your name has 4 letters.
 ```
 
 ## Solution

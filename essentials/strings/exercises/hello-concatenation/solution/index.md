@@ -10,29 +10,33 @@ Here is a possible solution to this problem:
 
 ```raku
 my $name = prompt 'What is your name? ';
-say 'Hello, ' ~ $name ~ '!';
+my $city = prompt 'Where are you from? ';
+say 'Hello, ' ~ $name ~ ' from ' ~ $city ~ '!';
 ```
 
 🦋 You can find the source code in the file [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
 
 ## Output
 
-Run the program, and it will enter a mode when it waits for your input. After you type the name and press Enter, the program goes on and prints the greeting:
+Run the program, and it will wait for your input twice. After you answer both prompts, the program prints the greeting:
 
 ```console
 $ raku exercises/strings/hello-concatenation.raku
 What is your name? John
-Hello, John!
+Where are you from? Berlin
+Hello, John from Berlin!
 ```
 
 ## Comments
 
-Compare the program with [the previous variant](../../../../scalar-variables/exercises/greet-a-person/solution) where we passed three strings to the `say` routine:
+This time the greeting is built from five pieces glued together with the `~` operator: three literal strings (`'Hello, '`, `' from '`, and `'!'`) and the two variables between them. They are all concatenated into a single string first, and only then passed to `say`.
+
+Compare the program with [the earlier variant](../../../../scalar-variables/exercises/greet-a-person/solution) where we passed several strings to the `say` routine separated by commas:
 
 ```raku
 say 'Hello, ', $name, '!';
 ```
 
-This time, the three parts are first concatenated and then passed to `say` as a single string.
+There, `say` received several separate arguments and printed them one after another. Here, we produce one ready-made string ourselves.
 
 {% include nav.html %}

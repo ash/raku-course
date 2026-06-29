@@ -23,7 +23,7 @@ Select the lines with correct Raku syntax.
 
 ## Comments
 
-All the range creation operators (as well as other Raku operators) are uninterrupted sequences of characters, so you cannot insert a space between their part.
+All the range creation operators (as well as other Raku operators) are uninterrupted sequences of characters, so you cannot insert a space between their parts.
 
 {% include quiz.html %}
 

@@ -4,7 +4,7 @@ title: Embedded comments
 
 {% include menu.html %}
 
-Embedded, or inline comments, have the same form as multi-line comments with the only difference that you place it between other parts of the program. For example:
+Embedded, or inline comments, have the same form as multi-line comments with the only difference that you place them between other parts of the program. For example:
 
 ```raku
 my $name;

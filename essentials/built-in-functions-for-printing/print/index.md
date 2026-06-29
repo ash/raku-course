@@ -35,7 +35,7 @@ my %data = alpha => 1, beta => 2, gamma => 3;
 print %data;
 ```
 
-This is how the output looks like:
+This is what the output looks like:
 
 ```console
 $ raku t.raku

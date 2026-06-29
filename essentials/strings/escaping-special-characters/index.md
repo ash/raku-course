@@ -4,7 +4,7 @@ title: Escaping special characters in Raku strings
 
 {% include menu.html %}
 
-Imagine you want to print a price label, and you keep both the name of the product and its price in scalar variables?
+Imagine you want to print a price label, and you keep both the name of the product and its price in scalar variables.
 
 ```raku
 my $product = 'Electricity';
@@ -23,9 +23,9 @@ Of course, you can use string concatenation and avoid escaping `$`:
 say $product ~ ' costs $' ~ $price;
 ```
 
-This variant prints exactly the same string, but interpolation look more natural and easier to read. Note that the `$` character was neither interpolated nor escaped in a single-quoted string: `' costs $'`. That’s the main difference. Special characters in single quotes appear as-is.
+This variant prints exactly the same string, but interpolation looks more natural and easier to read. Note that the `$` character was neither interpolated nor escaped in a single-quoted string: `' costs $'`. That’s the main difference. Special characters in single quotes appear as-is.
 
-Here is a few more special characters that have special meaning in double-quoted strings:
+Here are a few more special characters that have special meaning in double-quoted strings:
 
 `\$` | Dollar sign
 `\n` | Newline

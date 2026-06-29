@@ -1,5 +1,5 @@
 ---
-title: Exercise ‘True and False strings
+title: Exercise ‘True and False strings’
 ---
 
 {% include menu.html %}

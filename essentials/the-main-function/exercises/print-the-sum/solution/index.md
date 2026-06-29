@@ -4,7 +4,7 @@ title: 'Solution: Print the sum'
 
 {% include menu.html %}
 
-This program consists of a single `MAIN` function that takes two typed arguments, both of each are built from the arguments from the command line.
+This program consists of a single `MAIN` function that takes two typed arguments, both of which are built from the arguments from the command line.
 
 ## Code
 

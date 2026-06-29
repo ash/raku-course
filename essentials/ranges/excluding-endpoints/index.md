@@ -19,6 +19,6 @@ my $r1 = 1..5;
 my $r2 = 1..^5;
 ```
 
-For a range that start with 0, such as `0..^5`, there exists a shortcut syntax: `^5`.
+For a range that starts with 0, such as `0..^5`, there exists a shortcut syntax: `^5`.
 
 {% include nav.html %}

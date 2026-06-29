@@ -34,7 +34,7 @@ Consider the following example:
 say 0.1 + 0.2 - 0.3;
 ```
 
-If a programming language uses floating-point arithmetics for these calculations, the result will not be equal to 0. The website [0.30000000000000004.com](https://0.30000000000000004.com) gives an exhaustive list of examples where floating-point arithmethics does not give an expected result.
+If a programming language uses floating-point arithmetics for these calculations, the result will not be equal to 0. The website [0.30000000000000004.com](https://0.30000000000000004.com) gives an exhaustive list of examples where floating-point arithmetics does not give an expected result.
 
 But Raku prints an exact `0`. This happens because it treats the numbers `0.1`, `0.2`, and `0.3` as rational numbers and keeps them as `1/10`, `2/10`, and `3/10` internally. Run it from the command line to confirm it:
 

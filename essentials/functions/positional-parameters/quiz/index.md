@@ -37,7 +37,7 @@ Select the correct calls of it.
 {:.quiz}
 1 | say x;
 1 | say(x);
-1 | say x(); | Parenthese around the arguments of `say` are ommited.
+1 | say x(); | Parentheses around the arguments of `say` are omitted.
 1 | say(x());
 0 | my $v = x (); | A space before `()` makes the `()` an argument.
 1 | my $w = x();

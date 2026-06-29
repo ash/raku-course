@@ -4,7 +4,7 @@ title: Quiz — Type constraints
 
 {% include menu.html %}
 
-Make the variables in the below program typed-restricted. Choose the most narrow type required to keep the value;
+Make the variables in the below program type-restricted. Choose the most narrow type required to keep the value;
 
 {:.quiz-code}
 Int | my ␣␣␣ $a = 500;

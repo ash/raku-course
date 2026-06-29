@@ -1,5 +1,5 @@
 ---
-title: Output wth say
+title: Output with say
 ---
 
 {% include menu.html %}

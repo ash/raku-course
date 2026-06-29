@@ -25,7 +25,7 @@ string &apos;Alpha&apos; | `'Alpha' || 'Beta'` is a (: Boolean True, Boolean Fal
 {:.quiz-select}
 200 | `100 && 200` is (: 100, 200, True, False, Nil :)
 100 | `100 || 200` is (: 100, 200, True, False, Nil :)
-Nil | `100 ^^ 200` is (: 100, 200, True, False, Nil :) | `Nil` is the value to represent the absense of value.
+Nil | `100 ^^ 200` is (: 100, 200, True, False, Nil :) | `Nil` is the value to represent the absence of a value.
 
 {% include quiz.html %}
 {% include nav.html %}

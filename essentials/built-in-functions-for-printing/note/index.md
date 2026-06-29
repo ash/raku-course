@@ -4,7 +4,7 @@ title: The note routine
 
 {% include menu.html %}
 
-The `note` routine prints its arguments to the standard errors stream. In the rest, it is similar to [`say`](../say).
+The `note` routine prints its arguments to the standard error stream. In the rest, it is similar to [`say`](../say).
 
 1. Calls the `gist` method on its arguments.
 1. Adds a newline character.

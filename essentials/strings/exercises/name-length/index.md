@@ -6,16 +6,17 @@ title: Exercise ‘Name length‘
 
 ## Problem
 
-Write a program that asks the user for their name and prints the length of the name.
+Write a program that asks the user for their first name and their last name separately, and then prints how many letters there are in the two names together (not counting the space between them).
 
 ## Example
 
-When you run the program and enter your name in response to the prompt, the program prints a single number: the length of the entered name.
+When you run the program and answer both prompts, the program prints a single number: the combined length of the two names.
 
 ```console
 $ raku name-length.raku
-What is your name? Alexander
-9
+First name: Ada
+Last name: Lovelace
+11
 ```
 
 ## Solution

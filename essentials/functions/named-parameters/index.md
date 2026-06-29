@@ -4,7 +4,7 @@ title: Named parameters
 
 {% include menu.html %}
 
-In contrast to [positional parameters](../positional-parameters), _named_ parameters are referred by their names.
+In contrast to [positional parameters](../positional-parameters), _named_ parameters are referred to by their names.
 
 The following function takes two parameters called `$from` and `$to`.
 
