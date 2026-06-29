@@ -1,9 +1,6 @@
-my $value = 42;
-say ?$value;
-say Bool($value);
-say $value.Bool;
-say so $value;
-say $value.so;
+for -2, -0.5, -1/3, 0, 1/3, 0.5, 2 -> $n {
+    say "$n -> {?$n}";
+}
 
 
 my Int $int-zero = 0;
