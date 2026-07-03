@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ordered containers in Raku</title>
-    <meta property="og:title" content="Ordered containers in Raku" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Ordered containers — Raku Course</title>
+    <meta property="og:title" content="Ordered containers — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Ordered containers in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,37 +88,99 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a></p>
-
-<h1 id="advanced-raku-subjects">Advanced Raku subjects</h1>
-
-<p>In Raku, there are different types of ordered containers. They are containers that keep multiple elements (of course, they can also keep one or even zero elements in the special cases) and keep the order of the elements. The built-in ordered containers are lists, arrays, and sequences.</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">@</code> sigil suggests that the variable contains a list or a conceptually similar object. If a variable has <code class="language-plaintext highlighter-rouge">@</code> as its sigil, it supports subscripting, so the elements can be accessed using their index in the ordered storage.</p>
-
-<p>Note that in Raku, you can use a variable with the <code class="language-plaintext highlighter-rouge">$</code> sigil to host, for example, a list. Examine the below topics to understand how to use different kinds of ordered containers.</p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
+<h1 id="ordered-containers">Ordered containers</h1>
+<p>Ordered containers keep several elements and preserve their order, so
+each element can be reached by its position. (In special cases they may
+also hold a single element or none at all.) The most common ordered
+containers are <em>arrays</em> and <em>lists</em>.</p>
+<p>The <code>@</code> sigil tells you that a variable is meant to hold
+many elements. A variable with the <code>@</code> sigil supports
+subscripting, so you can read an element by its index, as you already
+saw in the Essentials part.</p>
+<p>In this section, we take a closer look at how arrays and lists differ
+<em>as containers</em>: which of them you can modify, what happens when
+you put one container inside another, and how <em>binding</em> gives a
+name to a container without copying anything.</p>
+<section id="topics-in-this-section" class="topics" data-markdown="1">
+<h2>Topics in this section</h2>
+<ul>
+<li><a href="/advanced/ordered-containers/arrays">Arrays</a></li>
+<li><a href="/advanced/ordered-containers/lists">Lists</a></li>
+<li><a href="/advanced/ordered-containers/binding">Binding with
+<code>:=</code></a></li>
+<li><a href="/advanced/ordered-containers/flattening">Flattening and
+itemisation</a></li>
+</ul>
+</section>
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
+<p>Complete the quizzes that cover the contents of this section.</p>
+<ul>
+<li><a href="/advanced/ordered-containers/lists/quiz">Quiz — Arrays and
+lists</a></li>
+<li><a href="/advanced/ordered-containers/flattening/quiz">Quiz —
+Nesting arrays</a></li>
+</ul>
+</section>
+<section id="exercises" class="exercises" data-markdown="1">
+<h2>Exercises</h2>
+<p>This section contains <a href="exercises">3 exercises</a>. Examine
+all the topics of this section before doing the coding practice.</p>
+<ol type="1">
+<li><a
+href="/advanced/ordered-containers/exercises/alias-an-array">Alias an
+array</a></li>
+<li><a
+href="/advanced/ordered-containers/exercises/flatten-the-parts">Flatten
+the parts</a></li>
+<li><a href="/advanced/ordered-containers/exercises/bind-a-scalar">Bind
+a scalar</a></li>
+</ol>
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/advanced/introspection">Introspection with MOP</a>
-        / <a href="/advanced/introspection/var"><code class="language-plaintext highlighter-rouge">VAR</code></a>
-  |  
-        <a href="//"></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/advanced/ordered-containers/">Deutsch</a> • <a href="/es/advanced/ordered-containers/">Español</a> • <a href="/it/advanced/ordered-containers/">Italiano</a> • <a href="/lv/advanced/ordered-containers/">Latviešu</a> • <a href="/nl/advanced/ordered-containers/">Nederlands</a> • <a href="/bg/advanced/ordered-containers/">Български</a> • <a href="/ru/advanced/ordered-containers/">Русский</a> • <a href="/uk/advanced/ordered-containers/">Українська</a></p>
+<p>← <a
+href="/advanced/scalar-containers/exercises/reuse-the-container/solution">Solution:
+Typed or untyped</a>   |   <a
+href="/advanced/ordered-containers/arrays">Arrays</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/type/Array" target="_blank" rel="noopener noreferrer">Array</a>
+</li>
+<li>
+<a href="https://docs.raku.org/language/list" target="_blank" rel="noopener noreferrer">Lists,
+sequences, and arrays</a>
+</li>
+</ul>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

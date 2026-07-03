@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Compare `say` and `put`</title>
-    <meta property="og:title" content="Solution: Compare `say` and `put`" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Solution: Compare say and put — Raku Course</title>
+    <meta property="og:title" content="Solution: Compare say and put — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Solution: Compare `say` and `put`</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,111 +88,138 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/built-in-functions-for-printing/">Built-in functions for printing</a> / <a href="/essentials/built-in-functions-for-printing/exercises/">Exercises</a> / <a href="/essentials/built-in-functions-for-printing/exercises/compare-say-and-put">Compare <code class="language-plaintext highlighter-rouge">say</code> and <code class="language-plaintext highlighter-rouge">put</code></a></p>
-
-<h1 id="solution-compare-say-and-put">Solution: Compare <code class="language-plaintext highlighter-rouge">say</code> and <code class="language-plaintext highlighter-rouge">put</code></h1>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/built-in-functions-for-printing">Built-in
+functions for printing</a> / <a
+href="/essentials/built-in-functions-for-printing/exercises">Exercises</a>
+/ <a
+href="/essentials/built-in-functions-for-printing/exercises/compare-say-and-put">Compare
+<code>say</code> and <code>put</code></a></p>
+<h1 id="solution-compare-say-and-put">Solution: Compare <code>say</code>
+and <code>put</code></h1>
 <h2 id="code">Code</h2>
-
 <p>Here is one of the possible solutions:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="mi">42</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="mi">256</span>;
 <span class="nb">say</span> <span class="nv">$i</span>;
 <span class="nb">put</span> <span class="nv">$i</span>;
 
-<span class="k">my</span> <span class="nb">Rat</span> <span class="nv">$r</span> = <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>;
+<span class="k">my</span> <span class="nb">Rat</span> <span class="nv">$r</span> = <span class="mi">1</span><span class="o">/</span><span class="mi">8</span>;
 <span class="nb">say</span> <span class="nv">$r</span>;
 <span class="nb">put</span> <span class="nv">$r</span>;
 
-<span class="k">my</span> <span class="nb">Num</span> <span class="nv">$n</span> = <span class="mf">3e4</span>;
+<span class="k">my</span> <span class="nb">Num</span> <span class="nv">$n</span> = <span class="mf">6.022e23</span>;
 <span class="nb">say</span> <span class="nv">$n</span>;
 <span class="nb">put</span> <span class="nv">$n</span>;
 
-<span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="s">&#39;Raku&#39;</span>;
+<span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="s">&#39;camelia&#39;</span>;
 <span class="nb">say</span> <span class="nv">$s</span>;
 <span class="nb">put</span> <span class="nv">$s</span>;
 
-<span class="k">my</span> <span class="nv">@a</span> = <span class="s">&lt;this is an array&gt;</span>;
+<span class="k">my</span> <span class="nv">@a</span> = <span class="s">&lt;red green blue&gt;</span>;
 <span class="c1"># say @a.WHAT;</span>
 <span class="nb">say</span> <span class="nv">@a</span>;
 <span class="nb">put</span> <span class="nv">@a</span>;
 
-<span class="k">my</span> <span class="nb">List</span> <span class="nv">$l</span> = <span class="s">&lt;this is a list&gt;</span>;
+<span class="k">my</span> <span class="nb">List</span> <span class="nv">$l</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>);
 <span class="c1"># say $l.WHAT;</span>
 <span class="nb">say</span> <span class="nv">$l</span>;
 <span class="nb">put</span> <span class="nv">$l</span>;
 
-<span class="k">my</span> <span class="nv">%h</span> = <span class="n">A</span> =&gt; <span class="s">&#39;alpha&#39;</span>, <span class="n">B</span> =&gt; <span class="s">&#39;beta&#39;</span>;
+<span class="k">my</span> <span class="nb">Range</span> <span class="nv">$range</span> = <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>;
+<span class="nb">say</span> <span class="nv">$range</span>;
+<span class="nb">put</span> <span class="nv">$range</span>;
+
+<span class="k">my</span> <span class="nv">%h</span> = <span class="nb">x</span> =&gt; <span class="mi">10</span>, <span class="n">y</span> =&gt; <span class="mi">20</span>;
 <span class="nb">say</span> <span class="nv">%h</span>;
 <span class="nb">put</span> <span class="nv">%h</span>;
 </pre></div>
 
-
-<p>For better confidence, you can also print the type of the variable, e.g., as shown for arrays and lists, to make sure you have created a variable of the desired type.</p>
-
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku">compare-say-and-put.raku</a>.</p>
-
+<p>For better confidence, you can also print the type of the variable,
+e.g., as shown for arrays and lists, to make sure you have created a
+variable of the desired type.</p>
+<p>🦋 Find the program in the file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku">compare-say-and-put.raku</a>.</p>
 <h2 id="output">Output</h2>
-
 <p>The output of the program shown above is shown below.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/built-in-functions-for-printing/compare-say-and-put.raku
-<span class="go">42
-42
-0.75
-0.75
-30000
-30000
-Raku
-Raku
-[this is an array]
-this is an array
-(this is a list)
-this is a list
-</span><span class="gp">{A =&gt;</span><span class="w"> </span>alpha, B <span class="o">=&gt;</span> beta<span class="o">}</span>
-<span class="go">A	alpha
-B	beta
-</span></code></pre></div></div>
-
+<div class="highlight"><pre>$ raku exercises/built-in-functions-for-printing/compare-say-and-put.raku
+256
+256
+0.125
+0.125
+6.022e+23
+6.022e+23
+camelia
+camelia
+[red green blue]
+red green blue
+(10 20 30)
+10 20 30
+1..5
+1 2 3 4 5
+{x =&gt; 10, y =&gt; 20}
+x	10
+y	20</pre></div>
 <h2 id="comments">Comments</h2>
-
-<p>By examining the output of the program, you can clearly see that there is no difference when printing simple data types such as numbers and strings. For aggregate data types, <code class="language-plaintext highlighter-rouge">say</code> produces a bit more ’noisy’ output comparing to <code class="language-plaintext highlighter-rouge">put</code>. On the other side, for hashes, <code class="language-plaintext highlighter-rouge">put</code> prints it as a table compared to a single line of  <code class="language-plaintext highlighter-rouge">say</code>.</p>
-
-<p>The difference between the output format is determined by how the <code class="language-plaintext highlighter-rouge">Str</code> and <code class="language-plaintext highlighter-rouge">gist</code> methods are implemented for the type in hand. We will talk more about this later in the course.</p>
-
-<p><div class="exercises"></p>
-<h2 id="next-exercise">Next exercise</h2>
-
-<p>💪 <a href="/essentials/built-in-functions-for-printing/exercises/print-the-warning">Print the warning</a>
-</div></p>
-
+<p>By examining the output of the program, you can clearly see that
+there is no difference when printing simple data types such as numbers
+and strings. For aggregate data types, <code>say</code> produces a bit
+more ’noisy’ output compared to <code>put</code>. On the other side, for
+hashes, <code>put</code> prints it as a table compared to a single line
+of <code>say</code>. The <code>Range</code> is especially interesting:
+<code>say</code> keeps the compact <code>1..5</code> form, while
+<code>put</code> expands it into the individual values
+<code>1 2 3 4 5</code>.</p>
+<p>The difference between the output format is determined by how the
+<code>Str</code> and <code>gist</code> methods are implemented for the
+type in hand. We will talk more about this later in the course.</p>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/essentials/more-on-functions">More about functions</a>
-        / <a href="/essentials/more-on-functions/multi-functions">Multi-functions</a>
-  |  
-    <a href="/essentials/the-main-function">The <code class="language-plaintext highlighter-rouge">MAIN</code> function</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Deutsch</a> • <a href="/es/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Español</a> • <a href="/it/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Italiano</a> • <a href="/lv/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Latviešu</a> • <a href="/nl/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Nederlands</a> • <a href="/bg/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Български</a> • <a href="/ru/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Русский</a> • <a href="/uk/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Українська</a></p>
+<p>← <a
+href="/essentials/built-in-functions-for-printing/exercises/compare-say-and-put">Compare
+<code>say</code> and <code>put</code></a>   |   <a
+href="/essentials/built-in-functions-for-printing/exercises/print-the-warning">Print
+the warning</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Deutsch</a>
+• <a
+href="/es/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Español</a>
+• <a
+href="/it/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Italiano</a>
+• <a
+href="/lv/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Latviešu</a>
+• <a
+href="/nl/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Nederlands</a>
+• <a
+href="/bg/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Български</a>
+• <a
+href="/ru/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Русский</a>
+• <a
+href="/uk/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

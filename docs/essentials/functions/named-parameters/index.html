@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Named parameters</title>
-    <meta property="og:title" content="Named parameters" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Named parameters — Raku Course</title>
+    <meta property="og:title" content="Named parameters — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Named parameters</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,68 +88,71 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/functions">Creating and calling functions</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/functions">Creating and calling functions</a></p>
 <h1 id="named-parameters">Named parameters</h1>
-
-<p>In contrast to <a href="../positional-parameters">positional parameters</a>, <em>named</em> parameters are referred by their names.</p>
-
-<p>The following function takes two parameters called <code class="language-plaintext highlighter-rouge">$from</code> and <code class="language-plaintext highlighter-rouge">$to</code>.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+<p>In contrast to <a href="../positional-parameters">positional
+parameters</a>, <em>named</em> parameters are referred to by their
+names.</p>
+<p>The following function takes two parameters called <code>$from</code>
+and <code>$to</code>.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
 </pre></div>
-
 
 <p>Now, to call the function, you need to name the arguments:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 </pre></div>
 
-
-<p>It is an error to pass the arguments as if they were positional. For example, a call <code class="language-plaintext highlighter-rouge">distance(30, 10)</code> generates an error:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too many positionals passed; expected 0 arguments but got 2
+<p>It is an error to pass the arguments as if they were positional. For
+example, a call <code>distance(30, 10)</code> generates an error:</p>
+<pre><code>Too many positionals passed; expected 0 arguments but got 2
     in sub distance at t.raku line 1
-    in block &lt;unit&gt; at t.raku line 2
-</code></pre></div></div>
-
-<p>The good part is that named arguments can be listed in any order. The following two calls are totally equivalent:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+    in block &lt;unit&gt; at t.raku line 2</code></pre>
+<p>The good part is that named arguments can be listed in any order. The
+following two calls are totally equivalent:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
 <span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
 </pre></div>
 
-
 <h2 id="passing-variables">Passing variables</h2>
-
-<p>When the value that you want to pass to a function is kept in a variable, whose name coincides with the name of the parameter, you can enjoy a special syntax that reduces typing:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
+<p>When the value that you want to pass to a function is kept in a
+variable, whose name coincides with the name of the parameter, you can
+enjoy a special syntax that reduces typing:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
 <span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
 <span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
 </pre></div>
 
-
 <p>This is similar to a wordy call:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
 </pre></div>
-
 
 <p>Again, the order is not strict here:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
 </pre></div>
 
-
-<p>If the name of the variable differs from the name of the parameter, use one of the ways to pass a pair:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
+<p>If the name of the variable differs from the name of the parameter,
+use one of the ways to pass a pair:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
 
 <span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
@@ -109,37 +162,52 @@
 <span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
 </pre></div>
 
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
 <p>Complete the quizzes that cover the contents of this topic.</p>
 <ul>
-  <li><a href="/essentials/functions/named-parameters/quiz1">Quiz 1 — Named parameters</a></li>
-  <li><a href="/essentials/functions/named-parameters/quiz2">Quiz 2 — Variables as named parameters</a></li>
+<li><a href="/essentials/functions/named-parameters/quiz1">Quiz 1 —
+Named parameters</a></li>
+<li><a href="/essentials/functions/named-parameters/quiz2">Quiz 2 —
+Variables as named parameters</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/functions">Creating and calling functions</a> / <a href="/essentials/functions/positional-parameters">Positional parameters</a>
-  |  
-        <a href="/essentials/functions">Creating and calling functions</a> / <a href="/essentials/functions/default-values">Default values</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/essentials/functions/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/functions/named-parameters/">Deutsch</a> • <a href="/es/essentials/functions/named-parameters/">Español</a> • <a href="/it/essentials/functions/named-parameters/">Italiano</a> • <a href="/lv/essentials/functions/named-parameters/">Latviešu</a> • <a href="/nl/essentials/functions/named-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/named-parameters/">Български</a> • <a href="/ru/essentials/functions/named-parameters/">Русский</a> • <a href="/uk/essentials/functions/named-parameters/">Українська</a></p>
+<p>← <a href="/essentials/functions/positional-parameters/quiz">Quiz
+— Calling a function</a>   |   <a
+href="/essentials/functions/named-parameters/quiz1">Quiz 1 — Named
+parameters</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/functions" target="_blank" rel="noopener noreferrer">Functions</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/essentials/functions/exercises">to the exercises in this
+section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/functions/named-parameters">Deutsch</a> • <a
+href="/es/essentials/functions/named-parameters">Español</a> • <a
+href="/it/essentials/functions/named-parameters">Italiano</a> • <a
+href="/lv/essentials/functions/named-parameters">Latviešu</a> • <a
+href="/nl/essentials/functions/named-parameters">Nederlands</a> • <a
+href="/bg/essentials/functions/named-parameters">Български</a> • <a
+href="/ru/essentials/functions/named-parameters">Русский</a> • <a
+href="/uk/essentials/functions/named-parameters">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Exercise: Replace with antonyms</title>
-    <meta property="og:title" content="Exercise: Replace with antonyms" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Replace with antonyms — Raku Course</title>
+    <meta property="og:title" content="Replace with antonyms — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Exercise: Replace with antonyms</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,21 +88,38 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/associatives/">Associative data types</a> / <a href="/essentials/associatives/exercises/">Exercises</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/associatives">Associative data types</a> / <a
+href="/essentials/associatives/exercises">Exercises</a></p>
 <h1 id="replace-with-antonyms">Replace with antonyms</h1>
-
 <h2 id="problem">Problem</h2>
-
-<p>Create a program that replaces all the words from the command line with their antonyms. If the word is missing in the dictionary, do not modify it and print as-is.</p>
-
-<p>Use a hard-coded hash to keep the dictionary of antonyms. For your convenience, here is a prepared list of about 200 pairs that you can directly copy and paste into your program: <a href="https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku">dictionary.raku</a>. All the pairs are kept in both directions, e.g.:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">%dictionary</span> =
+<p>Create a program that replaces all the words from the command line
+with their antonyms. If the word is missing in the dictionary, do not
+modify it and print as-is.</p>
+<p>Use a hard-coded hash to keep the dictionary of antonyms. For your
+convenience, here is a prepared list of about 200 pairs that you can
+directly copy and paste into your program: <a
+href="https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku">dictionary.raku</a>.
+All the pairs are kept in both directions, e.g.:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%dictionary</span> =
     <span class="s">&#39;above&#39;</span> =&gt; <span class="s">&#39;below&#39;</span>,
     <span class="s">&#39;absent&#39;</span> =&gt; <span class="s">&#39;present&#39;</span>,
     <span class="c1"># . . .</span>
@@ -63,57 +130,52 @@
 ;
 </pre></div>
 
-
-<p>Make the program as simple as possible and print the words line by line.</p>
-
+<p>Make the program as simple as possible and print the words line by
+line.</p>
 <h2 id="example">Example</h2>
-
-<p>Run the program and pass a few words to it. Make sure that at least some of the words can be found in the dictionary.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku replace-with-antonyms.raku a quiet teacher wants to buy some salt
-<span class="go">a
+<p>Run the program and pass a few words to it. Make sure that at least
+some of the words can be found in the dictionary.</p>
+<div class="highlight"><pre>$ raku replace-with-antonyms.raku a quiet teacher wants to buy some salt
+a
 noisy
 student
 wants
 to
 sell
 some
-sugar
-</span></code></pre></div></div>
-
+sugar</pre></div>
 <h2 id="solution">Solution</h2>
-
 <p>✅ <a href="solution">See the solution</a></p>
-
-<p><div class="exercises"></p>
-<h2 id="next-exercise">Next exercise</h2>
-
-<p>💪 <a href="/essentials/associatives/exercises/purchase-table">Purchase table</a>
-</div></p>
-
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/essentials/positionals">Positional data types</a>
-        / <a href="/essentials/positionals/subscripting-ranges">Subscripting ranges</a>
-  |  
-    <a href="/essentials/functions">Creating and calling functions</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/associatives/exercises/replace-with-antonyms/">Deutsch</a> • <a href="/es/essentials/associatives/exercises/replace-with-antonyms/">Español</a> • <a href="/it/essentials/associatives/exercises/replace-with-antonyms/">Italiano</a> • <a href="/lv/essentials/associatives/exercises/replace-with-antonyms/">Latviešu</a> • <a href="/nl/essentials/associatives/exercises/replace-with-antonyms/">Nederlands</a> • <a href="/bg/essentials/associatives/exercises/replace-with-antonyms/">Български</a> • <a href="/ru/essentials/associatives/exercises/replace-with-antonyms/">Русский</a> • <a href="/uk/essentials/associatives/exercises/replace-with-antonyms/">Українська</a></p>
+<p>← <a
+href="/essentials/associatives/exercises/country-codes/solution">Solution:
+Country codes</a>   |   <a
+href="/essentials/associatives/exercises/replace-with-antonyms/solution">Solution:
+Replace with antonyms</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/associatives/exercises/replace-with-antonyms">Deutsch</a>
+• <a
+href="/es/essentials/associatives/exercises/replace-with-antonyms">Español</a>
+• <a
+href="/it/essentials/associatives/exercises/replace-with-antonyms">Italiano</a>
+• <a
+href="/lv/essentials/associatives/exercises/replace-with-antonyms">Latviešu</a>
+• <a
+href="/nl/essentials/associatives/exercises/replace-with-antonyms">Nederlands</a>
+• <a
+href="/bg/essentials/associatives/exercises/replace-with-antonyms">Български</a>
+• <a
+href="/ru/essentials/associatives/exercises/replace-with-antonyms">Русский</a>
+• <a
+href="/uk/essentials/associatives/exercises/replace-with-antonyms">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

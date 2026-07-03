@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Calling with a colon — Raku Course</title>
+    <meta property="og:title" content="Calling with a colon — Raku Course" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
+<h1 id="calling-with-a-colon">Calling with a colon 🆕</h1>
+<p>When you call a method or a subroutine, you usually put its arguments
+in parentheses: <code>@a.grep(* &gt; 5)</code>. Raku offers a second
+form — put a <strong>colon</strong> after the name, and everything after
+the colon becomes the argument list, with no parentheses at all:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
+
+<p>The colon in <code>grep:</code> does the same job as the parentheses
+would: <code>(1..10).grep: * %% 2</code> means exactly
+<code>(1..10).grep(* %% 2)</code>. The two forms are
+interchangeable:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
+</pre></div>
+
+<p>The colon form is most pleasant with methods that take a
+<strong>block</strong> or a <a href="/advanced/whatever">Whatever</a>
+expression, because it removes a layer of nesting. Compare:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
+
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># parentheses around the block</span>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># colon — no closing paren to match</span>
+</pre></div>
+
+<p>Both print <code>(3 2 1)</code>, but the colon version reads more
+cleanly, especially when the block is long.</p>
+<p>This is the method-call sibling of the parenthesis-less call you
+already use with list operators like <code>say 1, 2, 3</code> — there,
+<code>say</code> takes everything after it as its arguments. The one
+rule to remember is that the colon form consumes the <strong>rest of the
+statement</strong> as arguments, so it has to come at the
+<strong>end</strong> of a call chain. That is why
+<code>('a' .. 'z')».uc».ord.grep: 60 &lt; * &lt; 70</code> works:
+<code>grep</code> is the last call, and there is nothing to chain after
+it. If you need to keep calling more methods, use the parenthesised form
+instead or group the parts of the while expression to make it clear:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
+</pre></div>
+
+<p>One thing to watch: do not combine the colon <strong>and</strong>
+parentheses as <code>.grep:( … )</code>. That spelling clashes with the
+signature-literal syntax <code>:( … )</code> and fails to parse. Use
+either <code>.grep( … )</code> or <code>.grep: …</code> — one or the
+other, not both.</p>
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
+<p>Complete the quiz that covers the contents of this topic.</p>
+<ul>
+<li><a href="/advanced/colon-calls/quiz">Quiz — The colon call</a></li>
+</ul>
+</section>
+<section id="exercises" class="exercises" data-markdown="1">
+<h2>Exercises</h2>
+<p>This section contains <a href="exercises">3 exercises</a>. Examine
+all the topics of this section before doing the coding practice.</p>
+<ol type="1">
+<li><a href="/advanced/colon-calls/exercises/colon-map">A colon
+map</a></li>
+<li><a href="/advanced/colon-calls/exercises/colon-join">Join with a
+colon</a></li>
+<li><a href="/advanced/colon-calls/exercises/colon-sort">Sort with a
+colon</a></li>
+</ol>
+</section>
+<h2 id="course-navigation">Course navigation</h2>
+<p>← <a href="/advanced/whatever/quiz">Quiz — The Whatever star</a>
+  |   <a href="/advanced/colon-calls/exercises/colon-map">A colon
+map</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/functions" target="_blank" rel="noopener noreferrer">Functions</a>
+</li>
+</ul>
+</div>
+
+        </div>
+      </main>
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
+  </body>
+</html>

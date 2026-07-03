@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>The say routine</title>
-    <meta property="og:title" content="The say routine" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>say — Raku Course</title>
+    <meta property="og:title" content="say — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>The say routine</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,77 +88,108 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/built-in-functions-for-printing">Built-in functions for printing</a></p>
-
-<h1 id="say"><code class="language-plaintext highlighter-rouge">say</code></h1>
-
-<p>The <code class="language-plaintext highlighter-rouge">say</code> built-in routine does the following actions:</p>
-
-<ol>
-  <li>Calls the <code class="language-plaintext highlighter-rouge">gist</code> method on its arguments.</li>
-  <li>Adds a newline character.</li>
-  <li>Converts the result to UTF-8.</li>
-  <li>Sends it to the <code class="language-plaintext highlighter-rouge">STDOUT</code> stream.</li>
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/built-in-functions-for-printing">Built-in
+functions for printing</a></p>
+<h1 id="say"><code>say</code></h1>
+<p>The <code>say</code> built-in routine does the following actions:</p>
+<ol type="1">
+<li>Calls the <code>gist</code> method on its arguments.</li>
+<li>Adds a newline character.</li>
+<li>Converts the result to UTF-8.</li>
+<li>Sends it to the <code>STDOUT</code> stream.</li>
 </ol>
-
-<p>From the user perspective, <code class="language-plaintext highlighter-rouge">say</code> simply prints the contents of a variable to the terminal and adds the newline.</p>
-
-<p>The first step requires some explanations. The <code class="language-plaintext highlighter-rouge">gist</code> method is a method that is defined for every built-in data type, such as integers or strings. For such simple types, the return result is a human-readable value that represents the item.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
+<p>From the user perspective, <code>say</code> simply prints the
+contents of a variable to the terminal and adds the newline.</p>
+<p>The first step requires some explanations. The <code>gist</code>
+method is a method that is defined for every built-in data type, such as
+integers or strings. For such simple types, the return result is a
+human-readable value that represents the item.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
 <span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>; <span class="c1"># Raku</span>
 </pre></div>
 
-
-<p>For more complex data, such as arrays or hashes, the <code class="language-plaintext highlighter-rouge">gist</code> method adds some formatting.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">&#39;alpha&#39;</span>, <span class="s">&#39;beta&#39;</span>, <span class="s">&#39;gamma&#39;</span>;
+<p>For more complex data, such as arrays or hashes, the
+<code>gist</code> method adds some formatting.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">&#39;alpha&#39;</span>, <span class="s">&#39;beta&#39;</span>, <span class="s">&#39;gamma&#39;</span>;
 <span class="nb">say</span> <span class="nv">@data</span>; <span class="c1"># [alpha beta gamma]</span>
 
 <span class="k">my</span> <span class="nv">%data</span> = <span class="n">alpha</span> =&gt; <span class="mi">1</span>, <span class="n">beta</span> =&gt; <span class="mi">2</span>, <span class="n">gamma</span> =&gt; <span class="mi">3</span>;
 <span class="nb">say</span> <span class="nv">%data</span>; <span class="c1"># {alpha =&gt; 1, beta =&gt; 2, gamma =&gt; 3}</span>
 </pre></div>
 
-
-<p>The <code class="language-plaintext highlighter-rouge">say</code> routine can be called as both a function or a method:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
+<p>The <code>say</code> routine can be called as both a function and a
+method:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
 <span class="nb">say</span>(<span class="mi">42</span>);
 <span class="mi">42</span>.<span class="nb">say</span>;
 </pre></div>
 
-
-<p>You can pass more than one argument to <code class="language-plaintext highlighter-rouge">say</code>. The output pieces are joint with no spaces between them.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span>
+<p>You can pass more than one argument to <code>say</code>. The output
+pieces are joined with no spaces between them.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span>
 </pre></div>
 
-
-<p></div></p>
-
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/built-in-functions-for-printing">Built-in functions for printing</a>
-  |  
-        <a href="/essentials/built-in-functions-for-printing">Built-in functions for printing</a> / <a href="/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a>
+<p>← <a href="/essentials/built-in-functions-for-printing">Built-in
+functions for printing</a>   |   <a
+href="/essentials/built-in-functions-for-printing/print"><code>print</code></a>
 →</p>
-
-<p><br />
-💪 Or jump directly <a href="/essentials/built-in-functions-for-printing/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/built-in-functions-for-printing/say/">Deutsch</a> • <a href="/es/essentials/built-in-functions-for-printing/say/">Español</a> • <a href="/it/essentials/built-in-functions-for-printing/say/">Italiano</a> • <a href="/lv/essentials/built-in-functions-for-printing/say/">Latviešu</a> • <a href="/nl/essentials/built-in-functions-for-printing/say/">Nederlands</a> • <a href="/bg/essentials/built-in-functions-for-printing/say/">Български</a> • <a href="/ru/essentials/built-in-functions-for-printing/say/">Русский</a> • <a href="/uk/essentials/built-in-functions-for-printing/say/">Українська</a></p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/io" target="_blank" rel="noopener noreferrer">Input/Output</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/essentials/built-in-functions-for-printing/exercises">to the
+exercises in this section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/built-in-functions-for-printing/say">Deutsch</a> •
+<a href="/es/essentials/built-in-functions-for-printing/say">Español</a>
+• <a
+href="/it/essentials/built-in-functions-for-printing/say">Italiano</a> •
+<a
+href="/lv/essentials/built-in-functions-for-printing/say">Latviešu</a> •
+<a
+href="/nl/essentials/built-in-functions-for-printing/say">Nederlands</a>
+• <a
+href="/bg/essentials/built-in-functions-for-printing/say">Български</a>
+• <a
+href="/ru/essentials/built-in-functions-for-printing/say">Русский</a> •
+<a
+href="/uk/essentials/built-in-functions-for-printing/say">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

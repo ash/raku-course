@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Perimeter of a rectangle</title>
-    <meta property="og:title" content="Solution: Perimeter of a rectangle" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Solution: Perimeter of a rectangle — Raku Course</title>
+    <meta property="og:title" content="Solution: Perimeter of a rectangle — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Solution: Perimeter of a rectangle</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,21 +88,41 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/the-main-function/">The <code class="language-plaintext highlighter-rouge">MAIN</code> function</a> / <a href="/essentials/the-main-function/exercises/">Exercises</a> / <a href="/essentials/the-main-function/exercises/perimeter">Perimeter of a rectangle</a></p>
-
-<h1 id="solution-perimeter-of-a-rectangle">Solution: Perimeter of a rectangle</h1>
-
-<p>This program must be able to take either one or two command-line arguments. A new trick is shown in the solution here. The default value of the second variable is set to the value of the first variable: <code class="language-plaintext highlighter-rouge">sub MAIN($a, $b = $a)</code>. So, instead of creating the two multi-functions, we have a general function that sets the second side’s size if the figure is a square.</p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/the-main-function">The <code>MAIN</code>
+function</a> / <a
+href="/essentials/the-main-function/exercises">Exercises</a> / <a
+href="/essentials/the-main-function/exercises/perimeter">Perimeter of a
+rectangle</a></p>
+<h1 id="solution-perimeter-of-a-rectangle">Solution: Perimeter of a
+rectangle</h1>
+<p>This program must be able to take either one or two command-line
+arguments. A new trick is shown in the solution here. The default value
+of the second variable is set to the value of the first variable:
+<code>sub MAIN($a, $b = $a)</code>. So, instead of creating the two
+multi-functions, we have a general function that sets the second side’s
+size if the figure is a square.</p>
 <h2 id="code">Code</h2>
-
 <p>Here is the solution:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$a</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$a</span>) {
     <span class="k">my</span> <span class="nv">$perimeter</span> = <span class="mi">2</span> * (<span class="nv">$a</span> + <span class="nv">$b</span>);
 
     <span class="k">my</span> <span class="nv">$shape</span> = <span class="nv">$a</span> == <span class="nv">$b</span> ?? <span class="s">&#39;square&#39;</span> !! <span class="s">&#39;rectangle&#39;</span>;
@@ -60,49 +130,48 @@
 }
 </pre></div>
 
-
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku">perimeter.raku</a>.</p>
-
+<p>🦋 Find the program in the file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku">perimeter.raku</a>.</p>
 <h2 id="output">Output</h2>
-
 <p>Try different input values to test both squares and rectangles.</p>
+<div class="highlight"><pre>$ raku exercises/the-main-function/perimeter.raku 1    
+The perimeter of a square is 4.
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1    
-<span class="go">The perimeter of a square is 4.
-
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1 2
-<span class="go">The perimeter of a rectangle is 6.
-</span></code></pre></div></div>
-
-<p>Note that there is the third case which should also be tested. If two equal numbers are passed, the program should still understand that this was a square:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 2 2
-<span class="go">The perimeter of a square is 8.
-</span></code></pre></div></div>
-
+$ raku exercises/the-main-function/perimeter.raku 1 2
+The perimeter of a rectangle is 6.</pre></div>
+<p>Note that there is the third case which should also be tested. If two
+equal numbers are passed, the program should still understand that this
+was a square:</p>
+<div class="highlight"><pre>$ raku exercises/the-main-function/perimeter.raku 2 2
+The perimeter of a square is 8.</pre></div>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/essentials/built-in-functions-for-printing">Built-in functions for printing</a>
-        / <a href="/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a>
-  |  
-    <a href="/essentials/"></a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/the-main-function/exercises/perimeter/solution/">Deutsch</a> • <a href="/es/essentials/the-main-function/exercises/perimeter/solution/">Español</a> • <a href="/it/essentials/the-main-function/exercises/perimeter/solution/">Italiano</a> • <a href="/lv/essentials/the-main-function/exercises/perimeter/solution/">Latviešu</a> • <a href="/nl/essentials/the-main-function/exercises/perimeter/solution/">Nederlands</a> • <a href="/bg/essentials/the-main-function/exercises/perimeter/solution/">Български</a> • <a href="/ru/essentials/the-main-function/exercises/perimeter/solution/">Русский</a> • <a href="/uk/essentials/the-main-function/exercises/perimeter/solution/">Українська</a></p>
+<p>← <a
+href="/essentials/the-main-function/exercises/perimeter">Perimeter of a
+rectangle</a>   |   <a href="/advanced">Advanced</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/the-main-function/exercises/perimeter/solution">Deutsch</a>
+• <a
+href="/es/essentials/the-main-function/exercises/perimeter/solution">Español</a>
+• <a
+href="/it/essentials/the-main-function/exercises/perimeter/solution">Italiano</a>
+• <a
+href="/lv/essentials/the-main-function/exercises/perimeter/solution">Latviešu</a>
+• <a
+href="/nl/essentials/the-main-function/exercises/perimeter/solution">Nederlands</a>
+• <a
+href="/bg/essentials/the-main-function/exercises/perimeter/solution">Български</a>
+• <a
+href="/ru/essentials/the-main-function/exercises/perimeter/solution">Русский</a>
+• <a
+href="/uk/essentials/the-main-function/exercises/perimeter/solution">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

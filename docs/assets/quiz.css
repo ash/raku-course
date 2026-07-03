@@ -1,0 +1,246 @@
+span.yesno {
+    font-family:'Courier New', Courier, monospace;
+    font-size: 120%;
+}
+span.yes {
+    font-family:'Courier New', Courier, monospace;
+    color: #14be10;
+    font-size: 120%;
+}
+span.no {
+    font-family:'Courier New', Courier, monospace;
+    color: #ec3030;
+    font-weight: bold;
+    font-size: 120%;
+}
+input.mono {
+    font-family: monospace;
+}
+table.quiz,
+table.quiz-code,
+table.quiz-select,
+table.quiz tr,
+table.quiz-code tr,
+table.quiz-select tr,
+table.quiz tr td,
+table.quiz-code tr td,
+table.quiz-select tr td {
+    /* background-color: #fffdeb; */
+    background-color: transparent;
+    border: none;
+}
+table.quiz,
+table.quiz-code,
+table.quiz-select {
+    /* background-color: #fffdeb; */
+    background-color: transparent;
+}
+table.quiz tr,
+table.quiz-code tr,
+table.quiz-select tr {
+    border: none;
+}
+table.quiz td,
+table.quiz-code td,
+table.quiz-select td {
+    border: none;
+    /* background-color: #fffdeb; */
+    background-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    padding: 0.3em 1em 0.3em 1em;
+}
+table.quiz tr td code,
+table.quiz-code tr td code,
+table.quiz-select tr td code,
+table.quiz tr td tt,
+table.quiz-code tr td tt,
+table.quiz-select tr td tt {
+    /* background-color: #fffdeb !important; */
+    background-color: transparent !important;
+}
+table.quiz tr td.code,
+table.quiz-code tr td.code,
+table.quiz-select tr td.code {
+    font-family: monospace;
+    font-size: 95%;
+}
+table.quiz tr td.comment,
+table.quiz-code tr td.comment,
+table.quiz-select tr td.comment {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+table.quiz tr td.comment code,
+table.quiz-code tr td.comment code,
+table.quiz-select tr td.comment code {
+    padding: 0;
+}
+table.quiz-code tr td {
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+}
+table.quiz-code tr td input {
+    border: 1px solid lightgray;
+    text-align: center;
+}
+/* div.practice {
+    background-color: #fffdeb;
+    background-color: transparent;
+} */
+
+table.quiz-code.nocode td.code {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+}
+
+/* No zebra striping in quizzes (override the markdown-body default, which
+   otherwise greys every other row — most visibly in dark mode). Declared
+   before the row tints below so a checked row's tint still wins. */
+table.quiz tr:nth-child(even),
+table.quiz-code tr:nth-child(even),
+table.quiz-select tr:nth-child(even),
+html[data-theme-active="dark"] table.quiz tr:nth-child(even),
+html[data-theme-active="dark"] table.quiz-code tr:nth-child(even),
+html[data-theme-active="dark"] table.quiz-select tr:nth-child(even) {
+    background-color: transparent;
+}
+
+/* After "Check the answers" is clicked, the yesno column shows each option's
+   truth (green check = correct answer, red cross = false). These row tints
+   show how the reader actually answered each row. The colour goes on the row
+   itself (not the cells) so it fills the whole band evenly, even where a row
+   has no comment cell. */
+table.quiz tr.quiz-ok      { background-color: #e7f8e7; }  /* picked, and correct */
+table.quiz tr.quiz-wrong   { background-color: #fce4e4; }  /* picked, but false   */
+table.quiz tr.quiz-missed  { background-color: #fff3cd; }  /* correct, not picked */
+
+html[data-theme-active="dark"] table.quiz tr.quiz-ok     { background-color: rgba(63, 185, 80, .20); }
+html[data-theme-active="dark"] table.quiz tr.quiz-wrong  { background-color: rgba(248, 81, 73, .20); }
+html[data-theme-active="dark"] table.quiz tr.quiz-missed { background-color: rgba(210, 153, 34, .22); }
+
+/* Code answers blend into the row tint instead of sitting in a white box. */
+html[data-theme-active="dark"] table.quiz td code,
+html[data-theme-active="dark"] table.quiz-code td code,
+html[data-theme-active="dark"] table.quiz-select td code {
+    background: transparent;
+}
+
+div.extended-explanation {
+    display: none;
+}
+div.comment {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+/* ════════════════════════════════════════════════════════════════ */
+/*  Modernised quiz controls                                          */
+/* ════════════════════════════════════════════════════════════════ */
+
+/* Custom rounded checkboxes (light style; dark-mode variant is further down). */
+table.quiz input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 19px;
+    height: 19px;
+    margin: 0;
+    vertical-align: middle;
+    border: 2px solid #c3ccd5;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    transition: background-color .12s ease, border-color .12s ease;
+}
+table.quiz input[type="checkbox"]:hover { border-color: #0969da; }
+table.quiz input[type="checkbox"]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, .25);
+}
+table.quiz input[type="checkbox"]:checked {
+    background: #0969da;
+    border-color: #0969da;
+}
+table.quiz input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Fill-in text fields and dropdowns */
+table.quiz-code tr td input,
+table.quiz-select select {
+    border: 1px solid #c3ccd5;
+    border-radius: 7px;
+    padding: 3px 8px;
+    background: #fff;
+    color: #1f2328;
+    text-align: center;
+    transition: border-color .12s ease, box-shadow .12s ease;
+}
+table.quiz-select select { text-align: left; cursor: pointer; }
+table.quiz-code tr td input:focus,
+table.quiz-select select:focus {
+    outline: none;
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, .15);
+}
+
+/* Buttons */
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 0.6em; }
+.quiz-btn {
+    font: inherit;
+    font-size: 0.92em;
+    font-weight: 600;
+    padding: 0.55em 1.3em;
+    border-radius: 9px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+.quiz-btn-primary {
+    background: #0969da;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(9, 105, 218, .25);
+}
+.quiz-btn-primary:hover { background: #0860c9; }
+.quiz-btn-primary:active { background: #0a53b3; }
+.quiz-btn-ghost {
+    background: #fff;
+    color: #0969da;
+    border-color: #d8dee4;
+}
+.quiz-btn-ghost:hover { border-color: #0969da; background: #f6f8fa; }
+
+/* Dark-mode buttons. */
+html[data-theme-active="dark"] .quiz-btn-primary { background: #1f6feb; box-shadow: 0 1px 3px rgba(0, 0, 0, .4); }
+html[data-theme-active="dark"] .quiz-btn-primary:hover { background: #388bfd; }
+html[data-theme-active="dark"] .quiz-btn-ghost { background: transparent; color: #4493f8; border-color: #30363d; }
+html[data-theme-active="dark"] .quiz-btn-ghost:hover { background: #161b22; border-color: #4493f8; }
+
+/* Dark-mode variants for the controls (the quiz panel is now dark too). */
+html[data-theme-active="dark"] table.quiz input[type="checkbox"] {
+    background: #0d1117;
+    border-color: #3d444d;
+}
+html[data-theme-active="dark"] table.quiz input[type="checkbox"]:hover { border-color: #1f6feb; }
+html[data-theme-active="dark"] table.quiz input[type="checkbox"]:checked {
+    background: #1f6feb;
+    border-color: #1f6feb;
+}
+html[data-theme-active="dark"] table.quiz-code tr td input,
+html[data-theme-active="dark"] table.quiz-select select {
+    background: #0d1117;
+    border-color: #3d444d;
+    color: #e6edf3;
+}
+html[data-theme-active="dark"] table.quiz-code tr td input:focus,
+html[data-theme-active="dark"] table.quiz-select select:focus {
+    border-color: #1f6feb;
+    box-shadow: 0 0 0 3px rgba(31, 111, 235, .25);
+}

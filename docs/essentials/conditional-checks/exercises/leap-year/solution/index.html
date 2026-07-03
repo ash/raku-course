@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Leap year</title>
-    <meta property="og:title" content="Solution: Leap year" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Solution: Leap year — Raku Course</title>
+    <meta property="og:title" content="Solution: Leap year — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Solution: Leap year</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,36 +88,48 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/conditional-checks/">Conditional checks</a> / <a href="/essentials/conditional-checks/exercises/">Exercises</a> / <a href="/essentials/conditional-checks/exercises/leap-year">Leap year</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/conditional-checks">Conditional checks</a> / <a
+href="/essentials/conditional-checks/exercises">Exercises</a> / <a
+href="/essentials/conditional-checks/exercises/leap-year">Leap
+year</a></p>
 <h1 id="solution-leap-year">Solution: Leap year</h1>
-
 <h2 id="disclaimer">Disclaimer</h2>
-
-<p>The solution shown below aims to train you using conditional checks. In real life, you can learn the methods of the bulit-in <code class="language-plaintext highlighter-rouge">Date</code> class. We will learn it in the second part of the course.</p>
-
+<p>The solution shown below aims to train you using conditional checks.
+In real life, you can learn the methods of the built-in
+<code>Date</code> class. We will learn it in the second part of the
+course.</p>
 <h2 id="solution">Solution</h2>
-
 <p>The algorithm of the detection if a year is leap:</p>
-
-<ol>
-  <li>if year is not divisible by 4 =&gt; common year</li>
-  <li>if year is not divisible by 100 =&gt; leap year</li>
-  <li>if year is not divisible by 400 =&gt; common year</li>
-  <li>else =&gt; leap year</li>
+<ol type="1">
+<li>if year is not divisible by 4 =&gt; common year</li>
+<li>if year is not divisible by 100 =&gt; leap year</li>
+<li>if year is not divisible by 400 =&gt; common year</li>
+<li>else =&gt; leap year</li>
 </ol>
-
-<p>Note that you can use the built-in types for working with date and time, so we’ll return to this task in the second part of the course.</p>
-
+<p>Note that you can use the built-in types for working with date and
+time, so we’ll return to this task in the second part of the course.</p>
 <h2 id="code-1">Code 1</h2>
-
-<p>The first solution reproduces the above steps literary:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+<p>The first solution reproduces the above steps literally:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
 
 <span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
     <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
@@ -83,80 +145,67 @@
 }
 </pre></div>
 
-
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
-
+<p>🦋 Find the program in the file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
 <h2 id="code-2">Code 2</h2>
-
-<p>In the second solution, the logic is packed to a single expression. Parentheses are not always needed by added here for clarity.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+<p>In the second solution, the logic is packed to a single expression.
+Parentheses are not always needed but added here for clarity.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
 
 <span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Leap year&#39;</span> !! <span class="s">&#39;Common year&#39;</span>;
 </pre></div>
 
-
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
-
+<p>🦋 Find the program in the file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
 <h2 id="output">Output</h2>
-
-<p>Try both programs with the most critical cases, for example, 1900, 2000, 2020, 2021.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
-<span class="go">Year: 1900
+<p>Try both programs with the most critical cases, for example, 1900,
+2000, 2020, 2021.</p>
+<div class="highlight"><pre>$ raku exercises/conditional-checks/leap-year.raku
+Year: 1900
 Common year
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
-<span class="go">Year: 2000
-Leap year
-</span></code></pre></div></div>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
-<span class="go">Year: 2020
+$ raku exercises/conditional-checks/leap-year.raku
+Year: 2000
+Leap year</pre></div>
+<div class="highlight"><pre>$ raku exercises/conditional-checks/leap-year-formula.raku
+Year: 2020
 Leap year
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
-<span class="go">Year: 2021
-Common year
-</span></code></pre></div></div>
-
-<p><div class="tip"></p>
-<h2 id="-vs-"><code class="language-plaintext highlighter-rouge">%%</code> vs <code class="language-plaintext highlighter-rouge">%</code></h2>
-
-<p>Note that in Boolean contexts, the <code class="language-plaintext highlighter-rouge">%%</code> and <code class="language-plaintext highlighter-rouge">%</code> operators are complementary. You can use this fact to chose one of the operators to avoid explicit comparison with zero.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># True</span>
-<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># True</span>
-
-<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># False</span>
-<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># Flase</span>
-</pre></div>
-
-<p></div></p>
-
+$ raku exercises/conditional-checks/leap-year-formula.raku
+Year: 2021
+Common year</pre></div>
+<p>%%tipblock ## <code>%%</code> vs <code>%</code></p>
+<p>Note that in Boolean contexts, the <code>%%</code> and <code>%</code>
+operators are complementary. You can use this fact to choose one of the
+operators to avoid explicit comparison with zero.</p>
+<p>CodeBlockPlaceholder5 %%/tipblock</p>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/essentials/code-blocks">Code blocks</a>
-        / <a href="/essentials/code-blocks/local-variables">Local variables</a>
-  |  
-    <a href="/essentials/loops">Loops</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/conditional-checks/exercises/leap-year/solution/">Deutsch</a> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <a href="/it/essentials/conditional-checks/exercises/leap-year/solution/">Italiano</a> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/exercises/leap-year/solution/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/exercises/leap-year/solution/">Български</a> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <a href="/uk/essentials/conditional-checks/exercises/leap-year/solution/">Українська</a></p>
+<p>← <a href="/essentials/conditional-checks/exercises/leap-year">Leap
+year</a>   |   <a href="/essentials/loops">Loops</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/conditional-checks/exercises/leap-year/solution">Deutsch</a>
+• <a
+href="/es/essentials/conditional-checks/exercises/leap-year/solution">Español</a>
+• <a
+href="/it/essentials/conditional-checks/exercises/leap-year/solution">Italiano</a>
+• <a
+href="/lv/essentials/conditional-checks/exercises/leap-year/solution">Latviešu</a>
+• <a
+href="/nl/essentials/conditional-checks/exercises/leap-year/solution">Nederlands</a>
+• <a
+href="/bg/essentials/conditional-checks/exercises/leap-year/solution">Български</a>
+• <a
+href="/ru/essentials/conditional-checks/exercises/leap-year/solution">Русский</a>
+• <a
+href="/uk/essentials/conditional-checks/exercises/leap-year/solution">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

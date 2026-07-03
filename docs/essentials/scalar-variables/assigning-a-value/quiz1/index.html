@@ -1,22 +1,74 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quiz 1 — Assigning a value</title>
-    <meta property="og:title" content="Quiz 1 — Assigning a value" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Quiz 1: Assigning a value — Raku Course</title>
+    <meta property="og:title" content="Quiz 1: Assigning a value — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Quiz 1 — Assigning a value</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    <link rel="stylesheet" href="/assets/quiz.css?v=5">
+<script type="text/javascript" src="/assets/quiz.js?v=2"></script>
+
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,407 +90,92 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/scalar-variables">Scalar variables</a> / <a href="/essentials/scalar-variables/assigning-a-value">Assigning a value</a></p>
-
-<h1 id="quiz-1assigning-a-value">Quiz 1: Assigning a value</h1>
-
-<p>Complete the following lines of code to get a working program that creates a few variables and assigns some values to them.</p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/scalar-variables">Scalar variables</a> / <a
+href="/essentials/scalar-variables/assigning-a-value">Assigning a
+value</a></p>
+<h1 id="quiz-1-assigning-a-value">Quiz 1: Assigning a value</h1>
+<p>Complete the following lines of code to get a working program that
+creates a few variables and assigns some values to them.</p>
 <table class="quiz-code">
-  <tbody>
-    <tr>
-      <td>.</td>
-      <td>my $first-name;</td>
-    </tr>
-    <tr>
-      <td>$</td>
-      <td>my ␣last-name;</td>
-    </tr>
-    <tr>
-      <td>=</td>
-      <td>$first-name ␣ 'Emily';</td>
-    </tr>
-    <tr>
-      <td>= ;</td>
-      <td>$last-name ␣ 'Lizards'␣</td>
-    </tr>
-    <tr>
-      <td>;</td>
-      <td>say $first-name␣</td>
-    </tr>
-    <tr>
-      <td>.</td>
-      <td>say $last-name;</td>
-    </tr>
-  </tbody>
+<tr><td>.</td><td>my $first-name;</td></tr>
+<tr><td>$</td><td>my ␣last-name;</td></tr>
+<tr><td>=</td><td>$first-name ␣ &apos;Emily&apos;;</td></tr>
+<tr><td>= ;</td><td>$last-name ␣ &apos;Lizards&apos;␣</td></tr>
+<tr><td>;</td><td>say $first-name␣</td></tr>
+<tr><td>.</td><td>say $last-name;</td></tr>
+
 </table>
 
-<style>
-    /* body {
-        background: #fffdeb;
-    } */
-    /* div.practice {
-        padding: 0;
-    } */
-    span.yesno {
-        font-family:'Courier New', Courier, monospace;
-        font-size: 120%;
-    }
-    span.yes {
-        font-family:'Courier New', Courier, monospace;
-        color: #14be10;
-        font-size: 120%;
-    }
-    span.no {
-        font-family:'Courier New', Courier, monospace;
-        color: #ec3030;
-        font-weight: bold;
-        font-size: 120%;
-    }
-    input.mono {
-        font-family: monospace;
-    }
-    table.quiz,
-    table.quiz-code,
-    table.quiz-select,
-    table.quiz tr,
-    table.quiz-code tr,
-    table.quiz-select tr,
-    table.quiz tr td,
-    table.quiz-code tr td,
-    table.quiz-select tr td {
-        /* background-color: #fffdeb; */
-        background-color: white;
-        border: none;
-    }
-    table.quiz,
-    table.quiz-code,
-    table.quiz-select {
-        /* background-color: #fffdeb; */
-        background-color: white;
-    }
-    table.quiz tr,
-    table.quiz-code tr,
-    table.quiz-select tr {
-        border: none;
-    }
-    table.quiz td,
-    table.quiz-code td,
-    table.quiz-select td {
-        border: none;
-        /* background-color: #fffdeb; */
-        background-color: white;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        padding: 0.3em 1em 0.3em 1em;
-    }
-    table.quiz tr td code,
-    table.quiz-code tr td code,
-    table.quiz-select tr td code,
-    table.quiz tr td tt,
-    table.quiz-code tr td tt,
-    table.quiz-select tr td tt {
-        /* background-color: #fffdeb !important; */
-        background-color: white !important;
-    }
-    table.quiz tr td.code,
-    table.quiz-code tr td.code,
-    table.quiz-select tr td.code {
-        font-family: monospace;
-        font-size: 95%;
-    }
-    table.quiz tr td.comment,
-    table.quiz-code tr td.comment,
-    table.quiz-select tr td.comment {
-        font-family: 'Times New Roman', Times, serif;
-        font-style: italic;
-    }
-    table.quiz tr td.comment code,
-    table.quiz-code tr td.comment code,
-    table.quiz-select tr td.comment code {
-        padding: 0;
-    }
-    table.quiz-code tr td {
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
-    }
-    table.quiz-code tr td input {
-        border: 1px solid lightgray;
-        text-align: center;
-    }
-   /* div.practice {
-        background-color: #fffdeb;
-        background-color: white;
-    } */
-
-    table.quiz-code.nocode td.code {
-        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
-    }
-    div.extended-explanation {
-        display: none;
-    }
-    div.comment {
-        font-family: 'Times New Roman', Times, serif;
-        font-style: italic;
-    }
-</style>
-
 <script>
-    let replacements = [];
-
-    document.querySelectorAll('table.quiz tr').forEach(function(item) {
-        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
-
-        let cells = item.querySelectorAll('td');
-
-        if (cells[1].innerHTML == '1') {
-            cells[1].innerHTML = '<input type="checkbox" data-ok="1">';
-        }
-        else if (cells[1].innerHTML == '0') {
-            cells[1].innerHTML = '<input type="checkbox" data-ok="0">';
-        }
-
-        cells[2].className = 'code';
-
-        if (cells.length > 3) {
-            cells[3].style.display = 'none';
-            cells[3].className = 'comment';
-        }
-    });
-
-    document.querySelectorAll('table.quiz-code.fill').forEach(function(table) {
-        table.querySelectorAll('tr').forEach(function(tr) {
-            tr.className = 'fill';
-        });
-    });
-
-    document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
-        let is_fill = item.className == 'fill';
-
-        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
-
-        let cells = item.querySelectorAll('td');
-        let answer = cells[1].innerHTML;
-        cells[1].style.display = 'none';
-        
-        cells[2].className = 'code';
-        if (cells.length > 3) {
-            cells[3].style.display = 'none';
-            cells[3].className = 'comment';
-        }
-
-        let raw_answers = cells[1].innerHTML.split(' ');
-        for (let c = 0; c != raw_answers.length; c++) {
-            raw_answers[c] = raw_answers[c].replace(/␣/g, ' ');
-        }
-
-        let answers = [];
-        let fills = [];
-        if (!is_fill) {
-            answers = raw_answers;            
-        }
-        else {
-            for (let c = 0; c < raw_answers.length; c += 2) {
-                console.log('c=', c);
-                answers.push(raw_answers[c]);
-                fills.push(raw_answers[c + 1]);
-            }
-        }
-
-        if (cells[2].innerHTML.indexOf('␣') != -1) {
-            let c = 0;
-            cells[2].innerHTML = cells[2].innerHTML.replace(/␣+/g, function(a, b) {
-                let length = a.length * 1.2;
-                let ret = '<input type="text" class="mono" style="width: ' + length + 'em;" data-ok="' + answers[c] + '"';
-                if (is_fill) {
-                    ret += ' value="' + fills[c] + '"';
-                }
-                ret += '/>';
-                c++;
-
-                return ret;
-            });            
-        }
-    });
-
-    document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
-        item.innerHTML = '<td><span class="yesno">&nbsp;</span></td>' + item.innerHTML;
-
-        let cells = item.querySelectorAll('td');
-        let answer = cells[1].innerHTML.trim();
-        cells[1].style.display = 'none';
-        
-        // cells[2].className = 'code';
-        if (cells.length > 3) {
-            cells[3].style.display = 'none';
-            cells[3].className = 'comment';
-        }
-
-        let question = cells[2].innerHTML;
-        let q_from = question.indexOf('(:');
-        let q_to = question.indexOf(':)');
-        if (q_from != -1 && q_to != -1) {
-            let values = question.substring(q_from + 2, q_to).trim();
-            let values_items = values.split(',');
-            let select = '<select data-ok="' + answer + '"><option value=""></option>';
-            for (let c = 0; c != values_items.length; c++) {
-                let value = values_items[c].trim();
-                select += '<option value="' + value + '">' + value + '</option>';
-            }
-            select += '</select>';
-            cells[2].innerHTML = question.substring(0, q_from) + select + question.substring(q_to + 2);
-        }
-    });
-
-    function checkquiz() {
-        document.getElementById('ShowAnswers').style.display = 'none';
-
-        document.querySelectorAll('table.quiz input[type="checkbox"]').forEach(function(item) {
-            let is_correct = (item.checked && item.dataset.ok == 1) || (!item.checked && item.dataset.ok == 0);
-            let row = item.parentElement.parentElement;
-            row.querySelector('td').innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
-        });
-        document.querySelectorAll('table.quiz tr td').forEach(function(item) {
-            item.style.display = '';
-        });
-
-        let show_correct_button = false;
-
-        document.querySelectorAll('table.quiz-code tr').forEach(function(item) {            
-            let inputs = item.querySelectorAll('input');
-            if (!inputs.length) return;
-
-            let correct = 0;
-            for (let c = 0; c != inputs.length; c++) {
-                let curr_value = inputs[c].value.trim();
-                for (var ir = 0; ir != replacements.length; ir++) {
-                    curr_value = curr_value.replace(replacements[ir][0], replacements[ir][1]); // once only
-                }
-
-                if (curr_value == inputs[c].dataset.ok) {
-                    correct++;
-                }
-                else {
-                    show_correct_button = true;
-                    break;
-                }
-            }
-
-            let is_correct = correct == inputs.length;
-
-            let tds = item.querySelectorAll('td');            
-            tds[0].innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
-            if (tds.length > 3) {
-                tds[3].style.display = '';
-            }
-        });
-
-        document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
-            let selects = item.querySelectorAll('select');
-            if (!selects.length) return;
-
-            let correct = 0;
-            for (let c = 0; c != selects.length; c++) {
-                if (selects[c].value == selects[c].dataset.ok) {
-                    correct++;
-                }
-                else {
-                    show_correct_button = true;
-                    break;
-                }
-            }
-
-            let is_correct = correct == selects.length;
-            let tds = item.querySelectorAll('td');            
-            tds[0].innerHTML = is_correct ? '<span class="yes">✓</span>' : '<span class="no">✘</span>';
-            if (tds.length > 3) {
-                tds[3].style.display = '';
-            }
-        });
-
-        if (show_correct_button) {
-            document.getElementById('ShowAnswers').style.display = '';
-        }
-
-        show_extended_explanation();
-    }
-
-    function showanswers() {
-        document.querySelectorAll('table.quiz tr').forEach(function(item) {
-            let cells = item.querySelectorAll('td');
-            console.log(cells);
-            if (!cells.length) return;
-
-            let input = cells[1].querySelector('input');
-            if (!input) return;
-            input.checked = input.dataset.ok == '1';
-        });
-
-        document.querySelectorAll('table.quiz-code tr').forEach(function(item) {
-            let inputs = item.querySelectorAll('input');
-            if (!inputs.length) return;
-
-            for (let c = 0; c != inputs.length; c++) {
-                inputs[c].value = inputs[c].dataset.ok;
-            }
-        });
-
-        document.querySelectorAll('table.quiz-select tr').forEach(function(item) {
-            let selects = item.querySelectorAll('select');
-            if (!selects.length) return;
-
-            for (let c = 0; c != selects.length; c++) {
-                selects[c].value = selects[c].dataset.ok;
-            }
-        });
-
-        show_extended_explanation();
-    }
-
-    function show_extended_explanation() {
-        document.querySelectorAll('.extended-explanation').forEach(function(item) {
-            item.className = 'comment';
-        });
-    }
+prepare_quiz();
 </script>
-
-<div style="margin: 3em 0;">
-    <button onclick="checkquiz()">Check the answers</button>
-    <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
+<div class="quiz-actions" style="margin: 3em 0;">
+<button class="quiz-btn quiz-btn-primary" onclick="checkquiz()">
+Check the answers
+</button>
+<button class="quiz-btn quiz-btn-ghost" onclick="showanswers()" id="ShowAnswers" style="display: none;">
+Show correct answers
+</button>
 </div>
-
-<p><div class="practice"></p>
-<h2 id="more-practice">More practice</h2>
-
-<ul>
-  <li><a href="/essentials/scalar-variables/assigning-a-value/quiz2">Quiz 2: Assigning two values</a></li>
-</ul>
-
-<p></div>
-</div></p>
-
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/scalar-variables">Scalar variables</a> / <a href="/essentials/scalar-variables/declaring-a-variable">Declaring a variable</a>
-  |  
-        <a href="/essentials/scalar-variables">Scalar variables</a> / <a href="/essentials/scalar-variables/declaration-with-initialization">Declaration with initialization</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/essentials/scalar-variables/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/scalar-variables/assigning-a-value/quiz1/">Deutsch</a> • <a href="/es/essentials/scalar-variables/assigning-a-value/quiz1/">Español</a> • <a href="/it/essentials/scalar-variables/assigning-a-value/quiz1/">Italiano</a> • <a href="/lv/essentials/scalar-variables/assigning-a-value/quiz1/">Latviešu</a> • <a href="/nl/essentials/scalar-variables/assigning-a-value/quiz1/">Nederlands</a> • <a href="/bg/essentials/scalar-variables/assigning-a-value/quiz1/">Български</a> • <a href="/ru/essentials/scalar-variables/assigning-a-value/quiz1/">Русский</a> • <a href="/uk/essentials/scalar-variables/assigning-a-value/quiz1/">Українська</a></p>
+<p>← <a href="/essentials/scalar-variables/assigning-a-value">Assigning
+a value</a>   |   <a
+href="/essentials/scalar-variables/assigning-a-value/quiz2">Quiz
+2: Assigning two values</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/variables#Sigils" target="_blank" rel="noopener noreferrer">Variables</a>
+</li>
+</ul>
 </div>
-
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/scalar-variables/assigning-a-value/quiz1">Deutsch</a>
+• <a
+href="/es/essentials/scalar-variables/assigning-a-value/quiz1">Español</a>
+• <a
+href="/it/essentials/scalar-variables/assigning-a-value/quiz1">Italiano</a>
+• <a
+href="/lv/essentials/scalar-variables/assigning-a-value/quiz1">Latviešu</a>
+• <a
+href="/nl/essentials/scalar-variables/assigning-a-value/quiz1">Nederlands</a>
+• <a
+href="/bg/essentials/scalar-variables/assigning-a-value/quiz1">Български</a>
+• <a
+href="/ru/essentials/scalar-variables/assigning-a-value/quiz1">Русский</a>
+• <a
+href="/uk/essentials/scalar-variables/assigning-a-value/quiz1">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Introspecting scalar containers in Raku</title>
-    <meta property="og:title" content="Introspecting scalar containers in Raku" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Introspecting containers — Raku Course</title>
+    <meta property="og:title" content="Introspecting containers — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Introspecting scalar containers in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,74 +88,104 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
-
-<h1 id="introspection-with-mop">Introspection with MOP</h1>
-
-<p>MOP stands for Meta-object protocol. In Raku, it allows to get additional information about the objects in the program, such as containers or variables.</p>
-
-<p>Condider a type-constrained variable:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my Int $int;
-</code></pre></div></div>
-
-<p>Debugging this variable using <code class="language-plaintext highlighter-rouge">.^name</code> reveals its type.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my Int $int;
-say $int.^name; # Int
-</code></pre></div></div>
-
-<p>In this program, <code class="language-plaintext highlighter-rouge">^name</code> is a built-in method that returns the type of the value kept in the container. This is a part of the so-called metaobject that contains meta-information about the container.</p>
-
-<p>Here is a modified example from the <a href="/advanced/scalar-containers/types/">earlier topic</a>:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
-<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>;
+          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
+<h1 id="introspecting-containers">Introspecting containers</h1>
+<p><em>Introspection</em> means asking a value or a container about
+itself — its type, its underlying container, and the machinery behind
+it. You have already used one introspection tool, <code>.^name</code>,
+to print the type of a value.</p>
+<p>Raku offers a small family of such tools, written in capital letters:
+<code>WHAT</code>, <code>VAR</code>, <code>WHO</code>, and
+<code>HOW</code>. They are sometimes called <em>pseudo-methods</em>,
+because the compiler gives them a special meaning rather than treating
+them as ordinary methods. This section looks at each of them.</p>
+<p>As a reminder, here is <code>.^name</code> reporting how the type of
+an untyped container changes as you store different values in it:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
 
 <span class="nv">$value</span> = <span class="mi">42</span>;
-<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>; <span class="c1"># Int</span>
 
-<span class="nv">$value</span> = <span class="s">&#39;fourty-two&#39;</span>;
-<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>;
+<span class="nv">$value</span> = <span class="s">&#39;forty-two&#39;</span>;
+<span class="nb">say</span> <span class="nv">$value</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
 </pre></div>
 
-
-<p>This time, the program only prints type names:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Any
-Int
-Str
-</code></pre></div></div>
-
-<p><div class="topics"></p>
-<h2 id="topics-in-this-section">Topics in this section</h2>
+<p>The container starts as <code>Any</code> and then reports the type of
+whatever value it currently holds.</p>
+<section id="topics-in-this-section" class="topics" data-markdown="1">
+<h2>Topics in this section</h2>
 <ul>
-  <li><a href="/advanced/introspection/what"><code class="language-plaintext highlighter-rouge">WHAT</code> and <code class="language-plaintext highlighter-rouge">^name</code></a></li>
-  <li><a href="/advanced/introspection/var"><code class="language-plaintext highlighter-rouge">VAR</code></a></li>
+<li><a href="/advanced/introspection/what">Using
+<code>WHAT</code></a></li>
+<li><a href="/advanced/introspection/var">Using
+<code>VAR</code></a></li>
+<li><a href="/advanced/introspection/who-how"><code>WHO</code> and
+<code>HOW</code></a></li>
 </ul>
-
-<p></div></p>
-
+</section>
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
+<p>Complete the quiz that covers the contents of this section.</p>
+<ul>
+<li><a href="/advanced/introspection/what/quiz">Quiz — <code>WHAT</code>
+and <code>^name</code></a></li>
+</ul>
+</section>
+<section id="exercises" class="exercises" data-markdown="1">
+<h2>Exercises</h2>
+<p>This section contains <a href="exercises">3 exercises</a>. Examine
+all the topics of this section before doing the coding practice.</p>
+<ol type="1">
+<li><a
+href="/advanced/introspection/exercises/describe-a-variable">Describe a
+variable</a></li>
+<li><a href="/advanced/introspection/exercises/what-is-it">What is
+it</a></li>
+<li><a href="/advanced/introspection/exercises/container-default">The
+container’s default</a></li>
+</ol>
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/advanced/default">Default values</a>
-  |  
-        <a href="/advanced/introspection/what"><code class="language-plaintext highlighter-rouge">WHAT</code> and <code class="language-plaintext highlighter-rouge">^name</code></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/advanced/introspection/">Deutsch</a> • <a href="/es/advanced/introspection/">Español</a> • <a href="/it/advanced/introspection/">Italiano</a> • <a href="/lv/advanced/introspection/">Latviešu</a> • <a href="/nl/advanced/introspection/">Nederlands</a> • <a href="/bg/advanced/introspection/">Български</a> • <a href="/ru/advanced/introspection/">Русский</a> • <a href="/uk/advanced/introspection/">Українська</a></p>
+<p>← <a
+href="/advanced/special-variables/exercises/topic-variable/solution">Solution:
+The topic variable</a>   |   <a
+href="/advanced/introspection/what">Using <code>WHAT</code></a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/mop" target="_blank" rel="noopener noreferrer">Metaobject
+protocol</a>
+</li>
+</ul>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

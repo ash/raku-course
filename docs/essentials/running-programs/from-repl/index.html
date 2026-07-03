@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Running from REPL</title>
-    <meta property="og:title" content="Running from REPL" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Running from REPL — Raku Course</title>
+    <meta property="og:title" content="Running from REPL — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Running from REPL</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,59 +88,75 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/running-programs">Running programs</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/running-programs">Running programs</a></p>
 <h1 id="running-from-repl">Running from REPL</h1>
-
-<p>REPL stands for <em>Read–eval–print loop</em>. It is a built-in shell mode where you can type instructions and get intermediate result on the screen, including the state of the variables and the output that your program generates.</p>
-
+<p>REPL stands for <em>Read–eval–print loop</em>. It is a built-in shell
+mode where you can type instructions and get intermediate results on the
+screen, including the state of the variables and the output that your
+program generates.</p>
 <p>To start Rakudo shell, simply type:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku
-<span class="go">Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+<div class="highlight"><pre>$ raku
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2026.06.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
+Built on MoarVM version 2026.06.
 
 You may want to `zef install Readline` or `zef install Linenoise` or use rlwrap for a line editor
 
 To exit type 'exit' or '^D'
-</span><span class="gp">&gt;</span><span class="w"> 
-</span></code></pre></div></div>
-
-<p>The output may depend on the currently installed version of the compiler. In the above output, the shell recommends to install some modules for better user experience, so you see the corresponding message.</p>
-
-<p>At the end, there’s a prompt character <code class="language-plaintext highlighter-rouge">&gt;</code> where you can type in your program or its parts. The shell will compile it line by line as soon as you press Enter.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; say 'Hello, World';
+&gt; </pre></div>
+<p>The output may depend on the currently installed version of the
+compiler. In the above output, the shell recommends installing some
+modules for better user experience, so you see the corresponding
+message.</p>
+<p>At the end, there’s a prompt character <code>&gt;</code> where you
+can type in your program or its parts. The shell will compile it line by
+line as soon as you press Enter.</p>
+<pre><code>&gt; say &#39;Hello, World&#39;;
 Hello, World
-&gt; 
-</code></pre></div></div>
-
-<p></div></p>
-
+&gt; </code></pre>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/running-programs">Running programs</a> / <a href="/essentials/running-programs/from-command-line">Running from command line</a>
-  |  
-        <a href="/essentials/running-programs">Running programs</a> / <a href="/essentials/running-programs/from-ide">Running from IDE</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/essentials/running-programs/exercises/hello-me">to the exercise to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/running-programs/from-repl/">Deutsch</a> • <a href="/es/essentials/running-programs/from-repl/">Español</a> • <a href="/it/essentials/running-programs/from-repl/">Italiano</a> • <a href="/lv/essentials/running-programs/from-repl/">Latviešu</a> • <a href="/nl/essentials/running-programs/from-repl/">Nederlands</a> • <a href="/bg/essentials/running-programs/from-repl/">Български</a> • <a href="/ru/essentials/running-programs/from-repl/">Русский</a> • <a href="/uk/essentials/running-programs/from-repl/">Українська</a></p>
+<p>← <a href="/essentials/running-programs/from-command-line">Running
+from command line</a>   |   <a
+href="/essentials/running-programs/from-ide">Running from IDE</a> →</p>
+<p><br /> 💪 Or jump directly <a
+href="/essentials/running-programs/exercises/hello-me">to the exercise
+to this section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/running-programs/from-repl">Deutsch</a> • <a
+href="/es/essentials/running-programs/from-repl">Español</a> • <a
+href="/it/essentials/running-programs/from-repl">Italiano</a> • <a
+href="/lv/essentials/running-programs/from-repl">Latviešu</a> • <a
+href="/nl/essentials/running-programs/from-repl">Nederlands</a> • <a
+href="/bg/essentials/running-programs/from-repl">Български</a> • <a
+href="/ru/essentials/running-programs/from-repl">Русский</a> • <a
+href="/uk/essentials/running-programs/from-repl">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

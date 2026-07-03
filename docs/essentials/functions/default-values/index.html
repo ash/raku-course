@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Default values</title>
-    <meta property="og:title" content="Default values" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Default values — Raku Course</title>
+    <meta property="og:title" content="Default values — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Default values</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,21 +88,34 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/functions">Creating and calling functions</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/functions">Creating and calling functions</a></p>
 <h1 id="default-values">Default values</h1>
-
-<p>Both positional and named parameters can have default values. If the function has a default value for the given parameter, that parameter may be skipped when calling the function.</p>
-
+<p>Both positional and named parameters can have default values. If the
+function has a default value for the given parameter, that parameter may
+be skipped when calling the function.</p>
 <h2 id="positional-parameters">Positional parameters</h2>
-
-<p>An example of a default value for a function with positional parameters:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
+<p>An example of a default value for a function with positional
+parameters:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
@@ -60,21 +123,19 @@
 <span class="n">greet</span>();
 </pre></div>
 
-
-<p>The first call uses the name passed as the only argument and thus prints <code class="language-plaintext highlighter-rouge">Hello, Merinda!</code>. The second call uses the default value and prints <code class="language-plaintext highlighter-rouge">Hello, World!</code>.</p>
-
-<p>If a function has more than one parameters, then the default values can only be used at the end of the list of them:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># correct</span>
+<p>The first call uses the name passed as the only argument and thus
+prints <code>Hello, Merinda!</code>. The second call uses the default
+value and prints <code>Hello, World!</code>.</p>
+<p>If a function has more than one parameter, then the default values
+can only be used at the end of the list of them:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># correct</span>
 <span class="c1"># sub f($a = 10, $b = 20, $c, $d) { . . . } # WRONG</span>
 </pre></div>
 
-
 <h2 id="named-parameters">Named parameters</h2>
-
-<p>The same syntax is used for setting default values for named parameters:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
+<p>The same syntax is used for setting default values for named
+parameters:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
@@ -82,44 +143,61 @@
 <span class="n">greet</span>(); <span class="c1"># Hello, World!</span>
 </pre></div>
 
-
-<p>The order of the named parameters does not matter, so any of them can have default values, even the first in the list:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$greeting</span> = <span class="s">&#39;Hello&#39;</span>, :<span class="nv">$name</span>) {
+<p>The order of the named parameters does not matter, so any of them can
+have default values, even the first in the list:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$greeting</span> = <span class="s">&#39;Hello&#39;</span>, :<span class="nv">$name</span>) {
     <span class="nb">say</span> <span class="s">&quot;$greeting, $name!&quot;</span>;
 }
 
 <span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Alla&#39;</span>); <span class="c1"># Hello, Alla!</span>
 </pre></div>
 
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
 <p>Complete the quizzes that cover the contents of this topic.</p>
 <ul>
-  <li><a href="/essentials/functions/default-values/quiz1">Quiz — Defining default values</a></li>
-  <li><a href="/essentials/functions/default-values/quiz2">Quiz — Functions with default values</a></li>
+<li><a href="/essentials/functions/default-values/quiz1">Quiz — Defining
+default values</a></li>
+<li><a href="/essentials/functions/default-values/quiz2">Quiz
+— Functions with default values</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/functions">Creating and calling functions</a> / <a href="/essentials/functions/named-parameters">Named parameters</a>
-  |  
-        💪 <a href="/essentials/functions/exercises">Exercises: Creating and calling functions</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/functions/default-values/">Deutsch</a> • <a href="/es/essentials/functions/default-values/">Español</a> • <a href="/it/essentials/functions/default-values/">Italiano</a> • <a href="/lv/essentials/functions/default-values/">Latviešu</a> • <a href="/nl/essentials/functions/default-values/">Nederlands</a> • <a href="/bg/essentials/functions/default-values/">Български</a> • <a href="/ru/essentials/functions/default-values/">Русский</a> • <a href="/uk/essentials/functions/default-values/">Українська</a></p>
+<p>← <a href="/essentials/functions/named-parameters/quiz2">Quiz 2 —
+Variables as named parameters</a>   |   <a
+href="/essentials/functions/default-values/quiz1">Quiz — Defining
+default values</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/functions" target="_blank" rel="noopener noreferrer">Functions</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/essentials/functions/exercises">to the exercises in this
+section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/functions/default-values">Deutsch</a> • <a
+href="/es/essentials/functions/default-values">Español</a> • <a
+href="/it/essentials/functions/default-values">Italiano</a> • <a
+href="/lv/essentials/functions/default-values">Latviešu</a> • <a
+href="/nl/essentials/functions/default-values">Nederlands</a> • <a
+href="/bg/essentials/functions/default-values">Български</a> • <a
+href="/ru/essentials/functions/default-values">Русский</a> • <a
+href="/uk/essentials/functions/default-values">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

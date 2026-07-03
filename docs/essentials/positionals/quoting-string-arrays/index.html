@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quoting string arrays</title>
-    <meta property="og:title" content="Quoting string arrays" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Quoting string arrays — Raku Course</title>
+    <meta property="og:title" content="Quoting string arrays — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Quoting string arrays</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,80 +88,108 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/positionals">Positional data types</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/positionals">Positional data types</a></p>
 <h1 id="quoting-string-arrays">Quoting string arrays</h1>
-
-<p>For string arrays, where the items are short strings with no spaces, Raku offers a nice syntax for initialising them.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = <span class="s">&lt;zero one two three four five six seven eight nine&gt;</span>;
+<p>For string arrays, where the items are short strings with no spaces,
+Raku offers a nice syntax for initialising them.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = <span class="s">&lt;zero one two three four five six seven eight nine&gt;</span>;
 </pre></div>
 
-
-<p>It is up to you to decide to add additional spaces around the angle brackets or not. The compiler accepts both options.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = &lt; <span class="n">zero</span> <span class="nb">one</span> <span class="n">two</span> <span class="n">three</span> <span class="n">four</span> <span class="n">five</span> <span class="n">six</span> <span class="n">seven</span> <span class="n">eight</span> <span class="n">nine</span> &gt;;
+<p>It is up to you to decide whether to add additional spaces around the
+angle brackets or not. The compiler accepts both options.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = &lt; <span class="n">zero</span> <span class="nb">one</span> <span class="n">two</span> <span class="n">three</span> <span class="n">four</span> <span class="n">five</span> <span class="n">six</span> <span class="n">seven</span> <span class="n">eight</span> <span class="n">nine</span> &gt;;
 </pre></div>
-
 
 <p>Both constructions are equivalent to a straightforward variant:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = <span class="s">&#39;zero&#39;</span>, <span class="s">&#39;one&#39;</span>, <span class="s">&#39;two&#39;</span>, <span class="s">&#39;three&#39;</span>, <span class="s">&#39;four&#39;</span>, <span class="s">&#39;five&#39;</span>, <span class="s">&#39;six&#39;</span>, <span class="s">&#39;seven&#39;</span>, <span class="s">&#39;eight&#39;</span>, <span class="s">&#39;nine&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@digits</span> = <span class="s">&#39;zero&#39;</span>, <span class="s">&#39;one&#39;</span>, <span class="s">&#39;two&#39;</span>, <span class="s">&#39;three&#39;</span>, <span class="s">&#39;four&#39;</span>, <span class="s">&#39;five&#39;</span>, <span class="s">&#39;six&#39;</span>, <span class="s">&#39;seven&#39;</span>, <span class="s">&#39;eight&#39;</span>, <span class="s">&#39;nine&#39;</span>;
 </pre></div>
 
-
-<p><div class="tip"></p>
-<h2 id="array-vs-list">Array vs List</h2>
-
-<p>Notice that in the examples above, the quotation <code class="language-plaintext highlighter-rouge">&lt; . . . &gt;</code> creates a <code class="language-plaintext highlighter-rouge">List</code>, not an <code class="language-plaintext highlighter-rouge">Array</code>. You can confirm it by calling the <code class="language-plaintext highlighter-rouge">WHAT</code> method:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">WHAT</span>; <span class="c1"># (List)</span>
+<p>%%tipblock ## Array vs List</p>
+<p>Notice that in the examples above, the quotation
+<code>&lt; . . . &gt;</code> creates a <code>List</code>, not an
+<code>Array</code>. You can confirm it by calling the <code>WHAT</code>
+method:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">WHAT</span>; <span class="c1"># (List)</span>
 </pre></div>
 
-
-<p>Nevertheless, when you assign it to an array, you get an array with the elements from the list.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="s">&lt;a b c&gt;</span>;
+<p>Nevertheless, when you assign it to an array, you get an array with
+the elements from the list.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="s">&lt;a b c&gt;</span>;
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">WHAT</span>; <span class="c1"># (Array)</span>
 </pre></div>
 
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
+</div>
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
 <p>Complete the quizzes that cover the contents of this topic.</p>
 <ul>
-  <li><a href="/essentials/positionals/quoting-string-arrays/quiz1">Quiz 1 — Quoting string arrays</a></li>
-  <li><a href="/essentials/positionals/quoting-string-arrays/quiz2">Quiz 2 — Recognising lists</a></li>
+<li><a href="/essentials/positionals/quoting-string-arrays/quiz1">Quiz 1
+— Quoting string arrays</a></li>
+<li><a href="/essentials/positionals/quoting-string-arrays/quiz2">Quiz 2
+— Recognising lists</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/positionals">Positional data types</a> / <a href="/essentials/positionals/lists">Lists</a>
-  |  
-        <a href="/essentials/positionals">Positional data types</a> / <a href="/essentials/positionals/subscripting-ranges">Subscripting ranges</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/essentials/positionals/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/positionals/quoting-string-arrays/">Deutsch</a> • <a href="/es/essentials/positionals/quoting-string-arrays/">Español</a> • <a href="/it/essentials/positionals/quoting-string-arrays/">Italiano</a> • <a href="/lv/essentials/positionals/quoting-string-arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/quoting-string-arrays/">Nederlands</a> • <a href="/bg/essentials/positionals/quoting-string-arrays/">Български</a> • <a href="/ru/essentials/positionals/quoting-string-arrays/">Русский</a> • <a href="/uk/essentials/positionals/quoting-string-arrays/">Українська</a></p>
+<p>← <a href="/essentials/positionals/lists/quiz">Quiz — List and scalar
+vs. list and array</a>   |   <a
+href="/essentials/positionals/quoting-string-arrays/quiz1">Quiz 1
+— Quoting string arrays</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/type/Array" target="_blank" rel="noopener noreferrer">Array</a>
+</li>
+<li>
+<a href="https://docs.raku.org/language/list" target="_blank" rel="noopener noreferrer">Lists,
+sequences, and arrays</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/essentials/positionals/exercises">to the exercises in this
+section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/positionals/quoting-string-arrays">Deutsch</a> • <a
+href="/es/essentials/positionals/quoting-string-arrays">Español</a> • <a
+href="/it/essentials/positionals/quoting-string-arrays">Italiano</a> •
+<a href="/lv/essentials/positionals/quoting-string-arrays">Latviešu</a>
+• <a
+href="/nl/essentials/positionals/quoting-string-arrays">Nederlands</a> •
+<a href="/bg/essentials/positionals/quoting-string-arrays">Български</a>
+• <a href="/ru/essentials/positionals/quoting-string-arrays">Русский</a>
+• <a
+href="/uk/essentials/positionals/quoting-string-arrays">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

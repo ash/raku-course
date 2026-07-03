@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Boolean operations with other types</title>
-    <meta property="og:title" content="Boolean operations with other types" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Boolean operations with other types — Raku Course</title>
+    <meta property="og:title" content="Boolean operations with other types — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Boolean operations with other types</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,58 +88,104 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/booleans">Boolean type</a></p>
-
-<h1 id="boolean-operations-with-other-types">Boolean operations with other types</h1>
-
-<p>In the next section, we will talk about converting data of different types to each other. But before that, it is important to highlight the following feature of Raku. When you apply Boolean operations to strings or integers, the values are not converted to Booleans, and the result is not a Boolean value either. Consider the following examples:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> &amp;&amp; <span class="s">&#39;World&#39;</span>; <span class="c1"># World</span>
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/booleans">Boolean type</a></p>
+<h1 id="boolean-operations-with-other-types">Boolean operations with
+other types</h1>
+<p>In the next section, we will talk about <a
+href="/essentials/coercion">converting data of different types</a> to
+each other. But before that, it is important to highlight the following
+feature of Raku. When you apply Boolean operations to strings or
+integers, the values are not converted to Booleans, and the result is
+not a Boolean value either. Consider the following examples:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> &amp;&amp; <span class="s">&#39;World&#39;</span>; <span class="c1"># World</span>
 <span class="nb">say</span> <span class="s">&#39;Alpha&#39;</span> || <span class="s">&#39;Beta&#39;</span>;  <span class="c1"># Alpha</span>
 <span class="nb">say</span> <span class="mi">0</span> ^^ <span class="mi">42</span>;            <span class="c1"># 42</span>
 </pre></div>
 
-
-<p>Let us read the rules 📖 <a href="https://docs.raku.org/language/operators#Tight_AND_precedence">from the documentation</a>:</p>
-
+<p>Let us read the rules 📖 <a
+href="https://docs.raku.org/language/operators#Tight_AND_precedence">from
+the documentation</a>:</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> returns the first argument that evaluates to False in Boolean context, otherwise returns the last argument.</li>
-  <li><code class="language-plaintext highlighter-rouge">||</code> returns the first argument that evaluates to True in Boolean context, otherwise returns the last argument.</li>
-  <li><code class="language-plaintext highlighter-rouge">^^</code> returns the True argument if there is one (and only one). Returns the last argument if all arguments are False. Returns <code class="language-plaintext highlighter-rouge">Nil</code> when more than one argument is true.</li>
+<li><code>&amp;&amp;</code> returns the first argument that evaluates to
+False in Boolean context, otherwise returns the last argument.</li>
+<li><code>||</code> returns the first argument that evaluates to True in
+Boolean context, otherwise returns the last argument.</li>
+<li><code>^^</code> returns the True argument if there is one (and only
+one). Returns the last argument if all arguments are False. Returns
+<code>Nil</code> when more than one argument is true.</li>
 </ul>
-
-<p>Notice that we just met a ‘null’ value <code class="language-plaintext highlighter-rouge">Nil</code>.</p>
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
+<p>Notice that we just met a ‘null’ value <code>Nil</code>.</p>
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
 <p>Complete the quiz that covers the contents of this topic.</p>
 <ul>
-  <li><a href="/essentials/booleans/boolean-operations-other-types/quiz">Quiz: Boolean operations with non-Boolean data</a></li>
+<li><a
+href="/essentials/booleans/boolean-operations-other-types/quiz">Quiz:
+Boolean operations with non-Boolean data</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/booleans">Boolean type</a> / <a href="/essentials/booleans/operations">Boolean operations</a>
-  |  
-        💪 <a href="/essentials/booleans/exercises">Exercises: Boolean type</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/booleans/boolean-operations-other-types/">Deutsch</a> • <a href="/es/essentials/booleans/boolean-operations-other-types/">Español</a> • <a href="/it/essentials/booleans/boolean-operations-other-types/">Italiano</a> • <a href="/lv/essentials/booleans/boolean-operations-other-types/">Latviešu</a> • <a href="/nl/essentials/booleans/boolean-operations-other-types/">Nederlands</a> • <a href="/bg/essentials/booleans/boolean-operations-other-types/">Български</a> • <a href="/ru/essentials/booleans/boolean-operations-other-types/">Русский</a> • <a href="/uk/essentials/booleans/boolean-operations-other-types/">Українська</a></p>
+<p>← <a href="/essentials/booleans/operations/quiz">Quiz: Boolean
+operations</a>   |   <a
+href="/essentials/booleans/boolean-operations-other-types/quiz">Quiz:
+Boolean operations with non-Boolean data</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/type/Bool" target="_blank" rel="noopener noreferrer">Bool</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/essentials/booleans/exercises">to the exercises in this
+section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/booleans/boolean-operations-other-types">Deutsch</a>
+• <a
+href="/es/essentials/booleans/boolean-operations-other-types">Español</a>
+• <a
+href="/it/essentials/booleans/boolean-operations-other-types">Italiano</a>
+• <a
+href="/lv/essentials/booleans/boolean-operations-other-types">Latviešu</a>
+• <a
+href="/nl/essentials/booleans/boolean-operations-other-types">Nederlands</a>
+• <a
+href="/bg/essentials/booleans/boolean-operations-other-types">Български</a>
+• <a
+href="/ru/essentials/booleans/boolean-operations-other-types">Русский</a>
+• <a
+href="/uk/essentials/booleans/boolean-operations-other-types">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Escaping special characters in Raku strings</title>
-    <meta property="og:title" content="Escaping special characters in Raku strings" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Escaping special characters — Raku Course</title>
+    <meta property="og:title" content="Escaping special characters — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Escaping special characters in Raku strings</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,123 +88,129 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/strings">Strings</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/strings">Strings</a></p>
 <h1 id="escaping-special-characters">Escaping special characters</h1>
-
-<p>Imagine you want to print a price label, and you keep both the name of the product and its price in scalar variables?</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<p>Imagine you want to print a price label, and you keep both the name
+of the product and its price in scalar variables.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
 <span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
 </pre></div>
 
-
-<p>How do you print the label if the price is meant to be in dollars? The expected output is: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. A dollar sign in double-quoted strings is an indicator of a variable to be interpolated. To print the <code class="language-plaintext highlighter-rouge">$</code> character itself, you need to escape it:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+<p>How do you print the label if the price is meant to be in dollars?
+The expected output is: <code>Electricity costs $3.14</code>. A dollar
+sign in double-quoted strings is an indicator of a variable to be
+interpolated. To print the <code>$</code> character itself, you need to
+escape it:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
 </pre></div>
 
-
-<p>Of course, you can use string concatenation and avoid escaping <code class="language-plaintext highlighter-rouge">$</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+<p>Of course, you can use string concatenation and avoid escaping
+<code>$</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
 </pre></div>
 
-
-<p>This variant prints exactly the same string, but interpolation look more natural and easier to read. Note that the <code class="language-plaintext highlighter-rouge">$</code> character was neither interpolated nor escaped in a single-quoted string: <code class="language-plaintext highlighter-rouge">' costs $'</code>. That’s the main difference. Special characters in single quotes appear as-is.</p>
-
-<p>Here is a few more special characters that have special meaning in double-quoted strings:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
-      <td>Dollar sign</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
-      <td>Newline</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
-      <td>Carriage return</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
-      <td>Horizontal tab</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
-      <td>Double quote</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
-      <td>Backslash</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The way you quote the string defines how Raku treats special characters. Consider these two examples:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<p>This variant prints exactly the same string, but interpolation looks
+more natural and easier to read. Note that the <code>$</code> character
+was neither interpolated nor escaped in a single-quoted string:
+<code>' costs $'</code>. That’s the main difference. Special characters
+in single quotes appear as-is.</p>
+<p>Here are a few more special characters that have special meaning in
+double-quoted strings:</p>
+<p><code>\$</code> | Dollar sign <code>\n</code> | Newline
+<code>\r</code> | Carriage return <code>\t</code> | Horizontal tab
+<code>\"</code> | Double quote <code>\\</code> | Backslash</p>
+<p>The way you quote the string defines how Raku treats special
+characters. Consider these two examples:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
 <span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
 </pre></div>
 
-
-<p>If you run this program, you will see that the first string appears as is on a single line. The second string was split into two pieces:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>One\nTwo
+<p>If you run this program, you will see that the first string appears
+as is on a single line. The second string was split into two pieces:</p>
+<pre><code>One\nTwo
 Three
-Four
-</code></pre></div></div>
-
-<p>In double quotes, a special sequence <code class="language-plaintext highlighter-rouge">\n</code> was processed as a newline character, while in a string in single quotes it was a regular sequence of two characters: <code class="language-plaintext highlighter-rouge">\</code> and <code class="language-plaintext highlighter-rouge">n</code>.</p>
-
-<p>There’s an interesting exception for <code class="language-plaintext highlighter-rouge">'</code> and <code class="language-plaintext highlighter-rouge">\</code>. In single quotes, you can escape a single quote by prefixing it with another <code class="language-plaintext highlighter-rouge">\</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+Four</code></pre>
+<p>In double quotes, a special sequence <code>\n</code> was processed as
+a newline character, while in a string in single quotes it was a regular
+sequence of two characters: <code>\</code> and <code>n</code>.</p>
+<p>There’s an interesting exception for <code>'</code> and
+<code>\</code>. In single quotes, you can escape a single quote by
+prefixing it with another <code>\</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
 </pre></div>
-
 
 <p>A backslash also has to be escaped if a single quote follows it:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
 </pre></div>
 
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
 <p>Complete the quiz that covers the contents of this topic.</p>
 <ul>
-  <li><a href="/essentials/strings/escaping-special-characters/quiz">Quiz: A backslash in the output</a></li>
+<li><a href="/essentials/strings/escaping-special-characters/quiz">Quiz:
+A backslash in the output</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/strings">Strings</a> / <a href="/essentials/strings/code-interpolation">Code interpolation</a>
-  |  
-        <a href="/essentials/strings">Strings</a> / <a href="/essentials/strings/string-length">String length</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/essentials/strings/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <a href="/lv/essentials/strings/escaping-special-characters/">Latviešu</a> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+<p>← <a href="/essentials/strings/code-interpolation">Code
+interpolation</a>   |   <a
+href="/essentials/strings/escaping-special-characters/quiz">Quiz: A
+backslash in the output</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/type/Str" target="_blank" rel="noopener noreferrer">Str</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a href="/essentials/strings/exercises">to
+the exercises in this section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
+<a href="/es/essentials/strings/escaping-special-characters">Español</a>
+• <a
+href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
+<a
+href="/lv/essentials/strings/escaping-special-characters">Latviešu</a> •
+<a
+href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+• <a
+href="/bg/essentials/strings/escaping-special-characters">Български</a>
+• <a
+href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
+<a
+href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

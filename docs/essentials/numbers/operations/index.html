@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Operations with numbers</title>
-    <meta property="og:title" content="Operations with numbers" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Operations with numbers — Raku Course</title>
+    <meta property="og:title" content="Operations with numbers — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Operations with numbers</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,187 +88,149 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/numbers">Numbers</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/numbers">Numbers</a></p>
 <h1 id="operations-with-numbers">Operations with numbers</h1>
-
-<p>There is no doubt you already know some of the operations you can do with Raku numbers. Just to mention that the symbol of the <em>operation</em> is called an <em>operator</em>. The objects on which we perform operations are called <em>operands</em>.</p>
-
+<p>There is no doubt you already know some of the operations you can do
+with Raku numbers. Just to mention that the symbol of the
+<em>operation</em> is called an <em>operator</em>. The objects on which
+we perform operations are called <em>operands</em>.</p>
 <h2 id="arithmetics">Arithmetics</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Operator</strong></td>
-      <td><strong>Operation</strong></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">+</code></td>
-      <td>Addition</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">-</code></td>
-      <td>Subtraction</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">*</code></td>
-      <td>Multiplication</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">/</code></td>
-      <td>Division</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>As Raku <a href="/essentials/on-unicode">supports Unicode</a> really well, some of these operators have non-ASCII equivalents:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">×</code></td>
-      <td>Multiplication</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
-      <td>Division</td>
-    </tr>
-  </tbody>
-</table>
-
+<p><strong>Operator</strong> | <strong>Operation</strong> <code>+</code>
+| Addition <code>-</code> | Subtraction <code>*</code> | Multiplication
+<code>/</code> | Division</p>
+<p>As Raku <a href="/essentials/on-unicode">supports Unicode</a> really
+well, some of these operators have non-ASCII equivalents:</p>
+<p><code>×</code> | Multiplication <code>÷</code> | Division</p>
 <p>To change the order of execution, use parentheses:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
 <span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
 </pre></div>
 
-
 <h2 id="modulo">Modulo</h2>
-
-<p>The modulo operator is <code class="language-plaintext highlighter-rouge">%</code> as in many other languages.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%</code></td>
-      <td>Modulo</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>It returns the remainder of the integer division of two numbers, so <code class="language-plaintext highlighter-rouge">10 % 3</code> is <code class="language-plaintext highlighter-rouge">1</code>. Note that <code class="language-plaintext highlighter-rouge">-10 % 3</code> is <code class="language-plaintext highlighter-rouge">2</code> as the result of the operation is defined as the difference between the first number and the rounded-down division multiplied by the second number. So, <code class="language-plaintext highlighter-rouge">$a % $b</code> is equivalent to <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
-
+<p>The modulo operator is <code>%</code> as in many other languages.</p>
+<p><code>%</code> | Modulo</p>
+<p>It returns the remainder of the integer division of two numbers, so
+<code>10 % 3</code> is <code>1</code>. Note that <code>-10 % 3</code> is
+<code>2</code> as the result of the operation is defined as the
+difference between the first number and the rounded-down division
+multiplied by the second number. So, <code>$a % $b</code> is equivalent
+to <code>$a - $b * floor($a / $b)</code>.</p>
 <h2 id="divisibility">Divisibility</h2>
-
-<p>Raku adds a useful operator to test if the number is divisible by another number.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
-      <td>Divisibility</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>This is an infix operator that needs two operands: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. If the first operand is divisible by the second operand, the result is a Boolean <code class="language-plaintext highlighter-rouge">True</code>. Otherwise, <code class="language-plaintext highlighter-rouge">False</code>.</p>
-
+<p>Raku adds a useful operator to test if the number is divisible by
+another number.</p>
+<p><code>%%</code> | Divisibility</p>
+<p>This is an infix operator that needs two operands:
+<code>10 %% 3</code>. If the first operand is divisible by the second
+operand, the result is a Boolean <code>True</code>. Otherwise,
+<code>False</code>.</p>
 <h2 id="integer-operations">Integer operations</h2>
-
-<p>There are special operations that return integer results. Their operators are words instead of symbols.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">div</code></td>
-      <td>Integer division</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
-      <td>Integer modulo</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The <code class="language-plaintext highlighter-rouge">div</code> operator rounds down the result, so <code class="language-plaintext highlighter-rouge">10 div 3</code> is <code class="language-plaintext highlighter-rouge">3</code>, and <code class="language-plaintext highlighter-rouge">-10 div 3</code> is <code class="language-plaintext highlighter-rouge">-4</code>.</p>
-
-<p>Both <code class="language-plaintext highlighter-rouge">div</code> and <code class="language-plaintext highlighter-rouge">mod</code> expect integer operands. So, the following program will not work if you uncomment the lines marked as <code class="language-plaintext highlighter-rouge">Error</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<p>There are special operations that return integer results. Their
+operators are words instead of symbols.</p>
+<p><code>div</code> | Integer division <code>mod</code> | Integer
+modulo</p>
+<p>The <code>div</code> operator rounds down the result, so
+<code>10 div 3</code> is <code>3</code>, and <code>-10 div 3</code> is
+<code>-4</code>.</p>
+<p>Both <code>div</code> and <code>mod</code> expect integer operands.
+So, the following program will not work if you uncomment the lines
+marked as <code>Error</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 mod 3; # Error</span>
 
 <span class="nb">say</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 div 3.3; # Error</span>
 </pre></div>
 
-
 <h2 id="power">Power</h2>
-
-<p>There are two ways of getting the result of <em>x</em> to the power of <em>y</em>. First, you can use the <code class="language-plaintext highlighter-rouge">**</code> operator:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
+<p>There are two ways of getting the result of <em>x</em> to the power
+of <em>y</em>. First, you can use the <code>**</code> operator:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
 </pre></div>
-
 
 <p>Second, you can use superscript digits, for example:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
 </pre></div>
 
-
-<p>It is possible to put more than one superscript digit to get the value of power bigger than 9. For example:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
+<p>It is possible to put more than one superscript digit to get the
+value of power bigger than 9. For example:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
 </pre></div>
-
 
 <p>Negative power is not a problem either:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
 <span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
 </pre></div>
 
-
-<p>Notice that the result of the last two expressions is a <code class="language-plaintext highlighter-rouge">Rat</code> number.</p>
-
+<p>Notice that the result of the last two expressions is a
+<code>Rat</code> number.</p>
 <h2 id="operations-with-assignment">Operations with assignment</h2>
-
-<p>All the operations support the shortcut syntax when you need to update the variable. Let us demonstrate it on the example of <code class="language-plaintext highlighter-rouge">+</code>.</p>
-
+<p>All the operations support the shortcut syntax when you need to
+update the variable. Let us demonstrate it on the example of
+<code>+</code>.</p>
 <p>The full form</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
 </pre></div>
-
 
 <p>is equivalent to:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
 </pre></div>
 
-
-<p></div></p>
-
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/numbers">Numbers</a> / <a href="/essentials/numbers/numeric">Floating-point numbers</a>
-  |  
-        💪 <a href="/essentials/numbers/exercises">Exercises: Numbers</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+<p>← <a href="/essentials/numbers/numeric">Floating-point numbers</a>
+  |   <a href="/essentials/numbers/exercises/apple-sharing">Apple
+sharing</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/type/Int" target="_blank" rel="noopener noreferrer">Int</a>
+</li>
+<li>
+<a href="https://docs.raku.org/language/numerics" target="_blank" rel="noopener noreferrer">Numerics</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a href="/essentials/numbers/exercises">to
+the exercises in this section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/numbers/operations">Deutsch</a> • <a
+href="/es/essentials/numbers/operations">Español</a> • <a
+href="/it/essentials/numbers/operations">Italiano</a> • <a
+href="/lv/essentials/numbers/operations">Latviešu</a> • <a
+href="/nl/essentials/numbers/operations">Nederlands</a> • <a
+href="/bg/essentials/numbers/operations">Български</a> • <a
+href="/ru/essentials/numbers/operations">Русский</a> • <a
+href="/uk/essentials/numbers/operations">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

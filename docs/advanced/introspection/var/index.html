@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Using VAR in Raku</title>
-    <meta property="og:title" content="Using VAR in Raku" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Using VAR — Raku Course</title>
+    <meta property="og:title" content="Using VAR — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Using VAR in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,23 +88,34 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> / <a href="/advanced/introspection">Introspection with MOP</a></p>
-
-<h1 id="var"><code class="language-plaintext highlighter-rouge">VAR</code></h1>
-
-<p><code class="language-plaintext highlighter-rouge">VAR</code> is a pseudo-method that retuns the underlying container object. The <code class="language-plaintext highlighter-rouge">.VAR</code> call returns a <code class="language-plaintext highlighter-rouge">Scalar</code> object of the container.</p>
-
-<h2 id="name"><code class="language-plaintext highlighter-rouge">^name</code></h2>
-
-<p>After calling <code class="language-plaintext highlighter-rouge">.VAR</code>, you can further get the name of its class by calling <code class="language-plaintext highlighter-rouge">.^name</code> on it.</p>
-
-<p>Examine the following program:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
+          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
+<a href="/advanced/introspection">Introspecting containers</a></p>
+<h1 id="using-var">Using <code>VAR</code></h1>
+<p><code>VAR</code> is a pseudo-method that returns the underlying
+container object. For a scalar variable, the <code>.VAR</code> call
+returns the <code>Scalar</code> container behind it.</p>
+<h2 id="name"><code>^name</code></h2>
+<p>Once you have the container, you can ask for the name of its class
+with <code>.^name</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
 <span class="k">my</span> <span class="nv">$var2</span> = <span class="s">&#39;42&#39;</span>;
 
 <span class="nb">say</span> <span class="nv">$var1</span>.^<span class="nb">name</span>;     <span class="c1"># Int</span>
@@ -64,61 +125,64 @@
 <span class="nb">say</span> <span class="nv">$var2</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
 </pre></div>
 
-
-<p>Here, two variables are filled with an integer and a string. The <code class="language-plaintext highlighter-rouge">.^name</code> meta-object method returns the name of the type, which is correspondently <code class="language-plaintext highlighter-rouge">Int</code> or <code class="language-plaintext highlighter-rouge">Str</code>.</p>
-
-<h2 id="default"><code class="language-plaintext highlighter-rouge">default</code></h2>
-
-<p>The <code class="language-plaintext highlighter-rouge">default</code> method returns the default value of the variable.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
+<p><code>.^name</code> on the variable returns the type of the
+<em>value</em> (<code>Int</code> or <code>Str</code>), while
+<code>.VAR.^name</code> returns the type of the <em>container</em>,
+which is <code>Scalar</code> in both cases.</p>
+<h2 id="default"><code>default</code></h2>
+<p>The <code>default</code> method returns the default value of the
+container — what you get when the container holds nothing of its own.
+With the <code>is default</code> trait you set it explicitly:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
 <span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># Raku</span>
 </pre></div>
 
+<p>Without an explicit default, the default value is the container’s
+type. For an untyped container that is <code>Any</code>, regardless of
+what value it currently holds:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Any)</span>
+</pre></div>
 
-<p>If the default value is not defined explicitly, you see the name of the class of the value kept in the container:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
+<p>For a typed container it is the constraint type:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
 <span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
 </pre></div>
 
-
-<p>Or its type constraint:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
-</pre></div>
-
-
-<h2 id="name-1"><code class="language-plaintext highlighter-rouge">name</code></h2>
-
-<p>The <code class="language-plaintext highlighter-rouge">name</code> method returns the name of the container, including the sigil.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
+<h2 id="name-1"><code>name</code></h2>
+<p>The <code>name</code> method returns the name of the container,
+including the sigil:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
 <span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="nb">name</span>; <span class="c1"># $language</span>
 </pre></div>
 
-
-<p>Make sure to not mix <code class="language-plaintext highlighter-rouge">^name</code> and <code class="language-plaintext highlighter-rouge">name</code>.</p>
-
-<p></div></p>
-
+<p>Take care not to mix up <code>^name</code> (the type) and
+<code>name</code> (the variable’s own name).</p>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/advanced/introspection">Introspection with MOP</a> / <a href="/advanced/introspection/what"><code class="language-plaintext highlighter-rouge">WHAT</code> and <code class="language-plaintext highlighter-rouge">^name</code></a>
-  |  
-        <a href="//"></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/advanced/introspection/var/">Deutsch</a> • <a href="/es/advanced/introspection/var/">Español</a> • <a href="/it/advanced/introspection/var/">Italiano</a> • <a href="/lv/advanced/introspection/var/">Latviešu</a> • <a href="/nl/advanced/introspection/var/">Nederlands</a> • <a href="/bg/advanced/introspection/var/">Български</a> • <a href="/ru/advanced/introspection/var/">Русский</a> • <a href="/uk/advanced/introspection/var/">Українська</a></p>
+<p>← <a href="/advanced/introspection/what/quiz">Quiz —
+<code>WHAT</code> and <code>^name</code></a>   |   <a
+href="/advanced/introspection/who-how"><code>WHO</code> and
+<code>HOW</code></a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/mop" target="_blank" rel="noopener noreferrer">Metaobject
+protocol</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/advanced/introspection/exercises">to the exercises in this
+section</a>.</p>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

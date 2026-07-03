@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Editors and IDEs for Raku</title>
-    <meta property="og:title" content="Editors and IDEs for Raku" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Editors and IDEs — Raku Course</title>
+    <meta property="og:title" content="Editors and IDEs — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Editors and IDEs for Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,43 +88,68 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a></p>
-
-<h1 id="editors-and-ides-for-programming-in-raku">Editors and IDEs for programming in Raku</h1>
-
-<p>The Raku programs are written as plain text and usually are kept in text files (the exception are the programs that you run online or in the command line or prepare to be executed via <code class="language-plaintext highlighter-rouge">EVAL</code> or some other rare cases).</p>
-
-<p>It is assumed that the program source is a UTF-8 text. You can thus use any text editor that does not save formatting instructions in the document. While you can use <code class="language-plaintext highlighter-rouge">vim</code>, or <code class="language-plaintext highlighter-rouge">nano</code>, or <code class="language-plaintext highlighter-rouge">emacs</code>, or <code class="language-plaintext highlighter-rouge">mcedit</code> and be happy with your choice, you may also want to try a couple of currently trending applications.</p>
-
+          <p><a href="/">Course of Raku</a> / <a
+href="/essentials">Essentials</a></p>
+<h1 id="editors-and-ides">Editors and IDEs</h1>
+<p>The Raku programs are written as plain text and usually are kept in
+text files (the exception is the programs that you run online or in the
+command line or prepare to be executed via <code>EVAL</code> or some
+other rare cases).</p>
+<p>It is assumed that the program source is a UTF-8 text. You can thus
+use any text editor that does not save formatting instructions in the
+document. While you can use <code>vim</code>, or <code>nano</code>, or
+<code>emacs</code>, or <code>mcedit</code> and be happy with your
+choice, you may also want to try a couple of currently trending
+applications.</p>
 <h2 id="external-links">External links</h2>
-
 <p>Here are the links to the popular IDEs.</p>
-
 <ul>
-  <li><a href="https://code.visualstudio.com/">Visual Studio Code</a> — available for Windows, Mac OS, and Linux</li>
-  <li><a href="https://commaide.com">Comma</a> — the Raku IDE built specifically for programming in Raku; available for Windows, Mac OS, and Linux.</li>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a>
+— available for Windows, Mac OS, and Linux</li>
+<li><a href="https://commaide.com">Comma</a> — the Raku IDE built
+specifically for programming in Raku; available for Windows, Mac OS, and
+Linux.</li>
 </ul>
-
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/essentials/how-to-install-rakudo">How to install Rakudo</a>
-  |  
-        <a href="/essentials/conventional-file-extensions">Conventional file extensions</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/editors-and-ides/">Deutsch</a> • <a href="/es/essentials/editors-and-ides/">Español</a> • <a href="/it/essentials/editors-and-ides/">Italiano</a> • <a href="/lv/essentials/editors-and-ides/">Latviešu</a> • <a href="/nl/essentials/editors-and-ides/">Nederlands</a> • <a href="/bg/essentials/editors-and-ides/">Български</a> • <a href="/ru/essentials/editors-and-ides/">Русский</a> • <a href="/uk/essentials/editors-and-ides/">Українська</a></p>
+<p>← <a href="/essentials/how-to-install-rakudo">How to install
+Rakudo</a>   |   <a
+href="/essentials/conventional-file-extensions">Conventional file
+extensions</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/editors-and-ides">Deutsch</a> • <a
+href="/es/essentials/editors-and-ides">Español</a> • <a
+href="/it/essentials/editors-and-ides">Italiano</a> • <a
+href="/lv/essentials/editors-and-ides">Latviešu</a> • <a
+href="/nl/essentials/editors-and-ides">Nederlands</a> • <a
+href="/bg/essentials/editors-and-ides">Български</a> • <a
+href="/ru/essentials/editors-and-ides">Русский</a> • <a
+href="/uk/essentials/editors-and-ides">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

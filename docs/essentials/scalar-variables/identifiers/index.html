@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Variable names</title>
-    <meta property="og:title" content="Variable names" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Names of the variables — Raku Course</title>
+    <meta property="og:title" content="Names of the variables — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Variable names</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,21 +88,37 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/scalar-variables">Scalar variables</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/scalar-variables">Scalar variables</a></p>
 <h1 id="names-of-the-variables">Names of the variables</h1>
-
-<p>Before we move further, let us spend some time on an interesting topic of the allowed names of variables. So far we’ve seen simple names such as <code class="language-plaintext highlighter-rouge">$name</code> or <code class="language-plaintext highlighter-rouge">$age</code>, which fully consisted of lowercase letters of the English alphabet. But there are more possibilities.</p>
-
+<p>Before we move further, let us spend some time on an interesting
+topic of the allowed names of variables. So far we’ve seen simple names
+such as <code>$name</code> or <code>$age</code>, which fully consisted
+of lowercase letters of the English alphabet. But there are more
+possibilities.</p>
 <h2 id="case-sensitivity">Case sensitivity</h2>
-
-<p>Names of the variables (or <em>identifiers</em>) are case sensitive. That means that all of the below names refer to different scalar containers:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$myname</span>
+<p>Names of the variables (or <em>identifiers</em>) are case sensitive.
+That means that all of the below names refer to different scalar
+containers:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$myname</span>
 
 <span class="nv">$MyName</span>
 
@@ -61,14 +127,16 @@
 <span class="nv">$MYNAME</span>
 </pre></div>
 
-
-<p>It is up to you to stick to a naming scheme, but you can probably reserve the all-capital names for constants.</p>
-
+<p>It is up to you to stick to a naming scheme, but you can probably
+reserve the all-capital names for constants.</p>
 <h2 id="other-characters">Other characters</h2>
-
-<p>Among the ASCII characters, you can use digits, underscore character <code class="language-plaintext highlighter-rouge">_</code>, a hyphen <code class="language-plaintext highlighter-rouge">-</code>, and single quote (that stands for apostrophe) <code class="language-plaintext highlighter-rouge">'</code>. Note that the first character of the identifier must be either a letter or an underscore. Both <code class="language-plaintext highlighter-rouge">-</code> and <code class="language-plaintext highlighter-rouge">'</code> must be followed by an alphabetic character. Here are a few more valid identifiers:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$___</span>
+<p>Among the ASCII characters, you can use digits, underscore character
+<code>_</code>, a hyphen <code>-</code>, and single quote (that stands
+for apostrophe) <code>'</code>. Note that the first character of the
+identifier must be either a letter or an underscore. Both <code>-</code>
+and <code>'</code> must be followed by an alphabetic character. Here are
+a few more valid identifiers:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$___</span>
 
 <span class="nv">$a&#39;b&#39;c</span>
 
@@ -77,14 +145,14 @@
 <span class="nv">$address2</span>
 </pre></div>
 
-
-<p>Again, it is up to you to choose the names, but it is probably not a good practice to deliberately choose names that look cryptic.</p>
-
+<p>Again, it is up to you to choose the names, but it is probably not a
+good practice to deliberately choose names that look cryptic.</p>
 <h2 id="unicode-characters">Unicode characters</h2>
-
-<p>The definition of letters and digits is actually extended to include all those characters that are considered letters and decimal digits according to their Unicode properties. For example, the next variables are valid in Raku:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$привет</span>
+<p>The definition of letters and digits is actually extended to include
+all those characters that are considered letters and decimal digits
+according to their Unicode properties. For example, the next variables
+are valid in Raku:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$привет</span>
 
 <span class="nv">$駱駝道</span>
 
@@ -93,33 +161,50 @@
 <span class="nv">$Δ۲</span> <span class="c1"># where ۲ is a digit</span>
 </pre></div>
 
-
-<p><div class="practice"></p>
-<h2 id="practice">Practice</h2>
-
+<section id="practice" class="practice" data-markdown="1">
+<h2>Practice</h2>
 <p>Complete the quiz that covers the contents of this topic.</p>
 <ul>
-  <li><a href="/essentials/scalar-variables/identifiers/quiz">Quiz: Valid names of the variables</a></li>
+<li><a href="/essentials/scalar-variables/identifiers/quiz">Quiz: Valid
+names of the variables</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-        <a href="/essentials/scalar-variables">Scalar variables</a> / <a href="/essentials/scalar-variables/defined-or-operator">The defined-or operator</a>
-  |  
-        💪 <a href="/essentials/scalar-variables/exercises">Exercises: Scalar variables</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/scalar-variables/identifiers/">Deutsch</a> • <a href="/es/essentials/scalar-variables/identifiers/">Español</a> • <a href="/it/essentials/scalar-variables/identifiers/">Italiano</a> • <a href="/lv/essentials/scalar-variables/identifiers/">Latviešu</a> • <a href="/nl/essentials/scalar-variables/identifiers/">Nederlands</a> • <a href="/bg/essentials/scalar-variables/identifiers/">Български</a> • <a href="/ru/essentials/scalar-variables/identifiers/">Русский</a> • <a href="/uk/essentials/scalar-variables/identifiers/">Українська</a></p>
+<p>← <a href="/essentials/scalar-variables/defined-or-operator">The
+defined-or operator</a>   |   <a
+href="/essentials/scalar-variables/identifiers/quiz">Quiz: Valid names
+of the variables</a> →</p>
+<div class="related-docs">
+<p>
+📖 Related documentation on
+<a href="https://docs.raku.org" target="_blank" rel="noopener noreferrer">docs.raku.org</a>:
+</p>
+<ul>
+<li>
+<a href="https://docs.raku.org/language/variables#Sigils" target="_blank" rel="noopener noreferrer">Variables</a>
+</li>
+</ul>
 </div>
-
+<p><br /> 💪 Or jump directly <a
+href="/essentials/scalar-variables/exercises">to the exercises in this
+section</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/scalar-variables/identifiers">Deutsch</a> • <a
+href="/es/essentials/scalar-variables/identifiers">Español</a> • <a
+href="/it/essentials/scalar-variables/identifiers">Italiano</a> • <a
+href="/lv/essentials/scalar-variables/identifiers">Latviešu</a> • <a
+href="/nl/essentials/scalar-variables/identifiers">Nederlands</a> • <a
+href="/bg/essentials/scalar-variables/identifiers">Български</a> • <a
+href="/ru/essentials/scalar-variables/identifiers">Русский</a> • <a
+href="/uk/essentials/scalar-variables/identifiers">Українська</a></p>
+</div>
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution to ‘Apple sharing’</title>
-    <meta property="og:title" content="Solution to ‘Apple sharing’" />
-    <meta property="og:locale" content="en_US" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Solution: Apple sharing — Raku Course</title>
+    <meta property="og:title" content="Solution: Apple sharing — Raku Course" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Solution to ‘Apple sharing’</title>
+    <link rel="stylesheet" href="/assets/course.css?v=18">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,19 +88,32 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a> / <a href="/essentials/numbers/">Numbers</a> / <a href="/essentials/numbers/exercises/">Exercises</a> / <a href="/essentials/numbers/exercises/apple-sharing">Apple sharing</a></p>
-
+          <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
+/ <a href="/essentials/numbers">Numbers</a> / <a
+href="/essentials/numbers/exercises">Exercises</a> / <a
+href="/essentials/numbers/exercises/apple-sharing">Apple sharing</a></p>
 <h1 id="solution-apple-sharing">Solution: Apple sharing</h1>
-
 <p>Here is the solution to the problem.</p>
-
 <h2 id="code">Code</h2>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$N</span> = <span class="mi">3</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$N</span> = <span class="mi">3</span>;
 <span class="k">my</span> <span class="nv">$K</span> = <span class="mi">11</span>;
 
 <span class="k">my</span> <span class="nv">$gets</span> = <span class="nv">$K</span> <span class="o">div</span> <span class="nv">$N</span>;
@@ -60,66 +123,61 @@
 <span class="nb">say</span> <span class="s">&quot;There are $remains apple(s) remaining.&quot;</span>;
 </pre></div>
 
-
-<p>🦋 You can find the full code in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku">apple-sharing.raku</a>.</p>
-
+<p>🦋 You can find the full code in the file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku">apple-sharing.raku</a>.</p>
 <h2 id="output">Output</h2>
-
-<p>With the input numbers 3 and 11, the program prints the following output:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/numbers/apple-sharing.raku
-<span class="go">Each person gets 3 apple(s).
-There are 2 apple(s) remaining.
-</span></code></pre></div></div>
-
-<p>Modify the initial value of <code class="language-plaintext highlighter-rouge">$N</code> and <code class="language-plaintext highlighter-rouge">$K</code> to model other situations:</p>
-
+<p>With the input numbers 3 and 11, the program prints the following
+output:</p>
+<div class="highlight"><pre>$ raku exercises/numbers/apple-sharing.raku
+Each person gets 3 apple(s).
+There are 2 apple(s) remaining.</pre></div>
+<p>Modify the initial value of <code>$N</code> and <code>$K</code> to
+model other situations:</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">$K</code> is multiple of <code class="language-plaintext highlighter-rouge">$N</code>, for example, <code class="language-plaintext highlighter-rouge">12</code> and <code class="language-plaintext highlighter-rouge">3</code>;</li>
-  <li><code class="language-plaintext highlighter-rouge">$K</code> is equals to <code class="language-plaintext highlighter-rouge">$N</code>;</li>
-  <li><code class="language-plaintext highlighter-rouge">$K</code> is less than <code class="language-plaintext highlighter-rouge">$N</code>.</li>
+<li><code>$K</code> is multiple of <code>$N</code>, for example,
+<code>12</code> and <code>3</code>;</li>
+<li><code>$K</code> is equal to <code>$N</code>;</li>
+<li><code>$K</code> is less than <code>$N</code>.</li>
 </ul>
-
 <h2 id="comments">Comments</h2>
-
-<p>In the program, we are using the two operators: <code class="language-plaintext highlighter-rouge">div</code> to perform integer division and <code class="language-plaintext highlighter-rouge">%</code> for getting the remainder of the division. Alternatively, you can make the calculations in the following manner:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$gets</span> = <span class="nv">$K</span> <span class="o">div</span> <span class="nv">$N</span>;
+<p>In the program, we are using the two operators: <code>div</code> to
+perform integer division and <code>%</code> for getting the remainder of
+the division. Alternatively, you can make the calculations in the
+following manner:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$gets</span> = <span class="nv">$K</span> <span class="o">div</span> <span class="nv">$N</span>;
 <span class="k">my</span> <span class="nv">$remains</span> = <span class="nv">$K</span> - <span class="nv">$N</span> * <span class="nv">$gets</span>;
 </pre></div>
 
-
 <p>Also note how the variables are interpolated in the string.</p>
-
-<p><div class="exercises"></p>
-<h2 id="next-exercise">Next exercise</h2>
-
-<p>💪 <a href="/essentials/numbers/exercises/sum-of-numbers">Sum of numbers</a>
-</div></p>
-
 <h2 id="course-navigation">Course navigation</h2>
-
-<p>←
-    <a href="/essentials/strings">Strings</a>
-        / <a href="/essentials/strings/string-length">String length</a>
-  |  
-    <a href="/essentials/booleans">Boolean type</a>
+<p>← <a href="/essentials/numbers/exercises/apple-sharing">Apple
+sharing</a>   |   <a
+href="/essentials/numbers/exercises/sum-of-numbers">Sum of numbers</a>
 →</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Translations of this page: <strong>English</strong> • <a href="/de/essentials/numbers/exercises/apple-sharing/solution/">Deutsch</a> • <a href="/es/essentials/numbers/exercises/apple-sharing/solution/">Español</a> • <a href="/it/essentials/numbers/exercises/apple-sharing/solution/">Italiano</a> • <a href="/lv/essentials/numbers/exercises/apple-sharing/solution/">Latviešu</a> • <a href="/nl/essentials/numbers/exercises/apple-sharing/solution/">Nederlands</a> • <a href="/bg/essentials/numbers/exercises/apple-sharing/solution/">Български</a> • <a href="/ru/essentials/numbers/exercises/apple-sharing/solution/">Русский</a> • <a href="/uk/essentials/numbers/exercises/apple-sharing/solution/">Українська</a></p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <strong>English</strong> • <a
+href="/de/essentials/numbers/exercises/apple-sharing/solution">Deutsch</a>
+• <a
+href="/es/essentials/numbers/exercises/apple-sharing/solution">Español</a>
+• <a
+href="/it/essentials/numbers/exercises/apple-sharing/solution">Italiano</a>
+• <a
+href="/lv/essentials/numbers/exercises/apple-sharing/solution">Latviešu</a>
+• <a
+href="/nl/essentials/numbers/exercises/apple-sharing/solution">Nederlands</a>
+• <a
+href="/bg/essentials/numbers/exercises/apple-sharing/solution">Български</a>
+• <a
+href="/ru/essentials/numbers/exercises/apple-sharing/solution">Русский</a>
+• <a
+href="/uk/essentials/numbers/exercises/apple-sharing/solution">Українська</a></p>
 </div>
-
 
         </div>
       </main>
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=1" defer></script>
   </body>
 </html>
