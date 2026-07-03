@@ -18,7 +18,7 @@ my $from-to = 'London to Paris';
 
 All the identifiers are valid, but it is probably better to avoid names with apostrophes if you `$don't` have strong reasons to use them.
 
-🦋 You can find the source code in the file [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 You can find the source code in the file [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Output
 

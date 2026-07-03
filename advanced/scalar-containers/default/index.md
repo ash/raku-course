@@ -1,42 +1,41 @@
 ---
-title: Default values of scalars in Raku
+title: Default values
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-When a new scalar variable is created without immediate value assignment, the variable in the scalar container gets some default value. The exact value depends on the type of the variable.
+When a new scalar variable is created without an immediate assignment, the container still holds a value — its default value. The exact default depends on the type of the variable.
 
-Uninitialized values get default values depending on their type. The following program though is not the best way of using Raku:
+The program below is not the best way to use Raku, but it shows the point:
 
 ```raku
 my $int;
 say $int + 5;
 ```
 
-While the output will contain `5`, which may be the desired output assuming that the initial default value of `$int` would be `0`, it also has an error message:
+The output contains `5`, which may be what you expected if you assumed that the default value of `$int` is `0`. However, the program also prints a warning:
 
 ```
-Use of uninitialized value of type Any in numeric context
+Use of uninitialized value $int of type Any in numeric context
   in block <unit> at t.raku line 2
 5
 ```
 
-To eliminate any uncertainty, either assign a value explicitly:
+To remove this uncertainty, either assign a value explicitly:
 
 ```raku
 my $int = 0;
 say $int + 5; # 5
 ```
 
-Or determine a default value:
+Or declare a default value with the `is default` trait:
 
 ```raku
 my $int is default(0);
 say $int + 5; # 5
 ```
 
-The default value is not limited to zero values only. It can be any value you thing is a good candidate for being default. For example:
+The default value is not limited to zero. It can be any value that you consider a good candidate, for example:
 
 ```raku
 my $int is default(1);

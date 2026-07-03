@@ -12,7 +12,7 @@ The program gets the arguments from the command line in the array `@*ARGS`. So, 
 .say for @*ARGS;
 ```
 
-🦋 Find the program in the file [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Find the program in the file [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Output
 

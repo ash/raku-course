@@ -14,7 +14,7 @@ sub MAIN() {
 }
 ```
 
-🦋 Find the program in the file [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world.raku).
+🦋 Find the program in the file [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world.raku).
 
 ## Code 2
 
@@ -23,7 +23,7 @@ unit sub MAIN;
 say 'Hello, World!';
 ```
 
-🦋 Find the program in the file [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world-unit.raku).
+🦋 Find the program in the file [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world-unit.raku).
 
 ## Example
 

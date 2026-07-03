@@ -18,7 +18,7 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Find the program in the file [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Find the program in the file [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
 ## Output
 

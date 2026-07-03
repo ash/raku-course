@@ -14,7 +14,7 @@ my ($a, $b) = 3, 8;
 say "$a, $b";
 ```
 
-🦋 You can find the source code in the file [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 You can find the source code in the file [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
 ## Output
 

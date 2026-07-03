@@ -14,7 +14,7 @@ my $city = prompt 'Where are you from? ';
 say 'Hello, ' ~ $name ~ ' from ' ~ $city ~ '!';
 ```
 
-🦋 You can find the source code in the file [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
+🦋 You can find the source code in the file [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-concatenation.raku).
 
 ## Output
 

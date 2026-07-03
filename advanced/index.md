@@ -7,3 +7,5 @@ title: Advanced Raku subjects
 
 {% assign extended_menu = true %}
 {% include toc.html %}
+
+{% include translations.html %}

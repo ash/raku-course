@@ -19,6 +19,8 @@ Sometimes, practical assignments (both quizzes and exercises) give additional in
 
 Below each page, there is a navigation block that you can use to traverse the entire course. You can also always jump to the desired section using the breadcrumbs menu at the top of the page.
 
+Main content pages also contain links to the official Raku documentation so that you can explore the topic more thoroughly.
+
 While the navigation guides you through the assignments in a particular order, you can solve them in more or less random order withing the current section or topic.
 
 ## Contents
@@ -27,17 +29,19 @@ The five parts of the course are:
 
 1. Raku essentials
 1. Advanced Raku subjects
-1. Object-oriented programming in Raku
+1. Objects, I/O, and exceptions
 1. Regexes and grammars
-1. Functional, concurrent, and reactive programming
+1. Functional, concurrent, reactive, and web programming
 
-At the moment, the first part is completely written and published. The other parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.
+The parts contain:
 
-The first part, ‘Raku essentials’, contains:
-
-- 91 topics
-- 73 quizzes
-- 65 exercises
+| Part | Topics | Quizzes | Exercises |
+|------|-------:|--------:|----------:|
+| Raku essentials | 91 | 73 | 65 |
+| Advanced Raku subjects | 86 | 48 | 115 |
+| Objects, I/O, and exceptions | 33 | 20 | 55 |
+| Regexes and grammars | 34 | 29 | 49 |
+| Functional, concurrent, reactive, and web programming | 40 | 31 | 56 |
 
 New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
@@ -55,14 +59,31 @@ The different installation options are described at the beginning of the first p
 
 ## About the author
 
-The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The course material is based on daily experience, particularly on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
+The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The course material is based on daily experience, particularly on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://github.com/ash/covid.observer) website.
 
 ## Contributing, terms of use, and feedback
 
 The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others. The commercial usage in classes is allowed without permission. Releasing the course as a separate product must be first negotiated with the author.
 
-The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:andy@shitov.ru).
+The course content is available in several languages. These are automated AI-based translations of the original English manuscript.
+
+The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:mail@andreyshitov.com).
 
 ## Running locally
 
-For the instructions on how to run the site locally, please read [INSTALL.md](INSTALL.md).
+The course is a set of Markdown files that the `raku-pages.raku` program builds
+into a static HTML site. In short:
+
+    # 1. Install the prerequisites (Rakudo, the YAMLish module, and pandoc)
+    zef install YAMLish
+
+    # 2. Build the site (output goes to the _out/ directory)
+    raku raku-pages.raku --language=en --quick
+
+    # 3. Serve it locally and open http://localhost:8000/
+    ln -sfn ../assets _out/assets    # once, if the symlink is missing
+    cd _out
+    python3 -m http.server 8000
+
+For the full instructions — including syntax highlighting, build options, and
+the edit/rebuild loop — see [INSTALL.md](INSTALL.md).

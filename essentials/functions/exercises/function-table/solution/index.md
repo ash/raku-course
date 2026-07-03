@@ -18,7 +18,7 @@ loop (my $x = -3; $x <= 3; $x += 0.1) {
 }
 ```
 
-🦋 Find the program in the file [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-table.raku).
+🦋 Find the program in the file [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-table.raku).
 
 ## Output
 

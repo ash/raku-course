@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say "Hello, $name! Your name has {$name.chars} letters.";
 ```
 
-🦋 You can find the source code in the file [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 You can find the source code in the file [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
 ## Output
 

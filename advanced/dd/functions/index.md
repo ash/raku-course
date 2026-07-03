@@ -1,11 +1,10 @@
 ---
-title: Dumping function signatures in Raku
+title: Dumping function signatures
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-A bare `dd` called inside a function prints its signature: the name and the list of arguments it it has them. Examine the following example with two different functions.
+A bare `dd` — called with no arguments inside a subroutine — prints the signature of that subroutine: its name and the list of parameters, if it has any. Examine the following example with two subroutines:
 
 ```raku
 sub f1 {
@@ -21,14 +20,14 @@ sub f2($x) {
 f2(42);
 ```
 
-The program prints:
+The program prints the signatures rather than any values:
 
-```
+```console
 sub f1()
 sub f2($x)
 ```
 
-If you have multi-function, this method helps to debug and see which multi-variant was called.
+This is especially useful with multi-functions, where it tells you which candidate was actually called:
 
 ```raku
 multi sub g {
@@ -43,9 +42,9 @@ g();
 g(42);
 ```
 
-The output is:
+The output names the matching variant each time:
 
-```
+```console
 sub g()
 sub g($x)
 ```

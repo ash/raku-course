@@ -1,0 +1,1 @@
+say 'raku'.flip.uc;

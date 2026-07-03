@@ -13,7 +13,7 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 You can find the source code in the file [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 You can find the source code in the file [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Output
 

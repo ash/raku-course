@@ -3,6 +3,9 @@
 use YAMLish;
 
 my %toc;
+# How many parts to actually publish. Parts numbered above this are listed on
+# the front page (greyed out) but not generated, and links into them are muted.
+my $published-limit = Inf;
 
 my @languages =
     en => 'English',
@@ -23,8 +26,7 @@ my %pagetype-key =
     Quiz => 'quizzes';
 
 
-sub get-toc($lang) returns Hash {
-
+sub get-toc($lang, $is-silent) returns Hash {
     # URL levels:
     #  L1         L2               L3
     # /essentials/running-programs/from-ide/
@@ -40,7 +42,7 @@ sub get-toc($lang) returns Hash {
         return $content;
     }
 
-    sub scan-parts($toc) {
+    sub scan-parts($toc, $is-silent = False) {        
         my $part-number = 0;
 
         for @$toc -> $part {
@@ -51,11 +53,12 @@ sub get-toc($lang) returns Hash {
             # such as "About this course" are not counted.
             $part-number++ if $part<items>;
 
-            say "Part $part-number. \e[1m$part-title\e[0m \e[34m$part-url\e[0m";
+            say "Part $part-number. \e[1m$part-title\e[0m \e[34m$part-url\e[0m" unless $is-silent;
 
             %toc{$part-url} = {
                 title => $part-title,
                 long-title => $part<long_title>,
+                description => $part<description>,
                 url => $part-url,
                 prev-url => $prev-url,
                 type => Part,
@@ -64,14 +67,14 @@ sub get-toc($lang) returns Hash {
             };
             $prev-url = $part-url;
 
-            scan-subparts($part<items>, $part-url) if $part<items>;
+            scan-subparts($part<items>, $part-url, $is-silent) if $part<items>;
         }
     }
 
-    sub scan-subparts($subparts, $parent-url) {
+    sub scan-subparts($subparts, $parent-url, $is-silent = False) {
         for @$subparts -> $subpart {
             my $subpart-title = $subpart<title>;
-            say "    Subpart \e[1m$subpart-title\e[0m";
+            say "    Subpart \e[1m$subpart-title\e[0m" unless $is-silent;
 
             %toc{$parent-url}<subparts> //= [];
             @(%toc{$parent-url}<subparts>).push: {
@@ -79,13 +82,13 @@ sub get-toc($lang) returns Hash {
                 title => $subpart-title,
             };
 
-            scan-levels($subpart<items>, $parent-url, Section) if $subpart<items>;
-            scan-levels($subpart<exercises>, $parent-url, Exercise) if $subpart<exercises>;
-            scan-levels($subpart<quizzes>, $parent-url, Quiz) if $subpart<quizzes>;
+            scan-levels($subpart<items>, $parent-url, Section, $is-silent) if $subpart<items>;
+            scan-levels($subpart<exercises>, $parent-url, Exercise, $is-silent) if $subpart<exercises>;
+            scan-levels($subpart<quizzes>, $parent-url, Quiz, $is-silent) if $subpart<quizzes>;
         }
     }
 
-    sub scan-levels($levels, $parent-url, $type) {
+    sub scan-levels($levels, $parent-url, $type, $is-silent = False) {
         for @$levels -> $level {
             my $level-title = $level<title>;
             my $level-url = $level<url>;
@@ -106,7 +109,7 @@ sub get-toc($lang) returns Hash {
             %toc{$parent-url}{$pagetype-key}.push($url);
 
             my $indent = "    " x $parent-url.comb('/').elems + 2;
-            say "$indent $type \e[1m$level-title\e[0m \e[34m$url\e[0m";
+            say "$indent $type \e[1m$level-title\e[0m \e[34m$url\e[0m" unless $is-silent;
 
             if $type eq Exercise {
                 add-exercises-page($url);
@@ -121,9 +124,9 @@ sub get-toc($lang) returns Hash {
                 $prev-url = $solution-url;
             }
 
-            scan-levels($level<items>, $url, Topic) if $level<items>;
-            scan-levels($level<exercises>, $url, Exercise) if $level<exercises>;
-            scan-levels($level<quizzes>, $url, Quiz) if $level<quizzes>;
+            scan-levels($level<items>, $url, Topic, $is-silent) if $level<items>;
+            scan-levels($level<exercises>, $url, Exercise, $is-silent) if $level<exercises>;
+            scan-levels($level<quizzes>, $url, Quiz, $is-silent) if $level<quizzes>;
         }
 
         sub add-exercises-page($url) {
@@ -146,8 +149,8 @@ sub get-toc($lang) returns Hash {
         }
     }
 
-    my $toc = read-toc($lang);
-    scan-parts($toc<toc>);
+    my $toc = read-toc($lang);    
+    scan-parts($toc<toc>, $is-silent);
 
     link-toc();
 
@@ -177,9 +180,83 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
     }
     say "Pandoc found at $pandoc-path";
 
+    # Ensure the assets symlink exists — a fresh `rm -rf _out` removes it, which
+    # would leave every page unstyled. Recreate it so builds are self-contained.
+    $destination.IO.mkdir;
+    my $assets-link = "$destination/assets";
+    unless $assets-link.IO.e {
+        run 'ln', '-s', '../assets', $assets-link;
+        say "\e[32mCreated $assets-link -> ../assets\e[0m";
+    }
+
+    # Related-documentation links: maps a section path (part/section) to a list
+    # of {title, url} pages on docs.raku.org. Every content page under a section
+    # shows them in a block at the bottom (see the {{ related-docs }} template
+    # token). The map is optional — sections without an entry get no block.
+    my %docs-links;
+    my $docs-file = "_data/docs/$lang.yaml";
+    %docs-links = load-yamls($docs-file.IO.slurp)[0] // %() if $docs-file.IO.f;
+
+    sub related-docs(%content) {
+        my @seg = (%content<url> // '').split('/').grep(*.chars);
+        return '' unless @seg >= 2;
+        # Theory pages only: skip quizzes, exercises, solutions, and listings.
+        return '' if @seg.tail eq 'quiz' || @seg.any eq 'exercises';
+        my $links = %docs-links{@seg[0, 1].join('/')};
+        return '' unless $links;
+        # Emit raw HTML (not Markdown) so the links can open in a new tab; the
+        # external-link icon after each is added by CSS (div.related-docs a).
+        my $items = $links.map({
+            "<li><a href=\"https://docs.raku.org{.<url>}\" target=\"_blank\" rel=\"noopener noreferrer\">{html-escape(.<title>)}</a></li>"
+        }).join("\n");
+        return "<div class=\"related-docs\">\n"
+            ~ "<p>📖 Related documentation on <a href=\"https://docs.raku.org\" target=\"_blank\" rel=\"noopener noreferrer\">docs.raku.org</a>:</p>\n"
+            ~ "<ul>\n$items\n</ul>\n</div>";
+    }
+
     my $saved-count   = 0;
     my $pending-count = 0;
     my @pending-pages;
+    my @search-docs;   # {u, t, b} per page, written out as search-index.json
+
+    # Reduce a page's Markdown to plain, searchable text. We deliberately KEEP
+    # operator characters (* ~ | < > = : / # _ etc.) and code verbatim, so the
+    # search can find operators like ** ~~ <=> Z= — only structural Markdown is
+    # removed.
+    sub index-text($md is copy) {
+        $md ~~ s/ ^ '---' \n .*? \n '---' \n //;          # YAML frontmatter
+        $md ~~ s:g/ '{%' .*? '%}' //;                     # {% include ... %}
+        $md ~~ s:g/ '{:' <-[}]>* '}' //;                  # {:.quiz} etc.
+        $md ~~ s:g/ '```' \N* \n //;                      # code-fence lines (keep the code)
+        $md ~~ s:g/ '!'? '[' (<-[\]]>*) ']' '(' <-[)]>* ')' /$0/;  # [text](url) / ![alt](url) → text
+        $md ~~ s:g/ '`' //;                               # inline-code backticks (keep content)
+        $md ~~ s:g/ ^^ \h* '#'+ \h* //;                   # leading heading hashes
+        $md ~~ s:g/ \s+ / /;                              # collapse whitespace
+        return $md.trim;
+    }
+
+    # Plain-text version of a node title: strip Markdown code/emphasis markers,
+    # link syntax, and the temporary 🆕 marker. Used for <title> tags and search
+    # result labels, neither of which should show raw markup.
+    sub clean-title($t is copy) {
+        $t ~~ s:g/ '`' //;                                # inline-code backticks
+        $t ~~ s:g/ <[*_]> //;                             # * _ emphasis
+        $t ~~ s:g/ '[' (<-[\]]>*) ']' '(' <-[)]>* ')' /$0/;  # [text](url) → text
+        $t ~~ s:g/ \s* '🆕' \s* //;                        # temporary new-marker
+        $t ~~ s:g/ \s+ / /;
+        return $t.trim;
+    }
+
+    sub json-escape($s) {
+        $s.trans(['\\', '"', "\n", "\t", "\r"] => ['\\\\', '\\"', ' ', ' ', ' ']);
+    }
+
+    sub build-search-json(@docs) {
+        '[' ~ @docs.map({
+            '{"u":"' ~ json-escape(.<u>) ~ '","t":"' ~ json-escape(.<t>)
+            ~ '","b":"' ~ json-escape(.<b>) ~ '"}'
+        }).join(',') ~ ']';
+    }
 
     sub generate-page(%toc, $lang, $dir) {
         # $dir is '' for the home page, so join carefully to avoid a leading '/'.
@@ -199,12 +276,24 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             );
 
             $html = post-process-html($html) if $html ~~ /'%%'/;
+            $html = neutralize-unpublished-links($html) if $dir;
 
             my $output-dir = $lang eq 'en' ?? "$destination/$dir" !! "$destination/$lang/$dir";
             $output-dir.IO.mkdir(:parent);
 
             my $output-path = "$output-dir/index.html";
             $output-path.IO.spurt($html);
+
+            # Collect this page for the full-text search index (skip the home
+            # page — its text is just the table of contents).
+            if $dir {
+                my $text = index-text($md);
+                @search-docs.push: {
+                    u => ($lang eq 'en' ?? "/$dir" !! "/$lang/$dir"),
+                    t => clean-title($title // ''),
+                    b => $text,
+                } if $text;
+            }
 
             $saved-count++;
             say "\e[32mSaved to $output-path\e[0m";
@@ -225,6 +314,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
     for %toc.keys -> $dir {
         next if $filter && $dir !~~ /$filter/;
         next if $uri && $dir ne $uri;
+        next if beyond-limit($dir);          # part not published yet
 
         generate-page(%toc, $lang, $dir);
     }
@@ -233,12 +323,30 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         ~ ($pending-count ?? " \e[33m$pending-count page(s) still to write:\e[0m" !! '');
     say "  \e[33m• $_\e[0m" for @pending-pages.sort;
 
+    # Write the full-text search index — but only for a complete build, so a
+    # filtered/single-page run never clobbers the full index.
+    unless $filter || $uri {
+        my $index-path = $lang eq 'en'
+            ?? "$destination/search-index.json"
+            !! "$destination/$lang/search-index.json";
+        $index-path.IO.spurt(build-search-json(@search-docs));
+        say "\e[32mSearch index: {@search-docs.elems} pages → $index-path\e[0m";
+    }
+
     sub md-to-html(*%content) {
         state $template = "_templates/default.html".IO.slurp;
 
         sub field-substitute($from) {
             given $from {
-                when / 'title' | 'lang' | 'locale' /   { return %content{$from} }
+                when 'title' {
+                    # Home page gets the full course name; every other page gets
+                    # its cleaned title followed by the course name.
+                    return 'The Complete Course of the Raku Programming Language'
+                        if (%content<url> // '') eq '';
+                    return clean-title(%content<title> // '') ~ ' — Raku Course';
+                }
+
+                when / 'lang' | 'locale' /   { return %content{$from} }
 
                 when 'content' { return prepare-content(%content<md>) }
 
@@ -252,26 +360,41 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }
 
         sub format-code($language is copy, $code) {
+            # Raku blocks carry an extra `raku` class on the wrapper so that the
+            # copy-to-clipboard button (added by copy-code.js) attaches only to
+            # them — never to program output (```console) or data (```json).
+            my $is-raku = $language.lc eq 'raku' | 'perl6';
+            my $wrapper = $is-raku ?? 'highlight raku' !! 'highlight';
+
             # Plain, HTML-escaped code block — matching the wrapper pygments uses
             # — so the code is always marked up and styled even without a
             # highlighter (--quick, no pygments, or a per-block failure).
-            my $plain = '<div class="highlight"><pre>' ~ html-escape($code) ~ '</pre></div>';
+            my $plain = qq[<div class="$wrapper"><pre>] ~ html-escape($code) ~ '</pre></div>';
 
             return $plain unless $pygmentize-path;
 
-            # $language = 'bash' if $language eq 'console';
-            $language = 'raku' unless $language;
+            # Only Raku code is syntax-highlighted. Everything else — program
+            # output (whether bare or marked ```console), JSON, etc. — stays
+            # plain, so it is never coloured as if it were Raku code.
+            return $plain unless $is-raku;
 
             # Pipe the code through pygmentize via stdin/stdout. (Using a shared
             # temp file here races: an async read can pick up another block's
             # output.) Write input, then drain stdout/stderr, then check status.
+            # Class-based output (the default — no noclasses): tokens get short
+            # CSS classes (.k, .s, …) coloured by course.css, so light AND dark
+            # palettes can be themed from the stylesheet.
             my $proc = run $pygmentize-path, '-f', 'html', '-l', $language,
-                '-O', 'style=vs', :in, :out, :err;
+                :in, :out, :err;
             $proc.in.spurt($code, :close);
             my $html = $proc.out.slurp(:close);
             $proc.err.slurp(:close);
 
-            return ($proc.exitcode == 0 && $html.trim) ?? $html !! $plain;
+            return $plain unless $proc.exitcode == 0 && $html.trim;
+
+            # Pygments emits <div class="highlight">; add the `raku` marker class
+            # so the copy button hooks onto highlighted blocks too.
+            return $html.subst('<div class="highlight">', '<div class="highlight raku">');
         }
 
         sub format-quiz($class is copy, $body) {
@@ -296,6 +419,38 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             QUIZ
         }
 
+        sub include-stats() {
+            # Course-size figures for the home page, counted live from the TOC so
+            # they never go stale. Numbers reflect the current language: `pages`
+            # counts every TOC entry that has a real index.md for this language.
+            my @v = %toc.values;
+            my $parts     = @v.grep({ .<type> == Part && .<items> }).elems;
+            my $topics    = @v.grep({ .<type> == Section | Topic }).elems;
+            my $quizzes   = @v.grep({ .<type> == Quiz }).elems;
+            my $exercises = @v.grep({ .<type> == Exercise }).elems;
+
+            my $lang = %content<lang>;
+            my $pages = %toc.keys.grep(-> $dir {
+                my $src  = $lang eq 'en' ?? $dir !! ($dir ?? "$lang/$dir" !! $lang);
+                my $path = $src ?? "$src/index.md" !! 'index.md';
+                $path.IO.f;
+            }).elems;
+
+            sub stat($n, $label) {
+                # {$n}/{$label} braces stop Raku reading `$n<...>` as a subscript.
+                qq[  <div class="stat"><span class="num">{$n}</span><span class="label">{$label}</span></div>];
+            }
+
+            return join "\n",
+                '<div class="home-stats">',
+                stat($parts, 'parts'),
+                stat($topics, 'topics'),
+                stat($quizzes, 'quizzes'),
+                stat($exercises, 'exercises'),
+                stat($pages, 'pages'),
+                '</div>';
+        }
+
         sub process-includes($filename) {
             state %includes =
                 'languages.html' => sub { '' },
@@ -303,6 +458,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 'toc.html' => &include-toc,
                 'menu.html' => &include-menu,
                 'quiz.html' => &include-quiz,
+                'stats.html' => &include-stats,
                 'translations.html' => &include-translations,
             ;
 
@@ -312,7 +468,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         sub head-includes(%content) {
             if %toc{%content<url>}<type> == Quiz {
                 return qq:to/INCLUDE/;
-                <link rel="stylesheet" href="/assets/quiz.css?v=2">
+                <link rel="stylesheet" href="/assets/quiz.css?v=5">
                 <script type="text/javascript" src="/assets/quiz.js?v=2"></script>
                 INCLUDE
             }
@@ -336,11 +492,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 @crumbs.push: "[$title](/$crumb-url)";
             }
 
-            return qq:to/MENU/;
-            {@crumbs.join(' / ')}
-
-            # {%content<title>}
-            MENU
+            # Part-landing pages take their heading from toc.html (render-part,
+            # which shows "Part N. …"), so suppress the duplicate title here.
+            my $title-md = %toc{$full-url}<part-number> ?? '' !! "\n\n# {%content<title>}";
+            return "{@crumbs.join(' / ')}$title-md\n";
         }
 
         sub include-quiz() {
@@ -350,9 +505,9 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             <script>
             prepare_quiz();
             </script>
-            <div style="margin: 3em 0;">
-            <button onclick="checkquiz()">Check the answers</button>
-            <button onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
+            <div class="quiz-actions" style="margin: 3em 0;">
+            <button class="quiz-btn quiz-btn-primary" onclick="checkquiz()">Check the answers</button>
+            <button class="quiz-btn quiz-btn-ghost" onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
             </div>
             QUIZ
         }
@@ -382,9 +537,17 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             }
 
             sub quizzes-list() {
-                return '' unless %toc{$url}<quizzes>;
+                my $curr = %toc{$url};
 
-                my @quizzes = @(%toc{$url}<quizzes>);
+                # A topic page lists its own quizzes. A section landing page has
+                # none of its own, so it aggregates the quizzes of its topics —
+                # giving the section one place that gathers all its practice.
+                my @quizzes = @($curr<quizzes> // []);
+                for @($curr<topics> // []) -> $topic-url {
+                    @quizzes.append: @(%toc{$topic-url}<quizzes> // []);
+                }
+
+                return '' unless @quizzes;
 
                 my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
                 my $quizzes;
@@ -393,13 +556,12 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                     $quizzes ~= "* [$quiz<title>]($lang-prefix/$quiz-url)\n";
                 }
 
+                my $scope = $curr<topics> ?? 'section' !! 'topic';
                 return qq:to/QUIZZES/;
                 <div class="practice" markdown="1">
-                <p></p>
-
                 ## Practice
 
-                Complete the quiz{@quizzes.elems > 1 ?? 'zes' !! ''} that cover{@quizzes.elems == 1 ?? 's' !! ''} the contents of this topic.
+                Complete the quiz{@quizzes.elems > 1 ?? 'zes' !! ''} that cover{@quizzes.elems == 1 ?? 's' !! ''} the contents of this $scope.
 
                 $quizzes
                 </div>
@@ -470,7 +632,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             my $prev-url  = %toc{$url}<prev-url>;
             my $next-url  = %toc{$url}<next-url>;
             my $prev-page = $prev-url ?? %toc{$prev-url} !! Nil;
-            my $next-page = $next-url ?? %toc{$next-url} !! Nil;
+            # Do not offer a "next" link that would jump into an unpublished part.
+            my $next-page = ($next-url && !beyond-limit($next-url)) ?? %toc{$next-url} !! Nil;
 
             my $course-nav = '';
             $course-nav ~= "← [$prev-page<title>](/$prev-url)" if $prev-page;
@@ -487,6 +650,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             ## Course navigation
 
             {$course-nav}
+
+            {related-docs(%content)}
 
             {link-exercises-if-any()}
 
@@ -508,10 +673,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 return @parts ?? ' — ' ~ @parts.join(' and ') !! '';
             }
 
-            sub render-part($part, Bool $extended) {
+            sub render-part($part, Bool $extended, Bool :$heading = True) {
                 my $part-url = $part<url>;
                 my $long     = $part<long-title> // $part<title>;
-                my $toc      = "## Part {$part<part-number>}. $long\n\n";
+                my $toc      = $heading ?? "# Part {$part<part-number>}. $long\n\n" !! '';
 
                 for @($part<items> // []) -> $subpart {
                     $toc ~= "#### $subpart<title>\n\n";
@@ -538,13 +703,48 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
 
             my $url = %content<url>;
 
-            # Home page: list every content part (those with items), no counts.
+            # Home page: one card per part. The level-2 subparts are always
+            # visible; only their sections/topics collapse (a <details> each).
+            # An "expand all" button on the part header opens/closes every
+            # subpart in the card at once.
             if $url eq '' {
-                my $toc = '';
-                for @(%toc{''}<parts> // []) -> $raw-part {
-                    next unless $raw-part<items>;
-                    $toc ~= render-part(%toc{$raw-part<url>}, False);
+                my @content-parts = @(%toc{''}<parts> // []).grep(*.<items>);
+                my $expand-ico = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">'
+                    ~ '<path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+                    ~ '<path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+                my $toc = "<div class=\"course-map\">\n\n";
+                for @content-parts -> $raw-part {
+                    my $part = %toc{$raw-part<url>};
+                    my $long = $part<long-title> // $part<title>;
+                    my $href = "$top/{$part<url>}";
+                    my $locked = ($part<part-number> // 0) > $published-limit;
+                    $toc ~= "<div class=\"part-card{ $locked ?? ' part-locked' !! '' }\">\n\n";
+                    $toc ~= "<h3 class=\"part-head\"><span class=\"pnum\">{$part<part-number>}</span>"
+                        ~ " <a class=\"part-title\" href=\"{$href}\">{$long}</a>"
+                        ~ ( $locked ?? " <span class=\"part-soon\">coming soon</span>" !! '' )
+                        ~ " <button class=\"part-expand\" type=\"button\" aria-expanded=\"false\""
+                        ~ " title=\"Expand all sections\" aria-label=\"Expand all sections\">{$expand-ico}</button></h3>\n\n";
+                    $toc ~= "{$part<description>}\n\n" if $part<description>;
+
+                    $toc ~= "<div class=\"subparts\">\n\n";
+                    for @($part<items> // []) -> $subpart {
+                        $toc ~= "<details class=\"toc-subpart\">\n";
+                        $toc ~= "<summary>{$subpart<title>}</summary>\n\n";
+                        for @($subpart<items> // []) -> $section {
+                            my $surl = "$top/{$part<url>}/{$section<url>}";
+                            $toc ~= "* [{$section<title>}]({$surl})\n";
+                            for @($section<items> // []) -> $topic {
+                                $toc ~= "    - [{$topic<title>}]({$surl}/{$topic<url>})\n";
+                            }
+                        }
+                        $toc ~= "\n</details>\n\n";
+                    }
+                    $toc ~= "</div>\n\n";
+                    $toc ~= "</div>\n\n";
                 }
+                $toc ~= "</div>\n\n";
+
                 return $toc;
             }
 
@@ -553,6 +753,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }
 
         sub include-translations() {
+            # Only Part 1 (and the home page) is translated, so the block is
+            # suppressed everywhere else.
+            return '' unless %content<url> eq '' || part-number-of(%content<url>) == 1;
+
             my @links;
             for @languages -> $language {
                 my $code = $language.key;
@@ -637,7 +841,7 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
             my @code;
 
             $md ~~ s:g/ '```' (\S+)? \n+ (.*?) \n+ '```' /{
-                @code.push([($0 // 'raku').Str, ~$1]);
+                @code.push([($0 // '').Str, ~$1]);
                 'CodeBlockPlaceholder' ~ @code.elems
             }/;
 
@@ -708,11 +912,39 @@ sub parent-level-url($url is copy) {
     return $url;
 }
 
-sub MAIN(:$language = '', :$quick = False, :$filter = '', :$uri = '') {
+# The 1-based part number a URL belongs to (0 for the home page, about page,
+# and anything not inside a numbered part).
+sub part-number-of($url) {
+    return 0 unless $url;
+    return %toc{ $url.split('/')[0] }<part-number> // 0;
+}
+
+# True when a URL sits in a part beyond what we publish.
+sub beyond-limit($url) {
+    my $n = part-number-of($url);
+    return $n && $n > $published-limit;
+}
+
+# Rewrite in-text links that point into an unpublished part into muted,
+# non-clickable spans, so a published build never links to a missing page.
+sub neutralize-unpublished-links($html) {
+    return $html if $published-limit == Inf;
+    my @locked = (%toc{''}<parts> // [])
+        .grep({ .<items> && (%toc{.<url>}<part-number> // 0) > $published-limit })
+        .map(*.<url>);
+    return $html unless @locked;
+    return $html.subst(
+        / '<a' <-[>]>*? 'href="/' @locked [ '/' | '"' ] <-[>]>* '>' (.*?) '</a>' /,
+        -> $m { "<span class=\"locked-link\">{$m[0]}</span>" },
+        :g);
+}
+
+sub MAIN(:$language = '', :$quick = False, :$filter = '', :$uri = '', :$last-part = Inf) {
+    $published-limit = +$last-part;
     for @languages.map: *.key -> $lang {
         next if $language && $lang ne $language;
 
-        %toc = get-toc($lang);
+        %toc = get-toc($lang, $filter ne '');
         generate-pages(%toc, $lang, '_out', $quick, $filter, $uri);
     }
 

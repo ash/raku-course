@@ -4,7 +4,7 @@ title: Boolean operations with other types
 
 {% include menu.html %}
 
-In the next section, we will talk about converting data of different types to each other. But before that, it is important to highlight the following feature of Raku. When you apply Boolean operations to strings or integers, the values are not converted to Booleans, and the result is not a Boolean value either. Consider the following examples:
+In the next section, we will talk about [converting data of different types](/essentials/coercion) to each other. But before that, it is important to highlight the following feature of Raku. When you apply Boolean operations to strings or integers, the values are not converted to Booleans, and the result is not a Boolean value either. Consider the following examples:
 
 ```raku
 say 'Hello' && 'World'; # World

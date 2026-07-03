@@ -1,13 +1,12 @@
 ---
-title: Scalar containers in Raku
+title: Scalar containers
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-As it can be understood from the name, scalar containers host single (scalar) values. Such containers are marked with the `$` sigil.
+As the name suggests, scalar containers host single (scalar) values. Such containers are marked with the `$` sigil.
 
-Here is one of the simplest and direct use of scalars:
+Here is one of the simplest and most direct uses of a scalar:
 
 ```raku
 my $lang = 'Raku';
@@ -15,13 +14,15 @@ my $lang = 'Raku';
 
 The `$lang` variable is a scalar container.
 
-Scalar containers are type-irrelevant by default, so youy can host data of any type you need. The simplest demonstration of that is the fact that it is possible to reuse the same variable and store integers or strings in it:
+By default, scalar containers do not enforce a type on the data, so you can store a value of any type in them. The simplest demonstration of this is that you can reuse the same variable to store an integer and then a string:
 
 ```raku
 my $value = 42;
-$value = 'fourty-two';
+$value = 'forty-two';
 ```
 
-Internally, this means that by default, a new container can keep values of the `Any` type. This is a base data type for other types such as `Int` or `String`.
+(The author does not encourage you to programm like this.)
+
+Internally, this means that, by default, a new container can keep values of the `Any` type. `Any` is the base type for most other types, such as `Int` or `Str`.
 
 {% include nav.html %}

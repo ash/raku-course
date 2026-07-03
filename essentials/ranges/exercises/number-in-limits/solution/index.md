@@ -19,7 +19,7 @@ my $n = prompt 'What is the number? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Find the program in the file [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Find the program in the file [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
 ## Output
 

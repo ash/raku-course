@@ -1,13 +1,10 @@
 ---
-title: Using WHAT in Raku
+title: Using `WHAT`
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-`WHAT` is a pseudo-method that gives access to information about the type of the variable.
-
-You can use it in the same way you use `^name`:
+`WHAT` is a pseudo-method that gives access to the type of a value. You can use it in much the same way as `.^name`:
 
 ```raku
 my $var = 42;
@@ -16,14 +13,14 @@ say $var.^name;
 say $var.WHAT;
 ```
 
-The program prints the type of the value with some minor decoration differencies:
+The two print the type with a minor difference in decoration: `.^name` gives the bare name, while `WHAT` shows the type object, written in parentheses:
 
 ```
 Int
 (Int)
 ```
 
-Notice that for a variable without type constraints, the default type is `Any`. As soon as you assign a value, the type returned by `^name` and `WHAT` changes:
+For a variable without a type constraint, the type starts as `Any`. As soon as you assign a value, both `^name` and `WHAT` follow the type of the stored value:
 
 ```raku
 my $var;
@@ -35,7 +32,7 @@ say $var.^name; # Str
 say $var.WHAT;  # (Str)
 ```
 
-With a type constrait, the type of the contents of the container is known immediately after creation:
+With a type constraint, the type is known immediately, even before anything is assigned:
 
 ```raku
 my Str $var;

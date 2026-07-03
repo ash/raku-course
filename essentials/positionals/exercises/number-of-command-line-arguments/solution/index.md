@@ -14,7 +14,7 @@ my $word = $n == 1 ?? 'argument' !! 'arguments';
 say "You passed $n $word.";
 ```
 
-🦋 Find the program in the file [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/number-of-command-line-arguments.raku).
+🦋 Find the program in the file [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku).
 
 ## Output
 

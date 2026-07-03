@@ -22,7 +22,7 @@ my $raise = 5; # in percents
 say "New salary of %employee<full-name>: %employee<salary>";
 ```
 
-🦋 Find the program in the file [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Find the program in the file [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
 ## Output
 

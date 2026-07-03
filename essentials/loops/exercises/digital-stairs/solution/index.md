@@ -19,7 +19,7 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Find the program in the file [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Find the program in the file [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
 ## Output
 

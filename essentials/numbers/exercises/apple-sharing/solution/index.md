@@ -19,7 +19,7 @@ say "Each person gets $gets apple(s).";
 say "There are $remains apple(s) remaining.";
 ```
 
-🦋 You can find the full code in the file [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 You can find the full code in the file [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Output
 

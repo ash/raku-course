@@ -1,14 +1,13 @@
 ---
-title: Ordered containers in Raku
+title: Ordered containers
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-In Raku, there are different types of ordered containers. They are containers that keep multiple elements (of course, they can also keep one or even zero elements in the special cases) and keep the order of the elements. The built-in ordered containers are lists, arrays, and sequences.
+Ordered containers keep several elements and preserve their order, so each element can be reached by its position. (In special cases they may also hold a single element or none at all.) The most common ordered containers are _arrays_ and _lists_.
 
-The `@` sigil suggests that the variable contains a list or a conceptually similar object. If a variable has `@` as its sigil, it supports subscripting, so the elements can be accessed using their index in the ordered storage.
+The `@` sigil tells you that a variable is meant to hold many elements. A variable with the `@` sigil supports subscripting, so you can read an element by its index, as you already saw in the Essentials part.
 
-Note that in Raku, you can use a variable with the `$` sigil to host, for example, a list. Examine the below topics to understand how to use different kinds of ordered containers.
+In this section, we take a closer look at how arrays and lists differ _as containers_: which of them you can modify, what happens when you put one container inside another, and how _binding_ gives a name to a container without copying anything.
 
 {% include nav.html %}

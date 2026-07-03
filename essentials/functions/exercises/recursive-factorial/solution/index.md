@@ -23,7 +23,7 @@ sub factorial($n) {
 say factorial(10);
 ```
 
-🦋 Find the program in the file [recursive-factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial.raku).
+🦋 Find the program in the file [recursive-factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/recursive-factorial.raku).
 
 ## Code 2
 
@@ -38,7 +38,7 @@ sub factorial($n) {
 say factorial(10);
 ```
 
-🦋 Find the updated program in the file [recursive-factorial-2.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial-2.raku).
+🦋 Find the updated program in the file [recursive-factorial-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/recursive-factorial-2.raku).
 
 ## Example
 

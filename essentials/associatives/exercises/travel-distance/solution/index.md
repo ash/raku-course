@@ -41,7 +41,7 @@ for 0 .. @itinerary.elems - 2 -> $index {
 say "Total trip: $total km";
 ```
 
-🦋 Find the program with the whole data structure in the file [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/travel-distance.raku).
+🦋 Find the program with the whole data structure in the file [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/travel-distance.raku).
 
 ## Output
 

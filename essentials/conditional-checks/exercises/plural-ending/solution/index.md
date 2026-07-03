@@ -14,7 +14,7 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n file{$ending} copied.";
 ```
 
-🦋 Find the program in the file [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Find the program in the file [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Output
 

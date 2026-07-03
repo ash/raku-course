@@ -13,7 +13,7 @@ my Int $n = prompt 'Enter a number: ';
 say $n;
 ```
 
-🦋 You can find the source code in the file [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 You can find the source code in the file [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Example
 

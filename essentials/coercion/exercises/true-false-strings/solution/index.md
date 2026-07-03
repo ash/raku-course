@@ -20,6 +20,6 @@ say ?'0.0';
 
 From all of these, only the empty string is cast as `False`. All other strings, even those that contain only spaces or an explicit character `0`, become `True`.
 
-🦋 You can find the full program with the above example in the file [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
+🦋 You can find the full program with the above example in the file [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku).
 
 {% include nav.html %}

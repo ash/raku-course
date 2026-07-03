@@ -16,7 +16,7 @@ my @data = 10, 12, 1, 5, -9, 8, 36, 18, 21;
 say @data[2 * $_ - 1] for 1 .. @data/2;
 ```
 
-🦋 Find the program in the file [odd-indices.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/odd-indices.raku).
+🦋 Find the program in the file [odd-indices.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/odd-indices.raku).
 
 ## Output
 

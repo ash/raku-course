@@ -46,7 +46,7 @@ put %h;
 
 For better confidence, you can also print the type of the variable, e.g., as shown for arrays and lists, to make sure you have created a variable of the desired type.
 
-🦋 Find the program in the file [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Find the program in the file [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Output
 

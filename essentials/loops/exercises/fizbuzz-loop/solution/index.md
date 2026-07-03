@@ -19,7 +19,7 @@ for 1..50 -> $n {
 }
 ```
 
-🦋 Find the program in the file [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fizbuzz-loop.raku).
+🦋 Find the program in the file [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fizbuzz-loop.raku).
 
 ## Output
 

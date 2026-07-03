@@ -6,6 +6,10 @@ toc:
   - title: Essentials
     long_title: Raku essentials
     url: essentials
+    description: >-
+      Start here. Install the compiler, then learn variables and data types,
+      control flow, and your first subroutines — the foundation for everything
+      that follows.
     items:
       - title: Basic introduction to Raku and its compiler
         items:
@@ -624,33 +628,1844 @@ toc:
   - title: Advanced
     long_title: Advanced Raku subjects
     url: advanced
+    description: >-
+      Go deeper: containers and contexts, the full range of built-in types and
+      operators, richer subroutines, and packaging your code into modules with
+      tests and documentation.
     items:
+      # ── Debugging (tooling; introduced first because the Containers
+      #    topics below already use `dd`) ─────────────────────────────
       - title: Debugging
         items:
+          - title: Turning values into text
+            url: representations
+            items:
+              - title: The `.gist` method
+                url: gist
+              - title: The `.Str` method
+                url: str
+                quizzes:
+                  - title: 'Quiz — gist and Str'
+                    url: quiz
+              - title: The `.raku` method
+                url: raku-method
+              - title: Choosing the right one
+                url: choosing
           - title: Debugging with `dd`
             url: dd
             items:
               - title: Dumping variables
                 url: variables
-              - title: Function signatures
+                quizzes:
+                  - title: 'Quiz — Reading a `dd` dump'
+                    url: quiz
+              - title: Dumping function signatures
                 url: functions
-      - title: Scalar containers
+            exercises:
+              - title: Dump the data structure
+                url: dump-the-structure
+              - title: Dump a typed variable
+                url: dump-typed
+              - title: Dump a hash
+                url: dump-a-hash
+      # ── Containers (the concept) ──────────────────────────────────
+      - title: Containers
         items:
           - title: Understanding Raku containers
             url: containers
-          - title: Data types and scalars containers
+          - title: Scalar containers
             url: scalar-containers
             items:
+              - title: Data types and scalar containers
+                url: types
               - title: Type constraints
                 url: type-constraints
-          - title: Proxying method calls
-            url: proxying
-          - title: Default values
-            url: default
-          - title: Introspection with MOP
+                quizzes:
+                  - title: 'Quiz — Type constraints'
+                    url: quiz
+              - title: Default values
+                url: default
+              - title: Proxying method calls
+                url: proxying
+            exercises:
+              - title: Default discount
+                url: default-discount
+              - title: Integers only
+                url: integers-only
+              - title: Typed or untyped
+                url: reuse-the-container
+          - title: Ordered containers
+            url: ordered-containers
+            items:
+              - title: Arrays
+                url: arrays
+              - title: Lists
+                url: lists
+                quizzes:
+                  - title: 'Quiz — Arrays and lists'
+                    url: quiz
+              - title: Binding with `:=`
+                url: binding
+              - title: Flattening and itemisation
+                url: flattening
+                quizzes:
+                  - title: 'Quiz — Nesting arrays'
+                    url: quiz
+            exercises:
+              - title: Alias an array
+                url: alias-an-array
+              - title: Flatten the parts
+                url: flatten-the-parts
+              - title: Bind a scalar
+                url: bind-a-scalar
+          - title: Contexts 🆕
+            url: contexts
+            items:
+              - title: Numeric, string, and Boolean context
+                url: coercion-contexts
+                quizzes:
+                  - title: 'Quiz — Contexts'
+                    url: quiz
+              - title: Item and list context
+                url: item-and-list
+                quizzes:
+                  - title: 'Quiz — Item context'
+                    url: quiz
+            exercises:
+              - title: Force a number
+                url: force-a-number
+              - title: A Boolean check
+                url: boolean-check
+              - title: Item or list
+                url: item-or-list
+          - title: Subscript adverbs 🆕
+            url: subscript-adverbs
+            items:
+              - title: Exists and delete
+                url: exists-and-delete
+                quizzes:
+                  - title: 'Quiz — Subscript adverbs'
+                    url: quiz
+              - title: Keys, values, and pairs
+                url: kv-and-pairs
+            exercises:
+              - title: Does the key exist
+                url: check-exists
+              - title: Delete a key
+                url: delete-a-key
+              - title: Key and value
+                url: key-and-value
+          - title: Special and dynamic variables 🆕
+            url: special-variables
+            items:
+              - title: Twigils
+                url: twigils
+                quizzes:
+                  - title: 'Quiz — Twigils'
+                    url: quiz
+              - title: Dynamic variables
+                url: dynamic-variables
+                quizzes:
+                  - title: 'Quiz — Dynamic variables'
+                    url: quiz
+              - title: Built-in special variables
+                url: built-in
+                quizzes:
+                  - title: 'Quiz — Special variables'
+                    url: quiz
+            exercises:
+              - title: A dynamic variable
+                url: a-dynamic-variable
+              - title: Override the dynamic
+                url: override-dynamic
+              - title: The topic variable
+                url: topic-variable
+          - title: Introspecting containers
             url: introspection
             items:
-              - title: "`WHAT` and `^name`"
+              - title: Using `WHAT`
                 url: what
-              - title: "`VAR`"
+                quizzes:
+                  - title: 'Quiz — `WHAT` and `^name`'
+                    url: quiz
+              - title: Using `VAR`
                 url: var
+              - title: '`WHO` and `HOW`'
+                url: who-how
+            exercises:
+              - title: Describe a variable
+                url: describe-a-variable
+              - title: What is it
+                url: what-is-it
+              - title: The container’s default
+                url: container-default
+      # ── More about built-in types (the roadmap's data-type list) ──
+      - title: More about built-in types
+        items:
+          - title: Integers
+            url: integers
+            items:
+              - title: Number bases
+                url: number-bases
+                quizzes:
+                  - title: 'Quiz — Number bases'
+                    url: quiz
+              - title: Integer methods
+                url: methods
+            exercises:
+              - title: How many digits
+                url: big-factorial
+              - title: Hex to decimal
+                url: hex-to-decimal
+              - title: Prime or not
+                url: prime-check
+          - title: Native types 🆕
+            url: native-types
+            items:
+              - title: Machine-level types
+                url: machine-types
+                quizzes:
+                  - title: 'Quiz — Native types'
+                    url: quiz
+              - title: Sized types and overflow
+                url: sized-types
+                quizzes:
+                  - title: 'Quiz — Overflow'
+                    url: quiz
+            exercises:
+              - title: The native default
+                url: native-default
+              - title: Wrapping around
+                url: wrap-around
+              - title: A native array
+                url: native-array
+          - title: Strings
+            url: strings
+            items:
+              - title: Searching in strings
+                url: searching
+                quizzes:
+                  - title: 'Quiz — `index`'
+                    url: quiz
+              - title: Splitting and joining
+                url: splitting
+            exercises:
+              - title: Reverse and shout
+                url: reverse-and-shout
+              - title: Acronym
+                url: acronym
+              - title: The domain part
+                url: find-domain
+          - title: Quoting constructs 🆕
+            url: quoting
+            items:
+              - title: q, qq, and Q
+                url: q-qq-big-q
+                quizzes:
+                  - title: 'Quiz — Quoting'
+                    url: quiz
+              - title: Quoting adverbs
+                url: adverbs
+                quizzes:
+                  - title: 'Quiz — Quoting adverbs'
+                    url: quiz
+              - title: Heredocs
+                url: heredocs
+            exercises:
+              - title: A raw string
+                url: raw-string
+              - title: A closure in a q string
+                url: closure-quote
+              - title: A heredoc
+                url: a-heredoc
+          - title: Date and time
+            url: date-and-time
+            items:
+              - title: Date arithmetic
+                url: arithmetic
+                quizzes:
+                  - title: 'Quiz — Date arithmetic'
+                    url: quiz
+                  - title: 'Quiz — Adding months'
+                    url: quiz2
+              - title: Working with time
+                url: time
+            exercises:
+              - title: Weeks until Christmas
+                url: days-until-christmas
+              - title: One week later
+                url: one-week-later
+              - title: Day of the week
+                url: day-of-week
+          - title: Sets, bags, and mixes
+            url: sets-bags-mixes
+            items:
+              - title: Set operations
+                url: operations
+                quizzes:
+                  - title: 'Quiz — Sets'
+                    url: quiz
+              - title: Bags and mixes
+                url: bags
+            exercises:
+              - title: Count the distinct
+                url: count-the-distinct
+              - title: Common elements
+                url: common-elements
+              - title: Count in a bag
+                url: bag-count
+          - title: Sequences
+            url: sequences
+            items:
+              - title: Sequence patterns
+                url: patterns
+                quizzes:
+                  - title: 'Quiz — The `...` operator'
+                    url: quiz
+              - title: Lazy and infinite sequences
+                url: lazy
+            exercises:
+              - title: Odd numbers
+                url: odd-numbers
+              - title: Powers of two
+                url: powers-of-two
+              - title: The last three
+                url: last-three
+          - title: Enumerations 🆕
+            url: enumerations
+            items:
+              - title: Defining an enum
+                url: defining
+                quizzes:
+                  - title: 'Quiz — Enumerations'
+                    url: quiz
+              - title: Values and keys
+                url: values-and-keys
+                quizzes:
+                  - title: 'Quiz — Enum values'
+                    url: quiz
+            exercises:
+              - title: Traffic lights
+                url: traffic-enum
+              - title: Weekday numbers
+                url: weekday-values
+              - title: Count and total
+                url: enum-introspection
+      # ── Operators ─────────────────────────────────────────────────
+      - title: Operators
+        items:
+          - title: Types of Raku operators
+            url: operator-types
+            quizzes:
+              - title: 'Quiz — Operator categories'
+                url: quiz
+              - title: 'Quiz — Prefix or postfix'
+                url: quiz2
+              - title: 'Quiz — A word operator'
+                url: quiz3
+            exercises:
+              - title: Count up
+                url: count-up
+              - title: Boolean of a value
+                url: boolean-of-a-value
+              - title: Subscript a hash
+                url: subscript-a-hash
+          - title: Review of operator behaviour
+            url: operators-overview
+            quizzes:
+              - title: 'Quiz — Precedence'
+                url: quiz
+            exercises:
+              - title: Force the order
+                url: force-the-order
+              - title: Power tower
+                url: power-tower
+              - title: Chained comparison
+                url: chained-comparison
+          - title: Meta-operators
+            url: metaoperators
+            items:
+              - title: Reduction metaoperators
+                url: reduction
+                quizzes:
+                  - title: 'Quiz — Reduction'
+                    url: quiz
+              - title: Zip metaoperators
+                url: zip
+              - title: Cross, hyper, and negated
+                url: more
+                quizzes:
+                  - title: 'Quiz — Hyper and cross'
+                    url: quiz
+            exercises:
+              - title: Average of an array
+                url: sum-of-array
+              - title: Every factorial at once
+                url: factorial
+              - title: Build a URL
+                url: concatenate-a-list
+          - title: User-defined operators
+            url: user-defined-operators
+            quizzes:
+              - title: 'Quiz — Defining an operator'
+                url: quiz
+            exercises:
+              - title: Average operator
+                url: average-operator
+              - title: Percent-of operator
+                url: percent-of-operator
+              - title: A squaring operator
+                url: square-operator
+          - title: Traits and pragmas 🆕
+            url: traits-pragmas
+            items:
+              - title: Built-in traits
+                url: built-in-traits
+                quizzes:
+                  - title: 'Quiz — Traits'
+                    url: quiz
+              - title: Writing a trait
+                url: writing-a-trait
+              - title: Pragmas
+                url: pragmas
+                quizzes:
+                  - title: 'Quiz — Pragmas'
+                    url: quiz
+            exercises:
+              - title: A writable parameter
+                url: writable-parameter
+              - title: A custom trait
+                url: custom-trait
+              - title: Relaxing strict
+                url: no-strict
+      # ── Control flow ──────────────────────────────────────────────
+      - title: Control flow
+        items:
+          - title: Phasers
+            url: phasers
+            quizzes:
+              - title: 'Quiz — Phasers'
+                url: quiz
+            exercises:
+              - title: Final message
+                url: final-message
+              - title: Begin first
+                url: begin-first
+              - title: The order of ENDs
+                url: end-order
+          - title: Block-related phasers
+            url: block-phasers
+            quizzes:
+              - title: 'Quiz — `LEAVE`'
+                url: quiz
+            exercises:
+              - title: Clean up on leave
+                url: clean-up-on-leave
+              - title: Enter a block
+                url: enter-a-block
+              - title: After each step
+                url: next-phaser
+          - title: '`given` and `when`'
+            url: given-when
+            items:
+              - title: Matching ranges, types, and conditions
+                url: matching
+                quizzes:
+                  - title: 'Quiz — `when`'
+                    url: quiz
+            exercises:
+              - title: Life stage from age
+                url: grade-the-score
+              - title: Even, odd, or zero
+                url: sign-of-a-number
+              - title: Match by type
+                url: match-by-type
+          - title: '`gather` and `take`'
+            url: gather-take
+            quizzes:
+              - title: 'Quiz — `gather`'
+                url: quiz
+            exercises:
+              - title: Repeat each number
+                url: collect-the-evens
+              - title: Squares
+                url: squares
+              - title: Gather until full
+                url: gather-big
+          - title: Statement prefixes 🆕
+            url: statement-prefixes
+            items:
+              - title: do and the value of a block
+                url: do-prefix
+                quizzes:
+                  - title: 'Quiz — do'
+                    url: quiz
+              - title: Laziness and eagerness
+                url: lazy-eager
+              - title: sink and quietly
+                url: sink-quietly
+                quizzes:
+                  - title: 'Quiz — Statement prefixes'
+                    url: quiz
+            exercises:
+              - title: The value of a do block
+                url: do-block
+              - title: Force eager evaluation
+                url: force-eager
+              - title: Silence a warning
+                url: silence-warning
+      # ── Subroutines ───────────────────────────────────────────────
+      - title: Subroutines
+        items:
+          - title: Signatures
+            url: signatures
+            quizzes:
+              - title: 'Quiz — Slurpy parameters'
+                url: quiz
+            exercises:
+              - title: Sum all arguments
+                url: sum-all-arguments
+              - title: An optional exponent
+                url: optional-exponent
+              - title: Slurpy named arguments
+                url: slurpy-hash
+          - title: The Whatever star 🆕
+            url: whatever
+            quizzes:
+              - title: 'Quiz — The Whatever star'
+                url: quiz
+            exercises:
+              - title: Whatever with map
+                url: whatever-map
+              - title: A two-argument Whatever
+                url: two-arg-whatever
+              - title: An open-ended range
+                url: open-range
+          - title: Calling with a colon 🆕
+            url: colon-calls
+            quizzes:
+              - title: 'Quiz — The colon call'
+                url: quiz
+            exercises:
+              - title: A colon map
+                url: colon-map
+              - title: Join with a colon
+                url: colon-join
+              - title: Sort with a colon
+                url: colon-sort
+          - title: Multiple dispatch
+            url: multiple-dispatch
+            quizzes:
+              - title: 'Quiz — Dispatch with `where`'
+                url: quiz
+            exercises:
+              - title: Bulk pricing
+                url: bulk-pricing
+              - title: Absolute value
+                url: absolute-value
+              - title: Classify the size
+                url: classify-sign
+          - title: More on MAIN subroutines
+            url: more-on-main
+            quizzes:
+              - title: 'Quiz — `MAIN` usage'
+                url: quiz
+            exercises:
+              - title: A command-line flag
+                url: boolean-flag
+              - title: A typed MAIN
+                url: typed-main
+              - title: Add two arguments
+                url: two-arguments
+          - title: Nested subroutines
+            url: nested-subroutines
+            quizzes:
+              - title: 'Quiz — Nested scope'
+                url: quiz
+            exercises:
+              - title: A private helper
+                url: private-helper
+              - title: Closing over the outer
+                url: closure-over-outer
+              - title: An inner sum
+                url: inner-sum
+          - title: Anonymous subroutines
+            url: anonymous-subroutines
+            quizzes:
+              - title: 'Quiz — Pointy blocks'
+                url: quiz
+            exercises:
+              - title: Triple it
+                url: triple-it
+              - title: An anonymous square
+                url: anonymous-square
+              - title: Sum with the `&` sigil
+                url: sum-with-sigil
+      # ── Modules ───────────────────────────────────────────────────
+      - title: Modules
+        items:
+          - title: Modules basics
+            url: modules-basics
+            items:
+              - title: Creating modules
+                url: creating-modules
+                quizzes:
+                  - title: 'Quiz — `is export`'
+                    url: quiz
+              - title: Using modules
+                url: using-modules
+                quizzes:
+                  - title: 'Quiz — `use`'
+                    url: quiz
+              - title: Importing
+                url: importing
+                quizzes:
+                  - title: 'Quiz — `use` vs `need`'
+                    url: quiz
+              - title: Export tags
+                url: export-tags
+                quizzes:
+                  - title: 'Quiz — Export tags'
+                    url: quiz
+            exercises:
+              - title: A maths module
+                url: maths-module
+              - title: A shout module
+                url: shout-module
+              - title: Two functions in one module
+                url: two-functions
+              - title: Use the converter
+                url: use-temperature
+              - title: Use a stats module
+                url: stats-module
+              - title: Read the constant
+                url: read-the-constant
+              - title: Load at run time
+                url: require-at-runtime
+          - title: Module introspection
+            url: module-introspection
+            quizzes:
+              - title: 'Quiz — The Stash'
+                url: quiz
+            exercises:
+              - title: List the symbols
+                url: list-the-symbols
+              - title: Look up a symbol
+                url: lookup-symbol
+          - title: Installing modules from the web
+            url: installing-modules
+          - title: Packages and namespaces 🆕
+            url: packages
+            items:
+              - title: Packages and modules
+                url: packages-modules
+                quizzes:
+                  - title: 'Quiz — Packages'
+                    url: quiz
+              - title: Namespaces and our
+                url: namespaces
+            exercises:
+              - title: An our variable
+                url: our-variable
+              - title: A package
+                url: a-package
+              - title: A nested name
+                url: nested-name
+          - title: Distributing modules 🆕
+            url: distributing
+            items:
+              - title: The META6 file
+                url: meta6
+                quizzes:
+                  - title: 'Quiz — Distributions'
+                    url: quiz
+              - title: zef and the ecosystem
+                url: zef-ecosystem
+              - title: Publishing with fez
+                url: fez
+            exercises:
+              - title: A META6 file
+                url: a-meta6-file
+              - title: The module layout
+                url: module-layout
+      # ── Testing and documentation ────────────────────────────────
+      - title: Testing and documentation 🆕
+        items:
+          - title: Testing 🆕
+            url: testing
+            items:
+              - title: The Test module
+                url: test-module
+                quizzes:
+                  - title: 'Quiz — Testing'
+                    url: quiz
+              - title: Comparisons and plans
+                url: comparisons
+              - title: Running tests
+                url: running-tests
+            exercises:
+              - title: A first test
+                url: a-first-test
+              - title: Compare values
+                url: compare-values
+              - title: Plan two checks
+                url: test-a-list
+          - title: Documenting code 🆕
+            url: pod
+            items:
+              - title: Pod basics
+                url: pod-basics
+                quizzes:
+                  - title: 'Quiz — Pod'
+                    url: quiz
+              - title: Formatting and code
+                url: pod-formatting
+              - title: Rendering Pod
+                url: rendering-pod
+              - title: Accessing the Pod
+                url: accessing-pod
+            exercises:
+              - title: Formatted text
+                url: formatted-text
+              - title: A Pod section
+                url: a-pod-section
+
+  - title: Objects, I/O, and exceptions
+    long_title: Objects, I/O, and exceptions
+    url: oop
+    description: >-
+      Object-oriented programming with classes and roles, reading and writing
+      input and output and talking to external programs, and handling errors
+      with exceptions.
+    items:
+      # ── Classes and objects ──────────────────────────────────────
+      - title: Classes and objects
+        items:
+          - title: Classes
+            url: classes
+            items:
+              - title: Type objects and instances
+                url: type-object
+                quizzes:
+                  - title: 'Quiz — Classes'
+                    url: quiz
+            exercises:
+              - title: Defined or not
+                url: defined-or-not
+              - title: Name the type
+                url: name-the-type
+          - title: Attributes
+            url: attributes
+            items:
+              - title: Read-write attributes
+                url: read-write
+              - title: Default values
+                url: defaults
+                quizzes:
+                  - title: 'Quiz — Attributes'
+                    url: quiz
+            exercises:
+              - title: A point class
+                url: point-class
+              - title: A counter
+                url: counter
+              - title: A book
+                url: book
+              - title: A changeable label
+                url: changeable-label
+          - title: Methods
+            url: methods
+            items:
+              - title: Private attributes
+                url: private-attributes
+              - title: Methods with parameters
+                url: parameters
+              - title: Methods calling methods
+                url: calling-methods
+                quizzes:
+                  - title: 'Quiz — Methods'
+                    url: quiz
+            exercises:
+              - title: A walking robot
+                url: bank-account
+              - title: A reversed word
+                url: greeter
+              - title: Rectangle area
+                url: rectangle-area
+              - title: Temperature conversion
+                url: temperature
+          - title: Class methods
+            url: class-methods
+            quizzes:
+              - title: 'Quiz — Class methods'
+                url: quiz
+            exercises:
+              - title: A formula on the class
+                url: speed-limit
+              - title: Kilometres to miles
+                url: km-to-miles
+          - title: Subroutines vs methods
+            url: subs-vs-methods
+            quizzes:
+              - title: 'Quiz — Subs vs methods'
+                url: quiz
+            exercises:
+              - title: Triple as a subroutine
+                url: triple-sub
+              - title: Triple as a method
+                url: triple-method
+          - title: Inheritance
+            url: inheritance
+            items:
+              - title: Overriding methods
+                url: overriding
+                quizzes:
+                  - title: 'Quiz — Inheritance'
+                    url: quiz
+            exercises:
+              - title: Employees and roles
+                url: dog-and-cat
+              - title: A shape and a square
+                url: shape-and-square
+              - title: An inherited attribute
+                url: inherited-attribute
+          - title: Roles
+            url: roles
+            items:
+              - title: Composing several roles
+                url: multiple-roles
+                quizzes:
+                  - title: 'Quiz — Roles'
+                    url: quiz
+            exercises:
+              - title: A sized box
+                url: greetable
+              - title: A named, aged pet
+                url: named-aged-pet
+              - title: A loud speaker
+                url: loud-speaker
+          - title: Introspecting objects
+            url: object-introspection
+            items:
+              - title: The inheritance chain
+                url: inheritance-chain
+                quizzes:
+                  - title: 'Quiz — Introspection'
+                    url: quiz
+            exercises:
+              - title: Describe a class
+                url: describe-a-class
+              - title: Count the attributes
+                url: count-attributes
+          - title: The metaobject protocol 🆕
+            url: mop
+            items:
+              - title: Meta-methods
+                url: meta-methods
+                quizzes:
+                  - title: 'Quiz — The MOP'
+                    url: quiz
+              - title: Adding methods at runtime
+                url: adding-methods
+            exercises:
+              - title: Find a method
+                url: find-method
+              - title: The method resolution order
+                url: the-mro
+              - title: Add a method
+                url: add-a-method
+      # ── Input and output ─────────────────────────────────────────
+      - title: Input and output
+        items:
+          - title: Standard streams
+            url: standard-streams
+            quizzes:
+              - title: 'Quiz — Standard streams'
+                url: quiz
+            exercises:
+              - title: Output and error
+                url: output-and-error
+              - title: Note a warning
+                url: note-a-warning
+              - title: Print without a newline
+                url: print-without-newline
+          - title: Working with files
+            url: files
+            items:
+              - title: Appending to a file
+                url: appending
+                quizzes:
+                  - title: 'Quiz — `spurt` and `slurp`'
+                    url: quiz
+            exercises:
+              - title: Save and read
+                url: save-and-read
+              - title: Build up a log
+                url: append-a-line
+              - title: Count the characters
+                url: count-characters
+          - title: Working with directories
+            url: directories
+            items:
+              - title: Listing a directory
+                url: listing
+                quizzes:
+                  - title: 'Quiz — File tests'
+                    url: quiz
+            exercises:
+              - title: Does it exist?
+                url: does-it-exist
+              - title: Make a directory
+                url: make-a-directory
+              - title: File or directory?
+                url: file-or-directory
+          - title: File handles
+            url: file-handles
+            quizzes:
+              - title: 'Quiz — Reading lines'
+                url: quiz
+            exercises:
+              - title: Number the lines
+                url: shout-the-lines
+              - title: Count the lines
+                url: count-lines
+              - title: Write with a handle
+                url: write-with-a-handle
+          - title: Running external programs 🆕
+            url: external-programs
+            items:
+              - title: run and shell
+                url: run-and-shell
+                quizzes:
+                  - title: 'Quiz — Running programs'
+                    url: quiz
+              - title: Capturing output
+                url: capturing-output
+              - title: The environment
+                url: environment
+                quizzes:
+                  - title: 'Quiz — The environment'
+                    url: quiz
+            exercises:
+              - title: Run a command
+                url: run-a-command
+              - title: Capture the output
+                url: capture-output
+              - title: Pass a variable to a child
+                url: read-env
+      # ── Exceptions ───────────────────────────────────────────────
+      - title: Exceptions
+        items:
+          - title: Catching exceptions with `try`
+            url: try
+            quizzes:
+              - title: 'Quiz — `try`'
+                url: quiz
+            exercises:
+              - title: Catch the error
+                url: catch-the-error
+              - title: When nothing goes wrong
+                url: try-succeeds
+              - title: Try or default
+                url: try-or-default
+          - title: The `CATCH` phaser
+            url: catch
+            quizzes:
+              - title: 'Quiz — `CATCH`'
+                url: quiz
+            exercises:
+              - title: Handle and continue
+                url: handle-and-continue
+              - title: Survive a loop
+                url: survive-a-loop
+              - title: Report and recover
+                url: report-and-recover
+          - title: Exception objects
+            url: exception-objects
+            quizzes:
+              - title: 'Quiz — Exception objects'
+                url: quiz
+            exercises:
+              - title: Name the error
+                url: name-the-error
+              - title: Match the type
+                url: match-the-type
+              - title: Prefix the message
+                url: error-prefix
+          - title: Soft failures
+            url: failures
+            quizzes:
+              - title: 'Quiz — `fail`'
+                url: quiz
+            exercises:
+              - title: Soft reciprocal
+                url: soft-divide
+              - title: Lookup or not found
+                url: lookup
+              - title: A fallback value
+                url: fallback-value
+          - title: Custom exceptions
+            url: custom-exceptions
+            quizzes:
+              - title: 'Quiz — Custom exceptions'
+                url: quiz
+            exercises:
+              - title: Too big
+                url: too-big
+              - title: A negative error
+                url: negative-error
+              - title: Two exception types
+                url: two-exceptions
+
+  - title: Regexes and grammars
+    long_title: Regexes and grammars
+    url: regexes
+    description: >-
+      Match text with regexes, then grow them into full grammars with action
+      classes that turn structured input into data.
+    items:
+      # ── Regexes ──────────────────────────────────────────────────
+      - title: Regexes
+        items:
+          - title: Literals and character classes
+            url: literals
+            items:
+              - title: Matching literal text
+                url: literal-text
+              - title: Character classes
+                url: character-classes
+                quizzes:
+                  - title: 'Quiz — Custom classes'
+                    url: quiz
+              - title: Predefined character classes
+                url: predefined-classes
+                quizzes:
+                  - title: 'Quiz — Character classes'
+                    url: quiz
+            exercises:
+              - title: Match a phrase
+                url: match-a-word
+              - title: A letter or digit
+                url: digit-class
+              - title: A vowel
+                url: a-vowel
+              - title: The first non-digit
+                url: first-non-digit
+          - title: Matching strings
+            url: matching
+            items:
+              - title: The smartmatch operator
+                url: smartmatch
+                quizzes:
+                  - title: 'Quiz — Smartmatch'
+                    url: quiz
+              - title: The match object
+                url: match-object
+                quizzes:
+                  - title: 'Quiz — Matching'
+                    url: quiz
+            exercises:
+              - title: Did it match?
+                url: did-it-match
+              - title: The matched text
+                url: matched-text
+              - title: Where is the digit
+                url: where-digit
+          - title: Quantifiers
+            url: quantifiers
+            items:
+              - title: Star, plus, and question mark
+                url: star-plus-question
+                quizzes:
+                  - title: 'Quiz — Basic quantifiers'
+                    url: quiz
+              - title: The times quantifier
+                url: times-quantifier
+              - title: Greedy and frugal matching
+                url: greedy-frugal
+                quizzes:
+                  - title: 'Quiz — Quantifiers'
+                    url: quiz
+            exercises:
+              - title: An optional sign
+                url: optional-sign
+              - title: Two to four digits
+                url: three-digits
+              - title: A frugal match
+                url: frugal-match
+              - title: Two to four
+                url: range-quantifier
+          - title: Captures
+            url: captures
+            items:
+              - title: Positional captures
+                url: positional
+                quizzes:
+                  - title: 'Quiz — Positional captures'
+                    url: quiz
+              - title: Named captures
+                url: named
+                quizzes:
+                  - title: 'Quiz — Captures'
+                    url: quiz
+            exercises:
+              - title: Split a filename
+                url: capture-the-year
+              - title: City and country
+                url: name-and-age
+              - title: Last name first
+                url: swap-words
+              - title: Initial and surname
+                url: initial-and-surname
+          - title: Alternations
+            url: alternations
+            items:
+              - title: Alternation
+                url: alternation
+                quizzes:
+                  - title: 'Quiz — Grouping'
+                    url: quiz
+              - title: Longest token and first match
+                url: longest-token
+                quizzes:
+                  - title: 'Quiz — Alternations'
+                    url: quiz
+            exercises:
+              - title: Word or digit
+                url: yes-or-no
+              - title: A size word
+                url: colour-word
+              - title: http or https
+                url: http-or-https
+          - title: Anchors
+            url: anchors
+            items:
+              - title: Start and end of string
+                url: string-anchors
+                quizzes:
+                  - title: 'Quiz — String anchors'
+                    url: quiz
+              - title: Word boundaries
+                url: word-boundaries
+                quizzes:
+                  - title: 'Quiz — Anchors'
+                    url: quiz
+            exercises:
+              - title: Starts with
+                url: starts-with
+              - title: The whole string
+                url: whole-string
+              - title: A whole word
+                url: whole-word
+          - title: Lookaround assertions
+            url: assertions
+            items:
+              - title: Lookahead
+                url: lookahead
+                quizzes:
+                  - title: 'Quiz — Lookahead'
+                    url: quiz
+              - title: Lookbehind
+                url: lookbehind
+                quizzes:
+                  - title: 'Quiz — Assertions'
+                    url: quiz
+            exercises:
+              - title: A bare number
+                url: dollar-amount
+              - title: Not followed by
+                url: not-followed
+              - title: Between brackets
+                url: percent-number
+          - title: Adverbs
+            url: adverbs
+            items:
+              - title: Case-insensitive matching
+                url: ignorecase
+                quizzes:
+                  - title: 'Quiz — Ignorecase'
+                    url: quiz
+              - title: Global matching
+                url: global
+              - title: Significant whitespace
+                url: sigspace
+                quizzes:
+                  - title: 'Quiz — Adverbs'
+                    url: quiz
+            exercises:
+              - title: Case-blind match
+                url: case-blind
+              - title: Count the matches
+                url: count-matches
+              - title: All the numbers
+                url: all-numbers
+          - title: Substitution and replacement
+            url: substitution
+            items:
+              - title: The substitution operator
+                url: s-operator
+                quizzes:
+                  - title: 'Quiz — The s/// operator'
+                    url: quiz
+              - title: Captures in the replacement
+                url: captures-in-replacement
+              - title: Transliteration
+                url: transliteration
+                quizzes:
+                  - title: 'Quiz — Substitution'
+                    url: quiz
+            exercises:
+              - title: Censor a word
+                url: censor-word
+              - title: Reformat a date
+                url: reformat-date
+              - title: Lower-case letters
+                url: upcase-letters
+              - title: Mask the digits
+                url: mask-digits
+      # ── Grammars ─────────────────────────────────────────────────
+      - title: Grammars
+        items:
+          - title: What is a grammar
+            url: what-is-a-grammar
+            items:
+              - title: Named regexes
+                url: named-regexes
+                quizzes:
+                  - title: 'Quiz — Named regexes'
+                    url: quiz
+              - title: The grammar keyword
+                url: grammar-keyword
+                quizzes:
+                  - title: 'Quiz — What is a grammar'
+                    url: quiz
+            exercises:
+              - title: A named token
+                url: named-token
+              - title: Reuse a token
+                url: reuse-a-token
+              - title: Year and month
+                url: year-token
+          - title: Creating grammars
+            url: creating-grammars
+            items:
+              - title: The TOP rule
+                url: top-rule
+              - title: Parsing with parse
+                url: parse-method
+                quizzes:
+                  - title: 'Quiz — Creating grammars'
+                    url: quiz
+            exercises:
+              - title: Parse a full name
+                url: parse-a-pair
+              - title: Parse a hashtag
+                url: parse-greeting
+              - title: Parse a time
+                url: parse-a-time
+          - title: Tokens and rules
+            url: tokens-and-rules
+            items:
+              - title: regex, token, and rule
+                url: three-kinds
+                quizzes:
+                  - title: 'Quiz — Backtracking'
+                    url: quiz
+              - title: Significant space in rules
+                url: rule-sigspace
+                quizzes:
+                  - title: 'Quiz — Tokens and rules'
+                    url: quiz
+            exercises:
+              - title: Regex versus token
+                url: token-instead
+              - title: A spaced rule
+                url: spaced-rule
+              - title: A spaced assignment
+                url: spaced-assignment
+          - title: Grammars, classes, and inheritance
+            url: grammar-inheritance
+            items:
+              - title: Grammars are classes
+                url: grammars-are-classes
+                quizzes:
+                  - title: 'Quiz — Inheriting grammars'
+                    url: quiz
+              - title: Proto tokens and alternation
+                url: proto-tokens
+                quizzes:
+                  - title: 'Quiz — Grammar inheritance'
+                    url: quiz
+            exercises:
+              - title: Inherit a grammar
+                url: inherit-a-grammar
+              - title: A number with proto
+                url: proto-number
+              - title: A boolean with proto
+                url: proto-bool
+          - title: The parse tree, make and made
+            url: make-and-made
+            items:
+              - title: The match tree
+                url: match-tree
+                quizzes:
+                  - title: 'Quiz — The match tree'
+                    url: quiz
+              - title: make and made
+                url: make-made
+                quizzes:
+                  - title: 'Quiz — make and made'
+                    url: quiz
+            exercises:
+              - title: Extract the number
+                url: extract-the-number
+              - title: Multiply a pair
+                url: sum-a-pair
+              - title: Reverse a word
+                url: word-length
+          - title: Action classes
+            url: action-classes
+            items:
+              - title: Writing an action class
+                url: writing-actions
+                quizzes:
+                  - title: 'Quiz — make'
+                    url: quiz
+              - title: Inline actions vs action classes
+                url: inline-vs-class
+                quizzes:
+                  - title: 'Quiz — Action classes'
+                    url: quiz
+            exercises:
+              - title: One grammar, two actions
+                url: adder-action
+              - title: An upper-case action
+                url: upcase-action
+              - title: A multiply action
+                url: multiply-action
+
+  - title: Functional, concurrent, reactive, and web programming
+    long_title: Functional, concurrent, reactive, and web programming
+    url: paradigms
+    description: >-
+      Put it together: functional, concurrent, and reactive programming,
+      finishing with sockets, HTTP, and building web services.
+    items:
+      # ── Functional programming ───────────────────────────────────
+      - title: Functional programming
+        items:
+          - title: Recursion
+            url: recursion
+            items:
+              - title: A recursive subroutine
+                url: recursive-sub
+                quizzes:
+                  - title: 'Quiz — Recursion'
+                    url: quiz
+              - title: The base case
+                url: base-case
+                quizzes:
+                  - title: 'Quiz — The base case'
+                    url: quiz
+            exercises:
+              - title: Power
+                url: factorial
+              - title: Sum of digits
+                url: sum-digits
+              - title: Count up
+                url: countdown
+          - title: Higher-order functions
+            url: higher-order
+            items:
+              - title: Passing subroutines
+                url: passing-subs
+                quizzes:
+                  - title: 'Quiz — Passing subroutines'
+                    url: quiz
+              - title: Returning subroutines
+                url: returning-subs
+                quizzes:
+                  - title: 'Quiz — Higher-order functions'
+                    url: quiz
+            exercises:
+              - title: Apply twice
+                url: apply-twice
+              - title: Make a multiplier
+                url: make-adder
+              - title: Filter with a block
+                url: filter-block
+          - title: Lambdas and closures
+            url: closures
+            items:
+              - title: Lambdas
+                url: lambdas
+                quizzes:
+                  - title: 'Quiz — Lambdas'
+                    url: quiz
+              - title: Closures
+                url: capturing-state
+                quizzes:
+                  - title: 'Quiz — Closures'
+                    url: quiz
+            exercises:
+              - title: A counter
+                url: counter
+              - title: A multiplier
+                url: multiplier
+              - title: An accumulator
+                url: accumulator
+          - title: Reduction
+            url: reduction
+            items:
+              - title: The reduce metaoperator
+                url: reduce-metaop
+                quizzes:
+                  - title: 'Quiz — The reduce metaoperator'
+                    url: quiz
+              - title: The reduce routine
+                url: reduce-routine
+                quizzes:
+                  - title: 'Quiz — Reduction'
+                    url: quiz
+            exercises:
+              - title: Sum a list
+                url: sum-list
+              - title: Product of a list
+                url: product-list
+              - title: Join the strings
+                url: join-strings
+          - title: Data feeds
+            url: feeds
+            items:
+              - title: The feed operator
+                url: feed-operator
+                quizzes:
+                  - title: 'Quiz — The feed operator'
+                    url: quiz
+              - title: Chaining feeds
+                url: chaining-feeds
+                quizzes:
+                  - title: 'Quiz — Feeds'
+                    url: quiz
+            exercises:
+              - title: Feed the big numbers
+                url: feed-evens
+              - title: A feed pipeline
+                url: feed-pipeline
+              - title: Sort with a feed
+                url: feed-sorted
+          - title: Iterators
+            url: iterators
+            items:
+              - title: gather and take
+                url: gather-take
+                quizzes:
+                  - title: 'Quiz — gather and take'
+                    url: quiz
+              - title: Lazy gather
+                url: lazy-gather
+            exercises:
+              - title: Gather the cubes
+                url: gather-squares
+              - title: Gather the multiples of three
+                url: gather-evens
+              - title: Gather with a condition
+                url: gather-vowels
+          - title: Lazy and infinite sequences
+            url: lazy
+            items:
+              - title: The sequence operator
+                url: sequence-operator
+                quizzes:
+                  - title: 'Quiz — The sequence operator'
+                    url: quiz
+              - title: Infinite sequences
+                url: infinite-sequences
+                quizzes:
+                  - title: 'Quiz — Lazy sequences'
+                    url: quiz
+            exercises:
+              - title: The first multiples of seven
+                url: first-squares
+              - title: Powers of three
+                url: powers-of-two
+              - title: The Tribonacci sequence
+                url: fibonacci
+      # ── Concurrent programming ───────────────────────────────────
+      - title: Concurrent programming
+        items:
+          - title: Junctions
+            url: junctions
+            items:
+              - title: Building junctions
+                url: building-junctions
+                quizzes:
+                  - title: 'Quiz — Junctions'
+                    url: quiz
+              - title: Autothreading
+                url: autothreading
+                quizzes:
+                  - title: 'Quiz — Autothreading'
+                    url: quiz
+            exercises:
+              - title: Exactly one
+                url: any-match
+              - title: All even
+                url: all-positive
+              - title: None negative
+                url: none-equal
+          - title: Threads
+            url: threads
+            items:
+              - title: Starting a thread
+                url: starting-a-thread
+                quizzes:
+                  - title: 'Quiz — Threads'
+                    url: quiz
+              - title: Joining threads
+                url: joining-threads
+            exercises:
+              - title: Run in a thread
+                url: run-in-thread
+              - title: Join and wait
+                url: join-and-wait
+              - title: Two threads
+                url: two-threads
+          - title: Promises
+            url: promises
+            items:
+              - title: start and await
+                url: start-and-await
+                quizzes:
+                  - title: 'Quiz — Promises'
+                    url: quiz
+              - title: Chaining and combining
+                url: then-and-combinators
+                quizzes:
+                  - title: 'Quiz — Combining promises'
+                    url: quiz
+            exercises:
+              - title: Chain a promise
+                url: promise-result
+              - title: Await many
+                url: await-many
+              - title: Kept or broken
+                url: kept-or-broken
+          - title: Channels
+            url: channels
+            items:
+              - title: Sending and receiving
+                url: send-and-receive
+                quizzes:
+                  - title: 'Quiz — Channels'
+                    url: quiz
+              - title: Closing a channel
+                url: closing-a-channel
+                quizzes:
+                  - title: 'Quiz — Closing a channel'
+                    url: quiz
+            exercises:
+              - title: Receive a value
+                url: channel-receive
+              - title: Sum a channel
+                url: channel-sum
+              - title: Drain a channel
+                url: drain-channel
+          - title: Hyper and race 🆕
+            url: hyper-race
+            items:
+              - title: Parallel maps with hyper
+                url: hyper
+                quizzes:
+                  - title: 'Quiz — hyper'
+                    url: quiz
+              - title: Unordered parallelism with race
+                url: race
+            exercises:
+              - title: A hyper map
+                url: hyper-map
+              - title: A racing sum
+                url: parallel-sum
+              - title: Hyper with a filter
+                url: hyper-filter
+      # ── Reactive programming ─────────────────────────────────────
+      - title: Reactive programming
+        items:
+          - title: Supplies
+            url: supplies
+            items:
+              - title: Tapping a supply
+                url: tapping-a-supply
+                quizzes:
+                  - title: 'Quiz — Supplies'
+                    url: quiz
+              - title: Transforming a supply
+                url: transforming
+                quizzes:
+                  - title: 'Quiz — Transforming a supply'
+                    url: quiz
+            exercises:
+              - title: Tap a list
+                url: tap-a-list
+              - title: Filter a supply
+                url: map-a-supply
+              - title: Count the emissions
+                url: count-emissions
+          - title: Live and on-demand supplies
+            url: supply-kinds
+            items:
+              - title: On-demand supplies
+                url: on-demand-supplies
+                quizzes:
+                  - title: 'Quiz — Supply kinds'
+                    url: quiz
+              - title: Live supplies
+                url: live-supplies
+            exercises:
+              - title: Two taps
+                url: two-taps
+              - title: Tuning in late
+                url: a-live-feed
+              - title: Sum a live feed
+                url: live-sum
+          - title: react and whenever
+            url: react-whenever
+            items:
+              - title: The react block
+                url: the-react-block
+                quizzes:
+                  - title: 'Quiz — react'
+                    url: quiz
+              - title: whenever
+                url: whenever
+                quizzes:
+                  - title: 'Quiz — whenever'
+                    url: quiz
+            exercises:
+              - title: Collect with react
+                url: react-sum
+              - title: Collect with react
+                url: react-collect
+              - title: Two whenevers
+                url: two-whenevers
+          - title: await
+            url: await
+            items:
+              - title: Awaiting a promise
+                url: awaiting-promises
+                quizzes:
+                  - title: 'Quiz — await'
+                    url: quiz
+              - title: Waiting for completion
+                url: waiting-for-completion
+            exercises:
+              - title: Await a promise
+                url: await-a-promise
+              - title: Await a supply
+                url: await-a-supply
+              - title: Await a failure
+                url: await-two
+      # ── Web programming ──────────────────────────────────────────
+      - title: Web programming
+        items:
+          - title: Making remote connections
+            url: connections
+            items:
+              - title: Opening a socket
+                url: opening-a-socket
+                quizzes:
+                  - title: 'Quiz — Sockets'
+                    url: quiz
+              - title: Sending and receiving
+                url: sending-receiving
+            exercises:
+              - title: Connect to a host
+                url: connect-to-host
+              - title: Send and receive
+                url: send-and-receive
+          - title: A simple HTTP client
+            url: http-client
+            items:
+              - title: A raw GET request
+                url: a-raw-get
+                quizzes:
+                  - title: 'Quiz — HTTP requests'
+                    url: quiz
+              - title: Using a client module
+                url: client-modules
+            exercises:
+              - title: A GET request
+                url: get-request
+              - title: Status with a client
+                url: status-line
+          - title: A simple HTTP server
+            url: http-server
+            items:
+              - title: Listening for connections
+                url: listening
+                quizzes:
+                  - title: 'Quiz — Listening'
+                    url: quiz
+              - title: Responding to a request
+                url: responding
+            exercises:
+              - title: A hello server
+                url: hello-server
+              - title: An HTML response
+                url: text-response
+          - title: Cro 101
+            url: cro
+            items:
+              - title: What is Cro
+                url: what-is-cro
+                quizzes:
+                  - title: 'Quiz — Cro'
+                    url: quiz
+              - title: A Cro route
+                url: a-cro-route
+            exercises:
+              - title: A route with a parameter
+                url: greeting-route
+              - title: A second route
+                url: second-route
+  - title: Addendum 🆕
+    long_title: 'Addendum: comprehensive exercises 🆕'
+    url: addendum
+    description: >-
+      A capstone collection of tougher exercises that draw on the whole course.
+      Each one needs more than a single idea, and many combine tools from
+      different parts. All of them use only features introduced earlier — nothing
+      new to learn, just plenty to practise.
+    items:
+      - title: Working with data
+        items:
+          - title: Numbers and mathematics
+            url: numbers-math
+            exercises:
+              - title: Perfect numbers
+                url: perfect-numbers
+              - title: Prime factorisation
+                url: prime-factors
+              - title: Greatest common divisor and least common multiple
+                url: gcd-lcm
+              - title: Digital root
+                url: digital-root
+              - title: Collatz steps
+                url: collatz
+              - title: One number, three bases
+                url: number-bases
+          - title: Text and strings
+            url: text-strings
+            exercises:
+              - title: Palindrome check
+                url: palindrome
+              - title: Word frequency
+                url: word-frequency
+              - title: Reverse the word order
+                url: reverse-words
+              - title: Count the vowels
+                url: count-vowels
+              - title: Title case
+                url: title-case
+              - title: Caesar cipher
+                url: caesar-cipher
+              - title: Run-length encoding
+                url: run-length
+          - title: Lists, arrays, and hashes
+            url: collections
+            exercises:
+              - title: The second-largest value
+                url: second-largest
+              - title: Split into even and odd
+                url: even-odd
+              - title: Merge two inventories
+                url: merge-inventories
+              - title: Running totals
+                url: running-totals
+              - title: Transpose a matrix
+                url: transpose
+              - title: The most common element
+                url: most-common
+              - title: Zip two lists into a hash
+                url: zip-to-hash
+      - title: Flow and functions
+        items:
+          - title: Control flow and logic
+            url: control-logic
+            exercises:
+              - title: Letter grades
+                url: letter-grades
+              - title: Sign and parity
+                url: classify-number
+              - title: Leap years
+                url: leap-year
+              - title: Kind of triangle
+                url: triangle-kind
+              - title: Rock, paper, scissors
+                url: rock-paper-scissors
+              - title: Sum until over a hundred
+                url: sum-until
+          - title: Subroutines and functional style
+            url: subs-functional
+            exercises:
+              - title: Digit sum by recursion
+                url: recursive-digit-sum
+              - title: Compose two functions
+                url: compose
+              - title: A running accumulator
+                url: accumulator
+              - title: Sum of even squares
+                url: sum-even-squares
+              - title: Describe by type
+                url: multi-describe
+              - title: Sort by two keys
+                url: sort-by-two-keys
+      - title: Types and text machines
+        items:
+          - title: Objects and classes
+            url: objects-classes
+            exercises:
+              - title: A stack class
+                url: stack
+              - title: A bank account
+                url: bank-account
+              - title: Shapes sharing a role
+                url: shapes-role
+              - title: Which quadrant
+                url: point-quadrant
+              - title: Adding vectors
+                url: vector-add
+              - title: Animals that speak
+                url: animal-inheritance
+          - title: Regexes and grammars
+            url: regex-grammars
+            exercises:
+              - title: Extract and sum numbers
+                url: extract-numbers
+              - title: Parse a date with named captures
+                url: parse-date
+              - title: Normalise whitespace
+                url: normalize-whitespace
+              - title: Validate identifiers
+                url: validate-identifier
+              - title: A grammar for full names
+                url: grammar-fullname
+              - title: A grammar that adds
+                url: grammar-sum
+      - title: Bringing it together
+        items:
+          - title: Mixed mini-projects
+            url: mini-projects
+            exercises:
+              - title: Roman numerals
+                url: roman-numerals
+              - title: A reverse-Polish calculator
+                url: rpn-calculator
+              - title: A text histogram
+                url: histogram
+              - title: Group the anagrams
+                url: anagram-groups
+              - title: Sieve of Eratosthenes
+                url: sieve
+              - title: Scores from CSV lines
+                url: csv-averages

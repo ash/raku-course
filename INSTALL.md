@@ -1,38 +1,93 @@
-You need Raku, Ruby, and Python to run the Course of Raku.
+# Running the course locally
 
-# Running site locally
+The course is a collection of Markdown (`.md`) files. A dedicated Raku program,
+`raku-pages.raku`, builds them into a tree of static HTML files, which you then serve with any static web server.
 
-To run the site locally, install `jekyll` and `github-pages` as shown below:
+The live site at [course.raku.org](https://course.raku.org/) is generated the same way.
 
-    sudo apt-get install ruby-full build-essential zlib1g-dev
+## Prerequisites
 
-    sudo gem install jekyll bundler
-    sudo gem install github-pages
+You need a Raku compiler (the best option is to use Rakudo), one Raku module, and `pandoc`. Pygments is optional but recommended for syntax highlighting.
 
-    git clone https://github.com/ash/raku-course.git
-    cd raku-course
+### Rakudo (the `raku` command)
 
-    bundle install
-    bundle exec jekyll serve
+    brew install rakudo          # macOS, Homebrew
+    sudo port install rakudo     # macOS, MacPorts
 
-If everything worked well, you will see the prompt to visit http://localhost:4000.
+(See the “How to install Rakudo” page at the beginning of Part 1 for other platforms and options such as Rakudo Star, online services, and Docker.)
 
-Do not close the terminal window with `bundle` running. As soon as you update one of the source files, it will regenerate the site. To speed it up, run the last instruction as:
+### The `YAMLish` module
 
-    bundle exec jekyll serve --incremental
+The generator reads the table of contents from a YAML file, using the `YAMLish` module. Install it with `zef`:
 
-Note that this works well if you are modifying independent `index.md` files. If you modify one of the files in `_includes`, `_data`, or `_layout` that affect the whole site, you’ll need to regenerate the site again. So either run it without `--incremental` or break it with `Ctrl+C` and start it again.
+    zef install YAMLish
 
-# Syntax highlighting
+If you don’t have `zef` yet:
 
-There is no built-in Raku syntax highlighting in the above scheme. Jekyll generates static files and saves them in the directory `_site`. A server running at http://localhost:4000 reads the files from there. The production server, https://course.raku.org/, takes the files from the `docs` directory, which contains the same files as in `_site` but with syntax-highlighted code. To generate `docs`, you need to install Pygments:
+    git clone https://github.com/ugexe/zef.git
+    cd zef
+    raku -I. bin/zef install .
+
+Make sure `zef/bin/zef` is on your `PATH`.
+
+### `pandoc`
+
+Markdown is rendered to HTML with `pandoc`:
+
+    brew install pandoc          # macOS, Homebrew
+    sudo port install pandoc     # macOS, MacPorts
+
+### Pygments (optional, for syntax highlighting)
+
+Raku code blocks on the pages are highlighted with Pygments, an external Python tool that provides the `pygmentize` command:
 
     pip install Pygments
 
-After updating content files, wait until Jekyll finishes generating the update (it prints the time spent to regenerate the whole site, so wait untill it says how long it took) and run:
+You can skip this — the site will still build, just without highlighted code. Use the `--quick` option (below) to skip highlighting and build faster.
 
-    raku highlight.raku
+## Building the site
 
-This program runs the highligher for every Raku code snippet in the generated HTML files and saves the updated static files at the same location but within `docs`.
+From the repository root, run:
 
-To see the highlighted version, use, for instance, `nginx` and point it to the `raku-course/docs` directory as root.
+    raku raku-pages.raku
+
+This scans the Markdown files and writes the generated HTML into the **`_out/`**
+directory.
+
+Useful options:
+
+| Command | What it does |
+|---------|--------------|
+| `raku raku-pages.raku` | Build every language, with syntax highlighting |
+| `raku raku-pages.raku --quick` | Skip highlighting — much faster while editing |
+| `raku raku-pages.raku --language=en` | Build only one language (here, English) |
+| `raku raku-pages.raku --language=en --filter=essentials` | Build only the pages whose path contains the given text |
+
+While working on content, this combination seems to be the most practical:
+
+    raku raku-pages.raku --language=en --quick
+
+## Viewing the site locally
+
+The generated pages link to CSS, JavaScript, and images with absolute paths such as `/assets/course.css`, so you must serve the `_out/` directory **as the web root**.
+
+The repository ships a symlink, `_out/assets → ../assets`, so the `/assets/…` paths resolve. If it is missing (for example, in a fresh clone), create it once:
+
+    ln -sfn ../assets _out/assets
+
+Then start any static web server from inside `_out/`. The simplest is the one built into Python — no installation needed:
+
+    cd _out
+    python3 -m http.server 8000
+
+Now open <http://localhost:8000/> in your browser.
+
+Any other static server works too. For example, with `nginx`, point the server root at the `raku-course/_out` directory.
+
+## Editing and rebuilding
+
+The local server does **not** rebuild automatically. After you change a Markdown file, re-run the generator and refresh the browser. To rebuild only the part you are working on, narrow the build with `--filter`, for example:
+
+    raku raku-pages.raku --language=en --quick --filter=essentials
+
+The `--filter` value is matched as plain text against each page’s directory path, so `--filter=essentials/strings` rebuilds just that section.

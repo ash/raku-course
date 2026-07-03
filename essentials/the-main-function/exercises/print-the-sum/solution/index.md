@@ -16,7 +16,7 @@ sub MAIN(Int $a, Int $b) {
 }
 ```
 
-🦋 Find the program in the file [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/print-the-sum.raku).
+🦋 Find the program in the file [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/print-the-sum.raku).
 
 ## Output
 

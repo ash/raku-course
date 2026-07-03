@@ -29,45 +29,22 @@ While the navigation guides you through the assignments in a particular order, y
 
 ## Contents
 
-The course includes five parts:
+The course includes five parts, all completely written and published:
 
-1. [Raku essentials](/essentials) — Published
-1. [Advanced Raku subjects](/advanced) — In progress<span id="ProgressBar">...</span>
-1. Object-oriented programming in Raku
-1. Regexes and grammars
-1. Functional, concurrent, and reactive programming
+<style>
+table td:first-child, table th:first-child { width: 99%; }
+table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; padding-left: 1.5em; }
+</style>
 
-<script>
-    let ProgressBar = document.getElementById('ProgressBar');
-    let current_progress = 0;
-    setInterval(function() {
-        current_progress++;
-        current_progress %= 6;
+| Part | Topics | Quizzes | Exercises |
+|------|-------:|--------:|----------:|
+| [Raku essentials](/essentials) | 91 | 73 | 65 |
+| [Advanced Raku subjects](/advanced) | 86 | 48 | 115 |
+| [Objects, I/O, and exceptions](/oop) | 33 | 20 | 55 |
+| [Regexes and grammars](/regexes) | 34 | 29 | 49 |
+| [Functional, concurrent, reactive, and web programming](/paradigms) | 40 | 31 | 56 |
 
-        let bar = '';
-        for (let c = 0; c < current_progress; c++) {
-            bar += ',';
-        }
-        bar += '...';
-        for (let c = current_progress; c < 6; c++) {
-            bar += ',';
-        }
-        
-        bar = bar.substr(3, 3);
-        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
-        ProgressBar.innerHTML = bar;
-    }, 200);
-</script>
-
-At the moment, the first part is completely written and published. The other parts are in progress. Note that as the course is still in development, the URLs of its different parts may slightly change in the future.
-
-The first part, ‘Raku essentials’, contains:
-
-- 91 topics
-- 73 quizzes
-- 65 exercises
-
-New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
+Note that the course is still being refined, so the URLs of its different parts may slightly change in the future. New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
 ## Prerequisites
 

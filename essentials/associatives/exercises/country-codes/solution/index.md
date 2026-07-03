@@ -26,7 +26,7 @@ my @codes = < FR IT DE EE LV US CN IN BR >;
 say %cc{$_} for @codes;
 ```
 
-🦋 Find the program in the file [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/country-codes.raku).
+🦋 Find the program in the file [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/country-codes.raku).
 
 ## Output
 

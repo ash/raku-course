@@ -25,7 +25,7 @@ say 'False ^^ True is ', False ^^ True;
 say 'False ^^ False is ', False ^^ False;
 ```
 
-🦋 You can find the full code in the file [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 You can find the full code in the file [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
 ## Output
 

@@ -16,7 +16,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 You can find the full code in the file [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 You can find the full code in the file [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Comments
 

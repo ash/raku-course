@@ -37,7 +37,7 @@ for @items -> $item {
 }
 ```
 
-🦋 Find the program in the file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku).
+🦋 Find the program in the file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/purchase-table.raku).
 
 ## Output
 

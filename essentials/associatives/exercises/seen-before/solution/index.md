@@ -21,7 +21,7 @@ loop {
 }
 ```
 
-🦋 Find the program in the file [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku).
+🦋 Find the program in the file [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/seen-before.raku).
 
 ## Output
 

@@ -4,7 +4,7 @@ title: Scientific notation in Raku
 
 {% include menu.html %}
 
-In the previous section, we saw that numbers such as `1.5` are rational numbers. To make a number that corresponds to a `double` number in C++, use scientific notation:
+In the previous section, we saw that numbers such as `1.5` are [rational numbers](/essentials/numbers/rats). To make a number that corresponds to a `double` number in C++, use scientific notation:
 
 ```raku
 1E0

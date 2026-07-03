@@ -12,7 +12,7 @@ The program to print the value of π is simple enough.
 say π;
 ```
 
-🦋 You can find the full code in the file [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 You can find the full code in the file [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Output
 

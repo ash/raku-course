@@ -46,6 +46,6 @@ Enter the number: 10
 10 is 25 or smaller.
 ```
 
-An alternative way is to use the `given` and `when` pair, which we will learn in the future.
+An alternative way is to use the [`given` and `when`](/advanced/given-when) pair, which we will learn in the future.
 
 {% include nav.html %}

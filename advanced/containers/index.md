@@ -2,13 +2,12 @@
 title: Understanding Raku containers
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-Containers in the Raku programming language serve to keep data, but their role and meaning are deeper and wider than just being a variable. This section gives an overview of different container types that are available for the developer in Raku.
+Containers in the Raku programming language serve to keep data, but their role and meaning are deeper and wider than simply being a variable. This section gives an overview of the different container types available to a Raku developer.
 
-It is crusial to understand the concept of containers, otherwise it may seem that in some cases the program uses, for example, scalars instead of arrays or vice versa.
+It is important to understand the concept of containers. Without it, it may seem surprising that in some cases a program appears to use a scalar where you expected an array, or the other way around.
 
-Different types of containers can host data of different nature, size, or even different number of data items. Correspondently, different types of containers have their own methods to manupulate the data.
+Different containers can host data of a different nature, of a different size, or even a different number of data items. Correspondingly, each type of container has its own methods to manipulate the data it holds.
 
 {% include nav.html %}

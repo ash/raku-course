@@ -10,9 +10,9 @@ To start Rakudo shell, simply type:
 
 ```console
 $ raku
-Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2026.06.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
+Built on MoarVM version 2026.06.
 
 You may want to `zef install Readline` or `zef install Linenoise` or use rlwrap for a line editor
 

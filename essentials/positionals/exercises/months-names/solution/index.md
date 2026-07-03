@@ -20,7 +20,7 @@ my @months = <
 say @months[@*ARGS[0] - 1];
 ```
 
-🦋 Find the program in the file [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/months-names.raku).
+🦋 Find the program in the file [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/months-names.raku).
 
 ## Output
 

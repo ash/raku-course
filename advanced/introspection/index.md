@@ -1,47 +1,26 @@
 ---
-title: Introspecting scalar containers in Raku
+title: Introspecting containers
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-MOP stands for Meta-object protocol. In Raku, it allows to get additional information about the objects in the program, such as containers or variables.
+_Introspection_ means asking a value or a container about itself — its type, its underlying container, and the machinery behind it. You have already used one introspection tool, `.^name`, to print the type of a value.
 
-Condider a type-constrained variable:
+Raku offers a small family of such tools, written in capital letters: `WHAT`, `VAR`, `WHO`, and `HOW`. They are sometimes called _pseudo-methods_, because the compiler gives them a special meaning rather than treating them as ordinary methods. This section looks at each of them.
 
-```
-my Int $int;
-```
-
-Debugging this variable using `.^name` reveals its type.
-
-```
-my Int $int;
-say $int.^name; # Int
-```
-
-In this program, `^name` is a built-in method that returns the type of the value kept in the container. This is a part of the so-called metaobject that contains meta-information about the container.
-
-Here is a modified example from the [earlier topic](/advanced/scalar-containers/types/):
+As a reminder, here is `.^name` reporting how the type of an untyped container changes as you store different values in it:
 
 ```raku
 my $value;
-say $value.^name;
+say $value.^name; # Any
 
 $value = 42;
-say $value.^name;
+say $value.^name; # Int
 
-$value = 'fourty-two';
-say $value.^name;
+$value = 'forty-two';
+say $value.^name; # Str
 ```
 
-This time, the program only prints type names:
-
-```
-Any
-Int
-Str
-```
-
+The container starts as `Any` and then reports the type of whatever value it currently holds.
 
 {% include nav.html %}

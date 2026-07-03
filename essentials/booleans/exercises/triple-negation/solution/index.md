@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 You can find the full code in the file [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 You can find the full code in the file [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Output
 

@@ -18,7 +18,7 @@ print 'Buzz' if $n %% 5;
 print "\n";
 ```
 
-🦋 Find the program in the file [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/exercises/conditional-checks/fizz-buzz.raku ).
+🦋 Find the program in the file [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/fizz-buzz.raku ).
 
 ## Example
 

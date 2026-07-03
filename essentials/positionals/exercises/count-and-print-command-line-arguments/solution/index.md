@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Find the program in the file [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Find the program in the file [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Output
 

@@ -24,7 +24,7 @@ say @lights[102 % @lights];
 say @lights[305 % @lights];
 ```
 
-🦋 Find the program in the file [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/traffic-lights.raku).
+🦋 Find the program in the file [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/traffic-lights.raku).
 
 ## Output
 

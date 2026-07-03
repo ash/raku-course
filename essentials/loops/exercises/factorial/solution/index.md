@@ -17,7 +17,7 @@ $f *= $_ for 2..$n;
 say $f;
 ```
 
-🦋 Find the program in the file [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku).
+🦋 Find the program in the file [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/factorial.raku).
 
 ## Output
 

@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Find the program in the file [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Find the program in the file [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Output
 

@@ -27,7 +27,7 @@ else { # Multiples of 10, e.g., 50
 }
 ```
 
-🦋 Find the program in the file [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Find the program in the file [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Example
 

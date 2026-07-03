@@ -16,7 +16,7 @@ my $d = $n % 10;
 say "The last digit of $n is $d.";
 ```
 
-🦋 Find the program in the file [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/the-last-digit.raku).
+🦋 Find the program in the file [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/the-last-digit.raku).
 
 ## Output
 

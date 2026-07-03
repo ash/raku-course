@@ -1,23 +1,24 @@
 ---
-title: Proxying method calls with scalars
+title: Proxying method calls
 ---
 
-{% assign menu_for_part = page.url | replace: "/", "" %}
 {% include menu.html %}
 
-Being a scalar container actually means to be an object of the `Scalar` type. The use of scalars is so transparent in most of the cases, so the developer often do not has to think about the container and can imagine working with the assigned values themselves.
+Being a scalar container actually means being an object of the `Scalar` type. In most cases, the use of scalars is so transparent that a developer does not have to think about the container at all and can imagine working directly with the values stored in it.
 
-Scalar containers proxy method calls to the value that they keep. For example, after the assignment `my $lang = 'Raku'`, you can call the `.chars` method on the variable:
+This works because a scalar container proxies method calls to the value that it keeps. For example, after the assignment `my $lang = 'Raku'`, you can call the `.chars` method on the variable:
 
 ```raku
 my $lang = 'Raku';
 say $lang.chars; # 4
 ```
 
-This program prints `4`, which is the number of characters in the string `'Raku'`. The result is exactly the same as if you would call `.chars` on the string, not on the container variable:
+The program prints `4`, which is the number of characters in the string `'Raku'`. The result is exactly the same as if you called `.chars` on the string value directly, rather than on the container variable:
 
 ```raku
 say 'Raku'.chars; # 4
 ```
+
+In other words, the container quietly forwards the `.chars` call to the string it holds, and returns the result to you.
 
 {% include nav.html %}

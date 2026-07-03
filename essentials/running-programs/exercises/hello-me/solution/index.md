@@ -12,7 +12,7 @@ Here is the solution to the problem ‘[Hello, me!](../)‘.
 say 'Hello, Andrew!';
 ```
 
-🦋 You can find the full code in the file [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 You can find the full code in the file [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
 ## Output
 

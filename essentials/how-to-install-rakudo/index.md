@@ -26,11 +26,11 @@ The Rakudo version numbering system forms the version number as a two-part numbe
 
 ```console
 $ raku -v
-Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2026.06.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
+Built on MoarVM version 2026.06.
 ```
 
-You can see three version numbers here. The first one is the version of Rakudo itself: `v2020.10`. Then comes the version of the Raku language: `v6.d`. The updates will currently get the next letter as a minor version part, e.g., `v6.e`, etc. Finally, we see the name of the virtual machine used in this compiler: MoarVM version `2020.10`.
+You can see three version numbers here. The first one is the version of Rakudo itself: `v2026.06`. Then comes the version of the Raku language: `v6.d`. The updates will currently get the next letter as a minor version part, e.g., `v6.e`, etc. Finally, we see the name of the virtual machine used in this compiler: MoarVM version `2026.06`.
 
 {% include nav.html %}

@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Find the program in the file [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Find the program in the file [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Output
 

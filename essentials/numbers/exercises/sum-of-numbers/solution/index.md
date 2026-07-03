@@ -18,7 +18,7 @@ my $sum = $a + $b + $c;
 say "The sum of numbers is $sum.";
 ```
 
-🦋 You can find the full code in the file [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum-of-numbers.raku).
+🦋 You can find the full code in the file [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum-of-numbers.raku).
 
 ## Output
 

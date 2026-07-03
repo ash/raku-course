@@ -14,7 +14,7 @@ my $n = prompt 'Enter a positive integer number: ';
 say ($n % 100) div 10;
 ```
 
-🦋 You can find the full code in the file [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 You can find the full code in the file [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Output
 
