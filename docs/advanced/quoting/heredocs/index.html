@@ -107,19 +107,19 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/quoting">Quoting constructs 🆕</a></p>
+<a href="/advanced/built-in-types">More about built-in types</a> / <a
+href="/advanced/quoting">Quoting constructs 🆕</a></p>
 <h1 id="heredocs">Heredocs</h1>
 <p>A <em>heredoc</em> is a quoting form for multi-line text. Instead of
 delimiters around the text, you give a terminator word with
 <code>:to</code>, and the string runs from the next line until a line
 containing just that word:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/;</span>
-<span class="s">Hello,</span>
-<span class="s">World!</span>
-<span class="s">END</span>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/</span>;
+<span class="n">Hello</span>,
+<span class="n">World</span>!
+<span class="k">END</span>
 
-<span class="nb">print</span> <span class="nv">$text</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$text</span>;</pre></div>
 
 <p>This prints:</p>
 <div class="highlight"><pre>Hello,
@@ -130,29 +130,27 @@ that sits before the terminator, so it already ends in a line break —
 using <code>say</code> would add a second one and leave a trailing blank
 line. Because the heredoc starts with <code>q:to</code>, the text is not
 interpolated; use <code>qq:to</code> to interpolate variables:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
 
-<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/;</span>
-<span class="s">Dear $name,</span>
-<span class="s">Welcome!</span>
-<span class="s">EOF</span>
+<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/</span>;
+<span class="n">Dear</span> <span class="nv">$name</span>,
+<span class="n">Welcome</span>!
+<span class="n">EOF</span>
 
-<span class="nb">print</span> <span class="nv">$greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$greeting</span>;</pre></div>
 
 <p>A useful detail: the <strong>indentation of the closing
 terminator</strong> is stripped from every line of the text. This lets
 you indent a heredoc to match the surrounding code without that
 indentation ending up in the string:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greeting</span> {
-    <span class="k">return</span> <span class="s">q:to/END/;</span>
-<span class="s">        Hello,</span>
-<span class="s">        World!</span>
-<span class="s">        END</span>
+    <span class="k">return</span> <span class="s">q:to/END/</span>;
+        <span class="n">Hello</span>,
+        <span class="n">World</span>!
+        <span class="k">END</span>
 }
 
-<span class="nb">print</span> <span class="n">greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="n">greeting</span>;</pre></div>
 
 <p>This prints the same <code>Hello,</code> and <code>World!</code> as
 the first example. Here the closing <code>END</code> is indented by
@@ -187,6 +185,13 @@ the exercises in this section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

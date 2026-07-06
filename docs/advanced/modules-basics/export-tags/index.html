@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/modules-basics">Modules basics</a></p>
+<a href="/advanced/modules">Modules</a> / <a
+href="/advanced/modules-basics">Modules basics</a></p>
 <h1 id="export-tags">Export tags</h1>
 <p>Marking a subroutine <code>is export</code> places it in a module’s
 <em>default</em> export group — the names a plain <code>use</code>
@@ -117,26 +118,22 @@ wants.</p>
 <p>A tag is written in parentheses after <code>is export</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
-</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
 
 <p><code>hello</code> has no tag, so it belongs to the default group;
 <code>goodbye</code> is tagged <code>:partings</code>.</p>
 <p>A plain <code>use</code> imports the default group only:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span></pre></div>
 
 <p>Naming a tag imports that group instead — and, perhaps surprisingly,
 <em>not</em> the default one as well:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span></pre></div>
 
 <p>Asking for <code>:partings</code> gives you exactly that group. To
 pull in everything a module exports, use the built-in <code>:ALL</code>
 tag:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span></pre></div>
 
 <p>Two special tags are worth knowing. <code>:ALL</code> is supported by
 every module and imports all of its exports. <code>:MANDATORY</code> is
@@ -166,6 +163,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

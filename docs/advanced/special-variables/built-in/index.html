@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/special-variables">Special and dynamic variables
+<a href="/advanced/containers-overview">Containers</a> / <a
+href="/advanced/special-variables">Special and dynamic variables
 🆕</a></p>
 <h1 id="built-in-special-variables">Built-in special variables</h1>
 <p>Raku predefines a set of variables for you. Most of them are
@@ -121,19 +122,17 @@ scope. Here are the ones you will reach for most often.</p>
 error), and <code>$*IN</code> (standard input). <code>say</code> and
 <code>print</code> write to <code>$*OUT</code>; to send text to standard
 error instead, call the method on <code>$*ERR</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">$*OUT</span>.<span class="nb">say</span>(<span class="s">&#39;normal output&#39;</span>); <span class="c1"># goes to standard output</span>
-<span class="vg">$*ERR</span>.<span class="nb">say</span>(<span class="s">&#39;a diagnostic&#39;</span>);  <span class="c1"># goes to standard error</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nv">$*OUT</span>.<span class="nb">say</span>(<span class="s">'normal output'</span>); <span class="c1"># goes to standard output</span>
+<span class="nv">$*ERR</span>.<span class="nb">say</span>(<span class="s">'a diagnostic'</span>);  <span class="c1"># goes to standard error</span></pre></div>
 
 <p>Because these are dynamic, redirecting <code>$*OUT</code> in a block
 sends the output of everything called inside that block to the new
 destination — without changing any of that code.</p>
 <h2 id="the-program-and-its-process">The program and its process</h2>
 <p>A few variables describe the running program itself:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">$*PROGRAM-NAME</span>; <span class="c1"># the path of the script being run</span>
-<span class="nb">say</span> <span class="vg">$*PID</span>;          <span class="c1"># the process id of this program</span>
-<span class="nb">say</span> <span class="vg">$*CWD</span>;          <span class="c1"># the current working directory</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$*PROGRAM-NAME</span>; <span class="c1"># the path of the script being run</span>
+<span class="nb">say</span> <span class="nv">$*PID</span>;          <span class="c1"># the process id of this program</span>
+<span class="nb">say</span> <span class="nv">$*CWD</span>;          <span class="c1"># the current working directory</span></pre></div>
 
 <p>Their values change from run to run, so no fixed output is shown
 here.</p>
@@ -145,9 +144,8 @@ containers:</p>
 ones a <code>MAIN</code> subroutine receives)</li>
 <li><code>%*ENV</code> — the environment variables, as a hash</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>; <span class="c1"># how many arguments were passed</span>
-<span class="nb">say</span> <span class="vg">%*ENV&lt;HOME&gt;</span>;  <span class="c1"># the value of the HOME environment variable</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@*ARGS</span>.<span class="nb">elems</span>; <span class="c1"># how many arguments were passed</span>
+<span class="nb">say</span> <span class="nv">%*ENV</span>&lt;<span class="n">HOME</span>&gt;;  <span class="c1"># the value of the HOME environment variable</span></pre></div>
 
 <p>These built-ins save you from wiring up the same information by hand.
 And because they are dynamic, looked up through the call stack, any
@@ -191,6 +189,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

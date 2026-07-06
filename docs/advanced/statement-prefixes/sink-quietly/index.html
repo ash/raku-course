@@ -107,16 +107,16 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/statement-prefixes">Statement prefixes 🆕</a></p>
+<a href="/advanced/control-flow">Control flow</a> / <a
+href="/advanced/statement-prefixes">Statement prefixes 🆕</a></p>
 <h1 id="sink-and-quietly">sink and quietly</h1>
 <p>Two more prefixes deal with running code for its effects rather than
 its value.</p>
 <p>The <code>sink</code> prefix evaluates something in <em>sink
 context</em> — purely for its side effects, discarding the result. It is
 useful with a lazy operation that you want to force to run:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">sink</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
-<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">sink</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
+<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span></pre></div>
 
 <p>The <code>map</code> here is run only for the printing it does;
 <code>sink</code> makes sure it actually executes and throws the
@@ -126,10 +126,9 @@ result is never used might not run at all.</p>
 <strong>warnings suppressed</strong>. Code that would normally print a
 warning to the error stream stays silent:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
-<span class="n">quietly</span> {
+<span class="k">quietly</span> {
     <span class="nb">say</span> <span class="nv">$value</span> + <span class="mi">1</span>; <span class="c1"># 1, with no &quot;uninitialized value&quot; warning</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Adding <code>1</code> to an undefined <code>$value</code> normally
 warns about using an uninitialized value, but inside
@@ -167,6 +166,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

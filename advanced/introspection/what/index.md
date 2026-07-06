@@ -44,4 +44,19 @@ say $var.^name; # Str
 say $var.WHAT;  # (Str)
 ```
 
+## Comparing type objects
+
+Because `WHAT` returns the type object itself, you can compare two of them with the _value identity_ operator `===`, which asks whether both sides are the very same value. There is only ever one type object per type, so this is a clean way to test whether two values share a type:
+
+```raku
+my $a = 42;
+my $b = 100;
+
+say $a.WHAT === $b.WHAT; # True  — both are Int
+say $a.WHAT === Int;     # True
+say $a.WHAT === Str;     # False
+```
+
+Unlike `==`, which compares numbers, `===` compares identity, so it works for type objects (and other values) directly.
+
 {% include nav.html %}

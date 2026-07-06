@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/traits-pragmas">Traits and pragmas 🆕</a></p>
+<a href="/advanced/operators">Operators</a> / <a
+href="/advanced/traits-pragmas">Traits and pragmas 🆕</a></p>
 <h1 id="writing-a-trait">Writing a trait</h1>
 <p>Traits are ordinary multi-subroutines with a special name, so you can
 write your own. To add a trait spelled <code>is something</code>, define
@@ -119,15 +120,14 @@ without knowing how they are made, and you will rarely need to write one
 yourself — treat this page as a look under the hood.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@traced</span>;
 
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">trait_mod:</span><span class="s">&lt;is&gt;</span>(<span class="nb">Routine:D</span> <span class="nv">$r</span>, :<span class="nv">$traced</span>!) {
-    <span class="nv">@traced</span>.<span class="nb">push</span>(<span class="nv">$r</span>.<span class="nb">name</span>);
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">trait_mod</span>:<span class="s">&lt;is&gt;</span>(<span class="nb">Routine</span>:<span class="n">D</span> <span class="nv">$r</span>, :<span class="nv">$traced</span>!) {
+    <span class="nv">@traced</span>.<span class="nb">push</span>(<span class="nv">$r</span>.<span class="n">name</span>);
 }
 
 <span class="k">sub</span> <span class="n">foo</span>() <span class="k">is</span> <span class="n">traced</span> { }
 <span class="k">sub</span> <span class="n">bar</span>() <span class="k">is</span> <span class="n">traced</span> { }
 
-<span class="nb">say</span> <span class="nv">@traced</span>; <span class="c1"># [foo bar]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@traced</span>; <span class="c1"># [foo bar]</span></pre></div>
 
 <p>Read the signature: the first parameter, <code>Routine:D $r</code>,
 is the thing the trait is attached to — here a subroutine. The
@@ -176,6 +176,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

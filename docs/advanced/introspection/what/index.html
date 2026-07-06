@@ -107,15 +107,15 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/introspection">Introspecting containers</a></p>
+<a href="/advanced/containers-overview">Containers</a> / <a
+href="/advanced/introspection">Introspecting containers</a></p>
 <h1 id="using-what">Using <code>WHAT</code></h1>
 <p><code>WHAT</code> is a pseudo-method that gives access to the type of
 a value. You can use it in much the same way as <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span> = <span class="mi">42</span>;
 
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;</pre></div>
 
 <p>The two print the type with a minor difference in decoration:
 <code>.^name</code> gives the bare name, while <code>WHAT</code> shows
@@ -126,25 +126,39 @@ the type object, written in parentheses:</p>
 <code>Any</code>. As soon as you assign a value, both <code>^name</code>
 and <code>WHAT</code> follow the type of the stored value:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Any)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Any</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Any)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <p>With a type constraint, the type is known immediately, even before
 anything is assigned:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
+<h2 id="comparing-type-objects">Comparing type objects</h2>
+<p>Because <code>WHAT</code> returns the type object itself, you can
+compare two of them with the <em>value identity</em> operator
+<code>===</code>, which asks whether both sides are the very same value.
+There is only ever one type object per type, so this is a clean way to
+test whether two values share a type:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">42</span>;
+<span class="k">my</span> <span class="nv">$b</span> = <span class="mi">100</span>;
+
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nv">$b</span>.<span class="n">WHAT</span>; <span class="c1"># True  — both are Int</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span></pre></div>
+
+<p>Unlike <code>==</code>, which compares numbers, <code>===</code>
+compares identity, so it works for type objects (and other values)
+directly.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
 <p>Complete the quiz that covers the contents of this topic.</p>
@@ -175,6 +189,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

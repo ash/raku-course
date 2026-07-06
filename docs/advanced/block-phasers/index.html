@@ -106,7 +106,8 @@
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
+          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
+<a href="/advanced/control-flow">Control flow</a></p>
 <h1 id="block-related-phasers">Block-related phasers</h1>
 <p>Besides the program-wide phasers, Raku has phasers tied to the life
 of a single block or loop.</p>
@@ -114,14 +115,13 @@ of a single block or loop.</p>
 <p>The <code>ENTER</code> phaser runs each time execution enters a
 block, and the <code>LEAVE</code> phaser runs each time it leaves —
 whichever line they are written on:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;before block&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'before block'</span>;
 {
-    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">&#39;leaving&#39;</span>;
-    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">&#39;entering&#39;</span>;
-    <span class="nb">say</span> <span class="s">&#39;inside&#39;</span>;
+    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">'leaving'</span>;
+    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">'entering'</span>;
+    <span class="nb">say</span> <span class="s">'inside'</span>;
 }
-<span class="nb">say</span> <span class="s">&#39;after block&#39;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">'after block'</span>;</pre></div>
 
 <p>The output shows that <code>ENTER</code> runs first and
 <code>LEAVE</code> runs last, around the body of the block:</p>
@@ -137,19 +137,18 @@ resource.</p>
 statement, and you may set up several of them. When a block has more
 than one <code>LEAVE</code>, they fire in reverse order — the last one
 registered runs first, so the block unwinds like a stack:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;open A&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'open A'</span>;
 {
     <span class="k">LEAVE</span> {
-        <span class="nb">say</span> <span class="s">&#39;close A&#39;</span>;
+        <span class="nb">say</span> <span class="s">'close A'</span>;
     }
-    <span class="nb">say</span> <span class="s">&#39;open B&#39;</span>;
+    <span class="nb">say</span> <span class="s">'open B'</span>;
     <span class="k">LEAVE</span> {
-        <span class="nb">say</span> <span class="s">&#39;close B&#39;</span>;
+        <span class="nb">say</span> <span class="s">'close B'</span>;
     }
-    <span class="nb">say</span> <span class="s">&#39;work&#39;</span>;
+    <span class="nb">say</span> <span class="s">'work'</span>;
 }
-<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
 
 <p>Resource <code>A</code> is opened first and closed last:</p>
 <div class="highlight"><pre>open A
@@ -168,13 +167,12 @@ written.</p>
 <code>FIRST</code> runs once before the first iteration,
 <code>LAST</code> runs once after the last, and <code>NEXT</code> runs
 at the end of each iteration:</p>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span> {
-    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">&#39;-- first&#39;</span>;
-    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">&#39;-- last&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span> {
+    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">'-- first'</span>;
+    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">'-- last'</span>;
     <span class="k">NEXT</span>  <span class="nb">say</span> <span class="s">&quot;-- next (was $_)&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;body $_&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>The loop produces:</p>
 <div class="highlight"><pre>-- first
@@ -227,6 +225,13 @@ leave</a> →</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

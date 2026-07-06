@@ -106,7 +106,8 @@
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a></p>
+          <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
+<a href="/advanced/subroutines">Subroutines</a></p>
 <h1 id="multiple-dispatch">Multiple dispatch</h1>
 <p>In the Essentials part you met <a
 href="/essentials/more-on-functions/multi-functions"><em>multi-functions</em></a>:
@@ -118,14 +119,13 @@ looking at the types of the arguments. This mechanism is called
 <em>value</em> as well. It is written after a parameter and holds a
 condition that the argument must satisfy for that candidate to be
 chosen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
 
 <span class="n">info</span>(-<span class="mi">5</span>);
 <span class="n">info</span>(<span class="mi">0</span>);
-<span class="n">info</span>(<span class="mi">7</span>);
-</pre></div>
+<span class="n">info</span>(<span class="mi">7</span>);</pre></div>
 
 <p>Each call goes to the candidate whose condition is true for the given
 value:</p>
@@ -139,11 +139,10 @@ would clash. The conditions make them distinct.</p>
 <p>A common use of <code>where</code> is to provide the stopping point
 of a recursion as a separate candidate. Here is the factorial again,
 split into two multi-subs:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span>)               { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
 
 <p>The first candidate handles the base case (<code>$n</code> of
 <code>1</code> or less) and simply returns <code>1</code>. Every other
@@ -192,6 +191,13 @@ pricing</a> →</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

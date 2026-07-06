@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/special-variables">Special and dynamic variables
+<a href="/advanced/containers-overview">Containers</a> / <a
+href="/advanced/special-variables">Special and dynamic variables
 🆕</a></p>
 <h1 id="dynamic-variables">Dynamic variables</h1>
 <p>A <em>dynamic</em> variable has the <code>*</code> twigil. Unlike a
@@ -115,14 +116,13 @@ lexical variable, which is visible only in the block where it is
 declared, a dynamic variable is found by looking <strong>outward through
 the call stack</strong> — through whoever called the current code, no
 matter where that code is defined.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*greeting</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*greeting</span> = <span class="s">'Hello'</span>;
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="vg">$*greeting</span>;
+    <span class="nb">say</span> <span class="nv">$*greeting</span>;
 }
 
-<span class="n">greet</span>(); <span class="c1"># Hello</span>
-</pre></div>
+<span class="n">greet</span>(); <span class="c1"># Hello</span></pre></div>
 
 <p>The subroutine <code>greet</code> does not declare
 <code>$*greeting</code> and does not receive it as an argument, yet it
@@ -134,19 +134,18 @@ in the next example.</p>
 <p>Because the lookup follows the call stack, a closer declaration
 <strong>overrides</strong> a farther one for the duration of its
 block:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;outer&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'outer'</span>;
 
 <span class="k">sub</span> <span class="n">show</span> {
-    <span class="nb">say</span> <span class="vg">$*level</span>;
+    <span class="nb">say</span> <span class="nv">$*level</span>;
 }
 
 <span class="n">show</span>(); <span class="c1"># outer</span>
 
 {
-    <span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;inner&#39;</span>;
+    <span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'inner'</span>;
     <span class="n">show</span>(); <span class="c1"># inner</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>The same <code>show</code> prints <code>outer</code> the first time
 and <code>inner</code> when called from inside the block that redeclared
@@ -191,6 +190,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

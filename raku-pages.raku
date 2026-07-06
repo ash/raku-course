@@ -74,21 +74,45 @@ sub get-toc($lang, $is-silent) returns Hash {
     sub scan-subparts($subparts, $parent-url, $is-silent = False) {
         for @$subparts -> $subpart {
             my $subpart-title = $subpart<title>;
-            say "    Subpart \e[1m$subpart-title\e[0m" unless $is-silent;
+            # A subpart with a `url` gets its own landing page at part/slug; one
+            # without stays a plain header (the historical behaviour). Sections
+            # keep their flat part/section URLs either way — the subpart page is
+            # a sibling that groups them, not a new URL level.
+            my $subpart-slug = $subpart<url>;
+            my $subpart-url  = $subpart-slug ?? "$parent-url/$subpart-slug" !! Nil;
+
+            say "    Subpart \e[1m$subpart-title\e[0m"
+                ~ ($subpart-url ?? " \e[34m$subpart-url\e[0m" !! '') unless $is-silent;
 
             %toc{$parent-url}<subparts> //= [];
             @(%toc{$parent-url}<subparts>).push: {
-                type => Subpart,
+                type  => Subpart,
                 title => $subpart-title,
+                url   => $subpart-url,
             };
 
-            scan-levels($subpart<items>, $parent-url, Section, $is-silent) if $subpart<items>;
+            if $subpart-url {
+                %toc{$subpart-url} = {
+                    title       => $subpart-title,
+                    long-title  => $subpart<long_title>,
+                    description => $subpart<description>,
+                    url         => $subpart-slug,
+                    type        => Subpart,
+                    prev-url    => $prev-url,
+                    part-url    => $parent-url,
+                    items       => $subpart<items>,   # raw sections, for render-subpart
+                    sections    => [],                # section URLs, filled by scan-levels
+                };
+                $prev-url = $subpart-url;
+            }
+
+            scan-levels($subpart<items>, $parent-url, Section, $is-silent, $subpart-url) if $subpart<items>;
             scan-levels($subpart<exercises>, $parent-url, Exercise, $is-silent) if $subpart<exercises>;
             scan-levels($subpart<quizzes>, $parent-url, Quiz, $is-silent) if $subpart<quizzes>;
         }
     }
 
-    sub scan-levels($levels, $parent-url, $type, $is-silent = False) {
+    sub scan-levels($levels, $parent-url, $type, $is-silent = False, $subpart-url = Nil) {
         for @$levels -> $level {
             my $level-title = $level<title>;
             my $level-url = $level<url>;
@@ -102,6 +126,16 @@ sub get-toc($lang, $is-silent) returns Hash {
                 prev-url => $prev-url,
                 type => $type,
             };
+            # Record which subpart a section belongs to, so its breadcrumb can
+            # show the grouping even though the subpart is not in the URL path.
+            # Guard the push: if a subpart slug collides with a section slug the
+            # section entry overwrites the subpart's, leaving <sections> unset —
+            # skip rather than crash on an immutable value.
+            if $type == Section && $subpart-url && $url ne $subpart-url {
+                %toc{$url}<subpart-url> = $subpart-url;
+                %toc{$subpart-url}<sections>.push($url)
+                    if %toc{$subpart-url}<sections> ~~ Array;
+            }
             $prev-url = $url;
 
             my $pagetype-key = %pagetype-key{$type};
@@ -144,8 +178,12 @@ sub get-toc($lang, $is-silent) returns Hash {
     }
 
     sub link-toc() {
-        for %toc.kv -> $url, $item {
-            %toc{$item<prev-url>}<next-url> = $url if $item<prev-url>;
+        # Sorted, so that when two pages claim the same prev-url (a section's
+        # first exercise is claimed by both its solution page and the
+        # exercises index), the winner does not depend on hash order.
+        for %toc.keys.sort -> $url {
+            my $prev = %toc{$url}<prev-url>;
+            %toc{$prev}<next-url> = $url if $prev;
         }
     }
 
@@ -167,10 +205,17 @@ sub get-toc($lang, $is-silent) returns Hash {
     return %toc;
 }
 
-sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
-    my $pygmentize-path = find-pygmentize();
-    say $pygmentize-path ?? "\e[32mPygments installed ($pygmentize-path).\e[0m" !! "\e[31mNo working pygmentize found, code blocks will not be colour-highlighted.\e[0m";
-    $pygmentize-path = '' if $quick;
+sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $workers) {
+    my $nw = (+$workers) max 1;   # number of parallel page-rendering workers (>= 1)
+    # Resolve the requested highlighter to a runnable command (or nothing, e.g.
+    # under --highlighter=none, or if the chosen tool isn't installed).
+    my %hl = find-highlighter($highlighter);
+    if %hl<exe> {
+        say "\e[32m{%hl<name>} highlighter (%hl<exe>).\e[0m";
+    }
+    else {
+        say "\e[31mNo working highlighter, code blocks will not be colour-highlighted.\e[0m";
+    }
 
     my $which-pandoc = run 'which', 'pandoc', :out;
     my $pandoc-path = $which-pandoc.out.slurp.trim;
@@ -183,6 +228,12 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
     # Ensure the assets symlink exists — a fresh `rm -rf _out` removes it, which
     # would leave every page unstyled. Recreate it so builds are self-contained.
     $destination.IO.mkdir;
+
+    # GitHub Pages: an empty .nojekyll disables Jekyll, so our already-final
+    # HTML — and the many `_`-prefixed asset paths Jekyll would otherwise drop —
+    # is served exactly as generated.
+    "$destination/.nojekyll".IO.spurt('') unless "$destination/.nojekyll".IO.e;
+
     my $assets-link = "$destination/assets";
     unless $assets-link.IO.e {
         run 'ln', '-s', '../assets', $assets-link;
@@ -258,65 +309,108 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
         }).join(',') ~ ']';
     }
 
-    sub generate-page(%toc, $lang, $dir) {
+    sub post-process-html($html) {
+        return $html
+            .subst('<p>%%tipblock</p>', '<div class="tip"><p></p>')
+            .subst('<p>%%/tipblock</p>', '</div>');
+    }
+
+    # Render one page and return a result hash. Deliberately does NOT mutate the
+    # shared counters or @search-docs — those are merged afterwards, in sorted order,
+    # so the output (and search-index.json) is identical no matter how many workers
+    # run. Only reads shared state (%toc, $destination, %hl, …) and writes its own file.
+    sub render-page($dir) {
         # $dir is '' for the home page, so join carefully to avoid a leading '/'.
         my $src-dir = ($lang eq 'en' ?? $dir !! ($dir ?? "$lang/$dir" !! $lang));
         my $path = $src-dir ?? "$src-dir/index.md" !! 'index.md';
         my $title = %toc{$dir}<title>;
 
-        if $path.IO.f {
-            my $md = $path.IO.slurp;
-            my $html = md-to-html(
-                md => $md,
-                title => $title,
-                url => $dir,
-                path => $path,
-                lang => $lang,
-                locale => $lang,
-            );
+        # Subpart landing pages are synthesised — they need no hand-written file,
+        # just the breadcrumb and a table of contents for their sections.
+        my $is-subpart = %toc{$dir}<type> == Subpart;
 
-            $html = post-process-html($html) if $html ~~ /'%%'/;
-            $html = neutralize-unpublished-links($html) if $dir;
+        unless $path.IO.f || $is-subpart {
+            say "\e[33mTODO: '$dir' — '$title' not yet written ($path)\e[0m";
+            # Explicit pairs, not `:$dir` shorthand: rakupp loses a colon-pair
+            # shorthand hash returned from inside a `start` block (comes back Nil).
+            return { dir => $dir, title => $title, kind => 'pending' };
+        }
 
-            my $output-dir = $lang eq 'en' ?? "$destination/$dir" !! "$destination/$lang/$dir";
-            $output-dir.IO.mkdir(:parent);
+        my $md = $path.IO.f
+            ?? $path.IO.slurp
+            !! '{% include menu.html %}' ~ "\n\n" ~ '{% include toc.html %}' ~ "\n";
+        my $html = md-to-html(
+            md => $md,
+            title => $title,
+            url => $dir,
+            path => $path,
+            lang => $lang,
+            locale => $lang,
+        );
 
-            my $output-path = "$output-dir/index.html";
-            $output-path.IO.spurt($html);
+        $html = post-process-html($html) if $html ~~ /'%%'/;
+        $html = neutralize-unpublished-links($html) if $dir;
 
-            # Collect this page for the full-text search index (skip the home
-            # page — its text is just the table of contents).
-            if $dir {
-                my $text = index-text($md);
-                @search-docs.push: {
-                    u => ($lang eq 'en' ?? "/$dir" !! "/$lang/$dir"),
-                    t => clean-title($title // ''),
-                    b => $text,
-                } if $text;
-            }
+        my $output-dir = $lang eq 'en' ?? "$destination/$dir" !! "$destination/$lang/$dir";
+        try $output-dir.IO.mkdir(:parent);   # `try`: tolerate a peer worker creating a shared parent dir
 
+        my $output-path = "$output-dir/index.html";
+        $output-path.IO.spurt($html);
+        say "\e[32mSaved to $output-path\e[0m";
+
+        # Collect this page for the full-text search index (skip the home page —
+        # its text is just the table of contents).
+        my $search-doc = Nil;
+        if $dir {
+            my $text = index-text($md);
+            $search-doc = {
+                u => ($lang eq 'en' ?? "/$dir" !! "/$lang/$dir"),
+                t => clean-title($title // ''),
+                b => $text,
+            } if $text;
+        }
+        # Explicit pairs, not `:$dir`/`:$search-doc` shorthand — see the pending
+        # return above: rakupp drops a shorthand-pair hash returned from `start`.
+        return { dir => $dir, kind => 'saved', search-doc => $search-doc };
+    }
+
+    # Sorted, so the search-index entry order (and everything merged below) is stable
+    # from run to run — hash order isn't.
+    my @dirs = %toc.keys.sort.grep({
+        !($filter && $_ !~~ /$filter/) && !($uri && $_ ne $uri) && !beyond-limit($_)
+    });
+
+    # Render across $nw workers. The first page renders on its own so md-to-html's
+    # `state` (template, includes) initialises single-threaded before any concurrent
+    # access; the rest go out in batches of $nw. Real parallelism needs Rakudo:
+    # run `raku raku-pages.raku …`, not `rakupp raku-pages.raku …`. rakupp does not
+    # thread `start`/`await`, so under it a `--workers=N` build is just sequential
+    # (same output, no speedup) — and the worker returns MUST use explicit pairs,
+    # since rakupp drops a colon-pair-shorthand hash returned from a `start` block.
+    my @results;
+    if $nw > 1 && @dirs.elems > 1 {
+        @results.push: render-page(@dirs[0]);
+        my $i = 1;
+        while $i < @dirs.elems {
+            my $hi = min($i + $nw, @dirs.elems);
+            @results.append: await @dirs[$i ..^ $hi].map(-> $d { start render-page($d) });
+            $i = $hi;
+        }
+    }
+    else {
+        @results = @dirs.map({ render-page($_) });
+    }
+
+    # Merge results in sorted order → deterministic counters and search index.
+    for @results -> $r {
+        if $r<kind> eq 'saved' {
             $saved-count++;
-            say "\e[32mSaved to $output-path\e[0m";
+            @search-docs.push($r<search-doc>) if $r<search-doc>;
         }
         else {
             $pending-count++;
-            @pending-pages.push: "$dir ($title)";
-            say "\e[33mTODO: '$dir' — '$title' not yet written ($path)\e[0m";
+            @pending-pages.push: "$r<dir> ($r<title>)";
         }
-
-        sub post-process-html($html) {
-            return $html
-                .subst('<p>%%tipblock</p>', '<div class="tip"><p></p>')
-                .subst('<p>%%/tipblock</p>', '</div>');
-        }
-    }
-
-    for %toc.keys -> $dir {
-        next if $filter && $dir !~~ /$filter/;
-        next if $uri && $dir ne $uri;
-        next if beyond-limit($dir);          # part not published yet
-
-        generate-page(%toc, $lang, $dir);
     }
 
     say "\e[1m\e[32m$saved-count page(s) generated for '$lang'.\e[0m"
@@ -336,6 +430,20 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
     sub md-to-html(*%content) {
         state $template = "_templates/default.html".IO.slurp;
 
+        # A simple standard footer shown on every page, including the home page
+        # (which keeps its own translations block above it).
+        sub page-footer() {
+            my $year = Date.today.year;
+            return qq:to/FOOTER/;
+            <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+            <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+            <p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+            <p style="margin:.35em 0;">© 2021–{$year} by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+            </footer>
+            FOOTER
+        }
+
         sub field-substitute($from) {
             given $from {
                 when 'title' {
@@ -351,6 +459,8 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 when 'content' { return prepare-content(%content<md>) }
 
                 when 'head-includes' { return head-includes(%content) }
+
+                when 'footer' { return page-footer() }
 
                 default {
                     say "\e[31mERROR: Unknown command '$from' in '%content<path>'\e[0m";
@@ -368,32 +478,33 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
 
             # Plain, HTML-escaped code block — matching the wrapper pygments uses
             # — so the code is always marked up and styled even without a
-            # highlighter (--quick, no pygments, or a per-block failure).
+            # highlighter (--highlighter=none, no pygments, or a per-block failure).
             my $plain = qq[<div class="$wrapper"><pre>] ~ html-escape($code) ~ '</pre></div>';
 
-            return $plain unless $pygmentize-path;
+            return $plain unless %hl<exe>;
 
             # Only Raku code is syntax-highlighted. Everything else — program
             # output (whether bare or marked ```console), JSON, etc. — stays
             # plain, so it is never coloured as if it were Raku code.
             return $plain unless $is-raku;
 
-            # Pipe the code through pygmentize via stdin/stdout. (Using a shared
-            # temp file here races: an async read can pick up another block's
-            # output.) Write input, then drain stdout/stderr, then check status.
-            # Class-based output (the default — no noclasses): tokens get short
-            # CSS classes (.k, .s, …) coloured by course.css, so light AND dark
-            # palettes can be themed from the stylesheet.
-            my $proc = run $pygmentize-path, '-f', 'html', '-l', $language,
-                :in, :out, :err;
+            # Pipe the code through the highlighter via stdin/stdout. (Using a shared
+            # temp file here races: an async read can pick up another block's output.)
+            # Both pygmentize and `rakupp --highlight` read stdin and emit the same
+            # class-based <div class="highlight"> HTML — tokens get short CSS classes
+            # (.k, .s, …) coloured by course.css, so both palettes theme from the
+            # stylesheet. Only pygments needs the -l language flag.
+            my $proc = %hl<name> eq 'rakupp'
+                ?? run(%hl<exe>, '--highlight', '--html', :in, :out, :err)
+                !! run(%hl<exe>, '-f', 'html', '-l', $language, :in, :out, :err);
             $proc.in.spurt($code, :close);
             my $html = $proc.out.slurp(:close);
             $proc.err.slurp(:close);
 
             return $plain unless $proc.exitcode == 0 && $html.trim;
 
-            # Pygments emits <div class="highlight">; add the `raku` marker class
-            # so the copy button hooks onto highlighted blocks too.
+            # The highlighter emits <div class="highlight">; add the `raku` marker
+            # class so the copy button hooks onto highlighted blocks too.
             return $html.subst('<div class="highlight">', '<div class="highlight raku">');
         }
 
@@ -478,18 +589,31 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
 
         sub include-menu() {
             my @crumbs = "[Course of Raku](/)";
-            
+
             my $full-url = %content<url>;
-            my @url-items = $full-url.split('/');
-            pop @url-items;
+            my @seg = $full-url.split('/');
+            # Ancestors are every path segment except the page's own (last) slug.
+            my @ancestors = @seg[0 ..^ (@seg.elems - 1)];
 
             my $crumb-url = '';
-            for @url-items -> $current-url-part {
+            for @ancestors.kv -> $i, $current-url-part {
                 $crumb-url = $crumb-url ?? "$crumb-url/$current-url-part" !! $current-url-part;
 
                 my $toc-item = %toc{$crumb-url};
                 my $title = $toc-item<short-title> // $toc-item<title>;
                 @crumbs.push: "[$title](/$crumb-url)";
+
+                # Right after the part crumb, insert the subpart this page's
+                # section belongs to — it groups the sections but is not itself
+                # a segment of their (flat) URL.
+                if $i == 0 && @seg.elems >= 2 {
+                    my $section-url = @seg[0, 1].join('/');
+                    my $subpart-url = %toc{$section-url}<subpart-url>;
+                    if $subpart-url {
+                        my $sp = %toc{$subpart-url};
+                        @crumbs.push: "[{$sp<short-title> // $sp<title>}](/$subpart-url)";
+                    }
+                }
             }
 
             # Part-landing pages take their heading from toc.html (render-part,
@@ -679,7 +803,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 my $toc      = $heading ?? "# Part {$part<part-number>}. $long\n\n" !! '';
 
                 for @($part<items> // []) -> $subpart {
-                    $toc ~= "#### $subpart<title>\n\n";
+                    # A subpart with its own page becomes a link to that page.
+                    $toc ~= $subpart<url>
+                        ?? "#### [$subpart<title>]($top/$part-url/{$subpart<url>})\n\n"
+                        !! "#### $subpart<title>\n\n";
 
                     for @($subpart<items> // []) -> $section {
                         my $surl = "$top/$part-url/$section<url>";
@@ -730,7 +857,10 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                     $toc ~= "<div class=\"subparts\">\n\n";
                     for @($part<items> // []) -> $subpart {
                         $toc ~= "<details class=\"toc-subpart\">\n";
-                        $toc ~= "<summary>{$subpart<title>}</summary>\n\n";
+                        my $sp-label = $subpart<url>
+                            ?? "<a href=\"$top/{$part<url>}/{$subpart<url>}\">{$subpart<title>}</a>"
+                            !! $subpart<title>;
+                        $toc ~= "<summary>{$sp-label}</summary>\n\n";
                         for @($subpart<items> // []) -> $section {
                             my $surl = "$top/{$part<url>}/{$section<url>}";
                             $toc ~= "* [{$section<title>}]({$surl})\n";
@@ -748,8 +878,34 @@ sub generate-pages(%toc, $lang, $destination, $quick, $filter, $uri) {
                 return $toc;
             }
 
+            # Subpart landing page: just this subpart's sections, with counts.
+            if %toc{$url}<type> == Subpart {
+                return render-subpart(%toc{$url});
+            }
+
             # Part-landing page: just this part, with quiz/exercise counts.
             return render-part(%toc{$url}, True);
+
+            sub render-subpart($subpart) {
+                my $part-url = $subpart<part-url>;
+                my $toc = '';
+                $toc ~= "{$subpart<description>}\n\n" if $subpart<description>;
+
+                for @($subpart<items> // []) -> $section {
+                    my $surl = "$top/$part-url/$section<url>";
+                    $toc ~= "* [$section<title>]($surl)" ~ counts($section, $surl) ~ "\n";
+
+                    for @($section<items> // []) -> $topic {
+                        my $turl = "$surl/$topic<url>";
+                        my $tq = $topic<quizzes>
+                            ?? " — <span class=\"has-q\">[{decline($topic<quizzes>.elems, 'quiz')}]($turl#practice)</span>"
+                            !! '';
+                        $toc ~= "    - [$topic<title>]($turl)$tq\n";
+                    }
+                }
+
+                return $toc;
+            }
         }
 
         sub include-translations() {
@@ -896,6 +1052,60 @@ sub find-pygmentize() {
     return '';
 }
 
+#| Locate a `rakupp` that supports `--highlight`. Assume `rakupp` is on PATH; an
+#| optional $RAKUPP env var overrides it. Verify it actually highlights (older
+#| builds may lack --highlight), so a missing/old rakupp falls back gracefully.
+sub find-rakupp() {
+    my @candidates = 'rakupp';
+    @candidates.unshift: %*ENV<RAKUPP> if %*ENV<RAKUPP>;
+
+    for @candidates -> $path {
+        my $ok = try {
+            my $test = run $path, '--highlight', :in, :out, :err;
+            $test.in.spurt("1\n", :close);
+            my $out = $test.out.slurp(:close);
+            $test.err.slurp(:close);
+            $test.exitcode == 0 && $out.contains('class="highlight"');
+        };
+        return $path if $ok;
+    }
+
+    return '';
+}
+
+#| Resolve the chosen highlighter to a runnable spec. $choice is one of
+#| 'pygments', 'rakupp', 'auto' (prefer pygments, fall back to rakupp) or 'none'.
+#| Returns a Hash with <name exe>, or an empty Hash if none found.
+sub find-highlighter($choice) {
+    my $c = $choice.lc;
+    my @order;
+    if $c eq 'none' {
+        @order = ();
+    }
+    elsif $c eq 'rakupp' {
+        @order = <rakupp>;
+    }
+    elsif $c eq 'pygments' {
+        @order = <pygments>;
+    }
+    else {                                       # 'auto' (and any unknown value)
+        @order = <pygments rakupp>;
+    }
+
+    for @order -> $which {
+        if $which eq 'pygments' {
+            my $p = find-pygmentize();
+            return %( name => 'pygments', exe => $p ) if $p;
+        }
+        else {
+            my $p = find-rakupp();
+            return %( name => 'rakupp', exe => $p ) if $p;
+        }
+    }
+
+    return %();
+}
+
 #| Escape the three characters that matter in HTML text/code.
 sub html-escape($s) {
     return $s.subst('&', '&amp;', :g).subst('<', '&lt;', :g).subst('>', '&gt;', :g);
@@ -939,13 +1149,23 @@ sub neutralize-unpublished-links($html) {
         :g);
 }
 
-sub MAIN(:$language = '', :$quick = False, :$filter = '', :$uri = '', :$last-part = Inf) {
+sub MAIN(:$language = '', :$filter = '', :$uri = '', :$destination = '_out', :$last-part = Inf,
+         :$highlighter = 'pygments', :$workers = 1) {
+    # --highlighter=pygments (default) | rakupp | auto | none
+    #   pygments : the Python highlighter (the historical reference output)
+    #   rakupp   : Raku++'s own parse-aware `--highlight` (needs a `rakupp` binary)
+    #   auto     : prefer pygments, fall back to rakupp
+    #   none     : no syntax highlighting (plain, escaped code) — replaces the old --quick
+    # --workers=N : render N pages in parallel (default 1 = sequential). Output is
+    #   identical regardless of N. Parallelism only kicks in under Rakudo — run the
+    #   generator as `raku raku-pages.raku …`. Under `rakupp …` start/await do not
+    #   thread, so --workers>1 is a no-op (same 1-worker time, no speedup).
     $published-limit = +$last-part;
     for @languages.map: *.key -> $lang {
         next if $language && $lang ne $language;
 
         %toc = get-toc($lang, $filter ne '');
-        generate-pages(%toc, $lang, '_out', $quick, $filter, $uri);
+        generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $workers);
     }
 
     say "Done";

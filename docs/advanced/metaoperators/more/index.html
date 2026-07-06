@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/metaoperators">Meta-operators</a></p>
+<a href="/advanced/operators">Operators</a> / <a
+href="/advanced/metaoperators">Meta-operators</a></p>
 <h1 id="cross-hyper-and-negated">Cross, hyper, and negated</h1>
 <p>Besides reduction and zip, Raku has several more meta-operators.
 Three of them are worth knowing here.</p>
@@ -115,15 +116,13 @@ Three of them are worth knowing here.</p>
 <p>The cross meta-operator <code>X</code> pairs <strong>every</strong>
 element of one list with <strong>every</strong> element of another — the
 cartesian product:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
 
 <p>Like zip, it can wrap an operator to act on each pair.
 <code>X~</code> joins each pair into a string, and <code>X*</code>
 multiplies:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
 
 <p>Where zip walks two lists in step, cross combines them in every
 possible way.</p>
@@ -134,8 +133,7 @@ element</strong> of a list. The operator is wrapped in the pointy
 lists it works element by element, like zip; with a single value on one
 side, it stretches that value across the whole list:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
 
 <p>The two arrows need not point the same way, and their direction
 decides what happens when the lists differ in length — a tip pointing
@@ -152,13 +150,11 @@ repeated to match the right;</li>
 <li><code>&lt;&lt;op&gt;&gt;</code> — the <strong>shorter</strong> list
 is repeated to match the longer.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span></pre></div>
 
 <p>There is a unary form too, which calls a method on every element.
 <code>&gt;&gt;.uc</code> upper-cases each string:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
 
 <p>Hyper operations also signal that the work <em>may</em> be done in
 parallel — you will meet the related <code>.hyper</code> method later,
@@ -170,9 +166,8 @@ result. The familiar <code>!=</code> (not equal) is exactly this
 meta-operator applied to <code>==</code>, and the same works for other
 Boolean operators such as <code>eq</code> and <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — not equal as strings</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is not divisible by 2</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — not equal as strings</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is not divisible by 2</span></pre></div>
 
 <p>In short, <code>$a !op $b</code> is just a tidier way of writing
 <code>!($a op $b)</code>.</p>
@@ -181,8 +176,7 @@ Esperanto, which aims for one regular way to express each thing, Raku is
 happy to give you several — so the negated <code>!eq</code> lives right
 alongside the dedicated <code>ne</code> operator, and the two mean
 exactly the same:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — the same test as &#39;a&#39; !eq &#39;b&#39;</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — the same test as 'a' !eq 'b'</span></pre></div>
 
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
@@ -230,6 +224,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

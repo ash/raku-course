@@ -107,23 +107,22 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
-/ <a href="/essentials/more-on-functions">More about functions</a></p>
+/ <a href="/essentials/functions-essentials">Functions essentials</a> /
+<a href="/essentials/more-on-functions">More about functions</a></p>
 <h1 id="multi-functions">Multi-functions</h1>
 <p>Raku implements <em>multiple dispatch</em> based on function
 signature. It allows creating functions that share the name but have
 different types of input data. Use the <code>multi</code> declarator for
 each of the variants of the function.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(It is fine to omit <code>sub</code> after <code>multi</code>.)</p>
 <p>If you have the two variants of the same function, the compiler
 performs multiple dispatch depending on which arguments it sees in the
 function call. Compare the following two calls:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>The first call triggers the function with integer parameters, while
 the second call runs the second variant of the function that expects two
@@ -131,16 +130,14 @@ strings.</p>
 <h2 id="literal-parameters">Literal parameters</h2>
 <p>An interesting case for multi-functions is to have variants that have
 literal values as parameters. Consider the following two variants:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;This is the answer&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x is not the answer&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'This is the answer'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x is not the answer&quot;</span>}</pre></div>
 
 <p>The first variant is only run when you call the function with the
 exact value of 42. In other cases, the second variant is used. The order
 in which these functions are defined does not matter.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 is not the answer</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># This is the answer</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 is not the answer</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># This is the answer</span></pre></div>
 
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
@@ -190,6 +187,13 @@ href="/uk/essentials/more-on-functions/multi-functions">Українська</a>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

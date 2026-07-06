@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/modules-basics">Modules basics</a></p>
+<a href="/advanced/modules">Modules</a> / <a
+href="/advanced/modules-basics">Modules basics</a></p>
 <h1 id="importing">Importing</h1>
 <p>There is more than one way to bring a module into a program. The
 three statements <code>use</code>, <code>need</code>, and
@@ -117,16 +118,14 @@ three statements <code>use</code>, <code>need</code>, and
 <p>You have already met <code>use</code>. It loads the module at compile
 time and imports its exported names, so they can be called directly:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
-<span class="nb">say</span> <span class="n">hello</span>(<span class="s">&#39;Anna&#39;</span>); <span class="c1"># Hello, Anna!</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">hello</span>(<span class="s">'Anna'</span>); <span class="c1"># Hello, Anna!</span></pre></div>
 
 <h2 id="need"><code>need</code></h2>
 <p><code>need</code> also loads the module at compile time, but it does
 <em>not</em> import the exported names. You still reach the module’s
 <code>our</code> variables through the module’s name:</p>
 <div class="highlight raku"><pre><span></span><span class="k">need</span> <span class="n">Greeting</span>;
-<span class="nb">say</span> <span class="nv">$Greeting::version</span>; <span class="c1"># 1.0</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$Greeting::version</span>; <span class="c1"># 1.0</span></pre></div>
 
 <p>After <code>need Greeting</code>, a bare <code>hello(...)</code>
 would not be recognised, because nothing was imported — only the
@@ -140,9 +139,8 @@ is decided by user input.</p>
 <p>Because the loading happens at run time, nothing is imported
 automatically. Listing the symbols you want in angle brackets after the
 name pulls them in, so they can be called directly:</p>
-<div class="highlight raku"><pre><span></span><span class="k">require</span> <span class="n">Greeting</span> <span class="s">&lt;&amp;hello&gt;</span>;
-<span class="nb">say</span> <span class="n">hello</span>(<span class="s">&#39;Anna&#39;</span>); <span class="c1"># Hello, Anna!</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">require</span> <span class="n">Greeting</span> &lt;<span class="nv">&amp;hello</span>&gt;;
+<span class="nb">say</span> <span class="n">hello</span>(<span class="s">'Anna'</span>); <span class="c1"># Hello, Anna!</span></pre></div>
 
 <p>For everyday use, <code>use</code> is what you want;
 <code>need</code> and <code>require</code> are there for the less common
@@ -166,6 +164,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

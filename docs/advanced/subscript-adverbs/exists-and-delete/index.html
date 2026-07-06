@@ -107,16 +107,16 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/subscript-adverbs">Subscript adverbs 🆕</a></p>
+<a href="/advanced/containers-overview">Containers</a> / <a
+href="/advanced/subscript-adverbs">Subscript adverbs 🆕</a></p>
 <h1 id="exists-and-delete">Exists and delete</h1>
 <p>The <code>:exists</code> adverb turns a subscript into a question: is
 there a value at this key or index? It returns a Boolean without
 fetching anything:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%h</span> = <span class="n">apple</span> =&gt; <span class="mi">1</span>, <span class="n">pear</span> =&gt; <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">%h&lt;apple&gt;</span>:<span class="n">exists</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">%h&lt;plum&gt;</span>:<span class="n">exists</span>;  <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%h</span>&lt;<span class="n">apple</span>&gt;:<span class="n">exists</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">%h</span>&lt;<span class="n">plum</span>&gt;:<span class="n">exists</span>;  <span class="c1"># False</span></pre></div>
 
 <p>This is the right way to test for a key, because simply reading
 <code>%h&lt;plum&gt;</code> would either return an undefined value or,
@@ -126,10 +126,9 @@ depending on the data, hide the difference between “missing” and
 value it held:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%h</span> = <span class="n">apple</span> =&gt; <span class="mi">1</span>, <span class="n">pear</span> =&gt; <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">%h&lt;apple&gt;</span>:<span class="n">delete</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">%h</span>&lt;<span class="n">apple</span>&gt;:<span class="n">delete</span>; <span class="c1"># 1</span>
 <span class="nb">say</span> <span class="nv">%h</span>.<span class="nb">keys</span>;          <span class="c1"># (pear)</span>
-<span class="nb">say</span> <span class="nv">%h</span>;               <span class="c1"># {pear =&gt; 2}</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%h</span>;               <span class="c1"># {pear =&gt; 2}</span></pre></div>
 
 <p>The <code>apple</code> entry is gone, and the deleted value
 <code>1</code> is handed back so you can use it.</p>
@@ -140,13 +139,11 @@ value it held:</p>
 <span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">5</span>]:<span class="n">exists</span>; <span class="c1"># False</span>
 
 <span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">delete</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">exists</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">exists</span>; <span class="c1"># False</span></pre></div>
 
 <p>If you are curious how the array will look like after a middle item
 is removed, here’s the answer:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [10 (Any) 30]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [10 (Any) 30]</span></pre></div>
 
 <p>So a single, consistent notation lets you query and modify containers
 in place, rather than reaching for separate methods.</p>
@@ -179,6 +176,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

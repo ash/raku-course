@@ -107,19 +107,19 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/statement-prefixes">Statement prefixes 🆕</a></p>
+<a href="/advanced/control-flow">Control flow</a> / <a
+href="/advanced/statement-prefixes">Statement prefixes 🆕</a></p>
 <h1 id="do-and-the-value-of-a-block">do and the value of a block</h1>
 <p>A block on its own is a statement, not an expression, so you cannot
 normally assign it to a variable. The <code>do</code> prefix turns a
 block into an expression whose value is the value of its
 <strong>last</strong> statement:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="nb">do</span> {
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="k">do</span> {
     <span class="k">my</span> <span class="nv">$a</span> = <span class="mi">3</span>;
     <span class="nv">$a</span> + <span class="mi">4</span>;
 };
 
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 7</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 7</span></pre></div>
 
 <p>Inside the block you can declare variables, run several statements,
 and compute a result; <code>do</code> hands back whatever the block
@@ -127,14 +127,13 @@ evaluates to. This is handy when producing a value needs more than a
 single expression.</p>
 <p><code>do</code> also works in front of the control-flow statements,
 letting them return a value too:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$sign</span> = <span class="nb">do</span> <span class="k">given</span> <span class="mi">5</span> {
-    <span class="k">when</span> * &gt; <span class="mi">0</span> { <span class="s">&#39;positive&#39;</span> }
-    <span class="k">when</span> * &lt; <span class="mi">0</span> { <span class="s">&#39;negative&#39;</span> }
-    <span class="k">default</span>    { <span class="s">&#39;zero&#39;</span> }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$sign</span> = <span class="k">do</span> <span class="k">given</span> <span class="mi">5</span> {
+    <span class="k">when</span> * &gt; <span class="mi">0</span> { <span class="s">'positive'</span> }
+    <span class="k">when</span> * &lt; <span class="mi">0</span> { <span class="s">'negative'</span> }
+    <span class="k">default</span>    { <span class="s">'zero'</span> }
 };
 
-<span class="nb">say</span> <span class="nv">$sign</span>; <span class="c1"># positive</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$sign</span>; <span class="c1"># positive</span></pre></div>
 
 <p>Here <code>do given</code> turns the whole
 <code>given</code>/<code>when</code> into an expression that yields
@@ -171,6 +170,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

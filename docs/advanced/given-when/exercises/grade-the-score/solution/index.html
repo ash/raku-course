@@ -107,9 +107,9 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/given-when"><code>given</code> and
-<code>when</code></a> / <a
-href="/advanced/given-when/exercises">Exercises</a> / <a
+<a href="/advanced/control-flow">Control flow</a> / <a
+href="/advanced/given-when"><code>given</code> and <code>when</code></a>
+/ <a href="/advanced/given-when/exercises">Exercises</a> / <a
 href="/advanced/given-when/exercises/grade-the-score">Life stage from
 age</a></p>
 <h1 id="solution-life-stage-from-age">Solution: Life stage from age</h1>
@@ -118,13 +118,12 @@ age</a></p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$age</span> = <span class="mi">30</span>;
 
 <span class="k">given</span> <span class="nv">$age</span> {
-    <span class="k">when</span> <span class="nv">$_</span> &lt; <span class="mi">0</span> { <span class="nb">say</span> <span class="s">&#39;invalid&#39;</span> }
-    <span class="k">when</span> <span class="mi">0</span><span class="o">..</span><span class="mi">12</span>  { <span class="nb">say</span> <span class="s">&#39;child&#39;</span> }
-    <span class="k">when</span> <span class="mi">13</span><span class="o">..</span><span class="mi">19</span> { <span class="nb">say</span> <span class="s">&#39;teenager&#39;</span> }
-    <span class="k">when</span> <span class="mi">20</span><span class="o">..</span><span class="mi">64</span> { <span class="nb">say</span> <span class="s">&#39;adult&#39;</span> }
-    <span class="k">default</span>     { <span class="nb">say</span> <span class="s">&#39;senior&#39;</span> }
-}
-</pre></div>
+    <span class="k">when</span> <span class="nv">$_</span> &lt; <span class="mi">0</span> { <span class="nb">say</span> <span class="s">'invalid'</span> }
+    <span class="k">when</span> <span class="mi">0</span>.<span class="mf">.12</span>  { <span class="nb">say</span> <span class="s">'child'</span> }
+    <span class="k">when</span> <span class="mi">13</span>.<span class="mf">.19</span> { <span class="nb">say</span> <span class="s">'teenager'</span> }
+    <span class="k">when</span> <span class="mi">20</span>.<span class="mf">.64</span> { <span class="nb">say</span> <span class="s">'adult'</span> }
+    <span class="k">default</span>     { <span class="nb">say</span> <span class="s">'senior'</span> }
+}</pre></div>
 
 <p>🦋 You can find the source code in the file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/advanced/given-when/grade-the-score.raku">grade-the-score.raku</a>.</p>
@@ -147,13 +146,12 @@ which is not captured by any of the listed ranges.</p></li>
 <code>senior</code> as the condition <code>$_ &gt;= 65</code> — and
 treat anything left over (such as a negative age) as invalid:</p>
 <div class="highlight raku"><pre><span></span><span class="k">given</span> <span class="nv">$age</span> {
-    <span class="k">when</span> <span class="mi">0</span><span class="o">..</span><span class="mi">12</span>    { <span class="nb">say</span> <span class="s">&#39;child&#39;</span> }
-    <span class="k">when</span> <span class="mi">13</span><span class="o">..</span><span class="mi">19</span>   { <span class="nb">say</span> <span class="s">&#39;teenager&#39;</span> }
-    <span class="k">when</span> <span class="mi">20</span><span class="o">..</span><span class="mi">64</span>   { <span class="nb">say</span> <span class="s">&#39;adult&#39;</span> }
-    <span class="k">when</span> <span class="nv">$_</span> &gt;= <span class="mi">65</span> { <span class="nb">say</span> <span class="s">&#39;senior&#39;</span> }
-    <span class="k">default</span>       { <span class="nb">say</span> <span class="s">&#39;invalid&#39;</span> }
-}
-</pre></div>
+    <span class="k">when</span> <span class="mi">0</span>.<span class="mf">.12</span>    { <span class="nb">say</span> <span class="s">'child'</span> }
+    <span class="k">when</span> <span class="mi">13</span>.<span class="mf">.19</span>   { <span class="nb">say</span> <span class="s">'teenager'</span> }
+    <span class="k">when</span> <span class="mi">20</span>.<span class="mf">.64</span>   { <span class="nb">say</span> <span class="s">'adult'</span> }
+    <span class="k">when</span> <span class="nv">$_</span> &gt;= <span class="mi">65</span> { <span class="nb">say</span> <span class="s">'senior'</span> }
+    <span class="k">default</span>       { <span class="nb">say</span> <span class="s">'invalid'</span> }
+}</pre></div>
 
 <p>Here <code>default</code> is a genuine “none of the above” branch.
 Which version reads better is a matter of taste: put the guard first
@@ -167,6 +165,13 @@ zero</a> →</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

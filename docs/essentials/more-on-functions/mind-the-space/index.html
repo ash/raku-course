@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/essentials">Essentials</a>
-/ <a href="/essentials/more-on-functions">More about functions</a></p>
+/ <a href="/essentials/functions-essentials">Functions essentials</a> /
+<a href="/essentials/more-on-functions">More about functions</a></p>
 <h1 id="mind-the-space">Mind the space</h1>
 <p>Using functions in Raku is mostly intuitive and causes no problems,
 but you must be warned about the following aspect.</p>
@@ -117,34 +118,29 @@ parentheses with its arguments. But use a space after <code>for</code>
 and <code>if</code>.</p>
 <h2 id="long-story">Long story</h2>
 <p>Let us take a simple function:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>First of all, note the absence of spaces between the name of the
 function and the opening parentheses that keeps the parameters. Some
 coding styles in other languages may require a space there. Raku is fine
 with that, but this is not a practice to follow:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>On the calling side, the absence of space is important. If you call
 the function and omit the parentheses, then the space after the name of
 the function is unavoidable:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>But if you add parentheses, you cannot have a space before them. This
 is a correct call:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>And this call is wrong:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Such code causes an exception:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -154,12 +150,11 @@ is a correct call:</p>
 to pass a single argument <code>(5, 6)</code> to the function. You can
 easily check the type of this argument if you rewrite the function to
 accept only one argument:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>So, calling <code>f (5, 6)</code> means that we are passing a <a
 href="/essentials/positionals/lists">list</a> to the function. The list
@@ -168,10 +163,9 @@ as a single entity.</p>
 <p>In some cases, the space character is needed. That happens when you
 use parentheses with one of the keywords, such as <code>if</code> or
 <code>for</code> or <code>loop</code>. The following code is wrong:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>The error message explains what’s wrong:</p>
 <pre><code>===SORRY!===
@@ -186,8 +180,7 @@ at /Users/ash/raku-course/t.raku:1
 all, so the problem has no chance to appear if you do not use them. But
 in some cases, as, for example, with <code>loop</code>, you need to have
 them, and the space becomes mandatory:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>In this code, the same thing happens: <code>loop(...)</code> is
 understood by the compiler as a function call. Add a space to resolve
@@ -231,6 +224,13 @@ href="/uk/essentials/more-on-functions/mind-the-space">Українська</a><
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

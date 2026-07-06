@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/ordered-containers">Ordered containers</a></p>
+<a href="/advanced/containers-overview">Containers</a> / <a
+href="/advanced/ordered-containers">Ordered containers</a></p>
 <h1 id="flattening-and-itemisation">Flattening and itemisation</h1>
 <p>When you put one array inside another, Raku does <em>not</em>
 automatically merge their elements. Examine the following program:</p>
@@ -116,8 +117,7 @@ automatically merge their elements. Examine the following program:</p>
 <span class="k">my</span> <span class="nv">@c</span> = <span class="nv">@a</span>, <span class="nv">@b</span>;
 
 <span class="nb">say</span> <span class="nv">@c</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">@c</span>;       <span class="c1"># [[1 2 3] [4 5]]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@c</span>;       <span class="c1"># [[1 2 3] [4 5]]</span></pre></div>
 
 <p>The array <code>@c</code> has only two elements: the arrays
 <code>@a</code> and <code>@b</code>. Raku keeps each container as a
@@ -125,8 +125,7 @@ single item rather than spilling its contents into the outer array. The
 same happens for a value placed among others:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>;
 <span class="k">my</span> <span class="nv">@d</span> = <span class="mi">0</span>, <span class="nv">@a</span>, <span class="mi">99</span>;
-<span class="nb">say</span> <span class="nv">@d</span>; <span class="c1"># [0 [1 2 3] 99]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@d</span>; <span class="c1"># [0 [1 2 3] 99]</span></pre></div>
 
 <p>When you actually want a single flat sequence, ask for it explicitly
 with the <code>flat</code> routine:</p>
@@ -134,8 +133,7 @@ with the <code>flat</code> routine:</p>
 <span class="k">my</span> <span class="nv">@b</span> = <span class="mi">4</span>, <span class="mi">5</span>;
 
 <span class="nb">say</span> <span class="nb">flat</span>(<span class="nv">@a</span>, <span class="nv">@b</span>);       <span class="c1"># (1 2 3 4 5)</span>
-<span class="nb">say</span> <span class="nb">flat</span>(<span class="nv">@a</span>, <span class="nv">@b</span>).<span class="nb">elems</span>; <span class="c1"># 5</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">flat</span>(<span class="nv">@a</span>, <span class="nv">@b</span>).<span class="nb">elems</span>; <span class="c1"># 5</span></pre></div>
 
 <h2 id="itemisation-itemization">Itemisation (Itemization)</h2>
 <p>Sometimes you want the opposite: to protect a container from being
@@ -145,8 +143,7 @@ single item. Compare the previous example with this one:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>;
 <span class="k">my</span> <span class="nv">@b</span> = <span class="mi">4</span>, <span class="mi">5</span>;
 
-<span class="nb">say</span> <span class="nb">flat</span>($(<span class="nv">@a</span>), <span class="nv">@b</span>); <span class="c1"># ([1 2 3] 4 5)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">flat</span>($(<span class="nv">@a</span>), <span class="nv">@b</span>); <span class="c1"># ([1 2 3] 4 5)</span></pre></div>
 
 <p>Here, <code>$(@a)</code> keeps <code>@a</code> as one element, while
 <code>@b</code> is still flattened into its two values. This is the
@@ -186,6 +183,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

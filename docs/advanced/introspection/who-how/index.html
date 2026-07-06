@@ -107,7 +107,8 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/introspection">Introspecting containers</a></p>
+<a href="/advanced/containers-overview">Containers</a> / <a
+href="/advanced/introspection">Introspecting containers</a></p>
 <h1 id="who-and-how"><code>WHO</code> and <code>HOW</code></h1>
 <p>Two more introspection tools complete the set: <code>HOW</code> and
 <code>WHO</code>.</p>
@@ -116,16 +117,14 @@
 that knows how the value’s type works. <code>HOW</code> (short for
 <em>Higher Order Workings</em>) returns that metaobject:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
-<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.^<span class="nb">name</span>; <span class="c1"># Perl6::Metamodel::ClassHOW</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.^<span class="n">name</span>; <span class="c1"># Perl6::Metamodel::ClassHOW</span></pre></div>
 
 <p>You have been using the metaobject all along, perhaps without
 noticing. The <code>.^</code> in <code>.^name</code> is a method call
 routed through <code>HOW</code>. These two lines are equivalent:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
-<span class="nb">say</span> <span class="nv">$x</span>.^<span class="nb">name</span>;        <span class="c1"># Int</span>
-<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.<span class="nb">name</span>(<span class="nv">$x</span>); <span class="c1"># Int</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>.^<span class="n">name</span>;        <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.<span class="n">name</span>(<span class="nv">$x</span>); <span class="c1"># Int</span></pre></div>
 
 <p>So <code>$x.^name</code> is just a shorter way of writing
 <code>$x.HOW.name($x)</code>. Notice that the object is passed in again
@@ -139,8 +138,7 @@ the correct, general form — some meta-methods do use it.)</p>
 <h2 id="who"><code>WHO</code></h2>
 <p><code>WHO</code> returns the <em>package</em> that a name belongs to
 — the table of symbols defined in that namespace:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Int</span>.<span class="nb">WHO</span>.^<span class="nb">name</span>; <span class="c1"># Stash</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Int</span>.<span class="n">WHO</span>.^<span class="n">name</span>; <span class="c1"># Stash</span></pre></div>
 
 <p>A <code>Stash</code> (a symbol-table hash) becomes useful when you
 work with modules, where it lets you look up the names a module defines.
@@ -170,6 +168,13 @@ section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>

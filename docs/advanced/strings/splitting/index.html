@@ -107,51 +107,45 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
           <p><a href="/">Course of Raku</a> / <a href="/advanced">Advanced</a> /
-<a href="/advanced/strings">Strings</a></p>
+<a href="/advanced/built-in-types">More about built-in types</a> / <a
+href="/advanced/strings">Strings</a></p>
 <h1 id="splitting-and-joining">Splitting and joining</h1>
 <p>Strings can be broken into parts and put back together in several
 ways.</p>
 <p>The <code>words</code> method splits a string into a list of its
 whitespace-separated words:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello big World&#39;</span>.<span class="nb">words</span>; <span class="c1"># (Hello big World)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello big World'</span>.<span class="nb">words</span>; <span class="c1"># (Hello big World)</span></pre></div>
 
 <p>The <code>split</code> method breaks a string at a separator that you
 choose:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a,b,c&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>); <span class="c1"># (a b c)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a,b,c'</span>.<span class="nb">split</span>(<span class="s">','</span>); <span class="c1"># (a b c)</span></pre></div>
 
 <p>An important special case is splitting on the <strong>empty
 string</strong> <code>''</code>: it breaks a string into its individual
 characters, but it also slips an empty string in at the very start and
 the very end, so the result has two elements more than you might
 expect:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abc&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;&#39;</span>).<span class="nb">elems</span>;        <span class="c1"># 5 — the three letters, plus an empty string at each end</span>
-<span class="nb">say</span> <span class="s">&#39;abc&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;&#39;</span>, :<span class="n">skip-empty</span>); <span class="c1"># (a b c) — the :skip-empty adverb drops the empties</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abc'</span>.<span class="nb">split</span>(<span class="s">''</span>).<span class="nb">elems</span>;        <span class="c1"># 5 — the three letters, plus an empty string at each end</span>
+<span class="nb">say</span> <span class="s">'abc'</span>.<span class="nb">split</span>(<span class="s">''</span>, :<span class="n">skip-empty</span>); <span class="c1"># (a b c) — the :skip-empty adverb drops the empties</span></pre></div>
 
 <p>To split into characters, the <code>comb</code> method, called
 without arguments, does it directly — with no stray empties to clean
 up:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>.<span class="nb">comb</span>; <span class="c1"># (R a k u)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Raku'</span>.<span class="nb">comb</span>; <span class="c1"># (R a k u)</span></pre></div>
 
 <p>To go the other way, the <code>join</code> method glues a list of
 values into a single string, placing a separator between them:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span></pre></div>
 
 <p>Two more methods work on parts of a string. The <code>substr</code>
 method extracts a piece, given a starting position and, optionally, a
 length:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello World&#39;</span>.<span class="nb">substr</span>(<span class="mi">0</span>, <span class="mi">5</span>); <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="s">&#39;Hello World&#39;</span>.<span class="nb">substr</span>(<span class="mi">6</span>);    <span class="c1"># World</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello World'</span>.<span class="nb">substr</span>(<span class="mi">0</span>, <span class="mi">5</span>); <span class="c1"># Hello</span>
+<span class="nb">say</span> <span class="s">'Hello World'</span>.<span class="nb">substr</span>(<span class="mi">6</span>);    <span class="c1"># World</span></pre></div>
 
 <p>And <code>trim</code> removes whitespace from both ends of a
 string:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;  hi  &#39;</span>.<span class="nb">trim</span>; <span class="c1"># hi</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'  hi  '</span>.<span class="nb">trim</span>; <span class="c1"># hi</span></pre></div>
 
 <h2 id="course-navigation">Course navigation</h2>
 <p>← <a href="/advanced/strings/searching/quiz">Quiz —
@@ -174,6 +168,13 @@ the exercises in this section</a>.</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
     <script src="/assets/search.js?v=3" defer></script>
     <script src="/assets/copy-code.js?v=1" defer></script>
