@@ -23,6 +23,4 @@
 
 {% include translations.html %}
 
-© 2021–{{ site.time | date: '%Y' }} by <a href="https://andrewshitov.com/">Andrew Shitov</a>
-
 </div>

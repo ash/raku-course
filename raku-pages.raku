@@ -802,6 +802,10 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                 my $long     = $part<long-title> // $part<title>;
                 my $toc      = $heading ?? "# Part {$part<part-number>}. $long\n\n" !! '';
 
+                # The part's own intro, above its table of contents (the same
+                # description shown on the home-page card).
+                $toc ~= "{$part<description>}\n\n" if $heading && $part<description>;
+
                 for @($part<items> // []) -> $subpart {
                     # A subpart with its own page becomes a link to that page.
                     $toc ~= $subpart<url>

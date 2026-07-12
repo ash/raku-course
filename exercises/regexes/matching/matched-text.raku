@@ -1,0 +1,2 @@
+'database' ~~ /base/;
+say $/.Str;

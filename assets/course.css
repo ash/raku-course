@@ -453,7 +453,30 @@ details.toc-subpart ul {
     margin: 0.1em 0 0.6em 1.1em;
 }
 
+/* Reserve the vertical scrollbar's gutter at all times, so a page that gains or
+   loses a scrollbar — navigating between pages of different heights, or revealing
+   quiz feedback — never shifts the centred content sideways. No effect where the
+   OS draws overlay scrollbars (they take no layout space). */
+html {
+    scrollbar-gutter: stable;
+}
+
 /* ── Footer ── */
+/* Sticky footer: on short pages, keep the site footer pinned to the bottom of
+   the viewport instead of floating in the middle. The column lives on
+   .container-lg (NOT on <body>), so the container stays a normal centered block
+   and keeps its max-width — making <body> a flex parent would shrink it to its
+   content width. min-height fills the viewport minus the container's 32px+32px
+   (my-5) vertical margins; page-content grows to push the footer down. */
+.container-lg {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+}
+.container-lg > main.page-content {
+    flex: 1 0 auto;
+}
+
 .home-foot {
     margin-top: 3em;
     border-top: 1px solid #e6e9ec;

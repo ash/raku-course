@@ -43,6 +43,9 @@ table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; pa
 | [Objects, I/O, and exceptions](/oop) | 33 | 20 | 55 |
 | [Regexes and grammars](/regexes) | 34 | 29 | 49 |
 | [Functional, concurrent, reactive, and web programming](/paradigms) | 40 | 31 | 56 |
+| [Addendum: comprehensive exercises](/addendum) | 8 | — | 50 |
+
+The sixth part, the **Addendum**, is a separate collection of tougher, more substantial exercises that draw on the whole course at once — the kind of practice you reach for once the core material is behind you.
 
 Note that the course is still being refined, so the URLs of its different parts may slightly change in the future. New exercises and quizzes may appear in the already published topics, as well as the theoretical parts can be slightly modified to achieve the best flow of the course.
 
