@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Interval function'
+title: 'Exercise: Piecewise function'
 ---
 
 {% include menu.html %}
