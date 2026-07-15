@@ -64,6 +64,7 @@ sub get-toc($lang, $is-silent) returns Hash {
                 type => Part,
                 part-number => ($part<items> ?? $part-number !! Nil),
                 items => $part<items>,
+                pseudo => $part<pseudo>,
             };
             $prev-url = $part-url;
 
@@ -437,9 +438,9 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             return qq:to/FOOTER/;
             <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
             <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-            <p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
-            <p style="margin:.35em 0;">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
-            <p style="margin:.35em 0;">© 2021–{$year} by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+            <p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="/playground" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+            <p style="margin:.35em 0;">© 2021–{$year} · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
             </footer>
             FOOTER
         }
@@ -839,7 +840,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             # An "expand all" button on the part header opens/closes every
             # subpart in the card at once.
             if $url eq '' {
-                my @content-parts = @(%toc{''}<parts> // []).grep(*.<items>);
+                my @content-parts = @(%toc{''}<parts> // []).grep({ .<items> || .<pseudo> });
                 my $expand-ico = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">'
                     ~ '<path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
                     ~ '<path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -849,6 +850,18 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                     my $part = %toc{$raw-part<url>};
                     my $long = $part<long-title> // $part<title>;
                     my $href = "$top/{$part<url>}";
+
+                    # A pseudo-part (e.g. the Final Test) gets a standout card
+                    # with no number badge and no expandable section list.
+                    if $part<pseudo> {
+                        $toc ~= "<div class=\"part-card part-pseudo\">\n\n";
+                        $toc ~= "<h3 class=\"part-head\"><span class=\"pnum pnum-star\">★</span>"
+                            ~ " <a class=\"part-title\" href=\"{$href}\">{$long}</a></h3>\n\n";
+                        $toc ~= "{$part<description>}\n\n" if $part<description>;
+                        $toc ~= "</div>\n\n";
+                        next;
+                    }
+
                     my $locked = ($part<part-number> // 0) > $published-limit;
                     $toc ~= "<div class=\"part-card{ $locked ?? ' part-locked' !! '' }\">\n\n";
                     $toc ~= "<h3 class=\"part-head\"><span class=\"pnum\">{$part<part-number>}</span>"
