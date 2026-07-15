@@ -4,7 +4,7 @@ title: What is Cro
 
 {% include menu.html %}
 
-Cro is a set of libraries for building **services** — programs that talk to other programs over the network. It is best known for HTTP, but it also handles WebSockets, and it builds everything on the reactive tools from earlier in this part: [supplies](/paradigms/supplies), `react`, and `whenever`. A Cro request handler is, at heart, a reaction to a stream of incoming requests.
+Cro is a set of libraries for building **services** — programs that talk to other programs over the network. It is best known for HTTP, but it also handles WebSockets, and it builds everything on the reactive tools from earlier in this part: [supplies](/paradigms/supplies), `react`, and `whenever`. A Cro request handler is, at heart, a reaction to a stream of incoming requests. Its home site, with the full documentation and examples, is [cro.services](https://cro.services).
 
 What Cro gives you over raw sockets:
 
