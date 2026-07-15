@@ -117,23 +117,41 @@ way is to read part of the <strong>URL</strong> as a parameter. In a Cro
 route, a segment after the fixed path becomes a variable in the
 signature:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Router</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
 
 <span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
     <span class="n">get</span> -&gt; <span class="s">'hello'</span>, <span class="nv">$name</span> {
         <span class="n">content</span> <span class="s">'text/plain'</span>, <span class="s">&quot;Hello, $name!&quot;</span>;
     }
+}
+
+<span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
+    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">port</span>(<span class="mi">8080</span>),
+    :<span class="n">application</span>(<span class="nv">$application</span>),
+);
+<span class="nv">$server</span>.<span class="nb">start</span>;
+
+<span class="nb">say</span> <span class="s">'Listening on http://127.0.0.1:8080 — press Ctrl-C to stop'</span>;
+
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+        <span class="nv">$server</span>.<span class="n">stop</span>;
+        <span class="n">done</span>;
+    }
 }</pre></div>
 
-<p>The signature <code>-&gt; 'hello', $name</code> matches a path of two
-segments: the literal <code>hello</code>, then anything, captured into
-<code>$name</code>. So a request for <code>/hello/Anna</code> binds
-<code>$name</code> to <code>Anna</code> and returns
-<code>Hello, Anna!</code>; <code>/hello/Bob</code> returns
+<p>The interesting part is the signature
+<code>-&gt; 'hello', $name</code>: it matches a path of two segments —
+the literal <code>hello</code>, then anything, captured into
+<code>$name</code>. The rest of the program is the same server
+scaffolding as on the previous page. A request for
+<code>/hello/Anna</code> binds <code>$name</code> to <code>Anna</code>
+and returns <code>Hello, Anna!</code>; <code>/hello/Bob</code> returns
 <code>Hello, Bob!</code>. One route, a different answer for every
-name.</p>
-<p>Wrap these routes in a <code>Cro::HTTP::Server</code> and
-<code>.start</code> it exactly as before, and you have a service that
-greets anyone by name.</p>
+name:</p>
+<div class="highlight"><pre>$ curl http://127.0.0.1:8080/hello/Anna
+Hello, Anna!</pre></div>
 <blockquote>
 <p>This example needs Cro installed (<code>zef install cro</code>).</p>
 </blockquote>
@@ -142,6 +160,16 @@ of paths. A route can take several segments, match only certain shapes,
 read query strings, and return JSON — but it all builds on this one
 idea: name the varying parts of the URL in the signature, and use them
 in the response.</p>
+<p>Paths that match no route at all are not your problem: Cro answers
+them with <code>404 Not Found</code> on its own. And when a route
+<em>matches</em> but cannot deliver — the name looks up nothing, say —
+call <code>not-found</code> inside the handler to send that same 404
+deliberately. The <strong>method</strong> is checked just as strictly as
+the path: this block only declares <code>get</code>, so a
+<code>HEAD</code> or <code>POST</code> request to the same path is
+answered with <code>405 Method Not Allowed</code>. You can see it
+yourself with <code>curl -I</code>, which sends <code>HEAD</code> rather
+than <code>GET</code>.</p>
 <p>A service is only half the picture, though — something has to call
 it. The next page turns Cro around and uses its <strong>client</strong>
 to talk to a server like the ones you have just built.</p>

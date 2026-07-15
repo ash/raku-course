@@ -147,41 +147,34 @@ few plain lines.</p>
 <blockquote>
 <p>This example needs Cro installed (<code>zef install cro</code>).</p>
 </blockquote>
-<p>The same client reaches any server on the web, not only your own.
-Many public APIs reply with JSON, and Cro parses that for you, so
-<code>.body</code> gives back a ready-made data structure rather than
-text. Here we ask a free weather service for the current temperature in
-Berlin:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Client</span>;
+<h2 id="when-the-page-is-not-there">When the page is not there</h2>
+<p>What if you ask for a path the service does not have? The server side
+is easy: a request that matches no route gets a
+<code>404 Not Found</code> from Cro automatically. On the client side, a
+failed request <strong>throws</strong> — the error travels with the
+promise and pops out at <code>await</code>, just as you saw with <a
+href="/paradigms/await/awaiting-promises">broken promises</a> — so you
+handle it with the usual exception tools:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$response</span> = <span class="k">try</span> <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(<span class="s">'http://127.0.0.1:8080/goodbye'</span>);
+<span class="k">if</span> <span class="nv">$!</span> {
+    <span class="nb">say</span> <span class="s">'Request failed with status '</span>, <span class="nv">$!</span>.<span class="n">response</span>.<span class="n">status</span>; <span class="c1"># 404</span>
+}
+<span class="k">else</span> {
+    <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>;
+}</pre></div>
 
-<span class="k">my</span> <span class="nv">$url</span> = <span class="s">'https://api.open-meteo.com/v1/forecast'</span>
-        ~ <span class="s">'?latitude=52.52&amp;longitude=13.41&amp;current=temperature_2m,wind_speed_10m'</span>;
-
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(<span class="nv">$url</span>);
-<span class="k">my</span> <span class="nv">%current</span>  = (<span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body</span>)<span class="s">&lt;current&gt;</span>;
-
-<span class="nb">say</span> <span class="s">&quot;Berlin right now:&quot;</span>;
-<span class="nb">say</span> <span class="s">&quot;  temperature: %current&lt;temperature_2m&gt; °C&quot;</span>;
-<span class="nb">say</span> <span class="s">&quot;  wind speed:  %current&lt;wind_speed_10m&gt; km/h&quot;</span>;</pre></div>
-
-<p>which prints something like:</p>
-<div class="highlight"><pre>Berlin right now:
-  temperature: 21.9 °C
-  wind speed:  8.4 km/h</pre></div>
-<p>The exact numbers change with the weather, of course. Either way, one
-request and <code>.body</code> (or <code>.body-text</code>) gives you
-the answer — no sockets, no status parsing, no JSON handling by
-hand.</p>
-<p>This is a fitting place to end the course. A Cro service and the
-client that calls it stand on everything that came before — objects and
-exceptions, regexes and grammars, and the functional, concurrent, and
-reactive tools of this part — yet the code stays short and says exactly
-what you mean. From bytes on a socket to a one-line request, you have
-now seen the whole stack.</p>
+<p>Our service has a <code>hello</code> route but no
+<code>goodbye</code>, so this prints
+<code>Request failed with status 404</code>. The exception carries the
+full response in its <code>.response</code>, with the status code and
+headers there to inspect.</p>
+<p>Your own service is just the nearest server there is, though. The
+next page points the same client at the wider web — <strong>public
+APIs</strong> that answer with JSON or terminal-ready text.</p>
 <h2 id="course-navigation">Course navigation</h2>
 <p>← <a href="/paradigms/cro/route-with-parameter">A route with a
-parameter</a>   |   <a href="/paradigms/cro/exercises/second-route">A
-second route</a> →</p>
+parameter</a>   |   <a href="/paradigms/cro/public-apis">Fetching from a
+public API</a> →</p>
 <p><br /> 💪 Or jump directly <a href="/paradigms/cro/exercises">to the
 exercises in this section</a>.</p>
 

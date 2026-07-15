@@ -115,6 +115,7 @@ href="/paradigms/cro/exercises/second-route">A second route</a></p>
 <p>Here is a possible solution to the task.</p>
 <h2 id="code">Code</h2>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Router</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
 
 <span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
     <span class="n">get</span> -&gt; <span class="s">'hello'</span> {
@@ -122,6 +123,22 @@ href="/paradigms/cro/exercises/second-route">A second route</a></p>
     }
     <span class="n">get</span> -&gt; <span class="s">'bye'</span> {
         <span class="n">content</span> <span class="s">'text/plain'</span>, <span class="s">'Goodbye!'</span>;
+    }
+}
+
+<span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
+    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">port</span>(<span class="mi">8080</span>),
+    :<span class="n">application</span>(<span class="nv">$application</span>),
+);
+<span class="nv">$server</span>.<span class="nb">start</span>;
+
+<span class="nb">say</span> <span class="s">'Listening on http://127.0.0.1:8080 — press Ctrl-C to stop'</span>;
+
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+        <span class="nv">$server</span>.<span class="n">stop</span>;
+        <span class="n">done</span>;
     }
 }</pre></div>
 
@@ -136,6 +153,10 @@ each <code>get</code> handles one path.</p></li>
 <li><p>Cro matches the request path to the right route, so
 <code>/hello</code> and <code>/bye</code> return their own
 responses.</p></li>
+<li><p>As on the theory page, <code>.start</code> returns immediately,
+so the closing <code>react</code> block keeps the program alive until
+you press Ctrl-C — <code>whenever signal(SIGINT)</code> then stops the
+server and ends the reaction.</p></li>
 </ol>
 <h2 id="course-navigation">Course navigation</h2>
 <p>← <a href="/paradigms/cro/exercises/second-route">A second route</a>
