@@ -352,6 +352,29 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
         $html = post-process-html($html) if $html ~~ /'%%'/;
         $html = neutralize-unpublished-links($html) if $dir;
 
+        # Part 6 (Addendum) solution pages get runnable code blocks via the
+        # raku.online embed widget: it turns each highlighted Raku block into a
+        # play-and-edit editor. `data-selector` targets the course's `.highlight
+        # .raku` blocks (output/console blocks are `.highlight` only, so they are
+        # left alone). The Run button picks up the course blue from the
+        # --rk-embed-accent variable set in course.css.
+        if $dir ~~ /^ 'addendum/' .* '/solution' $/ {
+            # data-selector catches only the main `.highlight.raku` solution block,
+            # which becomes a runnable play-and-edit editor. Code blocks nested
+            # inside numbered comments are illustrative fragments, not full programs
+            # to run: pandoc renders them as `<pre><code class="sourceCode raku">`,
+            # they keep that static highlighting (coloured by the `.sourceCode`
+            # rules in course.css), and — because we do NOT pass `data-auto` — the
+            # widget leaves them alone. So: main solution runs, fragments just show.
+            # Self-hosted so the course is self-sufficient (works even if
+            # raku.online is down): assets/raku.js + rakujs.{js,wasm} ship with
+            # the site. The editor keeps the build-baked `rakupp --highlight`
+            # colouring for display and loads the WASM only when a block is edited.
+            my $embed = '<script src="/assets/raku.js?v=1"'
+                      ~ ' data-selector=".highlight.raku:not(.no-run)" defer></script>';
+            $html .= subst('</body>', "$embed\n</body>");
+        }
+
         my $output-dir = $lang eq 'en' ?? "$destination/$dir" !! "$destination/$lang/$dir";
         try $output-dir.IO.mkdir(:parent);   # `try`: tolerate a peer worker creating a shared parent dir
 
@@ -470,12 +493,16 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             }
         }
 
-        sub format-code($language is copy, $code) {
+        sub format-code($language is copy, $code, :$norun) {
             # Raku blocks carry an extra `raku` class on the wrapper so that the
             # copy-to-clipboard button (added by copy-code.js) attaches only to
             # them — never to program output (```console) or data (```json).
+            # `:norun` adds a `no-run` class: the block is highlighted like any
+            # other, but the play-editor script skips it (used for the illustrative
+            # code fragments nested inside numbered comments — see prepare-content).
             my $is-raku = $language.lc eq 'raku' | 'perl6';
-            my $wrapper = $is-raku ?? 'highlight raku' !! 'highlight';
+            my $raku-class = $norun ?? 'highlight raku no-run' !! 'highlight raku';
+            my $wrapper = $is-raku ?? $raku-class !! 'highlight';
 
             # Plain, HTML-escaped code block — matching the wrapper pygments uses
             # — so the code is always marked up and styled even without a
@@ -506,7 +533,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
             # The highlighter emits <div class="highlight">; add the `raku` marker
             # class so the copy button hooks onto highlighted blocks too.
-            return $html.subst('<div class="highlight">', '<div class="highlight raku">');
+            return $html.subst('<div class="highlight">', qq[<div class="$raku-class">]);
         }
 
         sub format-quiz($class is copy, $body) {
@@ -993,6 +1020,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             my @quiz = extract-quiz($md);
 
             my $html = markdown2html($md);
+            $html = rehighlight-fragments($html);
 
             $html ~~ s:g/ '<p>' 'CodeBlockPlaceholder' (\d+) '</p>'/@code[$0 - 1]/;
             $html ~~ s:g/ '<p>' 'QuizPlaceholder' (\d+) '</p>'/@quiz[$0 - 1]/;
@@ -1003,11 +1031,32 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
         sub markdown2html($md) {
             # Disable pandoc's $…$ TeX-math extension: Raku code and prose are
             # full of $variables, which must stay literal (kramdown did the same).
-            my $run = run $pandoc-path, '-f', 'markdown-tex_math_dollars', :in, :out;
+            # `--no-highlight`: pandoc must NOT syntax-colour code (its only targets
+            # are blocks indented under list items, which our fence regex leaves for
+            # it). It emits them as plain `<pre class="lang"><code>…</code></pre>`,
+            # and rehighlight-fragments() below re-runs them through the course's own
+            # `--highlighter`, so every block is coloured by one highlighter/palette.
+            my $run = run $pandoc-path, '-f', 'markdown-tex_math_dollars',
+                          '--no-highlight', :in, :out;
             $run.in.print($md);
             $run.in.close;
 
             return $run.out.slurp;
+        }
+
+        # Code blocks nested inside numbered comments are indented, so the fence
+        # regex in extract-code() (which needs a column-0 closing ```) skips them
+        # and pandoc renders them — as `<pre class="raku"><code>…</code></pre>` with
+        # `--no-highlight`. Re-highlight each through format-code so it uses the same
+        # highlighter and pygments classes as every other block; mark it `:norun`
+        # (an illustrative fragment, not a program to run).
+        sub rehighlight-fragments($html is copy) {
+            # (.*?) for the class name, not a <-["]> character class: rakupp
+            # cannot yet parse a `"` inside a char class within a sub body.
+            $html ~~ s:g/ '<pre class="' (.*?) '"><code>' (.*?) '</code></pre>' /{
+                format-code(~$0, html-unescape(~$1), :norun)
+            }/;
+            return $html;
         }
 
         sub extract-code($md is rw) {
@@ -1126,6 +1175,14 @@ sub find-highlighter($choice) {
 #| Escape the three characters that matter in HTML text/code.
 sub html-escape($s) {
     return $s.subst('&', '&amp;', :g).subst('<', '&lt;', :g).subst('>', '&gt;', :g);
+}
+
+#| Reverse html-escape (plus the quote entities pandoc emits), so code pandoc
+#| rendered as escaped text can be re-fed to the highlighter. `&amp;` last.
+sub html-unescape($s) {
+    return $s.subst('&lt;', '<', :g).subst('&gt;', '>', :g)
+             .subst('&quot;', '"', :g).subst('&#39;', "'", :g)
+             .subst('&amp;', '&', :g);
 }
 
 #| "1 exercise", "2 exercises", "1 quiz", "2 quizzes" — pick singular/plural.

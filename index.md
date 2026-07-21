@@ -9,7 +9,7 @@
   <a class="btn-ghost" href="/about-this-course">About this course</a>
 </p>
 
-<p class="trust">Free and open source · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a> · Supported by <a href="https://www.perlfoundation.org">The Perl & Raku Foundation</a></p>
+<p class="trust">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl & Raku Foundation</a></p>
 
 </div>
 

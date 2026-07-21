@@ -43,7 +43,10 @@ table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; pa
 | [Objects, I/O, and exceptions](/oop) | 33 | 20 | 55 |
 | [Regexes and grammars](/regexes) | 34 | 29 | 49 |
 | [Functional, concurrent, reactive, and web programming](/paradigms) | 40 | 31 | 56 |
+| ★ [The Final Test](/final-test) | — | 100 | — |
 | [Addendum: comprehensive exercises](/addendum) | 8 | — | 50 |
+
+After the five parts comes **The Final Test** — a single sitting of a hundred questions spanning the whole course, in roughly the order you learnt the material. Each answer is checked the moment you give it, and at the end you get your score and a link you can keep to share or review your result.
 
 The sixth part, the **Addendum**, is a separate collection of tougher, more substantial exercises that draw on the whole course at once — the kind of practice you reach for once the core material is behind you.
 
@@ -53,7 +56,8 @@ Note that the course is still being refined, so the URLs of its different parts 
 
 To follow the course and run exercises, you need to have a working compiler. There are a number of options:
 
-* — Install the Rakudo compiler or the Rakudo Star package or
+* — Try the built-in <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> right in your browser, with nothing to install, or
+* — Install the Rakudo compiler or
 * — Use online services or
 * — Use docker containers
 
@@ -61,11 +65,11 @@ The different installation options are described at the beginning of the first p
 
 ## About the author
 
-The course is written by [Andrew Shitov](https://andrewshitov.com), who is following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The course material is based on daily experience, particularly on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
+The course is written by [Andrew Shitov](https://andrewshitov.com), who has been following the development of Raku since about 2000 (when it was known as Perl 6). He is the author of a number of [books about programming in Raku](https://andrewshitov.com/books). The course material is based on daily experience, particularly on contributing to [The Weekly Challenge](https://perlweeklychallenge.org) and reviewing the solutions of other participants, as well as on the experience obtained from using Raku as the main language for the [Covid Observer](https://covid.observer) website.
 
 ## Contributing, terms of use, and feedback
 
-The creation of the course is supported by the grant of [The Perl Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others. The commercial usage in classes is allowed without permission. Releasing the course as a separate product must be first negotiated with the author.
+The creation of the course is supported by the grant of [The Perl & Raku Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others. The commercial usage in classes is allowed without permission. Releasing the course as a separate product must be first negotiated with the author.
 
 The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:andy@shitov.ru).
 

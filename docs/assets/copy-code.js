@@ -60,7 +60,7 @@
   }
 
   function addButtons() {
-    var blocks = document.querySelectorAll('div.highlight.raku');
+    var blocks = document.querySelectorAll('div.highlight.raku:not(.no-run)');
     for (var i = 0; i < blocks.length; i++) {
       var block = blocks[i];
       if (block.querySelector(':scope > .copy-btn')) continue;

@@ -92,6 +92,15 @@ Then start any static web server from inside `_out/`. The simplest is the one bu
 
 Now open <http://localhost:8000/> in your browser.
 
+If you have the [Raku++](https://github.com/ash/rakupp) repository checked out, you can serve the site with `rakus` — the static web server written in Raku that ships with it (in `showcase/rakus`):
+
+    rakupp /path/to/rakupp/showcase/rakus/rakus.raku 8000 _out
+
+You can also compile it once into a standalone binary and use that instead:
+
+    rakupp --exe -o rakus /path/to/rakupp/showcase/rakus/rakus.raku
+    ./rakus 8000 _out
+
 Any other static server works too. For example, with `nginx`, point the server root at the `raku-course/_out` directory.
 
 ## Editing and rebuilding
@@ -99,5 +108,52 @@ Any other static server works too. For example, with `nginx`, point the server r
 The local server does **not** rebuild automatically. After you change a Markdown file, re-run the generator and refresh the browser. To rebuild only the part you are working on, narrow the build with `--filter`, for example:
 
     raku raku-pages.raku --language=en --highlighter=none --filter=essentials
+
+## Updating the runnable-code assets (Raku++ in the browser)
+
+The **Run** button on the Addendum solution pages turns code blocks into a
+play-and-edit editor. This is served entirely by the course itself — three files
+in [`assets/`](assets/), so the site works even if `raku.online` is unreachable:
+
+| File | What it is |
+|------|------------|
+| `assets/raku.js` | The embed widget (the Run button, the editor, the share/copy buttons). Source of truth: [`www/raku.js`](https://github.com/ash/raku.online) in the **raku.online** repository. |
+| `assets/rakujs.js` + `assets/rakujs.wasm` | Raku++ compiled to WebAssembly — it both *runs* the code and *highlights* it while you edit. Built from the **[Raku++](https://github.com/ash/rakupp)** sources. |
+
+For display, the pages use the highlighting **baked at build time** by
+`--highlighter=rakupp` (above), so a page needs no WebAssembly just to *show*
+code — the `~4.7 MB` `rakujs.wasm` is fetched only when a reader actually edits
+or runs a block.
+
+These files are a snapshot, so they must be refreshed whenever Raku++ or the
+embed changes:
+
+1. **Rebuild the WebAssembly** in a Raku++ checkout (needs Emscripten; `build.sh`
+   bootstraps it into `rakujs/emsdk/` the first time):
+
+       cd /path/to/rakupp
+       RAKUJS_OUT=/tmp/rakujs rakujs/build.sh
+
+   This writes `rakujs.js` and `rakujs.wasm` to the chosen directory.
+
+2. **Copy the three files into `assets/`.** The `raku.online` repository keeps a
+   matching set of all three under `www/`, so the simplest refresh is to copy
+   that whole bundle:
+
+       cp /path/to/raku.online/www/raku.js       assets/
+       cp /path/to/raku.online/www/rakujs.js     assets/
+       cp /path/to/raku.online/www/rakujs.wasm   assets/
+
+   (Or copy `rakujs.js` / `rakujs.wasm` straight from step 1's output, and just
+   `raku.js` from raku.online.)
+
+3. **Bump the cache tag** so browsers pick up the new `raku.js`: in
+   `raku-pages.raku`, find the embed line and increment the `?v=` number:
+
+       my $embed = '<script src="/assets/raku.js?v=1"'   # -> ?v=2, etc.
+
+4. **Rebuild the site** (`raku raku-pages.raku …`) and commit `raku-pages.raku`
+   together with the updated `assets/raku.js`, `assets/rakujs.js`, and
+   `assets/rakujs.wasm`.
 
 The `--filter` value is matched as plain text against each page’s directory path, so `--filter=essentials/strings` rebuilds just that section.
