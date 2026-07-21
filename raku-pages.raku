@@ -461,7 +461,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             return qq:to/FOOTER/;
             <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
             <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-            <p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
             <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
             <p style="margin:.35em 0;">© 2021–{$year} · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
             </footer>
