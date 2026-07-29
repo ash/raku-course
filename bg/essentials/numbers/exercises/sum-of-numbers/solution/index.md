@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Сума на числа’
+title: 'Solution: Сума на числа'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $a + $b + $c;
 say "Сумата на числата е $sum.";
 ```
 
-🦋 Можете да намерите пълния код във файла [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum-of-numbers.raku).
+🦋 Можете да намерите пълния код във файла [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum-of-numbers.raku).
 
 ## Резултат
 

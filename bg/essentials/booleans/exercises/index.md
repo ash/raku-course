@@ -1,5 +1,5 @@
 ---
-title: 'Упражнения: Булев тип'
+title: 'Exercises: Булев тип'
 ---
 
 {% include menu.html %}

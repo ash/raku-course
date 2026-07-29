@@ -1,5 +1,5 @@
 ---
-title: Научна нотация в Raku
+title: Числа с плаваща запетая
 ---
 
 {% include menu.html %}

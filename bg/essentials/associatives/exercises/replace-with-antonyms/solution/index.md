@@ -1,10 +1,10 @@
 ---
-title: 'Решение: Замяна с антоними'
+title: 'Solution: Замяна с антоними'
 ---
 
 {% include menu.html %}
 
-За да решите задачата, съдържанието на файла [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) се копира в решаващия файл [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku). След това, цикълът през входните аргументи се опитва да намери думата в речника и ако успее, взема антонима. Ако няма такава дума в речника, се използва оригиналната дума.
+За да решите задачата, съдържанието на файла [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) се копира в решаващия файл [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku). След това, цикълът през входните аргументи се опитва да намери думата в речника и ако успее, взема антонима. Ако няма такава дума в речника, се използва оригиналната дума.
 
 ## Код
 
@@ -25,7 +25,7 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Намерете програмата във файла [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Намерете програмата във файла [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
 ## Изход
 

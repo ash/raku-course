@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Leap year'
+title: Високосна година
 ---
 
 {% include menu.html %}

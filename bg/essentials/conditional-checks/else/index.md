@@ -1,5 +1,5 @@
 ---
-title: Блокът else
+title: Блокове `else`
 ---
 
 {% include menu.html %}

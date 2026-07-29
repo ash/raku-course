@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Виждано преди?'
+title: 'Solution: Виждано преди?'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ loop {
 }
 ```
 
-🦋 Намерете програмата във файла [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku).
+🦋 Намерете програмата във файла [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/seen-before.raku).
 
 ## Изход
 

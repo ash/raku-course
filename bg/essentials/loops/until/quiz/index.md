@@ -1,5 +1,5 @@
 ---
-title: Викторина — Цикълът until
+title: Тест — цикъл `until`
 ---
 
 {% include menu.html %}

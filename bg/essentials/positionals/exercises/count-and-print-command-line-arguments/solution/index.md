@@ -1,5 +1,5 @@
 ---
-title: Решение на „Брой и отпечатай аргументите от командния ред“
+title: 'Solution: Броене и принтиране на аргументите на командния ред'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Намерете програмата във файла [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Намерете програмата във файла [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Изход
 

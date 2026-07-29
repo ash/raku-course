@@ -1,5 +1,5 @@
 ---
-title: Raku vs. Rakudo
+title: Raku срещу Rakudo
 ---
 
 {% include menu.html %}

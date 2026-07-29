@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Отпечатване на серия от числа’
+title: 'Solution: Принтиране на серия от числа'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ my $end = prompt 'Край: ';
 .say for $begin .. $end;
 ```
 
-🦋 Намерете програмата във файла [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
+🦋 Намерете програмата във файла [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers.raku).
 
 ## Код 2
 
@@ -32,7 +32,7 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Намерете програмата във файла [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
+🦋 Намерете програмата във файла [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers-loop.raku).
 
 Както виждате, първият вариант е значително по-кратък и по-изразителен.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Сравнение на `say` и `put`'
+title: 'Solution: Сравнете `say` и `put`'
 ---
 
 {% include menu.html %}
@@ -42,7 +42,7 @@ put %h;
 
 За по-голяма увереност, можете също да отпечатате типа на променливата, например както е показано за масиви и списъци, за да се уверите, че сте създали променлива от желания тип.
 
-🦋 Намерете програмата във файла [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Намерете програмата във файла [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Изход
 

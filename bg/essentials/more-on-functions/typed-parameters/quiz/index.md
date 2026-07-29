@@ -1,5 +1,5 @@
 ---
-title: Quiz — Typed parameters
+title: Тест — Типизирани параметри
 ---
 
 {% include menu.html %}

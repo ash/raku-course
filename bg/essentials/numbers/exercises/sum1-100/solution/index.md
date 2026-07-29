@@ -1,5 +1,5 @@
 ---
-title: Решение на „Сума на числата от 1 до 100“
+title: 'Solution: Сума на числа от 1 до 100'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $N * (1 + $N) / 2;
 say "Сумата на числата от 1 до $N е $sum.";
 ```
 
-🦋 Можете да намерите пълния код във файла [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum1-100.raku).
+🦋 Можете да намерите пълния код във файла [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum1-100.raku).
 
 ## Резултат
 

@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Стойността на e'
+title: 'Solution: Стойността на e'
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Намерете програмата във файла [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Намерете програмата във файла [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
 ## Резултат
 

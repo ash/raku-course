@@ -1,5 +1,5 @@
 ---
-title: Коментари в Raku
+title: Коментари
 ---
 
 {% include menu.html %}

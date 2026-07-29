@@ -1,5 +1,5 @@
 ---
-title: Рутината print
+title: '`print`'
 ---
 
 {% include menu.html %}

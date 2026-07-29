@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Изследване на резултата от подкана — Числа’
+title: 'Solution: Преглед на резултата от `prompt` — Числа'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 Можете да намерите изходния код във файла [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
+🦋 Можете да намерите изходния код във файла [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-numbers.raku).
 
 ## Тестови изпълнения
 

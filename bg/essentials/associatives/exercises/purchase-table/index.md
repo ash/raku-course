@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Purchase table'
+title: Таблица за покупки
 ---
 
 {% include menu.html %}

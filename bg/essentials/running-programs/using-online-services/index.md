@@ -1,5 +1,5 @@
 ---
-title: Използване на онлайн услуги за изпълнение на Raku
+title: Използване на онлайн услуги
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ title: Използване на онлайн услуги за изпълнен
 * [glot.io](https://glot.io/new/raku)
 * [TIO](https://tio.run/#perl6)
 * [Repl.it](https://repl.it/new/raku) (изисква първо влизане в системата)
-* [RakuPlay](https://rakudist.raku.org/play/) (използва опашка)
+* [Raku Playground](https://fco.github.io/Raku-Playground/)
 
 Можете също да проверите [дискусията в Reddit](https://www.reddit.com/r/rakulang/comments/kj63dq/glotio_now_supports_raku/ggxow6n/) за повече връзки и коментари относно различни онлайн услуги.
 

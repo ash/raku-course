@@ -1,5 +1,5 @@
 ---
-title: Output с `say`
+title: Извеждане с `say`
 ---
 
 {% include menu.html %}

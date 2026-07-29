@@ -1,5 +1,5 @@
 ---
-title: 'Упражнение: FizzBuzz в цикъл'
+title: FizzBuzz в цикъл
 ---
 
 {% include menu.html %}

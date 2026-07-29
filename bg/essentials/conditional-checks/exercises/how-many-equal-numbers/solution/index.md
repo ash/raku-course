@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Колко числа са равни?'
+title: 'Solution: Колко числа са равни?'
 ---
 
 {% include menu.html %}
@@ -30,7 +30,7 @@ else {
 }
 ```
 
-🦋 Намерете програмата във файла [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Намерете програмата във файла [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
 ## Изход
 

@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Стойността на π’
+title: 'Solution: Стойността на π'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ title: Решение на ‘Стойността на π’
 say π;
 ```
 
-🦋 Можете да намерите пълния код във файла [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Можете да намерите пълния код във файла [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Резултат
 

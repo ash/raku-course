@@ -1,5 +1,5 @@
 ---
-title: Решение на 'Таблица за покупки'
+title: 'Solution: Таблица за покупки'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ say "Tables\t\$$table-price\t$tables\t\$$tables-total";
 
 Трите реда, които генерират изхода, отпечатват трите реда на таблицата, включително заглавието ѝ. Забележете как колоните са разделени с табулационни символи `\t`. В редовете с данни също виждаме избягал знак за долар: `\$`, както и различни променливи, които искаме да интерполираме.
 
-🦋 Можете да намерите изходния код във файла [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Можете да намерите изходния код във файла [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Изход
 

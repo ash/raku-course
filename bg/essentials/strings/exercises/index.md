@@ -1,5 +1,5 @@
 ---
-title: 'Упражнения: Низове'
+title: 'Exercises: Стрингове'
 ---
 
 {% include menu.html %}

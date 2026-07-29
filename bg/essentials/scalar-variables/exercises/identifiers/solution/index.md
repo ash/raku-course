@@ -1,5 +1,5 @@
 ---
-title: Решение на „Коригирайте идентификаторите“
+title: 'Solution: Поправете идентификаторите'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'Лондон до Париж';
 
 Всички идентификатори са валидни, но вероятно е по-добре да избягвате имена с апострофи, ако нямате силни причини да ги използвате.
 
-🦋 Можете да намерите изходния код във файла [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Можете да намерите изходния код във файла [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Изход
 

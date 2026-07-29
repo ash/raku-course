@@ -1,5 +1,5 @@
 ---
-title: 'Упражнения: Условни проверки'
+title: 'Exercises: Условни проверки'
 ---
 
 {% include menu.html %}

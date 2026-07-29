@@ -1,5 +1,5 @@
 ---
-title: Низове в Raku
+title: Стрингове
 ---
 
 {% include menu.html %}

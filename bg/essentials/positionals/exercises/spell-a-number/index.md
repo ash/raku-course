@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Spell a number'
+title: Спелуване на число
 ---
 
 {% include menu.html %}

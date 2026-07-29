@@ -1,5 +1,5 @@
 ---
-title: Викторина — Цикълът repeat
+title: Тест — цикъл `repeat`
 ---
 
 {% include menu.html %}

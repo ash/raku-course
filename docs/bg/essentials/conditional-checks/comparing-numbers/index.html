@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="bg">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Сравняване на числа</title>
-    <meta property="og:title" content="Сравняване на числа" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Сравняване на числа — Курс по Raku</title>
+    <meta property="og:title" content="Сравняване на числа — Курс по Raku" />
     <meta property="og:locale" content="bg" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Сравняване на числа</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,79 +88,50 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/conditional-checks">Условни проверки</a></p>
-
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/control-flow">Основи на управлението на
+потока</a> / <a href="/bg/essentials/conditional-checks">Условни
+проверки</a></p>
 <h1 id="сравняване-на-числа">Сравняване на числа</h1>
-
-<p>За да сравните две числа, използвайте следните оператори. Всички те са доста очевидни, ако сте запознати с други програмни езици.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">==</code></td>
-      <td>Равно</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
-      <td>Не е равно</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">&lt;</code></td>
-      <td>По-малко от</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
-      <td>По-малко или равно</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">&gt;</code></td>
-      <td>По-голямо от</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
-      <td>По-голямо или равно</td>
-    </tr>
-  </tbody>
-</table>
-
+<p>За да сравните две числа, използвайте следните оператори. Всички те
+са доста очевидни, ако сте запознати с други програмни езици.</p>
+<p><code>==</code> | Равно <code>!=</code> | Не е равно
+<code>&lt;</code> | По-малко от <code>&lt;=</code> | По-малко или равно
+<code>&gt;</code> | По-голямо от <code>&gt;=</code> | По-голямо или
+равно</p>
 <h2 id="приблизително-равно">Приблизително равно</h2>
-
-<p>В допълнение към стандартните оператори, Raku добавя оператора за приблизително равенство <code class="language-plaintext highlighter-rouge">=~=</code>, който сравнява числата приблизително. Резултатът му е <code class="language-plaintext highlighter-rouge">True</code>, ако двете числа са относително близки едно до друго. Максималната относителна разлика не трябва да надвишава вградената стойност <code class="language-plaintext highlighter-rouge">$*TOLERANCE</code>, която е равна на <code class="language-plaintext highlighter-rouge">1e-15</code>.</p>
-
+<p>В допълнение към стандартните оператори, Raku добавя оператора за
+приблизително равенство <code>=~=</code>, който сравнява числата
+приблизително. Резултатът му е <code>True</code>, ако двете числа са
+относително близки едно до друго. Максималната относителна разлика не
+трябва да надвишава вградената стойност <code>$*TOLERANCE</code>, която
+е равна на <code>1e-15</code>.</p>
 <h2 id="unicode-версии">Unicode версии</h2>
-
 <p>Някои от горните оператори имат своите Unicode еквиваленти:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
-      <td><code class="language-plaintext highlighter-rouge">≠</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
-      <td><code class="language-plaintext highlighter-rouge">≤</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
-      <td><code class="language-plaintext highlighter-rouge">≥</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">=~=</code></td>
-      <td><code class="language-plaintext highlighter-rouge">≅</code></td>
-    </tr>
-  </tbody>
-</table>
-
+<p><code>!=</code> | <code>≠</code> <code>&lt;=</code> | <code>≤</code>
+<code>&gt;=</code> | <code>≥</code> <code>=~=</code> |
+<code>≅</code></p>
 <h2 id="примери">Примери</h2>
-
 <p>Някои примери с операторите, които сравняват числа:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">10</span> == <span class="mi">10</span>; <span class="c1"># True</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">10</span> == <span class="mi">10</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="mi">10</span> != <span class="mi">10</span>; <span class="c1"># False</span>
 
 <span class="nb">say</span> <span class="mi">15</span> &lt; <span class="mi">10</span>;  <span class="c1"># False</span>
@@ -119,42 +140,61 @@
 <span class="nb">say</span> <span class="mi">10</span> &gt;= <span class="mi">14</span>; <span class="c1"># False</span>
 
 <span class="nb">say</span> <span class="mf">1.000000000000000000000001</span> =~= <span class="mf">1.000000000000000000000002</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="mf">2e17</span> + <span class="mi">1</span> =~= <span class="mf">2e17</span> + <span class="mi">100</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="mf">2e17</span> + <span class="mi">1</span> =~= <span class="mf">2e17</span> + <span class="mi">100</span>; <span class="c1"># True</span></pre></div>
 
-
-<p>Забележете, че числото <code class="language-plaintext highlighter-rouge">1.000000000000000000000001</code> е <code class="language-plaintext highlighter-rouge">Rat</code> число, така че не губите прецизност в израз с близко число <code class="language-plaintext highlighter-rouge">1.000000000000000000000002</code>. Последният пример с <code class="language-plaintext highlighter-rouge">2e17</code> работи с <code class="language-plaintext highlighter-rouge">Num</code> числа, които имат ограничена прецизност.</p>
-
-<p><div class="practice"></p>
-<h2 id="практика">Практика</h2>
-
-<p>Попълнете теста, който обхваща съдържанието на тази тема.</p>
+<p>Забележете, че числото <code>1.000000000000000000000001</code> е
+<code>Rat</code> число, така че не губите прецизност в израз с близко
+число <code>1.000000000000000000000002</code>. Последният пример с
+<code>2e17</code> работи с <code>Num</code> числа, които имат ограничена
+прецизност.</p>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Направете 1 тест върху съдържанието на тази тема.</p>
 <ul>
-  <li><a href="/bg/essentials/conditional-checks/comparing-numbers/quiz">Тест — Сравняване на числа</a></li>
+<li><a
+href="/bg/essentials/conditional-checks/comparing-numbers/quiz">Тест —
+Сравняване на числа</a></li>
 </ul>
-
-<p></div></p>
-
-<h2 id="навигация-по-курса">Навигация по курса</h2>
-
-<p>←
-        <a href="/bg/essentials/conditional-checks">Условни проверки</a> / <a href="/bg/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> и <code class="language-plaintext highlighter-rouge">unless</code> като модификатори на изречения</a>
-  |  
-        <a href="/bg/essentials/conditional-checks">Условни проверки</a> / <a href="/bg/essentials/conditional-checks/comparing-strings">Сравняване на стрингове</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/bg/essentials/conditional-checks/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/conditional-checks/comparing-numbers/">Оригинален текст на английски</a></p>
-
-  <p>Преводи на тази страница: <a href="/essentials/conditional-checks/comparing-numbers/">English</a> • <a href="/de/essentials/conditional-checks/comparing-numbers/">Deutsch</a> • <a href="/es/essentials/conditional-checks/comparing-numbers/">Español</a> • <a href="/it/essentials/conditional-checks/comparing-numbers/">Italiano</a> • <a href="/lv/essentials/conditional-checks/comparing-numbers/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/comparing-numbers/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/conditional-checks/comparing-numbers/">Русский</a> • <a href="/uk/essentials/conditional-checks/comparing-numbers/">Українська</a></p>
+</section>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a
+href="/bg/essentials/conditional-checks/modifiers"><code>if</code> и
+<code>unless</code> като модификатори на изречения</a>   |   <a
+href="/bg/essentials/conditional-checks/comparing-numbers/quiz">Тест —
+Сравняване на числа</a> →</p>
+<p><br /> 💪 Или преминете направо <a
+href="/bg/essentials/conditional-checks/exercises">към упражненията в
+този раздел</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/conditional-checks/comparing-numbers">English</a> • <a
+href="/de/essentials/conditional-checks/comparing-numbers">Deutsch</a> •
+<a
+href="/es/essentials/conditional-checks/comparing-numbers">Español</a> •
+<a
+href="/it/essentials/conditional-checks/comparing-numbers">Italiano</a>
+• <a
+href="/lv/essentials/conditional-checks/comparing-numbers">Latviešu</a>
+• <a
+href="/nl/essentials/conditional-checks/comparing-numbers">Nederlands</a>
+• <strong>Български</strong> • <a
+href="/ru/essentials/conditional-checks/comparing-numbers">Русский</a> •
+<a
+href="/uk/essentials/conditional-checks/comparing-numbers">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

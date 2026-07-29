@@ -1,5 +1,5 @@
 ---
-title: Операторът defined-or
+title: Операторът "defined-or"
 ---
 
 {% include menu.html %}

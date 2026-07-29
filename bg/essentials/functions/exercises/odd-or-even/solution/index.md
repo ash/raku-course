@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Четно или нечетно'
+title: 'Solution: Нечетно или четно'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Намерете програмата във файла [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Намерете програмата във файла [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Изход
 

@@ -1,5 +1,5 @@
 ---
-title: loop
+title: Тристатъментен цикъл `loop`
 ---
 
 {% include menu.html %}

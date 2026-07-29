@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Тройно отрицание’
+title: 'Solution: Тройно отрицание'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Можете да намерите пълния код във файла [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Можете да намерите пълния код във файла [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Резултат
 

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Postfix for
+title: Тест — Постфикс `for`*
 ---
 
 {% include menu.html %}

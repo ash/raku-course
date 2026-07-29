@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Plural ending'
+title: Множествено окончание
 ---
 
 {% include menu.html %}

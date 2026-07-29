@@ -1,5 +1,5 @@
 ---
-title: Решение на задачата „Брой десетици“
+title: 'Solution: Брой десетки'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Enter a positive integer number: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Можете да намерите пълния код във файла [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Можете да намерите пълния код във файла [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Резултат
 

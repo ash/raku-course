@@ -1,5 +1,5 @@
 ---
-title: Дължина на низ в Raku
+title: Дължина на стринг
 ---
 
 {% include menu.html %}

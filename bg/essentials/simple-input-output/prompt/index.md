@@ -1,5 +1,5 @@
 ---
-title: Вход с подкана
+title: Въвеждане с `prompt`
 ---
 
 {% include menu.html %}

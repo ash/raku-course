@@ -1,5 +1,5 @@
 ---
-title: Стартиране от IDE
+title: Изпълнение от IDE
 ---
 
 {% include menu.html %}

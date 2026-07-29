@@ -1,5 +1,5 @@
 ---
-title: Брой на десетиците
+title: Брой десетки
 ---
 
 {% include menu.html %}

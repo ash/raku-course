@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Квадрати и кубове в цикъл'
+title: 'Solution: Квадрати и кубове в цикъл'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Намерете програмата във файла [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Намерете програмата във файла [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Пример
 

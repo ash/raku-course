@@ -1,5 +1,5 @@
 ---
-title: Решение на 'Hello, Concatenation!'
+title: 'Solution: Здравей, Конкатенация!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say 'Hello, ' ~ $name ~ '!';
 ```
 
-🦋 Можете да намерите изходния код във файла [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
+🦋 Можете да намерите изходния код във файла [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-concatenation.raku).
 
 ## Изход
 

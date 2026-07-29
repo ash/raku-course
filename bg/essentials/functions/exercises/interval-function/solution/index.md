@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Функция за интервал'
+title: 'Solution: Функция за интервал'
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Намерете програмата във файла [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku).
+🦋 Намерете програмата във файла [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/interval-function.raku).
 
 ## Резултат
 

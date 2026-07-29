@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Квадрати и кубове’
+title: 'Solution: Квадрат и куб'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n ** 2;
 say $n ** 3;
 ```
 
-🦋 Намерете програмата във файла [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube.raku).
+🦋 Намерете програмата във файла [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube.raku).
 
 ## Код 2
 
@@ -26,7 +26,7 @@ say $n²;
 say $n³;
 ```
 
-🦋 Намерете програмата във файла [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube-2.raku).
+🦋 Намерете програмата във файла [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube-2.raku).
 
 ## Изход
 

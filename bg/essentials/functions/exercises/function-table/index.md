@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Function table'
+title: Таблица на функциите
 ---
 
 {% include menu.html %}

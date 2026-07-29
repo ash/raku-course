@@ -1,38 +1,35 @@
 ---
-title: Решение на ‘Броят на аргументите от командния ред’
+title: 'Решение: Броят на аргументите на командния ред'
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Решението е доста просто.
+Броят на аргументите пак идва от `@*ARGS.elems`, но този път трябва да направим нещо с него, а не просто да го отпечатаме. Запазете броя в променлива и после изберете правилната дума с тернарен оператор:
 
 ## Код
 
 ```raku
-say @*ARGS.elems;
+my $n = @*ARGS.elems;
+my $word = $n == 1 ?? 'argument' !! 'arguments';
+say "You passed $n $word.";
 ```
 
-Алтернативно, можете да свържете всички методи:
-
-```raku
-@*ARGS.elems.say;
-```
-
-🦋 Намерете програмата във файла [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/number-of-command-line-arguments.raku).
+🦋 Намерете програмата във файла [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku).
 
 ## Изход
 
-Тази програма изисква тест на два случая:
-
-1. Няма подадени аргументи.
-1. Подаден е някакъв ненулев брой аргументи.
+Струва си да се изпробват трите интересни случая: без аргументи, точно един и много. Само вторият използва формата за единствено число.
 
 ```console
 $ raku exercises/positionals/number-of-command-line-arguments.raku
-0
+You passed 0 arguments.
+
+$ raku exercises/positionals/number-of-command-line-arguments.raku solo
+You passed 1 argument.
 
 $ raku exercises/positionals/number-of-command-line-arguments.raku one 2 three 4 five 6 seven
-7
+You passed 7 arguments.
 ```
 
 {% include nav.html %}

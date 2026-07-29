@@ -1,5 +1,5 @@
 ---
-title: Използване на eslif
+title: Използване на `elsif`
 ---
 
 {% include menu.html %}

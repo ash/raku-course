@@ -1,5 +1,5 @@
 ---
-title: Решение на „Размяна на стойностите“
+title: 'Solution: Размяна на стойности'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 Можете да намерите изходния код във файла [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 Можете да намерите изходния код във файла [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
 ## Изход
 

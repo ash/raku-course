@@ -1,5 +1,5 @@
 ---
-title: Стартиране от REPL
+title: Изпълнение от REPL
 ---
 
 {% include menu.html %}

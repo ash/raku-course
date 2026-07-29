@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Деление чрез изваждане'
+title: 'Solution: Деление чрез изваждане'
 ---
 
 {% include menu.html %}
@@ -23,7 +23,7 @@ while $a >= $b {
 say $n;
 ```
 
-🦋 Намерете програмата във файла [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/division-via-subtraction.raku).
+🦋 Намерете програмата във файла [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/division-via-subtraction.raku).
 
 ## Резултат
 

@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: A backslash in the output'
+title: 'Тест: Обратен наклонен знак в извеждането'
 ---
 
 {% include menu.html %}

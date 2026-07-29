@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="bg">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Решение на „Сума на числата от 1 до 100“</title>
-    <meta property="og:title" content="Решение на „Сума на числата от 1 до 100“" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Решение: Сума на числа от 1 до 100 — Курс по Raku</title>
+    <meta property="og:title" content="Решение: Сума на числа от 1 до 100 — Курс по Raku" />
     <meta property="og:locale" content="bg" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Решение на „Сума на числата от 1 до 100“</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,60 +88,84 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/numbers/">Числа</a> / <a href="/bg/essentials/numbers/exercises/">Упражнения</a> / <a href="/bg/essentials/numbers/exercises/sum1-100">Сума на числа от 1 до 100</a></p>
-
-<h1 id="решение-сума-на-числа-от-1-до-100">Решение: Сума на числа от 1 до 100</h1>
-
-<p>За да изчислите сумата на целите числа от 1 до 100, разбира се, е възможно да добавите всички тези числа в едно дълго изразяване. Или да създадете цикъл (ще разгледаме цикли в следващите секции). Но най-доброто решение е да използвате добре познатата <a href="https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_⋯">формула</a>:</p>
-
-<div class="formula"><img src="sum.png" style="height: 3.5em; width: auto" /></div>
-
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/variables">Основи на променливите и типовете
+данни</a> / <a href="/bg/essentials/numbers">Числа</a> / <a
+href="/bg/essentials/numbers/exercises">Упражнения</a> / <a
+href="/bg/essentials/numbers/exercises/sum1-100">Сума на числа от 1 до
+100</a></p>
+<h1 id="решение-сума-на-числа-от-1-до-100">Решение: Сума на числа от 1
+до 100</h1>
+<p>За да изчислите сумата на целите числа от 1 до 100, разбира се, е
+възможно да добавите всички тези числа в едно дълго изразяване. Или да
+създадете цикъл (ще разгледаме цикли в следващите секции). Но
+най-доброто решение е да използвате добре познатата <a
+href="https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_⋯">формула</a>:</p>
+<div class="formula">
+<img src="sum.png" style="height: 3.5em; width: auto" />
+</div>
 <p>С формулата решението става доста тривиално.</p>
-
 <h2 id="код">Код</h2>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$N</span> = <span class="mi">100</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$N</span> = <span class="mi">100</span>;
 <span class="k">my</span> <span class="nv">$sum</span> = <span class="nv">$N</span> * (<span class="mi">1</span> + <span class="nv">$N</span>) / <span class="mi">2</span>;
-<span class="nb">say</span> <span class="s">&quot;Сумата на числата от 1 до $N е $sum.&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">&quot;Сумата на числата от 1 до $N е $sum.&quot;</span>;</pre></div>
 
-
-<p>🦋 Можете да намерите пълния код във файла <a href="https://github.com/ash/raku-course/blob/master/exercises/numbers/sum1-100.raku">sum1-100.raku</a>.</p>
-
+<p>🦋 Можете да намерите пълния код във файла <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum1-100.raku">sum1-100.raku</a>.</p>
 <h2 id="резултат">Резултат</h2>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/numbers/sum1-100.raku 
-<span class="go">Сумата на числата от 1 до 100 е 5050.
-</span></code></pre></div></div>
-
-<h2 id="навигация-по-курса">Навигация по курса</h2>
-
-<p>←
-    <a href="/bg/essentials/strings">Стрингове</a>
-        / <a href="/bg/essentials/strings/string-length">Дължина на стринг</a>
-  |  
-    <a href="/bg/essentials/booleans">Булев тип</a>
+<div class="highlight"><pre>$ raku exercises/numbers/sum1-100.raku 
+Сумата на числата от 1 до 100 е 5050.</pre></div>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a href="/bg/essentials/numbers/exercises/sum1-100">Сума на числа
+от 1 до 100</a>   |   <a href="/bg/essentials/booleans">Булев тип</a>
 →</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/numbers/exercises/sum1-100/solution/">Оригинален текст на английски</a></p>
-
-  <p>Преводи на тази страница: <a href="/essentials/numbers/exercises/sum1-100/solution/">English</a> • <a href="/de/essentials/numbers/exercises/sum1-100/solution/">Deutsch</a> • <a href="/es/essentials/numbers/exercises/sum1-100/solution/">Español</a> • <a href="/it/essentials/numbers/exercises/sum1-100/solution/">Italiano</a> • <a href="/lv/essentials/numbers/exercises/sum1-100/solution/">Latviešu</a> • <a href="/nl/essentials/numbers/exercises/sum1-100/solution/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/numbers/exercises/sum1-100/solution/">Русский</a> • <a href="/uk/essentials/numbers/exercises/sum1-100/solution/">Українська</a></p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/exercises/sum1-100/solution">English</a> • <a
+href="/de/essentials/numbers/exercises/sum1-100/solution">Deutsch</a> •
+<a href="/es/essentials/numbers/exercises/sum1-100/solution">Español</a>
+• <a
+href="/it/essentials/numbers/exercises/sum1-100/solution">Italiano</a> •
+<a
+href="/lv/essentials/numbers/exercises/sum1-100/solution">Latviešu</a> •
+<a
+href="/nl/essentials/numbers/exercises/sum1-100/solution">Nederlands</a>
+• <strong>Български</strong> • <a
+href="/ru/essentials/numbers/exercises/sum1-100/solution">Русский</a> •
+<a
+href="/uk/essentials/numbers/exercises/sum1-100/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

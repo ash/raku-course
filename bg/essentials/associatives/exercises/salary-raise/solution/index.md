@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Увеличение на заплатата'
+title: 'Solution: Увеличение на заплата'
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ my $raise = 5; # в проценти
 say "New salary of %employee<full-name>: %employee<salary>";
 ```
 
-🦋 Намерете програмата във файла [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Намерете програмата във файла [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
 ## Изход
 

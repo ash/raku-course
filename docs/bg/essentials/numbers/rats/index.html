@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="bg">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Рационални числа в Raku</title>
-    <meta property="og:title" content="Рационални числа в Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Рационални числа — Курс по Raku</title>
+    <meta property="og:title" content="Рационални числа — Курс по Raku" />
     <meta property="og:locale" content="bg" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Рационални числа в Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,111 +88,122 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/numbers">Числа</a></p>
-
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/variables">Основи на променливите и типовете
+данни</a> / <a href="/bg/essentials/numbers">Числа</a></p>
 <h1 id="рационални-числа">Рационални числа</h1>
+<p>Рационалните числа са уникална характеристика на Raku. Типът данни
+<code>Rat</code> представлява такива числа.</p>
+<p>Вътрешно, рационалните числа са дроби с две цели части: числител и
+знаменател. Така че, можете лесно да представите числа като 1/3 без
+загуба на точност.</p>
+<p>Има няколко начина да запишете <code>Rat</code> число в програма на
+Raku:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span>/<span class="mi">2</span>;
+<span class="k">my</span> <span class="nv">$y</span> = <span class="s">&lt;2/3&gt;</span>;</pre></div>
 
-<p>Рационалните числа са уникална характеристика на Raku. Типът данни <code class="language-plaintext highlighter-rouge">Rat</code> представлява такива числа.</p>
+<p>Забележете, че наклонената черта тук е част от нотацията. Тя не е
+оператор за деление, така че <code>1/2</code> не означава, че делите 1
+на 2. При печат обаче, рационалните числа се показват като десетични
+числа или цели числа:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">1</span>/<span class="mi">2</span>; <span class="c1"># 0.5</span>
+<span class="nb">say</span> <span class="mi">3</span>/<span class="mi">4</span>; <span class="c1"># 0.75</span></pre></div>
 
-<p>Вътрешно, рационалните числа са дроби с две цели части: числител и знаменател. Така че, можете лесно да представите числа като 1/3 без загуба на точност.</p>
-
-<p>Има няколко начина да запишете <code class="language-plaintext highlighter-rouge">Rat</code> число в програма на Raku:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>;
-<span class="k">my</span> <span class="nv">$y</span> = <span class="s">&lt;2/3&gt;</span>;
-</pre></div>
-
-
-<p>Забележете, че наклонената черта тук е част от нотацията. Тя не е оператор за деление, така че <code class="language-plaintext highlighter-rouge">1/2</code> не означава, че делите 1 на 2. При печат обаче, рационалните числа се показват като десетични числа или цели числа:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>; <span class="c1"># 0.5</span>
-<span class="nb">say</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>; <span class="c1"># 0.75</span>
-</pre></div>
-
-
-<p>Частта от реда след символа <code class="language-plaintext highlighter-rouge">#</code> е коментар и се игнорира от компилатора. Такива коментари ще се използват в курса, за да покажат изхода на програмата.</p>
-
+<p>Частта от реда след символа <code>#</code> е коментар и се игнорира
+от компилатора. Такива коментари ще се използват в курса, за да покажат
+изхода на програмата.</p>
 <h2 id="десетична-форма">Десетична форма</h2>
-
-<p>Важно е да осъзнаете, че когато записвате числото в десетична форма, например <code class="language-plaintext highlighter-rouge">0.5</code>, Raku създава <code class="language-plaintext highlighter-rouge">Rat</code> число в този момент. То не е цяло число, но също така не е и число с плаваща запетая (<code class="language-plaintext highlighter-rouge">float</code> или <code class="language-plaintext highlighter-rouge">double</code> в други езици). То все още е рационално число!</p>
-
+<p>Важно е да осъзнаете, че когато записвате числото в десетична форма,
+например <code>0.5</code>, Raku създава <code>Rat</code> число в този
+момент. То не е цяло число, но също така не е и число с плаваща запетая
+(<code>float</code> или <code>double</code> в други езици). То все още е
+рационално число!</p>
 <p>Разгледайте следния пример:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">0.1</span> + <span class="mf">0.2</span> - <span class="mf">0.3</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">0.1</span> + <span class="mf">0.2</span> - <span class="mf">0.3</span>;
-</pre></div>
-
-
-<p>Ако програмен език използва аритметика с плаваща запетая за тези изчисления, резултатът няма да бъде равен на 0. Уебсайтът <a href="https://0.30000000000000004.com">0.30000000000000004.com</a> дава изчерпателен списък с примери, където аритметиката с плаваща запетая не дава очаквания резултат.</p>
-
-<p>Но Raku отпечатва точно <code class="language-plaintext highlighter-rouge">0</code>. Това се случва, защото третира числата <code class="language-plaintext highlighter-rouge">0.1</code>, <code class="language-plaintext highlighter-rouge">0.2</code> и <code class="language-plaintext highlighter-rouge">0.3</code> като рационални числа и ги съхранява като <code class="language-plaintext highlighter-rouge">1/10</code>, <code class="language-plaintext highlighter-rouge">2/10</code> и <code class="language-plaintext highlighter-rouge">3/10</code> вътрешно. Стартирайте го от командния ред, за да го потвърдите:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku <span class="nt">-e</span> <span class="s1">'say 0.1 + 0.2 - 0.3'</span>
-<span class="go">0
-</span></code></pre></div></div>
-
+<p>Ако програмен език използва аритметика с плаваща запетая за тези
+изчисления, резултатът няма да бъде равен на 0. Уебсайтът <a
+href="https://0.30000000000000004.com">0.30000000000000004.com</a> дава
+изчерпателен списък с примери, където аритметиката с плаваща запетая не
+дава очаквания резултат.</p>
+<p>Но Raku отпечатва точно <code>0</code>. Това се случва, защото
+третира числата <code>0.1</code>, <code>0.2</code> и <code>0.3</code>
+като рационални числа и ги съхранява като <code>1/10</code>,
+<code>2/10</code> и <code>3/10</code> вътрешно. Стартирайте го от
+командния ред, за да го потвърдите:</p>
+<div class="highlight"><pre>$ raku -e 'say 0.1 + 0.2 - 0.3'
+0</pre></div>
 <h2 id="unicode-форми">Unicode форми</h2>
-
-<p>Възможно е също така да използвате Unicode символи, които представляват дробите, като <code class="language-plaintext highlighter-rouge">½</code> или <code class="language-plaintext highlighter-rouge">¼</code> или <code class="language-plaintext highlighter-rouge">¾</code>. Вероятно не винаги е лесно да ги въведете с клавиатурата, но тези дроби са точно същите стойности като техните ASCII версии, изписани като дроб или като десетично число:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">½</code></td>
-      <td><code class="language-plaintext highlighter-rouge">1/2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">&lt;1/2&gt;</code></td>
-      <td><code class="language-plaintext highlighter-rouge">0.5</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">¼</code></td>
-      <td><code class="language-plaintext highlighter-rouge">1/4</code></td>
-      <td><code class="language-plaintext highlighter-rouge">&lt;1/4&gt;</code></td>
-      <td><code class="language-plaintext highlighter-rouge">0.25</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">¾</code></td>
-      <td><code class="language-plaintext highlighter-rouge">3/4</code></td>
-      <td><code class="language-plaintext highlighter-rouge">&lt;3/4&gt;</code></td>
-      <td><code class="language-plaintext highlighter-rouge">0.75</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>С някои дроби, като <code class="language-plaintext highlighter-rouge">1/3</code>, имате по-малко опции, <code class="language-plaintext highlighter-rouge">⅓</code> или <code class="language-plaintext highlighter-rouge">&lt;1/3&gt;</code>, тъй като десетичната форма би изисквала безкраен брой цифри.</p>
-
-<p><div class="practice"></p>
-<h2 id="практика">Практика</h2>
-
-<p>Попълнете теста, който обхваща съдържанието на тази тема.</p>
+<p>Възможно е също така да използвате Unicode символи, които
+представляват дробите, като <code>½</code> или <code>¼</code> или
+<code>¾</code>. Вероятно не винаги е лесно да ги въведете с
+клавиатурата, но тези дроби са точно същите стойности като техните ASCII
+версии, изписани като дроб или като десетично число:</p>
+<p><code>½</code> | <code>1/2</code> | <code>&lt;1/2&gt;</code> |
+<code>0.5</code> <code>¼</code> | <code>1/4</code> |
+<code>&lt;1/4&gt;</code> | <code>0.25</code> <code>¾</code> |
+<code>3/4</code> | <code>&lt;3/4&gt;</code> | <code>0.75</code></p>
+<p>С някои дроби, като <code>1/3</code>, имате по-малко опции,
+<code>⅓</code> или <code>&lt;1/3&gt;</code>, тъй като десетичната форма
+би изисквала безкраен брой цифри.</p>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Направете 1 тест върху съдържанието на тази тема.</p>
 <ul>
-  <li><a href="/bg/essentials/numbers/rats/quiz">Тест: Рационални числа в Raku</a></li>
+<li><a href="/bg/essentials/numbers/rats/quiz">Тест: Рационални числа в
+Raku</a></li>
 </ul>
-
-<p></div></p>
-
-<h2 id="навигация-по-курса">Навигация по курса</h2>
-
-<p>←
-        <a href="/bg/essentials/numbers">Числа</a> / <a href="/bg/essentials/numbers/integers">Цели числа</a>
-  |  
-        <a href="/bg/essentials/numbers">Числа</a> / <a href="/bg/essentials/numbers/numeric">Числа с плаваща запетая</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/bg/essentials/numbers/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/numbers/rats/">Оригинален текст на английски</a></p>
-
-  <p>Преводи на тази страница: <a href="/essentials/numbers/rats/">English</a> • <a href="/de/essentials/numbers/rats/">Deutsch</a> • <a href="/es/essentials/numbers/rats/">Español</a> • <a href="/it/essentials/numbers/rats/">Italiano</a> • <a href="/lv/essentials/numbers/rats/">Latviešu</a> • <a href="/nl/essentials/numbers/rats/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/numbers/rats/">Русский</a> • <a href="/uk/essentials/numbers/rats/">Українська</a></p>
+</section>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a href="/bg/essentials/numbers/integers/quiz2">Тест: Юникод цифри
+и числа</a>   |   <a href="/bg/essentials/numbers/rats/quiz">Тест:
+Рационални числа в Raku</a> →</p>
+<p><br /> 💪 Или преминете направо <a
+href="/bg/essentials/numbers/exercises">към упражненията в този
+раздел</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/rats">English</a> • <a
+href="/de/essentials/numbers/rats">Deutsch</a> • <a
+href="/es/essentials/numbers/rats">Español</a> • <a
+href="/it/essentials/numbers/rats">Italiano</a> • <a
+href="/lv/essentials/numbers/rats">Latviešu</a> • <a
+href="/nl/essentials/numbers/rats">Nederlands</a> •
+<strong>Български</strong> • <a
+href="/ru/essentials/numbers/rats">Русский</a> • <a
+href="/uk/essentials/numbers/rats">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

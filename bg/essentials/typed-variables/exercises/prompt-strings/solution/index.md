@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Изследване на изхода на подканата — Стрингове’
+title: 'Solution: Преглед на резултата от `prompt` — Стрингове'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Можете да намерите изходния код във файла [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Можете да намерите изходния код във файла [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Тестови изпълнения
 

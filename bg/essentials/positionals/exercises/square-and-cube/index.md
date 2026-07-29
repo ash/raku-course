@@ -1,5 +1,5 @@
 ---
-title: Квадрати и кубове
+title: Квадрат и куб
 ---
 
 {% include menu.html %}

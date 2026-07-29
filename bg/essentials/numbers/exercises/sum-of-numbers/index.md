@@ -1,5 +1,5 @@
 ---
-title: Сума на числата
+title: Сума на числа
 ---
 
 {% include menu.html %}

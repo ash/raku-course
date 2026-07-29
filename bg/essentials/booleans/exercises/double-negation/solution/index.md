@@ -1,5 +1,5 @@
 ---
-title: Решение на 'Двойно отрицание’
+title: 'Solution: Двойно отрицание'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 Можете да намерите пълния код във файла [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Можете да намерите пълния код във файла [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Коментари
 

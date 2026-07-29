@@ -1,5 +1,5 @@
 ---
-title: 'Решение: FizzBuzz в цикъл'
+title: 'Solution: FizzBuzz в цикъл'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..50 -> $n {
 }
 ```
 
-🦋 Намерете програмата във файла [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fizbuzz-loop.raku).
+🦋 Намерете програмата във файла [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fizbuzz-loop.raku).
 
 ## Изход
 

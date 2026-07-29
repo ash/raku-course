@@ -1,5 +1,5 @@
 ---
-title: Рутината note
+title: '`note`'
 ---
 
 {% include menu.html %}

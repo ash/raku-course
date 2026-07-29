@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Функция за изчисляване на xʸ'
+title: 'Solution: Функция за изчисляване на _xʸ_'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Намерете програмата във файла [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Намерете програмата във файла [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
 ## Изход
 

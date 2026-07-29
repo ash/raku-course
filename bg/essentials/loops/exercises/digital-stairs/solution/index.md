@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Цифрови стълби'
+title: 'Solution: Цифрови стълби'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Намерете програмата във файла [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Намерете програмата във файла [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
 ## Резултат
 

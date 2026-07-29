@@ -1,5 +1,5 @@
 ---
-title: Code blocks
+title: Кодови блокове
 ---
 
 {% include menu.html %}

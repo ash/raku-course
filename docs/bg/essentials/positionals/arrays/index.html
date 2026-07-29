@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="bg">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Масиви</title>
-    <meta property="og:title" content="Масиви" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Масиви — Курс по Raku</title>
+    <meta property="og:title" content="Масиви — Курс по Raku" />
     <meta property="og:locale" content="bg" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Масиви</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,99 +88,114 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/positionals">Позиционни типове данни</a></p>
-
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/more-about-types">Повече за типовете</a> / <a
+href="/bg/essentials/positionals">Позиционни типове данни</a></p>
 <h1 id="масиви">Масиви</h1>
+<p>Масивите са агрегатни типове данни, които могат да съдържат повече от
+една стойност. Това ги различава от <a
+href="/bg/essentials/scalar-variables">скаларните елементи</a>.
+Елементите на масива могат да бъдат индексирани (или
+<em>подписани</em>). С други думи, техните елементи имат позиция (което
+обяснява общото име за този вид данни: позиционни).</p>
+<p>Масивните променливи използват друг вид сигил: <code>@</code>.
+Правилата за името на променливата са същите като <a
+href="/bg/essentials/scalar-variables/identifiers/">за
+скаларите</a>.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;</pre></div>
 
-<p>Масивите са агрегатни типове данни, които могат да съдържат повече от една стойност. Това ги различава от <a href="/bg/essentials/scalar-variables">скаларните елементи</a>. Елементите на масива могат да бъдат индексирани (или <em>подписани</em>). С други думи, техните елементи имат позиция (което обяснява общото име за този вид данни: позиционни).</p>
-
-<p>Масивните променливи използват друг вид сигил: <code class="language-plaintext highlighter-rouge">@</code>. Правилата за името на променливата са същите като <a href="/bg/essentials/scalar-variables/identifiers/">за скаларите</a>.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;
-</pre></div>
-
-
-<p>Досега е създаден масив с име <code class="language-plaintext highlighter-rouge">@cities</code>. Можете да го запълните с някои стойности:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">@cities</span> = <span class="s">&#39;Paris&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlin&#39;</span>;
-</pre></div>
-
+<p>Досега е създаден масив с име <code>@cities</code>. Можете да го
+запълните с някои стойности:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">@cities</span> = <span class="s">'Paris'</span>, <span class="s">'Rome'</span>, <span class="s">'Berlin'</span>;</pre></div>
 
 <p>Алтернативно, възможно е да инициализирате стойностите веднага:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">&#39;Paris&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlin&#39;</span>;
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">'Paris'</span>, <span class="s">'Rome'</span>, <span class="s">'Berlin'</span>;</pre></div>
 
 <h2 id="индексиране">Индексиране</h2>
+<p>За да получите достъп до един елемент от масива, използвайте чифт
+скоби, които поставяте след името на променливата:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];</pre></div>
 
-<p>За да получите достъп до един елемент от масива, използвайте чифт скоби, които поставяте след името на променливата:</p>
+<p>Забележете, че сигилът винаги остава същият. Тъй като елементите се
+броят от нула, елементът <code>@cities[1]</code> е <code>'Rome'</code> в
+нашия пример.</p>
+<p>Масивите са променливи, така че можете лесно да модифицирате техните
+елементи, като просто им присвоите нова стойност:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">'Rome'</span>;
+<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">'Paris'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];
-</pre></div>
-
-
-<p>Забележете, че сигилът винаги остава същият. Тъй като елементите се броят от нула, елементът <code class="language-plaintext highlighter-rouge">@cities[1]</code> е <code class="language-plaintext highlighter-rouge">'Rome'</code> в нашия пример.</p>
-
-<p>Масивите са променливи, така че можете лесно да модифицирате техните елементи, като просто им присвоите нова стойност:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">&#39;Rome&#39;</span>;
-<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">&#39;Paris&#39;</span>;
-</pre></div>
-
-
-<p>След това, изразът <code class="language-plaintext highlighter-rouge">say @cities[1]</code> ще отпечата новата стойност <code class="language-plaintext highlighter-rouge">'Paris'</code>.</p>
-
+<p>След това, изразът <code>say @cities[1]</code> ще отпечата новата
+стойност <code>'Paris'</code>.</p>
 <h2 id="размер">Размер</h2>
+<p>За да получите текущата дължина на масива, или, с други думи, броя на
+неговите елементи, използвайте метода <code>elems</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span></pre></div>
 
-<p>За да получите текущата дължина на масива, или, с други думи, броя на неговите елементи, използвайте метода <code class="language-plaintext highlighter-rouge">elems</code>:</p>
+<p>Ако масивът се появи в контекст, където очакваният параметър е число,
+върнатата стойност е размерът на масива:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
-</pre></div>
-
-
-<p>Ако масивът се появи в контекст, където очакваният параметър е число, върнатата стойност е размерът на масива:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span>
-</pre></div>
-
-
-<p>Тук, <a href="/bg/essentials/coercion/prefixes"><code class="language-plaintext highlighter-rouge">+</code> префиксният оператор</a> изисква числова стойност от своя аргумент, така че резултатът от <code class="language-plaintext highlighter-rouge">+@cities</code> е <code class="language-plaintext highlighter-rouge">3</code>.</p>
-
-<p><div class="practice"></p>
-<h2 id="практика">Практика</h2>
-
-<p>Попълнете теста, който обхваща съдържанието на тази тема.</p>
+<p>Тук, <a href="/bg/essentials/coercion/prefixes"><code>+</code>
+префиксният оператор</a> изисква числова стойност от своя аргумент, така
+че резултатът от <code>+@cities</code> е <code>3</code>.</p>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Направете 1 тест върху съдържанието на тази тема.</p>
 <ul>
-  <li><a href="/bg/essentials/positionals/arrays/quiz">Тест — Масиви</a></li>
+<li><a href="/bg/essentials/positionals/arrays/quiz">Тест —
+Масиви</a></li>
 </ul>
-
-<p></div></p>
-
-<h2 id="навигация-по-курса">Навигация по курса</h2>
-
-<p>←
-        <a href="/bg/essentials/positionals">Позиционни типове данни</a>
-  |  
-        <a href="/bg/essentials/positionals">Позиционни типове данни</a> / <a href="/bg/essentials/positionals/nested-arrays">Вложени масиви</a>
+</section>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a href="/bg/essentials/positionals">Позиционни типове данни</a>
+  |   <a href="/bg/essentials/positionals/arrays/quiz">Тест — Масиви</a>
 →</p>
-
-<p><br />
-💪 Or jump directly <a href="/bg/essentials/positionals/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/positionals/arrays/">Оригинален текст на английски</a></p>
-
-  <p>Преводи на тази страница: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <a href="/es/essentials/positionals/arrays/">Español</a> • <a href="/it/essentials/positionals/arrays/">Italiano</a> • <a href="/lv/essentials/positionals/arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/arrays/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+<p><br /> 💪 Или преминете направо <a
+href="/bg/essentials/positionals/exercises">към упражненията в този
+раздел</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/positionals/arrays">English</a> • <a
+href="/de/essentials/positionals/arrays">Deutsch</a> • <a
+href="/es/essentials/positionals/arrays">Español</a> • <a
+href="/it/essentials/positionals/arrays">Italiano</a> • <a
+href="/lv/essentials/positionals/arrays">Latviešu</a> • <a
+href="/nl/essentials/positionals/arrays">Nederlands</a> •
+<strong>Български</strong> • <a
+href="/ru/essentials/positionals/arrays">Русский</a> • <a
+href="/uk/essentials/positionals/arrays">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

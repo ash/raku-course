@@ -1,5 +1,5 @@
 ---
-title: Тест — if, elsif, else
+title: 'Тест: `if`, `elsif` и `else`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ученически бюра
+title: Класни чинове
 ---
 
 {% include menu.html %}

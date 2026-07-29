@@ -1,13 +1,26 @@
-# Пълният курс на програмния език Raku
+<div class="home-hero" markdown="1">
 
-* [За този курс](/bg/about-this-course)
+# Пълен курс по програмния език Raku
 
-{% comment %}{% assign compact_menu = true %}{% endcomment %}
+<p class="tagline">От първия ред код до граматики, конкурентност и уеб услуги — практичен курс в пет части със стотици тестове и упражнения, с които да затвърдите всяка стъпка.</p>
+
+<p class="cta-row">
+  <a class="btn-primary" href="/bg/essentials/what-is-raku">Започнете да учите →</a>
+  <a class="btn-ghost" href="/bg/about-this-course">За курса</a>
+</p>
+
+<p class="trust">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+
+</div>
+
+{% include stats.html %}
+
+<p class="section-label">Курсът, част по част</p>
+
 {% include toc.html %}
 
-
-<center>•</center>
+<div class="home-foot" markdown="1">
 
 {% include translations.html %}
 
-© 2021–{{ site.time | date: '%Y' }} от <a href="https://andrewshitov.com/">Andrew Shitov</a>
+</div>

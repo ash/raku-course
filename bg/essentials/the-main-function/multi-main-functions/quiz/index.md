@@ -1,5 +1,5 @@
 ---
-title: Тест — Много-MAIN
+title: Тест — Множество `MAIN`
 ---
 
 {% include menu.html %}

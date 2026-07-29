@@ -1,5 +1,5 @@
 ---
-title: Решение на „Истински и фалшиви низове“
+title: 'Solution: Истински и фалшиви стрингове'
 ---
 
 {% include menu.html %}
@@ -20,6 +20,6 @@ say ?'0.0';
 
 От всички тези, само празният низ се преобразува като `False`. Всички останали низове, дори тези, които съдържат само интервали или явен знак `0`, стават `True`.
 
-🦋 Можете да намерите пълната програма с горния пример във файла [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
+🦋 Можете да намерите пълната програма с горния пример във файла [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku).
 
 {% include nav.html %}

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="bg">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Скаларни променливи</title>
-    <meta property="og:title" content="Скаларни променливи" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Скаларни променливи — Курс по Raku</title>
+    <meta property="og:title" content="Скаларни променливи — Курс по Raku" />
     <meta property="og:locale" content="bg" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Скаларни променливи</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,71 +88,135 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a></p>
-
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/variables">Основи на променливите и типовете
+данни</a></p>
 <h1 id="скаларни-променливи">Скаларни променливи</h1>
-
-<p>Досега, програмите, които видяхме, имаха твърдо кодирани текстови низове. Нека въведем малко свобода и позволим на програмата да използва променливи.</p>
-
-<p>Има няколко типа променливи в Raku. Променливата е контейнер, който може да съхранява някакви данни. Ще започнем с най-простите контейнери, които могат да съхраняват само една стойност. Такива контейнери се наричат <em>скалари</em> или скаларни променливи. Променливата има име, предшествано от специален индикатор, който показва природата на контейнера. Този индикатор е символ, наречен <em>сигил</em>. За скаларните контейнери, такъв сигил е символът долар <code class="language-plaintext highlighter-rouge">$</code>.</p>
-
+<p>Досега, програмите, които видяхме, имаха твърдо кодирани текстови
+низове. Нека въведем малко свобода и позволим на програмата да използва
+променливи.</p>
+<p>Има няколко типа променливи в Raku. Променливата е контейнер, който
+може да съхранява някакви данни. Ще започнем с най-простите контейнери,
+които могат да съхраняват само една стойност. Такива контейнери се
+наричат <em>скалари</em> или скаларни променливи. Променливата има име,
+предшествано от специален индикатор, който показва природата на
+контейнера. Този индикатор е символ, наречен <em>сигил</em>. За
+скаларните контейнери, такъв сигил е символът долар <code>$</code>.</p>
 <p>Ето няколко примера за скаларни променливи:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$name</span>
 
-<div class="highlight"><pre><span></span><span class="nv">$name</span>
+<span class="nv">$age</span></pre></div>
 
-<span class="nv">$age</span>
-</pre></div>
-
-
-<p><div class="topics"></p>
-<h2 id="теми-в-този-раздел">Теми в този раздел</h2>
+<section id="теми-в-този-раздел" class="topics" data-markdown="1">
+<h2>Теми в този раздел</h2>
 <ul>
-  <li><a href="/bg/essentials/scalar-variables/declaring-a-variable">Деклариране на променлива</a></li>
-  <li><a href="/bg/essentials/scalar-variables/assigning-a-value">Присвояване на стойност</a></li>
-  <li><a href="/bg/essentials/scalar-variables/declaration-with-initialization">Деклариране с инициализация</a></li>
-  <li><a href="/bg/essentials/scalar-variables/defined-or-operator">Операторът “defined-or”</a></li>
-  <li><a href="/bg/essentials/scalar-variables/identifiers">Имена на променливите</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/declaring-a-variable">Деклариране
+на променлива</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/assigning-a-value">Присвояване на
+стойност</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/declaration-with-initialization">Деклариране
+с инициализация</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/defined-or-operator">Операторът
+“defined-or”</a></li>
+<li><a href="/bg/essentials/scalar-variables/identifiers">Имена на
+променливите</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="упражнения">Упражнения</h2>
-
-<p>Този раздел съдържа <a href="/bg/essentials/scalar-variables/exercises">
-4 упражнения</a>. Прегледайте всички теми в този раздел преди да преминете към практическо програмиране.</p>
-<ol>
-  <li><a href="/bg/essentials/scalar-variables/exercises/greet-a-person">Поздрави човек</a></li>
-  <li><a href="/bg/essentials/scalar-variables/exercises/answer">Отговорът на живота, вселената и всичко останало</a></li>
-  <li><a href="/bg/essentials/scalar-variables/exercises/swap">Размяна на стойности</a></li>
-  <li><a href="/bg/essentials/scalar-variables/exercises/identifiers">Поправете идентификаторите</a></li>
+</section>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Направете 7 теста върху съдържанието на този раздел.</p>
+<ul>
+<li><a
+href="/bg/essentials/scalar-variables/declaring-a-variable/quiz1">Тест
+1: Деклариране на променлива</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/declaring-a-variable/quiz2">Тест
+2: Деклариране на повече променливи</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/assigning-a-value/quiz1">Тест 1:
+Присвояване на стойност</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/assigning-a-value/quiz2">Тест 2:
+Присвояване на две стойности</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/declaration-with-initialization/quiz1">Тест
+1: Деклариране с инициализация</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/declaration-with-initialization/quiz2">Тест
+2: Деклариране и инициализация или деклариране с инициализация</a></li>
+<li><a href="/bg/essentials/scalar-variables/identifiers/quiz">Тест:
+Валидни имена на променливите</a></li>
+</ul>
+</section>
+<section id="упражнения" class="exercises" data-markdown="1">
+<h2>Упражнения</h2>
+<p>Този раздел съдържа <a href="exercises">4 упражнения</a>. Разгледайте
+всички теми в раздела, преди да се захванете с практиката.</p>
+<ol type="1">
+<li><a
+href="/bg/essentials/scalar-variables/exercises/greet-a-person">Поздрави
+човек</a></li>
+<li><a href="/bg/essentials/scalar-variables/exercises/answer">Отговорът
+на живота, вселената и всичко останало</a></li>
+<li><a href="/bg/essentials/scalar-variables/exercises/swap">Размяна на
+стойности</a></li>
+<li><a
+href="/bg/essentials/scalar-variables/exercises/identifiers">Поправете
+идентификаторите</a></li>
 </ol>
-
-<p></div></p>
-
-<h2 id="навигация-по-курса">Навигация по курса</h2>
-
-<p>←
-    <a href="/bg/essentials/comments">Коментари</a>
-        / <a href="/bg/essentials/comments/embedded">Вградени коментари</a>
-  |  
-        <a href="/bg/essentials/scalar-variables/declaring-a-variable">Деклариране на променлива</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/scalar-variables/">Оригинален текст на английски</a></p>
-
-  <p>Преводи на тази страница: <a href="/essentials/scalar-variables/">English</a> • <a href="/de/essentials/scalar-variables/">Deutsch</a> • <a href="/es/essentials/scalar-variables/">Español</a> • <a href="/it/essentials/scalar-variables/">Italiano</a> • <a href="/lv/essentials/scalar-variables/">Latviešu</a> • <a href="/nl/essentials/scalar-variables/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/scalar-variables/">Русский</a> • <a href="/uk/essentials/scalar-variables/">Українська</a></p>
+</section>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a href="/bg/essentials/variables">Основи на променливите и
+типовете данни</a>   |   <a
+href="/bg/essentials/scalar-variables/declaring-a-variable">Деклариране
+на променлива</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/scalar-variables">English</a> • <a
+href="/de/essentials/scalar-variables">Deutsch</a> • <a
+href="/es/essentials/scalar-variables">Español</a> • <a
+href="/it/essentials/scalar-variables">Italiano</a> • <a
+href="/lv/essentials/scalar-variables">Latviešu</a> • <a
+href="/nl/essentials/scalar-variables">Nederlands</a> •
+<strong>Български</strong> • <a
+href="/ru/essentials/scalar-variables">Русский</a> • <a
+href="/uk/essentials/scalar-variables">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

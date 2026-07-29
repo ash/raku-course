@@ -1,5 +1,5 @@
 ---
-title: Тест 2 — условието в if
+title: Тест 2 — условието в `if`*
 ---
 
 {% include menu.html %}

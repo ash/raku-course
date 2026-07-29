@@ -1,5 +1,5 @@
 ---
-title: Решение на ‘Преобразуване на потребителски вход в число’
+title: 'Solution: Преобразуване на потребителски вход към число'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my Int $n = prompt 'Enter a number: ';
 say $n;
 ```
 
-🦋 Можете да намерите изходния код във файла [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 Можете да намерите изходния код във файла [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Пример
 

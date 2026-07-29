@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="bg">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Внимавайте с интервалите</title>
-    <meta property="og:title" content="Внимавайте с интервалите" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Внимание към пространството — Курс по Raku</title>
+    <meta property="og:title" content="Внимание към пространството — Курс по Raku" />
     <meta property="og:locale" content="bg" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Внимавайте с интервалите</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,130 +88,142 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a> / <a href="/bg/essentials/more-on-functions">Повече за функциите</a></p>
-
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/functions-essentials">Основи на функциите</a>
+/ <a href="/bg/essentials/more-on-functions">Повече за функциите</a></p>
 <h1 id="внимание-към-пространството">Внимание към пространството</h1>
-
-<p>Използването на функции в Raku е предимно интуитивно и не създава проблеми, но трябва да бъдете предупредени за следния аспект.</p>
-
+<p>Използването на функции в Raku е предимно интуитивно и не създава
+проблеми, но трябва да бъдете предупредени за следния аспект.</p>
 <h2 id="tldr">TL;DR</h2>
-
-<p>Не добавяйте интервал между името на функцията и скобите с нейните аргументи. Но използвайте интервал след <code class="language-plaintext highlighter-rouge">for</code> и <code class="language-plaintext highlighter-rouge">if</code>.</p>
-
+<p>Не добавяйте интервал между името на функцията и скобите с нейните
+аргументи. Но използвайте интервал след <code>for</code> и
+<code>if</code>.</p>
 <h2 id="дълга-история">Дълга история</h2>
-
 <p>Нека вземем една проста функция:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
-
-<p>Първо, обърнете внимание на отсъствието на интервали между името на функцията и отварящите скоби, които съдържат параметрите. Някои стилове на кодиране в други езици може да изискват интервал там. Raku е добре с това, но това не е практика, която да следвате:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<p>Първо, обърнете внимание на отсъствието на интервали между името на
+функцията и отварящите скоби, които съдържат параметрите. Някои стилове
+на кодиране в други езици може да изискват интервал там. Raku е добре с
+това, но това не е практика, която да следвате:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
+<p>От страната на извикването, отсъствието на интервал е важно. Ако
+извикате функцията и пропуснете скобите, тогава интервалът след името на
+функцията е неизбежен:</p>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
-<p>От страната на извикването, отсъствието на интервал е важно. Ако извикате функцията и пропуснете скобите, тогава интервалът след името на функцията е неизбежен:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
-
-
-<p>Но ако добавите скоби, не можете да имате интервал преди тях. Това е правилното извикване:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
-
+<p>Но ако добавите скоби, не можете да имате интервал преди тях. Това е
+правилното извикване:</p>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>А това извикване е грешно:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Такъв код предизвиква изключение:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Too few positionals passed; expected 2 arguments but got 1
+<pre><code>Too few positionals passed; expected 2 arguments but got 1
   sub f at t.raku line 1
-  in block &lt;unit&gt; at t.raku line 5
-</code></pre></div></div>
-
-<p>Raku вижда извикването с интервал <code class="language-plaintext highlighter-rouge">f (5, 6)</code> като опит да се предаде един аргумент <code class="language-plaintext highlighter-rouge">(5, 6)</code> на функцията. Можете лесно да проверите типа на този аргумент, ако пренапишете функцията да приема само един аргумент:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+  in block &lt;unit&gt; at t.raku line 5</code></pre>
+<p>Raku вижда извикването с интервал <code>f (5, 6)</code> като опит да
+се предаде един аргумент <code>(5, 6)</code> на функцията. Можете лесно
+да проверите типа на този аргумент, ако пренапишете функцията да приема
+само един аргумент:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
-
-<p>Така че, извикването <code class="language-plaintext highlighter-rouge">f (5, 6)</code> означава, че предаваме <a href="/bg/essentials/positionals/lists">списък</a> на функцията. Списък като единична същност.</p>
-
+<p>Така че, извикването <code>f (5, 6)</code> означава, че предаваме <a
+href="/bg/essentials/positionals/lists">списък</a> на функцията. Списък
+като единична същност.</p>
 <h2 id="кога-е-нужен-интервал">Кога е нужен интервал</h2>
-
-<p>В някои случаи, интервалът е необходим. Това се случва, когато използвате скоби с една от ключовите думи, като <code class="language-plaintext highlighter-rouge">if</code> или <code class="language-plaintext highlighter-rouge">for</code> или <code class="language-plaintext highlighter-rouge">loop</code>. Следният код е грешен:</p>
-
-<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
-
+<p>В някои случаи, интервалът е необходим. Това се случва, когато
+използвате скоби с една от ключовите думи, като <code>if</code> или
+<code>for</code> или <code>loop</code>. Следният код е грешен:</p>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>Съобщението за грешка обяснява какво не е наред:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===SORRY!===
-The word 'if' is interpreted as a 'if()' function call.  Please use
+<pre><code>===SORRY!===
+The word &#39;if&#39; is interpreted as a &#39;if()&#39; function call.  Please use
 whitespace instead of parentheses.
 at /Users/ash/raku-course/t.raku:1
 ------&gt; if⏏(True != False) {
 Unexpected block in infix position (two terms in a row)
 at /Users/ash/raku-course/t.raku:1
-------&gt; if(True != False)⏏ {
-</code></pre></div></div>
+------&gt; if(True != False)⏏ {</code></pre>
+<p>В случая с <code>if</code>, скобите изобщо не са необходими, така че
+проблемът няма шанс да се появи, ако не ги използвате. Но в някои
+случаи, като например с <code>loop</code>, трябва да ги имате, и
+интервалът става задължителен:</p>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
-<p>В случая с <code class="language-plaintext highlighter-rouge">if</code>, скобите изобщо не са необходими, така че проблемът няма шанс да се появи, ако не ги използвате. Но в някои случаи, като например с <code class="language-plaintext highlighter-rouge">loop</code>, трябва да ги имате, и интервалът става задължителен:</p>
-
-<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
-</code></pre>
-
-<p>В този код се случва същото: <code class="language-plaintext highlighter-rouge">loop(...)</code> се разбира от компилатора като извикване на функция. Добавете интервал, за да разрешите проблема. Или по-добре пренапишете фрагмента, използвайки <code class="language-plaintext highlighter-rouge">for</code>.</p>
-
+<p>В този код се случва същото: <code>loop(...)</code> се разбира от
+компилатора като извикване на функция. Добавете интервал, за да
+разрешите проблема. Или по-добре пренапишете фрагмента, използвайки
+<code>for</code>.</p>
 <h2 id="заключение">Заключение</h2>
-
-<p>В крайна сметка: за да избегнете такива проблеми, не добавяйте интервал между името на функцията и скобите с аргументите на функцията и се опитайте да избягвате скобите, ако това е възможно с други конструкции на езика като контролен поток.</p>
-
-<p></div></p>
-
-<h2 id="навигация-по-курса">Навигация по курса</h2>
-
-<p>←
-        <a href="/bg/essentials/more-on-functions">Повече за функциите</a>
-  |  
-        <a href="/bg/essentials/more-on-functions">Повече за функциите</a> / <a href="/bg/essentials/more-on-functions/typed-parameters">Типизирани параметри</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/bg/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Тази страница е автоматично преведена с ChatGPT 4.0. <a href="/essentials/more-on-functions/mind-the-space/">Оригинален текст на английски</a></p>
-
-  <p>Преводи на тази страница: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <strong>Български</strong> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+<p>В крайна сметка: за да избегнете такива проблеми, не добавяйте
+интервал между името на функцията и скобите с аргументите на функцията и
+се опитайте да избягвате скобите, ако това е възможно с други
+конструкции на езика като контролен поток.</p>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a href="/bg/essentials/more-on-functions">Повече за функциите</a>
+  |   <a
+href="/bg/essentials/more-on-functions/typed-parameters">Типизирани
+параметри</a> →</p>
+<p><br /> 💪 Или преминете направо <a
+href="/bg/essentials/more-on-functions/exercises/factorial-with-multi-functions">към
+упражнението към този раздел</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/more-on-functions/mind-the-space">English</a> • <a
+href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a> • <a
+href="/es/essentials/more-on-functions/mind-the-space">Español</a> • <a
+href="/it/essentials/more-on-functions/mind-the-space">Italiano</a> • <a
+href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a> • <a
+href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a> •
+<strong>Български</strong> • <a
+href="/ru/essentials/more-on-functions/mind-the-space">Русский</a> • <a
+href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

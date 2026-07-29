@@ -1,5 +1,5 @@
 ---
-title: Решението на „Поздрави човек“
+title: 'Solution: Поздрави човек'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Как се казваш? ';
 say 'Здравей, ', $name, '!';
 ```
 
-🦋 Можете да намерите изходния код във файла [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/greet-a-person.raku).
+🦋 Можете да намерите изходния код във файла [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/greet-a-person.raku).
 
 ## Изход
 

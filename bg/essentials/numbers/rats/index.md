@@ -1,5 +1,5 @@
 ---
-title: Рационални числа в Raku
+title: Рационални числа
 ---
 
 {% include menu.html %}

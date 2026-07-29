@@ -1,5 +1,5 @@
 ---
-title: Тест — Цикълът while
+title: Тест — цикъл `while`
 ---
 
 {% include menu.html %}

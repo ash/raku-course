@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Print the warning'
+title: Принтирайте предупреждението
 ---
 
 {% include menu.html %}

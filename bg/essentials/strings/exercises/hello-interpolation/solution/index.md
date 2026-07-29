@@ -1,5 +1,5 @@
 ---
-title: Решение на „Здравей, Интерполация!“
+title: 'Solution: Здравей, Интерполация!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Как се казваш? ';
 say "Здравей, $name!";
 ```
 
-🦋 Можете да намерите изходния код във файла [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 Можете да намерите изходния код във файла [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
 ## Изход
 
