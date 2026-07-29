@@ -1,22 +1,22 @@
 ---
-title: 'Solution: The value of e'
+title: 'Розв''язання: Значення e'
 ---
 
 {% include menu.html %}
 
-## Disclaimer
+## Застереження
 
-In Raku, there is a built-in constant `e` that gives the immediate answer to the task. The solution shown below is designed for education.
+У Raku є вбудована стала `e`, яка дає відповідь на завдання одразу. Наведене нижче рішення створено з навчальною метою.
 
-## Code
+## Код
 
-The formula in this task contains a factorial, and we already have at least two solutions to compute it (more to follow). The program below defines two functions: one to compute factorial, another one for the partial sum according to the formula.
+Формула в цьому завданні містить факторіал, а в нас уже є щонайменше два способи його обчислити (буде й більше). Наведена нижче програма визначає дві функції: одну для обчислення факторіала, другу — для часткової суми за формулою.
 
-As it is required that the function can be called with no arguments, in which case it runs a predefined number of iterations, we can add a [default value](/uk/essentials/functions/default-values) of the parameter: `sub e-approx($max = 100)`.
+Оскільки за умовою функцію можна викликати без аргументів, і тоді вона виконує наперед визначену кількість ітерацій, ми можемо додати параметру [значення за замовчуванням](/uk/essentials/functions/default-values): `sub e-approx($max = 100)`.
 
-In the code, notice the similarities in how the result values are accumulated in a [postfix `for` loop](/uk/essentials/loops/postfix-for) over a [range](/uk/essentials/ranges).
+Зверніть увагу в коді на подібність того, як накопичуються результати в [постфіксному циклі `for`](/uk/essentials/loops/postfix-for) по [діапазону](/uk/essentials/ranges).
 
-Here is the solution:
+Ось рішення:
 
 ```raku
 sub factorial($n) {
@@ -37,11 +37,11 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Find the program in the file [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Знайдіть програму у файлі [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
-## Output
+## Вивід
 
-With 10 and 100 iterations, we get the following results. Additionally, try other values of `$max`.
+За 10 та 100 ітерацій ми отримуємо такі результати. Спробуйте також інші значення `$max`.
 
 ```console
 $ raku exercises/functions/the-value-of-e.raku

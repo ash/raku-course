@@ -1,5 +1,5 @@
 ---
-title: Змінна topic
+title: Топічна змінна
 ---
 
 {% include menu.html %}

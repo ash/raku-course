@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: цикли'
+title: 'Exercises: Цикли'
 ---
 
 {% include menu.html %}

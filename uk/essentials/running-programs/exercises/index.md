@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Запуск програм'
+title: 'Exercises: Запуск програм'
 ---
 
 {% include menu.html %}

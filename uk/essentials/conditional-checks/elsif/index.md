@@ -1,5 +1,5 @@
 ---
-title: Використання eslif
+title: Використання `elsif`
 ---
 
 {% include menu.html %}

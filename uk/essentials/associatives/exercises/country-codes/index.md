@@ -1,22 +1,22 @@
 ---
-title: 'Exercise: Country codes'
+title: Коди країн
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-You have a list of two-letter country codes in the array:
+У вас є список дволітерних кодів країн у масиві:
 
 ```raku
 my @codes = < FR IT DE EE LV US CN IN BR >;
 ```
 
-Complete the program to print the full names of these countries, one at a line. Use the file [cc.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/country-codes/cc.raku) with the hash that maps country codes to the names.
+Доповніть програму так, щоб вона вивела повні назви цих країн, по одній на рядок. Скористайтеся файлом [cc.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/country-codes/cc.raku) із хешем, що зіставляє коди країн із назвами.
 
-## Example
+## Приклад
 
-The program’s output is shown below. Only a few first names are shown:
+Вивід програми показано нижче. Наведено лише кілька перших назв:
 
 ```console
 $ raku country-codes.raku
@@ -26,8 +26,8 @@ Germany
 . . .
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solution of ’Fibonacci numbers’
+title: 'Solution: Числа Фібоначчі'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ for ^19 {
 }
 ```
 
-🦋 Знайдіть програму у файлі [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fibonacci-numbers.raku).
+🦋 Знайдіть програму у файлі [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fibonacci-numbers.raku).
 
 ## Вивід
 

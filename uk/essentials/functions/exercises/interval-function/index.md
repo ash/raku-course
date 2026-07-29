@@ -1,20 +1,20 @@
 ---
-title: 'Exercise: Interval function'
+title: Інтервальна функція
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Create a program that implements a function according to this definition:
+Створіть програму, яка реалізує функцію за таким означенням:
 
 <img src="f.png" style="height: 4em; width: auto" />
 
-Print the result of the function for the arguments `-2`, `0`, and `3`.
+Виведіть результат функції для аргументів `-2`, `0` та `3`.
 
-## Example
+## Приклад
 
-The program should print the following output:
+Програма має вивести такий результат:
 
 ```console
 $ raku interval-function.raku
@@ -23,8 +23,8 @@ $ raku interval-function.raku
 2.5
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

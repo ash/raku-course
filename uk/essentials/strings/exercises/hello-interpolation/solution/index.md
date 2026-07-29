@@ -1,23 +1,23 @@
 ---
-title: Solution to ’Hello, Interpolation!‘
+title: 'Розв''язання: Привіт, Інтерполяція!'
 ---
 
 {% include menu.html %}
 
-## Code
+## Код
 
-Here is a possible solution to this problem:
+Ось один із можливих розв'язків цієї задачі:
 
 ```raku
 my $name = prompt 'What is your name? ';
 say "Hello, $name!";
 ```
 
-🦋 You can find the source code in the file [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 Вихідний код можна знайти у файлі [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
-## Output
+## Вивід
 
-Run the program, and it will enter a mode when it waits for your input. After you type the name and press Enter, the program continues and prints the greeting:
+Запустіть програму, і вона перейде в режим очікування вашого введення. Щойно ви наберете ім'я й натиснете Enter, програма продовжить роботу й виведе привітання:
 
 ```console
 $ raku exercises/strings/hello-concatenation.raku
@@ -25,8 +25,8 @@ What is your name? Raku
 Hello, Raku!
 ```
 
-## Comments
+## Коментарі
 
-Notice that this time, the string is double-quoted. In double quotes, variables are interpolated, so their content is placed in the string.
+Зверніть увагу, що цього разу рядок узятий у подвійні лапки. У подвійних лапках змінні інтерполюються, тож їхній вміст потрапляє в рядок.
 
 {% include nav.html %}

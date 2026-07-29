@@ -1,5 +1,5 @@
 ---
-title: Розв'язання завдання «Дослідження виводу запиту — Рядки»
+title: 'Solution: Дослідження результату `prompt` — Рядки'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Ви можете знайти вихідний код у файлі [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Ви можете знайти вихідний код у файлі [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Тестові запуски
 

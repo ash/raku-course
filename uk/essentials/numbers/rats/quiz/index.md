@@ -1,24 +1,24 @@
 ---
-title: 'Quiz: Rational numbers'
+title: 'Тест: Раціональні числа в Raku'
 ---
 
 {% include menu.html %}
 
-Select the numbers which are `Rat` in Raku.
+Оберіть числа, які в Raku є `Rat`.
 
-<!--0 | ↉ | This is an `Int` number, and its value is `0`.-->
+<!--0 | ↉ | Це число типу `Int`, і його значення — `0`.-->
 
 {:.quiz}
-1 | 3/64 | This is a `Rat` number, not a division of two integers.
+1 | 3/64 | Це число типу `Rat`, а не ділення двох цілих.
 1 | ⅞
-1 | 2.718281828459045 | That‘s an approximate value of the Euler constant, but this is a `Rat` still, as it is not infinitely long.
-1 | 10_230/50_245 | You can use the `_` separate here too.
-1 | 10.345_678 | And here.
-0 | 10.345,678 | A comma here is neither a decimal comma nor a separator.
-1 | <33/44> | Another form of writing rational numbers in Raku.
-0 | <33 44> | This is a list of strings (we’ll see it further in the course).
-0 | &apos;<33 44>&apos; | This is a string.
-1 | ⅞/⅚ | This is a division of two `Rat` numbers, but the result is also a `Rat` number.
+1 | 2.718281828459045 | Це наближене значення сталої Ейлера, але воно все одно `Rat`, бо не є нескінченно довгим.
+1 | 10_230/50_245 | Тут теж можна використовувати роздільник `_`.
+1 | 10.345_678 | І тут.
+0 | 10.345,678 | Кома тут не є ані десятковою комою, ані роздільником.
+1 | <33/44> | Ще одна форма запису раціональних чисел у Raku.
+0 | <33 44> | Це список рядків (ми побачимо його далі в курсі).
+0 | &apos;<33 44>&apos; | Це рядок.
+1 | ⅞/⅚ | Це ділення двох чисел `Rat`, але результат теж є числом `Rat`.
 
 {% include quiz.html %}
 

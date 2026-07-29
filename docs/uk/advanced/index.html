@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Розширені — Курс Raku</title>
+    <meta property="og:title" content="Розширені — Курс Raku" />
+    <meta property="og:locale" content="uk" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/uk/">Курс Raku</a></p>
+<h1 id="частина-2.-розширені-теми-raku">Частина 2. Розширені теми
+Raku</h1>
+<p>Глибше занурення: контейнери та контексти, повний набір вбудованих
+типів та операторів, потужніші підпрограми та пакування коду в модулі з
+тестами та документацією.</p>
+<h4 id="налагодження"><a
+href="/uk/advanced/debugging">Налагодження</a></h4>
+<ul>
+<li><a href="/uk/advanced/representations">Перетворення значень у
+текст</a>
+<ul>
+<li><a href="/uk/advanced/representations/gist">Метод
+<code>.gist</code></a></li>
+<li><a href="/uk/advanced/representations/str">Метод
+<code>.Str</code></a> — <span class="has-q"><a
+href="/uk/advanced/representations/str#practice">1 тест</a></span></li>
+<li><a href="/uk/advanced/representations/raku-method">Метод
+<code>.raku</code></a></li>
+<li><a href="/uk/advanced/representations/choosing">Вибір правильного
+методу</a></li>
+</ul></li>
+<li><a href="/uk/advanced/dd">Налагодження з <code>dd</code></a> — <span
+class="has-e"><a href="/uk/advanced/dd/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/dd/variables">Вивід змінних</a> — <span
+class="has-q"><a href="/uk/advanced/dd/variables#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/dd/functions">Вивід сигнатур функцій</a></li>
+</ul></li>
+</ul>
+<h4 id="контейнери"><a
+href="/uk/advanced/containers-overview">Контейнери</a></h4>
+<ul>
+<li><a href="/uk/advanced/containers">Розуміння контейнерів
+Raku</a></li>
+<li><a href="/uk/advanced/scalar-containers">Скалярні контейнери</a> —
+<span class="has-e"><a href="/uk/advanced/scalar-containers/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/scalar-containers/types">Типи даних і скалярні
+контейнери</a></li>
+<li><a href="/uk/advanced/scalar-containers/type-constraints">Обмеження
+типів</a> — <span class="has-q"><a
+href="/uk/advanced/scalar-containers/type-constraints#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/scalar-containers/default">Значення за
+замовчуванням</a></li>
+<li><a href="/uk/advanced/scalar-containers/proxying">Проксіювання
+викликів методів</a></li>
+</ul></li>
+<li><a href="/uk/advanced/ordered-containers">Упорядковані
+контейнери</a> — <span class="has-e"><a
+href="/uk/advanced/ordered-containers/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/ordered-containers/arrays">Масиви</a></li>
+<li><a href="/uk/advanced/ordered-containers/lists">Списки</a> — <span
+class="has-q"><a href="/uk/advanced/ordered-containers/lists#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/ordered-containers/binding">Прив’язка з
+<code>:=</code></a></li>
+<li><a href="/uk/advanced/ordered-containers/flattening">Вирівнювання та
+ітемізація</a> — <span class="has-q"><a
+href="/uk/advanced/ordered-containers/flattening#practice">1
+тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/contexts">Контексти 🆕</a> — <span
+class="has-e"><a href="/uk/advanced/contexts/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/contexts/coercion-contexts">Числовий, рядковий
+та логічний контекст</a> — <span class="has-q"><a
+href="/uk/advanced/contexts/coercion-contexts#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/contexts/item-and-list">Елементний та
+списковий контекст</a> — <span class="has-q"><a
+href="/uk/advanced/contexts/item-and-list#practice">1
+тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/subscript-adverbs">Адверби індексів 🆕</a> —
+<span class="has-e"><a href="/uk/advanced/subscript-adverbs/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/subscript-adverbs/exists-and-delete">Існування
+та видалення</a> — <span class="has-q"><a
+href="/uk/advanced/subscript-adverbs/exists-and-delete#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/subscript-adverbs/kv-and-pairs">Ключі,
+значення та пари</a></li>
+</ul></li>
+<li><a href="/uk/advanced/special-variables">Спеціальні та динамічні
+змінні 🆕</a> — <span class="has-e"><a
+href="/uk/advanced/special-variables/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/special-variables/twigils">Твігіли</a> — <span
+class="has-q"><a
+href="/uk/advanced/special-variables/twigils#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/special-variables/dynamic-variables">Динамічні
+змінні</a> — <span class="has-q"><a
+href="/uk/advanced/special-variables/dynamic-variables#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/special-variables/built-in">Вбудовані
+спеціальні змінні</a> — <span class="has-q"><a
+href="/uk/advanced/special-variables/built-in#practice">1
+тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/introspection">Інтроспекція контейнерів</a> —
+<span class="has-e"><a href="/uk/advanced/introspection/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/introspection/what">Використання
+<code>WHAT</code></a> — <span class="has-q"><a
+href="/uk/advanced/introspection/what#practice">1 тест</a></span></li>
+<li><a href="/uk/advanced/introspection/var">Використання
+<code>VAR</code></a></li>
+<li><a href="/uk/advanced/introspection/who-how"><code>WHO</code> та
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+<h4 id="докладніше-про-вбудовані-типи"><a
+href="/uk/advanced/built-in-types">Докладніше про вбудовані
+типи</a></h4>
+<ul>
+<li><a href="/uk/advanced/integers">Цілі числа</a> — <span
+class="has-e"><a href="/uk/advanced/integers/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/integers/number-bases">Системи числення</a> —
+<span class="has-q"><a
+href="/uk/advanced/integers/number-bases#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/integers/methods">Методи цілих чисел</a></li>
+</ul></li>
+<li><a href="/uk/advanced/native-types">Нативні типи 🆕</a> — <span
+class="has-e"><a href="/uk/advanced/native-types/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/native-types/machine-types">Типи машинного
+рівня</a> — <span class="has-q"><a
+href="/uk/advanced/native-types/machine-types#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/native-types/sized-types">Типи фіксованого
+розміру та переповнення</a> — <span class="has-q"><a
+href="/uk/advanced/native-types/sized-types#practice">1
+тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/strings">Рядки</a> — <span class="has-e"><a
+href="/uk/advanced/strings/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/strings/searching">Пошук у рядках</a> — <span
+class="has-q"><a href="/uk/advanced/strings/searching#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/strings/splitting">Розділення та
+об’єднання</a></li>
+</ul></li>
+<li><a href="/uk/advanced/quoting">Конструкції квотування 🆕</a> — <span
+class="has-e"><a href="/uk/advanced/quoting/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/quoting/q-qq-big-q">q, qq та Q</a> — <span
+class="has-q"><a href="/uk/advanced/quoting/q-qq-big-q#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/quoting/adverbs">Адверби квотування</a> —
+<span class="has-q"><a href="/uk/advanced/quoting/adverbs#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/quoting/heredocs">Heredoc-рядки</a></li>
+</ul></li>
+<li><a href="/uk/advanced/date-and-time">Дата та час</a> — <span
+class="has-e"><a href="/uk/advanced/date-and-time/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/date-and-time/arithmetic">Арифметика дат</a> —
+<span class="has-q"><a
+href="/uk/advanced/date-and-time/arithmetic#practice">2
+тести</a></span></li>
+<li><a href="/uk/advanced/date-and-time/time">Робота з часом</a></li>
+</ul></li>
+<li><a href="/uk/advanced/sets-bags-mixes">Множини, мультимножини та
+суміші</a> — <span class="has-e"><a
+href="/uk/advanced/sets-bags-mixes/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/sets-bags-mixes/operations">Операції з
+множинами</a> — <span class="has-q"><a
+href="/uk/advanced/sets-bags-mixes/operations#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/sets-bags-mixes/bags">Мультимножини та
+суміші</a></li>
+</ul></li>
+<li><a href="/uk/advanced/sequences">Послідовності</a> — <span
+class="has-e"><a href="/uk/advanced/sequences/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/sequences/patterns">Шаблони послідовностей</a>
+— <span class="has-q"><a
+href="/uk/advanced/sequences/patterns#practice">1 тест</a></span></li>
+<li><a href="/uk/advanced/sequences/lazy">Ліниві та нескінченні
+послідовності</a></li>
+</ul></li>
+<li><a href="/uk/advanced/enumerations">Перелічення 🆕</a> — <span
+class="has-e"><a href="/uk/advanced/enumerations/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/enumerations/defining">Визначення enum</a> —
+<span class="has-q"><a
+href="/uk/advanced/enumerations/defining#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/enumerations/values-and-keys">Значення та
+ключі</a> — <span class="has-q"><a
+href="/uk/advanced/enumerations/values-and-keys#practice">1
+тест</a></span></li>
+</ul></li>
+</ul>
+<h4 id="оператори"><a href="/uk/advanced/operators">Оператори</a></h4>
+<ul>
+<li><a href="/uk/advanced/operator-types">Типи операторів Raku</a> —
+<span class="has-q"><a href="/uk/advanced/operator-types#practice">3
+тести</a></span> та <span class="has-e"><a
+href="/uk/advanced/operator-types/exercises">3 вправи</a></span></li>
+<li><a href="/uk/advanced/operators-overview">Огляд поведінки
+операторів</a> — <span class="has-q"><a
+href="/uk/advanced/operators-overview#practice">1 тест</a></span> та
+<span class="has-e"><a
+href="/uk/advanced/operators-overview/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/metaoperators">Метаоператори</a> — <span
+class="has-e"><a href="/uk/advanced/metaoperators/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/metaoperators/reduction">Метаоператори
+редукції</a> — <span class="has-q"><a
+href="/uk/advanced/metaoperators/reduction#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/metaoperators/zip">Zip-метаоператори</a></li>
+<li><a href="/uk/advanced/metaoperators/more">Перехресні, гіпер- та
+заперечні</a> — <span class="has-q"><a
+href="/uk/advanced/metaoperators/more#practice">1 тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/user-defined-operators">Оператори, визначені
+користувачем</a> — <span class="has-q"><a
+href="/uk/advanced/user-defined-operators#practice">1 тест</a></span> та
+<span class="has-e"><a
+href="/uk/advanced/user-defined-operators/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/traits-pragmas">Трейти та прагми 🆕</a> —
+<span class="has-e"><a href="/uk/advanced/traits-pragmas/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/traits-pragmas/built-in-traits">Вбудовані
+трейти</a> — <span class="has-q"><a
+href="/uk/advanced/traits-pragmas/built-in-traits#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/traits-pragmas/writing-a-trait">Написання
+трейту</a></li>
+<li><a href="/uk/advanced/traits-pragmas/pragmas">Прагми</a> — <span
+class="has-q"><a href="/uk/advanced/traits-pragmas/pragmas#practice">1
+тест</a></span></li>
+</ul></li>
+</ul>
+<h4 id="порядок-виконання"><a href="/uk/advanced/control-flow">Порядок
+виконання</a></h4>
+<ul>
+<li><a href="/uk/advanced/phasers">Фейзери</a> — <span class="has-q"><a
+href="/uk/advanced/phasers#practice">1 тест</a></span> та <span
+class="has-e"><a href="/uk/advanced/phasers/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/block-phasers">Блокові фейзери</a> — <span
+class="has-q"><a href="/uk/advanced/block-phasers#practice">1
+тест</a></span> та <span class="has-e"><a
+href="/uk/advanced/block-phasers/exercises">3 вправи</a></span></li>
+<li><a href="/uk/advanced/given-when"><code>given</code> та
+<code>when</code></a> — <span class="has-e"><a
+href="/uk/advanced/given-when/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/given-when/matching">Зіставлення діапазонів,
+типів та умов</a> — <span class="has-q"><a
+href="/uk/advanced/given-when/matching#practice">1 тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/gather-take"><code>gather</code> та
+<code>take</code></a> — <span class="has-q"><a
+href="/uk/advanced/gather-take#practice">1 тест</a></span> та <span
+class="has-e"><a href="/uk/advanced/gather-take/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/statement-prefixes">Префікси інструкцій 🆕</a>
+— <span class="has-e"><a
+href="/uk/advanced/statement-prefixes/exercises">3 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/statement-prefixes/do-prefix">do та значення
+блоку</a> — <span class="has-q"><a
+href="/uk/advanced/statement-prefixes/do-prefix#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/statement-prefixes/lazy-eager">Лінивість та
+жадібність</a></li>
+<li><a href="/uk/advanced/statement-prefixes/sink-quietly">sink та
+quietly</a> — <span class="has-q"><a
+href="/uk/advanced/statement-prefixes/sink-quietly#practice">1
+тест</a></span></li>
+</ul></li>
+</ul>
+<h4 id="підпрограми"><a
+href="/uk/advanced/subroutines">Підпрограми</a></h4>
+<ul>
+<li><a href="/uk/advanced/signatures">Сигнатури</a> — <span
+class="has-q"><a href="/uk/advanced/signatures#practice">1
+тест</a></span> та <span class="has-e"><a
+href="/uk/advanced/signatures/exercises">3 вправи</a></span></li>
+<li><a href="/uk/advanced/whatever">Зірка Whatever 🆕</a> — <span
+class="has-q"><a href="/uk/advanced/whatever#practice">1 тест</a></span>
+та <span class="has-e"><a href="/uk/advanced/whatever/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/colon-calls">Виклик через двокрапку 🆕</a> —
+<span class="has-q"><a href="/uk/advanced/colon-calls#practice">1
+тест</a></span> та <span class="has-e"><a
+href="/uk/advanced/colon-calls/exercises">3 вправи</a></span></li>
+<li><a href="/uk/advanced/multiple-dispatch">Множинна
+диспетчеризація</a> — <span class="has-q"><a
+href="/uk/advanced/multiple-dispatch#practice">1 тест</a></span> та
+<span class="has-e"><a href="/uk/advanced/multiple-dispatch/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/more-on-main">Більше про підпрограми MAIN</a>
+— <span class="has-q"><a href="/uk/advanced/more-on-main#practice">1
+тест</a></span> та <span class="has-e"><a
+href="/uk/advanced/more-on-main/exercises">3 вправи</a></span></li>
+<li><a href="/uk/advanced/nested-subroutines">Вкладені підпрограми</a> —
+<span class="has-q"><a href="/uk/advanced/nested-subroutines#practice">1
+тест</a></span> та <span class="has-e"><a
+href="/uk/advanced/nested-subroutines/exercises">3
+вправи</a></span></li>
+<li><a href="/uk/advanced/anonymous-subroutines">Анонімні
+підпрограми</a> — <span class="has-q"><a
+href="/uk/advanced/anonymous-subroutines#practice">1 тест</a></span> та
+<span class="has-e"><a
+href="/uk/advanced/anonymous-subroutines/exercises">3
+вправи</a></span></li>
+</ul>
+<h4 id="модулі"><a href="/uk/advanced/modules">Модулі</a></h4>
+<ul>
+<li><a href="/uk/advanced/modules-basics">Основи модулів</a> — <span
+class="has-e"><a href="/uk/advanced/modules-basics/exercises">7
+вправ</a></span>
+<ul>
+<li><a href="/uk/advanced/modules-basics/creating-modules">Створення
+модулів</a> — <span class="has-q"><a
+href="/uk/advanced/modules-basics/creating-modules#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/modules-basics/using-modules">Використання
+модулів</a> — <span class="has-q"><a
+href="/uk/advanced/modules-basics/using-modules#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/modules-basics/importing">Імпортування</a> —
+<span class="has-q"><a
+href="/uk/advanced/modules-basics/importing#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/modules-basics/export-tags">Теги експорту</a>
+— <span class="has-q"><a
+href="/uk/advanced/modules-basics/export-tags#practice">1
+тест</a></span></li>
+</ul></li>
+<li><a href="/uk/advanced/module-introspection">Інтроспекція модулів</a>
+— <span class="has-q"><a
+href="/uk/advanced/module-introspection#practice">1 тест</a></span> та
+<span class="has-e"><a
+href="/uk/advanced/module-introspection/exercises">2
+вправи</a></span></li>
+<li><a href="/uk/advanced/installing-modules">Встановлення модулів з
+мережі</a></li>
+<li><a href="/uk/advanced/packages">Пакети та простори імен 🆕</a> —
+<span class="has-e"><a href="/uk/advanced/packages/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/packages/packages-modules">Пакети та
+модулі</a> — <span class="has-q"><a
+href="/uk/advanced/packages/packages-modules#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/packages/namespaces">Простори імен та
+our</a></li>
+</ul></li>
+<li><a href="/uk/advanced/distributing">Розповсюдження модулів 🆕</a> —
+<span class="has-e"><a href="/uk/advanced/distributing/exercises">2
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/distributing/meta6">Файл META6</a> — <span
+class="has-q"><a href="/uk/advanced/distributing/meta6#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/distributing/zef-ecosystem">zef та
+екосистема</a></li>
+<li><a href="/uk/advanced/distributing/fez">Публікація з fez</a></li>
+</ul></li>
+</ul>
+<h4 id="тестування-та-документація"><a
+href="/uk/advanced/testing-and-docs">Тестування та документація
+🆕</a></h4>
+<ul>
+<li><a href="/uk/advanced/testing">Тестування 🆕</a> — <span
+class="has-e"><a href="/uk/advanced/testing/exercises">3
+вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/testing/test-module">Модуль Test</a> — <span
+class="has-q"><a href="/uk/advanced/testing/test-module#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/testing/comparisons">Порівняння та
+плани</a></li>
+<li><a href="/uk/advanced/testing/running-tests">Запуск тестів</a></li>
+</ul></li>
+<li><a href="/uk/advanced/pod">Документування коду 🆕</a> — <span
+class="has-e"><a href="/uk/advanced/pod/exercises">2 вправи</a></span>
+<ul>
+<li><a href="/uk/advanced/pod/pod-basics">Основи Pod</a> — <span
+class="has-q"><a href="/uk/advanced/pod/pod-basics#practice">1
+тест</a></span></li>
+<li><a href="/uk/advanced/pod/pod-formatting">Форматування та
+код</a></li>
+<li><a href="/uk/advanced/pod/rendering-pod">Рендеринг Pod</a></li>
+<li><a href="/uk/advanced/pod/accessing-pod">Доступ до Pod</a></li>
+</ul></li>
+</ul>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

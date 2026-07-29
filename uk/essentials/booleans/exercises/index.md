@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Логічний тип'
+title: 'Exercises: Логічний тип'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Default values
+title: Тест — Значення за замовчуванням
 ---
 
 {% include menu.html %}

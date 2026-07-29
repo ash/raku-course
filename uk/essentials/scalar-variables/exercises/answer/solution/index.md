@@ -1,5 +1,5 @@
 ---
-title: Рішення задачі 'Відповідь на життя, Всесвіт і все інше'
+title: 'Solution: Відповідь на життя, Всесвіт і все інше'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 Ви можете знайти вихідний код у файлі [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Ви можете знайти вихідний код у файлі [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Вивід
 

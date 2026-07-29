@@ -1,5 +1,5 @@
 ---
-title: Розв'язання задачі «Значення π»
+title: 'Solution: Значення π'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ title: Розв'язання задачі «Значення π»
 say π;
 ```
 
-🦋 Повний код можна знайти у файлі [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Повний код можна знайти у файлі [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Вивід
 

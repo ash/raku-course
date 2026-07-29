@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Високосний рік'
+title: 'Solution: Високосний рік'
 ---
 
 {% include menu.html %}
@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Знайдіть програму у файлі [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Знайдіть програму у файлі [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Код 2
 
@@ -52,7 +52,7 @@ my $year = prompt 'Year: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Leap year' !! 'Common year';
 ```
 
-🦋 Знайдіть програму у файлі [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Знайдіть програму у файлі [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
 ## Вихідні дані
 

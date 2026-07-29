@@ -1,5 +1,5 @@
 ---
-title: 'Quiz 1: Concatenating strings again'
+title: 'Тест 3: Конкатенація рядків знову'
 ---
 
 {% include menu.html %}

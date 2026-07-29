@@ -1,10 +1,10 @@
 ---
-title: Quiz — Creating ranges
+title: Тест — Створення діапазонів
 ---
 
 {% include menu.html %}
 
-Select the lines with correct Raku syntax.
+Оберіть рядки з правильним синтаксисом Raku.
 
 {:.quiz}
 1 | 1..10
@@ -18,12 +18,12 @@ Select the lines with correct Raku syntax.
 0 | 30 ^ .. ^ 30
 1 | 30 ^..^ 30
 1 | ^40
-1 | ^ 50 | Fine, but looks a bit weird.
-0 | 60^ | Not a valid syntax.
+1 | ^ 50 | Годиться, але виглядає трохи дивно.
+0 | 60^ | Недійсний синтаксис.
 
-## Comments
+## Коментарі
 
-All the range creation operators (as well as other Raku operators) are uninterrupted sequences of characters, so you cannot insert a space between their part.
+Усі оператори створення діапазонів (як і інші оператори Raku) — це неперервні послідовності символів, тож вставити пробіл між їхніми частинами не можна.
 
 {% include quiz.html %}
 

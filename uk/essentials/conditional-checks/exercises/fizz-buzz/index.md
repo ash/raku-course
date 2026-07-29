@@ -1,21 +1,21 @@
 ---
-title: 'Exercise: Lite FizzBuzz'
+title: FizzBuzz
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Here is a simplified version of the standard [FizzBuzz problem](https://en.wikipedia.org/wiki/Fizz_buzz). 
+Ось спрощена версія стандартної [задачі FizzBuzz](https://en.wikipedia.org/wiki/Fizz_buzz).
 
-Create a program that asks to enter a positive integer number and prints:
+Створіть програму, яка просить ввести додатне ціле число і виводить:
 
-* `Fizz` if the number is divisible by 3.
-* `Buzz` if the number is divisible by 5.
+* `Fizz`, якщо число ділиться на 3.
+* `Buzz`, якщо число ділиться на 5.
 
-## Example
+## Приклад
 
-When you run the program, it prompts to enter a number, and then prints the result.
+Коли ви запускаєте програму, вона просить ввести число, а потім виводить результат.
 
 ```console
 $ raku fizz-buzz.raku
@@ -23,8 +23,8 @@ Enter a number: 10
 Buzz
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

@@ -1,29 +1,29 @@
 ---
-title: Exercise ‘Purchase table‘
+title: Таблиця покупок
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Create a program to print the price table in the following format. Please use variables to store the prices and the totals.
+Створіть програму, яка виводить таблицю цін у наведеному нижче форматі. Використайте змінні для зберігання цін і підсумків.
 
     Item    Price   N      Total
     Chairs  $20.57  4      $82.28
     Tables  $50.18  1      $50.18
 
-N.B. If you are not satisfied with the choice of the currency, feel free to use any other, but don’t forget that `$` [has special meaning](/uk/essentials/strings/escaping-special-characters) in Raku strings, that’s why it was chosen to learn Raku better.
+Зверніть увагу: якщо вас не влаштовує вибір валюти, сміливо беріть будь-яку іншу, але не забувайте, що `$` [має особливе значення](/uk/essentials/strings/escaping-special-characters) у рядках Raku, — саме тому його й обрано, щоб краще вивчити Raku.
 
-## Example
+## Приклад
 
-This program does not take any input, so it prints the above table when you run it.
+Ця програма не приймає жодних вхідних даних, тож при запуску вона просто виводить наведену вище таблицю.
 
 ```console
 $ raku purchase-table.raku
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

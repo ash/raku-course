@@ -1,5 +1,5 @@
 ---
-title: Рішення до 'Булеві таблиці’
+title: 'Solution: Логічні таблиці'
 ---
 
 {% include menu.html %}
@@ -25,7 +25,7 @@ say 'False ^^ True is ', False ^^ True;
 say 'False ^^ False is ', False ^^ False;
 ```
 
-🦋 Ви можете знайти повний код у файлі [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 Ви можете знайти повний код у файлі [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
 ## Вивід
 

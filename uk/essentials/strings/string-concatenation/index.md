@@ -1,5 +1,5 @@
 ---
-title: Конкатенація рядків у Raku
+title: Конкатенація рядків
 ---
 
 {% include menu.html %}

@@ -1,10 +1,10 @@
 ---
-title: Quiz 2 — Scalar variables
+title: Тест 2: Оголошення декількох змінних
 ---
 
 {% include menu.html %}
 
-Now, more than one scalar variable is declared with a single `my` declarator. Make all lines syntactically correct.
+Тепер одним декларатором `my` оголошено більше ніж одну скалярну змінну. Зробіть усі рядки синтаксично правильними.
 
 {:.quiz-code}
 ( ) | my ␣$a, $b␣;

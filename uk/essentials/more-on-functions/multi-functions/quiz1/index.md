@@ -1,10 +1,10 @@
 ---
-title: Quiz 1 — Simple multi-functions
+title: Тест 1 — Прості мульти-функції
 ---
 
 {% include menu.html %}
 
-What are the correct ways to create a multi-function?
+Які способи створення мульти-функції правильні?
 
 ## 1
 
@@ -14,7 +14,7 @@ sub func($a, $b) {. . .}
 ```
 
 {:.quiz-select}
-incorrect | These definitions are&nbsp; (: correct, incorrect :) | The `multi` declarator is missing.
+неправильні | Ці визначення&nbsp; (: правильні, неправильні :) | Бракує декларатора `multi`.
 
 ## 2
 
@@ -24,7 +24,7 @@ multi func($a, $b) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | The `sub` declarator is missing, but that is acceptable.
+правильні | Ці визначення&nbsp; (: правильні, неправильні :) | Декларатора `sub` бракує, але це припустимо.
 
 ## 3
 
@@ -34,7 +34,7 @@ multi sub func($a, $b) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | Totally perfect.
+правильні | Ці визначення&nbsp; (: правильні, неправильні :) | Цілком бездоганно.
 
 ## 4
 
@@ -44,7 +44,7 @@ sub multi func($a, $b) {. . .}
 ```
 
 {:.quiz-select}
-incorrect | These definitions are&nbsp; (: correct, incorrect :) | Should be `multi` `sub`, not `sub` `multi`.
+неправильні | Ці визначення&nbsp; (: правильні, неправильні :) | Має бути `multi` `sub`, а не `sub` `multi`.
 
 ## 5
 
@@ -54,7 +54,7 @@ multi sub func($b) {. . .}
 ```
 
 {:.quiz-select}
-incorrect | These definitions are&nbsp; (: correct, incorrect :) | The signatures cannot be distinguished at multiple dispatch.
+неправильні | Ці визначення&nbsp; (: правильні, неправильні :) | Сигнатури неможливо розрізнити під час множинної диспетчеризації.
 
 
 {% include quiz.html %}

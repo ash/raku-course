@@ -1,12 +1,12 @@
 ---
-title: Quiz — Return from a function
+title: Тест — Повернення з функції
 ---
 
 {% include menu.html %}
 
 ## 1
 
-What does this function return?
+Що повертає ця функція?
 
 ```raku
 sub f($a, $b) {
@@ -16,13 +16,13 @@ sub f($a, $b) {
 ```
 
 {:.quiz-select}
-42 | `f(1, 2)` returns&nbsp; (: 1, 2, 3, 42 :)
-3 | `f(2, 1)` returns&nbsp; (: 1, 2, 3, 42 :)
-42 | `f(2, 2)` returns&nbsp; (: 1, 2, 3, 42 :)
+42 | `f(1, 2)` повертає&nbsp; (: 1, 2, 3, 42 :)
+3 | `f(2, 1)` повертає&nbsp; (: 1, 2, 3, 42 :)
+42 | `f(2, 2)` повертає&nbsp; (: 1, 2, 3, 42 :)
 
 ## 2
 
-What does this function return?
+Що повертає ця функція?
 
 ```raku
 sub g() {
@@ -32,7 +32,7 @@ sub g() {
 ```
 
 {:.quiz-select}
-−1 | `g()` returns&nbsp; (: −1, 1 :) | The last expression `1;` is never reached.
+−1 | `g()` повертає&nbsp; (: −1, 1 :) | До останнього виразу `1;` виконання ніколи не доходить.
 
 
 {% include quiz.html %}

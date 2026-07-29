@@ -1,5 +1,5 @@
 ---
-title: Вікторина — Multi-MAIN
+title: Тест — Мульти-`MAIN`
 ---
 
 {% include menu.html %}

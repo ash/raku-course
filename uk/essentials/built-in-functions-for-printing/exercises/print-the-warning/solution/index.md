@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Вивести попередження'
+title: 'Solution: Надрукувати попередження'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Знайдіть програму у файлі [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Знайдіть програму у файлі [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Вивід
 

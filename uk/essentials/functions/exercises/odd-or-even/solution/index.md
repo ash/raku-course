@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Парне чи непарне'
+title: 'Solution: Непарне чи парне'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Знайдіть програму у файлі [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Знайдіть програму у файлі [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Вивід
 

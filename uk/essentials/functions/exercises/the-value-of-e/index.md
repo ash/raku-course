@@ -1,23 +1,23 @@
 ---
-title: 'Exercise: The value of e'
+title: Значення e
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Create a function that computes an approximate value of the mathematical constant _e_ using the following formula:
+Створіть функцію, яка обчислює наближене значення математичної сталої _e_ за такою формулою:
 
 <img src="e-formula.png" style="height: 4.5em; width: auto">
 
-This function should allow being called in one of the forms:
+Ця функція має допускати виклик в одній із форм:
 
-1. The argument defines the number of items in the formula: `e-approx(10)`.
-2. If no argument is passed, the sum contains 100 elements: `e-approx()`.
+1. Аргумент задає кількість доданків у формулі: `e-approx(10)`.
+2. Якщо аргумент не передано, сума містить 100 елементів: `e-approx()`.
 
-Print the results for both cases.
+Виведіть результати для обох випадків.
 
-## Example
+## Приклад
 
 ```console
 $ raku the-value-of-e.raku
@@ -25,8 +25,8 @@ $ raku the-value-of-e.raku
 2.718281828459045
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

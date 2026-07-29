@@ -1,5 +1,5 @@
 ---
-title: Простий ввід та вивід у Raku
+title: Простий ввід та вивід
 ---
 
 {% include menu.html %}

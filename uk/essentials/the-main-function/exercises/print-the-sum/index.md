@@ -1,24 +1,24 @@
 ---
-title: 'Exercise: Print the sum'
+title: Надрукувати суму
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Write a program that takes two integer numbers from the command line and prints their sum. Use the `MAIN` function with typed parameters.
+Напишіть програму, яка бере з командного рядка два цілих числа й виводить їхню суму. Використайте функцію `MAIN` із типізованими параметрами.
 
-## Example
+## Приклад
 
-Here is an example of using this program:
+Ось приклад використання цієї програми:
 
 ```console
 $ raku print-the-sum.raku 500 700
 1200
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

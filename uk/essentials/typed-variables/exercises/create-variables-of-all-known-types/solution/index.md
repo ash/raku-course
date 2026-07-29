@@ -1,5 +1,5 @@
 ---
-title: Рішення задачі «Створення змінних всіх відомих типів»
+title: 'Solution: Створення змінних усіх відомих типів'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Знайдіть програму у файлі [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Знайдіть програму у файлі [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
 ## Вивід
 

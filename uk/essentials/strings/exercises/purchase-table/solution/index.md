@@ -1,5 +1,5 @@
 ---
-title: Рішення до 'Таблиця покупок'
+title: 'Solution: Таблиця покупок'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ say "Tables\t\$$table-price\t$tables\t\$$tables-total";
 
 Три рядки, що генерують вихідні дані, друкують три рядки таблиці, включаючи її заголовок. Зверніть увагу, як стовпці розділені символами табуляції `\t`. У рядках даних ми також бачимо екранований символ долара: `\$`, а також різні змінні, які ми хочемо інтерполювати.
 
-🦋 Ви можете знайти вихідний код у файлі [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Ви можете знайти вихідний код у файлі [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Вихідні дані
 

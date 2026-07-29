@@ -1,10 +1,10 @@
 ---
-title: Quiz 2 — Multi-functions with typed parameters
+title: Тест 2 — Мульти-функції з типізованими параметрами
 ---
 
 {% include menu.html %}
 
-What are the correct ways to create a multi-function?
+Які способи створення мульти-функції правильні?
 
 ## 1
 
@@ -14,7 +14,7 @@ multi sub func(Int $a, Num $b) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | Parameter types differ.
+правильні | Ці визначення&nbsp; (: правильні, неправильні :) | Типи параметрів різні.
 
 ## 2
 
@@ -24,7 +24,7 @@ multi sub func(Int $a, Int $b, Int $c) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | Number of parameters differs.
+правильні | Ці визначення&nbsp; (: правильні, неправильні :) | Кількість параметрів різна.
 
 ## 3
 
@@ -35,7 +35,7 @@ multi sub func(Int $a, Int $b, Int $c) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | A variant with positional-only parameter is fine.
+правильні | Ці визначення&nbsp; (: правильні, неправильні :) | Варіант лише з позиційним параметром цілком годиться.
 
 ## 4
 
@@ -45,7 +45,7 @@ multi sub func(Int $a) {. . .}
 ```
 
 {:.quiz-select}
-correct | These definitions are&nbsp; (: correct, incorrect :) | The first variant catches everything but `Int`.
+правильні | Ці визначення&nbsp; (: правильні, неправильні :) | Перший варіант ловить усе, крім `Int`.
 
 
 {% include quiz.html %}

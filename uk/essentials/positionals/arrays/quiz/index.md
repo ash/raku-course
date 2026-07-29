@@ -1,5 +1,5 @@
 ---
-title: Вікторина — Масиви
+title: Тест — Масиви
 ---
 
 {% include menu.html %}

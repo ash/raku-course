@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Вивести суму'
+title: 'Solution: Надрукувати суму'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ sub MAIN(Int $a, Int $b) {
 }
 ```
 
-🦋 Знайдіть програму у файлі [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/print-the-sum.raku).
+🦋 Знайдіть програму у файлі [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/print-the-sum.raku).
 
 ## Вивід
 

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="uk">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Операції з числами</title>
-    <meta property="og:title" content="Операції з числами" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Операції з числами — Курс Raku</title>
+    <meta property="og:title" content="Операції з числами — Курс Raku" />
     <meta property="og:locale" content="uk" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Операції з числами</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,188 +88,135 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/numbers">Числа</a></p>
-
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/essentials">Основи</a> /
+<a href="/uk/essentials/variables">Основи змінних і типів даних</a> / <a
+href="/uk/essentials/numbers">Числа</a></p>
 <h1 id="операції-з-числами">Операції з числами</h1>
-
-<p>Без сумніву, ви вже знаєте деякі операції, які можна виконувати з числами в Raku. Варто зазначити, що символ <em>операції</em> називається <em>оператором</em>. Об’єкти, над якими ми виконуємо операції, називаються <em>операндами</em>.</p>
-
+<p>Без сумніву, ви вже знаєте деякі операції, які можна виконувати з
+числами в Raku. Варто зазначити, що символ <em>операції</em> називається
+<em>оператором</em>. Об’єкти, над якими ми виконуємо операції,
+називаються <em>операндами</em>.</p>
 <h2 id="арифметика">Арифметика</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Оператор</strong></td>
-      <td><strong>Операція</strong></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">+</code></td>
-      <td>Додавання</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">-</code></td>
-      <td>Віднімання</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">*</code></td>
-      <td>Множення</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">/</code></td>
-      <td>Ділення</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Оскільки Raku <a href="/uk/essentials/on-unicode">добре підтримує Unicode</a>, деякі з цих операторів мають не-ASCII еквіваленти:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">×</code></td>
-      <td>Множення</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
-      <td>Ділення</td>
-    </tr>
-  </tbody>
-</table>
-
+<p><strong>Оператор</strong> | <strong>Операція</strong> <code>+</code>
+| Додавання <code>-</code> | Віднімання <code>*</code> | Множення
+<code>/</code> | Ділення</p>
+<p>Оскільки Raku <a href="/uk/essentials/on-unicode">добре підтримує
+Unicode</a>, деякі з цих операторів мають не-ASCII еквіваленти:</p>
+<p><code>×</code> | Множення <code>÷</code> | Ділення</p>
 <p>Щоб змінити порядок виконання, використовуйте дужки:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
-<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span></pre></div>
 
 <h2 id="модуль">Модуль</h2>
-
-<p>Оператор модуля — це <code class="language-plaintext highlighter-rouge">%</code>, як і в багатьох інших мовах.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%</code></td>
-      <td>Модуль</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Він повертає залишок від ділення двох чисел, тому <code class="language-plaintext highlighter-rouge">10 % 3</code> дорівнює <code class="language-plaintext highlighter-rouge">1</code>. Зауважте, що <code class="language-plaintext highlighter-rouge">-10 % 3</code> дорівнює <code class="language-plaintext highlighter-rouge">2</code>, оскільки результат операції визначається як різниця між першим числом і округленим вниз результатом ділення, помноженим на друге число. Тому <code class="language-plaintext highlighter-rouge">$a % $b</code> еквівалентно <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
-
+<p>Оператор модуля — це <code>%</code>, як і в багатьох інших мовах.</p>
+<p><code>%</code> | Модуль</p>
+<p>Він повертає залишок від ділення двох чисел, тому <code>10 % 3</code>
+дорівнює <code>1</code>. Зауважте, що <code>-10 % 3</code> дорівнює
+<code>2</code>, оскільки результат операції визначається як різниця між
+першим числом і округленим вниз результатом ділення, помноженим на друге
+число. Тому <code>$a % $b</code> еквівалентно
+<code>$a - $b * floor($a / $b)</code>.</p>
 <h2 id="кратність">Кратність</h2>
-
-<p>Raku додає корисний оператор для перевірки, чи число ділиться на інше число.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
-      <td>Кратність</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Це інфіксний оператор, який потребує два операнди: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Якщо перший операнд ділиться на другий операнд, результатом буде логічне значення <code class="language-plaintext highlighter-rouge">True</code>. В іншому випадку — <code class="language-plaintext highlighter-rouge">False</code>.</p>
-
+<p>Raku додає корисний оператор для перевірки, чи число ділиться на інше
+число.</p>
+<p><code>%%</code> | Кратність</p>
+<p>Це інфіксний оператор, який потребує два операнди:
+<code>10 %% 3</code>. Якщо перший операнд ділиться на другий операнд,
+результатом буде логічне значення <code>True</code>. В іншому випадку —
+<code>False</code>.</p>
 <h2 id="цілі-операції">Цілі операції</h2>
-
-<p>Є спеціальні операції, які повертають цілі результати. Їхні оператори є словами замість символів.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">div</code></td>
-      <td>Ціле ділення</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
-      <td>Цілий модуль</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Оператор <code class="language-plaintext highlighter-rouge">div</code> округлює результат вниз, тому <code class="language-plaintext highlighter-rouge">10 div 3</code> дорівнює <code class="language-plaintext highlighter-rouge">3</code>, а <code class="language-plaintext highlighter-rouge">-10 div 3</code> дорівнює <code class="language-plaintext highlighter-rouge">-4</code>.</p>
-
-<p>І <code class="language-plaintext highlighter-rouge">div</code>, і <code class="language-plaintext highlighter-rouge">mod</code> очікують цілі операнди. Тому наступна програма не працюватиме, якщо розкоментувати рядки, позначені як <code class="language-plaintext highlighter-rouge">Error</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<p>Є спеціальні операції, які повертають цілі результати. Їхні оператори
+є словами замість символів.</p>
+<p><code>div</code> | Ціле ділення <code>mod</code> | Цілий модуль</p>
+<p>Оператор <code>div</code> округлює результат вниз, тому
+<code>10 div 3</code> дорівнює <code>3</code>, а <code>-10 div 3</code>
+дорівнює <code>-4</code>.</p>
+<p>І <code>div</code>, і <code>mod</code> очікують цілі операнди. Тому
+наступна програма не працюватиме, якщо розкоментувати рядки, позначені
+як <code>Error</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 mod 3; # Error</span>
 
 <span class="nb">say</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
-<span class="c1"># say 10.3 div 3.3; # Error</span>
-</pre></div>
-
+<span class="c1"># say 10.3 div 3.3; # Error</span></pre></div>
 
 <h2 id="степінь">Степінь</h2>
-
-<p>Є два способи отримати результат <em>x</em> в степені <em>y</em>. По-перше, ви можете використовувати оператор <code class="language-plaintext highlighter-rouge">**</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
-</pre></div>
-
+<p>Є два способи отримати результат <em>x</em> в степені <em>y</em>.
+По-перше, ви можете використовувати оператор <code>**</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span></pre></div>
 
 <p>По-друге, ви можете використовувати надрядкові цифри, наприклад:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span>⁴; <span class="c1"># 81</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
-</pre></div>
-
-
-<p>Можна використовувати більше однієї надрядкової цифри, щоб отримати значення степеня більше за 9. Наприклад:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
-</pre></div>
-
+<p>Можна використовувати більше однієї надрядкової цифри, щоб отримати
+значення степеня більше за 9. Наприклад:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span>¹⁵; <span class="c1"># 32768</span></pre></div>
 
 <p>Негативний степінь також не є проблемою:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="nb">say</span> <span class="mi">2</span>⁻²; <span class="c1"># 0.25</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
-<span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
-</pre></div>
-
-
-<p>Зверніть увагу, що результат останніх двох виразів є числом типу <code class="language-plaintext highlighter-rouge">Rat</code>.</p>
-
+<p>Зверніть увагу, що результат останніх двох виразів є числом типу
+<code>Rat</code>.</p>
 <h2 id="операції-з-присвоєнням">Операції з присвоєнням</h2>
-
-<p>Усі операції підтримують скорочений синтаксис, коли потрібно оновити змінну. Продемонструємо це на прикладі <code class="language-plaintext highlighter-rouge">+</code>.</p>
-
+<p>Усі операції підтримують скорочений синтаксис, коли потрібно оновити
+змінну. Продемонструємо це на прикладі <code>+</code>.</p>
 <p>Повна форма</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;</pre></div>
 
 <p>еквівалентна:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
-</pre></div>
-
-
-<p></div></p>
-
-<h2 id="навігація-по-курсу">Навігація по курсу</h2>
-
-<p>←
-        <a href="/uk/essentials/numbers">Числа</a> / <a href="/uk/essentials/numbers/numeric">Числа з плаваючою комою</a>
-  |  
-        💪 <a href="/uk/essentials/numbers/exercises">Вправи: Числа</a>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a href="/uk/essentials/numbers/numeric">Числа з плаваючою
+комою</a>   |   <a
+href="/uk/essentials/numbers/exercises/apple-sharing">Ділення яблука</a>
 →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/numbers/operations/">Оригінальний текст англійською мовою.</a></p>
-
-  <p>Переклади цієї сторінки: <a href="/essentials/numbers/operations/">English</a> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <strong>Українська</strong></p>
+<p><br /> 💪 Або перейдіть одразу <a
+href="/uk/essentials/numbers/exercises">до вправ цього розділу</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/operations">English</a> • <a
+href="/de/essentials/numbers/operations">Deutsch</a> • <a
+href="/es/essentials/numbers/operations">Español</a> • <a
+href="/it/essentials/numbers/operations">Italiano</a> • <a
+href="/lv/essentials/numbers/operations">Latviešu</a> • <a
+href="/nl/essentials/numbers/operations">Nederlands</a> • <a
+href="/bg/essentials/numbers/operations">Български</a> • <a
+href="/ru/essentials/numbers/operations">Русский</a> •
+<strong>Українська</strong></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

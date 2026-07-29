@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Умовні перевірки'
+title: 'Exercises: Умовні перевірки'
 ---
 
 {% include menu.html %}

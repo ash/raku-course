@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Рядки'
+title: 'Exercises: Рядки'
 ---
 
 {% include menu.html %}

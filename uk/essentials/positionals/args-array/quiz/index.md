@@ -1,5 +1,5 @@
 ---
-title: Вікторина — Масив @*ARGS
+title: Тест — Масив `@*ARGS`
 ---
 
 {% include menu.html %}

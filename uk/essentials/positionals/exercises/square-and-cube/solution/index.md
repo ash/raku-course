@@ -1,12 +1,12 @@
 ---
-title: Solution of ‘Square and cubes’
+title: 'Розв''язання: Квадрат і куб'
 ---
 
 {% include menu.html %}
 
-## Code 1
+## Код 1
 
-A straightforward solution is to use the `**` operator.
+Найпростіше рішення — скористатися оператором `**`.
 
 ```raku
 my $n = @*ARGS[0];
@@ -14,11 +14,11 @@ say $n ** 2;
 say $n ** 3;
 ```
 
-🦋 Find the program in the file [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube.raku).
+🦋 Знайдіть програму у файлі [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube.raku).
 
-## Code 2
+## Код 2
 
-A slightly more stylish solution is to use Unicode superscripts.
+Дещо стильніше рішення — скористатися надрядковими знаками Unicode.
 
 ```raku
 my $n = @*ARGS[0];
@@ -26,11 +26,11 @@ say $n²;
 say $n³;
 ```
 
-🦋 Find the program in the file [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube-2.raku).
+🦋 Знайдіть програму у файлі [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube-2.raku).
 
-## Output
+## Вивід
 
-Run the program a few times and test it with different numbers.
+Запустіть програму кілька разів і перевірте її з різними числами.
 
 ```console
 $ raku exercises/positionals/square-and-cube.raku 5

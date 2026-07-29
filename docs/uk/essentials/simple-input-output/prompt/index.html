@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="uk">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Введення з підказкою</title>
-    <meta property="og:title" content="Введення з підказкою" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Ввід з prompt — Курс Raku</title>
+    <meta property="og:title" content="Ввід з prompt — Курс Raku" />
     <meta property="og:locale" content="uk" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Введення з підказкою</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,65 +88,88 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/simple-input-output">Простий ввід та вивід</a></p>
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/essentials">Основи</a> /
+<a href="/uk/essentials/getting-started">Написання та запуск програм</a>
+/ <a href="/uk/essentials/simple-input-output">Простий ввід та
+вивід</a></p>
+<h1 id="ввід-з-prompt">Ввід з <code>prompt</code></h1>
+<p>Протилежністю до <code>say</code> є <code>prompt</code>. Він чекає,
+коли користувач введе щось і натисне Enter. Потім він передає введені
+дані програмі у вигляді рядка. Ви можете взяти результат
+<code>prompt</code> і передати його до <code>say</code>. У цьому випадку
+ви відтворюєте те, що ввів користувач. Давайте створимо таку
+програму:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">prompt</span>;</pre></div>
 
-<h1 id="ввід-з-prompt">Ввід з <code class="language-plaintext highlighter-rouge">prompt</code></h1>
+<p>Якщо ви запустите цю програму, ви можете бути здивовані, оскільки
+програма перейде в стан очікування будь-якого введення. Щоб зробити
+програму більш дружньою до користувача, добре надрукувати повідомлення
+підказки. Вам не потрібно додавати окремий <code>say</code>, тому що ви
+можете передати повідомлення до <code>prompt</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">prompt</span> <span class="s">'Яку мову ви збираєтеся вивчати? '</span></pre></div>
 
-<p>Протилежністю до <code class="language-plaintext highlighter-rouge">say</code> є <code class="language-plaintext highlighter-rouge">prompt</code>. Він чекає, коли користувач введе щось і натисне Enter. Потім він передає введені дані програмі у вигляді рядка. Ви можете взяти результат <code class="language-plaintext highlighter-rouge">prompt</code> і передати його до <code class="language-plaintext highlighter-rouge">say</code>. У цьому випадку ви відтворюєте те, що ввів користувач. Давайте створимо таку програму:</p>
+<p>Перш ніж завершити цей розділ, давайте об’єднаємо всі частини і
+створимо програму, яка запитує про бажання користувача, а потім друкує
+фразу, використовуючи текст, введений користувачем.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Ви збираєтеся вивчати '</span>, <span class="nb">prompt</span> <span class="s">'Яку мову ви збираєтеся вивчати? '</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nb">prompt</span>;
-</pre></div>
-
-
-<p>Якщо ви запустите цю програму, ви можете бути здивовані, оскільки програма перейде в стан очікування будь-якого введення. Щоб зробити програму більш дружньою до користувача, добре надрукувати повідомлення підказки. Вам не потрібно додавати окремий <code class="language-plaintext highlighter-rouge">say</code>, тому що ви можете передати повідомлення до <code class="language-plaintext highlighter-rouge">prompt</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">prompt</span> <span class="s">&#39;Яку мову ви збираєтеся вивчати? &#39;</span>
-</pre></div>
-
-
-<p>Перш ніж завершити цей розділ, давайте об’єднаємо всі частини і створимо програму, яка запитує про бажання користувача, а потім друкує фразу, використовуючи текст, введений користувачем.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Ви збираєтеся вивчати &#39;</span>, <span class="nb">prompt</span> <span class="s">&#39;Яку мову ви збираєтеся вивчати? &#39;</span>;
-</pre></div>
-
-
-<p>Якщо ви ввели <code class="language-plaintext highlighter-rouge">Raku</code>, ви отримаєте наступну фразу:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ви збираєтеся вивчати Raku
-</code></pre></div></div>
-
-<p>Добре, тепер ми можемо спілкуватися з програмою, і ми можемо зробити так, щоб програма спілкувалася з нами!</p>
-
-<p>Зверніть увагу, що оскільки <code class="language-plaintext highlighter-rouge">say</code> потрібно знати рядки перед їх друком, Raku спочатку виконає <code class="language-plaintext highlighter-rouge">prompt</code>, тому діалог відбувається в правильному порядку:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku 
-<span class="go">Яку мову ви збираєтеся вивчати? Raku
-Ви збираєтеся вивчати Raku
-</span></code></pre></div></div>
-
-<p></div></p>
-
-<h2 id="навігація-по-курсу">Навігація по курсу</h2>
-
-<p>←
-        <a href="/uk/essentials/simple-input-output">Простий ввід та вивід</a> / <a href="/uk/essentials/simple-input-output/say">Вивід з <code class="language-plaintext highlighter-rouge">say</code></a>
-  |  
-        <a href="/uk/essentials/comments">Коментарі</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/simple-input-output/prompt/">Оригінальний текст англійською мовою.</a></p>
-
-  <p>Переклади цієї сторінки: <a href="/essentials/simple-input-output/prompt/">English</a> • <a href="/de/essentials/simple-input-output/prompt/">Deutsch</a> • <a href="/es/essentials/simple-input-output/prompt/">Español</a> • <a href="/it/essentials/simple-input-output/prompt/">Italiano</a> • <a href="/lv/essentials/simple-input-output/prompt/">Latviešu</a> • <a href="/nl/essentials/simple-input-output/prompt/">Nederlands</a> • <a href="/bg/essentials/simple-input-output/prompt/">Български</a> • <a href="/ru/essentials/simple-input-output/prompt/">Русский</a> • <strong>Українська</strong></p>
+<p>Якщо ви ввели <code>Raku</code>, ви отримаєте наступну фразу:</p>
+<pre><code>Ви збираєтеся вивчати Raku</code></pre>
+<p>Добре, тепер ми можемо спілкуватися з програмою, і ми можемо зробити
+так, щоб програма спілкувалася з нами!</p>
+<p>Зверніть увагу, що оскільки <code>say</code> потрібно знати рядки
+перед їх друком, Raku спочатку виконає <code>prompt</code>, тому діалог
+відбувається в правильному порядку:</p>
+<div class="highlight"><pre>$ raku t.raku 
+Яку мову ви збираєтеся вивчати? Raku
+Ви збираєтеся вивчати Raku</pre></div>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a href="/uk/essentials/simple-input-output/say">Вивід з
+<code>say</code></a>   |   <a
+href="/uk/essentials/comments">Коментарі</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/simple-input-output/prompt">English</a> • <a
+href="/de/essentials/simple-input-output/prompt">Deutsch</a> • <a
+href="/es/essentials/simple-input-output/prompt">Español</a> • <a
+href="/it/essentials/simple-input-output/prompt">Italiano</a> • <a
+href="/lv/essentials/simple-input-output/prompt">Latviešu</a> • <a
+href="/nl/essentials/simple-input-output/prompt">Nederlands</a> • <a
+href="/bg/essentials/simple-input-output/prompt">Български</a> • <a
+href="/ru/essentials/simple-input-output/prompt">Русский</a> •
+<strong>Українська</strong></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

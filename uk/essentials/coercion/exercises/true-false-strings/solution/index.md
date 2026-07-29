@@ -1,5 +1,5 @@
 ---
-title: Solution of ‘True and False strings’
+title: 'Solution: Істинні та хибні рядки'
 ---
 
 {% include menu.html %}
@@ -20,6 +20,6 @@ say ?'0.0';
 
 З усіх цих тільки порожній рядок перетворюється на `False`. Всі інші рядки, навіть ті, що містять лише пробіли або явний символ `0`, стають `True`.
 
-🦋 Ви можете знайти повну програму з наведеним вище прикладом у файлі [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
+🦋 Ви можете знайти повну програму з наведеним вище прикладом у файлі [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku).
 
 {% include nav.html %}

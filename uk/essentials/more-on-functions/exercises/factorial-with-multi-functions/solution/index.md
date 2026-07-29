@@ -1,5 +1,5 @@
 ---
-title: "Розв'язок: Факторіал з використанням multi-функцій"
+title: 'Solution: Факторіал з мульти-функціями'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ multi sub factorial($n) { $n * factorial($n - 1) }
 say factorial(@*ARGS[0].Int);
 ```
 
-🦋 Знайдіть програму у файлі [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/more-on-functions/factorial-with-multi-functions.raku).
+🦋 Знайдіть програму у файлі [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/more-on-functions/factorial-with-multi-functions.raku).
 
 ## Вивід
 

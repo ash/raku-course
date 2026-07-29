@@ -1,16 +1,16 @@
 ---
-title: Quiz 1 — Hashes
+title: Тест 1 — Хеші
 ---
 
 {% include menu.html %}
 
-Correct the errors in the following program. Use the most compact syntax.
+Виправте помилки в наведеній програмі. Використайте найкомпактніший синтаксис.
 
 {:.quiz-code .fill}
 % @ = => => = => = => =| my ␣data ␣␣ Jan ␣␣ 1045, Feb ␣␣ 2034, Mar ␣␣ 1987;
 
 {:.quiz-code .fill}
-< { > } | say %data␣Jan␣; | Both `{'Jan'}` and `<Jan>` are correct, but the latter is shorter.
+< { > } | say %data␣Jan␣; | Правильні і `{'Jan'}`, і `<Jan>`, але другий запис коротший.
 < { > } | say %data␣Feb␣;
 
 {% include quiz.html %}

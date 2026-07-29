@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Написати число словами'
+title: 'Solution: Написати число'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Кратні 10, наприклад, 50
 }
 ```
 
-🦋 Знайдіть програму у файлі [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Знайдіть програму у файлі [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Приклад
 

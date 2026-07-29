@@ -1,5 +1,5 @@
 ---
-title: Рішення до 'Подвійного заперечення’
+title: 'Solution: Подвійне заперечення'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 Ви можете знайти повний код у файлі [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Ви можете знайти повний код у файлі [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Коментарі
 

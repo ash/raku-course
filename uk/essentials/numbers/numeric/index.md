@@ -1,5 +1,5 @@
 ---
-title: Наукова нотація в Raku
+title: Числа з плаваючою комою
 ---
 
 {% include menu.html %}

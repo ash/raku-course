@@ -1,14 +1,14 @@
 ---
-title: 'Solution: Salary raise'
+title: 'Розв''язання: Підвищення зарплати'
 ---
 
 {% include menu.html %}
 
-The program needs to update one of the values of the given hash. Assigning a new value does not differ much from setting a new value of a scalar variable.
+Програмі потрібно оновити одне зі значень заданого хеша. Присвоєння нового значення мало чим відрізняється від встановлення нового значення скалярної змінної.
 
-## Code
+## Код
 
-Here is the solution:
+Ось рішення:
 
 ```raku
 my %employee =
@@ -22,11 +22,11 @@ my $raise = 5; # in percents
 say "New salary of %employee<full-name>: %employee<salary>";
 ```
 
-🦋 Find the program in the file [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Знайдіть програму у файлі [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
-## Output
+## Вивід
 
-When running the program, make sure you made valid calculations and converted the number of percents correctly.
+Запускаючи програму, переконайтеся, що обчислення правильні й кількість відсотків перетворено як слід.
 
 ```console
 $ raku exercises/associatives/salary-raise.raku

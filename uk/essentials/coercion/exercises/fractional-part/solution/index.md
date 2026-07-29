@@ -1,5 +1,5 @@
 ---
-title: 'Solution: Fractional part'
+title: 'Solution: Дробова частина'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ my $n = 15.8972;
 say $n - $n.Int;
 ```
 
-🦋 Знайдіть програму у файлі [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/fractional-part.raku).
+🦋 Знайдіть програму у файлі [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/fractional-part.raku).
 
 ## Вивід
 

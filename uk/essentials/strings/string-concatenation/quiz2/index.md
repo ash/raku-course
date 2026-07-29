@@ -1,36 +1,36 @@
 ---
-title: 'Quiz 1: Concatenating strings and numbers'
+title: 'Тест 2: Конкатенація рядків і чисел'
 ---
 
 {% include menu.html %}
 
-Raku automatically converts a number if you want to concatenate it to a string. In each of the parts below, select the lines that print the required string.
+Raku автоматично перетворює число, якщо ви хочете приєднати його до рядка. У кожній із частин нижче оберіть рядки, що виводять потрібний результат.
 
 ## 1
 
-Which of the lines print `Alpha2`?
+Які з рядків виводять `Alpha2`?
 
 {:.quiz}
 1 | say 'Alpha2';
-0 | say 'Alpha' 2; | A space is a syntax error here.
-1 | say 'Alpha', '2'; | There is no string concatenation, but the result is correct.
+0 | say 'Alpha' 2; | Пробіл тут є синтаксичною помилкою.
+1 | say 'Alpha', '2'; | Конкатенації рядків немає, але результат правильний.
 1 | say 'Alpha' ~ '2';
-1 | say 'Alpha' ~ 2; | A number is converted to a string and then concatenated.
-0 | say 'Alpha' + 2; | A `+` does not do string concatenation.
-0 | say 'Alpha' . 2; | Neither does a `.`.
+1 | say 'Alpha' ~ 2; | Число перетворюється на рядок, а потім приєднується.
+0 | say 'Alpha' + 2; | `+` не виконує конкатенації рядків.
+0 | say 'Alpha' . 2; | Так само як і `.`.
 
 ## 2
 
-Which of these lines print `123`?
+Які з цих рядків виводять `123`?
 
 {:.quiz}
-1 | say 1 ~ 2 ~ 3; | String concatenation here, even for numbers.
-0 | say 1 + 2 + 3; | A regular arithmetical expression.
-1 | say '1' ~ '2' ~ '3'; | Single characters are also strings.
-0 | say '1' + '2' + '3'; | As there is a `+`, the strings are converted to numbers.
+1 | say 1 ~ 2 ~ 3; | Тут конкатенація рядків, навіть для чисел.
+0 | say 1 + 2 + 3; | Звичайний арифметичний вираз.
+1 | say '1' ~ '2' ~ '3'; | Окремі символи — теж рядки.
+0 | say '1' + '2' + '3'; | Оскільки тут `+`, рядки перетворюються на числа.
 1 | say 1 ~ 23;
 1 | say 12 ~ 3;
-1 | say 123 ~ ''; | `''` is an empty string, so appending it does not change the result.
+1 | say 123 ~ ''; | `''` — порожній рядок, тож його приєднання не змінює результату.
 
 {% include quiz.html %}
 

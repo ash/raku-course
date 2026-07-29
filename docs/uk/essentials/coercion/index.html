@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="uk">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Перетворення типів даних</title>
-    <meta property="og:title" content="Перетворення типів даних" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Перетворення типів даних — Курс Raku</title>
+    <meta property="og:title" content="Перетворення типів даних — Курс Raku" />
     <meta property="og:locale" content="uk" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Перетворення типів даних</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,100 +88,106 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a></p>
-
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/essentials">Основи</a> /
+<a href="/uk/essentials/more-about-types">Більше про типи</a></p>
 <h1 id="перетворення-типів-даних">Перетворення типів даних</h1>
-
-<p>До цього часу ми розглянули кілька типів даних, які підтримує Raku. Це були різні види <a href="/uk/essentials/numbers">чисел</a> (цілі числа, раціональні числа та числа з плаваючою комою), <a href="/uk/essentials/strings">рядки</a> та <a href="/uk/essentials/booleans">логічний</a> тип. Кожен тип даних має свою назву в системі типів Raku.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Str</code></td>
-      <td>Рядок символів</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Int</code></td>
-      <td>Ціле число</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Rat</code></td>
-      <td>Раціональне число</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Num</code></td>
-      <td>Число з плаваючою комою</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Bool</code></td>
-      <td>Логічний булевий тип</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Існує більше типів даних, які розуміє Raku. Ми розглянемо їх у наступних розділах цього курсу.</p>
-
+<p>До цього часу ми розглянули кілька типів даних, які підтримує Raku.
+Це були різні види <a href="/uk/essentials/numbers">чисел</a> (цілі
+числа, раціональні числа та числа з плаваючою комою), <a
+href="/uk/essentials/strings">рядки</a> та <a
+href="/uk/essentials/booleans">логічний</a> тип. Кожен тип даних має
+свою назву в системі типів Raku.</p>
+<p><code>Str</code> | Рядок символів <code>Int</code> | Ціле число
+<code>Rat</code> | Раціональне число <code>Num</code> | Число з
+плаваючою комою <code>Bool</code> | Логічний булевий тип</p>
+<p>Існує більше типів даних, які розуміє Raku. Ми розглянемо їх у
+наступних розділах цього курсу.</p>
 <h2 id="вправи">Вправи</h2>
-
-<p>Будь ласка, не пропускайте вправи після цього розділу, оскільки вони розкривають додаткову інформацію про типи даних у Raku.</p>
-
-<p><div class="topics"></p>
-<h2 id="теми-в-цьому-розділі">Теми в цьому розділі</h2>
+<p>Будь ласка, не пропускайте вправи після цього розділу, оскільки вони
+розкривають додаткову інформацію про типи даних у Raku.</p>
+<section id="теми-цього-розділу" class="topics" data-markdown="1">
+<h2>Теми цього розділу</h2>
 <ul>
-  <li><a href="/uk/essentials/coercion/what">Інтроспекція з <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-  <li><a href="/uk/essentials/coercion/methods">Перетворення типів за допомогою методів примусу типів</a></li>
-  <li><a href="/uk/essentials/coercion/new">Перетворення типів за допомогою конструкторів</a></li>
-  <li><a href="/uk/essentials/coercion/prefixes">Перетворення типів за допомогою префіксних операторів</a></li>
+<li><a href="/uk/essentials/coercion/what">Інтроспекція з
+<code>WHAT</code></a></li>
+<li><a href="/uk/essentials/coercion/methods">Перетворення типів за
+допомогою методів примусу типів</a></li>
+<li><a href="/uk/essentials/coercion/new">Перетворення типів за
+допомогою конструкторів</a></li>
+<li><a href="/uk/essentials/coercion/prefixes">Перетворення типів за
+допомогою префіксних операторів</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="практика">Практика</h2>
-
-<p>Виконайте вікторину, що охоплює зміст цієї теми.</p>
+</section>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Виконайте 2 тести за змістом цього розділу.</p>
 <ul>
-  <li><a href="/uk/essentials/coercion/quiz">Тест: Який це тип?</a></li>
+<li><a href="/uk/essentials/coercion/quiz">Тест: Який це тип?</a></li>
+<li><a href="/uk/essentials/coercion/what/quiz">Тест: Що повертає
+WHAT?</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="вправи-1">Вправи</h2>
-
-<p>Цей розділ містить <a href="/uk/essentials/coercion/exercises">
-3 вправи</a>. Вивчіть всі теми цього розділу перед тим, як переходити до практики кодування.</p>
-<ol>
-  <li><a href="/uk/essentials/coercion/exercises/true-false-numbers">Істинні та хибні числа</a></li>
-  <li><a href="/uk/essentials/coercion/exercises/true-false-strings">Істинні та хибні рядки</a></li>
-  <li><a href="/uk/essentials/coercion/exercises/fractional-part">Дробова частина</a></li>
+</section>
+<section id="вправи-1" class="exercises" data-markdown="1">
+<h2>Вправи</h2>
+<p>У цьому розділі <a href="exercises">3 вправи</a>. Перш ніж братися до
+практики, вивчіть усі теми розділу.</p>
+<ol type="1">
+<li><a
+href="/uk/essentials/coercion/exercises/true-false-numbers">Істинні та
+хибні числа</a></li>
+<li><a
+href="/uk/essentials/coercion/exercises/true-false-strings">Істинні та
+хибні рядки</a></li>
+<li><a href="/uk/essentials/coercion/exercises/fractional-part">Дробова
+частина</a></li>
 </ol>
-
-<p></div></p>
-
-<h2 id="навігація-по-курсу">Навігація по курсу</h2>
-
-<p>←
-    <a href="/uk/essentials/loops">Цикли</a>
-        / <a href="/uk/essentials/loops/postfix-for">Постфіксна форма <code class="language-plaintext highlighter-rouge">for</code></a>
-  |  
-        <a href="/uk/essentials/coercion/what">Інтроспекція з <code class="language-plaintext highlighter-rouge">WHAT</code></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/coercion/">Оригінальний текст англійською мовою.</a></p>
-
-  <p>Переклади цієї сторінки: <a href="/essentials/coercion/">English</a> • <a href="/de/essentials/coercion/">Deutsch</a> • <a href="/es/essentials/coercion/">Español</a> • <a href="/it/essentials/coercion/">Italiano</a> • <a href="/lv/essentials/coercion/">Latviešu</a> • <a href="/nl/essentials/coercion/">Nederlands</a> • <a href="/bg/essentials/coercion/">Български</a> • <a href="/ru/essentials/coercion/">Русский</a> • <strong>Українська</strong></p>
+</section>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a href="/uk/essentials/more-about-types">Більше про типи</a>   |  
+<a href="/uk/essentials/coercion/what">Інтроспекція з
+<code>WHAT</code></a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials/coercion">English</a>
+• <a href="/de/essentials/coercion">Deutsch</a> • <a
+href="/es/essentials/coercion">Español</a> • <a
+href="/it/essentials/coercion">Italiano</a> • <a
+href="/lv/essentials/coercion">Latviešu</a> • <a
+href="/nl/essentials/coercion">Nederlands</a> • <a
+href="/bg/essentials/coercion">Български</a> • <a
+href="/ru/essentials/coercion">Русский</a> •
+<strong>Українська</strong></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

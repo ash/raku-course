@@ -1,16 +1,16 @@
 ---
-title: 'Exercise: Plural ending'
+title: Множинне закінчення
 ---
 
 {% include menu.html %}
 
-## Task
+## Завдання
 
-Write a program that asks the user for a positive integer number and then prints the phrase `N files copied`, where `N` is the entered number, and the word `file` is in the correct form: plural or singular.
+Напишіть програму, яка запитує в користувача додатне ціле число, а потім виводить фразу `N files copied`, де `N` — введене число, а слово `file` стоїть у правильній формі: множині чи однині.
 
-## Example
+## Приклад
 
-Here is an idea that the program must implement:
+Ось ідея, яку має втілити програма:
 
 ```console
 $ raku plural-endings.raku
@@ -18,8 +18,8 @@ How many files to copy? 15
 15 files copied.
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

@@ -1,12 +1,12 @@
 ---
-title: Quiz — The repeat loop
+title: Тест — Цикл `repeat`
 ---
 
 {% include menu.html %}
 
 ## 1
 
-Choose `until` or `while` for this program. The program should not enter into an infinite loop.
+Оберіть `until` або `while` для цієї програми. Програма не повинна потрапити в нескінченний цикл.
 
 {:.quiz-code}
 . | my $n = 0;
@@ -17,7 +17,7 @@ until | } ␣␣␣␣␣ $n >= 10;
 
 ## 2
 
-Choose `until` or `while` for this program, too.
+Оберіть `until` або `while` і для цієї програми.
 
 {:.quiz-code}
 . | my $n = 10;

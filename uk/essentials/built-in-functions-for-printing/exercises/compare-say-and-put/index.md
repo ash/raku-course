@@ -1,5 +1,5 @@
 ---
-title: 'Вправа: Порівняння `say` та `put`'
+title: Порівняти `say` та `put`
 ---
 
 {% include menu.html %}

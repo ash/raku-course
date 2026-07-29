@@ -1,14 +1,14 @@
 ---
-title: Quiz — Recognising lists
+title: Тест 2 — Розпізнавання списків
 ---
 
 {% include menu.html %}
 
-Lists may be confusing sometimes. You have to train yourself to distinguish between lists and arrays.
+Списки інколи збивають з пантелику. Варто натренуватися відрізняти списки від масивів.
 
 ## 1
 
-What does the following program print?
+Що виведе наведена програма?
 
 ```raku
 my @data = [
@@ -21,11 +21,11 @@ say @data[0].WHAT;
 ```
 
 {:.quiz-select}
-(List) | Answer: (: (Array), (List), (Str) :)
+(List) | Відповідь: (: (Array), (List), (Str) :)
 
 ## 2
 
-And what about this program?
+А що виведе ця програма?
 
 ```raku
 my @data = [
@@ -38,7 +38,7 @@ say @data[0].WHAT;
 ```
 
 {:.quiz-select}
-(Array) | Answer: (: (Array), (List), (Str) :)
+(Array) | Відповідь: (: (Array), (List), (Str) :)
 
 
 {% include quiz.html %}

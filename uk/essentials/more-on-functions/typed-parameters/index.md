@@ -1,5 +1,5 @@
 ---
-title: Typed parameters of functions
+title: Типізовані параметри
 ---
 
 {% include menu.html %}

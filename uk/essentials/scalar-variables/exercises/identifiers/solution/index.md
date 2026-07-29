@@ -1,5 +1,5 @@
 ---
-title: Рішення 'Виправлення ідентифікаторів'
+title: 'Solution: Виправлення ідентифікаторів'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'London to Paris';
 
 Усі ідентифікатори є дійсними, але, ймовірно, краще уникати імен з апострофами, якщо у вас `$немає` вагомих причин їх використовувати.
 
-🦋 Ви можете знайти вихідний код у файлі [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Ви можете знайти вихідний код у файлі [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Вивід
 

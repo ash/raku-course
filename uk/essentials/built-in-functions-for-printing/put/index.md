@@ -1,5 +1,5 @@
 ---
-title: Процедура put
+title: '`put`'
 ---
 
 {% include menu.html %}

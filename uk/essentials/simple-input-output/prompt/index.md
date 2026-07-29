@@ -1,5 +1,5 @@
 ---
-title: Введення з підказкою
+title: Ввід з `prompt`
 ---
 
 {% include menu.html %}

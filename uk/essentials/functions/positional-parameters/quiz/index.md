@@ -1,12 +1,12 @@
 ---
-title: Quiz — Calling a function
+title: Тест — Виклик функції
 ---
 
 {% include menu.html %}
 
 ## 1
 
-Having the following function:
+Маючи таку функцію:
 
 ```raku
 sub abc($a, $b, $c) {
@@ -14,7 +14,7 @@ sub abc($a, $b, $c) {
 }
 ```
 
-How do you call it?
+Як ви її викличете?
 
 {:.quiz-code}
 , , | say abc($a␣ $b␣ $c);
@@ -24,7 +24,7 @@ How do you call it?
 
 ## 2
 
-For the following function:
+Для такої функції:
 
 ```raku
 sub x {
@@ -32,14 +32,14 @@ sub x {
 }
 ```
 
-Select the correct calls of it.
+Оберіть правильні її виклики.
 
 {:.quiz}
 1 | say x;
 1 | say(x);
-1 | say x(); | Parenthese around the arguments of `say` are ommited.
+1 | say x(); | Дужки навколо аргументів `say` опущено.
 1 | say(x());
-0 | my $v = x (); | A space before `()` makes the `()` an argument.
+0 | my $v = x (); | Пробіл перед `()` робить `()` аргументом.
 1 | my $w = x();
 1 | my $u = x;
 

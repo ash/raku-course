@@ -1,5 +1,5 @@
 ---
-title: Рутинна функція say
+title: '`say`'
 ---
 
 {% include menu.html %}

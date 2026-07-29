@@ -1,14 +1,14 @@
 ---
-title: 'Solution: Interval function'
+title: 'Розв''язання: Інтервальна функція'
 ---
 
 {% include menu.html %}
 
-In this function, a three-branch `if` construct is used. The first two branches have a Boolean test, but the third check is not needed as it is the only remaining option if the number did not pass either of the first two tests.
+У цій функції використано конструкцію `if` із трьома гілками. Перші дві гілки мають булеву перевірку, а третя перевірка не потрібна, бо це єдиний варіант, що залишається, якщо число не пройшло жодної з перших двох.
 
-## Code
+## Код
 
-Here is the solution:
+Ось рішення:
 
 ```raku
 sub f($x) {
@@ -22,9 +22,9 @@ say f(0);
 say f(3);
 ```
 
-🦋 Find the program in the file [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku).
+🦋 Знайдіть програму у файлі [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/interval-function.raku).
 
-## Output
+## Вивід
 
 ```console
 $ raku exercises/functions/interval-function.raku

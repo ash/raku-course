@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Перехресні, гіпер- та заперечні — Курс Raku</title>
+    <meta property="og:title" content="Перехресні, гіпер- та заперечні — Курс Raku" />
+    <meta property="og:locale" content="uk" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/advanced">Розширені</a> /
+<a href="/uk/advanced/operators">Оператори</a> / <a
+href="/uk/advanced/metaoperators">Метаоператори</a></p>
+<h1 id="перехресні-гіпер--та-заперечні">Перехресні, гіпер- та
+заперечні</h1>
+<p>Окрім згортки та zip, у Raku є ще кілька метаоператорів. Три з них
+варто знати вже тут.</p>
+<h2 id="перехресний-x">Перехресний — <code>X</code></h2>
+<p>Перехресний метаоператор <code>X</code> парує <strong>кожен</strong>
+елемент одного списку з <strong>кожним</strong> елементом іншого — це
+декартів добуток:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
+
+<p>Як і zip, він може огортати оператор, щоб діяти на кожну пару.
+<code>X~</code> з’єднує кожну пару в рядок, а <code>X*</code>
+перемножує:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
+
+<p>Якщо zip іде двома списками в ногу, то перехресний оператор поєднує
+їх усіма можливими способами.</p>
+<h2 id="гіпер">Гіпер — <code>»…«</code></h2>
+<p>Гіпероператор застосовує оператор до <strong>кожного
+елемента</strong> списку. Оператор загортається у кутові
+<code>»…«</code> (або ASCII-варіант <code>&gt;&gt;…&lt;&lt;</code>). З
+двома списками він працює поелементно, як zip; з одним значенням з
+одного боку він розтягує це значення на весь список:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
+
+<p>Дві стрілки не мусять дивитися в один бік, і їхній напрямок вирішує,
+що станеться, коли списки різної довжини: вістря, спрямоване
+<strong>на</strong> список, дозволяє повторювати цей список, щоб
+зрівнятися з іншим. У ASCII-записі
+<code>&lt;&lt;</code>/<code>&gt;&gt;</code> можливі чотири
+поєднання:</p>
+<ul>
+<li><code>&gt;&gt;op&lt;&lt;</code> — жодна зі сторін не розтягується;
+списки мають бути однакової довжини, інакше це помилка;</li>
+<li><code>&gt;&gt;op&gt;&gt;</code> — <strong>правий</strong> список
+повторюється, щоб зрівнятися з лівим;</li>
+<li><code>&lt;&lt;op&lt;&lt;</code> — <strong>лівий</strong> список
+повторюється, щоб зрівнятися з правим;</li>
+<li><code>&lt;&lt;op&gt;&gt;</code> — <strong>коротший</strong> список
+повторюється, щоб зрівнятися з довшим.</li>
+</ul>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 повторюється як 10, 20, 10, 20</span></pre></div>
+
+<p>Є й унарна форма, яка викликає метод для кожного елемента.
+<code>&gt;&gt;.uc</code> переводить кожен рядок у верхній регістр:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
+
+<p>Гіпероперації також сигналізують, що роботу <em>можна</em> виконати
+паралельно — зі спорідненим методом <code>.hyper</code> ви познайомитеся
+пізніше, у <a href="/uk/paradigms/hyper-race">розділі про конкурентне
+програмування</a>.</p>
+<h2 id="заперечний">Заперечний — <code>!</code></h2>
+<p>Постановка <code>!</code> перед оператором порівняння заперечує його
+результат. Знайомий <code>!=</code> (не дорівнює) — це саме цей
+метаоператор, застосований до <code>==</code>, і так само працює для
+інших булевих операторів, як-от <code>eq</code> та <code>%%</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
+<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — не рівні як рядки</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не ділиться на 2</span></pre></div>
+
+<p>Коротко кажучи, <code>$a !op $b</code> — це просто охайніший спосіб
+записати <code>!($a op $b)</code>.</p>
+<p>Так задумано. На відміну від навмисно мінімалістичної мови на кшталт
+есперанто, яка прагне одного правильного способу висловити кожну річ,
+Raku радо дає вам кілька, — тож заперечний <code>!eq</code> живе поруч
+зі спеціальним оператором <code>ne</code>, і обидва означають точно те
+саме:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — та сама перевірка, що й 'a' !eq 'b'</span></pre></div>
+
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Виконайте 1 тест за змістом цієї теми.</p>
+<ul>
+<li><a href="/uk/advanced/metaoperators/more/quiz">Тест — Гіпер та
+перехресні</a></li>
+</ul>
+</section>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a href="/uk/advanced/metaoperators/zip">Zip-метаоператори</a>
+  |   <a href="/uk/advanced/metaoperators/more/quiz">Тест — Гіпер та
+перехресні</a> →</p>
+<p><br /> 💪 Або перейдіть одразу <a
+href="/uk/advanced/metaoperators/exercises">до вправ цього
+розділу</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

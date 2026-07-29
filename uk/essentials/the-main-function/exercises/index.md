@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Головна функція'
+title: 'Exercises: Функція `MAIN`'
 ---
 
 {% include menu.html %}

@@ -1,14 +1,14 @@
 ---
-title: 'Solution: Function to compute xʸ'
+title: 'Розв''язання: Функція для обчислення _xʸ_'
 ---
 
 {% include menu.html %}
 
-In this program, use the `**` operator to compute the power.
+У цій програмі для піднесення до степеня використано оператор `**`.
 
-## Code
+## Код
 
-Here is the solution:
+Ось рішення:
 
 ```raku
 sub f($x, $y) { $x ** $y }
@@ -18,11 +18,11 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Find the program in the file [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Знайдіть програму у файлі [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
-## Output
+## Вивід
 
-Run the program to confirm it prints correct answers:
+Запустіть програму, щоб переконатися, що вона виводить правильні відповіді:
 
 ```console
 $ raku exercises/functions/function-x-to-the-power-of-y.raku
@@ -31,9 +31,9 @@ $ raku exercises/functions/function-x-to-the-power-of-y.raku
 -1024
 ```
 
-## Comment
+## Коментар
 
-This function also works with negative powers, for example:
+Ця функція працює і з від'ємними степенями, наприклад:
 
 ```raku
 say f(5, -1);  # 0.2

@@ -1,5 +1,5 @@
 ---
-title: Вправи до «Типізовані змінні»
+title: 'Exercises: Типізовані змінні'
 ---
 
 {% include menu.html %}

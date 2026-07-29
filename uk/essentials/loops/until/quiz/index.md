@@ -1,12 +1,12 @@
 ---
-title: Quiz — The until loop
+title: Тест — Цикл `until`
 ---
 
 {% include menu.html %}
 
 ## 1
 
-What does this program print?
+Що виведе ця програма?
 
 ```raku
 my $n = 0;
@@ -17,11 +17,11 @@ say $n;
 ```
 
 {:.quiz-select}
-6 | Answer: (: 4, 5, 6 :)
+6 | Відповідь: (: 4, 5, 6 :)
 
 ## 2
 
-How to make this program to have precisely five iterations?
+Як зробити, щоб ця програма виконала рівно п'ять ітерацій?
 
 {:.quiz-code .fill}
 . | my $n = 1;

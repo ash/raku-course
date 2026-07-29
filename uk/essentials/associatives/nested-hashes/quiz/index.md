@@ -1,10 +1,10 @@
 ---
-title: Quiz — Multilevel hashes
+title: Тест — Багаторівневі хеші
 ---
 
 {% include menu.html %}
 
-For the given data structure:
+Для наведеної структури даних:
 
 ```raku
 my %statistics =
@@ -18,12 +18,12 @@ my %statistics =
     };
 ```
 
-Select the lines which provide correct access to the data item for February of 1900.
+Оберіть рядки, які правильно звертаються до елемента даних за лютий 1900 року.
 
 {:.quiz}
 1 | say %statistics<1900>&lt;Feb&gt;;
-1 | say %statistics{1900}&lt;Feb&gt;; | This is correct, as `1900` can be implicitly cast to a string.
-0 | say %statistics{1900}{Feb}; | Incorrect, as `Feb` must be a string.
+1 | say %statistics{1900}&lt;Feb&gt;; | Це правильно, бо `1900` неявно перетворюється на рядок.
+0 | say %statistics{1900}{Feb}; | Неправильно, бо `Feb` має бути рядком.
 1 | say %statistics{&apos;1900&apos;}{&apos;Feb&apos;};
 
 {% include quiz.html %}

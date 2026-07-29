@@ -1,5 +1,5 @@
 ---
-title: Typed variables
+title: Типізовані змінні
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: loop
+title: Триопераційний цикл `loop`
 ---
 
 {% include menu.html %}

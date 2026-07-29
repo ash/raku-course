@@ -1,5 +1,5 @@
 ---
-title: Розв'язання задачі «Вивести серію чисел»
+title: 'Solution: Друк ряду чисел'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ my $end = prompt 'Кінець: ';
 .say for $begin .. $end;
 ```
 
-🦋 Знайдіть програму у файлі [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
+🦋 Знайдіть програму у файлі [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers.raku).
 
 ## Код 2
 
@@ -32,7 +32,7 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Знайдіть програму у файлі [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
+🦋 Знайдіть програму у файлі [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers-loop.raku).
 
 Як ви можете бачити, перший варіант значно коротший та більш виразний.
 

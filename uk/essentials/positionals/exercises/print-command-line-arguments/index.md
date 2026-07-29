@@ -1,16 +1,16 @@
 ---
-title: Print command-line arguments
+title: Друк аргументів командного рядка
 ---
 
 {% include menu.html %}
 
-## Task
+## Завдання
 
-Write a program that prints all the arguments it gets from the command line. Print them one at a line.
+Напишіть програму, яка виводить усі аргументи, отримані з командного рядка. Виводьте їх по одному на рядок.
 
-## Example
+## Приклад
 
-This is how the program is supposed to work:
+Ось як програма має працювати:
 
 ```console
 $ raku print-command-line-arguments.raku words to display
@@ -19,8 +19,8 @@ to
 display
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

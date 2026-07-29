@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Скільки чисел рівні?'
+title: 'Solution: Скільки чисел рівні?'
 ---
 
 {% include menu.html %}
@@ -30,7 +30,7 @@ else {
 }
 ```
 
-🦋 Знайдіть програму у файлі [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Знайдіть програму у файлі [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
 ## Вивід
 

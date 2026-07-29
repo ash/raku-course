@@ -1,10 +1,10 @@
 ---
-title: Quiz 1 — Assigning a value
+title: Тест 1: Присвоєння значення
 ---
 
 {% include menu.html %}
 
-Complete the following lines of code to get a working program that creates a few variables and assigns some values to them.
+Доповніть наведені рядки коду, щоб отримати робочу програму, яка створює кілька змінних і присвоює їм значення.
 
 {:.quiz-code}
 . | my $first-name;

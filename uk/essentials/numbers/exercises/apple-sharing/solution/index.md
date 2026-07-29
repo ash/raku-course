@@ -1,5 +1,5 @@
 ---
-title: Рішення до «Поділ яблук»
+title: 'Solution: Ділення яблука'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Кожна людина отримує $gets яблуко(а).";
 say "Залишається $remains яблуко(а).";
 ```
 
-🦋 Ви можете знайти повний код у файлі [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Ви можете знайти повний код у файлі [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Вивід
 

@@ -1,5 +1,5 @@
 ---
-title: Булевий тип у Raku
+title: Логічний тип
 ---
 
 {% include menu.html %}

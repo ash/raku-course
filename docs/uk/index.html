@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="uk">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Повний курс програмування мовою Raku</title>
-    <meta property="og:title" content="Повний курс програмування мовою Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Повний курс мови програмування Raku</title>
+    <meta property="og:title" content="Повний курс мови програмування Raku" />
     <meta property="og:locale" content="uk" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Повний курс програмування мовою Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,216 +88,1208 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <h1 id="повний-курс-програмування-мовою-raku">Повний курс програмування мовою Raku</h1>
-
-<ul>
-  <li><a href="/uk/about-this-course">Про цей курс</a></li>
-</ul>
-
-<h2 id="частина-1-основи-раку">Частина 1. Основи Раку</h2>
-<h4 id="базове-введення-в-раку-та-його-компілятор">Базове введення в Раку та його компілятор</h4>
-<ul>
-  <li><a href="/uk/essentials/what-is-raku">Що таке Раку</a></li>
-  <li><a href="/uk/essentials/raku-vs-rakudo">Раку проти Ракудо</a></li>
-  <li><a href="/uk/essentials/how-to-install-rakudo">Як встановити Ракудо</a></li>
-  <li><a href="/uk/essentials/editors-and-ides">Редактори та IDE</a></li>
-  <li><a href="/uk/essentials/conventional-file-extensions">Стандартні розширення файлів</a></li>
-  <li><a href="/uk/essentials/hello-world">Привіт, Світ!</a></li>
-  <li><a href="/uk/essentials/on-unicode">Примітки щодо використання Юнікоду</a></li>
-  <li><a href="/uk/essentials/running-programs">Запуск програм</a>
-    <ul>
-      <li><a href="/uk/essentials/running-programs/from-command-line">Запуск з командного рядка</a></li>
-      <li><a href="/uk/essentials/running-programs/from-repl">Запуск з REPL</a></li>
-      <li><a href="/uk/essentials/running-programs/from-ide">Запуск з IDE</a></li>
-      <li><a href="/uk/essentials/running-programs/using-docker">Використання docker</a></li>
-      <li><a href="/uk/essentials/running-programs/using-online-services">Використання онлайн-сервісів</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/simple-input-output">Простий ввід та вивід</a>
-    <ul>
-      <li><a href="/uk/essentials/simple-input-output/say">Вивід з <code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/uk/essentials/simple-input-output/prompt">Ввід з <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/comments">Коментарі</a>
-    <ul>
-      <li><a href="/uk/essentials/comments/single-line">Однорядкові коментарі</a></li>
-      <li><a href="/uk/essentials/comments/multi-line">Багаторядкові коментарі</a></li>
-      <li><a href="/uk/essentials/comments/embedded">Вбудовані коментарі</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="основи-змінних-та-типів-даних">Основи змінних та типів даних</h4>
-<ul>
-  <li><a href="/uk/essentials/scalar-variables">Скалярні змінні</a>
-    <ul>
-      <li><a href="/uk/essentials/scalar-variables/declaring-a-variable">Оголошення змінної</a></li>
-      <li><a href="/uk/essentials/scalar-variables/assigning-a-value">Присвоєння значення</a></li>
-      <li><a href="/uk/essentials/scalar-variables/declaration-with-initialization">Оголошення з ініціалізацією</a></li>
-      <li><a href="/uk/essentials/scalar-variables/defined-or-operator">Оператор defined-or</a></li>
-      <li><a href="/uk/essentials/scalar-variables/identifiers">Імена змінних</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/strings">Рядки</a>
-    <ul>
-      <li><a href="/uk/essentials/strings/string-concatenation">Конкатенація рядків</a></li>
-      <li><a href="/uk/essentials/strings/variable-interpolation">Інтерполяція змінних</a></li>
-      <li><a href="/uk/essentials/strings/code-interpolation">Інтерполяція коду</a></li>
-      <li><a href="/uk/essentials/strings/escaping-special-characters">Екранування спеціальних символів</a></li>
-      <li><a href="/uk/essentials/strings/string-length">Довжина рядка</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/numbers">Числа</a>
-    <ul>
-      <li><a href="/uk/essentials/numbers/integers">Цілі числа</a></li>
-      <li><a href="/uk/essentials/numbers/rats">Раціональні числа</a></li>
-      <li><a href="/uk/essentials/numbers/numeric">Числа з плаваючою комою</a></li>
-      <li><a href="/uk/essentials/numbers/operations">Операції з числами</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/booleans">Логічний тип</a>
-    <ul>
-      <li><a href="/uk/essentials/booleans/operations">Логічні операції</a></li>
-      <li><a href="/uk/essentials/booleans/boolean-operations-other-types">Логічні операції з іншими типами</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/ranges">Діапазони</a>
-    <ul>
-      <li><a href="/uk/essentials/ranges/excluding-endpoints">Виключаючи кінцеві точки</a></li>
-      <li><a href="/uk/essentials/ranges/matching-against-a-range">Зіставлення з діапазоном</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="основи-керування-потоком">Основи керування потоком</h4>
-<ul>
-  <li><a href="/uk/essentials/code-blocks">Блоки коду</a>
-    <ul>
-      <li><a href="/uk/essentials/code-blocks/lexical-scope">Лексична область видимості</a></li>
-      <li><a href="/uk/essentials/code-blocks/global-variables">Глобальні змінні</a></li>
-      <li><a href="/uk/essentials/code-blocks/local-variables">Локальні змінні</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/conditional-checks">Умовні перевірки</a>
-    <ul>
-      <li><a href="/uk/essentials/conditional-checks/if">Блоки <code class="language-plaintext highlighter-rouge">if</code></a></li>
-      <li><a href="/uk/essentials/conditional-checks/else">Блоки <code class="language-plaintext highlighter-rouge">else</code></a></li>
-      <li><a href="/uk/essentials/conditional-checks/elsif">Використання <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
-      <li><a href="/uk/essentials/conditional-checks/unless">Використання <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-      <li><a href="/uk/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> та <code class="language-plaintext highlighter-rouge">unless</code> як модифікатори операторів</a></li>
-      <li><a href="/uk/essentials/conditional-checks/comparing-numbers">Порівняння чисел</a></li>
-      <li><a href="/uk/essentials/conditional-checks/comparing-strings">Порівняння рядків</a></li>
-      <li><a href="/uk/essentials/conditional-checks/ternary-operator">Тернарний оператор</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/loops">Цикли</a>
-    <ul>
-      <li><a href="/uk/essentials/loops/while">Використання <code class="language-plaintext highlighter-rouge">while</code></a></li>
-      <li><a href="/uk/essentials/loops/until">Використання <code class="language-plaintext highlighter-rouge">until</code></a></li>
-      <li><a href="/uk/essentials/loops/repeat">Використання <code class="language-plaintext highlighter-rouge">repeat</code></a></li>
-      <li><a href="/uk/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> та <code class="language-plaintext highlighter-rouge">until</code> як модифікатори операторів</a></li>
-      <li><a href="/uk/essentials/loops/loop">Триопераційний цикл <code class="language-plaintext highlighter-rouge">loop</code></a></li>
-      <li><a href="/uk/essentials/loops/infinite-loops">Нескінченні цикли</a></li>
-      <li><a href="/uk/essentials/loops/for">Цикли <code class="language-plaintext highlighter-rouge">for</code></a></li>
-      <li><a href="/uk/essentials/loops/topic">Топічна змінна</a></li>
-      <li><a href="/uk/essentials/loops/postfix-for">Постфіксна форма <code class="language-plaintext highlighter-rouge">for</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="більше-про-типи">Більше про типи</h4>
-<ul>
-  <li><a href="/uk/essentials/coercion">Перетворення типів даних</a>
-    <ul>
-      <li><a href="/uk/essentials/coercion/what">Інтроспекція з <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-      <li><a href="/uk/essentials/coercion/methods">Перетворення типів за допомогою методів примусу типів</a></li>
-      <li><a href="/uk/essentials/coercion/new">Перетворення типів за допомогою конструкторів</a></li>
-      <li><a href="/uk/essentials/coercion/prefixes">Перетворення типів за допомогою префіксних операторів</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/typed-variables">Типізовані змінні</a>
-    <ul>
-      <li><a href="/uk/essentials/typed-variables/type-constraints">Обмеження типу</a></li>
-      <li><a href="/uk/essentials/typed-variables/using-of">Використання <code class="language-plaintext highlighter-rouge">of</code></a></li>
-      <li><a href="/uk/essentials/typed-variables/coercion">Перетворення типів для типізованих змінних</a></li>
-      <li><a href="/uk/essentials/typed-variables/allomorphs">Аломорфи</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/positionals">Позиційні типи даних</a>
-    <ul>
-      <li><a href="/uk/essentials/positionals/arrays">Масиви</a></li>
-      <li><a href="/uk/essentials/positionals/nested-arrays">Вкладені масиви</a></li>
-      <li><a href="/uk/essentials/positionals/args-array">Масив <code class="language-plaintext highlighter-rouge">@*ARGS</code></a></li>
-      <li><a href="/uk/essentials/positionals/interpolating-arrays">Інтерполяція масивів</a></li>
-      <li><a href="/uk/essentials/positionals/lists">Списки</a></li>
-      <li><a href="/uk/essentials/positionals/quoting-string-arrays">Цитування рядкових масивів</a></li>
-      <li><a href="/uk/essentials/positionals/subscripting-ranges">Індексація діапазонів</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/associatives">Асоціативні типи даних</a>
-    <ul>
-      <li><a href="/uk/essentials/associatives/pairs">Пари</a></li>
-      <li><a href="/uk/essentials/associatives/hashes">Хеші</a></li>
-      <li><a href="/uk/essentials/associatives/nested-hashes">Вкладені хеші</a></li>
-      <li><a href="/uk/essentials/associatives/interpolating-hashes">Інтерполяція хешів</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="основи-функцій">Основи функцій</h4>
-<ul>
-  <li><a href="/uk/essentials/functions">Створення та виклик функцій</a>
-    <ul>
-      <li><a href="/uk/essentials/functions/identifiers">Імена функцій</a></li>
-      <li><a href="/uk/essentials/functions/function-parameters">Параметри функцій</a></li>
-      <li><a href="/uk/essentials/functions/return-result">Повернення результату</a></li>
-      <li><a href="/uk/essentials/functions/positional-parameters">Позиційні параметри</a></li>
-      <li><a href="/uk/essentials/functions/named-parameters">Іменовані параметри</a></li>
-      <li><a href="/uk/essentials/functions/default-values">Значення за замовчуванням</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/more-on-functions">Більше про функції</a>
-    <ul>
-      <li><a href="/uk/essentials/more-on-functions/mind-the-space">Зверніть увагу на пробіли</a></li>
-      <li><a href="/uk/essentials/more-on-functions/typed-parameters">Типізовані параметри</a></li>
-      <li><a href="/uk/essentials/more-on-functions/return-type">Тип повернення</a></li>
-      <li><a href="/uk/essentials/more-on-functions/multi-functions">Мульти-функції</a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/built-in-functions-for-printing">Вбудовані функції для друку</a>
-    <ul>
-      <li><a href="/uk/essentials/built-in-functions-for-printing/say"><code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/uk/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a></li>
-      <li><a href="/uk/essentials/built-in-functions-for-printing/put"><code class="language-plaintext highlighter-rouge">put</code></a></li>
-      <li><a href="/uk/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/uk/essentials/the-main-function">Функція <code class="language-plaintext highlighter-rouge">MAIN</code></a>
-    <ul>
-      <li><a href="/uk/essentials/the-main-function/reading-command-line-arguments">Читання аргументів командного рядка</a></li>
-      <li><a href="/uk/essentials/the-main-function/multi-main-functions">Кілька функцій <code class="language-plaintext highlighter-rouge">MAIN</code></a></li>
-      <li><a href="/uk/essentials/the-main-function/using-unit-sub">Використання <code class="language-plaintext highlighter-rouge">unit sub</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<center>•</center>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/">Оригінальний текст англійською мовою.</a></p>
-
-  <p>Переклади цієї сторінки: <a href="/">English</a> • <a href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <a href="/it/">Italiano</a> • <a href="/lv/">Latviešu</a> • <a href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a href="/ru/">Русский</a> • <strong>Українська</strong></p>
+          <section id="повний-курс-мови-програмування-raku" class="home-hero"
+data-markdown="1">
+<h1>Повний курс мови програмування Raku</h1>
+<p class="tagline">
+Від найпершого рядка коду до граматик, конкурентності та вебсервісів —
+практичний курс із п’яти частин із сотнями тестів і вправ, щоб
+відпрацювати кожен крок.
+</p>
+<p class="cta-row">
+<a class="btn-primary" href="/uk/essentials/what-is-raku">Почати
+навчання →</a> <a class="btn-ghost" href="/uk/about-this-course">Про
+курс</a>
+</p>
+<p class="trust">
+Відкритий вихідний код · За підтримки
+<a href="https://www.perlfoundation.org">The Perl &amp; Raku
+Foundation</a>
+</p>
+</section>
+<div class="home-stats">
+<div class="stat">
+<span class="num">6</span><span class="label">частин</span>
 </div>
-
-<p>© 2021–2024 від <a href="https://andrewshitov.com/">Андрій Шитов</a></p>
+<div class="stat">
+<span class="num">395</span><span class="label">тем</span>
+</div>
+<div class="stat">
+<span class="num">217</span><span class="label">тестів</span>
+</div>
+<div class="stat">
+<span class="num">396</span><span class="label">вправ</span>
+</div>
+<div class="stat">
+<span class="num">1530</span><span class="label">сторінок</span>
+</div>
+</div>
+<p class="section-label">
+Курс, частина за частиною
+</p>
+<div class="course-map">
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">1</span>
+<a class="part-title" href="/uk/essentials">Основи Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Почніть звідси. Встановіть компілятор, а потім вивчіть змінні й типи
+даних, порядок виконання та свої перші підпрограми — фундамент для
+всього подальшого.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/intro">Перше знайомство з Raku</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/what-is-raku">Що таке Raku</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/compilers">Компілятори</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/raku-vs-rakudo">Raku, Rakudo та
+Raku++</a></li>
+<li><a href="/uk/essentials/the-rakudo-compiler">Компілятор
+Rakudo</a></li>
+<li><a href="/uk/essentials/how-to-install-rakudo">Як встановити
+Rakudo</a></li>
+<li><a href="/uk/essentials/the-rakupp-compiler">Компілятор Raku++
+🆕</a></li>
+<li><a href="/uk/essentials/how-to-install-rakupp">Як встановити Raku++
+🆕</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/getting-started">Написання та запуск програм</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/editors-and-ides">Редактори та IDE</a></li>
+<li><a href="/uk/essentials/conventional-file-extensions">Стандартні
+розширення файлів</a></li>
+<li><a href="/uk/essentials/hello-world">Привіт, Світ!</a></li>
+<li><a href="/uk/essentials/on-unicode">Примітки щодо використання
+Юнікоду</a></li>
+<li><a href="/uk/essentials/running-programs">Запуск програм</a>
+<ul>
+<li><a href="/uk/essentials/running-programs/from-command-line">Запуск з
+командного рядка</a></li>
+<li><a href="/uk/essentials/running-programs/from-repl">Запуск з
+REPL</a></li>
+<li><a href="/uk/essentials/running-programs/from-ide">Запуск з
+IDE</a></li>
+<li><a href="/uk/essentials/running-programs/using-docker">Використання
+docker</a></li>
+<li><a
+href="/uk/essentials/running-programs/using-online-services">Використання
+онлайн-сервісів</a></li>
+</ul></li>
+<li><a href="/uk/essentials/simple-input-output">Простий ввід та
+вивід</a>
+<ul>
+<li><a href="/uk/essentials/simple-input-output/say">Вивід з
+<code>say</code></a></li>
+<li><a href="/uk/essentials/simple-input-output/prompt">Ввід з
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/uk/essentials/comments">Коментарі</a>
+<ul>
+<li><a href="/uk/essentials/comments/single-line">Однорядкові
+коментарі</a></li>
+<li><a href="/uk/essentials/comments/multi-line">Багаторядкові
+коментарі</a></li>
+<li><a href="/uk/essentials/comments/embedded">Вбудовані
+коментарі</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/variables">Основи змінних і типів даних</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/scalar-variables">Скалярні змінні</a>
+<ul>
+<li><a
+href="/uk/essentials/scalar-variables/declaring-a-variable">Оголошення
+змінної</a></li>
+<li><a
+href="/uk/essentials/scalar-variables/assigning-a-value">Присвоєння
+значення</a></li>
+<li><a
+href="/uk/essentials/scalar-variables/declaration-with-initialization">Оголошення
+з ініціалізацією</a></li>
+<li><a
+href="/uk/essentials/scalar-variables/defined-or-operator">Оператор
+defined-or</a></li>
+<li><a href="/uk/essentials/scalar-variables/identifiers">Імена
+змінних</a></li>
+</ul></li>
+<li><a href="/uk/essentials/strings">Рядки</a>
+<ul>
+<li><a href="/uk/essentials/strings/string-concatenation">Конкатенація
+рядків</a></li>
+<li><a href="/uk/essentials/strings/variable-interpolation">Інтерполяція
+змінних</a></li>
+<li><a href="/uk/essentials/strings/code-interpolation">Інтерполяція
+коду</a></li>
+<li><a
+href="/uk/essentials/strings/escaping-special-characters">Екранування
+спеціальних символів</a></li>
+<li><a href="/uk/essentials/strings/string-length">Довжина
+рядка</a></li>
+</ul></li>
+<li><a href="/uk/essentials/numbers">Числа</a>
+<ul>
+<li><a href="/uk/essentials/numbers/integers">Цілі числа</a></li>
+<li><a href="/uk/essentials/numbers/rats">Раціональні числа</a></li>
+<li><a href="/uk/essentials/numbers/numeric">Числа з плаваючою
+комою</a></li>
+<li><a href="/uk/essentials/numbers/operations">Операції з
+числами</a></li>
+</ul></li>
+<li><a href="/uk/essentials/booleans">Логічний тип</a>
+<ul>
+<li><a href="/uk/essentials/booleans/operations">Логічні
+операції</a></li>
+<li><a
+href="/uk/essentials/booleans/boolean-operations-other-types">Логічні
+операції з іншими типами</a></li>
+</ul></li>
+<li><a href="/uk/essentials/ranges">Діапазони</a>
+<ul>
+<li><a href="/uk/essentials/ranges/excluding-endpoints">Виключаючи
+кінцеві точки</a></li>
+<li><a href="/uk/essentials/ranges/matching-against-a-range">Зіставлення
+з діапазоном</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/control-flow">Основи порядку виконання</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/code-blocks">Блоки коду</a>
+<ul>
+<li><a href="/uk/essentials/code-blocks/lexical-scope">Лексична область
+видимості</a></li>
+<li><a href="/uk/essentials/code-blocks/global-variables">Глобальні
+змінні</a></li>
+<li><a href="/uk/essentials/code-blocks/local-variables">Локальні
+змінні</a></li>
+</ul></li>
+<li><a href="/uk/essentials/conditional-checks">Умовні перевірки</a>
+<ul>
+<li><a href="/uk/essentials/conditional-checks/if">Блоки
+<code>if</code></a></li>
+<li><a href="/uk/essentials/conditional-checks/else">Блоки
+<code>else</code></a></li>
+<li><a href="/uk/essentials/conditional-checks/elsif">Використання
+<code>elsif</code></a></li>
+<li><a href="/uk/essentials/conditional-checks/unless">Використання
+<code>unless</code></a></li>
+<li><a
+href="/uk/essentials/conditional-checks/modifiers"><code>if</code> та
+<code>unless</code> як модифікатори операторів</a></li>
+<li><a
+href="/uk/essentials/conditional-checks/comparing-numbers">Порівняння
+чисел</a></li>
+<li><a
+href="/uk/essentials/conditional-checks/comparing-strings">Порівняння
+рядків</a></li>
+<li><a
+href="/uk/essentials/conditional-checks/ternary-operator">Тернарний
+оператор</a></li>
+</ul></li>
+<li><a href="/uk/essentials/loops">Цикли</a>
+<ul>
+<li><a href="/uk/essentials/loops/while">Використання
+<code>while</code></a></li>
+<li><a href="/uk/essentials/loops/until">Використання
+<code>until</code></a></li>
+<li><a href="/uk/essentials/loops/repeat">Використання
+<code>repeat</code></a></li>
+<li><a href="/uk/essentials/loops/modifiers"><code>while</code> та
+<code>until</code> як модифікатори операторів</a></li>
+<li><a href="/uk/essentials/loops/loop">Триопераційний цикл
+<code>loop</code></a></li>
+<li><a href="/uk/essentials/loops/infinite-loops">Нескінченні
+цикли</a></li>
+<li><a href="/uk/essentials/loops/for">Цикли <code>for</code></a></li>
+<li><a href="/uk/essentials/loops/topic">Топічна змінна</a></li>
+<li><a href="/uk/essentials/loops/postfix-for">Постфіксна форма
+<code>for</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/more-about-types">Більше про типи</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/coercion">Перетворення типів даних</a>
+<ul>
+<li><a href="/uk/essentials/coercion/what">Інтроспекція з
+<code>WHAT</code></a></li>
+<li><a href="/uk/essentials/coercion/methods">Перетворення типів за
+допомогою методів примусу типів</a></li>
+<li><a href="/uk/essentials/coercion/new">Перетворення типів за
+допомогою конструкторів</a></li>
+<li><a href="/uk/essentials/coercion/prefixes">Перетворення типів за
+допомогою префіксних операторів</a></li>
+</ul></li>
+<li><a href="/uk/essentials/typed-variables">Типізовані змінні</a>
+<ul>
+<li><a href="/uk/essentials/typed-variables/type-constraints">Обмеження
+типу</a></li>
+<li><a href="/uk/essentials/typed-variables/using-of">Використання
+<code>of</code></a></li>
+<li><a href="/uk/essentials/typed-variables/coercion">Перетворення типів
+для типізованих змінних</a></li>
+<li><a
+href="/uk/essentials/typed-variables/allomorphs">Аломорфи</a></li>
+</ul></li>
+<li><a href="/uk/essentials/positionals">Позиційні типи даних</a>
+<ul>
+<li><a href="/uk/essentials/positionals/arrays">Масиви</a></li>
+<li><a href="/uk/essentials/positionals/nested-arrays">Вкладені
+масиви</a></li>
+<li><a href="/uk/essentials/positionals/args-array">Масив
+<code>@*ARGS</code></a></li>
+<li><a
+href="/uk/essentials/positionals/interpolating-arrays">Інтерполяція
+масивів</a></li>
+<li><a href="/uk/essentials/positionals/lists">Списки</a></li>
+<li><a href="/uk/essentials/positionals/quoting-string-arrays">Цитування
+рядкових масивів</a></li>
+<li><a href="/uk/essentials/positionals/subscripting-ranges">Індексація
+діапазонів</a></li>
+</ul></li>
+<li><a href="/uk/essentials/associatives">Асоціативні типи даних</a>
+<ul>
+<li><a href="/uk/essentials/associatives/pairs">Пари</a></li>
+<li><a href="/uk/essentials/associatives/hashes">Хеші</a></li>
+<li><a href="/uk/essentials/associatives/nested-hashes">Вкладені
+хеші</a></li>
+<li><a
+href="/uk/essentials/associatives/interpolating-hashes">Інтерполяція
+хешів</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/essentials/functions-essentials">Основи функцій</a>
+</summary>
+<ul>
+<li><a href="/uk/essentials/functions">Створення та виклик функцій</a>
+<ul>
+<li><a href="/uk/essentials/functions/identifiers">Імена
+функцій</a></li>
+<li><a href="/uk/essentials/functions/function-parameters">Параметри
+функцій</a></li>
+<li><a href="/uk/essentials/functions/return-result">Повернення
+результату</a></li>
+<li><a href="/uk/essentials/functions/positional-parameters">Позиційні
+параметри</a></li>
+<li><a href="/uk/essentials/functions/named-parameters">Іменовані
+параметри</a></li>
+<li><a href="/uk/essentials/functions/default-values">Значення за
+замовчуванням</a></li>
+</ul></li>
+<li><a href="/uk/essentials/more-on-functions">Більше про функції</a>
+<ul>
+<li><a href="/uk/essentials/more-on-functions/mind-the-space">Зверніть
+увагу на пробіли</a></li>
+<li><a
+href="/uk/essentials/more-on-functions/typed-parameters">Типізовані
+параметри</a></li>
+<li><a href="/uk/essentials/more-on-functions/return-type">Тип
+повернення</a></li>
+<li><a
+href="/uk/essentials/more-on-functions/multi-functions">Мульти-функції</a></li>
+</ul></li>
+<li><a href="/uk/essentials/built-in-functions-for-printing">Вбудовані
+функції для друку</a>
+<ul>
+<li><a
+href="/uk/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/uk/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/uk/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/uk/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/uk/essentials/the-main-function">Функція
+<code>MAIN</code></a>
+<ul>
+<li><a
+href="/uk/essentials/the-main-function/reading-command-line-arguments">Читання
+аргументів командного рядка</a></li>
+<li><a
+href="/uk/essentials/the-main-function/multi-main-functions">Кілька
+функцій <code>MAIN</code></a></li>
+<li><a
+href="/uk/essentials/the-main-function/using-unit-sub">Використання
+<code>unit sub</code></a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">2</span>
+<a class="part-title" href="/uk/advanced">Розширені теми Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Глибше занурення: контейнери та контексти, повний набір вбудованих
+типів та операторів, потужніші підпрограми та пакування коду в модулі з
+тестами та документацією.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/debugging">Налагодження</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/representations">Перетворення значень у
+текст</a>
+<ul>
+<li><a href="/uk/advanced/representations/gist">Метод
+<code>.gist</code></a></li>
+<li><a href="/uk/advanced/representations/str">Метод
+<code>.Str</code></a></li>
+<li><a href="/uk/advanced/representations/raku-method">Метод
+<code>.raku</code></a></li>
+<li><a href="/uk/advanced/representations/choosing">Вибір правильного
+методу</a></li>
+</ul></li>
+<li><a href="/uk/advanced/dd">Налагодження з <code>dd</code></a>
+<ul>
+<li><a href="/uk/advanced/dd/variables">Вивід змінних</a></li>
+<li><a href="/uk/advanced/dd/functions">Вивід сигнатур функцій</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/containers-overview">Контейнери</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/containers">Розуміння контейнерів
+Raku</a></li>
+<li><a href="/uk/advanced/scalar-containers">Скалярні контейнери</a>
+<ul>
+<li><a href="/uk/advanced/scalar-containers/types">Типи даних і скалярні
+контейнери</a></li>
+<li><a href="/uk/advanced/scalar-containers/type-constraints">Обмеження
+типів</a></li>
+<li><a href="/uk/advanced/scalar-containers/default">Значення за
+замовчуванням</a></li>
+<li><a href="/uk/advanced/scalar-containers/proxying">Проксіювання
+викликів методів</a></li>
+</ul></li>
+<li><a href="/uk/advanced/ordered-containers">Упорядковані
+контейнери</a>
+<ul>
+<li><a href="/uk/advanced/ordered-containers/arrays">Масиви</a></li>
+<li><a href="/uk/advanced/ordered-containers/lists">Списки</a></li>
+<li><a href="/uk/advanced/ordered-containers/binding">Прив’язка з
+<code>:=</code></a></li>
+<li><a href="/uk/advanced/ordered-containers/flattening">Вирівнювання та
+ітемізація</a></li>
+</ul></li>
+<li><a href="/uk/advanced/contexts">Контексти 🆕</a>
+<ul>
+<li><a href="/uk/advanced/contexts/coercion-contexts">Числовий, рядковий
+та логічний контекст</a></li>
+<li><a href="/uk/advanced/contexts/item-and-list">Елементний та
+списковий контекст</a></li>
+</ul></li>
+<li><a href="/uk/advanced/subscript-adverbs">Адверби індексів 🆕</a>
+<ul>
+<li><a href="/uk/advanced/subscript-adverbs/exists-and-delete">Існування
+та видалення</a></li>
+<li><a href="/uk/advanced/subscript-adverbs/kv-and-pairs">Ключі,
+значення та пари</a></li>
+</ul></li>
+<li><a href="/uk/advanced/special-variables">Спеціальні та динамічні
+змінні 🆕</a>
+<ul>
+<li><a href="/uk/advanced/special-variables/twigils">Твігіли</a></li>
+<li><a href="/uk/advanced/special-variables/dynamic-variables">Динамічні
+змінні</a></li>
+<li><a href="/uk/advanced/special-variables/built-in">Вбудовані
+спеціальні змінні</a></li>
+</ul></li>
+<li><a href="/uk/advanced/introspection">Інтроспекція контейнерів</a>
+<ul>
+<li><a href="/uk/advanced/introspection/what">Використання
+<code>WHAT</code></a></li>
+<li><a href="/uk/advanced/introspection/var">Використання
+<code>VAR</code></a></li>
+<li><a href="/uk/advanced/introspection/who-how"><code>WHO</code> та
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/built-in-types">Докладніше про вбудовані типи</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/integers">Цілі числа</a>
+<ul>
+<li><a href="/uk/advanced/integers/number-bases">Системи
+числення</a></li>
+<li><a href="/uk/advanced/integers/methods">Методи цілих чисел</a></li>
+</ul></li>
+<li><a href="/uk/advanced/native-types">Нативні типи 🆕</a>
+<ul>
+<li><a href="/uk/advanced/native-types/machine-types">Типи машинного
+рівня</a></li>
+<li><a href="/uk/advanced/native-types/sized-types">Типи фіксованого
+розміру та переповнення</a></li>
+</ul></li>
+<li><a href="/uk/advanced/strings">Рядки</a>
+<ul>
+<li><a href="/uk/advanced/strings/searching">Пошук у рядках</a></li>
+<li><a href="/uk/advanced/strings/splitting">Розділення та
+об’єднання</a></li>
+</ul></li>
+<li><a href="/uk/advanced/quoting">Конструкції квотування 🆕</a>
+<ul>
+<li><a href="/uk/advanced/quoting/q-qq-big-q">q, qq та Q</a></li>
+<li><a href="/uk/advanced/quoting/adverbs">Адверби квотування</a></li>
+<li><a href="/uk/advanced/quoting/heredocs">Heredoc-рядки</a></li>
+</ul></li>
+<li><a href="/uk/advanced/date-and-time">Дата та час</a>
+<ul>
+<li><a href="/uk/advanced/date-and-time/arithmetic">Арифметика
+дат</a></li>
+<li><a href="/uk/advanced/date-and-time/time">Робота з часом</a></li>
+</ul></li>
+<li><a href="/uk/advanced/sets-bags-mixes">Множини, мультимножини та
+суміші</a>
+<ul>
+<li><a href="/uk/advanced/sets-bags-mixes/operations">Операції з
+множинами</a></li>
+<li><a href="/uk/advanced/sets-bags-mixes/bags">Мультимножини та
+суміші</a></li>
+</ul></li>
+<li><a href="/uk/advanced/sequences">Послідовності</a>
+<ul>
+<li><a href="/uk/advanced/sequences/patterns">Шаблони
+послідовностей</a></li>
+<li><a href="/uk/advanced/sequences/lazy">Ліниві та нескінченні
+послідовності</a></li>
+</ul></li>
+<li><a href="/uk/advanced/enumerations">Перелічення 🆕</a>
+<ul>
+<li><a href="/uk/advanced/enumerations/defining">Визначення
+enum</a></li>
+<li><a href="/uk/advanced/enumerations/values-and-keys">Значення та
+ключі</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/operators">Оператори</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/operator-types">Типи операторів Raku</a></li>
+<li><a href="/uk/advanced/operators-overview">Огляд поведінки
+операторів</a></li>
+<li><a href="/uk/advanced/metaoperators">Метаоператори</a>
+<ul>
+<li><a href="/uk/advanced/metaoperators/reduction">Метаоператори
+редукції</a></li>
+<li><a href="/uk/advanced/metaoperators/zip">Zip-метаоператори</a></li>
+<li><a href="/uk/advanced/metaoperators/more">Перехресні, гіпер- та
+заперечні</a></li>
+</ul></li>
+<li><a href="/uk/advanced/user-defined-operators">Оператори, визначені
+користувачем</a></li>
+<li><a href="/uk/advanced/traits-pragmas">Трейти та прагми 🆕</a>
+<ul>
+<li><a href="/uk/advanced/traits-pragmas/built-in-traits">Вбудовані
+трейти</a></li>
+<li><a href="/uk/advanced/traits-pragmas/writing-a-trait">Написання
+трейту</a></li>
+<li><a href="/uk/advanced/traits-pragmas/pragmas">Прагми</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/control-flow">Порядок виконання</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/phasers">Фейзери</a></li>
+<li><a href="/uk/advanced/block-phasers">Блокові фейзери</a></li>
+<li><a href="/uk/advanced/given-when"><code>given</code> та
+<code>when</code></a>
+<ul>
+<li><a href="/uk/advanced/given-when/matching">Зіставлення діапазонів,
+типів та умов</a></li>
+</ul></li>
+<li><a href="/uk/advanced/gather-take"><code>gather</code> та
+<code>take</code></a></li>
+<li><a href="/uk/advanced/statement-prefixes">Префікси інструкцій 🆕</a>
+<ul>
+<li><a href="/uk/advanced/statement-prefixes/do-prefix">do та значення
+блоку</a></li>
+<li><a href="/uk/advanced/statement-prefixes/lazy-eager">Лінивість та
+жадібність</a></li>
+<li><a href="/uk/advanced/statement-prefixes/sink-quietly">sink та
+quietly</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/subroutines">Підпрограми</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/signatures">Сигнатури</a></li>
+<li><a href="/uk/advanced/whatever">Зірка Whatever 🆕</a></li>
+<li><a href="/uk/advanced/colon-calls">Виклик через двокрапку
+🆕</a></li>
+<li><a href="/uk/advanced/multiple-dispatch">Множинна
+диспетчеризація</a></li>
+<li><a href="/uk/advanced/more-on-main">Більше про підпрограми
+MAIN</a></li>
+<li><a href="/uk/advanced/nested-subroutines">Вкладені
+підпрограми</a></li>
+<li><a href="/uk/advanced/anonymous-subroutines">Анонімні
+підпрограми</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/modules">Модулі</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/modules-basics">Основи модулів</a>
+<ul>
+<li><a href="/uk/advanced/modules-basics/creating-modules">Створення
+модулів</a></li>
+<li><a href="/uk/advanced/modules-basics/using-modules">Використання
+модулів</a></li>
+<li><a
+href="/uk/advanced/modules-basics/importing">Імпортування</a></li>
+<li><a href="/uk/advanced/modules-basics/export-tags">Теги
+експорту</a></li>
+</ul></li>
+<li><a href="/uk/advanced/module-introspection">Інтроспекція
+модулів</a></li>
+<li><a href="/uk/advanced/installing-modules">Встановлення модулів з
+мережі</a></li>
+<li><a href="/uk/advanced/packages">Пакети та простори імен 🆕</a>
+<ul>
+<li><a href="/uk/advanced/packages/packages-modules">Пакети та
+модулі</a></li>
+<li><a href="/uk/advanced/packages/namespaces">Простори імен та
+our</a></li>
+</ul></li>
+<li><a href="/uk/advanced/distributing">Розповсюдження модулів 🆕</a>
+<ul>
+<li><a href="/uk/advanced/distributing/meta6">Файл META6</a></li>
+<li><a href="/uk/advanced/distributing/zef-ecosystem">zef та
+екосистема</a></li>
+<li><a href="/uk/advanced/distributing/fez">Публікація з fez</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/advanced/testing-and-docs">Тестування та документація
+🆕</a>
+</summary>
+<ul>
+<li><a href="/uk/advanced/testing">Тестування 🆕</a>
+<ul>
+<li><a href="/uk/advanced/testing/test-module">Модуль Test</a></li>
+<li><a href="/uk/advanced/testing/comparisons">Порівняння та
+плани</a></li>
+<li><a href="/uk/advanced/testing/running-tests">Запуск тестів</a></li>
+</ul></li>
+<li><a href="/uk/advanced/pod">Документування коду 🆕</a>
+<ul>
+<li><a href="/uk/advanced/pod/pod-basics">Основи Pod</a></li>
+<li><a href="/uk/advanced/pod/pod-formatting">Форматування та
+код</a></li>
+<li><a href="/uk/advanced/pod/rendering-pod">Рендеринг Pod</a></li>
+<li><a href="/uk/advanced/pod/accessing-pod">Доступ до Pod</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">3</span>
+<a class="part-title" href="/uk/oop">Об’єкти, введення-виведення та
+винятки</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Об’єктно-орієнтоване програмування з класами та ролями, читання і
+запис введення та виведення і взаємодія із зовнішніми програмами, а
+також обробка помилок за допомогою винятків.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/uk/oop/classes-and-objects">Класи та об’єкти</a>
+</summary>
+<ul>
+<li><a href="/uk/oop/classes">Класи</a>
+<ul>
+<li><a href="/uk/oop/classes/type-object">Об’єкти типу та
+екземпляри</a></li>
+</ul></li>
+<li><a href="/uk/oop/attributes">Атрибути</a>
+<ul>
+<li><a href="/uk/oop/attributes/read-write">Атрибути для читання та
+запису</a></li>
+<li><a href="/uk/oop/attributes/defaults">Значення за
+замовчуванням</a></li>
+</ul></li>
+<li><a href="/uk/oop/methods">Методи</a>
+<ul>
+<li><a href="/uk/oop/methods/private-attributes">Приватні
+атрибути</a></li>
+<li><a href="/uk/oop/methods/parameters">Методи з параметрами</a></li>
+<li><a href="/uk/oop/methods/calling-methods">Методи, що викликають
+методи</a></li>
+</ul></li>
+<li><a href="/uk/oop/class-methods">Методи класу</a></li>
+<li><a href="/uk/oop/subs-vs-methods">Підпрограми та методи</a></li>
+<li><a href="/uk/oop/inheritance">Успадкування</a>
+<ul>
+<li><a href="/uk/oop/inheritance/overriding">Перевизначення
+методів</a></li>
+</ul></li>
+<li><a href="/uk/oop/roles">Ролі</a>
+<ul>
+<li><a href="/uk/oop/roles/multiple-roles">Композиція кількох
+ролей</a></li>
+<li><a href="/uk/oop/roles/mixin">Додавання ролі об’єкту</a></li>
+</ul></li>
+<li><a href="/uk/oop/object-introspection">Інтроспекція об’єктів</a>
+<ul>
+<li><a href="/uk/oop/object-introspection/inheritance-chain">Ланцюг
+успадкування</a></li>
+</ul></li>
+<li><a href="/uk/oop/mop">Протокол метаоб’єктів 🆕</a>
+<ul>
+<li><a href="/uk/oop/mop/meta-methods">Метаметоди</a></li>
+<li><a href="/uk/oop/mop/adding-methods">Додавання методів під час
+виконання</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/oop/input-and-output">Введення та виведення</a>
+</summary>
+<ul>
+<li><a href="/uk/oop/standard-streams">Стандартні потоки</a></li>
+<li><a href="/uk/oop/files">Робота з файлами</a>
+<ul>
+<li><a href="/uk/oop/files/appending">Додавання до файлу</a></li>
+</ul></li>
+<li><a href="/uk/oop/directories">Робота з каталогами</a>
+<ul>
+<li><a href="/uk/oop/directories/listing">Перегляд вмісту
+каталогу</a></li>
+</ul></li>
+<li><a href="/uk/oop/deleting">Видалення файлів і каталогів</a></li>
+<li><a href="/uk/oop/file-handles">Файлові дескриптори</a></li>
+<li><a href="/uk/oop/external-programs">Запуск зовнішніх програм 🆕</a>
+<ul>
+<li><a href="/uk/oop/external-programs/run-and-shell">run і
+shell</a></li>
+<li><a href="/uk/oop/external-programs/capturing-output">Захоплення
+виведення</a></li>
+<li><a href="/uk/oop/external-programs/the-proc-object">Об’єкт
+Proc</a></li>
+<li><a href="/uk/oop/external-programs/environment">Змінні
+оточення</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/oop/exceptions">Винятки</a>
+</summary>
+<ul>
+<li><a href="/uk/oop/try">Перехоплення винятків за допомогою
+<code>try</code></a>
+<ul>
+<li><a href="/uk/oop/try/deferred-errors">Не кожна помилка виникає
+одразу</a></li>
+</ul></li>
+<li><a href="/uk/oop/catch">Фазер <code>CATCH</code></a></li>
+<li><a href="/uk/oop/exception-objects">Об’єкти винятків</a></li>
+<li><a href="/uk/oop/failures">М’які збої</a></li>
+<li><a href="/uk/oop/custom-exceptions">Власні винятки</a></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">4</span>
+<a class="part-title" href="/uk/regexes">Регулярні вирази та
+граматики</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Зіставляйте текст за допомогою регулярних виразів, а потім виростіть
+з них повноцінні граматики з класами дій, що перетворюють структурований
+ввід на дані.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/uk/regexes/regex-basics">Регулярні вирази</a>
+</summary>
+<ul>
+<li><a href="/uk/regexes/literals">Літерали та класи символів</a>
+<ul>
+<li><a href="/uk/regexes/literals/literal-text">Зіставлення літерального
+тексту</a></li>
+<li><a href="/uk/regexes/literals/character-classes">Класи
+символів</a></li>
+<li><a href="/uk/regexes/literals/predefined-classes">Визначені наперед
+класи символів</a></li>
+</ul></li>
+<li><a href="/uk/regexes/matching">Зіставлення рядків</a>
+<ul>
+<li><a href="/uk/regexes/matching/smartmatch">Оператор розумного
+зіставлення</a></li>
+<li><a href="/uk/regexes/matching/match-object">Об’єкт збігу</a></li>
+</ul></li>
+<li><a href="/uk/regexes/quantifiers">Квантифікатори</a>
+<ul>
+<li><a href="/uk/regexes/quantifiers/star-plus-question">Зірочка, плюс і
+знак питання</a></li>
+<li><a href="/uk/regexes/quantifiers/times-quantifier">Квантифікатор
+кількості</a></li>
+<li><a href="/uk/regexes/quantifiers/greedy-frugal">Жадібне та ощадливе
+зіставлення</a></li>
+</ul></li>
+<li><a href="/uk/regexes/captures">Захоплення</a>
+<ul>
+<li><a href="/uk/regexes/captures/positional">Позиційні
+захоплення</a></li>
+<li><a href="/uk/regexes/captures/named">Іменовані захоплення</a></li>
+<li><a href="/uk/regexes/captures/non-capturing">Групи без
+захоплення</a></li>
+</ul></li>
+<li><a href="/uk/regexes/alternations">Альтернативи</a>
+<ul>
+<li><a href="/uk/regexes/alternations/alternation">Альтернатива</a></li>
+<li><a href="/uk/regexes/alternations/longest-token">Найдовший токен і
+перший збіг</a></li>
+</ul></li>
+<li><a href="/uk/regexes/anchors">Якорі</a>
+<ul>
+<li><a href="/uk/regexes/anchors/string-anchors">Початок і кінець
+рядка</a></li>
+<li><a href="/uk/regexes/anchors/word-boundaries">Межі слів</a></li>
+</ul></li>
+<li><a href="/uk/regexes/assertions">Твердження перегляду</a>
+<ul>
+<li><a href="/uk/regexes/assertions/lookahead">Перегляд уперед</a></li>
+<li><a href="/uk/regexes/assertions/lookbehind">Перегляд назад</a></li>
+</ul></li>
+<li><a href="/uk/regexes/adverbs">Прислівники</a>
+<ul>
+<li><a href="/uk/regexes/adverbs/ignorecase">Зіставлення без урахування
+регістру</a></li>
+<li><a href="/uk/regexes/adverbs/adverb-scope">Область дії
+прислівника</a></li>
+<li><a href="/uk/regexes/adverbs/global">Глобальне зіставлення</a></li>
+<li><a href="/uk/regexes/adverbs/sigspace">Значущі пробіли</a></li>
+</ul></li>
+<li><a href="/uk/regexes/substitution">Підстановка та заміна</a>
+<ul>
+<li><a href="/uk/regexes/substitution/s-operator">Оператор
+підстановки</a></li>
+<li><a
+href="/uk/regexes/substitution/captures-in-replacement">Захоплення в
+заміні</a></li>
+<li><a
+href="/uk/regexes/substitution/transliteration">Транслітерація</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/regexes/grammars">Граматики</a>
+</summary>
+<ul>
+<li><a href="/uk/regexes/what-is-a-grammar">Що таке граматика</a>
+<ul>
+<li><a href="/uk/regexes/what-is-a-grammar/named-regexes">Іменовані
+регулярні вирази</a></li>
+<li><a href="/uk/regexes/what-is-a-grammar/grammar-keyword">Ключове
+слово grammar</a></li>
+</ul></li>
+<li><a href="/uk/regexes/creating-grammars">Створення граматик</a>
+<ul>
+<li><a href="/uk/regexes/creating-grammars/top-rule">Правило
+TOP</a></li>
+<li><a href="/uk/regexes/creating-grammars/parse-method">Розбір за
+допомогою parse</a></li>
+</ul></li>
+<li><a href="/uk/regexes/tokens-and-rules">Токени та правила</a>
+<ul>
+<li><a href="/uk/regexes/tokens-and-rules/three-kinds">regex, token і
+rule</a></li>
+<li><a href="/uk/regexes/tokens-and-rules/rule-sigspace">Значущі пробіли
+у правилах</a></li>
+</ul></li>
+<li><a href="/uk/regexes/grammar-inheritance">Граматики, класи та
+успадкування</a>
+<ul>
+<li><a
+href="/uk/regexes/grammar-inheritance/grammars-are-classes">Граматики —
+це класи</a></li>
+<li><a href="/uk/regexes/grammar-inheritance/proto-tokens">Proto-токени
+та альтернативи</a></li>
+</ul></li>
+<li><a href="/uk/regexes/make-and-made">Дерево розбору, make і made</a>
+<ul>
+<li><a href="/uk/regexes/make-and-made/match-tree">Дерево збігу</a></li>
+<li><a href="/uk/regexes/make-and-made/make-made">make і made</a></li>
+</ul></li>
+<li><a href="/uk/regexes/action-classes">Класи дій</a>
+<ul>
+<li><a href="/uk/regexes/action-classes/writing-actions">Написання класу
+дій</a></li>
+<li><a href="/uk/regexes/action-classes/inline-vs-class">Вбудовані дії
+та класи дій</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">5</span>
+<a class="part-title" href="/uk/paradigms">Функційне, конкурентне,
+реактивне та веб-програмування</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Зберіть усе разом: функційне, конкурентне та реактивне програмування,
+а на завершення — сокети, HTTP і створення веб-сервісів.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/uk/paradigms/functional">Функційне програмування</a>
+</summary>
+<ul>
+<li><a href="/uk/paradigms/recursion">Рекурсія</a>
+<ul>
+<li><a href="/uk/paradigms/recursion/recursive-sub">Рекурсивна
+підпрограма</a></li>
+<li><a href="/uk/paradigms/recursion/base-case">Базовий випадок</a></li>
+<li><a href="/uk/paradigms/recursion/multi-recursion">Рекурсія з
+multi-підпрограмами</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/higher-order">Функції вищого порядку</a>
+<ul>
+<li><a href="/uk/paradigms/higher-order/passing-subs">Передавання
+підпрограм</a></li>
+<li><a href="/uk/paradigms/higher-order/returning-subs">Повернення
+підпрограм</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/closures">Лямбди та замикання</a>
+<ul>
+<li><a href="/uk/paradigms/closures/lambdas">Лямбди</a></li>
+<li><a href="/uk/paradigms/closures/capturing-state">Замикання</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/reduction">Згортка</a>
+<ul>
+<li><a href="/uk/paradigms/reduction/reduction-metaop">Метаоператор
+згортки</a></li>
+<li><a href="/uk/paradigms/reduction/reduce-routine">Процедура
+reduce</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/feeds">Конвеєри даних</a>
+<ul>
+<li><a href="/uk/paradigms/feeds/feed-operator">Оператор
+конвеєра</a></li>
+<li><a href="/uk/paradigms/feeds/chaining-feeds">Ланцюжки
+конвеєрів</a></li>
+<li><a href="/uk/paradigms/feeds/backward-feed">Зворотний
+конвеєр</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/generators">Генератори</a>
+<ul>
+<li><a href="/uk/paradigms/generators/gather-take">gather і
+take</a></li>
+<li><a href="/uk/paradigms/generators/lazy-gather">Лінивий
+gather</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/iterators">Ітератори</a>
+<ul>
+<li><a href="/uk/paradigms/iterators/iterator-protocol">Протокол
+ітератора</a></li>
+<li><a href="/uk/paradigms/iterators/writing-an-iterator">Написання
+ітератора</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/lazy">Ліниві та нескінченні послідовності</a>
+<ul>
+<li><a href="/uk/paradigms/lazy/sequence-operator">Оператор
+послідовності</a></li>
+<li><a href="/uk/paradigms/lazy/infinite-sequences">Нескінченні
+послідовності</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/paradigms/concurrent">Конкурентне програмування</a>
+</summary>
+<ul>
+<li><a href="/uk/paradigms/junctions">Джанкшени</a>
+<ul>
+<li><a href="/uk/paradigms/junctions/building-junctions">Створення
+джанкшенів</a></li>
+<li><a
+href="/uk/paradigms/junctions/autothreading">Автопотоковість</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/threads">Потоки</a>
+<ul>
+<li><a href="/uk/paradigms/threads/starting-a-thread">Запуск
+потоку</a></li>
+<li><a href="/uk/paradigms/threads/joining-threads">Приєднання
+потоків</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/promises">Промиси</a>
+<ul>
+<li><a href="/uk/paradigms/promises/start-and-await">start і
+await</a></li>
+<li><a href="/uk/paradigms/promises/then-and-combinators">Ланцюжки та
+комбінування</a></li>
+<li><a href="/uk/paradigms/promises/making-a-promise">Власний промис
+🆕</a></li>
+<li><a href="/uk/paradigms/promises/promise-status">Статус промиса
+🆕</a></li>
+<li><a href="/uk/paradigms/promises/vows">Обітниці (Vow) 🆕</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/channels">Канали</a>
+<ul>
+<li><a href="/uk/paradigms/channels/send-and-receive">Надсилання та
+отримання</a></li>
+<li><a href="/uk/paradigms/channels/closing-a-channel">Закриття
+каналу</a></li>
+<li><a href="/uk/paradigms/channels/receiving-past-the-end">Читання
+після кінця</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/hyper-race">hyper і race 🆕</a>
+<ul>
+<li><a href="/uk/paradigms/hyper-race/hyper">Паралельний map з
+hyper</a></li>
+<li><a href="/uk/paradigms/hyper-race/race">Невпорядкований паралелізм з
+race</a></li>
+<li><a href="/uk/paradigms/hyper-race/batch-and-degree">Налаштування з
+:batch і :degree</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/paradigms/reactive">Реактивне програмування</a>
+</summary>
+<ul>
+<li><a href="/uk/paradigms/supplies">Supply</a>
+<ul>
+<li><a href="/uk/paradigms/supplies/tapping-a-supply">Підключення до
+supply</a></li>
+<li><a href="/uk/paradigms/supplies/transforming">Перетворення
+supply</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/supply-kinds">Живі supply та supply на
+вимогу</a>
+<ul>
+<li><a href="/uk/paradigms/supply-kinds/on-demand-supplies">Supply на
+вимогу</a></li>
+<li><a href="/uk/paradigms/supply-kinds/live-supplies">Живі
+supply</a></li>
+<li><a href="/uk/paradigms/supply-kinds/live-in-action">Живі supply у
+дії</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/react-whenever">react і whenever</a>
+<ul>
+<li><a href="/uk/paradigms/react-whenever/the-react-block">Блок
+react</a></li>
+<li><a href="/uk/paradigms/react-whenever/whenever">whenever</a></li>
+<li><a href="/uk/paradigms/react-whenever/named-supplies">Supply,
+оголошені ззовні</a></li>
+<li><a href="/uk/paradigms/react-whenever/whenever-vs-when">whenever і
+when</a></li>
+<li><a href="/uk/paradigms/react-whenever/two-timers">Два
+таймери</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/await">await</a>
+<ul>
+<li><a href="/uk/paradigms/await/awaiting-promises">Очікування
+промиса</a></li>
+<li><a href="/uk/paradigms/await/waiting-for-completion">Очікування
+завершення</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/paradigms/web">Веб-програмування</a>
+</summary>
+<ul>
+<li><a href="/uk/paradigms/connections">Віддалені з’єднання</a>
+<ul>
+<li><a href="/uk/paradigms/connections/opening-a-socket">Відкриття
+сокета</a></li>
+<li><a href="/uk/paradigms/connections/sending-receiving">Надсилання та
+отримання</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/http-server">Простий HTTP-сервер</a>
+<ul>
+<li><a href="/uk/paradigms/http-server/listening">Очікування
+з’єднань</a></li>
+<li><a href="/uk/paradigms/http-server/responding">Відповідь на
+запит</a></li>
+<li><a href="/uk/paradigms/http-server/serving-requests">Обслуговування
+багатьох запитів</a></li>
+</ul></li>
+<li><a href="/uk/paradigms/cro">Основи Cro</a>
+<ul>
+<li><a href="/uk/paradigms/cro/what-is-cro">Що таке Cro</a></li>
+<li><a href="/uk/paradigms/cro/a-cro-route">Маршрут Cro</a></li>
+<li><a href="/uk/paradigms/cro/route-with-parameter">Маршрут з
+параметром</a></li>
+<li><a href="/uk/paradigms/cro/client-modules">Використання клієнтського
+модуля</a></li>
+<li><a href="/uk/paradigms/cro/public-apis">Запит до публічного
+API</a></li>
+<li><a href="/uk/paradigms/cro/websockets">WebSocket</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card part-pseudo">
+<h3 class="part-head">
+<span class="pnum pnum-star">★</span>
+<a class="part-title" href="/uk/final-test">Фінальний тест</a>
+</h3>
+<p>Сто запитань з частин 1–5 з миттєвою перевіркою відповідей —
+підсумкова перевірка того, наскільки добре засвоєно весь курс.</p>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">6</span>
+<a class="part-title" href="/uk/addendum">Додаток: комплексні вправи
+🆕</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Підсумкова добірка складніших вправ, що спираються на весь курс.
+Кожна потребує більше ніж однієї ідеї, а багато які поєднують прийоми з
+різних частин. Усі вони використовують лише вже пройдені можливості —
+нічого нового вчити не потрібно, зате є де попрактикуватися.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/uk/addendum/working-with-data">Робота з даними</a>
+</summary>
+<ul>
+<li><a href="/uk/addendum/numbers-math">Числа та математика</a></li>
+<li><a href="/uk/addendum/text-strings">Текст і рядки</a></li>
+<li><a href="/uk/addendum/collections">Списки, масиви та хеші</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/addendum/flow-and-functions">Порядок виконання та
+функції</a>
+</summary>
+<ul>
+<li><a href="/uk/addendum/control-logic">Порядок виконання та
+логіка</a></li>
+<li><a href="/uk/addendum/subs-functional">Підпрограми та функційний
+стиль</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/addendum/types-and-text-machines">Типи та текстові
+машини</a>
+</summary>
+<ul>
+<li><a href="/uk/addendum/objects-classes">Об’єкти та класи</a></li>
+<li><a href="/uk/addendum/regex-grammars">Регулярні вирази та
+граматики</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/uk/addendum/bringing-it-together">Збираємо все разом</a>
+</summary>
+<ul>
+<li><a href="/uk/addendum/mini-projects">Мішані міні-проєкти</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="home-foot" data-markdown="1">
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/">English</a> • <a
+href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <a
+href="/it/">Italiano</a> • <a href="/lv/">Latviešu</a> • <a
+href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a
+href="/ru/">Русский</a> • <strong>Українська</strong></p>
+</div>
+</div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

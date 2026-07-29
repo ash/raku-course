@@ -1,5 +1,5 @@
 ---
-title: Рутинна функція print
+title: '`print`'
 ---
 
 {% include menu.html %}

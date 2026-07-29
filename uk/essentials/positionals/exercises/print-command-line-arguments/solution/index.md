@@ -1,5 +1,5 @@
 ---
-title: Рішення задачі «Друк аргументів командного рядка»
+title: 'Solution: Друк аргументів командного рядка'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ title: Рішення задачі «Друк аргументів команд�
 .say for @*ARGS;
 ```
 
-🦋 Знайдіть програму у файлі [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Знайдіть програму у файлі [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Вивід
 

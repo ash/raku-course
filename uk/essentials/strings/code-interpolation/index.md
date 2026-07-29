@@ -1,5 +1,5 @@
 ---
-title: Інтерполяція коду в рядках Raku
+title: Інтерполяція коду
 ---
 
 {% include menu.html %}

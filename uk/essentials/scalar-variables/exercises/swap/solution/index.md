@@ -1,12 +1,12 @@
 ---
-title: Solution of ’Swap the values‘
+title: 'Розв''язання: Обмін значеннями'
 ---
 
 {% include menu.html %}
 
-In this program, we are using the elements of Raku syntax from the section about [scalar variables](/uk/essentials/scalar-variables).
+У цій програмі ми використовуємо елементи синтаксису Raku з розділу про [скалярні змінні](/uk/essentials/scalar-variables).
 
-## Code
+## Код
 
 ```raku
 my ($a, $b) = 10, 20;
@@ -14,38 +14,38 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 You can find the source code in the file [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 Вихідний код можна знайти у файлі [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
-## Output
+## Вивід
 
-Run the program and confirm it prints the values in different order.
+Запустіть програму й переконайтеся, що вона виводить значення в іншому порядку.
 
 ```console
 $ raku exercises/scalar-variables/swap.raku
 20, 10
 ```
 
-## Comments
+## Коментарі
 
-All the steps of this program (creating a variable and assigning the values, swapping them, and printing) use both variables in the same construction. The most interesting here is the way the variables exchange their values:
+Усі кроки цієї програми (створення змінної та присвоєння значень, обмін ними й виведення) використовують обидві змінні в одній конструкції. Найцікавіше тут — те, як змінні обмінюються значеннями:
 
 ```raku
 ($a, $b) = $b, $a;
 ```
 
-Notice that you need parentheses on the left-hand side, but you can also add them on the right-hand side:
+Зверніть увагу, що дужки потрібні ліворуч, але їх можна додати й праворуч:
 
 ```raku
 ($a, $b) = ($b, $a);
 ```
 
-What happens if you omit parentheses?
+Що станеться, якщо дужки опустити?
 
 ```raku
 $a, $b = $b, $a;
 ```
 
-In this case, you get a warning that `$a` on the right-hand side is not used:
+У цьому разі ви отримаєте попередження, що `$a` праворуч не використовується:
 
 ```
 $ raku exercises/scalar-variables/swap.raku
@@ -54,13 +54,13 @@ Useless use of $a in sink context (lines 2, 2)
 10, 20
 ```
 
-The above line is actually equivalent to a useless assignment `$b = $b`. You can easily see it if you modify the values on the right side, for example:
+Наведений рядок насправді рівносильний беззмістовному присвоєнню `$b = $b`. Це легко побачити, якщо змінити значення праворуч, наприклад:
 
 ```raku
 $a, $b = 2 * $b, 3 * $a;
 ```
 
-This program prints even more warnings, but you can also see that only `$b` changed its value:
+Ця програма виводить ще більше попереджень, але ви також бачите, що змінилося значення лише `$b`:
 
 ```
 $ raku exercises/scalar-variables/swap.raku

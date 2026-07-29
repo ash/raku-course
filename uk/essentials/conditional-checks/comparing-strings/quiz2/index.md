@@ -1,10 +1,10 @@
 ---
-title: Quiz 2 — the condition in if
+title: Тест 2 — умова в `if`*
 ---
 
 {% include menu.html %}
 
-Correct the program and answer the question.
+Виправте програму й дайте відповідь на запитання.
 
 {:.quiz-code .fill}
 . | my $password = prompt 'Enter your password: ';
@@ -17,12 +17,12 @@ eq = | if $password ␣␣ '*&(#&$#Y' {
 . | }
 
 
-With the `=` in the test, what does this program do?
+Що робить ця програма, якщо в перевірці стоїть `=`?
 
 {:.quiz-select}
-Always prints ‘Correct’ | Your answer:&nbsp; (: Always prints ‘Correct’, Always prints ’Incorrect’, Prints ’Correct’ for correct passwords and ‘Incorrect’ for incorrect ones, Prints ’Incorrect’ for correct passwords and ’Correct’ for incorrect ones :)
+Завжди виводить ‘Correct’ | Ваша відповідь:&nbsp; (: Завжди виводить ‘Correct’, Завжди виводить ’Incorrect’, Виводить ’Correct’ для правильних паролів і ‘Incorrect’ для неправильних, Виводить ’Incorrect’ для правильних паролів і ’Correct’ для неправильних :)
 
-<div class="extended-explanation">The program always prints ’Correct’ because <code>$password = '*&(#&$#Y'</code> is an assignment that sets the new value of the <code>$password</code> variable. As the value is neither zero nor an empty string, it is considered <code>True</code>. The password that the user enters is never checked in this case.<br/><br/>If you type <code>==</code>, then the program will break as it tries to convert the strings (the user password and the correct password) to numbers and fails.</div>
+<div class="extended-explanation">Програма завжди виводить ’Correct’, бо <code>$password = '*&(#&$#Y'</code> — це присвоєння, яке встановлює нове значення змінної <code>$password</code>. Оскільки це значення не є ані нулем, ані порожнім рядком, воно вважається <code>True</code>. Пароль, який вводить користувач, у цьому разі не перевіряється взагалі.<br/><br/>Якщо ж набрати <code>==</code>, програма зламається, бо намагатиметься перетворити рядки (пароль користувача та правильний пароль) на числа й зазнає невдачі.</div>
 
 {% include quiz.html %}
 

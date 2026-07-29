@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="uk">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Рішення: Високосний рік</title>
-    <meta property="og:title" content="Рішення: Високосний рік" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Розв'язання: Високосний рік — Курс Raku</title>
+    <meta property="og:title" content="Розв'язання: Високосний рік — Курс Raku" />
     <meta property="og:locale" content="uk" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Рішення: Високосний рік</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,126 +88,133 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/uk/">Курс Раку</a> / <a href="/uk/essentials">Основи</a> / <a href="/uk/essentials/conditional-checks/">Умовні перевірки</a> / <a href="/uk/essentials/conditional-checks/exercises/">Вправи</a> / <a href="/uk/essentials/conditional-checks/exercises/leap-year">Високосний рік</a></p>
-
-<h1 id="рішення-високосний-рік">Рішення: Високосний рік</h1>
-
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/essentials">Основи</a> /
+<a href="/uk/essentials/control-flow">Основи порядку виконання</a> / <a
+href="/uk/essentials/conditional-checks">Умовні перевірки</a> / <a
+href="/uk/essentials/conditional-checks/exercises">Вправи</a> / <a
+href="/uk/essentials/conditional-checks/exercises/leap-year">Високосний
+рік</a></p>
+<h1 id="розвязання-високосний-рік">Розв’язання: Високосний рік</h1>
 <h2 id="відмова-від-відповідальності">Відмова від відповідальності</h2>
-
-<p>Рішення, показане нижче, має на меті навчити вас використовувати умовні перевірки. У реальному житті ви можете вивчити методи вбудованого класу <code class="language-plaintext highlighter-rouge">Date</code>. Ми вивчимо це у другій частині курсу.</p>
-
+<p>Рішення, показане нижче, має на меті навчити вас використовувати
+умовні перевірки. У реальному житті ви можете вивчити методи вбудованого
+класу <code>Date</code>. Ми вивчимо це у другій частині курсу.</p>
 <h2 id="рішення">Рішення</h2>
-
 <p>Алгоритм визначення, чи є рік високосним:</p>
-
-<ol>
-  <li>якщо рік не ділиться на 4 =&gt; звичайний рік</li>
-  <li>якщо рік не ділиться на 100 =&gt; високосний рік</li>
-  <li>якщо рік не ділиться на 400 =&gt; звичайний рік</li>
-  <li>інакше =&gt; високосний рік</li>
+<ol type="1">
+<li>якщо рік не ділиться на 4 =&gt; звичайний рік</li>
+<li>якщо рік не ділиться на 100 =&gt; високосний рік</li>
+<li>якщо рік не ділиться на 400 =&gt; звичайний рік</li>
+<li>інакше =&gt; високосний рік</li>
 </ol>
-
-<p>Зверніть увагу, що ви можете використовувати вбудовані типи для роботи з датою та часом, тому ми повернемося до цього завдання у другій частині курсу.</p>
-
+<p>Зверніть увагу, що ви можете використовувати вбудовані типи для
+роботи з датою та часом, тому ми повернемося до цього завдання у другій
+частині курсу.</p>
 <h2 id="код-1">Код 1</h2>
-
 <p>Перше рішення буквально відтворює наведені вище кроки:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
-    <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
+    <span class="nb">say</span> <span class="s">'Common year'</span>;
 }
 <span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">100</span> {
-    <span class="nb">say</span> <span class="s">&#39;Leap year&#39;</span>;
+    <span class="nb">say</span> <span class="s">'Leap year'</span>;
 }
 <span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">400</span> {
-    <span class="nb">say</span> <span class="s">&#39;Common year&#39;</span>;
+    <span class="nb">say</span> <span class="s">'Common year'</span>;
 }
 <span class="k">else</span> {
-    <span class="nb">say</span> <span class="s">&#39;Leap year&#39;</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">'Leap year'</span>;
+}</pre></div>
 
-
-<p>🦋 Знайдіть програму у файлі <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
-
+<p>🦋 Знайдіть програму у файлі <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
 <h2 id="код-2">Код 2</h2>
+<p>У другому рішенні логіка зібрана в один вираз. Дужки не завжди
+потрібні, але додані тут для ясності.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
-<p>У другому рішенні логіка зібрана в один вираз. Дужки не завжди потрібні, але додані тут для ясності.</p>
+<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">'Leap year'</span> !! <span class="s">'Common year'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Year: &#39;</span>;
-
-<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Leap year&#39;</span> !! <span class="s">&#39;Common year&#39;</span>;
-</pre></div>
-
-
-<p>🦋 Знайдіть програму у файлі <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
-
+<p>🦋 Знайдіть програму у файлі <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
 <h2 id="вихідні-дані">Вихідні дані</h2>
-
-<p>Спробуйте обидві програми з найважливішими випадками, наприклад, 1900, 2000, 2020, 2021.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
-<span class="go">Year: 1900
+<p>Спробуйте обидві програми з найважливішими випадками, наприклад,
+1900, 2000, 2020, 2021.</p>
+<div class="highlight"><pre>$ raku exercises/conditional-checks/leap-year.raku
+Year: 1900
 Common year
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
-<span class="go">Year: 2000
-Leap year
-</span></code></pre></div></div>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
-<span class="go">Year: 2020
+$ raku exercises/conditional-checks/leap-year.raku
+Year: 2000
+Leap year</pre></div>
+<div class="highlight"><pre>$ raku exercises/conditional-checks/leap-year-formula.raku
+Year: 2020
 Leap year
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
-<span class="go">Year: 2021
-Common year
-</span></code></pre></div></div>
-
-<p><div class="tip"></p>
-<h2 id="-vs-"><code class="language-plaintext highlighter-rouge">%%</code> vs <code class="language-plaintext highlighter-rouge">%</code></h2>
-
-<p>Зверніть увагу, що в логічних контекстах оператори <code class="language-plaintext highlighter-rouge">%%</code> і <code class="language-plaintext highlighter-rouge">%</code> є взаємодоповнюючими. Ви можете використовувати цей факт, щоб вибрати один із операторів, щоб уникнути явного порівняння з нулем.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># True</span>
-<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># True</span>
-
-<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># False</span>
-<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># False</span>
-</pre></div>
-
-<p></div></p>
-
-<h2 id="навігація-по-курсу">Навігація по курсу</h2>
-
-<p>←
-    <a href="/uk/essentials/code-blocks">Блоки коду</a>
-        / <a href="/uk/essentials/code-blocks/local-variables">Локальні змінні</a>
-  |  
-    <a href="/uk/essentials/loops">Цикли</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ця сторінка автоматично перекладена за допомогою ChatGPT 4o. <a href="/essentials/conditional-checks/exercises/leap-year/solution/">Оригінальний текст англійською мовою.</a></p>
-
-  <p>Переклади цієї сторінки: <a href="/essentials/conditional-checks/exercises/leap-year/solution/">English</a> • <a href="/de/essentials/conditional-checks/exercises/leap-year/solution/">Deutsch</a> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <a href="/it/essentials/conditional-checks/exercises/leap-year/solution/">Italiano</a> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/exercises/leap-year/solution/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/exercises/leap-year/solution/">Български</a> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <strong>Українська</strong></p>
+$ raku exercises/conditional-checks/leap-year-formula.raku
+Year: 2021
+Common year</pre></div>
+<p>%%tipblock ## <code>%%</code> vs <code>%</code></p>
+<p>Зверніть увагу, що в логічних контекстах оператори <code>%%</code> і
+<code>%</code> є взаємодоповнюючими. Ви можете використовувати цей факт,
+щоб вибрати один із операторів, щоб уникнути явного порівняння з
+нулем.</p>
+<p>CodeBlockPlaceholder5 %%/tipblock</p>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a
+href="/uk/essentials/conditional-checks/exercises/leap-year">Високосний
+рік</a>   |   <a href="/uk/essentials/loops">Цикли</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/conditional-checks/exercises/leap-year/solution">English</a>
+• <a
+href="/de/essentials/conditional-checks/exercises/leap-year/solution">Deutsch</a>
+• <a
+href="/es/essentials/conditional-checks/exercises/leap-year/solution">Español</a>
+• <a
+href="/it/essentials/conditional-checks/exercises/leap-year/solution">Italiano</a>
+• <a
+href="/lv/essentials/conditional-checks/exercises/leap-year/solution">Latviešu</a>
+• <a
+href="/nl/essentials/conditional-checks/exercises/leap-year/solution">Nederlands</a>
+• <a
+href="/bg/essentials/conditional-checks/exercises/leap-year/solution">Български</a>
+• <a
+href="/ru/essentials/conditional-checks/exercises/leap-year/solution">Русский</a>
+• <strong>Українська</strong></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

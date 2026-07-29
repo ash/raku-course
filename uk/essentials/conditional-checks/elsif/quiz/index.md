@@ -1,5 +1,5 @@
 ---
-title: Вікторина — if, elsif, else
+title: 'Тест: `if`, `elsif`, та `else`'
 ---
 
 {% include menu.html %}

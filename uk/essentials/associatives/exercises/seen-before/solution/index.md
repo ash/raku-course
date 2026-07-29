@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Бачено раніше?'
+title: 'Solution: Бачив раніше?'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ loop {
 }
 ```
 
-🦋 Знайдіть програму у файлі [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku).
+🦋 Знайдіть програму у файлі [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/seen-before.raku).
 
 ## Вивід
 

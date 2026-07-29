@@ -1,27 +1,27 @@
 ---
-title: Quiz — Interpolating hashes
+title: Тест — Інтерполяція хешів
 ---
 
 {% include menu.html %}
 
-Given the following hash:
+Дано такий хеш:
 
 ```raku
 my %letters = α => 'Alpha', β => 'Beta', γ => 'Gamma';
 ```
 
-Complete the below programs to get the requested output.
+Доповніть наведені нижче програми, щоб отримати потрібний вивід.
 
 ## 1
 
-Using the hash, print the name of the Greek letter `β`. Use the form without quotes around the key string.
+Використовуючи хеш, виведіть назву грецької літери `β`. Скористайтеся формою без лапок навколо рядка-ключа.
 
 {:.quiz-code}
 &lt;β&gt; | say &quot;The letter β is called %letters␣␣.&quot;;
 
 ## 2
 
-Using the hash, print the name of the Greek letter `β`. Use the form where the key is quoted in single quotes.
+Використовуючи хеш, виведіть назву грецької літери `β`. Скористайтеся формою, де ключ узятий в одинарні лапки.
 
 {:.quiz-code}
 {&apos;β&apos;} | say &quot;The letter β is called %letters␣␣␣␣.&quot;;
@@ -29,12 +29,12 @@ Using the hash, print the name of the Greek letter `β`. Use the form where the 
 
 ## 3
 
-Print the letters and their names as a table.
+Виведіть літери та їхні назви таблицею.
 
 {:.quiz-code}
-letters{ | say &quot;Here are some Greek letters:\n%␣␣␣␣␣}\netc.&quot;; | Note that the output may be not sorted.
+letters{ | say &quot;Here are some Greek letters:\n%␣␣␣␣␣}\netc.&quot;; | Зверніть увагу, що вивід може бути невідсортованим.
 
-The possible output for this case is:
+Можливий вивід для цього випадку:
 
     Here are some Greek letters:
     α	Alpha

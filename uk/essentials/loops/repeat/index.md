@@ -1,5 +1,5 @@
 ---
-title: Використання repeat
+title: Використання `repeat`
 ---
 
 {% include menu.html %}

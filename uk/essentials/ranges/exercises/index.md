@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Діапазони'
+title: 'Exercises: Діапазони'
 ---
 
 {% include menu.html %}

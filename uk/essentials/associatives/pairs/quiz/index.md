@@ -1,5 +1,5 @@
 ---
-title: Вікторина — Пари
+title: Тест — Пари
 ---
 
 {% include menu.html %}

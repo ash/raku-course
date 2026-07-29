@@ -1,12 +1,12 @@
 ---
-title: Quiz — The while loop
+title: Тест — Цикл `while`
 ---
 
 {% include menu.html %}
 
 ## 1
 
-What does this program print?
+Що виведе ця програма?
 
 ```raku
 my $n = 10;
@@ -17,11 +17,11 @@ say $n;
 ```
 
 {:.quiz-select}
-0 | Answer: (: 0, 1, −1 :)
+0 | Відповідь: (: 0, 1, −1 :)
 
 ## 2
 
-How to prevent this program from running infinitely? Make the necessary changes to the code.
+Як не дати цій програмі виконуватися нескінченно? Внесіть потрібні зміни до коду.
 
 {:.quiz-code .fill}
 . | my $n = 5;

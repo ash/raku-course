@@ -1,5 +1,5 @@
 ---
-title: Довжина рядка в Raku
+title: Довжина рядка
 ---
 
 {% include menu.html %}

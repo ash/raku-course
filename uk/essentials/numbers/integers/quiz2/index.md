@@ -1,5 +1,5 @@
 ---
-title: Quiz — Unicode digits and numbers
+title: 'Тест: Юнікодові цифри та числа'
 ---
 
 {% include menu.html %}

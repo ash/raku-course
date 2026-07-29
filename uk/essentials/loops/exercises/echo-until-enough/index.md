@@ -1,16 +1,16 @@
 ---
-title: 'Exercise: Echo until enough'
+title: Ехо до достатності
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Write a program that repeatedly asks to enter a word and prints it in the terminal. If the word is `enough`, the program terminates and prints a final message.
+Напишіть програму, яка раз за разом просить ввести слово і виводить його в терміналі. Якщо слово — `enough`, програма завершується й виводить прощальне повідомлення.
 
-## Example
+## Приклад
 
-The program may run infinitely long, but here we only show a couple of iterations.
+Програма може працювати нескінченно довго, але тут показано лише кілька ітерацій.
 ```console
 $ raku echo-until-enough.raku
 Your word: language
@@ -21,8 +21,8 @@ Your word: enough
 OK, done.
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

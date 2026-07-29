@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: String interpolation'
+title: 'Тест: Інтерполяція рядків'
 ---
 
 {% include menu.html %}

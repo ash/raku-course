@@ -1,10 +1,10 @@
 ---
-title: 'Quiz 1: Concatenating strings'
+title: 'Тест 1: Конкатенація рядків'
 ---
 
 {% include menu.html %}
 
-In the below operations, different concatenations happen. Complete the missing parts.
+У наведених нижче операціях відбуваються різні конкатенації. Доповніть пропущені частини.
 
 {:.quiz-code}
 . | my $first-name = &apos;Edgar&apos;;

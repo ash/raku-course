@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Периметр прямокутника'
+title: Периметр прямокутника
 ---
 
 {% include menu.html %}

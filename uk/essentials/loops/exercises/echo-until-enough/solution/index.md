@@ -1,5 +1,5 @@
 ---
-title: 'Solution: Echo until enough'
+title: 'Solution: Ехо до достатності'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ repeat {
 say 'OK, done.';
 ```
 
-🦋 Знайдіть програму у файлі [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/echo-until-enough.raku).
+🦋 Знайдіть програму у файлі [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/echo-until-enough.raku).
 
 ## Вивід
 

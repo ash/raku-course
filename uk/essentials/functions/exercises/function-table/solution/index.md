@@ -1,5 +1,5 @@
 ---
-title: 'Solution: Function table'
+title: 'Solution: Таблиця функцій'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ loop (my $x = -3; $x <= 3; $x += 0.1) {
 }
 ```
 
-🦋 Знайдіть програму у файлі [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-table.raku).
+🦋 Знайдіть програму у файлі [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-table.raku).
 
 ## Вивід
 

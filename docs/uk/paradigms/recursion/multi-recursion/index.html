@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Рекурсія з multi-підпрограмами — Курс Raku</title>
+    <meta property="og:title" content="Рекурсія з multi-підпрограмами — Курс Raku" />
+    <meta property="og:locale" content="uk" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/paradigms">Функційне,
+конкурентне, реактивне та веб-програмування</a> / <a
+href="/uk/paradigms/functional">Функційне програмування</a> / <a
+href="/uk/paradigms/recursion">Рекурсія</a></p>
+<h1 id="рекурсія-з-multi-підпрограмами">Рекурсія з
+multi-підпрограмами</h1>
+<p>Досі базовий випадок був рядком <em>усередині</em> підпрограми —
+тернарним оператором або раннім <code>return</code>, що перевіряє
+аргумент. Raku пропонує виразніший спосіб записати те саме. Оскільки
+підпрограма може мати кілька кандидатів <code>multi</code>, ви можете
+дати базовому випадку й рекурсивному крокові <strong>власні окремі
+підпрограми</strong> й дозволити множинній диспетчеризації вибирати
+потрібного для кожного виклику.</p>
+<p>Пригадаймо факторіал. З <code>multi</code> його два випадки стають
+двома підпрограмами:</p>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
+
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
+
+<p>Перший кандидат підходить лише тоді, коли аргумент дорівнює точно
+<code>0</code> — цей літерал у сигнатурі <em>і є</em> базовим випадком.
+Кожен інший виклик іде до другого кандидата, який множить і рекурсує.
+Коли <code>fact($n - 1)</code> нарешті досягає <code>0</code>,
+диспетчеризація перемикається на першого кандидата, і ланцюжок викликів
+розкручується назад. Базовий випадок більше не є гілкою, похованою в
+тілі; це підпрограма, що існує заради одного-єдиного значення.</p>
+<p>Чому <code>0</code>, а не <code>1</code>? Бо кожен крок віднімає
+одиницю, тож будь-яке початкове число зрештою потрапляє точно на
+<code>0</code>, а <code>0!</code> за означенням дорівнює <code>1</code>
+— отже, саме на <code>0</code> спуск справді завершується. Літеральний
+кандидат підходить для одного <em>точного</em> значення, тож база
+<code>multi fact(1)</code> обчислила б <code>fact(1)</code> правильно,
+але залишила б <code>fact(0)</code> провалюватися до
+<code>multi fact($n)</code> і рекурсувати за нуль без кінця. Зупинка на
+<code>0</code> тримає підпрограму правильною для кожного невід’ємного
+цілого числа, включно з <code>fact(0)</code>.</p>
+<p>Це читається особливо добре, коли базових випадків більше ніж один.
+Числам Фібоначчі їх потрібно два:</p>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fib</span>(<span class="mi">0</span>) { <span class="mi">0</span> }
+<span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
+
+<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span></pre></div>
+
+<p>Кожен базовий випадок є власним однорядковим кандидатом, а
+рекурсивний кандидат обробляє все решта — без вкладених умов.</p>
+<p>Літерал на кшталт <code>0</code> підходить лише для цього точного
+значення. Коли базовий випадок покриває <em>діапазон</em> —
+«<code>$n</code> дорівнює <code>1</code> або менше», — використовуйте
+натомість обмеження <code>where</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
+
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
+
+<p>Обмежений кандидат є конкретнішим, тож Raku пробує його першим;
+кандидат зі звичайним <code>$n</code> ловить усе решта.</p>
+<p>Та сама дисципліна, що й раніше, залишається чинною: кожен
+рекурсивний шлях має досягти кандидата з базовим випадком. Факторіал із
+літеральним <code>0</code>, наприклад, безпечний лише для невід’ємних
+цілих чисел — <code>fact(-1)</code> переступив би <code>0</code> і
+рекурсував би вічно, бо жоден кандидат ніколи не підійшов би. Рознесення
+випадків по <code>multi</code>-підпрограмах не скасовує потреби в
+базовому випадку; воно лише дає цьому базовому випадку ім’я та власну
+домівку.</p>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Виконайте 1 тест за змістом цієї теми.</p>
+<ul>
+<li><a href="/uk/paradigms/recursion/multi-recursion/quiz">Тест —
+Рекурсія з multi-підпрограмами</a></li>
+</ul>
+</section>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a href="/uk/paradigms/recursion/base-case/quiz">Тест — Базовий
+випадок</a>   |   <a
+href="/uk/paradigms/recursion/multi-recursion/quiz">Тест — Рекурсія з
+multi-підпрограмами</a> →</p>
+<p><br /> 💪 Або перейдіть одразу <a
+href="/uk/paradigms/recursion/exercises">до вправ цього розділу</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

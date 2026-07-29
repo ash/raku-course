@@ -1,5 +1,5 @@
 ---
-title: "Розв'язок: Периметр прямокутника"
+title: 'Solution: Периметр прямокутника'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ sub MAIN($a, $b = $a) {
 }
 ```
 
-🦋 Знайдіть програму у файлі [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Знайдіть програму у файлі [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
 ## Вивід
 

@@ -1,5 +1,5 @@
 ---
-title: Рішення до завдання «Кількість десятків»
+title: 'Solution: Кількість десятків'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Enter a positive integer number: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Повний код можна знайти у файлі [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Повний код можна знайти у файлі [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Вивід
 

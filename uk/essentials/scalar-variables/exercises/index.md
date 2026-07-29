@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Скалярні змінні'
+title: 'Exercises: Скалярні змінні'
 ---
 
 {% include menu.html %}

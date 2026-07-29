@@ -1,5 +1,5 @@
 ---
-title: Solution to ‘Triple negation’
+title: 'Solution: Потрійне заперечення'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Ви можете знайти повний код у файлі [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Ви можете знайти повний код у файлі [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Вивід
 

@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Порівняння `say` і `put`'
+title: 'Solution: Порівняти `say` та `put`'
 ---
 
 {% include menu.html %}
@@ -42,7 +42,7 @@ put %h;
 
 Для більшої впевненості, ви також можете вивести тип змінної, наприклад, як показано для масивів і списків, щоб переконатися, що ви створили змінну бажаного типу.
 
-🦋 Знайдіть програму у файлі [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Знайдіть програму у файлі [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Вивід
 

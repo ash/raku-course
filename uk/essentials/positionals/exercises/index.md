@@ -1,5 +1,5 @@
 ---
-title: 'Вправи: Позиційні'
+title: 'Exercises: Позиційні типи даних'
 ---
 
 {% include menu.html %}

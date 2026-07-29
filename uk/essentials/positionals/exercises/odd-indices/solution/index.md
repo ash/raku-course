@@ -1,5 +1,5 @@
 ---
-title: 'Рішення: Непарні індекси'
+title: 'Solution: Непарні індекси'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my @data = 10, 12, 1, 5, -9, 8, 36, 18, 21;
 say @data[2 * $_ - 1] for 1 .. @data/2;
 ```
 
-🦋 Знайдіть програму у файлі [odd-indices.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/odd-indices.raku).
+🦋 Знайдіть програму у файлі [odd-indices.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/odd-indices.raku).
 
 ## Вивід
 

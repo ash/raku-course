@@ -1,5 +1,5 @@
 ---
-title: Notes on using Unicode
+title: Примітки щодо використання Юнікоду
 ---
 
 {% include menu.html %}

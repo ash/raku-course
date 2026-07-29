@@ -1,5 +1,5 @@
 ---
-title: Рядки в Raku
+title: Рядки
 ---
 
 {% include menu.html %}

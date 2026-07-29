@@ -1,5 +1,5 @@
 ---
-title: Рішення задачі 'Привіт, я!'
+title: 'Solution: Привіт, це я!'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ title: Рішення задачі 'Привіт, я!'
 say 'Hello, Andrew!';
 ```
 
-🦋 Ви можете знайти повний код у файлі [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 Ви можете знайти повний код у файлі [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
 ## Вивід
 

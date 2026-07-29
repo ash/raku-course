@@ -1,5 +1,5 @@
 ---
-title: Розв'язання задачі «Істинні та хибні цілі числа»
+title: 'Solution: Істинні та хибні числа'
 ---
 
 {% include menu.html %}
@@ -37,6 +37,6 @@ my $int = 0;
 say ?(-$int); # False
 ```
 
-🦋 Ви можете знайти повну програму з наведеним вище прикладом у файлі [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku).
+🦋 Ви можете знайти повну програму з наведеним вище прикладом у файлі [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-numbers.raku).
 
 {% include nav.html %}

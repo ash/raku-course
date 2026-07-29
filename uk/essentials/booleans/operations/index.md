@@ -1,5 +1,5 @@
 ---
-title: Булеві операції
+title: Логічні операції
 ---
 
 {% include menu.html %}

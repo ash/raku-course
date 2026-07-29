@@ -1,5 +1,5 @@
 ---
-title: Обмеження типів
+title: Обмеження типу
 ---
 
 {% include menu.html %}

@@ -1,24 +1,24 @@
 ---
-title: 'Exercise: Travel distance'
+title: Відстань подорожі*
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Create a program that finds the total distance of the trip that is defined by the following array:
+Створіть програму, яка знаходить загальну відстань подорожі, заданої таким масивом:
 
 ```raku
 my @itinerary = < Berlin Prague Vienna Zurich Paris >;
 ```
 
-Print the distance of each segment of the itinerary and the total distance.
+Виведіть відстань кожного відрізка маршруту та загальну відстань.
 
-Use the file [distances.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/travel-distance/distances.raku) with the _hash of hashes_ that lists the distances between the cities.
+Скористайтеся файлом [distances.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/travel-distance/distances.raku) із _хешем хешів_, що перелічує відстані між містами.
 
-## Example
+## Приклад
 
-For the given list of cities, the output of the program looks like this:
+Для наведеного списку міст вивід програми має такий вигляд:
 
 ```console
 $ raku travel-distance.raku
@@ -29,8 +29,8 @@ Zurich — Paris: 557 km
 Total trip: 2007 km
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}

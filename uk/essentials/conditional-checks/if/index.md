@@ -1,5 +1,5 @@
 ---
-title: Умовні перевірки з if
+title: Блоки `if`
 ---
 
 {% include menu.html %}

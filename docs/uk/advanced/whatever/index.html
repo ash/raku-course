@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Зірка Whatever — Курс Raku</title>
+    <meta property="og:title" content="Зірка Whatever — Курс Raku" />
+    <meta property="og:locale" content="uk" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/uk/">Курс Raku</a> / <a href="/uk/advanced">Розширені</a> /
+<a href="/uk/advanced/subroutines">Підпрограми</a></p>
+<h1 id="зірка-whatever">Зірка Whatever 🆕</h1>
+<p>Можливо, ви вже бачили <code>*</code> у виразах на кшталт
+<code>* * 2</code> або <code>* %% 2</code> під час виклику
+<code>map</code> і <code>grep</code>. Ця <code>*</code> — <em>зірочка
+Whatever</em>, і вираз навколо неї на льоту будує невеличку функцію з
+одним аргументом. Цей розділ пояснює, чим вона є насправді, як
+співвідноситься з блоком і де сама по собі зірочка означає просто «як
+завгодно».</p>
+<h2 id="зірочка-створює-функцію">Зірочка створює функцію</h2>
+<p>Коли <code>*</code> з’являється у виразі, Raku перетворює весь вираз
+на функцію — <code>WhateverCode</code>, — у якій зірочка позначає
+аргумент:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
+
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
+
+<p><code>* * 2</code> — це функція, яка множить свій єдиний аргумент на
+два. Саме тому працює <code>(1..5).map(* * 2)</code>: до
+<code>map</code> потрапляє точно така функція з одним аргументом.</p>
+<h2 id="whatever-проти-блоку">Whatever проти блоку</h2>
+<p>Вираз із Whatever — це коротший спосіб записати функцію, яку можна
+було б записати й блоком. Ці три записи рівносильні:</p>
+<div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
+{ <span class="nv">$_</span> * <span class="mi">2</span> }
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
+
+<p>Форма з Whatever не називає параметра; форма з блоком використовує
+топічну змінну <code>$_</code>; стрілкова форма називає його
+<code>$x</code>. Остання, <code>-&gt; $x { ... }</code>, сама по собі є
+невеликою функцією — ви познайомитеся з нею як слід у розділі <a
+href="/uk/advanced/anonymous-subroutines">Анонімні підпрограми</a>; тут
+досить читати її як третій спосіб записати ту саму функцію з одним
+аргументом. Для простого виразу зірочка найкомпактніша, — тому вона така
+поширена з <code>map</code>, <code>grep</code> і <code>sort</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+
+<p>Беріть <strong>блок</strong>, коли логіка потребує більш ніж одного
+виразу або коли зрозуміліший іменований параметр стає в пригоді. Беріть
+<strong>зірочку</strong>, коли короткий вираз каже все.</p>
+<h2 id="більше-ніж-одна-зірочка">Більше ніж одна зірочка</h2>
+<p>Кожна <code>*</code> у виразі — це окремий аргумент, по порядку. Тож
+дві зірочки створюють функцію з <strong>двома</strong> аргументами:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
+
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
+
+<p>Тут <code>* + *</code> — це функція двох аргументів, яка їх додає:
+наприклад, накопичену суму й наступний елемент.</p>
+<h2 id="гола-whatever">Гола Whatever</h2>
+<p>Сама по собі <code>*</code> означає «як завгодно» — скільки є або без
+обмежень. Два повсякденні застосування:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
+<span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * це довжина масиву, тож *-1 це останній індекс</span>
+
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* це відкритий діапазон</span></pre></div>
+
+<p>У <code>@a[*-1]</code> зірочка позначає кількість елементів, а в
+<code>1..*</code> — «без верхньої межі». Чи будує вона функцію, чи
+означає «як завгодно», зірочка є одним із найкорисніших скорочень
+Raku.</p>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Виконайте 1 тест за змістом цієї теми.</p>
+<ul>
+<li><a href="/uk/advanced/whatever/quiz">Тест — Зірка Whatever</a></li>
+</ul>
+</section>
+<section id="вправи" class="exercises" data-markdown="1">
+<h2>Вправи</h2>
+<p>У цьому розділі <a href="exercises">3 вправи</a>. Перш ніж братися до
+практики, вивчіть усі теми розділу.</p>
+<ol type="1">
+<li><a href="/uk/advanced/whatever/exercises/whatever-map">Whatever з
+map</a></li>
+<li><a href="/uk/advanced/whatever/exercises/two-arg-whatever">Whatever
+з двома аргументами</a></li>
+<li><a href="/uk/advanced/whatever/exercises/open-range">Відкритий
+діапазон</a></li>
+</ol>
+</section>
+<h2 id="навігація-курсом">Навігація курсом</h2>
+<p>← <a href="/uk/advanced/signatures/quiz">Тест — Slurpy-параметри</a>
+  |   <a href="/uk/advanced/whatever/exercises/whatever-map">Whatever з
+map</a> →</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
+<p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

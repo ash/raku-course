@@ -1,5 +1,5 @@
 ---
-title: 'Вправа: Факторіал'
+title: Факторіал
 ---
 
 {% include menu.html %}

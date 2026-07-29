@@ -1,29 +1,29 @@
 ---
-title: 'Exercise: Purchase table'
+title: Таблиця покупок
 ---
 
 {% include menu.html %}
 
-## Problem
+## Завдання
 
-Take the data layout from the exercise ‘[Purchase table](/uk/essentials/strings/exercises/purchase-table)’ that you did earlier:
+Візьміть розкладку даних із вправи «[Таблиця покупок](/uk/essentials/strings/exercises/purchase-table)», яку ви виконували раніше:
 
     Item    Price   N      Total
     Chairs  $20.57  4      $82.28
     Tables  $50.18  1      $50.18
 
-Propose a data structure to store these values. Write the program to print it.
+Запропонуйте структуру даних для зберігання цих значень. Напишіть програму, яка її виводить.
 
-## Example
+## Приклад
 
-If you run the program, you should get the table shown above.
+Якщо запустити програму, ви маєте отримати наведену вище таблицю.
 
 ```console
 $ raku purchase-table.raku
 ```
 
-## Solution
+## Рішення
 
-✅ [See the solution](solution)
+✅ [Дивіться рішення](solution)
 
 {% include nav.html %}
