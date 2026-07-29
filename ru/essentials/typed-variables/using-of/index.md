@@ -1,5 +1,5 @@
 ---
-title: Использование ‘of’
+title: Использование `of`
 ---
 
 {% include menu.html %}

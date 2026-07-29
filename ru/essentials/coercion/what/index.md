@@ -1,5 +1,5 @@
 ---
-title: Интроспекция с `WHAT`
+title: Интроспекция с помощью `WHAT`
 ---
 
 {% include menu.html %}

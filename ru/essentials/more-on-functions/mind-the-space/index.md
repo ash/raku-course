@@ -1,5 +1,5 @@
 ---
-title: Mind the space
+title: Внимание к пробелам
 ---
 
 {% include menu.html %}

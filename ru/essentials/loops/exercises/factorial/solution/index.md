@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Факториал»
+title: 'Решение: Факториал'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ $f *= $_ for 2..$n;
 say $f;
 ```
 
-🦋 Найдите программу в файле [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku).
+🦋 Найдите программу в файле [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/factorial.raku).
 
 ## Вывод
 

@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Написание числа'
+title: 'Решение: Название числа'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Кратные 10, например, 50
 }
 ```
 
-🦋 Найдите программу в файле [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Найдите программу в файле [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Пример
 

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Создание и вызов функций в Raku</title>
-    <meta property="og:title" content="Создание и вызов функций в Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Создание и вызов функций — Курс Raku</title>
+    <meta property="og:title" content="Создание и вызов функций — Курс Raku" />
     <meta property="og:locale" content="ru" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Создание и вызов функций в Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,33 +88,49 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a></p>
-
+          <p><a href="/ru/">Курс языка программирования Raku</a> / <a
+href="/ru/essentials">Основы</a> / <a
+href="/ru/essentials/functions-essentials">Основы функций</a></p>
 <h1 id="создание-и-вызов-функций">Создание и вызов функций</h1>
-
-<p>Вы достигли последнего раздела первой части курса. Завершив его, вы получите все необходимые знания для создания практически <em>любой</em> программы на Raku. Темой этого раздела являются <em>функции</em>, или <em>подпрограммы</em>, или даже просто <em>рутины</em>.</p>
-
-<p>Функция — это многократно используемая часть кода с собственным именем. Вы можете <em>вызывать</em> функции из разных мест программы.</p>
-
+<p>Вы достигли последнего раздела первой части курса. Завершив его, вы
+получите все необходимые знания для создания практически <em>любой</em>
+программы на Raku. Темой этого раздела являются <em>функции</em>, или
+<em>подпрограммы</em>, или даже просто <em>рутины</em>.</p>
+<p>Функция — это многократно используемая часть кода с собственным
+именем. Вы можете <em>вызывать</em> функции из разных мест
+программы.</p>
 <h2 id="создание-функции">Создание функции</h2>
-
-<p>Чтобы создать функцию, используйте ключевое слово <code class="language-plaintext highlighter-rouge">sub</code>, за которым следует имя функции. Тело функции заключено в пару фигурных скобок.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span> {
+<p>Чтобы создать функцию, используйте ключевое слово <code>sub</code>,
+за которым следует имя функции. Тело функции заключено в пару фигурных
+скобок.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span> {
     <span class="nb">say</span> <span class="s">&#39;Hello, World!&#39;</span>;
 }
 </pre></div>
 
-
 <h2 id="использование-функции">Использование функции</h2>
-
-<p>Чтобы использовать функцию, просто укажите её имя в том месте, где вы хотите её вызвать. В Raku определение функции может находиться как до, так и после места её вызова.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;This is what the first program usually prints:&#39;</span>;
+<p>Чтобы использовать функцию, просто укажите её имя в том месте, где вы
+хотите её вызвать. В Raku определение функции может находиться как до,
+так и после места её вызова.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;This is what the first program usually prints:&#39;</span>;
 <span class="n">greet</span>;    
 
 <span class="k">sub</span> <span class="n">greet</span> {
@@ -72,74 +138,108 @@
 }
 </pre></div>
 
-
 <p>Программа выводит оба сообщения:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
-<span class="go">This is what the first program usually prints:
-Hello, World!
-</span></code></pre></div></div>
-
-<p>Теперь давайте рассмотрим другие детали создания и использования функций.</p>
-
-<p><div class="topics"></p>
-<h2 id="темы-в-этом-разделе">Темы в этом разделе</h2>
+<div class="highlight"><pre>$ raku t.raku
+This is what the first program usually prints:
+Hello, World!</pre></div>
+<p>Теперь давайте рассмотрим другие детали создания и использования
+функций.</p>
+<section id="темы-этого-раздела" class="topics" data-markdown="1">
+<h2>Темы этого раздела</h2>
 <ul>
-  <li><a href="/ru/essentials/functions/identifiers">Имена функций</a></li>
-  <li><a href="/ru/essentials/functions/function-parameters">Параметры функций</a></li>
-  <li><a href="/ru/essentials/functions/return-result">Возврат результата</a></li>
-  <li><a href="/ru/essentials/functions/positional-parameters">Позиционные параметры</a></li>
-  <li><a href="/ru/essentials/functions/named-parameters">Именованные параметры</a></li>
-  <li><a href="/ru/essentials/functions/default-values">Значения по умолчанию</a></li>
+<li><a href="/ru/essentials/functions/identifiers">Имена
+функций</a></li>
+<li><a href="/ru/essentials/functions/function-parameters">Параметры
+функций</a></li>
+<li><a href="/ru/essentials/functions/return-result">Возврат
+результата</a></li>
+<li><a href="/ru/essentials/functions/positional-parameters">Позиционные
+параметры</a></li>
+<li><a href="/ru/essentials/functions/named-parameters">Именованные
+параметры</a></li>
+<li><a href="/ru/essentials/functions/default-values">Значения по
+умолчанию</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="практика">Практика</h2>
-
-<p>Пройдите викторину, которая охватывает содержание этой темы.</p>
+</section>
+<section id="практика" class="practice" data-markdown="1">
+<h2>Практика</h2>
+<p>Пройдите 10 тестов по содержанию этого раздела.</p>
 <ul>
-  <li><a href="/ru/essentials/functions/quiz">Тест: Создание и вызов функций</a></li>
+<li><a href="/ru/essentials/functions/quiz">Тест: Создание и вызов
+функций</a></li>
+<li><a href="/ru/essentials/functions/identifiers/quiz">Тест: Имена
+функций</a></li>
+<li><a
+href="/ru/essentials/functions/function-parameters/quiz1">Параметры
+функций</a></li>
+<li><a
+href="/ru/essentials/functions/function-parameters/quiz2">Передача
+аргументов</a></li>
+<li><a href="/ru/essentials/functions/return-result/quiz">Тест: Возврат
+из функции</a></li>
+<li><a
+href="/ru/essentials/functions/positional-parameters/quiz">Тест: Вызов
+функции</a></li>
+<li><a href="/ru/essentials/functions/named-parameters/quiz1">Тест 1:
+Именованные параметры</a></li>
+<li><a href="/ru/essentials/functions/named-parameters/quiz2">Тест 2:
+Переменные как именованные параметры</a></li>
+<li><a href="/ru/essentials/functions/default-values/quiz1">Тест: Задача
+значений по умолчанию</a></li>
+<li><a href="/ru/essentials/functions/default-values/quiz2">Тест:
+Функции со значениями по умолчанию</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="упражнения">Упражнения</h2>
-
-<p>Этот раздел содержит <a href="/ru/essentials/functions/exercises">
-6 упражнений</a>. Изучите все темы этого раздела перед переходом к практике программирования.</p>
-<ol>
-  <li><a href="/ru/essentials/functions/exercises/function-x-to-the-power-of-y">Функция для вычисления <em>xʸ</em></a></li>
-  <li><a href="/ru/essentials/functions/exercises/odd-or-even">Четный или нечетный</a></li>
-  <li><a href="/ru/essentials/functions/exercises/recursive-factorial">Рекурсивный факториал</a></li>
-  <li><a href="/ru/essentials/functions/exercises/interval-function">Интервальная функция</a></li>
-  <li><a href="/ru/essentials/functions/exercises/function-table">Таблица функции</a></li>
-  <li><a href="/ru/essentials/functions/exercises/the-value-of-e">Значение 𝑒</a></li>
+</section>
+<section id="упражнения" class="exercises" data-markdown="1">
+<h2>Упражнения</h2>
+<p>В этом разделе <a href="exercises">6 упражнений</a>. Прежде чем
+приступать к практике, изучите все темы раздела.</p>
+<ol type="1">
+<li><a
+href="/ru/essentials/functions/exercises/function-x-to-the-power-of-y">Функция
+для вычисления <em>xʸ</em></a></li>
+<li><a href="/ru/essentials/functions/exercises/odd-or-even">Четный или
+нечетный</a></li>
+<li><a
+href="/ru/essentials/functions/exercises/recursive-factorial">Рекурсивный
+факториал</a></li>
+<li><a
+href="/ru/essentials/functions/exercises/interval-function">Интервальная
+функция</a></li>
+<li><a href="/ru/essentials/functions/exercises/function-table">Таблица
+функции</a></li>
+<li><a href="/ru/essentials/functions/exercises/the-value-of-e">Значение
+𝑒</a></li>
 </ol>
-
-<p></div></p>
-
+</section>
 <h2 id="навигация-по-курсу">Навигация по курсу</h2>
-
-<p>←
-    <a href="/ru/essentials/associatives">Ассоциативные типы данных</a>
-        / <a href="/ru/essentials/associatives/interpolating-hashes">Интерполяция словарей</a>
-  |  
-        <a href="/ru/essentials/functions/identifiers">Имена функций</a>
+<p>← <a href="/ru/essentials/functions-essentials">Основы функций</a>
+  |   <a href="/ru/essentials/functions/identifiers">Имена функций</a>
 →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/functions/">Оригинальный текст на английском языке.</a></p>
-
-  <p>Переводы этой страницы: <a href="/essentials/functions/">English</a> • <a href="/de/essentials/functions/">Deutsch</a> • <a href="/es/essentials/functions/">Español</a> • <a href="/it/essentials/functions/">Italiano</a> • <a href="/lv/essentials/functions/">Latviešu</a> • <a href="/nl/essentials/functions/">Nederlands</a> • <a href="/bg/essentials/functions/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/functions/">Українська</a></p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/functions">English</a> • <a
+href="/de/essentials/functions">Deutsch</a> • <a
+href="/es/essentials/functions">Español</a> • <a
+href="/it/essentials/functions">Italiano</a> • <a
+href="/lv/essentials/functions">Latviešu</a> • <a
+href="/nl/essentials/functions">Nederlands</a> • <a
+href="/bg/essentials/functions">Български</a> • <strong>Русский</strong>
+• <a href="/uk/essentials/functions">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
+<p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

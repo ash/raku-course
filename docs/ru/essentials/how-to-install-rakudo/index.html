@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Как установить Rakudo</title>
-    <meta property="og:title" content="Как установить Rakudo" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Как установить Rakudo — Курс Raku</title>
+    <meta property="og:title" content="Как установить Rakudo — Курс Raku" />
     <meta property="og:locale" content="ru" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Как установить Rakudo</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,78 +88,95 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a></p>
-
+          <p><a href="/ru/">Курс языка программирования Raku</a> / <a
+href="/ru/essentials">Основы</a> / <a
+href="/ru/essentials/compilers">Компиляторы</a></p>
 <h1 id="как-установить-rakudo">Как установить Rakudo</h1>
-
-<p>Чтобы выполнить программу Raku, вам потребуется установить компилятор. Пройдите
-на <a href="https://rakudo.org">сайт Rakudo</a>, чтобы скачать подходящую версию для вашей
-операционной системы.</p>
-
-<p>У вас есть две основные опции: вы можете установить сам компилятор, либо установить
-дистрибутив Rakudo Star (также называется Rakudo *). Rakudo Star включает в себя
-менеджер пакетов и несколько полезных модулей.</p>
-
+<p>Чтобы выполнить программу Raku, вам потребуется установить
+компилятор. Пройдите на <a href="https://rakudo.org">сайт Rakudo</a>,
+чтобы скачать подходящую версию для вашей операционной системы.</p>
+<p>У вас есть две основные опции: вы можете установить сам компилятор,
+либо установить дистрибутив Rakudo Star (также называется Rakudo *).
+Rakudo Star включает в себя менеджер пакетов и несколько полезных
+модулей.</p>
 <h2 id="источники">Источники</h2>
-
-<p>Вы можете скачать установщик для вашей системы на сайте
-<a href="https://rakudo.org/downloads">rakudo.org/downloads</a>. Есть версии для всех
-основных операционных систем: Windows, MacOS, Linux, а также имеется исходный
-код, который вы можете скомпилировать самостоятельно.</p>
-
+<p>Вы можете скачать установщик для вашей системы на сайте <a
+href="https://rakudo.org/downloads">rakudo.org/downloads</a>. Есть
+версии для всех основных операционных систем: Windows, MacOS, Linux, а
+также имеется исходный код, который вы можете скомпилировать
+самостоятельно.</p>
 <h2 id="rakudo-star">Rakudo Star</h2>
-
-<p>Дистрибутив Rakudo Star также можно установить, скачав установщик на сайте
-<a href="https://rakudo.org/star">rakudo.org/star</a>. Проверьте версию перед установкой.
-Также можете ознакомиться со страницей
-“<a href="https://rakudo.org/star/third-party">3rd-Party Rakudo Star Bundle Packages</a>”,
-где вы сможете найти сторонние способы установки.</p>
-
+<p>Дистрибутив Rakudo Star также можно установить, скачав установщик на
+сайте <a href="https://rakudo.org/star">rakudo.org/star</a>. Проверьте
+версию перед установкой. Также можете ознакомиться со страницей “<a
+href="https://rakudo.org/star/third-party">3rd-Party Rakudo Star Bundle
+Packages</a>”, где вы сможете найти сторонние способы установки.</p>
 <h2 id="docker-образы">Docker образы</h2>
-
-<p>Rakudo Star также доступен в образе Docker. Вы можете его использовать для запуска
-программ и тестирования небольших скриптов в REPL. Все инструкции можно найти на сайте
-<a href="https://github.com/Raku/docker">github.com/Raku/docker</a>.</p>
-
+<p>Rakudo Star также доступен в образе Docker. Вы можете его
+использовать для запуска программ и тестирования небольших скриптов в
+REPL. Все инструкции можно найти на сайте <a
+href="https://github.com/Raku/docker">github.com/Raku/docker</a>.</p>
 <h2 id="номера-версий">Номера версий</h2>
-
-<p>Система номеров версий Rakudo придерживается схемы из двух частей: год и месяц
-релиза. Вы легко можете увидеть, насколько новый у вас компилятор. Запустите
-следующую команду, чтобы узнать вашу версию:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku <span class="nt">-v</span>
-<span class="go">Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+<p>Система номеров версий Rakudo придерживается схемы из двух частей:
+год и месяц релиза. Вы легко можете увидеть, насколько новый у вас
+компилятор. Запустите следующую команду, чтобы узнать вашу версию:</p>
+<div class="highlight"><pre>$ raku -v
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
-</span></code></pre></div></div>
-
-<p>Выше вы видите три разных версии. Первая версия относится к самому Rakudo: <code class="language-plaintext highlighter-rouge">v2020.10</code>.
-Затем следует версия языка Raku: <code class="language-plaintext highlighter-rouge">v6.d</code>. Обновления языка на текущий момент следуют
-алфавитной схеме, следующая минорная версия будет <code class="language-plaintext highlighter-rouge">v6.e</code>. И третьей по счету версией
-является версия виртуальной машины MoarVM, используемая этим компилятором: <code class="language-plaintext highlighter-rouge">2020.10</code>.</p>
-
+Built on MoarVM version 2020.10.</pre></div>
+<p>Выше вы видите три разных версии. Первая версия относится к самому
+Rakudo: <code>v2020.10</code>. Затем следует версия языка Raku:
+<code>v6.d</code>. Обновления языка на текущий момент следуют алфавитной
+схеме, следующая минорная версия будет <code>v6.e</code>. И третьей по
+счету версией является версия виртуальной машины MoarVM, используемая
+этим компилятором: <code>2020.10</code>.</p>
 <h2 id="навигация-по-курсу">Навигация по курсу</h2>
-
-<p>←
-    <a href="/ru/essentials/raku-vs-rakudo">Raku и Rakudo</a>
-  |  
-        <a href="/ru/essentials/editors-and-ides">Текстовые редакторы и IDE</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Эта страница переведена с английского человеком. <a href="/essentials/how-to-install-rakudo/">Оригинальный текст на английском языке.</a> <a href="/ru/about-this-course/credits">О переводе.</a></p>
-
-  <p>Переводы этой страницы: <a href="/essentials/how-to-install-rakudo/">English</a> • <a href="/de/essentials/how-to-install-rakudo/">Deutsch</a> • <a href="/es/essentials/how-to-install-rakudo/">Español</a> • <a href="/it/essentials/how-to-install-rakudo/">Italiano</a> • <a href="/lv/essentials/how-to-install-rakudo/">Latviešu</a> • <a href="/nl/essentials/how-to-install-rakudo/">Nederlands</a> • <a href="/bg/essentials/how-to-install-rakudo/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/how-to-install-rakudo/">Українська</a></p>
+<p>← <a href="/ru/essentials/the-rakudo-compiler">Компилятор Rakudo</a>
+  |   <a href="/ru/essentials/the-rakupp-compiler">Компилятор Raku++
+🆕</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/how-to-install-rakudo">English</a> • <a
+href="/de/essentials/how-to-install-rakudo">Deutsch</a> • <a
+href="/es/essentials/how-to-install-rakudo">Español</a> • <a
+href="/it/essentials/how-to-install-rakudo">Italiano</a> • <a
+href="/lv/essentials/how-to-install-rakudo">Latviešu</a> • <a
+href="/nl/essentials/how-to-install-rakudo">Nederlands</a> • <a
+href="/bg/essentials/how-to-install-rakudo">Български</a> •
+<strong>Русский</strong> • <a
+href="/uk/essentials/how-to-install-rakudo">Українська</a></p>
 </div>
-
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
+<p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

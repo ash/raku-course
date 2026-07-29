@@ -1,5 +1,5 @@
 ---
-title: Викторина — Массивы
+title: Тест: Массивы
 ---
 
 {% include menu.html %}

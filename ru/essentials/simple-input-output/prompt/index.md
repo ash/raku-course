@@ -1,5 +1,5 @@
 ---
-title: Вывод с использованием `prompt`
+title: Ввод с использованием `prompt`
 ---
 
 {% include menu.html %}

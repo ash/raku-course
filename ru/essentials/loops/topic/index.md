@@ -1,5 +1,5 @@
 ---
-title: Переменная topic
+title: Переменная темы
 ---
 
 {% include menu.html %}

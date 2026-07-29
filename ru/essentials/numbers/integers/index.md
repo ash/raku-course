@@ -1,5 +1,5 @@
 ---
-title: Целые числа в Raku
+title: Целые числа
 ---
 
 {% include menu.html %}

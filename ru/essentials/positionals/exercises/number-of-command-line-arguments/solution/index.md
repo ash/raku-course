@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Количество аргументов командной строки»
+title: 'Решение: Количество аргументов командной строки'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ say @*ARGS.elems;
 @*ARGS.elems.say;
 ```
 
-🦋 Найдите программу в файле [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/number-of-command-line-arguments.raku).
+🦋 Найдите программу в файле [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku).
 
 ## Вывод
 

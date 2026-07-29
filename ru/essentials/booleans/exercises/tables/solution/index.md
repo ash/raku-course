@@ -1,5 +1,5 @@
 ---
-title: Решение для ‘Таблицы истинности’
+title: 'Решение: Таблицы истинности'
 ---
 
 {% include menu.html %}
@@ -25,7 +25,7 @@ say 'False ^^ True is ', False ^^ True;
 say 'False ^^ False is ', False ^^ False;
 ```
 
-🦋 Вы можете найти исходный код в файле [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 Вы можете найти исходный код в файле [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
 ## Вывод
 

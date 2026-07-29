@@ -1,5 +1,5 @@
 ---
-title: 'Проверка условий с `if`'
+title: '`if` блоки'
 ---
 
 {% include menu.html %}

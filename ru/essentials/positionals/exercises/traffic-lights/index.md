@@ -1,5 +1,5 @@
 ---
-title: 'Упражнение: Светофоры'
+title: Светофор
 ---
 
 {% include menu.html %}

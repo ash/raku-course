@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Найдите программу в файле [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Найдите программу в файле [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Пример
 

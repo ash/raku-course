@@ -1,5 +1,5 @@
 ---
-title: Решение для ‘Число в своих границах’
+title: 'Решение: Число в своих границах'
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ my $n = prompt 'What is the number? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Вы можете найти исходный код в файле [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Вы можете найти исходный код в файле [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
 ## Вывод
 

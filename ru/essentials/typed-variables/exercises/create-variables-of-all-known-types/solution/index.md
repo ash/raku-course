@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Создание переменных всех известных типов»
+title: 'Решение: Создайте переменные всех возможных типов'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Найдите программу в файле [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Найдите программу в файле [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
 ## Вывод
 

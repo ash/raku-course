@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Изучение вывода команды prompt — Строки»
+title: 'Решение: Посмотрите результаты `prompt` — Строки'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Исходный код можно найти в файле [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Исходный код можно найти в файле [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Тестовые запуски
 

@@ -1,5 +1,5 @@
 ---
-title: Решение для ‘Двойная инверсия’
+title: 'Решение: Двойная инверсия'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 Вы можете найти исходный код в файле [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Вы можете найти исходный код в файле [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Комментарии
 

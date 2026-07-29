@@ -1,5 +1,5 @@
 ---
-title: 'Решение: Четное или нечетное'
+title: 'Решение: Четный или нечетный'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Найдите программу в файле [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Найдите программу в файле [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Вывод
 

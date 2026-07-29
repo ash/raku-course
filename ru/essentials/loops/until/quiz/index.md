@@ -1,5 +1,5 @@
 ---
-title: Quiz — The until loop
+title: Тест: цикл `until`
 ---
 
 {% include menu.html %}

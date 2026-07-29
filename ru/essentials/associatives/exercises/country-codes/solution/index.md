@@ -26,7 +26,7 @@ my @codes = < FR IT DE EE LV US CN IN BR >;
 say %cc{$_} for @codes;
 ```
 
-🦋 Найдите программу в файле [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/country-codes.raku).
+🦋 Найдите программу в файле [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/country-codes.raku).
 
 ## Вывод
 

@@ -1,5 +1,5 @@
 ---
-title: Рутинная функция note
+title: '`note`'
 ---
 
 {% include menu.html %}

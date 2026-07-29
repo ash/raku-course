@@ -1,5 +1,5 @@
 ---
-title: Решение для ‘Тройная инверсия’
+title: 'Решение: Тройная инверсия'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Вы можете найти исходный код в файле [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Вы можете найти исходный код в файле [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Вывод
 

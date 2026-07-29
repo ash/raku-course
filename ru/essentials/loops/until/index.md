@@ -1,5 +1,5 @@
 ---
-title: until
+title: Использование `until`
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Odd indices'
+title: Нечетные индексы
 ---
 
 {% include menu.html %}

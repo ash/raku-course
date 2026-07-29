@@ -1,5 +1,5 @@
 ---
-title: Хэши
+title: Словари
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quoting string arrays
+title: Взятие в кавычки массивов строк
 ---
 
 {% include menu.html %}

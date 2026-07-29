@@ -1,5 +1,5 @@
 ---
-title: Вложенные хэши
+title: Вложенные словари
 ---
 
 {% include menu.html %}

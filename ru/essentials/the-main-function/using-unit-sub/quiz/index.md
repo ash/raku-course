@@ -1,5 +1,5 @@
 ---
-title: Викторина — Использование определения в области единицы
+title: 'Тест*: Using the unit-scoped definition'
 ---
 
 {% include menu.html %}

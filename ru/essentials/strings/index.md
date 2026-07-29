@@ -1,5 +1,5 @@
 ---
-title: Строки в Raku
+title: Строки
 ---
 
 {% include menu.html %}

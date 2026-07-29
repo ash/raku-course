@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Default values
+title: Тест: Значения по умолчанию
 ---
 
 {% include menu.html %}

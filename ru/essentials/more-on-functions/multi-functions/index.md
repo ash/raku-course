@@ -1,5 +1,5 @@
 ---
-title: Многофункции
+title: Мульти-функции
 ---
 
 {% include menu.html %}

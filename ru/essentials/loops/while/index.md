@@ -1,5 +1,5 @@
 ---
-title: while
+title: Использование `while`
 ---
 
 {% include menu.html %}

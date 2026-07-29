@@ -1,5 +1,5 @@
 ---
-title: Упражнение «Истинные и ложные строки»
+title: Строки True и False
 ---
 
 {% include menu.html %}

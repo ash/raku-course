@@ -1,5 +1,5 @@
 ---
-title: Решения для ‘Сколько одинаковых чисел?’
+title: 'Решение: Сколько одинаковых чисел?'
 ---
 
 {% include menu.html %}
@@ -31,7 +31,7 @@ else {
 }
 ```
 
-🦋 Вы можете найти исходный код в файле [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Вы можете найти исходный код в файле [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
 ## Вывод
 

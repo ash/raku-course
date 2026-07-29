@@ -1,5 +1,5 @@
 ---
-title: Решение для ‘Окончание множественного числа’
+title: 'Решение: Окончание множественного числа'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n file{$ending} copied.";
 ```
 
-🦋 Вы можете найти исходный код в файле [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Вы можете найти исходный код в файле [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Вывод
 

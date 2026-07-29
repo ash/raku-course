@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Travel distance'
+title: Расстояние путешествия*
 ---
 
 {% include menu.html %}

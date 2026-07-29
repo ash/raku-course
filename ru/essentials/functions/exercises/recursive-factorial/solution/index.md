@@ -1,5 +1,5 @@
 ---
-title: 'Solution: Recursive factorial'
+title: 'Решение: Рекурсивный факториал'
 ---
 
 {% include menu.html %}
@@ -23,7 +23,7 @@ sub factorial($n) {
 say factorial(10);
 ```
 
-🦋 Найдите программу в файле [recursive-factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial.raku).
+🦋 Найдите программу в файле [recursive-factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/recursive-factorial.raku).
 
 ## Код 2
 
@@ -38,7 +38,7 @@ sub factorial($n) {
 say factorial(10);
 ```
 
-🦋 Найдите обновленную программу в файле [recursive-factorial-2.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial-2.raku).
+🦋 Найдите обновленную программу в файле [recursive-factorial-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/recursive-factorial-2.raku).
 
 ## Пример
 

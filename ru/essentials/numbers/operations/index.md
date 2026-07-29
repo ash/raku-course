@@ -1,5 +1,5 @@
 ---
-title: Операции с числами в Raku
+title: Операции с числами
 ---
 
 {% include menu.html %}

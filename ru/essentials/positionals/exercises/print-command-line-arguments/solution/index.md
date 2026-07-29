@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Печать аргументов командной строки»
+title: 'Решение: Вывод аргументов командной строки'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ title: Решение задачи «Печать аргументов кома�
 .say for @*ARGS;
 ```
 
-🦋 Найдите программу в файле [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Найдите программу в файле [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Вывод
 

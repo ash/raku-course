@@ -1,5 +1,5 @@
 ---
-title: 'Использование `elsif`'
+title: Использование `elsif`
 ---
 
 {% include menu.html %}

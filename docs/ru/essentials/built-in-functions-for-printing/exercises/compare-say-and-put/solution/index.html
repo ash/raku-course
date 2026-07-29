@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solution: Compare `say` and `put`</title>
-    <meta property="og:title" content="Solution: Compare `say` and `put`" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Решение: Сравните say и put — Курс Raku</title>
+    <meta property="og:title" content="Решение: Сравните say и put — Курс Raku" />
     <meta property="og:locale" content="ru" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Solution: Compare `say` and `put`</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,19 +88,38 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/ru/">Курс языка программирования Raku</a> / <a href="/ru/essentials">Основы</a> / <a href="/ru/essentials/built-in-functions-for-printing/">Встроенные функции для вывода</a> / <a href="/ru/essentials/built-in-functions-for-printing/exercises/">Упражнения</a> / <a href="/ru/essentials/built-in-functions-for-printing/exercises/compare-say-and-put">Сравните <code class="language-plaintext highlighter-rouge">say</code> и <code class="language-plaintext highlighter-rouge">put</code></a></p>
-
-<h1 id="решение-сравните-say-и-put">Решение: Сравните <code class="language-plaintext highlighter-rouge">say</code> и <code class="language-plaintext highlighter-rouge">put</code></h1>
-
+          <p><a href="/ru/">Курс языка программирования Raku</a> / <a
+href="/ru/essentials">Основы</a> / <a
+href="/ru/essentials/functions-essentials">Основы функций</a> / <a
+href="/ru/essentials/built-in-functions-for-printing">Встроенные функции
+для вывода</a> / <a
+href="/ru/essentials/built-in-functions-for-printing/exercises">Упражнения</a>
+/ <a
+href="/ru/essentials/built-in-functions-for-printing/exercises/compare-say-and-put">Сравните
+<code>say</code> и <code>put</code></a></p>
+<h1 id="решение-сравните-say-и-put">Решение: Сравните <code>say</code> и
+<code>put</code></h1>
 <h2 id="code">Code</h2>
-
 <p>Here is one of the possible solutions:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="mi">42</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="mi">42</span>;
 <span class="nb">say</span> <span class="nv">$i</span>;
 <span class="nb">put</span> <span class="nv">$i</span>;
 
@@ -81,17 +150,15 @@
 <span class="nb">put</span> <span class="nv">%h</span>;
 </pre></div>
 
-
-<p>For better confidence, you can also print the type of the variable, e.g., as shown for arrays and lists, to make sure you have created a variable of the desired type.</p>
-
-<p>🦋 Find the program in the file <a href="https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku">compare-say-and-put.raku</a>.</p>
-
+<p>For better confidence, you can also print the type of the variable,
+e.g., as shown for arrays and lists, to make sure you have created a
+variable of the desired type.</p>
+<p>🦋 Find the program in the file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku">compare-say-and-put.raku</a>.</p>
 <h2 id="output">Output</h2>
-
 <p>The output of the program shown above is shown below.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/built-in-functions-for-printing/compare-say-and-put.raku
-<span class="go">42
+<div class="highlight"><pre>$ raku exercises/built-in-functions-for-printing/compare-say-and-put.raku
+42
 42
 0.75
 0.75
@@ -103,47 +170,56 @@ Raku
 this is an array
 (this is a list)
 this is a list
-</span><span class="gp">{A =&gt;</span><span class="w"> </span>alpha, B <span class="o">=&gt;</span> beta<span class="o">}</span>
-<span class="go">A	alpha
-B	бета
-</span></code></pre></div></div>
-
+{A =&gt; alpha, B =&gt; beta}
+A	alpha
+B	бета</pre></div>
 <h2 id="comments">Comments</h2>
-
-<p>By examining the output of the program, you can clearly see that there is no difference when printing simple data types such as numbers and strings. For aggregate data types, <code class="language-plaintext highlighter-rouge">say</code> produces a bit more ’noisy’ output comparing to <code class="language-plaintext highlighter-rouge">put</code>. On the other side, for hashes, <code class="language-plaintext highlighter-rouge">put</code> prints it as a table compared to a single line of  <code class="language-plaintext highlighter-rouge">say</code>.</p>
-
-<p>The difference between the output format is determined by how the <code class="language-plaintext highlighter-rouge">Str</code> and <code class="language-plaintext highlighter-rouge">gist</code> methods are implemented for the type in hand. We will talk more about this later in the course.</p>
-
-<p><div class="exercises"></p>
-<h2 id="следующее-упражнение">Следующее упражнение</h2>
-
-<p>💪 <a href="/ru/essentials/built-in-functions-for-printing/exercises/print-the-warning">Выведите предупреждение</a>
-</div></p>
-
+<p>By examining the output of the program, you can clearly see that
+there is no difference when printing simple data types such as numbers
+and strings. For aggregate data types, <code>say</code> produces a bit
+more ’noisy’ output comparing to <code>put</code>. On the other side,
+for hashes, <code>put</code> prints it as a table compared to a single
+line of <code>say</code>.</p>
+<p>The difference between the output format is determined by how the
+<code>Str</code> and <code>gist</code> methods are implemented for the
+type in hand. We will talk more about this later in the course.</p>
 <h2 id="навигация-по-курсу">Навигация по курсу</h2>
-
-<p>←
-    <a href="/ru/essentials/more-on-functions">Больше о функциях</a>
-        / <a href="/ru/essentials/more-on-functions/multi-functions">Мульти-функции</a>
-  |  
-    <a href="/ru/essentials/the-main-function">Функция <code class="language-plaintext highlighter-rouge">MAIN</code></a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Оригинальный текст на английском языке.</a></p>
-
-  <p>Переводы этой страницы: <a href="/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">English</a> • <a href="/de/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Deutsch</a> • <a href="/es/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Español</a> • <a href="/it/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Italiano</a> • <a href="/lv/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Latviešu</a> • <a href="/nl/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Nederlands</a> • <a href="/bg/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Български</a> • <strong>Русский</strong> • <a href="/uk/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution/">Українська</a></p>
+<p>← <a
+href="/ru/essentials/built-in-functions-for-printing/exercises/compare-say-and-put">Сравните
+<code>say</code> и <code>put</code></a>   |   <a
+href="/ru/essentials/built-in-functions-for-printing/exercises/print-the-warning">Выведите
+предупреждение</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">English</a>
+• <a
+href="/de/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Deutsch</a>
+• <a
+href="/es/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Español</a>
+• <a
+href="/it/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Italiano</a>
+• <a
+href="/lv/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Latviešu</a>
+• <a
+href="/nl/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Nederlands</a>
+• <a
+href="/bg/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Български</a>
+• <strong>Русский</strong> • <a
+href="/uk/essentials/built-in-functions-for-printing/exercises/compare-say-and-put/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
+<p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

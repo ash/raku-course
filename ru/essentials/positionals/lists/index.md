@@ -1,5 +1,5 @@
 ---
-title: Lists
+title: Списки
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Упражнение ’Привет, я!‘
+title: Привет, я!
 ---
 
 {% include menu.html %}

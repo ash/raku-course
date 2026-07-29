@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Истинные и ложные целые числа»
+title: 'Решение: Числа True и False'
 ---
 
 {% include menu.html %}
@@ -37,6 +37,6 @@ my $int = 0;
 say ?(-$int); # False
 ```
 
-🦋 Полную программу с приведенным выше примером вы можете найти в файле [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku).
+🦋 Полную программу с приведенным выше примером вы можете найти в файле [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-numbers.raku).
 
 {% include nav.html %}

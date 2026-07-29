@@ -1,5 +1,5 @@
 ---
-title: Конкатенация строк в Raku
+title: Конкатенация строк
 ---
 
 {% include menu.html %}

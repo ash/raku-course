@@ -22,7 +22,7 @@ my $raise = 5; # в процентах
 say "Новая зарплата %employee<full-name>: %employee<salary>";
 ```
 
-🦋 Найдите программу в файле [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Найдите программу в файле [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
 ## Вывод
 

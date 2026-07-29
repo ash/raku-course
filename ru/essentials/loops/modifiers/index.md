@@ -1,5 +1,5 @@
 ---
-title: while и until как модификаторы выражений
+title: '`while` и `until` как модификаторы инструкций'
 ---
 
 {% include menu.html %}

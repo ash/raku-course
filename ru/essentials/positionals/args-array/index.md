@@ -1,5 +1,5 @@
 ---
-title: Массив @*ARGS
+title: Массив `@*ARGS`
 ---
 
 {% include menu.html %}

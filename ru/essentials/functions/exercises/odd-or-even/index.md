@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Odd or even'
+title: Четный или нечетный
 ---
 
 {% include menu.html %}

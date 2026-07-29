@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Полный курс по языку программирования Raku</title>
-    <meta property="og:title" content="Полный курс по языку программирования Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Полный курс языка программирования Raku</title>
+    <meta property="og:title" content="Полный курс языка программирования Raku" />
     <meta property="og:locale" content="ru" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Полный курс по языку программирования Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,216 +88,1213 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <h1 id="полный-курс-по-языку-программирования-raku">Полный курс по языку программирования Raku</h1>
-
-<ul>
-  <li><a href="/ru/about-this-course">О курсе</a></li>
-</ul>
-
-<h2 id="часть-1-основы-raku">Часть 1. Основы Raku</h2>
-<h4 id="вступительное-знакомство-с-raku-и-его-компилятором">Вступительное знакомство с Raku и его компилятором</h4>
-<ul>
-  <li><a href="/ru/essentials/what-is-raku">Что такое Raku</a></li>
-  <li><a href="/ru/essentials/raku-vs-rakudo">Raku и Rakudo</a></li>
-  <li><a href="/ru/essentials/how-to-install-rakudo">Как установить Rakudo</a></li>
-  <li><a href="/ru/essentials/editors-and-ides">Текстовые редакторы и IDE</a></li>
-  <li><a href="/ru/essentials/conventional-file-extensions">Стандартные расширения файлов</a></li>
-  <li><a href="/ru/essentials/hello-world">Привет, Мир!</a></li>
-  <li><a href="/ru/essentials/on-unicode">Заметки по использованию Юникода</a></li>
-  <li><a href="/ru/essentials/running-programs">Запуск программ</a>
-    <ul>
-      <li><a href="/ru/essentials/running-programs/from-command-line">Запуск из командной строки</a></li>
-      <li><a href="/ru/essentials/running-programs/from-repl">Запуск из REPL</a></li>
-      <li><a href="/ru/essentials/running-programs/from-ide">Запуск из IDE</a></li>
-      <li><a href="/ru/essentials/running-programs/using-docker">С помощью Docker</a></li>
-      <li><a href="/ru/essentials/running-programs/using-online-services">С помощью онлайн сервисов</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/simple-input-output">Простой ввод и вывод</a>
-    <ul>
-      <li><a href="/ru/essentials/simple-input-output/say">Вывод с использованием <code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/ru/essentials/simple-input-output/prompt">Ввод с использованием <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/comments">Комментарии</a>
-    <ul>
-      <li><a href="/ru/essentials/comments/single-line">Однострочные комментарии</a></li>
-      <li><a href="/ru/essentials/comments/multi-line">Многострочные комментарии</a></li>
-      <li><a href="/ru/essentials/comments/embedded">Вложенные комментарии</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="переменные-и-основы-типов-данных">Переменные и основы типов данных</h4>
-<ul>
-  <li><a href="/ru/essentials/scalar-variables">Скалярные переменные</a>
-    <ul>
-      <li><a href="/ru/essentials/scalar-variables/declaring-a-variable">Объявление переменной</a></li>
-      <li><a href="/ru/essentials/scalar-variables/assigning-a-value">Присвоение значения</a></li>
-      <li><a href="/ru/essentials/scalar-variables/declaration-with-initialization">Объявление с инициализацией</a></li>
-      <li><a href="/ru/essentials/scalar-variables/defined-or-operator">Оператор присвоено-или</a></li>
-      <li><a href="/ru/essentials/scalar-variables/identifiers">Имена переменных</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/strings">Строки</a>
-    <ul>
-      <li><a href="/ru/essentials/strings/string-concatenation">Конкатенация строк</a></li>
-      <li><a href="/ru/essentials/strings/variable-interpolation">Интерполяция переменных</a></li>
-      <li><a href="/ru/essentials/strings/code-interpolation">Интерполяция кода</a></li>
-      <li><a href="/ru/essentials/strings/escaping-special-characters">Экранирование специальных символов</a></li>
-      <li><a href="/ru/essentials/strings/string-length">Длина строки</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/numbers">Числа</a>
-    <ul>
-      <li><a href="/ru/essentials/numbers/integers">Целые числа</a></li>
-      <li><a href="/ru/essentials/numbers/rats">Рациональные числа</a></li>
-      <li><a href="/ru/essentials/numbers/numeric">Числа с плавающей точкой</a></li>
-      <li><a href="/ru/essentials/numbers/operations">Операции с числами</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/booleans">Булев тип</a>
-    <ul>
-      <li><a href="/ru/essentials/booleans/operations">Логические операции</a></li>
-      <li><a href="/ru/essentials/booleans/boolean-operations-other-types">Логические операции с другими типами</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/ranges">Интервалы</a>
-    <ul>
-      <li><a href="/ru/essentials/ranges/excluding-endpoints">Исключение концов интервала</a></li>
-      <li><a href="/ru/essentials/ranges/matching-against-a-range">Сопоставление с интервалом</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="основы-порядка-выполнения">Основы порядка выполнения</h4>
-<ul>
-  <li><a href="/ru/essentials/code-blocks">Блоки кода</a>
-    <ul>
-      <li><a href="/ru/essentials/code-blocks/lexical-scope">Лексическая область видимости</a></li>
-      <li><a href="/ru/essentials/code-blocks/global-variables">Глобальные переменные</a></li>
-      <li><a href="/ru/essentials/code-blocks/local-variables">Локальные переменные</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/conditional-checks">Проверка условий</a>
-    <ul>
-      <li><a href="/ru/essentials/conditional-checks/if"><code class="language-plaintext highlighter-rouge">if</code> блоки</a></li>
-      <li><a href="/ru/essentials/conditional-checks/else"><code class="language-plaintext highlighter-rouge">else</code> блоки</a></li>
-      <li><a href="/ru/essentials/conditional-checks/elsif">Использование <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
-      <li><a href="/ru/essentials/conditional-checks/unless">Использование <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-      <li><a href="/ru/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> и <code class="language-plaintext highlighter-rouge">unless</code> как модификаторы инструкций</a></li>
-      <li><a href="/ru/essentials/conditional-checks/comparing-numbers">Сравнение чисел</a></li>
-      <li><a href="/ru/essentials/conditional-checks/comparing-strings">Сравнение строк</a></li>
-      <li><a href="/ru/essentials/conditional-checks/ternary-operator">Тернарный оператор</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/loops">Циклы</a>
-    <ul>
-      <li><a href="/ru/essentials/loops/while">Использование <code class="language-plaintext highlighter-rouge">while</code></a></li>
-      <li><a href="/ru/essentials/loops/until">Использование <code class="language-plaintext highlighter-rouge">until</code></a></li>
-      <li><a href="/ru/essentials/loops/repeat">Использование <code class="language-plaintext highlighter-rouge">repeat</code></a></li>
-      <li><a href="/ru/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> и <code class="language-plaintext highlighter-rouge">until</code> как модификаторы инструкций</a></li>
-      <li><a href="/ru/essentials/loops/loop"><code class="language-plaintext highlighter-rouge">loop</code> с тремя инструкциями</a></li>
-      <li><a href="/ru/essentials/loops/infinite-loops">Бесконечные циклы</a></li>
-      <li><a href="/ru/essentials/loops/for">Циклы <code class="language-plaintext highlighter-rouge">for</code></a></li>
-      <li><a href="/ru/essentials/loops/topic">Переменная темы</a></li>
-      <li><a href="/ru/essentials/loops/postfix-for">Постфиксная форма <code class="language-plaintext highlighter-rouge">for</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="больше-о-типах">Больше о типах</h4>
-<ul>
-  <li><a href="/ru/essentials/coercion">Приведение типов данных</a>
-    <ul>
-      <li><a href="/ru/essentials/coercion/what">Интроспекция с помощью <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-      <li><a href="/ru/essentials/coercion/methods">Приведение типов с помощью методов приведения типов</a></li>
-      <li><a href="/ru/essentials/coercion/new">Приведение типов с помощью конструкторов типов</a></li>
-      <li><a href="/ru/essentials/coercion/prefixes">Приведение типов с помощью префиксных операторов</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/typed-variables">Типизированные переменные</a>
-    <ul>
-      <li><a href="/ru/essentials/typed-variables/type-constraints">Ограничения типов</a></li>
-      <li><a href="/ru/essentials/typed-variables/using-of">Использование <code class="language-plaintext highlighter-rouge">of</code></a></li>
-      <li><a href="/ru/essentials/typed-variables/coercion">Приведение типов для типизированных переменных</a></li>
-      <li><a href="/ru/essentials/typed-variables/allomorphs">Алломорфы</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/positionals">Позиционные типы данных</a>
-    <ul>
-      <li><a href="/ru/essentials/positionals/arrays">Массивы</a></li>
-      <li><a href="/ru/essentials/positionals/nested-arrays">Вложенные массивы</a></li>
-      <li><a href="/ru/essentials/positionals/args-array">Массив <code class="language-plaintext highlighter-rouge">@*ARGS</code></a></li>
-      <li><a href="/ru/essentials/positionals/interpolating-arrays">Интерполяция массивов</a></li>
-      <li><a href="/ru/essentials/positionals/lists">Списки</a></li>
-      <li><a href="/ru/essentials/positionals/quoting-string-arrays">Взятие в кавычки массивов строк</a></li>
-      <li><a href="/ru/essentials/positionals/subscripting-ranges">Индексирование интервалов</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/associatives">Ассоциативные типы данных</a>
-    <ul>
-      <li><a href="/ru/essentials/associatives/pairs">Пары</a></li>
-      <li><a href="/ru/essentials/associatives/hashes">Словари</a></li>
-      <li><a href="/ru/essentials/associatives/nested-hashes">Вложенные словари</a></li>
-      <li><a href="/ru/essentials/associatives/interpolating-hashes">Интерполяция словарей</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="основы-функций">Основы функций</h4>
-<ul>
-  <li><a href="/ru/essentials/functions">Создание и вызов функций</a>
-    <ul>
-      <li><a href="/ru/essentials/functions/identifiers">Имена функций</a></li>
-      <li><a href="/ru/essentials/functions/function-parameters">Параметры функций</a></li>
-      <li><a href="/ru/essentials/functions/return-result">Возврат результата</a></li>
-      <li><a href="/ru/essentials/functions/positional-parameters">Позиционные параметры</a></li>
-      <li><a href="/ru/essentials/functions/named-parameters">Именованные параметры</a></li>
-      <li><a href="/ru/essentials/functions/default-values">Значения по умолчанию</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/more-on-functions">Больше о функциях</a>
-    <ul>
-      <li><a href="/ru/essentials/more-on-functions/mind-the-space">Внимание к пробелам</a></li>
-      <li><a href="/ru/essentials/more-on-functions/typed-parameters">Типизированные параметры</a></li>
-      <li><a href="/ru/essentials/more-on-functions/return-type">Тип возвращаемого значения</a></li>
-      <li><a href="/ru/essentials/more-on-functions/multi-functions">Мульти-функции</a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/built-in-functions-for-printing">Встроенные функции для вывода</a>
-    <ul>
-      <li><a href="/ru/essentials/built-in-functions-for-printing/say"><code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/ru/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a></li>
-      <li><a href="/ru/essentials/built-in-functions-for-printing/put"><code class="language-plaintext highlighter-rouge">put</code></a></li>
-      <li><a href="/ru/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/ru/essentials/the-main-function">Функция <code class="language-plaintext highlighter-rouge">MAIN</code></a>
-    <ul>
-      <li><a href="/ru/essentials/the-main-function/reading-command-line-arguments">Чтение аргументов командной строки</a></li>
-      <li><a href="/ru/essentials/the-main-function/multi-main-functions">Несколько функций <code class="language-plaintext highlighter-rouge">MAIN</code></a></li>
-      <li><a href="/ru/essentials/the-main-function/using-unit-sub">Использование <code class="language-plaintext highlighter-rouge">unit sub</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<center>•</center>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Эта страница автоматически переведена с помощью ChatGPT 4o. <a href="/">Оригинальный текст на английском языке.</a></p>
-
-  <p>Переводы этой страницы: <a href="/">English</a> • <a href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <a href="/it/">Italiano</a> • <a href="/lv/">Latviešu</a> • <a href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <strong>Русский</strong> • <a href="/uk/">Українська</a></p>
+          <section id="полный-курс-языка-программирования-raku" class="home-hero"
+data-markdown="1">
+<h1>Полный курс языка программирования Raku</h1>
+<p class="tagline">
+От самой первой строки кода до грамматик, конкурентности и веб-сервисов
+— практический курс из пяти частей с сотнями тестов и упражнений, чтобы
+отрабатывать каждый шаг.
+</p>
+<p class="cta-row">
+<a class="btn-primary" href="/ru/essentials/what-is-raku">Начать учиться
+→</a> <a class="btn-ghost" href="/ru/about-this-course">О курсе</a>
+</p>
+<p class="trust">
+Открытый исходный код · При поддержке
+<a href="https://www.perlfoundation.org">The Perl &amp; Raku
+Foundation</a>
+</p>
+</section>
+<div class="home-stats">
+<div class="stat">
+<span class="num">6</span><span class="label">частей</span>
 </div>
-
-<p>© 2021–2024 <a href="https://andreyshitov.com/">Андрей Шитов</a></p>
+<div class="stat">
+<span class="num">395</span><span class="label">тем</span>
+</div>
+<div class="stat">
+<span class="num">217</span><span class="label">тестов</span>
+</div>
+<div class="stat">
+<span class="num">396</span><span class="label">упражнений</span>
+</div>
+<div class="stat">
+<span class="num">1530</span><span class="label">страниц</span>
+</div>
+</div>
+<p class="section-label">
+Курс, часть за частью
+</p>
+<div class="course-map">
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">1</span>
+<a class="part-title" href="/ru/essentials">Основы Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Начните здесь. Установите компилятор, а затем изучите переменные и
+типы данных, порядок выполнения и свои первые подпрограммы — фундамент
+для всего дальнейшего.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/intro">Первое знакомство с Raku</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/what-is-raku">Что такое Raku</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/compilers">Компиляторы</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/raku-vs-rakudo">Raku, Rakudo и
+Raku++</a></li>
+<li><a href="/ru/essentials/the-rakudo-compiler">Компилятор
+Rakudo</a></li>
+<li><a href="/ru/essentials/how-to-install-rakudo">Как установить
+Rakudo</a></li>
+<li><a href="/ru/essentials/the-rakupp-compiler">Компилятор Raku++
+🆕</a></li>
+<li><a href="/ru/essentials/how-to-install-rakupp">Как установить Raku++
+🆕</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/getting-started">Написание и запуск программ</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/editors-and-ides">Текстовые редакторы и
+IDE</a></li>
+<li><a href="/ru/essentials/conventional-file-extensions">Стандартные
+расширения файлов</a></li>
+<li><a href="/ru/essentials/hello-world">Привет, Мир!</a></li>
+<li><a href="/ru/essentials/on-unicode">Заметки по использованию
+Юникода</a></li>
+<li><a href="/ru/essentials/running-programs">Запуск программ</a>
+<ul>
+<li><a href="/ru/essentials/running-programs/from-command-line">Запуск
+из командной строки</a></li>
+<li><a href="/ru/essentials/running-programs/from-repl">Запуск из
+REPL</a></li>
+<li><a href="/ru/essentials/running-programs/from-ide">Запуск из
+IDE</a></li>
+<li><a href="/ru/essentials/running-programs/using-docker">С помощью
+Docker</a></li>
+<li><a href="/ru/essentials/running-programs/using-online-services">С
+помощью онлайн сервисов</a></li>
+</ul></li>
+<li><a href="/ru/essentials/simple-input-output">Простой ввод и
+вывод</a>
+<ul>
+<li><a href="/ru/essentials/simple-input-output/say">Вывод с
+использованием <code>say</code></a></li>
+<li><a href="/ru/essentials/simple-input-output/prompt">Ввод с
+использованием <code>prompt</code></a></li>
+</ul></li>
+<li><a href="/ru/essentials/comments">Комментарии</a>
+<ul>
+<li><a href="/ru/essentials/comments/single-line">Однострочные
+комментарии</a></li>
+<li><a href="/ru/essentials/comments/multi-line">Многострочные
+комментарии</a></li>
+<li><a href="/ru/essentials/comments/embedded">Вложенные
+комментарии</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/variables">Основы переменных и типов данных</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/scalar-variables">Скалярные переменные</a>
+<ul>
+<li><a
+href="/ru/essentials/scalar-variables/declaring-a-variable">Объявление
+переменной</a></li>
+<li><a
+href="/ru/essentials/scalar-variables/assigning-a-value">Присвоение
+значения</a></li>
+<li><a
+href="/ru/essentials/scalar-variables/declaration-with-initialization">Объявление
+с инициализацией</a></li>
+<li><a
+href="/ru/essentials/scalar-variables/defined-or-operator">Оператор
+присвоено-или</a></li>
+<li><a href="/ru/essentials/scalar-variables/identifiers">Имена
+переменных</a></li>
+</ul></li>
+<li><a href="/ru/essentials/strings">Строки</a>
+<ul>
+<li><a href="/ru/essentials/strings/string-concatenation">Конкатенация
+строк</a></li>
+<li><a href="/ru/essentials/strings/variable-interpolation">Интерполяция
+переменных</a></li>
+<li><a href="/ru/essentials/strings/code-interpolation">Интерполяция
+кода</a></li>
+<li><a
+href="/ru/essentials/strings/escaping-special-characters">Экранирование
+специальных символов</a></li>
+<li><a href="/ru/essentials/strings/string-length">Длина строки</a></li>
+</ul></li>
+<li><a href="/ru/essentials/numbers">Числа</a>
+<ul>
+<li><a href="/ru/essentials/numbers/integers">Целые числа</a></li>
+<li><a href="/ru/essentials/numbers/rats">Рациональные числа</a></li>
+<li><a href="/ru/essentials/numbers/numeric">Числа с плавающей
+точкой</a></li>
+<li><a href="/ru/essentials/numbers/operations">Операции с
+числами</a></li>
+</ul></li>
+<li><a href="/ru/essentials/booleans">Булев тип</a>
+<ul>
+<li><a href="/ru/essentials/booleans/operations">Логические
+операции</a></li>
+<li><a
+href="/ru/essentials/booleans/boolean-operations-other-types">Логические
+операции с другими типами</a></li>
+</ul></li>
+<li><a href="/ru/essentials/ranges">Интервалы</a>
+<ul>
+<li><a href="/ru/essentials/ranges/excluding-endpoints">Исключение
+концов интервала</a></li>
+<li><a
+href="/ru/essentials/ranges/matching-against-a-range">Сопоставление с
+интервалом</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/control-flow">Основы порядка выполнения</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/code-blocks">Блоки кода</a>
+<ul>
+<li><a href="/ru/essentials/code-blocks/lexical-scope">Лексическая
+область видимости</a></li>
+<li><a href="/ru/essentials/code-blocks/global-variables">Глобальные
+переменные</a></li>
+<li><a href="/ru/essentials/code-blocks/local-variables">Локальные
+переменные</a></li>
+</ul></li>
+<li><a href="/ru/essentials/conditional-checks">Проверка условий</a>
+<ul>
+<li><a href="/ru/essentials/conditional-checks/if"><code>if</code>
+блоки</a></li>
+<li><a href="/ru/essentials/conditional-checks/else"><code>else</code>
+блоки</a></li>
+<li><a href="/ru/essentials/conditional-checks/elsif">Использование
+<code>elsif</code></a></li>
+<li><a href="/ru/essentials/conditional-checks/unless">Использование
+<code>unless</code></a></li>
+<li><a
+href="/ru/essentials/conditional-checks/modifiers"><code>if</code> и
+<code>unless</code> как модификаторы инструкций</a></li>
+<li><a
+href="/ru/essentials/conditional-checks/comparing-numbers">Сравнение
+чисел</a></li>
+<li><a
+href="/ru/essentials/conditional-checks/comparing-strings">Сравнение
+строк</a></li>
+<li><a
+href="/ru/essentials/conditional-checks/ternary-operator">Тернарный
+оператор</a></li>
+</ul></li>
+<li><a href="/ru/essentials/loops">Циклы</a>
+<ul>
+<li><a href="/ru/essentials/loops/while">Использование
+<code>while</code></a></li>
+<li><a href="/ru/essentials/loops/until">Использование
+<code>until</code></a></li>
+<li><a href="/ru/essentials/loops/repeat">Использование
+<code>repeat</code></a></li>
+<li><a href="/ru/essentials/loops/modifiers"><code>while</code> и
+<code>until</code> как модификаторы инструкций</a></li>
+<li><a href="/ru/essentials/loops/loop"><code>loop</code> с тремя
+инструкциями</a></li>
+<li><a href="/ru/essentials/loops/infinite-loops">Бесконечные
+циклы</a></li>
+<li><a href="/ru/essentials/loops/for">Циклы <code>for</code></a></li>
+<li><a href="/ru/essentials/loops/topic">Переменная темы</a></li>
+<li><a href="/ru/essentials/loops/postfix-for">Постфиксная форма
+<code>for</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/more-about-types">Больше о типах</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/coercion">Приведение типов данных</a>
+<ul>
+<li><a href="/ru/essentials/coercion/what">Интроспекция с помощью
+<code>WHAT</code></a></li>
+<li><a href="/ru/essentials/coercion/methods">Приведение типов с помощью
+методов приведения типов</a></li>
+<li><a href="/ru/essentials/coercion/new">Приведение типов с помощью
+конструкторов типов</a></li>
+<li><a href="/ru/essentials/coercion/prefixes">Приведение типов с
+помощью префиксных операторов</a></li>
+</ul></li>
+<li><a href="/ru/essentials/typed-variables">Типизированные
+переменные</a>
+<ul>
+<li><a
+href="/ru/essentials/typed-variables/type-constraints">Ограничения
+типов</a></li>
+<li><a href="/ru/essentials/typed-variables/using-of">Использование
+<code>of</code></a></li>
+<li><a href="/ru/essentials/typed-variables/coercion">Приведение типов
+для типизированных переменных</a></li>
+<li><a
+href="/ru/essentials/typed-variables/allomorphs">Алломорфы</a></li>
+</ul></li>
+<li><a href="/ru/essentials/positionals">Позиционные типы данных</a>
+<ul>
+<li><a href="/ru/essentials/positionals/arrays">Массивы</a></li>
+<li><a href="/ru/essentials/positionals/nested-arrays">Вложенные
+массивы</a></li>
+<li><a href="/ru/essentials/positionals/args-array">Массив
+<code>@*ARGS</code></a></li>
+<li><a
+href="/ru/essentials/positionals/interpolating-arrays">Интерполяция
+массивов</a></li>
+<li><a href="/ru/essentials/positionals/lists">Списки</a></li>
+<li><a href="/ru/essentials/positionals/quoting-string-arrays">Взятие в
+кавычки массивов строк</a></li>
+<li><a
+href="/ru/essentials/positionals/subscripting-ranges">Индексирование
+интервалов</a></li>
+</ul></li>
+<li><a href="/ru/essentials/associatives">Ассоциативные типы данных</a>
+<ul>
+<li><a href="/ru/essentials/associatives/pairs">Пары</a></li>
+<li><a href="/ru/essentials/associatives/hashes">Словари</a></li>
+<li><a href="/ru/essentials/associatives/nested-hashes">Вложенные
+словари</a></li>
+<li><a
+href="/ru/essentials/associatives/interpolating-hashes">Интерполяция
+словарей</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/essentials/functions-essentials">Основы функций</a>
+</summary>
+<ul>
+<li><a href="/ru/essentials/functions">Создание и вызов функций</a>
+<ul>
+<li><a href="/ru/essentials/functions/identifiers">Имена
+функций</a></li>
+<li><a href="/ru/essentials/functions/function-parameters">Параметры
+функций</a></li>
+<li><a href="/ru/essentials/functions/return-result">Возврат
+результата</a></li>
+<li><a href="/ru/essentials/functions/positional-parameters">Позиционные
+параметры</a></li>
+<li><a href="/ru/essentials/functions/named-parameters">Именованные
+параметры</a></li>
+<li><a href="/ru/essentials/functions/default-values">Значения по
+умолчанию</a></li>
+</ul></li>
+<li><a href="/ru/essentials/more-on-functions">Больше о функциях</a>
+<ul>
+<li><a href="/ru/essentials/more-on-functions/mind-the-space">Внимание к
+пробелам</a></li>
+<li><a
+href="/ru/essentials/more-on-functions/typed-parameters">Типизированные
+параметры</a></li>
+<li><a href="/ru/essentials/more-on-functions/return-type">Тип
+возвращаемого значения</a></li>
+<li><a
+href="/ru/essentials/more-on-functions/multi-functions">Мульти-функции</a></li>
+</ul></li>
+<li><a href="/ru/essentials/built-in-functions-for-printing">Встроенные
+функции для вывода</a>
+<ul>
+<li><a
+href="/ru/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/ru/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/ru/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/ru/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/ru/essentials/the-main-function">Функция
+<code>MAIN</code></a>
+<ul>
+<li><a
+href="/ru/essentials/the-main-function/reading-command-line-arguments">Чтение
+аргументов командной строки</a></li>
+<li><a
+href="/ru/essentials/the-main-function/multi-main-functions">Несколько
+функций <code>MAIN</code></a></li>
+<li><a
+href="/ru/essentials/the-main-function/using-unit-sub">Использование
+<code>unit sub</code></a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">2</span>
+<a class="part-title" href="/ru/advanced">Продвинутые темы Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Погружаемся глубже: контейнеры и контексты, полный набор встроенных
+типов и операторов, расширенные возможности подпрограмм, а также
+упаковка кода в модули с тестами и документацией.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/debugging">Отладка</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/representations">Преобразование значений в
+текст</a>
+<ul>
+<li><a href="/ru/advanced/representations/gist">Метод
+<code>.gist</code></a></li>
+<li><a href="/ru/advanced/representations/str">Метод
+<code>.Str</code></a></li>
+<li><a href="/ru/advanced/representations/raku-method">Метод
+<code>.raku</code></a></li>
+<li><a href="/ru/advanced/representations/choosing">Выбор подходящего
+метода</a></li>
+</ul></li>
+<li><a href="/ru/advanced/dd">Отладка с помощью <code>dd</code></a>
+<ul>
+<li><a href="/ru/advanced/dd/variables">Вывод переменных</a></li>
+<li><a href="/ru/advanced/dd/functions">Сигнатура функции</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/containers-overview">Контейнеры</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/containers">Понимание контейнеров
+Raku</a></li>
+<li><a href="/ru/advanced/scalar-containers">Скалярные контейнеры</a>
+<ul>
+<li><a href="/ru/advanced/scalar-containers/types">Типы данных и
+скалярные контейнеры</a></li>
+<li><a
+href="/ru/advanced/scalar-containers/type-constraints">Ограничения
+типов</a></li>
+<li><a href="/ru/advanced/scalar-containers/default">Значения по
+умолчанию</a></li>
+<li><a href="/ru/advanced/scalar-containers/proxying">Проксирование
+вызова методов</a></li>
+</ul></li>
+<li><a href="/ru/advanced/ordered-containers">Упорядоченные
+контейнеры</a>
+<ul>
+<li><a href="/ru/advanced/ordered-containers/arrays">Массивы</a></li>
+<li><a href="/ru/advanced/ordered-containers/lists">Списки</a></li>
+<li><a href="/ru/advanced/ordered-containers/binding">Привязка с помощью
+<code>:=</code></a></li>
+<li><a href="/ru/advanced/ordered-containers/flattening">Сглаживание и
+элементизация</a></li>
+</ul></li>
+<li><a href="/ru/advanced/contexts">Контексты</a>
+<ul>
+<li><a href="/ru/advanced/contexts/coercion-contexts">Числовой,
+строковый и булев контекст</a></li>
+<li><a href="/ru/advanced/contexts/item-and-list">Элементный и списковый
+контекст</a></li>
+</ul></li>
+<li><a href="/ru/advanced/subscript-adverbs">Наречия индексации</a>
+<ul>
+<li><a
+href="/ru/advanced/subscript-adverbs/exists-and-delete">Существование и
+удаление</a></li>
+<li><a href="/ru/advanced/subscript-adverbs/kv-and-pairs">Ключи,
+значения и пары</a></li>
+</ul></li>
+<li><a href="/ru/advanced/special-variables">Специальные и динамические
+переменные</a>
+<ul>
+<li><a href="/ru/advanced/special-variables/twigils">Твигилы</a></li>
+<li><a
+href="/ru/advanced/special-variables/dynamic-variables">Динамические
+переменные</a></li>
+<li><a href="/ru/advanced/special-variables/built-in">Встроенные
+специальные переменные</a></li>
+</ul></li>
+<li><a href="/ru/advanced/introspection">Интроспекция с помощью МОП</a>
+<ul>
+<li><a href="/ru/advanced/introspection/what"><code>WHAT</code> и
+<code>^name</code></a></li>
+<li><a href="/ru/advanced/introspection/var"><code>VAR</code></a></li>
+<li><a href="/ru/advanced/introspection/who-how"><code>WHO</code> и
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/built-in-types">Подробнее о встроенных типах</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/integers">Целые числа</a>
+<ul>
+<li><a href="/ru/advanced/integers/number-bases">Системы
+счисления</a></li>
+<li><a href="/ru/advanced/integers/methods">Методы целых чисел</a></li>
+</ul></li>
+<li><a href="/ru/advanced/native-types">Нативные типы</a>
+<ul>
+<li><a href="/ru/advanced/native-types/machine-types">Типы машинного
+уровня</a></li>
+<li><a href="/ru/advanced/native-types/sized-types">Типы с фиксированным
+размером и переполнение</a></li>
+</ul></li>
+<li><a href="/ru/advanced/strings">Строки</a>
+<ul>
+<li><a href="/ru/advanced/strings/searching">Поиск в строках</a></li>
+<li><a href="/ru/advanced/strings/splitting">Разделение и
+объединение</a></li>
+</ul></li>
+<li><a href="/ru/advanced/quoting">Конструкции кавычек</a>
+<ul>
+<li><a href="/ru/advanced/quoting/q-qq-big-q">q, qq и Q</a></li>
+<li><a href="/ru/advanced/quoting/adverbs">Наречия кавычек</a></li>
+<li><a href="/ru/advanced/quoting/heredocs">Heredoc-строки</a></li>
+</ul></li>
+<li><a href="/ru/advanced/date-and-time">Дата и время</a>
+<ul>
+<li><a href="/ru/advanced/date-and-time/arithmetic">Арифметика
+дат</a></li>
+<li><a href="/ru/advanced/date-and-time/time">Работа со
+временем</a></li>
+</ul></li>
+<li><a href="/ru/advanced/sets-bags-mixes">Множества, мультимножества и
+смеси</a>
+<ul>
+<li><a href="/ru/advanced/sets-bags-mixes/operations">Операции над
+множествами</a></li>
+<li><a href="/ru/advanced/sets-bags-mixes/bags">Мультимножества и
+смеси</a></li>
+</ul></li>
+<li><a href="/ru/advanced/sequences">Последовательности</a>
+<ul>
+<li><a href="/ru/advanced/sequences/patterns">Паттерны
+последовательностей</a></li>
+<li><a href="/ru/advanced/sequences/lazy">Ленивые и бесконечные
+последовательности</a></li>
+</ul></li>
+<li><a href="/ru/advanced/enumerations">Перечисления</a>
+<ul>
+<li><a href="/ru/advanced/enumerations/defining">Определение
+перечисления</a></li>
+<li><a href="/ru/advanced/enumerations/values-and-keys">Значения и
+ключи</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/operators">Операторы</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/operator-types">Типы операторов Raku</a></li>
+<li><a href="/ru/advanced/operators-overview">Обзор поведения
+операторов</a></li>
+<li><a href="/ru/advanced/metaoperators">Метаоператоры</a>
+<ul>
+<li><a href="/ru/advanced/metaoperators/reduction">Метаоператоры
+свёртки</a></li>
+<li><a href="/ru/advanced/metaoperators/zip">Метаоператоры zip</a></li>
+<li><a href="/ru/advanced/metaoperators/more">Перекрёстные, гипер- и
+отрицающие</a></li>
+</ul></li>
+<li><a href="/ru/advanced/user-defined-operators">Пользовательские
+операторы</a></li>
+<li><a href="/ru/advanced/traits-pragmas">Трейты и прагмы</a>
+<ul>
+<li><a href="/ru/advanced/traits-pragmas/built-in-traits">Встроенные
+трейты</a></li>
+<li><a href="/ru/advanced/traits-pragmas/writing-a-trait">Написание
+трейта</a></li>
+<li><a href="/ru/advanced/traits-pragmas/pragmas">Прагмы</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/control-flow">Порядок выполнения</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/phasers">Фазеры</a></li>
+<li><a href="/ru/advanced/block-phasers">Фазеры блоков</a></li>
+<li><a href="/ru/advanced/given-when"><code>given</code> и
+<code>when</code></a>
+<ul>
+<li><a href="/ru/advanced/given-when/matching">Сопоставление диапазонов,
+типов и условий</a></li>
+</ul></li>
+<li><a href="/ru/advanced/gather-take"><code>gather</code> и
+<code>take</code></a></li>
+<li><a href="/ru/advanced/statement-prefixes">Префиксы инструкций</a>
+<ul>
+<li><a href="/ru/advanced/statement-prefixes/do-prefix">do и значение
+блока</a></li>
+<li><a href="/ru/advanced/statement-prefixes/lazy-eager">Ленивость и
+немедленность</a></li>
+<li><a href="/ru/advanced/statement-prefixes/sink-quietly">sink и
+quietly</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/subroutines">Подпрограммы</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/signatures">Сигнатуры</a></li>
+<li><a href="/ru/advanced/whatever">Звёздочка Whatever</a></li>
+<li><a href="/ru/advanced/colon-calls">Вызов через двоеточие</a></li>
+<li><a href="/ru/advanced/multiple-dispatch">Мультиметоды</a></li>
+<li><a href="/ru/advanced/more-on-main">Подробнее о MAIN</a></li>
+<li><a href="/ru/advanced/nested-subroutines">Вложенные
+подпрограммы</a></li>
+<li><a href="/ru/advanced/anonymous-subroutines">Анонимные
+подпрограммы</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/modules">Модули</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/modules-basics">Основы модулей</a>
+<ul>
+<li><a href="/ru/advanced/modules-basics/creating-modules">Создание
+модулей</a></li>
+<li><a href="/ru/advanced/modules-basics/using-modules">Использование
+модулей</a></li>
+<li><a href="/ru/advanced/modules-basics/importing">Импорт</a></li>
+<li><a href="/ru/advanced/modules-basics/export-tags">Теги
+экспорта</a></li>
+</ul></li>
+<li><a href="/ru/advanced/module-introspection">Интроспекция
+модулей</a></li>
+<li><a href="/ru/advanced/installing-modules">Установка модулей из
+сети</a></li>
+<li><a href="/ru/advanced/packages">Пакеты и пространства имён</a>
+<ul>
+<li><a href="/ru/advanced/packages/packages-modules">Пакеты и
+модули</a></li>
+<li><a href="/ru/advanced/packages/namespaces">Пространства имён и
+our</a></li>
+</ul></li>
+<li><a href="/ru/advanced/distributing">Распространение модулей</a>
+<ul>
+<li><a href="/ru/advanced/distributing/meta6">Файл META6</a></li>
+<li><a href="/ru/advanced/distributing/zef-ecosystem">zef и
+экосистема</a></li>
+<li><a href="/ru/advanced/distributing/fez">Публикация с помощью
+fez</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/advanced/testing-and-docs">Тестирование и документация
+🆕</a>
+</summary>
+<ul>
+<li><a href="/ru/advanced/testing">Тестирование</a>
+<ul>
+<li><a href="/ru/advanced/testing/test-module">Модуль Test</a></li>
+<li><a href="/ru/advanced/testing/comparisons">Сравнения и
+планы</a></li>
+<li><a href="/ru/advanced/testing/running-tests">Запуск тестов</a></li>
+</ul></li>
+<li><a href="/ru/advanced/pod">Документирование кода</a>
+<ul>
+<li><a href="/ru/advanced/pod/pod-basics">Основы Pod</a></li>
+<li><a href="/ru/advanced/pod/pod-formatting">Форматирование и
+код</a></li>
+<li><a href="/ru/advanced/pod/rendering-pod">Рендеринг Pod</a></li>
+<li><a href="/ru/advanced/pod/accessing-pod">Доступ к Pod</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">3</span>
+<a class="part-title" href="/ru/oop">Объекты, ввод-вывод и
+исключения</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Объектно-ориентированное программирование с классами и ролями, чтение
+и запись ввода и вывода и взаимодействие с внешними программами, а также
+обработка ошибок с помощью исключений.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/ru/oop/classes-and-objects">Классы и объекты</a>
+</summary>
+<ul>
+<li><a href="/ru/oop/classes">Классы</a>
+<ul>
+<li><a href="/ru/oop/classes/type-object">Объекты типа и
+экземпляры</a></li>
+</ul></li>
+<li><a href="/ru/oop/attributes">Атрибуты</a>
+<ul>
+<li><a href="/ru/oop/attributes/read-write">Атрибуты для чтения и
+записи</a></li>
+<li><a href="/ru/oop/attributes/defaults">Значения по умолчанию</a></li>
+</ul></li>
+<li><a href="/ru/oop/methods">Методы</a>
+<ul>
+<li><a href="/ru/oop/methods/private-attributes">Приватные
+атрибуты</a></li>
+<li><a href="/ru/oop/methods/parameters">Методы с параметрами</a></li>
+<li><a href="/ru/oop/methods/calling-methods">Методы, вызывающие
+методы</a></li>
+</ul></li>
+<li><a href="/ru/oop/class-methods">Методы класса</a></li>
+<li><a href="/ru/oop/subs-vs-methods">Подпрограммы и методы</a></li>
+<li><a href="/ru/oop/inheritance">Наследование</a>
+<ul>
+<li><a href="/ru/oop/inheritance/overriding">Переопределение
+методов</a></li>
+</ul></li>
+<li><a href="/ru/oop/roles">Роли</a>
+<ul>
+<li><a href="/ru/oop/roles/multiple-roles">Композиция нескольких
+ролей</a></li>
+<li><a href="/ru/oop/roles/mixin">Добавление роли объекту</a></li>
+</ul></li>
+<li><a href="/ru/oop/object-introspection">Интроспекция объектов</a>
+<ul>
+<li><a href="/ru/oop/object-introspection/inheritance-chain">Цепочка
+наследования</a></li>
+</ul></li>
+<li><a href="/ru/oop/mop">Протокол метаобъектов 🆕</a>
+<ul>
+<li><a href="/ru/oop/mop/meta-methods">Метаметоды</a></li>
+<li><a href="/ru/oop/mop/adding-methods">Добавление методов во время
+выполнения</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/oop/input-and-output">Ввод и вывод</a>
+</summary>
+<ul>
+<li><a href="/ru/oop/standard-streams">Стандартные потоки</a></li>
+<li><a href="/ru/oop/files">Работа с файлами</a>
+<ul>
+<li><a href="/ru/oop/files/appending">Добавление в файл</a></li>
+</ul></li>
+<li><a href="/ru/oop/directories">Работа с каталогами</a>
+<ul>
+<li><a href="/ru/oop/directories/listing">Просмотр содержимого
+каталога</a></li>
+</ul></li>
+<li><a href="/ru/oop/deleting">Удаление файлов и каталогов</a></li>
+<li><a href="/ru/oop/file-handles">Файловые дескрипторы</a></li>
+<li><a href="/ru/oop/external-programs">Запуск внешних программ 🆕</a>
+<ul>
+<li><a href="/ru/oop/external-programs/run-and-shell">run и
+shell</a></li>
+<li><a href="/ru/oop/external-programs/capturing-output">Захват
+вывода</a></li>
+<li><a href="/ru/oop/external-programs/the-proc-object">Объект
+Proc</a></li>
+<li><a href="/ru/oop/external-programs/environment">Переменные
+окружения</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/oop/exceptions">Исключения</a>
+</summary>
+<ul>
+<li><a href="/ru/oop/try">Перехват исключений с помощью
+<code>try</code></a>
+<ul>
+<li><a href="/ru/oop/try/deferred-errors">Не всякая ошибка возникает
+сразу</a></li>
+</ul></li>
+<li><a href="/ru/oop/catch">Фазер <code>CATCH</code></a></li>
+<li><a href="/ru/oop/exception-objects">Объекты исключений</a></li>
+<li><a href="/ru/oop/failures">Мягкие сбои</a></li>
+<li><a href="/ru/oop/custom-exceptions">Собственные исключения</a></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">4</span>
+<a class="part-title" href="/ru/regexes">Регулярные выражения и
+грамматики</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Сопоставляйте текст с помощью регулярных выражений, а затем вырастите
+из них полноценные грамматики с классами действий, превращающими
+структурированный ввод в данные.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/ru/regexes/regex-basics">Регулярные выражения</a>
+</summary>
+<ul>
+<li><a href="/ru/regexes/literals">Литералы и классы символов</a>
+<ul>
+<li><a href="/ru/regexes/literals/literal-text">Сопоставление
+литерального текста</a></li>
+<li><a href="/ru/regexes/literals/character-classes">Классы
+символов</a></li>
+<li><a href="/ru/regexes/literals/predefined-classes">Предопределённые
+классы символов</a></li>
+</ul></li>
+<li><a href="/ru/regexes/matching">Сопоставление строк</a>
+<ul>
+<li><a href="/ru/regexes/matching/smartmatch">Оператор умного
+сопоставления</a></li>
+<li><a href="/ru/regexes/matching/match-object">Объект
+совпадения</a></li>
+</ul></li>
+<li><a href="/ru/regexes/quantifiers">Квантификаторы</a>
+<ul>
+<li><a href="/ru/regexes/quantifiers/star-plus-question">Звёздочка, плюс
+и вопросительный знак</a></li>
+<li><a href="/ru/regexes/quantifiers/times-quantifier">Квантификатор
+количества</a></li>
+<li><a href="/ru/regexes/quantifiers/greedy-frugal">Жадное и экономное
+сопоставление</a></li>
+</ul></li>
+<li><a href="/ru/regexes/captures">Захваты</a>
+<ul>
+<li><a href="/ru/regexes/captures/positional">Позиционные
+захваты</a></li>
+<li><a href="/ru/regexes/captures/named">Именованные захваты</a></li>
+<li><a href="/ru/regexes/captures/non-capturing">Незахватывающие
+группы</a></li>
+</ul></li>
+<li><a href="/ru/regexes/alternations">Альтернативы</a>
+<ul>
+<li><a href="/ru/regexes/alternations/alternation">Альтернатива</a></li>
+<li><a href="/ru/regexes/alternations/longest-token">Самый длинный токен
+и первое совпадение</a></li>
+</ul></li>
+<li><a href="/ru/regexes/anchors">Якоря</a>
+<ul>
+<li><a href="/ru/regexes/anchors/string-anchors">Начало и конец
+строки</a></li>
+<li><a href="/ru/regexes/anchors/word-boundaries">Границы слов</a></li>
+</ul></li>
+<li><a href="/ru/regexes/assertions">Утверждения просмотра</a>
+<ul>
+<li><a href="/ru/regexes/assertions/lookahead">Просмотр вперёд</a></li>
+<li><a href="/ru/regexes/assertions/lookbehind">Просмотр назад</a></li>
+</ul></li>
+<li><a href="/ru/regexes/adverbs">Наречия</a>
+<ul>
+<li><a href="/ru/regexes/adverbs/ignorecase">Сопоставление без учёта
+регистра</a></li>
+<li><a href="/ru/regexes/adverbs/adverb-scope">Область действия
+наречия</a></li>
+<li><a href="/ru/regexes/adverbs/global">Глобальное
+сопоставление</a></li>
+<li><a href="/ru/regexes/adverbs/sigspace">Значимые пробелы</a></li>
+</ul></li>
+<li><a href="/ru/regexes/substitution">Подстановка и замена</a>
+<ul>
+<li><a href="/ru/regexes/substitution/s-operator">Оператор
+подстановки</a></li>
+<li><a href="/ru/regexes/substitution/captures-in-replacement">Захваты в
+замене</a></li>
+<li><a
+href="/ru/regexes/substitution/transliteration">Транслитерация</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/regexes/grammars">Грамматики</a>
+</summary>
+<ul>
+<li><a href="/ru/regexes/what-is-a-grammar">Что такое грамматика</a>
+<ul>
+<li><a href="/ru/regexes/what-is-a-grammar/named-regexes">Именованные
+регулярные выражения</a></li>
+<li><a href="/ru/regexes/what-is-a-grammar/grammar-keyword">Ключевое
+слово grammar</a></li>
+</ul></li>
+<li><a href="/ru/regexes/creating-grammars">Создание грамматик</a>
+<ul>
+<li><a href="/ru/regexes/creating-grammars/top-rule">Правило
+TOP</a></li>
+<li><a href="/ru/regexes/creating-grammars/parse-method">Разбор с
+помощью parse</a></li>
+</ul></li>
+<li><a href="/ru/regexes/tokens-and-rules">Токены и правила</a>
+<ul>
+<li><a href="/ru/regexes/tokens-and-rules/three-kinds">regex, token и
+rule</a></li>
+<li><a href="/ru/regexes/tokens-and-rules/rule-sigspace">Значимые
+пробелы в правилах</a></li>
+</ul></li>
+<li><a href="/ru/regexes/grammar-inheritance">Грамматики, классы и
+наследование</a>
+<ul>
+<li><a
+href="/ru/regexes/grammar-inheritance/grammars-are-classes">Грамматики —
+это классы</a></li>
+<li><a href="/ru/regexes/grammar-inheritance/proto-tokens">Proto-токены
+и альтернативы</a></li>
+</ul></li>
+<li><a href="/ru/regexes/make-and-made">Дерево разбора, make и made</a>
+<ul>
+<li><a href="/ru/regexes/make-and-made/match-tree">Дерево
+совпадения</a></li>
+<li><a href="/ru/regexes/make-and-made/make-made">make и made</a></li>
+</ul></li>
+<li><a href="/ru/regexes/action-classes">Классы действий</a>
+<ul>
+<li><a href="/ru/regexes/action-classes/writing-actions">Написание
+класса действий</a></li>
+<li><a href="/ru/regexes/action-classes/inline-vs-class">Встроенные
+действия и классы действий</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">5</span>
+<a class="part-title" href="/ru/paradigms">Функциональное, конкурентное,
+реактивное и веб-программирование</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Соберите всё вместе: функциональное, конкурентное и реактивное
+программирование, а в завершение — сокеты, HTTP и создание
+веб-сервисов.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/ru/paradigms/functional">Функциональное программирование</a>
+</summary>
+<ul>
+<li><a href="/ru/paradigms/recursion">Рекурсия</a>
+<ul>
+<li><a href="/ru/paradigms/recursion/recursive-sub">Рекурсивная
+подпрограмма</a></li>
+<li><a href="/ru/paradigms/recursion/base-case">Базовый случай</a></li>
+<li><a href="/ru/paradigms/recursion/multi-recursion">Рекурсия с
+multi-подпрограммами</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/higher-order">Функции высшего порядка</a>
+<ul>
+<li><a href="/ru/paradigms/higher-order/passing-subs">Передача
+подпрограмм</a></li>
+<li><a href="/ru/paradigms/higher-order/returning-subs">Возврат
+подпрограмм</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/closures">Лямбды и замыкания</a>
+<ul>
+<li><a href="/ru/paradigms/closures/lambdas">Лямбды</a></li>
+<li><a href="/ru/paradigms/closures/capturing-state">Замыкания</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/reduction">Свёртка</a>
+<ul>
+<li><a href="/ru/paradigms/reduction/reduction-metaop">Метаоператор
+свёртки</a></li>
+<li><a href="/ru/paradigms/reduction/reduce-routine">Процедура
+reduce</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/feeds">Конвейеры данных</a>
+<ul>
+<li><a href="/ru/paradigms/feeds/feed-operator">Оператор
+конвейера</a></li>
+<li><a href="/ru/paradigms/feeds/chaining-feeds">Цепочки
+конвейеров</a></li>
+<li><a href="/ru/paradigms/feeds/backward-feed">Обратный
+конвейер</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/generators">Генераторы</a>
+<ul>
+<li><a href="/ru/paradigms/generators/gather-take">gather и
+take</a></li>
+<li><a href="/ru/paradigms/generators/lazy-gather">Ленивый
+gather</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/iterators">Итераторы</a>
+<ul>
+<li><a href="/ru/paradigms/iterators/iterator-protocol">Протокол
+итератора</a></li>
+<li><a href="/ru/paradigms/iterators/writing-an-iterator">Написание
+итератора</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/lazy">Ленивые и бесконечные
+последовательности</a>
+<ul>
+<li><a href="/ru/paradigms/lazy/sequence-operator">Оператор
+последовательности</a></li>
+<li><a href="/ru/paradigms/lazy/infinite-sequences">Бесконечные
+последовательности</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/paradigms/concurrent">Конкурентное программирование</a>
+</summary>
+<ul>
+<li><a href="/ru/paradigms/junctions">Джанкшены</a>
+<ul>
+<li><a href="/ru/paradigms/junctions/building-junctions">Создание
+джанкшенов</a></li>
+<li><a
+href="/ru/paradigms/junctions/autothreading">Автопоточность</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/threads">Потоки</a>
+<ul>
+<li><a href="/ru/paradigms/threads/starting-a-thread">Запуск
+потока</a></li>
+<li><a href="/ru/paradigms/threads/joining-threads">Присоединение
+потоков</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/promises">Промисы</a>
+<ul>
+<li><a href="/ru/paradigms/promises/start-and-await">start и
+await</a></li>
+<li><a href="/ru/paradigms/promises/then-and-combinators">Цепочки и
+комбинирование</a></li>
+<li><a href="/ru/paradigms/promises/making-a-promise">Собственный промис
+🆕</a></li>
+<li><a href="/ru/paradigms/promises/promise-status">Статус промиса
+🆕</a></li>
+<li><a href="/ru/paradigms/promises/vows">Обещания (Vow) 🆕</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/channels">Каналы</a>
+<ul>
+<li><a href="/ru/paradigms/channels/send-and-receive">Отправка и
+получение</a></li>
+<li><a href="/ru/paradigms/channels/closing-a-channel">Закрытие
+канала</a></li>
+<li><a href="/ru/paradigms/channels/receiving-past-the-end">Чтение после
+конца</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/hyper-race">hyper и race 🆕</a>
+<ul>
+<li><a href="/ru/paradigms/hyper-race/hyper">Параллельный map с
+hyper</a></li>
+<li><a href="/ru/paradigms/hyper-race/race">Неупорядоченный параллелизм
+с race</a></li>
+<li><a href="/ru/paradigms/hyper-race/batch-and-degree">Настройка с
+:batch и :degree</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/paradigms/reactive">Реактивное программирование</a>
+</summary>
+<ul>
+<li><a href="/ru/paradigms/supplies">Supply</a>
+<ul>
+<li><a href="/ru/paradigms/supplies/tapping-a-supply">Подключение к
+supply</a></li>
+<li><a href="/ru/paradigms/supplies/transforming">Преобразование
+supply</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/supply-kinds">Живые supply и supply по
+требованию</a>
+<ul>
+<li><a href="/ru/paradigms/supply-kinds/on-demand-supplies">Supply по
+требованию</a></li>
+<li><a href="/ru/paradigms/supply-kinds/live-supplies">Живые
+supply</a></li>
+<li><a href="/ru/paradigms/supply-kinds/live-in-action">Живые supply в
+действии</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/react-whenever">react и whenever</a>
+<ul>
+<li><a href="/ru/paradigms/react-whenever/the-react-block">Блок
+react</a></li>
+<li><a href="/ru/paradigms/react-whenever/whenever">whenever</a></li>
+<li><a href="/ru/paradigms/react-whenever/named-supplies">Supply,
+объявленные снаружи</a></li>
+<li><a href="/ru/paradigms/react-whenever/whenever-vs-when">whenever и
+when</a></li>
+<li><a href="/ru/paradigms/react-whenever/two-timers">Два
+таймера</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/await">await</a>
+<ul>
+<li><a href="/ru/paradigms/await/awaiting-promises">Ожидание
+промиса</a></li>
+<li><a href="/ru/paradigms/await/waiting-for-completion">Ожидание
+завершения</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/paradigms/web">Веб-программирование</a>
+</summary>
+<ul>
+<li><a href="/ru/paradigms/connections">Удалённые соединения</a>
+<ul>
+<li><a href="/ru/paradigms/connections/opening-a-socket">Открытие
+сокета</a></li>
+<li><a href="/ru/paradigms/connections/sending-receiving">Отправка и
+получение</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/http-server">Простой HTTP-сервер</a>
+<ul>
+<li><a href="/ru/paradigms/http-server/listening">Ожидание
+соединений</a></li>
+<li><a href="/ru/paradigms/http-server/responding">Ответ на
+запрос</a></li>
+<li><a href="/ru/paradigms/http-server/serving-requests">Обслуживание
+множества запросов</a></li>
+</ul></li>
+<li><a href="/ru/paradigms/cro">Основы Cro</a>
+<ul>
+<li><a href="/ru/paradigms/cro/what-is-cro">Что такое Cro</a></li>
+<li><a href="/ru/paradigms/cro/a-cro-route">Маршрут Cro</a></li>
+<li><a href="/ru/paradigms/cro/route-with-parameter">Маршрут с
+параметром</a></li>
+<li><a href="/ru/paradigms/cro/client-modules">Использование клиентского
+модуля</a></li>
+<li><a href="/ru/paradigms/cro/public-apis">Запрос к публичному
+API</a></li>
+<li><a href="/ru/paradigms/cro/websockets">WebSocket</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card part-pseudo">
+<h3 class="part-head">
+<span class="pnum pnum-star">★</span>
+<a class="part-title" href="/ru/final-test">Финальный тест</a>
+</h3>
+<p>Сто вопросов по частям с 1 по 5 с мгновенной проверкой ответов —
+итоговая проверка того, насколько хорошо усвоен весь курс.</p>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">6</span>
+<a class="part-title" href="/ru/addendum">Приложение: комплексные
+упражнения 🆕</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Итоговая подборка более сложных упражнений, опирающихся на весь курс.
+Каждое требует больше одной идеи, а многие сочетают приёмы из разных
+частей. Все они используют только уже пройденные возможности — ничего
+нового учить не нужно, зато есть где попрактиковаться.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/ru/addendum/working-with-data">Работа с данными</a>
+</summary>
+<ul>
+<li><a href="/ru/addendum/numbers-math">Числа и математика</a></li>
+<li><a href="/ru/addendum/text-strings">Текст и строки</a></li>
+<li><a href="/ru/addendum/collections">Списки, массивы и хеши</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/addendum/flow-and-functions">Порядок выполнения и
+функции</a>
+</summary>
+<ul>
+<li><a href="/ru/addendum/control-logic">Порядок выполнения и
+логика</a></li>
+<li><a href="/ru/addendum/subs-functional">Подпрограммы и функциональный
+стиль</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/addendum/types-and-text-machines">Типы и текстовые
+машины</a>
+</summary>
+<ul>
+<li><a href="/ru/addendum/objects-classes">Объекты и классы</a></li>
+<li><a href="/ru/addendum/regex-grammars">Регулярные выражения и
+грамматики</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/ru/addendum/bringing-it-together">Собираем всё вместе</a>
+</summary>
+<ul>
+<li><a href="/ru/addendum/mini-projects">Смешанные мини-проекты</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="home-foot" data-markdown="1">
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/">English</a> • <a
+href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <a
+href="/it/">Italiano</a> • <a href="/lv/">Latviešu</a> • <a
+href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> •
+<strong>Русский</strong> • <a href="/uk/">Українська</a></p>
+</div>
+</div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
+<p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

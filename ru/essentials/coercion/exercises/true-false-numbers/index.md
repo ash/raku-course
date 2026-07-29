@@ -1,5 +1,5 @@
 ---
-title: Упражнение «Истинные и ложные целые числа»
+title: Числа True и False
 ---
 
 {% include menu.html %}

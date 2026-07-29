@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Perimeter of a rectangle'
+title: Периметр прямоугольника
 ---
 
 {% include menu.html %}

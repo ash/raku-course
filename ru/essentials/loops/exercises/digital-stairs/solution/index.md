@@ -19,7 +19,7 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Найдите программу в файле [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Найдите программу в файле [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
 ## Вывод
 

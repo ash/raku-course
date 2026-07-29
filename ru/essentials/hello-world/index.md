@@ -1,5 +1,5 @@
 ---
-title: Привет, Мир! в Raku
+title: Привет, Мир!
 ---
 
 {% include menu.html %}

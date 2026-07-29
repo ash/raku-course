@@ -1,5 +1,5 @@
 ---
-title: Викторина 1 — Хэши
+title: Тест 1: Словари
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Решение для ’Таблица покупок‘
+title: 'Решение: Таблица покупок'
 ---
 
 {% include menu.html %}
@@ -32,7 +32,7 @@ $chairs` не должна быть чем-то, что вызывает воп�
 мы также видим экранированный символ доллара `\$`, как и другие переменные,
 которые мы хотим интерполировать.
 
-🦋 Вы можете найти исходный код в файле [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Вы можете найти исходный код в файле [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Вывод
 

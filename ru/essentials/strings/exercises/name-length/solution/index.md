@@ -1,5 +1,5 @@
 ---
-title: Решение для ’Длина имени‘
+title: 'Решение: Длина имени'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say $name.chars;
 ```
 
-🦋 Вы можете найти исходный код в файле [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/name-length.raku).
+🦋 Вы можете найти исходный код в файле [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/name-length.raku).
 
 ## Вывод
 

@@ -1,5 +1,5 @@
 ---
-title: Печать ряда чисел
+title: Вывод серии чисел
 ---
 
 {% include menu.html %}

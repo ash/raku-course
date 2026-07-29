@@ -1,5 +1,5 @@
 ---
-title: Булев тип в Raku
+title: Булев тип
 ---
 
 {% include menu.html %}

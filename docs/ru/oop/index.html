@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Объекты, ввод-вывод и исключения — Курс Raku</title>
+    <meta property="og:title" content="Объекты, ввод-вывод и исключения — Курс Raku" />
+    <meta property="og:locale" content="ru" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/ru/">Курс языка программирования Raku</a></p>
+<h1 id="part-3.-объекты-ввод-вывод-и-исключения">Part 3. Объекты,
+ввод-вывод и исключения</h1>
+<p>Объектно-ориентированное программирование с классами и ролями, чтение
+и запись ввода и вывода и взаимодействие с внешними программами, а также
+обработка ошибок с помощью исключений.</p>
+<h4 id="классы-и-объекты"><a href="/ru/oop/classes-and-objects">Классы и
+объекты</a></h4>
+<ul>
+<li><a href="/ru/oop/classes">Классы</a> — <span class="has-e"><a
+href="/ru/oop/classes/exercises">2 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/classes/type-object">Объекты типа и экземпляры</a>
+— <span class="has-q"><a href="/ru/oop/classes/type-object#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/attributes">Атрибуты</a> — <span class="has-e"><a
+href="/ru/oop/attributes/exercises">4 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/attributes/read-write">Атрибуты для чтения и
+записи</a></li>
+<li><a href="/ru/oop/attributes/defaults">Значения по умолчанию</a> —
+<span class="has-q"><a href="/ru/oop/attributes/defaults#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/methods">Методы</a> — <span class="has-e"><a
+href="/ru/oop/methods/exercises">4 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/methods/private-attributes">Приватные
+атрибуты</a></li>
+<li><a href="/ru/oop/methods/parameters">Методы с параметрами</a></li>
+<li><a href="/ru/oop/methods/calling-methods">Методы, вызывающие
+методы</a> — <span class="has-q"><a
+href="/ru/oop/methods/calling-methods#practice">1 quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/class-methods">Методы класса</a> — <span
+class="has-q"><a href="/ru/oop/class-methods#practice">1 quiz</a></span>
+and <span class="has-e"><a href="/ru/oop/class-methods/exercises">2
+exercises</a></span></li>
+<li><a href="/ru/oop/subs-vs-methods">Подпрограммы и методы</a> — <span
+class="has-q"><a href="/ru/oop/subs-vs-methods#practice">1
+quiz</a></span> and <span class="has-e"><a
+href="/ru/oop/subs-vs-methods/exercises">2 exercises</a></span></li>
+<li><a href="/ru/oop/inheritance">Наследование</a> — <span
+class="has-e"><a href="/ru/oop/inheritance/exercises">3
+exercises</a></span>
+<ul>
+<li><a href="/ru/oop/inheritance/overriding">Переопределение методов</a>
+— <span class="has-q"><a
+href="/ru/oop/inheritance/overriding#practice">1 quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/roles">Роли</a> — <span class="has-e"><a
+href="/ru/oop/roles/exercises">3 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/roles/multiple-roles">Композиция нескольких
+ролей</a></li>
+<li><a href="/ru/oop/roles/mixin">Добавление роли объекту</a> — <span
+class="has-q"><a href="/ru/oop/roles/mixin#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/object-introspection">Интроспекция объектов</a> —
+<span class="has-e"><a href="/ru/oop/object-introspection/exercises">2
+exercises</a></span>
+<ul>
+<li><a href="/ru/oop/object-introspection/inheritance-chain">Цепочка
+наследования</a> — <span class="has-q"><a
+href="/ru/oop/object-introspection/inheritance-chain#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/mop">Протокол метаобъектов 🆕</a> — <span
+class="has-e"><a href="/ru/oop/mop/exercises">4 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/mop/meta-methods">Метаметоды</a> — <span
+class="has-q"><a href="/ru/oop/mop/meta-methods#practice">1
+quiz</a></span></li>
+<li><a href="/ru/oop/mop/adding-methods">Добавление методов во время
+выполнения</a></li>
+</ul></li>
+</ul>
+<h4 id="ввод-и-вывод"><a href="/ru/oop/input-and-output">Ввод и
+вывод</a></h4>
+<ul>
+<li><a href="/ru/oop/standard-streams">Стандартные потоки</a> — <span
+class="has-q"><a href="/ru/oop/standard-streams#practice">1
+quiz</a></span> and <span class="has-e"><a
+href="/ru/oop/standard-streams/exercises">3 exercises</a></span></li>
+<li><a href="/ru/oop/files">Работа с файлами</a> — <span
+class="has-e"><a href="/ru/oop/files/exercises">3 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/files/appending">Добавление в файл</a> — <span
+class="has-q"><a href="/ru/oop/files/appending#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/directories">Работа с каталогами</a> — <span
+class="has-e"><a href="/ru/oop/directories/exercises">3
+exercises</a></span>
+<ul>
+<li><a href="/ru/oop/directories/listing">Просмотр содержимого
+каталога</a> — <span class="has-q"><a
+href="/ru/oop/directories/listing#practice">1 quiz</a></span></li>
+</ul></li>
+<li><a href="/ru/oop/deleting">Удаление файлов и каталогов</a> — <span
+class="has-q"><a href="/ru/oop/deleting#practice">1 quiz</a></span> and
+<span class="has-e"><a href="/ru/oop/deleting/exercises">2
+exercises</a></span></li>
+<li><a href="/ru/oop/file-handles">Файловые дескрипторы</a> — <span
+class="has-q"><a href="/ru/oop/file-handles#practice">1 quiz</a></span>
+and <span class="has-e"><a href="/ru/oop/file-handles/exercises">4
+exercises</a></span></li>
+<li><a href="/ru/oop/external-programs">Запуск внешних программ 🆕</a> —
+<span class="has-e"><a href="/ru/oop/external-programs/exercises">4
+exercises</a></span>
+<ul>
+<li><a href="/ru/oop/external-programs/run-and-shell">run и shell</a> —
+<span class="has-q"><a
+href="/ru/oop/external-programs/run-and-shell#practice">1
+quiz</a></span></li>
+<li><a href="/ru/oop/external-programs/capturing-output">Захват
+вывода</a></li>
+<li><a href="/ru/oop/external-programs/the-proc-object">Объект Proc</a>
+— <span class="has-q"><a
+href="/ru/oop/external-programs/the-proc-object#practice">1
+quiz</a></span></li>
+<li><a href="/ru/oop/external-programs/environment">Переменные
+окружения</a> — <span class="has-q"><a
+href="/ru/oop/external-programs/environment#practice">1
+quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="исключения"><a href="/ru/oop/exceptions">Исключения</a></h4>
+<ul>
+<li><a href="/ru/oop/try">Перехват исключений с помощью
+<code>try</code></a> — <span class="has-q"><a
+href="/ru/oop/try#practice">1 quiz</a></span> and <span class="has-e"><a
+href="/ru/oop/try/exercises">3 exercises</a></span>
+<ul>
+<li><a href="/ru/oop/try/deferred-errors">Не всякая ошибка возникает
+сразу</a></li>
+</ul></li>
+<li><a href="/ru/oop/catch">Фазер <code>CATCH</code></a> — <span
+class="has-q"><a href="/ru/oop/catch#practice">1 quiz</a></span> and
+<span class="has-e"><a href="/ru/oop/catch/exercises">3
+exercises</a></span></li>
+<li><a href="/ru/oop/exception-objects">Объекты исключений</a> — <span
+class="has-q"><a href="/ru/oop/exception-objects#practice">1
+quiz</a></span> and <span class="has-e"><a
+href="/ru/oop/exception-objects/exercises">3 exercises</a></span></li>
+<li><a href="/ru/oop/failures">Мягкие сбои</a> — <span class="has-q"><a
+href="/ru/oop/failures#practice">1 quiz</a></span> and <span
+class="has-e"><a href="/ru/oop/failures/exercises">3
+exercises</a></span></li>
+<li><a href="/ru/oop/custom-exceptions">Собственные исключения</a> —
+<span class="has-q"><a href="/ru/oop/custom-exceptions#practice">1
+quiz</a></span> and <span class="has-e"><a
+href="/ru/oop/custom-exceptions/exercises">3 exercises</a></span></li>
+</ul>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
+<p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор — <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

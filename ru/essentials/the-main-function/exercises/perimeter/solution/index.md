@@ -19,7 +19,7 @@ sub MAIN($a, $b = $a) {
 }
 ```
 
-🦋 Найдите программу в файле [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Найдите программу в файле [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
 ## Вывод
 

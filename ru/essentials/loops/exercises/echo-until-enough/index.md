@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Echo until enough'
+title: Вывод, пока не хватит
 ---
 
 {% include menu.html %}

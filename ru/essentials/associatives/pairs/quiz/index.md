@@ -1,5 +1,5 @@
 ---
-title: Викторина — Пары
+title: 'Тест: Пары'
 ---
 
 {% include menu.html %}

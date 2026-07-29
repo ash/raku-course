@@ -1,5 +1,5 @@
 ---
-title: Решение для ‘Распределение яблок’
+title: 'Решение: Распределение яблок'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Each person gets $gets apple(s).";
 say "There are $remains apple(s) remaining.";
 ```
 
-🦋 Вы можете найти исходный код в файле [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Вы можете найти исходный код в файле [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Вывод
 

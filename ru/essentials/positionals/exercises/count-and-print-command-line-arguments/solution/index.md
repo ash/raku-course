@@ -1,5 +1,5 @@
 ---
-title: Решение задачи «Подсчет и вывод аргументов командной строки»
+title: 'Решение: Подсчет и вывод аргументов командной строки'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Найдите программу в файле [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Найдите программу в файле [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Вывод
 

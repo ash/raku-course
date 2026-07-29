@@ -1,5 +1,5 @@
 ---
-title: 'Понимание цикла `for`'
+title: Понимание циклов `for`
 ---
 
 {% include menu.html %}

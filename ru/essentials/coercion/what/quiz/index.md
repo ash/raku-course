@@ -1,5 +1,5 @@
 ---
-title: 'Викторина: Что возвращает WHAT?'
+title: 'Тест: Что возвращает WHAT?'
 ---
 
 {% include menu.html %}

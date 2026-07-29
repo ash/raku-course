@@ -1,5 +1,5 @@
 ---
-title: Решение для ’Ответ на главный вопрос жизни, вселенной и всего такого‘
+title: 'Решение: Ответ на главный вопрос жизни, вселенной и всего такого'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 Вы можете найти исходный код в файле [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Вы можете найти исходный код в файле [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Вывод
 

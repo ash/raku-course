@@ -1,5 +1,5 @@
 ---
-title: Длина строки в Raku
+title: Длина строки
 ---
 
 {% include menu.html %}

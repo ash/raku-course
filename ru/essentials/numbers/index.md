@@ -1,5 +1,5 @@
 ---
-title: Числа в Raku
+title: Числа
 ---
 
 {% include menu.html %}

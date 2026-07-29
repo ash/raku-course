@@ -1,5 +1,5 @@
 ---
-title: Простой ввод и вывод в Raku
+title: Простой ввод и вывод
 ---
 
 {% include menu.html %}

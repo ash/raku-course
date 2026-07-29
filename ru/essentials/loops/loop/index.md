@@ -1,5 +1,5 @@
 ---
-title: loop
+title: '`loop` с тремя инструкциями'
 ---
 
 {% include menu.html %}
