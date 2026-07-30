@@ -1,5 +1,5 @@
 ---
-title: Quiz — Funktionsnamen
+title: Quiz — Funktionsnamen
 ---
 
 {% include menu.html %}

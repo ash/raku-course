@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Einkaufstabelle'
+title: Einkaufstabelle
 ---
 
 {% include menu.html %}

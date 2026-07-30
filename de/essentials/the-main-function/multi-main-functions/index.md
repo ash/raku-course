@@ -1,5 +1,5 @@
 ---
-title: Mehrere MAIN-Funktionen
+title: Mehrere `MAIN`-Funktionen
 ---
 
 {% include menu.html %}

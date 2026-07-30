@@ -1,5 +1,5 @@
 ---
-title: Quiz — Interpolating arrays
+title: Quiz — Interpolation von Arrays
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Quoting string arrays
+title: Quiz 1 — Zitieren von Zeichenketten-Arrays
 ---
 
 {% include menu.html %}

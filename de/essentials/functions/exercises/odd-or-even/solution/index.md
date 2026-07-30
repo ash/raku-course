@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Gerade oder ungerade'
+title: 'Solution: Ungerade oder gerade'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Finde das Programm in der Datei [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Finde das Programm in der Datei [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Ausgabe
 

@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Einfache Multi-Funktionen
+title: Quiz 1 — Einfache Multi-Funktionen
 ---
 
 {% include menu.html %}

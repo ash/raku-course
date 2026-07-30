@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Die MAIN-Funktion'
+title: 'Exercises: Die `MAIN`-Funktion'
 ---
 
 {% include menu.html %}

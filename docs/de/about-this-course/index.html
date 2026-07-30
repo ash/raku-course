@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Über diesen Kurs</title>
-    <meta property="og:title" content="Über diesen Kurs" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Über diesen Kurs — Raku-Kurs</title>
+    <meta property="og:title" content="Über diesen Kurs — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Über diesen Kurs</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,149 +88,194 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a></p>
-
+          <p><a href="/de/">Raku-Kurs</a></p>
 <h1 id="über-diesen-kurs">Über diesen Kurs</h1>
-
 <p>Willkommen zum Kurs der Programmiersprache Raku!</p>
-
-<p>Dieser Kurs deckt alle Hauptaspekte der Sprache ab, die Sie in Ihrer täglichen Praxis benötigen. Der Kurs besteht aus fünf Teilen, die die Theorie erklären und viele praktische Aufgaben bieten. Es wird davon ausgegangen, dass Sie versuchen, die Aufgaben selbst zu lösen, bevor Sie sich die Lösung ansehen.</p>
-
-<p>Wenn Sie gerade erst anfangen, Raku zu lernen, wird empfohlen, alle Teile in der Reihenfolge durchzugehen, in der sie im Inhaltsverzeichnis aufgeführt sind. Wenn Sie bereits etwas Übung haben und spezifisches Training wünschen, können Sie mit dem gewünschten Abschnitt beginnen.</p>
-
-<h2 id="struktur">Struktur</h2>
-
-<p>Der Kurs ist in fünf Teile unterteilt, von denen jeder mehrere Abschnitte umfasst, die wiederum eine Reihe von Themen enthalten (oder, einfach gesagt, verschiedene Seiten mit ihrer eigenen URL).</p>
-
-<p>Der Kurs umfasst Materialien der folgenden vier Typen:</p>
-
+<p>Dieser Kurs behandelt alle wichtigen Seiten der Sprache, die Sie in
+der täglichen Praxis brauchen. Er besteht aus fünf Teilen, die die
+Theorie erklären und viele praktische Aufgaben bieten. Gedacht ist er
+so, dass Sie die Aufgaben zuerst selbst zu lösen versuchen, bevor Sie
+sich die Lösung ansehen.</p>
+<p>Wenn Sie gerade erst mit Raku anfangen, gehen Sie am besten alle
+Teile in der Reihenfolge des Inhaltsverzeichnisses durch. Haben Sie
+schon etwas Erfahrung und möchten gezielt etwas üben, können Sie ohne
+Weiteres direkt beim gewünschten Abschnitt einsteigen.</p>
+<h2 id="aufbau">Aufbau</h2>
+<p>Der Kurs ist in fünf Teile gegliedert, die jeweils mehrere Abschnitte
+enthalten, welche ihrerseits aus einer Reihe von Themen bestehen (oder,
+schlicht gesagt, aus einzelnen Seiten mit eigener URL).</p>
+<p>Der Kurs enthält Material von vier Arten:</p>
 <ul>
-  <li>— Theorie, die das aktuelle Thema abdeckt</li>
-  <li>— Quizfragen, die Ihr Verständnis der Theorie des Themas und/oder des Abschnitts testen</li>
-  <li>— Übungen für das Material des gesamten Abschnitts</li>
-  <li>— Antworten zu den Übungen</li>
+<li>— Theorie zum jeweiligen Thema</li>
+<li>— Quizfragen, die prüfen, wie gut Sie die Theorie des Themas und des
+Abschnitts verstanden haben</li>
+<li>— Übungen zum Stoff des gesamten Abschnitts</li>
+<li>— Lösungen zu den Übungen</li>
 </ul>
-
-<p>Manchmal bieten praktische Aufgaben (sowohl Quizfragen als auch Übungen) zusätzliche Informationen zum Thema, daher wird empfohlen, sie nicht zu überspringen, um das Beste aus dem Kurs herauszuholen.</p>
-
-<p>Unter jeder Seite befindet sich ein Navigationsblock, den Sie verwenden können, um den gesamten Kurs zu durchlaufen. Sie können auch jederzeit über das Breadcrumb-Menü oben auf der Seite zum gewünschten Abschnitt springen.</p>
-
-<p>Während die Navigation Sie in einer bestimmten Reihenfolge durch die Aufgaben führt, können Sie diese mehr oder weniger in zufälliger Reihenfolge innerhalb des aktuellen Abschnitts oder Themas lösen.</p>
-
-<h2 id="inhalte">Inhalte</h2>
-
-<p>Der Kurs umfasst fünf Teile:</p>
-
+<p>Die praktischen Aufgaben — sowohl die Quizfragen als auch die Übungen
+— liefern mitunter zusätzliche Informationen zum Thema; um den größten
+Nutzen aus dem Kurs zu ziehen, sollten Sie sie also besser nicht
+überspringen.</p>
+<p>Unter jeder Seite steht ein Navigationsblock, mit dem Sie den
+gesamten Kurs durchlaufen können. Außerdem gelangen Sie über den Pfad am
+Seitenanfang jederzeit zum gewünschten Abschnitt.</p>
+<p>Die Navigation führt Sie in einer bestimmten Reihenfolge durch die
+Aufgaben, innerhalb des aktuellen Abschnitts oder Themas können Sie sie
+aber weitgehend in beliebiger Reihenfolge bearbeiten.</p>
+<h2 id="inhalt">Inhalt</h2>
+<p>Der Kurs besteht aus fünf Teilen, die alle vollständig geschrieben
+und veröffentlicht sind:</p>
+<style>
+table td:first-child, table th:first-child { width: 99%; }
+table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; padding-left: 1.5em; }
+</style>
 <table>
-  <tbody>
-    <tr>
-      <td>N</td>
-      <td>Name</td>
-      <td>Status</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td><a href="/de/essentials">Raku-Grundlagen</a></td>
-      <td>Veröffentlicht</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><a href="/de/advanced">Fortgeschrittene Raku-Themen</a></td>
-      <td>In Bearbeitung<span id="ProgressBar">…</span></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Objektorientierte Programmierung in Raku</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Regexes und Grammatiken</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Funktionale, parallele und reaktive Programmierung</td>
-      <td> </td>
-    </tr>
-  </tbody>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 27%" />
+<col style="width: 20%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>Teil</th>
+<th style="text-align: right;">Themen</th>
+<th style="text-align: right;">Quiz</th>
+<th style="text-align: right;">Übungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/de/essentials">Raku-Grundlagen</a></td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr>
+<td><a href="/de/advanced">Fortgeschrittene Raku-Themen</a></td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">115</td>
+</tr>
+<tr>
+<td><a href="/de/oop">Objekte, E/A und Ausnahmen</a></td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td><a href="/de/regexes">Reguläre Ausdrücke und Grammatiken</a></td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr>
+<td><a href="/de/paradigms">Funktionale, nebenläufige, reaktive und
+Webprogrammierung</a></td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>★ <a href="/de/final-test">Der Abschlusstest</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><a href="/de/addendum">Anhang: erweiterte Übungen</a></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">50</td>
+</tr>
+</tbody>
 </table>
-
-<script>
-    let ProgressBar = document.getElementById('ProgressBar');
-    let current_progress = 0;
-    setInterval(function() {
-        current_progress++;
-        current_progress %= 6;
-
-        let bar = '';
-        for (let c = 0; c < current_progress; c++) {
-            bar += ',';
-        }
-        bar += '...';
-        for (let c = current_progress; c < 6; c++) {
-            bar += ',';
-        }
-        
-        bar = bar.substr(3, 3);
-        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
-        ProgressBar.innerHTML = bar;
-    }, 200);
-</script>
-
-<p>Derzeit ist der erste Teil vollständig geschrieben und veröffentlicht. Die anderen Teile sind in Bearbeitung. Beachten Sie, dass sich die URLs der verschiedenen Teile des Kurses in Zukunft leicht ändern können, da der Kurs noch in Entwicklung ist.</p>
-
-<p>Der erste Teil, „Raku-Grundlagen“, enthält:</p>
-
+<p>Nach den fünf Teilen folgt <strong>der Abschlusstest</strong> —
+hundert Fragen aus dem gesamten Kurs in einer Sitzung, ungefähr in der
+Reihenfolge, in der Sie den Stoff gelernt haben. Jede Antwort wird
+sofort geprüft, und am Ende erhalten Sie Ihr Ergebnis und einen Link,
+den Sie aufbewahren können, um Ihr Resultat zu teilen oder
+nachzuvollziehen.</p>
+<p>Der sechste Teil, der <strong>Anhang</strong>, ist eine eigene
+Sammlung anspruchsvollerer, umfangreicherer Übungen, die sich auf den
+gesamten Kurs zugleich stützen — genau die Art von Übung, zu der man
+greift, sobald der Kernstoff durchgearbeitet ist.</p>
+<p>Bedenken Sie, dass der Kurs noch verfeinert wird, die URLs der
+einzelnen Teile können sich also künftig leicht ändern. In den bereits
+veröffentlichten Themen können neue Übungen und Quizfragen erscheinen,
+und die theoretischen Teile können für einen besseren Aufbau des Kurses
+leicht angepasst werden.</p>
+<h2 id="was-sie-brauchen">Was Sie brauchen</h2>
+<p>Um dem Kurs zu folgen und die Übungen zu lösen, brauchen Sie einen
+funktionierenden Compiler. Dafür gibt es mehrere Möglichkeiten:</p>
 <ul>
-  <li>91 Themen</li>
-  <li>73 Quizfragen</li>
-  <li>65 Übungen</li>
+<li>— Probieren Sie den eingebauten
+<a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku-Spielplatz</a>
+direkt im Browser aus, ganz ohne Installation, oder</li>
+<li>— Installieren Sie den Rakudo-Compiler, oder</li>
+<li>— Nutzen Sie Onlinedienste, oder</li>
+<li>— Nutzen Sie Docker-Container</li>
 </ul>
-
-<p>Neue Übungen und Quizfragen können in den bereits veröffentlichten Themen erscheinen, ebenso können die theoretischen Teile leicht modifiziert werden, um den besten Fluss des Kurses zu erreichen.</p>
-
-<h2 id="voraussetzungen">Voraussetzungen</h2>
-
-<p>Um dem Kurs zu folgen und Übungen durchzuführen, benötigen Sie einen funktionierenden Compiler. Es gibt eine Reihe von Optionen:</p>
-
-<ul>
-  <li>— Installieren Sie den Rakudo-Compiler oder das Rakudo Star-Paket oder</li>
-  <li>— Verwenden Sie Online-Dienste oder</li>
-  <li>— Verwenden Sie Docker-Container</li>
-</ul>
-
-<p>Die verschiedenen Installationsoptionen werden zu Beginn des ersten Teils beschrieben.</p>
-
+<p>Die verschiedenen Installationsmöglichkeiten werden zu Beginn des
+ersten Teils beschrieben.</p>
 <h2 id="über-den-autor">Über den Autor</h2>
-
-<p>Der Kurs wurde von <a href="https://andrewshitov.com">Andrew Shitov</a> geschrieben, der die Entwicklung von Raku seit etwa 2000 verfolgt (als es noch als Perl 6 bekannt war). Er ist Autor einer Reihe von <a href="https://andrewshitov.com/books">Büchern über das Programmieren in Raku</a>. Das Kursmaterial basiert auf täglicher Erfahrung, insbesondere auf Beiträgen zur <a href="https://perlweeklychallenge.org">The Weekly Challenge</a> und der Überprüfung der Lösungen anderer Teilnehmer sowie auf der Erfahrung, Raku als Hauptsprache für die Website <a href="https://covid.observer">Covid Observer</a> zu verwenden.</p>
-
-<h2 id="beitrag-nutzungsbedingungen-und-feedback">Beitrag, Nutzungsbedingungen und Feedback</h2>
-
-<p>Die Erstellung des Kurses wird durch ein Stipendium der <a href="https://www.perlfoundation.org">The Perl Foundation</a> unterstützt. Sie können den Kurs für das Selbststudium oder als eine Reihe von gebrauchsfertigen Materialien zum Unterrichten anderer verwenden. Die kommerzielle Nutzung in Klassen ist ohne Genehmigung erlaubt. Die Veröffentlichung des Kurses als separates Produkt muss zuerst mit dem Autor verhandelt werden.</p>
-
-<p>Die Quelldateien sind auf GitHub verfügbar: <a href="https://github.com/ash/raku-course">github.com/ash/raku-course</a>. Zögern Sie nicht, einen Pull-Request einzureichen, um mögliche Fehler oder Tippfehler zu korrigieren, oder erstellen Sie ein Issue auf GitHub, wenn Sie ein breiteres Thema diskutieren möchten. Sie können den Autor auch per <a href="mailto:andy@shitov.ru">E-Mail</a> kontaktieren.</p>
-
+<p>Der Kurs stammt von <a href="https://andrewshitov.com">Andrew
+Shitov</a>, der die Entwicklung von Raku seit etwa dem Jahr 2000
+verfolgt (damals hieß die Sprache noch Perl 6). Er ist Autor mehrerer <a
+href="https://andrewshitov.com/books">Bücher über das Programmieren in
+Raku</a>. Das Kursmaterial beruht auf täglicher Erfahrung, insbesondere
+auf der Teilnahme an <a href="https://perlweeklychallenge.org">The
+Weekly Challenge</a> und dem Durchsehen der Lösungen anderer Teilnehmer,
+sowie auf der Erfahrung mit Raku als Hauptsprache für die Website <a
+href="https://covid.observer">Covid Observer</a>.</p>
+<h2 id="mitwirken-nutzungsbedingungen-und-rückmeldungen">Mitwirken,
+Nutzungsbedingungen und Rückmeldungen</h2>
+<p>Die Entstehung des Kurses wird durch ein Stipendium der <a
+href="https://www.perlfoundation.org">Perl &amp; Raku Foundation</a>
+unterstützt. Sie dürfen den Kurs zum Selbststudium nutzen oder als
+fertiges Material, um andere zu unterrichten. Die kommerzielle Nutzung
+im Unterricht ist ohne gesonderte Erlaubnis gestattet. Eine
+Veröffentlichung des Kurses als eigenständiges Produkt ist vorab mit dem
+Autor abzustimmen.</p>
+<p>Die Quelldateien liegen auf GitHub: <a
+href="https://github.com/ash/raku-course">github.com/ash/raku-course</a>.
+Schicken Sie gern einen Pull Request, um Fehler oder Tippfehler zu
+beheben, oder legen Sie ein Issue auf GitHub an, wenn Sie etwas
+Grundsätzlicheres besprechen möchten. Sie erreichen den Autor auch per
+<a href="mailto:mail@andreyshitov.com">E-Mail</a>.</p>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>← <a href="/de/">Start</a> 
-  |  
-<a href="/de/essentials/what-is-raku">Was ist Raku</a> →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/about-this-course/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/about-this-course/">English</a> • <strong>Deutsch</strong> • <a href="/es/about-this-course/">Español</a> • <a href="/it/about-this-course/">Italiano</a> • <a href="/lv/about-this-course/">Latviešu</a> • <a href="/nl/about-this-course/">Nederlands</a> • <a href="/bg/about-this-course/">Български</a> • <a href="/ru/about-this-course/">Русский</a> • <a href="/uk/about-this-course/">Українська</a></p>
-</div>
+<p>← <a href="/de/">Start</a>   |   <a
+href="/de/essentials/what-is-raku">Was ist Raku</a> →</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

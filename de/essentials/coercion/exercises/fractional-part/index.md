@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Dezimalbruch'
+title: Bruchteile
 ---
 
 {% include menu.html %}

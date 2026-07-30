@@ -1,5 +1,5 @@
 ---
-title: Apfelverteilung
+title: Apfelteilung
 ---
 
 {% include menu.html %}

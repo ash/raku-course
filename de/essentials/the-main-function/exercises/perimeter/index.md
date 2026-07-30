@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Umfang eines Rechtecks'
+title: Umfang eines Rechtecks
 ---
 
 {% include menu.html %}

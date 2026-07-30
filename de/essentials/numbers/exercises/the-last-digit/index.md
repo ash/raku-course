@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Die letzte Ziffer'
+title: Die letzte Ziffer
 ---
 
 {% include menu.html %}

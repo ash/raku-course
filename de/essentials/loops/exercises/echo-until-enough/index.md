@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Echo bis genug'
+title: Echo bis genug
 ---
 
 {% include menu.html %}

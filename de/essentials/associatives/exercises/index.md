@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Assoziative Datentypen'
+title: 'Exercises: Assoziative Datentypen'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Hallo Welt!'
+title: Hallo, Welt!
 ---
 
 {% include menu.html %}

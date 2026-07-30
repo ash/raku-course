@@ -1,5 +1,5 @@
 ---
-title: Online-Dienste zur Ausführung von Raku verwenden
+title: Verwendung von Online-Diensten
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ Hier ist eine Liste einiger Dienste, die Raku unterstützen:
 * [glot.io](https://glot.io/new/raku)
 * [TIO](https://tio.run/#perl6)
 * [Repl.it](https://repl.it/new/raku) (erfordert vorheriges Einloggen)
-* [RakuPlay](https://rakudist.raku.org/play/) (verwendet eine Warteschlange)
+* [Raku Playground](https://fco.github.io/Raku-Playground/)
 
 Sie können auch [die Diskussion auf Reddit](https://www.reddit.com/r/rakulang/comments/kj63dq/glotio_now_supports_raku/ggxow6n/) für weitere Links und Kommentare zu verschiedenen Online-Diensten überprüfen.
 

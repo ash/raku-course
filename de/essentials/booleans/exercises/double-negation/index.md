@@ -1,5 +1,5 @@
 ---
-title: Übung 'Doppelte und dreifache Verneinungen’
+title: Doppelte Verneinung
 ---
 
 {% include menu.html %}

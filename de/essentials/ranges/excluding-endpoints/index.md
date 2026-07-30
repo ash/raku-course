@@ -1,5 +1,5 @@
 ---
-title: Ausschließen der Endpunkte eines Bereichs
+title: Endpunkte ausschließen
 ---
 
 {% include menu.html %}

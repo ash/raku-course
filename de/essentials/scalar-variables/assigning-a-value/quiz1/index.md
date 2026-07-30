@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Assigning a value
+title: Quiz 1: Zuweisen eines Wertes
 ---
 
 {% include menu.html %}

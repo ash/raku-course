@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Bruchteil'
+title: 'Solution: Bruchteile'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ my $n = 15.8972;
 say $n - $n.Int;
 ```
 
-🦋 Finden Sie das Programm in der Datei [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/fractional-part.raku).
+🦋 Finden Sie das Programm in der Datei [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/fractional-part.raku).
 
 ## Ausgabe
 

@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Hallo Welt!'
+title: 'Solution: Hallo, Welt!'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ sub MAIN() {
 }
 ```
 
-🦋 Finde das Programm in der Datei [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world.raku).
+🦋 Finde das Programm in der Datei [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world.raku).
 
 ## Code 2
 
@@ -23,7 +23,7 @@ unit sub MAIN;
 say 'Hallo, Welt!';
 ```
 
-🦋 Finde das Programm in der Datei [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world-unit.raku).
+🦋 Finde das Programm in der Datei [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world-unit.raku).
 
 ## Beispiel
 

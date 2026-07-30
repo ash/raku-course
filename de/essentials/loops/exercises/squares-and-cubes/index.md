@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Quadrate und Kuben in einer Schleife'
+title: Quadrate und Würfel in einer Schleife
 ---
 
 {% include menu.html %}

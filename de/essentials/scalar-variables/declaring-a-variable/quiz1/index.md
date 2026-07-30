@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Skalare Variablen
+title: Quiz 1: Deklarieren einer Variablen
 ---
 
 {% include menu.html %}

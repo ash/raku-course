@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Intervallfunktion'
+title: Intervallfunktion
 ---
 
 {% include menu.html %}

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Lösung für 'Dreifache Negation'</title>
-    <meta property="og:title" content="Lösung für 'Dreifache Negation'" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Lösung: Dreifache Verneinung — Raku-Kurs</title>
+    <meta property="og:title" content="Lösung: Dreifache Verneinung — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Lösung für 'Dreifache Negation'</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,91 +88,115 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/booleans/">Boolescher Typ</a> / <a href="/de/essentials/booleans/exercises/">Übungen</a> / <a href="/de/essentials/booleans/exercises/triple-negation">Dreifache Verneinung</a></p>
-
+          <p><a href="/de/">Raku-Kurs</a> / <a
+href="/de/essentials">Grundlagen</a> / <a
+href="/de/essentials/variables">Grundlagen zu Variablen und
+Datentypen</a> / <a href="/de/essentials/booleans">Boolescher Typ</a> /
+<a href="/de/essentials/booleans/exercises">Übungen</a> / <a
+href="/de/essentials/booleans/exercises/triple-negation">Dreifache
+Verneinung</a></p>
 <h1 id="lösung-dreifache-verneinung">Lösung: Dreifache Verneinung</h1>
-
-<p>Das im Task gezeigte Programm lässt sich nicht kompilieren und erfordert eine kleine Korrektur. Hier ist die korrekte und funktionierende Variante (Leerzeichen hinzugefügt, um <code class="language-plaintext highlighter-rouge">!</code> und <code class="language-plaintext highlighter-rouge">!!</code> zu trennen):</p>
-
+<p>Das im Task gezeigte Programm lässt sich nicht kompilieren und
+erfordert eine kleine Korrektur. Hier ist die korrekte und
+funktionierende Variante (Leerzeichen hinzugefügt, um <code>!</code> und
+<code>!!</code> zu trennen):</p>
 <h2 id="code">Code</h2>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="n">False</span>;
+<span class="nb">say</span> ! !!<span class="nv">$value</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="nb">False</span>;
-<span class="nb">say</span> ! !!<span class="nv">$value</span>;
-</pre></div>
-
-
-<p>🦋 Du kannst den vollständigen Code in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku">triple-negation.raku</a> finden.</p>
-
+<p>🦋 Du kannst den vollständigen Code in der Datei <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku">triple-negation.raku</a>
+finden.</p>
 <h2 id="ausgabe">Ausgabe</h2>
-
-<p>Das Programm gibt einen invertierten Booleschen Wert aus, wie du wahrscheinlich erwartet hast:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku triple-negation.raku
-<span class="go">True
-</span></code></pre></div></div>
-
+<p>Das Programm gibt einen invertierten Booleschen Wert aus, wie du
+wahrscheinlich erwartet hast:</p>
+<div class="highlight"><pre>$ raku triple-negation.raku
+True</pre></div>
 <h2 id="kommentare">Kommentare</h2>
-
-<p>Es war etwas unerwartet, dass das Programm mit drei Ausrufezeichen nicht kompiliert:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku triple-negation.raku
-<span class="go">===SORRY!=== Fehler beim Kompilieren von /Users/ash/raku-course/exercises/booleans/triple-negation.raku
+<p>Es war etwas unerwartet, dass das Programm mit drei Ausrufezeichen
+nicht kompiliert:</p>
+<div class="highlight"><pre>$ raku triple-negation.raku
+===SORRY!=== Fehler beim Kompilieren von /Users/ash/raku-course/exercises/booleans/triple-negation.raku
 Zwei Begriffe in Folge
 bei /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
-</span><span class="gp">------&gt;</span><span class="w"> </span>say <span class="o">!!!</span>⏏<span class="nv">$value</span><span class="p">;</span>
-<span class="go">    erwartet wurde einer der folgenden:
+------&gt; say !!!⏏$value;
+    erwartet wurde einer der folgenden:
         Infix
         Infix-Stoppzeichen
         Postfix
         Anweisungsende
         Anweisungsmodifikator
-        Anweisungsmodifikatorschleife
-</span></code></pre></div></div>
+        Anweisungsmodifikatorschleife</pre></div>
+<p>Ein zusätzliches Leerzeichen löst dieses Problem. Aber falle nicht in
+eine andere Falle. Betrachte das folgende Programm:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="n">False</span>;
+<span class="nb">say</span> !!! <span class="nv">$value</span>;</pre></div>
 
-<p>Ein zusätzliches Leerzeichen löst dieses Problem. Aber falle nicht in eine andere Falle. Betrachte das folgende Programm:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$value</span> = <span class="nb">False</span>;
-<span class="nb">say</span> !!! <span class="nv">$value</span>;
-</pre></div>
-
-
-<p>Dieses Programm kompiliert, endet jedoch mit der folgenden Meldung:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku triple-negation.raku
-<span class="go">False
-</span><span class="gp">    im Block &lt;unit&gt;</span><span class="w"> </span>bei exercises/booleans/triple-negation.raku Zeile 2
-</code></pre></div></div>
-
-<p>Dies geschieht, weil <code class="language-plaintext highlighter-rouge">!!!</code> ein spezieller Operator ist, um einen Teil des Codes als Platzhaltercode zu markieren. Wenn das Programm diesen Punkt erreicht, wird es beendet und gibt die Nachricht aus, die in unserem Fall der aktuelle Wert der Variablen <code class="language-plaintext highlighter-rouge">$value</code> war. Weitere Details findest du in 📖 <a href="https://docs.raku.org/routine/!!!">der Dokumentation</a>.</p>
-
+<p>Dieses Programm kompiliert, endet jedoch mit der folgenden
+Meldung:</p>
+<div class="highlight"><pre>$ raku triple-negation.raku
+False
+    im Block &lt;unit&gt; bei exercises/booleans/triple-negation.raku Zeile 2</pre></div>
+<p>Dies geschieht, weil <code>!!!</code> ein spezieller Operator ist, um
+einen Teil des Codes als Platzhaltercode zu markieren. Wenn das Programm
+diesen Punkt erreicht, wird es beendet und gibt die Nachricht aus, die
+in unserem Fall der aktuelle Wert der Variablen <code>$value</code> war.
+Weitere Details findest du in 📖 <a
+href="https://docs.raku.org/routine/!!!">der Dokumentation</a>.</p>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>←
-    <a href="/de/essentials/numbers">Zahlen</a>
-        / <a href="/de/essentials/numbers/operations">Operationen mit Zahlen</a>
-  |  
-    <a href="/de/essentials/ranges">Bereiche</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/booleans/exercises/triple-negation/solution/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/booleans/exercises/triple-negation/solution/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/booleans/exercises/triple-negation/solution/">Español</a> • <a href="/it/essentials/booleans/exercises/triple-negation/solution/">Italiano</a> • <a href="/lv/essentials/booleans/exercises/triple-negation/solution/">Latviešu</a> • <a href="/nl/essentials/booleans/exercises/triple-negation/solution/">Nederlands</a> • <a href="/bg/essentials/booleans/exercises/triple-negation/solution/">Български</a> • <a href="/ru/essentials/booleans/exercises/triple-negation/solution/">Русский</a> • <a href="/uk/essentials/booleans/exercises/triple-negation/solution/">Українська</a></p>
+<p>← <a
+href="/de/essentials/booleans/exercises/triple-negation">Dreifache
+Verneinung</a>   |   <a
+href="/de/essentials/booleans/quiz">Quiz: Boolesche Werte</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/booleans/exercises/triple-negation/solution">English</a>
+• <strong>Deutsch</strong> • <a
+href="/es/essentials/booleans/exercises/triple-negation/solution">Español</a>
+• <a
+href="/it/essentials/booleans/exercises/triple-negation/solution">Italiano</a>
+• <a
+href="/lv/essentials/booleans/exercises/triple-negation/solution">Latviešu</a>
+• <a
+href="/nl/essentials/booleans/exercises/triple-negation/solution">Nederlands</a>
+• <a
+href="/bg/essentials/booleans/exercises/triple-negation/solution">Български</a>
+• <a
+href="/ru/essentials/booleans/exercises/triple-negation/solution">Русский</a>
+• <a
+href="/uk/essentials/booleans/exercises/triple-negation/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

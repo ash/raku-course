@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Division durch Subtraktion'
+title: 'Solution: Division durch Subtraktion'
 ---
 
 {% include menu.html %}
@@ -23,7 +23,7 @@ while $a >= $b {
 say $n;
 ```
 
-🦋 Finde das Programm in der Datei [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/division-via-subtraction.raku).
+🦋 Finde das Programm in der Datei [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/division-via-subtraction.raku).
 
 ## Ausgabe
 

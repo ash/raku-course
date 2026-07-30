@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Schleifen'
+title: 'Exercises: Schleifen'
 ---
 
 {% include menu.html %}

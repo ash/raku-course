@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Umfang eines Rechtecks'
+title: 'Solution: Umfang eines Rechtecks'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ sub MAIN($a, $b = $a) {
 }
 ```
 
-🦋 Finde das Programm in der Datei [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Finde das Programm in der Datei [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
 ## Ausgabe
 

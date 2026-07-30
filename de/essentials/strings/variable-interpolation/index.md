@@ -1,5 +1,5 @@
 ---
-title: Variableninterpolation in Raku-Strings
+title: Variableninterpolation
 ---
 
 {% include menu.html %}

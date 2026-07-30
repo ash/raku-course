@@ -1,5 +1,5 @@
 ---
-title: Klassenzimmer-Schreibtische
+title: Klassentische
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Wenn die Zahl innerhalb der Grenzen liegt'
+title: Wenn die Zahl innerhalb der Grenzen liegt
 ---
 
 {% include menu.html %}

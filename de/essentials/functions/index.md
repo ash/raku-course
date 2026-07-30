@@ -1,5 +1,5 @@
 ---
-title: Erstellen und Aufrufen von Funktionen in Raku
+title: Erstellen und Aufrufen von Funktionen
 ---
 
 {% include menu.html %}

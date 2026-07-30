@@ -1,5 +1,5 @@
 ---
-title: Lösung von ‘Quadrate und Kuben’
+title: 'Solution: Quadrat und Würfel'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n ** 2;
 say $n ** 3;
 ```
 
-🦋 Finde das Programm in der Datei [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube.raku).
+🦋 Finde das Programm in der Datei [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube.raku).
 
 ## Code 2
 
@@ -26,7 +26,7 @@ say $n²;
 say $n³;
 ```
 
-🦋 Finde das Programm in der Datei [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube-2.raku).
+🦋 Finde das Programm in der Datei [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube-2.raku).
 
 ## Ausgabe
 

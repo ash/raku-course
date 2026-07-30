@@ -1,5 +1,5 @@
 ---
-title: Die put-Routine
+title: '`put`'
 ---
 
 {% include menu.html %}

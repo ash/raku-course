@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Bereiche'
+title: 'Exercises: Bereiche'
 ---
 
 {% include menu.html %}

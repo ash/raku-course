@@ -1,5 +1,5 @@
 ---
-title: 'Quiz 1: Verkettung von Zeichenketten und Zahlen'
+title: 'Quiz 2: Verkettung von Zeichenketten und Zahlen'
 ---
 
 {% include menu.html %}

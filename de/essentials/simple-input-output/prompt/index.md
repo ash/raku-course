@@ -1,5 +1,5 @@
 ---
-title: Eingabe mit Aufforderung
+title: Eingabe mit `prompt`
 ---
 
 {% include menu.html %}

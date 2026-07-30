@@ -1,5 +1,5 @@
 ---
-title: Übung 'Namenslänge'
+title: Namenslänge
 ---
 
 {% include menu.html %}

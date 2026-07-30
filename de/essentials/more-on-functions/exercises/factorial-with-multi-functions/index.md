@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Fakultät mit Multi-Funktionen'
+title: Fakultät mit Multi-Funktionen
 ---
 
 {% include menu.html %}

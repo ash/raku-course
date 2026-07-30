@@ -1,5 +1,5 @@
 ---
-title: Wissenschaftliche Notation in Raku
+title: Fließkommazahlen
 ---
 
 {% include menu.html %}

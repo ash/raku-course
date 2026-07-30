@@ -1,5 +1,5 @@
 ---
-title: Interpolating hashes
+title: Interpolation von Hashes
 ---
 
 {% include menu.html %}

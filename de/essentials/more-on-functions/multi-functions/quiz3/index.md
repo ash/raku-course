@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Multifunktionen mit typisierten Parametern
+title: Quiz 3 — Aufrufen von Multi-Funktionen
 ---
 
 {% include menu.html %}

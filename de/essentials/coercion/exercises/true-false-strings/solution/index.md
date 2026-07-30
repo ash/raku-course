@@ -1,5 +1,5 @@
 ---
-title: Lösung von 'True und False Strings'
+title: 'Solution: Wahre und falsche Zeichenketten'
 ---
 
 {% include menu.html %}
@@ -20,6 +20,6 @@ say ?'0.0';
 
 Von all diesen wird nur die leere Zeichenkette als `False` gewertet. Alle anderen Zeichenketten, selbst diejenigen, die nur Leerzeichen oder das explizite Zeichen `0` enthalten, werden zu `True`.
 
-🦋 Sie können das vollständige Programm mit dem obigen Beispiel in der Datei [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku) finden.
+🦋 Sie können das vollständige Programm mit dem obigen Beispiel in der Datei [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku) finden.
 
 {% include nav.html %}

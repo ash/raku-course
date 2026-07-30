@@ -1,5 +1,5 @@
 ---
-title: Lösung von 'Korrigiere die Bezeichner'
+title: 'Solution: Die Bezeichner korrigieren'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'London to Paris';
 
 Alle Bezeichner sind gültig, aber es ist wahrscheinlich besser, Namen mit Apostrophen zu vermeiden, wenn Sie `$don't` keinen triftigen Grund haben, sie zu verwenden.
 
-🦋 Den Quellcode finden Sie in der Datei [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Den Quellcode finden Sie in der Datei [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Ausgabe
 

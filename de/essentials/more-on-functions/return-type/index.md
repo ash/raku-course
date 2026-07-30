@@ -1,5 +1,5 @@
 ---
-title: Rückgabetyp von Funktionen
+title: Rückgabetyp
 ---
 
 {% include menu.html %}

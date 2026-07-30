@@ -1,5 +1,5 @@
 ---
-title: 'Verstehen der `for`-Schleife'
+title: Die `for`-Schleife verstehen
 ---
 
 {% include menu.html %}

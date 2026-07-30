@@ -1,5 +1,5 @@
 ---
-title: Quiz — Ganze Zahlen
+title: 'Quiz: Ganze Zahlen'
 ---
 
 {% include menu.html %}

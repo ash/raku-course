@@ -1,5 +1,5 @@
 ---
-title: Quiz — Die while-Schleife
+title: Quiz — die `while`-Schleife
 ---
 
 {% include menu.html %}

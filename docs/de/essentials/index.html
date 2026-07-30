@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Raku-Grundlagen</title>
-    <meta property="og:title" content="Raku-Grundlagen" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Grundlagen — Raku-Kurs</title>
+    <meta property="og:title" content="Grundlagen — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Raku-Grundlagen</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,317 +88,480 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a></p>
-
-<h1 id="raku-grundlagen">Raku-Grundlagen</h1>
-
-<h2 id="teil-1-raku-grundlagen">Teil 1. Raku-Grundlagen</h2>
-<h4 id="grundlegende-einführung-in-raku-und-seinen-compiler">Grundlegende Einführung in Raku und seinen Compiler</h4>
+          <p><a href="/de/">Raku-Kurs</a></p>
+<h1 id="teil-1.-raku-grundlagen">Teil 1. Raku-Grundlagen</h1>
+<p>Fangen Sie hier an. Installieren Sie den Compiler und lernen Sie dann
+Variablen und Datentypen, Kontrollfluss und Ihre ersten Subroutinen
+kennen — das Fundament für alles Weitere.</p>
+<h4 id="erste-einführung-in-raku"><a href="/de/essentials/intro">Erste
+Einführung in Raku</a></h4>
 <ul>
-  <li><a href="/de/essentials/what-is-raku">Was ist Raku</a></li>
-  <li><a href="/de/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
-  <li><a href="/de/essentials/how-to-install-rakudo">Wie man Rakudo installiert</a></li>
-  <li><a href="/de/essentials/editors-and-ides">Editoren und IDEs</a></li>
-  <li><a href="/de/essentials/conventional-file-extensions">Konventionelle Dateierweiterungen</a></li>
-  <li><a href="/de/essentials/hello-world">Hallo, Welt!</a></li>
-  <li><a href="/de/essentials/on-unicode">Hinweise zur Verwendung von Unicode</a></li>
-  <li><a href="/de/essentials/running-programs">Programme ausführen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/running-programs/exercises">
-1 Übung</a></span>
-    <ul>
-      <li><a href="/de/essentials/running-programs/from-command-line">Ausführen von der Befehlszeile</a></li>
-      <li><a href="/de/essentials/running-programs/from-repl">Ausführen von REPL</a></li>
-      <li><a href="/de/essentials/running-programs/from-ide">Ausführen von IDE</a></li>
-      <li><a href="/de/essentials/running-programs/using-docker">Verwendung von Docker</a></li>
-      <li><a href="/de/essentials/running-programs/using-online-services">Verwendung von Online-Diensten</a></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/simple-input-output">Einfache Eingabe und Ausgabe</a>
-    <ul>
-      <li><a href="/de/essentials/simple-input-output/say">Ausgabe mit <code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/de/essentials/simple-input-output/prompt">Eingabe mit <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/comments">Kommentare</a>
-    <ul>
-      <li><a href="/de/essentials/comments/single-line">Einzeilige Kommentare</a> — <span class="has-q"><a href="/de/essentials/comments/single-line#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/comments/multi-line">Mehrzeilige Kommentare</a></li>
-      <li><a href="/de/essentials/comments/embedded">Eingebettete Kommentare</a></li>
-    </ul>
-  </li>
+<li><a href="/de/essentials/what-is-raku">Was ist Raku</a></li>
 </ul>
-
-<h4 id="grundlagen-von-variablen-und-datentypen">Grundlagen von Variablen und Datentypen</h4>
+<h4 id="compiler"><a href="/de/essentials/compilers">Compiler</a></h4>
 <ul>
-  <li><a href="/de/essentials/scalar-variables">Skalare Variablen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/scalar-variables/exercises">
-4 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/scalar-variables/declaring-a-variable">Deklarieren einer Variablen</a> — <span class="has-q"><a href="/de/essentials/scalar-variables/declaring-a-variable#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/scalar-variables/assigning-a-value">Zuweisen eines Wertes</a> — <span class="has-q"><a href="/de/essentials/scalar-variables/assigning-a-value#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/scalar-variables/declaration-with-initialization">Deklaration mit Initialisierung</a> — <span class="has-q"><a href="/de/essentials/scalar-variables/declaration-with-initialization#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/scalar-variables/defined-or-operator">Der defined-or-Operator</a></li>
-      <li><a href="/de/essentials/scalar-variables/identifiers">Namen der Variablen</a> — <span class="has-q"><a href="/de/essentials/scalar-variables/identifiers#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/strings">Zeichenketten</a> — <span class="has-q"><a href="/de/essentials/strings#practice">
-1 Quiz</a></span>
-       und
-      <span class="has-e"><a href="/de/essentials/strings/exercises">
-4 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/strings/string-concatenation">Zeichenkettenverkettung</a> — <span class="has-q"><a href="/de/essentials/strings/string-concatenation#practice">
-3 Quizze</a></span></li>
-      <li><a href="/de/essentials/strings/variable-interpolation">Variableninterpolation</a> — <span class="has-q"><a href="/de/essentials/strings/variable-interpolation#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/strings/code-interpolation">Code-Interpolation</a></li>
-      <li><a href="/de/essentials/strings/escaping-special-characters">Spezielle Zeichen escapen</a> — <span class="has-q"><a href="/de/essentials/strings/escaping-special-characters#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/strings/string-length">Zeichenkettenlänge</a> — <span class="has-q"><a href="/de/essentials/strings/string-length#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/numbers">Zahlen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/numbers/exercises">
-7 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/numbers/integers">Ganze Zahlen</a> — <span class="has-q"><a href="/de/essentials/numbers/integers#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/numbers/rats">Rationale Zahlen</a> — <span class="has-q"><a href="/de/essentials/numbers/rats#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/numbers/numeric">Fließkommazahlen</a></li>
-      <li><a href="/de/essentials/numbers/operations">Operationen mit Zahlen</a></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/booleans">Boolescher Typ</a> — <span class="has-q"><a href="/de/essentials/booleans#practice">
-1 Quiz</a></span>
-       und
-      <span class="has-e"><a href="/de/essentials/booleans/exercises">
-3 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/booleans/operations">Boolesche Operationen</a> — <span class="has-q"><a href="/de/essentials/booleans/operations#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/booleans/boolean-operations-other-types">Boolesche Operationen mit anderen Typen</a> — <span class="has-q"><a href="/de/essentials/booleans/boolean-operations-other-types#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/ranges">Bereiche</a>
-       —
-      <span class="has-e"><a href="/de/essentials/ranges/exercises">
-1 Übung</a></span>
-    <ul>
-      <li><a href="/de/essentials/ranges/excluding-endpoints">Endpunkte ausschließen</a> — <span class="has-q"><a href="/de/essentials/ranges/excluding-endpoints#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/ranges/matching-against-a-range">Abgleich mit einem Bereich</a> — <span class="has-q"><a href="/de/essentials/ranges/matching-against-a-range#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
+<li><a href="/de/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+<li><a href="/de/essentials/the-rakudo-compiler">Der
+Rakudo-Compiler</a></li>
+<li><a href="/de/essentials/how-to-install-rakudo">Wie man Rakudo
+installiert</a></li>
+<li><a href="/de/essentials/the-rakupp-compiler">Der Raku++-Compiler
+🆕</a></li>
+<li><a href="/de/essentials/how-to-install-rakupp">Raku++ installieren
+🆕</a></li>
 </ul>
-
-<h4 id="grundlagen-der-ablaufsteuerung">Grundlagen der Ablaufsteuerung</h4>
+<h4 id="programme-schreiben-und-ausführen"><a
+href="/de/essentials/getting-started">Programme schreiben und
+ausführen</a></h4>
 <ul>
-  <li><a href="/de/essentials/code-blocks">Codeblöcke</a>
-    <ul>
-      <li><a href="/de/essentials/code-blocks/lexical-scope">Lexikalischer Gültigkeitsbereich</a> — <span class="has-q"><a href="/de/essentials/code-blocks/lexical-scope#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/code-blocks/global-variables">Globale Variablen</a> — <span class="has-q"><a href="/de/essentials/code-blocks/global-variables#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/code-blocks/local-variables">Lokale Variablen</a> — <span class="has-q"><a href="/de/essentials/code-blocks/local-variables#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/conditional-checks">Bedingte Überprüfungen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/conditional-checks/exercises">
-4 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/conditional-checks/if"><code class="language-plaintext highlighter-rouge">if</code>-Blöcke</a> — <span class="has-q"><a href="/de/essentials/conditional-checks/if#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/conditional-checks/else"><code class="language-plaintext highlighter-rouge">else</code>-Blöcke</a></li>
-      <li><a href="/de/essentials/conditional-checks/elsif">Verwendung von <code class="language-plaintext highlighter-rouge">elsif</code></a> — <span class="has-q"><a href="/de/essentials/conditional-checks/elsif#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/conditional-checks/unless">Verwendung von <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-      <li><a href="/de/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> und <code class="language-plaintext highlighter-rouge">unless</code> als Anweisungsmodifikatoren</a></li>
-      <li><a href="/de/essentials/conditional-checks/comparing-numbers">Vergleichen von Zahlen</a> — <span class="has-q"><a href="/de/essentials/conditional-checks/comparing-numbers#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/conditional-checks/comparing-strings">Vergleichen von Zeichenketten</a> — <span class="has-q"><a href="/de/essentials/conditional-checks/comparing-strings#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/conditional-checks/ternary-operator">Ternärer Operator</a> — <span class="has-q"><a href="/de/essentials/conditional-checks/ternary-operator#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/loops">Schleifen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/loops/exercises">
-7 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/loops/while">Verwendung von <code class="language-plaintext highlighter-rouge">while</code></a> — <span class="has-q"><a href="/de/essentials/loops/while#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/loops/until">Verwendung von <code class="language-plaintext highlighter-rouge">until</code></a> — <span class="has-q"><a href="/de/essentials/loops/until#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/loops/repeat">Verwendung von <code class="language-plaintext highlighter-rouge">repeat</code></a> — <span class="has-q"><a href="/de/essentials/loops/repeat#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> und <code class="language-plaintext highlighter-rouge">until</code> als Anweisungsmodifikatoren</a></li>
-      <li><a href="/de/essentials/loops/loop">Drei-Anweisungs-Schleife <code class="language-plaintext highlighter-rouge">loop</code></a></li>
-      <li><a href="/de/essentials/loops/infinite-loops">Endlosschleifen</a></li>
-      <li><a href="/de/essentials/loops/for"><code class="language-plaintext highlighter-rouge">for</code>-Schleifen</a> — <span class="has-q"><a href="/de/essentials/loops/for#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/loops/topic">Themenvariable</a></li>
-      <li><a href="/de/essentials/loops/postfix-for">Postfix-Form von <code class="language-plaintext highlighter-rouge">for</code></a> — <span class="has-q"><a href="/de/essentials/loops/postfix-for#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="mehr-über-typen">Mehr über Typen</h4>
+<li><a href="/de/essentials/editors-and-ides">Editoren und IDEs</a></li>
+<li><a href="/de/essentials/conventional-file-extensions">Konventionelle
+Dateierweiterungen</a></li>
+<li><a href="/de/essentials/hello-world">Hallo, Welt!</a></li>
+<li><a href="/de/essentials/on-unicode">Hinweise zur Verwendung von
+Unicode</a></li>
+<li><a href="/de/essentials/running-programs">Programme ausführen</a> —
+<span class="has-e"><a
+href="/de/essentials/running-programs/exercises">1 Übung</a></span>
 <ul>
-  <li><a href="/de/essentials/coercion">Datentyp-Konvertierung</a> — <span class="has-q"><a href="/de/essentials/coercion#practice">
-1 Quiz</a></span>
-       und
-      <span class="has-e"><a href="/de/essentials/coercion/exercises">
-3 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/coercion/what">Introspektion mit <code class="language-plaintext highlighter-rouge">WHAT</code></a> — <span class="has-q"><a href="/de/essentials/coercion/what#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/coercion/methods">Typumwandlung mit Typumwandlungsmethoden</a></li>
-      <li><a href="/de/essentials/coercion/new">Typumwandlung mit Konstruktorformen</a></li>
-      <li><a href="/de/essentials/coercion/prefixes">Typumwandlung mit Präfixoperatoren</a></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/typed-variables">Typisierte Variablen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/typed-variables/exercises">
-4 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/typed-variables/type-constraints">Typbeschränkungen</a> — <span class="has-q"><a href="/de/essentials/typed-variables/type-constraints#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/typed-variables/using-of">Verwendung von <code class="language-plaintext highlighter-rouge">of</code></a></li>
-      <li><a href="/de/essentials/typed-variables/coercion">Typumwandlung für typisierte Variablen</a> — <span class="has-q"><a href="/de/essentials/typed-variables/coercion#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/typed-variables/allomorphs">Allomorphe</a></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/positionals">Positionale Datentypen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/positionals/exercises">
-9 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/positionals/arrays">Arrays</a> — <span class="has-q"><a href="/de/essentials/positionals/arrays#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/positionals/nested-arrays">Verschachtelte Arrays</a> — <span class="has-q"><a href="/de/essentials/positionals/nested-arrays#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/positionals/args-array">Das <code class="language-plaintext highlighter-rouge">@*ARGS</code>-Array</a> — <span class="has-q"><a href="/de/essentials/positionals/args-array#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/positionals/interpolating-arrays">Interpolation von Arrays</a> — <span class="has-q"><a href="/de/essentials/positionals/interpolating-arrays#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/positionals/lists">Listen</a> — <span class="has-q"><a href="/de/essentials/positionals/lists#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/positionals/quoting-string-arrays">Zitieren von Zeichenketten-Arrays</a> — <span class="has-q"><a href="/de/essentials/positionals/quoting-string-arrays#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/positionals/subscripting-ranges">Indizieren von Bereichen</a> — <span class="has-q"><a href="/de/essentials/positionals/subscripting-ranges#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/associatives">Assoziative Datentypen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/associatives/exercises">
-6 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/associatives/pairs">Paare</a> — <span class="has-q"><a href="/de/essentials/associatives/pairs#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/associatives/hashes">Hashes</a> — <span class="has-q"><a href="/de/essentials/associatives/hashes#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/associatives/nested-hashes">Verschachtelte Hashes</a> — <span class="has-q"><a href="/de/essentials/associatives/nested-hashes#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/associatives/interpolating-hashes">Interpolation von Hashes</a> — <span class="has-q"><a href="/de/essentials/associatives/interpolating-hashes#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="grundlagen-der-funktionen">Grundlagen der Funktionen</h4>
+<li><a
+href="/de/essentials/running-programs/from-command-line">Ausführen von
+der Befehlszeile</a></li>
+<li><a href="/de/essentials/running-programs/from-repl">Ausführen von
+REPL</a></li>
+<li><a href="/de/essentials/running-programs/from-ide">Ausführen von
+IDE</a></li>
+<li><a href="/de/essentials/running-programs/using-docker">Verwendung
+von Docker</a></li>
+<li><a
+href="/de/essentials/running-programs/using-online-services">Verwendung
+von Online-Diensten</a></li>
+</ul></li>
+<li><a href="/de/essentials/simple-input-output">Einfache Eingabe und
+Ausgabe</a>
 <ul>
-  <li><a href="/de/essentials/functions">Erstellen und Aufrufen von Funktionen</a> — <span class="has-q"><a href="/de/essentials/functions#practice">
-1 Quiz</a></span>
-       und
-      <span class="has-e"><a href="/de/essentials/functions/exercises">
-6 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/functions/identifiers">Funktionsnamen</a> — <span class="has-q"><a href="/de/essentials/functions/identifiers#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/functions/function-parameters">Funktionsparameter</a> — <span class="has-q"><a href="/de/essentials/functions/function-parameters#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/functions/return-result">Das Ergebnis zurückgeben</a> — <span class="has-q"><a href="/de/essentials/functions/return-result#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/functions/positional-parameters">Positionsparameter</a> — <span class="has-q"><a href="/de/essentials/functions/positional-parameters#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/functions/named-parameters">Benannte Parameter</a> — <span class="has-q"><a href="/de/essentials/functions/named-parameters#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/functions/default-values">Standardwerte</a> — <span class="has-q"><a href="/de/essentials/functions/default-values#practice">
-2 Quizze</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/more-on-functions">Mehr über Funktionen</a>
-       —
-      <span class="has-e"><a href="/de/essentials/more-on-functions/exercises">
-1 Übung</a></span>
-    <ul>
-      <li><a href="/de/essentials/more-on-functions/mind-the-space">Achte auf den Abstand</a></li>
-      <li><a href="/de/essentials/more-on-functions/typed-parameters">Typisierte Parameter</a> — <span class="has-q"><a href="/de/essentials/more-on-functions/typed-parameters#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/more-on-functions/return-type">Rückgabetyp</a> — <span class="has-q"><a href="/de/essentials/more-on-functions/return-type#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/more-on-functions/multi-functions">Multi-Funktionen</a> — <span class="has-q"><a href="/de/essentials/more-on-functions/multi-functions#practice">
-3 Quizze</a></span></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/built-in-functions-for-printing">Eingebaute Funktionen zum Drucken</a>
-       —
-      <span class="has-e"><a href="/de/essentials/built-in-functions-for-printing/exercises">
-2 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/built-in-functions-for-printing/say"><code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/de/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a></li>
-      <li><a href="/de/essentials/built-in-functions-for-printing/put"><code class="language-plaintext highlighter-rouge">put</code></a></li>
-      <li><a href="/de/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/de/essentials/the-main-function">Die <code class="language-plaintext highlighter-rouge">MAIN</code>-Funktion</a>
-       —
-      <span class="has-e"><a href="/de/essentials/the-main-function/exercises">
-3 Übungen</a></span>
-    <ul>
-      <li><a href="/de/essentials/the-main-function/reading-command-line-arguments">Lesen der Befehlszeilenargumente</a> — <span class="has-q"><a href="/de/essentials/the-main-function/reading-command-line-arguments#practice">
-2 Quizze</a></span></li>
-      <li><a href="/de/essentials/the-main-function/multi-main-functions">Mehrere <code class="language-plaintext highlighter-rouge">MAIN</code>-Funktionen</a> — <span class="has-q"><a href="/de/essentials/the-main-function/multi-main-functions#practice">
-1 Quiz</a></span></li>
-      <li><a href="/de/essentials/the-main-function/using-unit-sub">Verwendung von <code class="language-plaintext highlighter-rouge">unit sub</code></a> — <span class="has-q"><a href="/de/essentials/the-main-function/using-unit-sub#practice">
-1 Quiz</a></span></li>
-    </ul>
-  </li>
+<li><a href="/de/essentials/simple-input-output/say">Ausgabe mit
+<code>say</code></a></li>
+<li><a href="/de/essentials/simple-input-output/prompt">Eingabe mit
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/de/essentials/comments">Kommentare</a>
+<ul>
+<li><a href="/de/essentials/comments/single-line">Einzeilige
+Kommentare</a> — <span class="has-q"><a
+href="/de/essentials/comments/single-line#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/comments/multi-line">Mehrzeilige
+Kommentare</a></li>
+<li><a href="/de/essentials/comments/embedded">Eingebettete
+Kommentare</a></li>
+</ul></li>
 </ul>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/">Español</a> • <a href="/it/essentials/">Italiano</a> • <a href="/lv/essentials/">Latviešu</a> • <a href="/nl/essentials/">Nederlands</a> • <a href="/bg/essentials/">Български</a> • <a href="/ru/essentials/">Русский</a> • <a href="/uk/essentials/">Українська</a></p>
+<h4 id="grundlagen-zu-variablen-und-datentypen"><a
+href="/de/essentials/variables">Grundlagen zu Variablen und
+Datentypen</a></h4>
+<ul>
+<li><a href="/de/essentials/scalar-variables">Skalare Variablen</a> —
+<span class="has-e"><a
+href="/de/essentials/scalar-variables/exercises">4 Übungen</a></span>
+<ul>
+<li><a
+href="/de/essentials/scalar-variables/declaring-a-variable">Deklarieren
+einer Variablen</a> — <span class="has-q"><a
+href="/de/essentials/scalar-variables/declaring-a-variable#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/scalar-variables/assigning-a-value">Zuweisen
+eines Wertes</a> — <span class="has-q"><a
+href="/de/essentials/scalar-variables/assigning-a-value#practice">2
+Quizze</a></span></li>
+<li><a
+href="/de/essentials/scalar-variables/declaration-with-initialization">Deklaration
+mit Initialisierung</a> — <span class="has-q"><a
+href="/de/essentials/scalar-variables/declaration-with-initialization#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/scalar-variables/defined-or-operator">Der
+defined-or-Operator</a></li>
+<li><a href="/de/essentials/scalar-variables/identifiers">Namen der
+Variablen</a> — <span class="has-q"><a
+href="/de/essentials/scalar-variables/identifiers#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/strings">Zeichenketten</a> — <span
+class="has-q"><a href="/de/essentials/strings#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/essentials/strings/exercises">4 Übungen</a></span>
+<ul>
+<li><a
+href="/de/essentials/strings/string-concatenation">Zeichenkettenverkettung</a>
+— <span class="has-q"><a
+href="/de/essentials/strings/string-concatenation#practice">3
+Quizze</a></span></li>
+<li><a
+href="/de/essentials/strings/variable-interpolation">Variableninterpolation</a>
+— <span class="has-q"><a
+href="/de/essentials/strings/variable-interpolation#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/strings/code-interpolation">Code-Interpolation</a></li>
+<li><a
+href="/de/essentials/strings/escaping-special-characters">Spezielle
+Zeichen escapen</a> — <span class="has-q"><a
+href="/de/essentials/strings/escaping-special-characters#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/strings/string-length">Zeichenkettenlänge</a> —
+<span class="has-q"><a
+href="/de/essentials/strings/string-length#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/numbers">Zahlen</a> — <span class="has-e"><a
+href="/de/essentials/numbers/exercises">7 Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/numbers/integers">Ganze Zahlen</a> — <span
+class="has-q"><a href="/de/essentials/numbers/integers#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/numbers/rats">Rationale Zahlen</a> — <span
+class="has-q"><a href="/de/essentials/numbers/rats#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/numbers/numeric">Fließkommazahlen</a></li>
+<li><a href="/de/essentials/numbers/operations">Operationen mit
+Zahlen</a></li>
+</ul></li>
+<li><a href="/de/essentials/booleans">Boolescher Typ</a> — <span
+class="has-q"><a href="/de/essentials/booleans#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/essentials/booleans/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/booleans/operations">Boolesche
+Operationen</a> — <span class="has-q"><a
+href="/de/essentials/booleans/operations#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/booleans/boolean-operations-other-types">Boolesche
+Operationen mit anderen Typen</a> — <span class="has-q"><a
+href="/de/essentials/booleans/boolean-operations-other-types#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/ranges">Bereiche</a> — <span
+class="has-e"><a href="/de/essentials/ranges/exercises">1
+Übung</a></span>
+<ul>
+<li><a href="/de/essentials/ranges/excluding-endpoints">Endpunkte
+ausschließen</a> — <span class="has-q"><a
+href="/de/essentials/ranges/excluding-endpoints#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/ranges/matching-against-a-range">Abgleich
+mit einem Bereich</a> — <span class="has-q"><a
+href="/de/essentials/ranges/matching-against-a-range#practice">1
+Quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="grundlagen-des-kontrollflusses"><a
+href="/de/essentials/control-flow">Grundlagen des
+Kontrollflusses</a></h4>
+<ul>
+<li><a href="/de/essentials/code-blocks">Codeblöcke</a>
+<ul>
+<li><a href="/de/essentials/code-blocks/lexical-scope">Lexikalischer
+Gültigkeitsbereich</a> — <span class="has-q"><a
+href="/de/essentials/code-blocks/lexical-scope#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/code-blocks/global-variables">Globale
+Variablen</a> — <span class="has-q"><a
+href="/de/essentials/code-blocks/global-variables#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/code-blocks/local-variables">Lokale
+Variablen</a> — <span class="has-q"><a
+href="/de/essentials/code-blocks/local-variables#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/conditional-checks">Bedingte
+Überprüfungen</a> — <span class="has-e"><a
+href="/de/essentials/conditional-checks/exercises">4 Übungen</a></span>
+<ul>
+<li><a
+href="/de/essentials/conditional-checks/if"><code>if</code>-Blöcke</a> —
+<span class="has-q"><a
+href="/de/essentials/conditional-checks/if#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/conditional-checks/else"><code>else</code>-Blöcke</a></li>
+<li><a href="/de/essentials/conditional-checks/elsif">Verwendung von
+<code>elsif</code></a> — <span class="has-q"><a
+href="/de/essentials/conditional-checks/elsif#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/conditional-checks/unless">Verwendung von
+<code>unless</code></a></li>
+<li><a
+href="/de/essentials/conditional-checks/modifiers"><code>if</code> und
+<code>unless</code> als Anweisungsmodifikatoren</a></li>
+<li><a
+href="/de/essentials/conditional-checks/comparing-numbers">Vergleichen
+von Zahlen</a> — <span class="has-q"><a
+href="/de/essentials/conditional-checks/comparing-numbers#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/conditional-checks/comparing-strings">Vergleichen
+von Zeichenketten</a> — <span class="has-q"><a
+href="/de/essentials/conditional-checks/comparing-strings#practice">2
+Quizze</a></span></li>
+<li><a
+href="/de/essentials/conditional-checks/ternary-operator">Ternärer
+Operator</a> — <span class="has-q"><a
+href="/de/essentials/conditional-checks/ternary-operator#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/loops">Schleifen</a> — <span
+class="has-e"><a href="/de/essentials/loops/exercises">7
+Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/loops/while">Verwendung von
+<code>while</code></a> — <span class="has-q"><a
+href="/de/essentials/loops/while#practice">1 Quiz</a></span></li>
+<li><a href="/de/essentials/loops/until">Verwendung von
+<code>until</code></a> — <span class="has-q"><a
+href="/de/essentials/loops/until#practice">1 Quiz</a></span></li>
+<li><a href="/de/essentials/loops/repeat">Verwendung von
+<code>repeat</code></a> — <span class="has-q"><a
+href="/de/essentials/loops/repeat#practice">1 Quiz</a></span></li>
+<li><a href="/de/essentials/loops/modifiers"><code>while</code> und
+<code>until</code> als Anweisungsmodifikatoren</a></li>
+<li><a href="/de/essentials/loops/loop">Drei-Anweisungs-Schleife
+<code>loop</code></a></li>
+<li><a
+href="/de/essentials/loops/infinite-loops">Endlosschleifen</a></li>
+<li><a href="/de/essentials/loops/for"><code>for</code>-Schleifen</a> —
+<span class="has-q"><a href="/de/essentials/loops/for#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/loops/topic">Themenvariable</a></li>
+<li><a href="/de/essentials/loops/postfix-for">Postfix-Form von
+<code>for</code></a> — <span class="has-q"><a
+href="/de/essentials/loops/postfix-for#practice">1 Quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="mehr-über-typen"><a href="/de/essentials/more-about-types">Mehr
+über Typen</a></h4>
+<ul>
+<li><a href="/de/essentials/coercion">Datentyp-Konvertierung</a> — <span
+class="has-q"><a href="/de/essentials/coercion#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/essentials/coercion/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/coercion/what">Introspektion mit
+<code>WHAT</code></a> — <span class="has-q"><a
+href="/de/essentials/coercion/what#practice">1 Quiz</a></span></li>
+<li><a href="/de/essentials/coercion/methods">Typumwandlung mit
+Typumwandlungsmethoden</a></li>
+<li><a href="/de/essentials/coercion/new">Typumwandlung mit
+Konstruktorformen</a></li>
+<li><a href="/de/essentials/coercion/prefixes">Typumwandlung mit
+Präfixoperatoren</a></li>
+</ul></li>
+<li><a href="/de/essentials/typed-variables">Typisierte Variablen</a> —
+<span class="has-e"><a href="/de/essentials/typed-variables/exercises">4
+Übungen</a></span>
+<ul>
+<li><a
+href="/de/essentials/typed-variables/type-constraints">Typbeschränkungen</a>
+— <span class="has-q"><a
+href="/de/essentials/typed-variables/type-constraints#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/typed-variables/using-of">Verwendung von
+<code>of</code></a></li>
+<li><a href="/de/essentials/typed-variables/coercion">Typumwandlung für
+typisierte Variablen</a> — <span class="has-q"><a
+href="/de/essentials/typed-variables/coercion#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/typed-variables/allomorphs">Allomorphe</a></li>
+</ul></li>
+<li><a href="/de/essentials/positionals">Positionale Datentypen</a> —
+<span class="has-e"><a href="/de/essentials/positionals/exercises">9
+Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/positionals/arrays">Arrays</a> — <span
+class="has-q"><a href="/de/essentials/positionals/arrays#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/positionals/nested-arrays">Verschachtelte
+Arrays</a> — <span class="has-q"><a
+href="/de/essentials/positionals/nested-arrays#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/positionals/args-array">Das
+<code>@*ARGS</code>-Array</a> — <span class="has-q"><a
+href="/de/essentials/positionals/args-array#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/positionals/interpolating-arrays">Interpolation von
+Arrays</a> — <span class="has-q"><a
+href="/de/essentials/positionals/interpolating-arrays#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/positionals/lists">Listen</a> — <span
+class="has-q"><a href="/de/essentials/positionals/lists#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/positionals/quoting-string-arrays">Zitieren
+von Zeichenketten-Arrays</a> — <span class="has-q"><a
+href="/de/essentials/positionals/quoting-string-arrays#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/positionals/subscripting-ranges">Indizieren
+von Bereichen</a> — <span class="has-q"><a
+href="/de/essentials/positionals/subscripting-ranges#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/associatives">Assoziative Datentypen</a> —
+<span class="has-e"><a href="/de/essentials/associatives/exercises">6
+Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/associatives/pairs">Paare</a> — <span
+class="has-q"><a href="/de/essentials/associatives/pairs#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/associatives/hashes">Hashes</a> — <span
+class="has-q"><a href="/de/essentials/associatives/hashes#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/associatives/nested-hashes">Verschachtelte
+Hashes</a> — <span class="has-q"><a
+href="/de/essentials/associatives/nested-hashes#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/associatives/interpolating-hashes">Interpolation
+von Hashes</a> — <span class="has-q"><a
+href="/de/essentials/associatives/interpolating-hashes#practice">1
+Quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="grundlagen-der-funktionen"><a
+href="/de/essentials/functions-essentials">Grundlagen der
+Funktionen</a></h4>
+<ul>
+<li><a href="/de/essentials/functions">Erstellen und Aufrufen von
+Funktionen</a> — <span class="has-q"><a
+href="/de/essentials/functions#practice">1 Quiz</a></span> und <span
+class="has-e"><a href="/de/essentials/functions/exercises">6
+Übungen</a></span>
+<ul>
+<li><a href="/de/essentials/functions/identifiers">Funktionsnamen</a> —
+<span class="has-q"><a
+href="/de/essentials/functions/identifiers#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/functions/function-parameters">Funktionsparameter</a>
+— <span class="has-q"><a
+href="/de/essentials/functions/function-parameters#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/functions/return-result">Das Ergebnis
+zurückgeben</a> — <span class="has-q"><a
+href="/de/essentials/functions/return-result#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/functions/positional-parameters">Positionsparameter</a>
+— <span class="has-q"><a
+href="/de/essentials/functions/positional-parameters#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/functions/named-parameters">Benannte
+Parameter</a> — <span class="has-q"><a
+href="/de/essentials/functions/named-parameters#practice">2
+Quizze</a></span></li>
+<li><a href="/de/essentials/functions/default-values">Standardwerte</a>
+— <span class="has-q"><a
+href="/de/essentials/functions/default-values#practice">2
+Quizze</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/more-on-functions">Mehr über Funktionen</a>
+— <span class="has-e"><a
+href="/de/essentials/more-on-functions/exercises">1 Übung</a></span>
+<ul>
+<li><a href="/de/essentials/more-on-functions/mind-the-space">Achte auf
+den Abstand</a></li>
+<li><a
+href="/de/essentials/more-on-functions/typed-parameters">Typisierte
+Parameter</a> — <span class="has-q"><a
+href="/de/essentials/more-on-functions/typed-parameters#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/more-on-functions/return-type">Rückgabetyp</a> —
+<span class="has-q"><a
+href="/de/essentials/more-on-functions/return-type#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/essentials/more-on-functions/multi-functions">Multi-Funktionen</a>
+— <span class="has-q"><a
+href="/de/essentials/more-on-functions/multi-functions#practice">3
+Quizze</a></span></li>
+</ul></li>
+<li><a href="/de/essentials/built-in-functions-for-printing">Eingebaute
+Funktionen zum Drucken</a> — <span class="has-e"><a
+href="/de/essentials/built-in-functions-for-printing/exercises">2
+Übungen</a></span>
+<ul>
+<li><a
+href="/de/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/de/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/de/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/de/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/de/essentials/the-main-function">Die
+<code>MAIN</code>-Funktion</a> — <span class="has-e"><a
+href="/de/essentials/the-main-function/exercises">3 Übungen</a></span>
+<ul>
+<li><a
+href="/de/essentials/the-main-function/reading-command-line-arguments">Lesen
+der Befehlszeilenargumente</a> — <span class="has-q"><a
+href="/de/essentials/the-main-function/reading-command-line-arguments#practice">2
+Quizze</a></span></li>
+<li><a
+href="/de/essentials/the-main-function/multi-main-functions">Mehrere
+<code>MAIN</code>-Funktionen</a> — <span class="has-q"><a
+href="/de/essentials/the-main-function/multi-main-functions#practice">1
+Quiz</a></span></li>
+<li><a href="/de/essentials/the-main-function/using-unit-sub">Verwendung
+von <code>unit sub</code></a> — <span class="has-q"><a
+href="/de/essentials/the-main-function/using-unit-sub#practice">1
+Quiz</a></span></li>
+</ul></li>
+</ul>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials">English</a> •
+<strong>Deutsch</strong> • <a href="/es/essentials">Español</a> • <a
+href="/it/essentials">Italiano</a> • <a
+href="/lv/essentials">Latviešu</a> • <a
+href="/nl/essentials">Nederlands</a> • <a
+href="/bg/essentials">Български</a> • <a
+href="/ru/essentials">Русский</a> • <a
+href="/uk/essentials">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

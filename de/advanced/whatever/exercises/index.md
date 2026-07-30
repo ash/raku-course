@@ -1,0 +1,8 @@
+---
+title: 'Exercises: Der Whatever-Stern'
+translations_gpt:
+---
+
+{% include menu.html %}
+
+{% include nav.html %}

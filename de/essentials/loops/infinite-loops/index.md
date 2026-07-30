@@ -1,5 +1,5 @@
 ---
-title: Unendliche Schleifen
+title: Endlosschleifen
 ---
 
 {% include menu.html %}

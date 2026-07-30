@@ -1,5 +1,5 @@
 ---
-title: Vergleich von Zahlen
+title: Vergleichen von Zahlen
 ---
 
 {% include menu.html %}

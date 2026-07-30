@@ -1,5 +1,5 @@
 ---
-title: Lösung von 'Eine Reihe von Zahlen drucken'
+title: 'Solution: Eine Reihe von Zahlen drucken'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ my $end = prompt 'End: ';
 .say for $begin .. $end;
 ```
 
-🦋 Finde das Programm in der Datei [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
+🦋 Finde das Programm in der Datei [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers.raku).
 
 ## Code 2
 
@@ -32,7 +32,7 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Finde das Programm in der Datei [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
+🦋 Finde das Programm in der Datei [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers-loop.raku).
 
 Wie Sie sehen können, ist die erste Variante deutlich kürzer und ausdrucksstärker.
 

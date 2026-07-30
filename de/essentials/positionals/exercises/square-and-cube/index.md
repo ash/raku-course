@@ -1,5 +1,5 @@
 ---
-title: Quadrate und Kuben
+title: Quadrat und Würfel
 ---
 
 {% include menu.html %}

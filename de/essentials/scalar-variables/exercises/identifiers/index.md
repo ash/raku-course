@@ -1,5 +1,5 @@
 ---
-title: Übung 'Korrigiere die Bezeichner'
+title: Die Bezeichner korrigieren
 ---
 
 {% include menu.html %}

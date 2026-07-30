@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Eine Zahl buchstabieren'
+title: 'Solution: Eine Zahl schreiben'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Vielfache von 10, z.B. 50
 }
 ```
 
-🦋 Finde das Programm in der Datei [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Finde das Programm in der Datei [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Beispiel
 

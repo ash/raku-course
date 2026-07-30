@@ -1,5 +1,5 @@
 ---
-title: Quiz — Typbeschränkungen
+title: Quiz — Typen umwandeln
 ---
 
 {% include menu.html %}

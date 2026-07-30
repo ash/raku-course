@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Eingebaute Funktionen zum Drucken'
+title: 'Exercises: Eingebaute Funktionen zum Drucken'
 ---
 
 {% include menu.html %}

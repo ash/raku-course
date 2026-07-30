@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Zeichenketten'
+title: 'Exercises: Zeichenketten'
 ---
 
 {% include menu.html %}

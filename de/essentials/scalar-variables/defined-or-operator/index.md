@@ -1,5 +1,5 @@
 ---
-title: Der Defined-Or-Operator
+title: Der defined-or-Operator
 ---
 
 {% include menu.html %}

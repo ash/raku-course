@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Lösung von „Die Anzahl der Befehlszeilenargumente“</title>
-    <meta property="og:title" content="Lösung von „Die Anzahl der Befehlszeilenargumente“" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Lösung: Anzahl der Befehlszeilenargumente — Raku-Kurs</title>
+    <meta property="og:title" content="Lösung: Anzahl der Befehlszeilenargumente — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Lösung von „Die Anzahl der Befehlszeilenargumente“</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,76 +88,92 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/positionals/">Positionale Datentypen</a> / <a href="/de/essentials/positionals/exercises/">Übungen</a> / <a href="/de/essentials/positionals/exercises/number-of-command-line-arguments">Anzahl der Befehlszeilenargumente</a></p>
-
-<h1 id="lösung-anzahl-der-befehlszeilenargumente">Lösung: Anzahl der Befehlszeilenargumente</h1>
-
-<p>Die Lösung ist ganz einfach.</p>
-
+          <p><a href="/de/">Raku-Kurs</a> / <a
+href="/de/essentials">Grundlagen</a> / <a
+href="/de/essentials/more-about-types">Mehr über Typen</a> / <a
+href="/de/essentials/positionals">Positionale Datentypen</a> / <a
+href="/de/essentials/positionals/exercises">Übungen</a> / <a
+href="/de/essentials/positionals/exercises/number-of-command-line-arguments">Anzahl
+der Befehlszeilenargumente</a></p>
+<h1 id="lösung-anzahl-der-befehlszeilenargumente">Lösung: Anzahl der
+Befehlszeilenargumente</h1>
+<p>Die Anzahl der Argumente kommt nach wie vor aus
+<code>@*ARGS.elems</code>, aber diesmal müssen wir etwas damit tun,
+statt sie nur auszugeben. Speichern Sie die Anzahl in einer Variablen
+und wählen Sie dann mit dem ternären Operator das passende Wort:</p>
 <h2 id="code">Code</h2>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="nv">@*ARGS</span>.<span class="nb">elems</span>;
+<span class="k">my</span> <span class="nv">$word</span> = <span class="nv">$n</span> == <span class="mi">1</span> ?? <span class="s">'argument'</span> !! <span class="s">'arguments'</span>;
+<span class="nb">say</span> <span class="s">&quot;You passed $n $word.&quot;</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
-</pre></div>
-
-
-<p>Alternativ können Sie alle Methoden verketten:</p>
-
-<div class="highlight"><pre><span></span><span class="vg">@*ARGS</span>.<span class="nb">elems</span>.<span class="nb">say</span>;
-</pre></div>
-
-
-<p>🦋 Finden Sie das Programm in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/positionals/number-of-command-line-arguments.raku">number-of-command-line-arguments.raku</a>.</p>
-
+<p>🦋 Finden Sie das Programm in der Datei <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku">number-of-command-line-arguments.raku</a>.</p>
 <h2 id="ausgabe">Ausgabe</h2>
+<p>Es lohnt sich, die drei interessanten Fälle zu testen: kein Argument,
+genau eines und mehrere. Nur der zweite verwendet die Einzahlform.</p>
+<div class="highlight"><pre>$ raku exercises/positionals/number-of-command-line-arguments.raku
+You passed 0 arguments.
 
-<p>Dieses Programm erfordert einen Test von zwei Fällen:</p>
+$ raku exercises/positionals/number-of-command-line-arguments.raku solo
+You passed 1 argument.
 
-<ol>
-  <li>Keine übergebenen Argumente.</li>
-  <li>Eine nicht-null Anzahl von übergebenen Argumenten.</li>
-</ol>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/number-of-command-line-arguments.raku
-<span class="go">0
-
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/positionals/number-of-command-line-arguments.raku one 2 three 4 five 6 seven
-<span class="go">7
-</span></code></pre></div></div>
-
-<p><div class="exercises"></p>
-<h2 id="nächste-übung">Nächste Übung</h2>
-
-<p>💪 <a href="/de/essentials/positionals/exercises/print-command-line-arguments">Befehlszeilenargumente drucken</a>
-</div></p>
-
+$ raku exercises/positionals/number-of-command-line-arguments.raku one 2 three 4 five 6 seven
+You passed 7 arguments.</pre></div>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>←
-    <a href="/de/essentials/typed-variables">Typisierte Variablen</a>
-        / <a href="/de/essentials/typed-variables/allomorphs">Allomorphe</a>
-  |  
-    <a href="/de/essentials/associatives">Assoziative Datentypen</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/positionals/exercises/number-of-command-line-arguments/solution/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Español</a> • <a href="/it/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Italiano</a> • <a href="/lv/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Latviešu</a> • <a href="/nl/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Nederlands</a> • <a href="/bg/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Български</a> • <a href="/ru/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Русский</a> • <a href="/uk/essentials/positionals/exercises/number-of-command-line-arguments/solution/">Українська</a></p>
+<p>← <a
+href="/de/essentials/positionals/exercises/number-of-command-line-arguments">Anzahl
+der Befehlszeilenargumente</a>   |   <a
+href="/de/essentials/positionals/exercises/print-command-line-arguments">Befehlszeilenargumente
+drucken</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/positionals/exercises/number-of-command-line-arguments/solution">English</a>
+• <strong>Deutsch</strong> • <a
+href="/es/essentials/positionals/exercises/number-of-command-line-arguments/solution">Español</a>
+• <a
+href="/it/essentials/positionals/exercises/number-of-command-line-arguments/solution">Italiano</a>
+• <a
+href="/lv/essentials/positionals/exercises/number-of-command-line-arguments/solution">Latviešu</a>
+• <a
+href="/nl/essentials/positionals/exercises/number-of-command-line-arguments/solution">Nederlands</a>
+• <a
+href="/bg/essentials/positionals/exercises/number-of-command-line-arguments/solution">Български</a>
+• <a
+href="/ru/essentials/positionals/exercises/number-of-command-line-arguments/solution">Русский</a>
+• <a
+href="/uk/essentials/positionals/exercises/number-of-command-line-arguments/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

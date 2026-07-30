@@ -1,5 +1,5 @@
 ---
-title: Quiz — Boolescher Typ
+title: Quiz: Boolesche Werte
 ---
 
 {% include menu.html %}

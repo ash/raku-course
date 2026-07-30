@@ -1,5 +1,5 @@
 ---
-title: Zeichenketten in Raku
+title: Zeichenketten
 ---
 
 {% include menu.html %}

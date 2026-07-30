@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Funktionstabelle'
+title: Funktionstabelle
 ---
 
 {% include menu.html %}

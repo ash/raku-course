@@ -1,5 +1,5 @@
 ---
-title: Boolescher Typ in Raku
+title: Boolescher Typ
 ---
 
 {% include menu.html %}

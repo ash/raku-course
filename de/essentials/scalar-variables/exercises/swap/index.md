@@ -1,5 +1,5 @@
 ---
-title: Übung 'Tausche die Werte'
+title: Werte tauschen
 ---
 
 {% include menu.html %}

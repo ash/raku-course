@@ -1,5 +1,5 @@
 ---
-title: Rückgabe des Ergebnisses
+title: Das Ergebnis zurückgeben
 ---
 
 {% include menu.html %}

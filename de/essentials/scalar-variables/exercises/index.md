@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Skalare Variablen'
+title: 'Exercises: Skalare Variablen'
 ---
 
 {% include menu.html %}

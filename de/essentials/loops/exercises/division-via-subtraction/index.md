@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Division durch Subtraktion'
+title: Division durch Subtraktion
 ---
 
 {% include menu.html %}

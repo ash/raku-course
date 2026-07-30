@@ -1,5 +1,5 @@
 ---
-title: Erstellen von Variablen aller bekannten Typen
+title: Variablen aller bekannten Typen erstellen
 ---
 
 {% include menu.html %}

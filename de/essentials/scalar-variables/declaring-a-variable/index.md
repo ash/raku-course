@@ -1,5 +1,5 @@
 ---
-title: Skalare Variablen
+title: Deklarieren einer Variablen
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Lösung für „Apfel teilen“
+title: 'Solution: Apfelteilung'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Jede Person bekommt $gets Apfel/Äpfel.";
 say "Es bleiben $remains Apfel/Äpfel übrig.";
 ```
 
-🦋 Du findest den vollständigen Code in der Datei [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Du findest den vollständigen Code in der Datei [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Ausgabe
 

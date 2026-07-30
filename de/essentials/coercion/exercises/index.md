@@ -1,5 +1,5 @@
 ---
-title: Übungen zur 'Datentypumwandlung'
+title: 'Exercises: Datentyp-Konvertierung'
 ---
 
 {% include menu.html %}

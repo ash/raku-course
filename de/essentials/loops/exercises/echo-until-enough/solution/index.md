@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Echo bis genug'
+title: 'Solution: Echo bis genug'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ repeat {
 say 'OK, fertig.';
 ```
 
-🦋 Finde das Programm in der Datei [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/echo-until-enough.raku).
+🦋 Finde das Programm in der Datei [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/echo-until-enough.raku).
 
 ## Ausgabe
 

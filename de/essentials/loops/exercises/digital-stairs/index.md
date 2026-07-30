@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Digitale Treppen'
+title: Digitale Treppen
 ---
 
 {% include menu.html %}

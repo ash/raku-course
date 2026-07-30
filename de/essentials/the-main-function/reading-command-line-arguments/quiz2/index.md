@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Standardwerte
+title: Quiz — Standardwerte
 ---
 
 {% include menu.html %}

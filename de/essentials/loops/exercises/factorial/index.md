@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Fakultät'
+title: Fakultät
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Übergabe von Argumenten
+title: Übergeben von Argumenten
 ---
 
 {% include menu.html %}

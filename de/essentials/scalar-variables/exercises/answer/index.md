@@ -1,5 +1,5 @@
 ---
-title: Übung 'Die Antwort auf das Leben, das Universum und alles'
+title: Die Antwort auf das Leben, das Universum und alles
 ---
 
 {% include menu.html %}

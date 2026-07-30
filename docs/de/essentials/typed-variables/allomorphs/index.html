@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Allomorphs</title>
-    <meta property="og:title" content="Allomorphs" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Allomorphe — Raku-Kurs</title>
+    <meta property="og:title" content="Allomorphe — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Allomorphs</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,76 +88,110 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/typed-variables">Typisierte Variablen</a></p>
-
+          <p><a href="/de/">Raku-Kurs</a> / <a
+href="/de/essentials">Grundlagen</a> / <a
+href="/de/essentials/more-about-types">Mehr über Typen</a> / <a
+href="/de/essentials/typed-variables">Typisierte Variablen</a></p>
 <h1 id="allomorphe">Allomorphe</h1>
-
-<p>Betrachten Sie das folgende Programm. Können Sie vor dem Ausführen sagen, welche Eingabewerte es brechen würden und in welcher Zeile?</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter something: &#39;</span>;
+<p>Betrachten Sie das folgende Programm. Können Sie vor dem Ausführen
+sagen, welche Eingabewerte es brechen würden und in welcher Zeile?</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">'Enter something: '</span>;
 <span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="nv">$input</span>;
 <span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="nv">$input</span>;
 
 <span class="nb">say</span> <span class="nv">$i</span>;
-<span class="nb">say</span> <span class="nv">$s</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$s</span>;</pre></div>
 
-
-<p>Hier werden drei Skalare Variablen erstellt. Zwei davon, <code class="language-plaintext highlighter-rouge">$i</code> und <code class="language-plaintext highlighter-rouge">$s</code>, sind typisierte Variablen. Das bedeutet, dass <code class="language-plaintext highlighter-rouge">$i</code> nur ganze Zahlen speichern kann und <code class="language-plaintext highlighter-rouge">$s</code> nur Zeichenketten.</p>
-
-<p>Der Rückgabetyp von <code class="language-plaintext highlighter-rouge">prompt</code> hängt von den eingegebenen Zeichen ab. Wenn die Eingabezeichenkette eine ganze Zahl darstellen kann, ist das Ergebnis vom Typ <code class="language-plaintext highlighter-rouge">IntStr</code>, der <em>sowohl</em> <code class="language-plaintext highlighter-rouge">Int</code> als auch <code class="language-plaintext highlighter-rouge">Str</code> ist und daher sowohl einer <code class="language-plaintext highlighter-rouge">Int</code>- als auch einer <code class="language-plaintext highlighter-rouge">Str</code>-Variable zugewiesen werden kann. Wenn Sie also beispielsweise <code class="language-plaintext highlighter-rouge">1234</code> eingeben, bricht das Programm nicht ab.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+<p>Hier werden drei Skalare Variablen erstellt. Zwei davon,
+<code>$i</code> und <code>$s</code>, sind typisierte Variablen. Das
+bedeutet, dass <code>$i</code> nur ganze Zahlen speichern kann und
+<code>$s</code> nur Zeichenketten.</p>
+<p>Der Rückgabetyp von <code>prompt</code> hängt von den eingegebenen
+Zeichen ab. Wenn die Eingabezeichenkette eine ganze Zahl darstellen
+kann, ist das Ergebnis vom Typ <code>IntStr</code>, der <em>sowohl</em>
+<code>Int</code> als auch <code>Str</code> ist und daher sowohl einer
+<code>Int</code>- als auch einer <code>Str</code>-Variable zugewiesen
+werden kann. Wenn Sie also beispielsweise <code>1234</code> eingeben,
+bricht das Programm nicht ab.</p>
+<div class="highlight"><pre>$ raku allomorphs.raku
 Enter something: 1234
 1234
-1234
-</code></pre></div></div>
-
-<p>Der <code class="language-plaintext highlighter-rouge">IntStr</code>-Typ ist ein Beispiel für den sogenannten <em>Allomorph</em> — ein Datentyp, der zwei andere Typen kombiniert. Hier sind einige weitere Beispiele.</p>
-
-<p>Wenn Sie eine Zeichenkette eingeben, die keine ganze Zahl sein kann, bricht das Programm in dem Moment ab, in dem wir <code class="language-plaintext highlighter-rouge">$input</code> <code class="language-plaintext highlighter-rouge">$i</code> zuweisen:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+1234</pre></div>
+<p>Der <code>IntStr</code>-Typ ist ein Beispiel für den sogenannten
+<em>Allomorph</em> — ein Datentyp, der zwei andere Typen kombiniert.
+Hier sind einige weitere Beispiele.</p>
+<p>Wenn Sie eine Zeichenkette eingeben, die keine ganze Zahl sein kann,
+bricht das Programm in dem Moment ab, in dem wir <code>$input</code>
+<code>$i</code> zuweisen:</p>
+<div class="highlight"><pre>$ raku allomorphs.raku
 Enter something: Hello, World!
 Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
-  in block &lt;unit&gt; at allomorphs.raku line 2
-</code></pre></div></div>
-
-<p>Beachten Sie, dass Sie einen Fehler erhalten, selbst wenn die Eingabezeichenkette in eine Zahl umgewandelt werden kann, aber keine ganze Zahl ist. Da es nicht möglich ist, eine Gleitkommazahl oder eine rationale Zahl in einem Ganzzahl-Container zu speichern, wird Raku eine Ausnahme auslösen:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+  in block &lt;unit&gt; at allomorphs.raku line 2</pre></div>
+<p>Beachten Sie, dass Sie einen Fehler erhalten, selbst wenn die
+Eingabezeichenkette in eine Zahl umgewandelt werden kann, aber keine
+ganze Zahl ist. Da es nicht möglich ist, eine Gleitkommazahl oder eine
+rationale Zahl in einem Ganzzahl-Container zu speichern, wird Raku eine
+Ausnahme auslösen:</p>
+<div class="highlight"><pre>$ raku allomorphs.raku
 Enter something: 3.14
 Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
-  in block &lt;unit&gt; at allomorphs.raku line 2
-</code></pre></div></div>
-
-<p>Die zweite Zuweisung, <code class="language-plaintext highlighter-rouge">$s = $input</code>, wird niemals brechen, da eine Zeichenkette jede Eingabe annehmen kann.</p>
-
-<p>🦋 Sie können den Quellcode dieses Programms in der Datei <a href="https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku">allomorphs.raku</a> finden.</p>
-
-<p></div></p>
-
+  in block &lt;unit&gt; at allomorphs.raku line 2</pre></div>
+<p>Die zweite Zuweisung, <code>$s = $input</code>, wird niemals brechen,
+da eine Zeichenkette jede Eingabe annehmen kann.</p>
+<p>🦋 Sie können den Quellcode dieses Programms in der Datei <a
+href="https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku">allomorphs.raku</a>
+finden.</p>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>←
-        <a href="/de/essentials/typed-variables">Typisierte Variablen</a> / <a href="/de/essentials/typed-variables/coercion">Typumwandlung für typisierte Variablen</a>
-  |  
-        💪 <a href="/de/essentials/typed-variables/exercises">Übungen: Typisierte Variablen</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/typed-variables/allomorphs/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/typed-variables/allomorphs/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/typed-variables/allomorphs/">Español</a> • <a href="/it/essentials/typed-variables/allomorphs/">Italiano</a> • <a href="/lv/essentials/typed-variables/allomorphs/">Latviešu</a> • <a href="/nl/essentials/typed-variables/allomorphs/">Nederlands</a> • <a href="/bg/essentials/typed-variables/allomorphs/">Български</a> • <a href="/ru/essentials/typed-variables/allomorphs/">Русский</a> • <a href="/uk/essentials/typed-variables/allomorphs/">Українська</a></p>
+<p>← <a href="/de/essentials/typed-variables/coercion/quiz">Quiz — Typen
+umwandeln</a>   |   <a
+href="/de/essentials/typed-variables/exercises/create-variables-of-all-known-types">Variablen
+aller bekannten Typen erstellen</a> →</p>
+<p><br /> 💪 Oder springen Sie direkt <a
+href="/de/essentials/typed-variables/exercises">zu den Übungen dieses
+Abschnitts</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/typed-variables/allomorphs">English</a> •
+<strong>Deutsch</strong> • <a
+href="/es/essentials/typed-variables/allomorphs">Español</a> • <a
+href="/it/essentials/typed-variables/allomorphs">Italiano</a> • <a
+href="/lv/essentials/typed-variables/allomorphs">Latviešu</a> • <a
+href="/nl/essentials/typed-variables/allomorphs">Nederlands</a> • <a
+href="/bg/essentials/typed-variables/allomorphs">Български</a> • <a
+href="/ru/essentials/typed-variables/allomorphs">Русский</a> • <a
+href="/uk/essentials/typed-variables/allomorphs">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

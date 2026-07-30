@@ -1,5 +1,5 @@
 ---
-title: Kommentare in Raku
+title: Kommentare
 ---
 
 {% include menu.html %}

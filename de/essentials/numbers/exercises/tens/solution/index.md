@@ -1,5 +1,5 @@
 ---
-title: Lösung für ‘Anzahl der Zehner’
+title: 'Solution: Anzahl der Zehner'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Geben Sie eine positive ganze Zahl ein: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Den vollständigen Code finden Sie in der Datei [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Den vollständigen Code finden Sie in der Datei [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Ausgabe
 

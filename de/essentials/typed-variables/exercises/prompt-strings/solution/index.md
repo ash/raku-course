@@ -1,5 +1,5 @@
 ---
-title: Lösung von 'Untersuchung der Ausgabe von Prompt — Strings'
+title: 'Solution: Das Ergebnis von `prompt` untersuchen — Zeichenketten'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Den Quellcode findest du in der Datei [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Den Quellcode findest du in der Datei [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Testläufe
 

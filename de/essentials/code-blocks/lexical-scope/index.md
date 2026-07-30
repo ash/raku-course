@@ -1,5 +1,5 @@
 ---
-title: Lexikalischer Geltungsbereich
+title: Lexikalischer Gültigkeitsbereich
 ---
 
 {% include menu.html %}

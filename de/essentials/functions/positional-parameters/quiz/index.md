@@ -1,5 +1,5 @@
 ---
-title: Quiz — Einen Funktion aufrufen
+title: Quiz — Aufruf einer Funktion
 ---
 
 {% include menu.html %}

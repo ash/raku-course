@@ -1,5 +1,5 @@
 ---
-title: Ausführen aus dem REPL
+title: Ausführen von REPL
 ---
 
 {% include menu.html %}

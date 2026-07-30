@@ -1,5 +1,5 @@
 ---
-title: Lösung zu 'Namenslänge'
+title: 'Solution: Namenslänge'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Wie heißt du? ';
 say $name.chars;
 ```
 
-🦋 Du findest den Quellcode in der Datei [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/name-length.raku).
+🦋 Du findest den Quellcode in der Datei [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/name-length.raku).
 
 ## Ausgabe
 

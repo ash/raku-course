@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Ländercodes'
+title: Ländercodes
 ---
 
 {% include menu.html %}

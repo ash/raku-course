@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Die Summe ausgeben'
+title: Die Summe drucken
 ---
 
 {% include menu.html %}

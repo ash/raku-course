@@ -1,5 +1,5 @@
 ---
-title: Zeichenfolgen-Arrays zitieren
+title: Zitieren von Zeichenketten-Arrays
 ---
 
 {% include menu.html %}

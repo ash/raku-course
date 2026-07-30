@@ -1,5 +1,5 @@
 ---
-title: Lösung von 'Tausche die Werte'
+title: 'Solution: Werte tauschen'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 Du kannst den Quellcode in der Datei [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku) finden.
+🦋 Du kannst den Quellcode in der Datei [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku) finden.
 
 ## Ausgabe
 

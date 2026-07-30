@@ -1,5 +1,5 @@
 ---
-title: Lösung von „Wahre und falsche Ganzzahlen“
+title: 'Solution: Wahre und falsche Zahlen'
 ---
 
 {% include menu.html %}
@@ -37,6 +37,6 @@ my $int = 0;
 say ?(-$int); # False
 ```
 
-🦋 Sie können das vollständige Programm mit dem obigen Beispiel in der Datei [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku) finden.
+🦋 Sie können das vollständige Programm mit dem obigen Beispiel in der Datei [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-numbers.raku) finden.
 
 {% include nav.html %}

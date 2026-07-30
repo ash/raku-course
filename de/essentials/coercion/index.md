@@ -1,5 +1,5 @@
 ---
-title: Datentypumwandlung
+title: Datentyp-Konvertierung
 ---
 
 {% include menu.html %}

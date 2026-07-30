@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Reisedistanz'
+title: Reisedistanz*
 ---
 
 {% include menu.html %}

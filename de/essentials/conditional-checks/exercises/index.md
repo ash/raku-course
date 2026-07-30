@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Bedingte Überprüfungen'
+title: 'Exercises: Bedingte Überprüfungen'
 ---
 
 {% include menu.html %}

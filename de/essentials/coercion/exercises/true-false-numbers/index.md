@@ -1,5 +1,5 @@
 ---
-title: Übung „Wahre und falsche Ganzzahlen“
+title: Wahre und falsche Zahlen
 ---
 
 {% include menu.html %}

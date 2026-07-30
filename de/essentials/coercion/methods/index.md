@@ -1,5 +1,5 @@
 ---
-title: Konvertieren von Typen mit Typumwandlungsmethoden
+title: Typumwandlung mit Typumwandlungsmethoden
 ---
 
 {% include menu.html %}

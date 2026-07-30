@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Rekursive Fakultät'
+title: 'Solution: Rekursive Fakultät'
 ---
 
 {% include menu.html %}
@@ -23,7 +23,7 @@ sub factorial($n) {
 say factorial(10);
 ```
 
-🦋 Finden Sie das Programm in der Datei [recursive-factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial.raku).
+🦋 Finden Sie das Programm in der Datei [recursive-factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/recursive-factorial.raku).
 
 ## Code 2
 
@@ -38,7 +38,7 @@ sub factorial($n) {
 say factorial(10);
 ```
 
-🦋 Finden Sie das aktualisierte Programm in der Datei [recursive-factorial-2.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/recursive-factorial-2.raku).
+🦋 Finden Sie das aktualisierte Programm in der Datei [recursive-factorial-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/recursive-factorial-2.raku).
 
 ## Beispiel
 

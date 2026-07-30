@@ -1,5 +1,5 @@
 ---
-title: Quiz — Die Wiederholungsschleife
+title: Quiz — die `repeat`-Schleife
 ---
 
 {% include menu.html %}

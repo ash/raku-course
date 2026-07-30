@@ -1,5 +1,5 @@
 ---
-title: Quiz — Lexikalischer Bereich
+title: Quiz — Lexikalischer Gültigkeitsbereich
 ---
 
 {% include menu.html %}

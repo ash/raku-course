@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Die letzte Ziffer'
+title: 'Solution: Die letzte Ziffer'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my $d = $n % 10;
 say "Die letzte Ziffer von $n ist $d.";
 ```
 
-🦋 Finden Sie das Programm in der Datei [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/the-last-digit.raku).
+🦋 Finden Sie das Programm in der Datei [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/the-last-digit.raku).
 
 ## Ausgabe
 

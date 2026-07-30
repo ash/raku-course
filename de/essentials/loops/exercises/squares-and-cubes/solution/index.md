@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Quadrate und Kuben in einer Schleife'
+title: 'Solution: Quadrate und Würfel in einer Schleife'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Finde das Programm in der Datei [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Finde das Programm in der Datei [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Beispiel
 

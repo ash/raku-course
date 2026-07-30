@@ -1,5 +1,5 @@
 ---
-title: Indizierung von Bereichen
+title: Indizieren von Bereichen
 ---
 
 {% include menu.html %}

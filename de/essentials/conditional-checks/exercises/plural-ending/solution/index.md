@@ -1,5 +1,5 @@
 ---
-title: Lösung von ‘Pluralendung’
+title: 'Solution: Pluralendung'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n Datei{$ending} kopiert.";
 ```
 
-🦋 Finde das Programm in der Datei [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Finde das Programm in der Datei [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Ausgabe
 

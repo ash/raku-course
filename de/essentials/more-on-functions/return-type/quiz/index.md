@@ -1,5 +1,5 @@
 ---
-title: Quiz — Funktionen mit Standardwerten
+title: Quiz — Rückgabetyp
 ---
 
 {% include menu.html %}

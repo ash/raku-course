@@ -1,5 +1,5 @@
 ---
-title: Übung ‚Hallo, Verkettung!‘
+title: Hallo, Verkettung!
 ---
 
 {% include menu.html %}

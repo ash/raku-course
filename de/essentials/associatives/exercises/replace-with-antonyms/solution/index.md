@@ -1,10 +1,10 @@
 ---
-title: 'Lösung: Ersetzen mit Antonymen'
+title: 'Solution: Mit Antonymen ersetzen'
 ---
 
 {% include menu.html %}
 
-Um die Aufgabe zu lösen, wird der Inhalt der Datei [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) in die Lösungsdatei [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku) kopiert. Danach wird eine Schleife über die Eingabeargumente ausgeführt, die versucht, das Wort im Wörterbuch zu finden, und wenn es gefunden wird, nimmt es das Antonym. Wenn es ein solches Wort im Wörterbuch nicht gibt, wird das ursprüngliche Wort verwendet.
+Um die Aufgabe zu lösen, wird der Inhalt der Datei [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) in die Lösungsdatei [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku) kopiert. Danach wird eine Schleife über die Eingabeargumente ausgeführt, die versucht, das Wort im Wörterbuch zu finden, und wenn es gefunden wird, nimmt es das Antonym. Wenn es ein solches Wort im Wörterbuch nicht gibt, wird das ursprüngliche Wort verwendet.
 
 ## Code
 
@@ -25,7 +25,7 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Finde das Programm in der Datei [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Finde das Programm in der Datei [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
 ## Ausgabe
 

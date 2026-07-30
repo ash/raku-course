@@ -1,5 +1,5 @@
 ---
-title: Quiz — Definieren von Standardwerten
+title: Quiz — Definition von Standardwerten
 ---
 
 {% include menu.html %}

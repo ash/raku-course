@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Ersetzen mit Antonymen'
+title: Mit Antonymen ersetzen
 ---
 
 {% include menu.html %}

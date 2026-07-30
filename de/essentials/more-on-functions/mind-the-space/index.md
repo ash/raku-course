@@ -1,5 +1,5 @@
 ---
-title: Achten Sie auf den Abstand
+title: Achte auf den Abstand
 ---
 
 {% include menu.html %}

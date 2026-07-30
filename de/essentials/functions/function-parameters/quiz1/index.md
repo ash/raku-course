@@ -1,5 +1,5 @@
 ---
-title: Quiz — Funktionsparameter
+title: Funktionsparameter
 ---
 
 {% include menu.html %}

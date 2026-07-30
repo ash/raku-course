@@ -1,5 +1,5 @@
 ---
-title: Quiz — Die until-Schleife
+title: Quiz — die `until`-Schleife
 ---
 
 {% include menu.html %}

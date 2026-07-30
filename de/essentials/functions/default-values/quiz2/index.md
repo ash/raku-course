@@ -1,5 +1,5 @@
 ---
-title: Quiz — Funktionen mit Standardwerten
+title: Quiz — Funktionen mit Standardwerten
 ---
 
 {% include menu.html %}

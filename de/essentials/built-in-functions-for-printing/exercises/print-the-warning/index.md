@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Gib die Warnung aus'
+title: Die Warnung drucken
 ---
 
 {% include menu.html %}

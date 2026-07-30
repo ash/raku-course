@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Pluralendung'
+title: Pluralendung
 ---
 
 {% include menu.html %}

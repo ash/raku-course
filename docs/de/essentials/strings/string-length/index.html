@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>String length in Raku</title>
-    <meta property="og:title" content="String length in Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Zeichenkettenlänge — Raku-Kurs</title>
+    <meta property="og:title" content="Zeichenkettenlänge — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>String length in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,82 +88,120 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/strings">Zeichenketten</a></p>
-
+          <p><a href="/de/">Raku-Kurs</a> / <a
+href="/de/essentials">Grundlagen</a> / <a
+href="/de/essentials/variables">Grundlagen zu Variablen und
+Datentypen</a> / <a href="/de/essentials/strings">Zeichenketten</a></p>
 <h1 id="zeichenkettenlänge">Zeichenkettenlänge</h1>
-
-<p>Die Unicode-Natur der Zeichenketten macht einige triviale Dinge etwas schwieriger. Oder zumindest muss man es als weniger geradliniges Thema betrachten. Nehmen wir zum Beispiel die Länge einer Zeichenkette. Ist es die Anzahl der Zeichen oder die Anzahl der Bytes? Oder was, wenn dasselbe Zeichen in verschiedenen Zeichenketten unterschiedlich zerlegt wird, ist es dann immer noch ein Zeichen?</p>
-
+<p>Die Unicode-Natur der Zeichenketten macht einige triviale Dinge etwas
+schwieriger. Oder zumindest muss man es als weniger geradliniges Thema
+betrachten. Nehmen wir zum Beispiel die Länge einer Zeichenkette. Ist es
+die Anzahl der Zeichen oder die Anzahl der Bytes? Oder was, wenn
+dasselbe Zeichen in verschiedenen Zeichenketten unterschiedlich zerlegt
+wird, ist es dann immer noch ein Zeichen?</p>
 <h2 id="länge-in-zeichen">Länge in Zeichen</h2>
+<p>Um die Länge der Zeichenkette in Zeichen zu erhalten, verwenden Sie
+die <em>Methode</em> <code>chars</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">'你好世界'</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;</pre></div>
 
-<p>Um die Länge der Zeichenkette in Zeichen zu erhalten, verwenden Sie die <em>Methode</em> <code class="language-plaintext highlighter-rouge">chars</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
-<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">chars</span>;
-</pre></div>
-
-
-<p>Während wir später über Methoden sprechen werden, sollten wir sie bereits jetzt verwenden können. In Raku können Sie Methoden auf fast jedem Objekt aufrufen, einschließlich Zeichenketten und Skalaren. Um eine Methode aufzurufen, verwenden Sie einen Punkt. Hier sehen wir also die Methode, die auf einer Variablen aufgerufen wird, die eine Zeichenkette enthält: <code class="language-plaintext highlighter-rouge">$str.chars</code>.</p>
-
-<p>Es gibt vier Zeichen in diesem chinesischen Gruß 你好世界. Und <code class="language-plaintext highlighter-rouge">$str.chars</code> gibt genau <code class="language-plaintext highlighter-rouge">4</code> zurück.</p>
-
+<p>Während wir später über Methoden sprechen werden, sollten wir sie
+bereits jetzt verwenden können. In Raku können Sie Methoden auf fast
+jedem Objekt aufrufen, einschließlich Zeichenketten und Skalaren. Um
+eine Methode aufzurufen, verwenden Sie einen Punkt. Hier sehen wir also
+die Methode, die auf einer Variablen aufgerufen wird, die eine
+Zeichenkette enthält: <code>$str.chars</code>.</p>
+<p>Es gibt vier Zeichen in diesem chinesischen Gruß 你好世界. Und
+<code>$str.chars</code> gibt genau <code>4</code> zurück.</p>
 <h2 id="länge-in-bytes">Länge in Bytes</h2>
+<p>Nur zur Referenz, so erhalten Sie die Länge der Zeichenkette in
+Bytes. In diesem Fall ist es wichtig zu wissen, welche Kodierung
+verwendet wird, um die Zeichenkette zu speichern:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">'你好世界'</span>;
+<span class="nb">say</span> <span class="nv">$str</span>.<span class="n">encode</span>(<span class="s">'UTF-8'</span>).<span class="nb">bytes</span>;</pre></div>
 
-<p>Nur zur Referenz, so erhalten Sie die Länge der Zeichenkette in Bytes. In diesem Fall ist es wichtig zu wissen, welche Kodierung verwendet wird, um die Zeichenkette zu speichern:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$str</span> = <span class="s">&#39;你好世界&#39;</span>;
-<span class="nb">say</span> <span class="nv">$str</span>.<span class="nb">encode</span>(<span class="s">&#39;UTF-8&#39;</span>).<span class="nb">bytes</span>;
-</pre></div>
-
-
-<p>Dieses Mal gibt das Programm <code class="language-plaintext highlighter-rouge">12</code> aus. Beachten Sie, dass wir hier zwei verkettete Methodenaufrufe in der zweiten Zeile haben.</p>
-
+<p>Dieses Mal gibt das Programm <code>12</code> aus. Beachten Sie, dass
+wir hier zwei verkettete Methodenaufrufe in der zweiten Zeile haben.</p>
 <h2 id="länge-in-codepunkten">Länge in Codepunkten</h2>
+<p>Nur der Vollständigkeit halber, hier ist eine weitere nützliche
+Methode, die sich auch auf die Länge von Zeichenketten bezieht:
+<code>codes</code>. Sie gibt die Anzahl der Codepunkte in der
+Zeichenkette zurück, nachdem sie normalisiert wurde. In vielen Fällen
+geben <code>codes</code> und <code>chars</code> dasselbe zurück. In
+einigen seltenen Fällen, wenn Sie beispielsweise ein ‘unmögliches’
+Zeichen erstellt haben, für das es keinen einzelnen Codepunkt im
+gesamten Unicode-Raum gibt, geben die Methoden unterschiedliche
+Ergebnisse zurück.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'x̨'</span>.<span class="nb">chars</span>;
+<span class="nb">say</span> <span class="s">'x̨'</span>.<span class="nb">codes</span>;</pre></div>
 
-<p>Nur der Vollständigkeit halber, hier ist eine weitere nützliche Methode, die sich auch auf die Länge von Zeichenketten bezieht: <code class="language-plaintext highlighter-rouge">codes</code>. Sie gibt die Anzahl der Codepunkte in der Zeichenkette zurück, nachdem sie normalisiert wurde. In vielen Fällen geben <code class="language-plaintext highlighter-rouge">codes</code> und <code class="language-plaintext highlighter-rouge">chars</code> dasselbe zurück. In einigen seltenen Fällen, wenn Sie beispielsweise ein ‘unmögliches’ Zeichen erstellt haben, für das es keinen einzelnen Codepunkt im gesamten Unicode-Raum gibt, geben die Methoden unterschiedliche Ergebnisse zurück.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">chars</span>;
-<span class="nb">say</span> <span class="s">&#39;x̨&#39;</span>.<span class="nb">codes</span>;
-</pre></div>
-
-
-<p>Dieses Zeichen, <code class="language-plaintext highlighter-rouge">x̨</code>, hat keinen eigenen Codepunkt und kann nur aus den beiden Teilen konstruiert werden: dem Kleinbuchstaben <code class="language-plaintext highlighter-rouge">x</code> und dem kombinierenden Zeichen <code class="language-plaintext highlighter-rouge">0x0328</code>. Es gibt also immer noch ein Zeichen, aber zwei Codepunkte. Das Programm gibt also aus:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
-2
-</code></pre></div></div>
-
-<p><div class="practice"></p>
-<h2 id="praxis">Praxis</h2>
-
-<p>Machen Sie das Quiz, das den Inhalt dieses Themas abdeckt.</p>
+<p>Dieses Zeichen, <code>x̨</code>, hat keinen eigenen Codepunkt und kann
+nur aus den beiden Teilen konstruiert werden: dem Kleinbuchstaben
+<code>x</code> und dem kombinierenden Zeichen <code>0x0328</code>. Es
+gibt also immer noch ein Zeichen, aber zwei Codepunkte. Das Programm
+gibt also aus:</p>
+<pre><code>1
+2</code></pre>
+<section id="praxis" class="practice" data-markdown="1">
+<h2>Praxis</h2>
+<p>Lösen Sie 1 Quiz zum Inhalt dieses Themas.</p>
 <ul>
-  <li><a href="/de/essentials/strings/string-length/quiz">Quiz: Die Länge eines Satzes</a></li>
+<li><a href="/de/essentials/strings/string-length/quiz">Quiz: Die Länge
+eines Satzes</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>←
-        <a href="/de/essentials/strings">Zeichenketten</a> / <a href="/de/essentials/strings/escaping-special-characters">Spezielle Zeichen escapen</a>
-  |  
-        💪 <a href="/de/essentials/strings/exercises">Übungen: Zeichenketten</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/strings/string-length/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/strings/string-length/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/strings/string-length/">Español</a> • <a href="/it/essentials/strings/string-length/">Italiano</a> • <a href="/lv/essentials/strings/string-length/">Latviešu</a> • <a href="/nl/essentials/strings/string-length/">Nederlands</a> • <a href="/bg/essentials/strings/string-length/">Български</a> • <a href="/ru/essentials/strings/string-length/">Русский</a> • <a href="/uk/essentials/strings/string-length/">Українська</a></p>
+<p>← <a
+href="/de/essentials/strings/escaping-special-characters/quiz">Quiz: Ein
+Backslash in der Ausgabe</a>   |   <a
+href="/de/essentials/strings/string-length/quiz">Quiz: Die Länge eines
+Satzes</a> →</p>
+<p><br /> 💪 Oder springen Sie direkt <a
+href="/de/essentials/strings/exercises">zu den Übungen dieses
+Abschnitts</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/strings/string-length">English</a> •
+<strong>Deutsch</strong> • <a
+href="/es/essentials/strings/string-length">Español</a> • <a
+href="/it/essentials/strings/string-length">Italiano</a> • <a
+href="/lv/essentials/strings/string-length">Latviešu</a> • <a
+href="/nl/essentials/strings/string-length">Nederlands</a> • <a
+href="/bg/essentials/strings/string-length">Български</a> • <a
+href="/ru/essentials/strings/string-length">Русский</a> • <a
+href="/uk/essentials/strings/string-length">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

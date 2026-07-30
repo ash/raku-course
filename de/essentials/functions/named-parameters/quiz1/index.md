@@ -1,5 +1,5 @@
 ---
-title: Quiz — Benannte Parameter
+title: Quiz 1 — Benannte Parameter
 ---
 
 {% include menu.html %}

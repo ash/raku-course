@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Schaltjahr'
+title: 'Solution: Schaltjahr'
 ---
 
 {% include menu.html %}
@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Finden Sie das Programm in der Datei [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Finden Sie das Programm in der Datei [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Code 2
 
@@ -52,7 +52,7 @@ my $year = prompt 'Jahr: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Schaltjahr' !! 'Gemeinjahr';
 ```
 
-🦋 Finden Sie das Programm in der Datei [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Finden Sie das Programm in der Datei [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
 ## Ausgabe
 

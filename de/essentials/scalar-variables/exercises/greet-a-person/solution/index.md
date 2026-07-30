@@ -1,5 +1,5 @@
 ---
-title: Die Lösung von 'Eine Person begrüßen'
+title: 'Solution: Eine Person begrüßen'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Wie heißt du? ';
 say 'Hallo, ', $name, '!';
 ```
 
-🦋 Du kannst den Quellcode in der Datei [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/greet-a-person.raku) finden.
+🦋 Du kannst den Quellcode in der Datei [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/greet-a-person.raku) finden.
 
 ## Ausgabe
 

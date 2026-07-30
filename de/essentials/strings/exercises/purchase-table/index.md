@@ -1,5 +1,5 @@
 ---
-title: Übung 'Kauftabelle'
+title: Einkaufstabelle
 ---
 
 {% include menu.html %}

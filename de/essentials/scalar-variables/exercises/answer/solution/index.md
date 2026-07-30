@@ -1,5 +1,5 @@
 ---
-title: Die Lösung von 'Die Antwort auf das Leben, das Universum und den ganzen Rest'
+title: 'Solution: Die Antwort auf das Leben, das Universum und alles'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 Du findest den Quellcode in der Datei [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Du findest den Quellcode in der Datei [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Ausgabe
 

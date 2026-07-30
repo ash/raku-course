@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Schon gesehen?'
+title: Schon gesehen?
 ---
 
 {% include menu.html %}

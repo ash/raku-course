@@ -1,5 +1,5 @@
 ---
-title: '"for"-Schleife'
+title: '`for`-Schleifen'
 ---
 
 {% include menu.html %}

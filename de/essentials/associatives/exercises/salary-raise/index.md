@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Gehaltserhöhung'
+title: Gehaltserhöhung
 ---
 
 {% include menu.html %}

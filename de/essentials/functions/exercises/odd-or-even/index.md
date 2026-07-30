@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Gerade oder ungerade'
+title: Ungerade oder gerade
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Lösung zu ‘Der Wert von π’
+title: 'Solution: Der Wert von π'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Das Programm, um den Wert von π auszugeben, ist einfach genug.
 say π;
 ```
 
-🦋 Du kannst den vollständigen Code in der Datei [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku) finden.
+🦋 Du kannst den vollständigen Code in der Datei [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku) finden.
 
 ## Ausgabe
 

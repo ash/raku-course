@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Schaltjahr'
+title: Schaltjahr
 ---
 
 {% include menu.html %}

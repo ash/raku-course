@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Vergleiche Zeichenketten
+title: Quiz 1 — Zeichenketten vergleichen
 ---
 
 {% include menu.html %}

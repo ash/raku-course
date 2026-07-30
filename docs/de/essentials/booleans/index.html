@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Boolescher Typ in Raku</title>
-    <meta property="og:title" content="Boolescher Typ in Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Boolescher Typ — Raku-Kurs</title>
+    <meta property="og:title" content="Boolescher Typ — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Boolescher Typ in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,67 +88,101 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a></p>
-
+          <p><a href="/de/">Raku-Kurs</a> / <a
+href="/de/essentials">Grundlagen</a> / <a
+href="/de/essentials/variables">Grundlagen zu Variablen und
+Datentypen</a></p>
 <h1 id="boolescher-typ">Boolescher Typ</h1>
-
-<p>Raku bietet einen eingebauten Typ für Boolesche Werte. Er heißt <code class="language-plaintext highlighter-rouge">Bool</code> und ist tatsächlich als eine Enumeration mit zwei Werten definiert: <code class="language-plaintext highlighter-rouge">True</code> und <code class="language-plaintext highlighter-rouge">False</code>.</p>
-
-<p><div class="topics"></p>
-<h2 id="themen-in-diesem-abschnitt">Themen in diesem Abschnitt</h2>
+<p>Raku bietet einen eingebauten Typ für Boolesche Werte. Er heißt
+<code>Bool</code> und ist tatsächlich als eine Enumeration mit zwei
+Werten definiert: <code>True</code> und <code>False</code>.</p>
+<section id="themen-in-diesem-abschnitt" class="topics"
+data-markdown="1">
+<h2>Themen in diesem Abschnitt</h2>
 <ul>
-  <li><a href="/de/essentials/booleans/operations">Boolesche Operationen</a></li>
-  <li><a href="/de/essentials/booleans/boolean-operations-other-types">Boolesche Operationen mit anderen Typen</a></li>
+<li><a href="/de/essentials/booleans/operations">Boolesche
+Operationen</a></li>
+<li><a
+href="/de/essentials/booleans/boolean-operations-other-types">Boolesche
+Operationen mit anderen Typen</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="praxis">Praxis</h2>
-
-<p>Machen Sie das Quiz, das den Inhalt dieses Themas abdeckt.</p>
+</section>
+<section id="praxis" class="practice" data-markdown="1">
+<h2>Praxis</h2>
+<p>Lösen Sie 3 Quizze zum Inhalt dieses Abschnitts.</p>
 <ul>
-  <li><a href="/de/essentials/booleans/quiz">Quiz: Boolesche Werte</a></li>
+<li><a href="/de/essentials/booleans/quiz">Quiz: Boolesche
+Werte</a></li>
+<li><a href="/de/essentials/booleans/operations/quiz">Quiz: Boolesche
+Operationen</a></li>
+<li><a
+href="/de/essentials/booleans/boolean-operations-other-types/quiz">Quiz:
+Boolesche Operationen mit nicht-booleschen Daten</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="übungen">Übungen</h2>
-
-<p>Dieser Abschnitt enthält <a href="/de/essentials/booleans/exercises">
-3 Übungen</a>. Untersuchen Sie alle Themen dieses Abschnitts, bevor Sie zur Programmierübung übergehen.</p>
-<ol>
-  <li><a href="/de/essentials/booleans/exercises/tables">Boolesche Tabellen</a></li>
-  <li><a href="/de/essentials/booleans/exercises/double-negation">Doppelte Verneinung</a></li>
-  <li><a href="/de/essentials/booleans/exercises/triple-negation">Dreifache Verneinung</a></li>
+</section>
+<section id="übungen" class="exercises" data-markdown="1">
+<h2>Übungen</h2>
+<p>Dieser Abschnitt enthält <a href="exercises">3 Übungen</a>. Sehen Sie
+sich alle Themen dieses Abschnitts an, bevor Sie mit den Übungen
+beginnen.</p>
+<ol type="1">
+<li><a href="/de/essentials/booleans/exercises/tables">Boolesche
+Tabellen</a></li>
+<li><a href="/de/essentials/booleans/exercises/double-negation">Doppelte
+Verneinung</a></li>
+<li><a
+href="/de/essentials/booleans/exercises/triple-negation">Dreifache
+Verneinung</a></li>
 </ol>
-
-<p></div></p>
-
+</section>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>←
-    <a href="/de/essentials/numbers">Zahlen</a>
-        / <a href="/de/essentials/numbers/operations">Operationen mit Zahlen</a>
-  |  
-        <a href="/de/essentials/booleans/operations">Boolesche Operationen</a>
+<p>← <a
+href="/de/essentials/numbers/exercises/sum1-100/solution">Lösung: Summe
+der Zahlen von 1 bis 100</a>   |   <a
+href="/de/essentials/booleans/operations">Boolesche Operationen</a>
 →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/booleans/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/booleans/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/booleans/">Español</a> • <a href="/it/essentials/booleans/">Italiano</a> • <a href="/lv/essentials/booleans/">Latviešu</a> • <a href="/nl/essentials/booleans/">Nederlands</a> • <a href="/bg/essentials/booleans/">Български</a> • <a href="/ru/essentials/booleans/">Русский</a> • <a href="/uk/essentials/booleans/">Українська</a></p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials/booleans">English</a>
+• <strong>Deutsch</strong> • <a
+href="/es/essentials/booleans">Español</a> • <a
+href="/it/essentials/booleans">Italiano</a> • <a
+href="/lv/essentials/booleans">Latviešu</a> • <a
+href="/nl/essentials/booleans">Nederlands</a> • <a
+href="/bg/essentials/booleans">Български</a> • <a
+href="/ru/essentials/booleans">Русский</a> • <a
+href="/uk/essentials/booleans">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

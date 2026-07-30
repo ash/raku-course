@@ -1,5 +1,5 @@
 ---
-title: Vergleich von Zeichenketten
+title: Vergleichen von Zeichenketten
 ---
 
 {% include menu.html %}

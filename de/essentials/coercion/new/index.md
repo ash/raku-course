@@ -1,5 +1,5 @@
 ---
-title: Konvertierung von Typen mithilfe von Konstruktorformen
+title: Typumwandlung mit Konstruktorformen
 ---
 
 {% include menu.html %}

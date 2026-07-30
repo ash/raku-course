@@ -1,5 +1,5 @@
 ---
-title: Abgleichen mit einem Bereich
+title: Abgleich mit einem Bereich
 ---
 
 {% include menu.html %}

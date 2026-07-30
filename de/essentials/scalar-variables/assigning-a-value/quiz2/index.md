@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Zwei Werte zuweisen
+title: Quiz 2: Zuweisen von zwei Werten
 ---
 
 {% include menu.html %}

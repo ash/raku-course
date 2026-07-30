@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Monatsnamen'
+title: Monatsnamen
 ---
 
 {% include menu.html %}

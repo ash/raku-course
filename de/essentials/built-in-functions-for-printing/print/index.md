@@ -1,5 +1,5 @@
 ---
-title: Die Druckroutine
+title: '`print`'
 ---
 
 {% include menu.html %}

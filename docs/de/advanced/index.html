@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Fortgeschritten — Raku-Kurs</title>
+    <meta property="og:title" content="Fortgeschritten — Raku-Kurs" />
+    <meta property="og:locale" content="de" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/de/">Raku-Kurs</a></p>
+<h1 id="teil-2.-fortgeschrittene-raku-themen">Teil 2. Fortgeschrittene
+Raku-Themen</h1>
+<p>Tiefer eintauchen: Container und Kontexte, das gesamte Spektrum
+eingebauter Typen und Operatoren, leistungsfähigere Unterprogramme und
+das Verpacken deines Codes in Module mit Tests und Dokumentation.</p>
+<h4 id="debugging"><a href="/de/advanced/debugging">Debugging</a></h4>
+<ul>
+<li><a href="/de/advanced/representations">Werte in Text umwandeln</a>
+<ul>
+<li><a href="/de/advanced/representations/gist">Die
+<code>.gist</code>-Methode</a></li>
+<li><a href="/de/advanced/representations/str">Die
+<code>.Str</code>-Methode</a> — <span class="has-q"><a
+href="/de/advanced/representations/str#practice">1 Quiz</a></span></li>
+<li><a href="/de/advanced/representations/raku-method">Die
+<code>.raku</code>-Methode</a></li>
+<li><a href="/de/advanced/representations/choosing">Die richtige Methode
+wählen</a></li>
+</ul></li>
+<li><a href="/de/advanced/dd">Debugging mit <code>dd</code></a> — <span
+class="has-e"><a href="/de/advanced/dd/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/dd/variables">Variablen dumpen</a> — <span
+class="has-q"><a href="/de/advanced/dd/variables#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/dd/functions">Funktionssignaturen
+dumpen</a></li>
+</ul></li>
+</ul>
+<h4 id="container"><a
+href="/de/advanced/containers-overview">Container</a></h4>
+<ul>
+<li><a href="/de/advanced/containers">Verständnis von
+Raku-Containern</a></li>
+<li><a href="/de/advanced/scalar-containers">Skalare Container</a> —
+<span class="has-e"><a href="/de/advanced/scalar-containers/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/scalar-containers/types">Datentypen und
+skalare Container</a></li>
+<li><a
+href="/de/advanced/scalar-containers/type-constraints">Typbeschränkungen</a>
+— <span class="has-q"><a
+href="/de/advanced/scalar-containers/type-constraints#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/advanced/scalar-containers/default">Standardwerte</a></li>
+<li><a href="/de/advanced/scalar-containers/proxying">Proxierung von
+Methodenaufrufen</a></li>
+</ul></li>
+<li><a href="/de/advanced/ordered-containers">Geordnete Container</a> —
+<span class="has-e"><a
+href="/de/advanced/ordered-containers/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/ordered-containers/arrays">Arrays</a></li>
+<li><a href="/de/advanced/ordered-containers/lists">Listen</a> — <span
+class="has-q"><a href="/de/advanced/ordered-containers/lists#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/ordered-containers/binding">Bindung mit
+<code>:=</code></a></li>
+<li><a href="/de/advanced/ordered-containers/flattening">Flattening und
+Itemisierung</a> — <span class="has-q"><a
+href="/de/advanced/ordered-containers/flattening#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/contexts">Kontexte</a> — <span
+class="has-e"><a href="/de/advanced/contexts/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/contexts/coercion-contexts">Numerischer,
+String- und Boolescher Kontext</a> — <span class="has-q"><a
+href="/de/advanced/contexts/coercion-contexts#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/contexts/item-and-list">Item- und
+Listenkontext</a> — <span class="has-q"><a
+href="/de/advanced/contexts/item-and-list#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/subscript-adverbs">Subskript-Adverbien</a> —
+<span class="has-e"><a href="/de/advanced/subscript-adverbs/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/subscript-adverbs/exists-and-delete">Exists
+und delete</a> — <span class="has-q"><a
+href="/de/advanced/subscript-adverbs/exists-and-delete#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/subscript-adverbs/kv-and-pairs">Schlüssel,
+Werte und Paare</a></li>
+</ul></li>
+<li><a href="/de/advanced/special-variables">Spezielle und dynamische
+Variablen</a> — <span class="has-e"><a
+href="/de/advanced/special-variables/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/special-variables/twigils">Twigils</a> — <span
+class="has-q"><a
+href="/de/advanced/special-variables/twigils#practice">1
+Quiz</a></span></li>
+<li><a
+href="/de/advanced/special-variables/dynamic-variables">Dynamische
+Variablen</a> — <span class="has-q"><a
+href="/de/advanced/special-variables/dynamic-variables#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/special-variables/built-in">Eingebaute
+spezielle Variablen</a> — <span class="has-q"><a
+href="/de/advanced/special-variables/built-in#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/introspection">Introspektion von
+Containern</a> — <span class="has-e"><a
+href="/de/advanced/introspection/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/introspection/what"><code>WHAT</code>
+verwenden</a> — <span class="has-q"><a
+href="/de/advanced/introspection/what#practice">1 Quiz</a></span></li>
+<li><a href="/de/advanced/introspection/var"><code>VAR</code>
+verwenden</a></li>
+<li><a href="/de/advanced/introspection/who-how"><code>WHO</code> und
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+<h4 id="mehr-über-eingebaute-typen"><a
+href="/de/advanced/built-in-types">Mehr über eingebaute Typen</a></h4>
+<ul>
+<li><a href="/de/advanced/integers">Ganzzahlen</a> — <span
+class="has-e"><a href="/de/advanced/integers/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/integers/number-bases">Zahlensysteme</a> —
+<span class="has-q"><a
+href="/de/advanced/integers/number-bases#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/integers/methods">Ganzzahl-Methoden</a></li>
+</ul></li>
+<li><a href="/de/advanced/native-types">Native Typen</a> — <span
+class="has-e"><a href="/de/advanced/native-types/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/native-types/machine-types">Maschinennahe
+Typen</a> — <span class="has-q"><a
+href="/de/advanced/native-types/machine-types#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/native-types/sized-types">Typen mit fester
+Größe und Überlauf</a> — <span class="has-q"><a
+href="/de/advanced/native-types/sized-types#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/strings">Zeichenketten</a> — <span
+class="has-e"><a href="/de/advanced/strings/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/strings/searching">In Zeichenketten suchen</a>
+— <span class="has-q"><a
+href="/de/advanced/strings/searching#practice">1 Quiz</a></span></li>
+<li><a href="/de/advanced/strings/splitting">Aufteilen und
+Verbinden</a></li>
+</ul></li>
+<li><a href="/de/advanced/quoting">Quoting-Konstrukte</a> — <span
+class="has-e"><a href="/de/advanced/quoting/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/quoting/q-qq-big-q">q, qq und Q</a> — <span
+class="has-q"><a href="/de/advanced/quoting/q-qq-big-q#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/quoting/adverbs">Quoting-Adverbien</a> — <span
+class="has-q"><a href="/de/advanced/quoting/adverbs#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/quoting/heredocs">Heredocs</a></li>
+</ul></li>
+<li><a href="/de/advanced/date-and-time">Datum und Uhrzeit</a> — <span
+class="has-e"><a href="/de/advanced/date-and-time/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/date-and-time/arithmetic">Datumsarithmetik</a>
+— <span class="has-q"><a
+href="/de/advanced/date-and-time/arithmetic#practice">2
+Quizze</a></span></li>
+<li><a href="/de/advanced/date-and-time/time">Mit Uhrzeiten
+arbeiten</a></li>
+</ul></li>
+<li><a href="/de/advanced/sets-bags-mixes">Sets, Bags und Mixes</a> —
+<span class="has-e"><a href="/de/advanced/sets-bags-mixes/exercises">3
+Übungen</a></span>
+<ul>
+<li><a
+href="/de/advanced/sets-bags-mixes/operations">Mengenoperationen</a> —
+<span class="has-q"><a
+href="/de/advanced/sets-bags-mixes/operations#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/sets-bags-mixes/bags">Bags und Mixes</a></li>
+</ul></li>
+<li><a href="/de/advanced/sequences">Sequenzen</a> — <span
+class="has-e"><a href="/de/advanced/sequences/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/sequences/patterns">Sequenzmuster</a> — <span
+class="has-q"><a href="/de/advanced/sequences/patterns#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/sequences/lazy">Lazy und unendliche
+Sequenzen</a></li>
+</ul></li>
+<li><a href="/de/advanced/enumerations">Aufzählungen</a> — <span
+class="has-e"><a href="/de/advanced/enumerations/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/enumerations/defining">Ein Enum definieren</a>
+— <span class="has-q"><a
+href="/de/advanced/enumerations/defining#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/enumerations/values-and-keys">Werte und
+Schlüssel</a> — <span class="has-q"><a
+href="/de/advanced/enumerations/values-and-keys#practice">1
+Quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="operatoren"><a href="/de/advanced/operators">Operatoren</a></h4>
+<ul>
+<li><a href="/de/advanced/operator-types">Typen von Raku-Operatoren</a>
+— <span class="has-q"><a href="/de/advanced/operator-types#practice">3
+Quizze</a></span> und <span class="has-e"><a
+href="/de/advanced/operator-types/exercises">3 Übungen</a></span></li>
+<li><a href="/de/advanced/operators-overview">Überblick über
+Operatorverhalten</a> — <span class="has-q"><a
+href="/de/advanced/operators-overview#practice">1 Quiz</a></span> und
+<span class="has-e"><a
+href="/de/advanced/operators-overview/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/metaoperators">Meta-Operatoren</a> — <span
+class="has-e"><a href="/de/advanced/metaoperators/exercises">3
+Übungen</a></span>
+<ul>
+<li><a
+href="/de/advanced/metaoperators/reduction">Reduktions-Metaoperatoren</a>
+— <span class="has-q"><a
+href="/de/advanced/metaoperators/reduction#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/metaoperators/zip">Zip-Metaoperatoren</a></li>
+<li><a href="/de/advanced/metaoperators/more">Kreuz-, Hyper- und
+negierte Operatoren</a> — <span class="has-q"><a
+href="/de/advanced/metaoperators/more#practice">1 Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/user-defined-operators">Benutzerdefinierte
+Operatoren</a> — <span class="has-q"><a
+href="/de/advanced/user-defined-operators#practice">1 Quiz</a></span>
+und <span class="has-e"><a
+href="/de/advanced/user-defined-operators/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/traits-pragmas">Traits und Pragmas</a> — <span
+class="has-e"><a href="/de/advanced/traits-pragmas/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/traits-pragmas/built-in-traits">Eingebaute
+Traits</a> — <span class="has-q"><a
+href="/de/advanced/traits-pragmas/built-in-traits#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/traits-pragmas/writing-a-trait">Einen Trait
+schreiben</a></li>
+<li><a href="/de/advanced/traits-pragmas/pragmas">Pragmas</a> — <span
+class="has-q"><a href="/de/advanced/traits-pragmas/pragmas#practice">1
+Quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="kontrollfluss"><a
+href="/de/advanced/control-flow">Kontrollfluss</a></h4>
+<ul>
+<li><a href="/de/advanced/phasers">Phasers</a> — <span class="has-q"><a
+href="/de/advanced/phasers#practice">1 Quiz</a></span> und <span
+class="has-e"><a href="/de/advanced/phasers/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/block-phasers">Block-bezogene Phasers</a> —
+<span class="has-q"><a href="/de/advanced/block-phasers#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/advanced/block-phasers/exercises">3 Übungen</a></span></li>
+<li><a href="/de/advanced/given-when"><code>given</code> und
+<code>when</code></a> — <span class="has-e"><a
+href="/de/advanced/given-when/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/given-when/matching">Bereiche, Typen und
+Bedingungen abgleichen</a> — <span class="has-q"><a
+href="/de/advanced/given-when/matching#practice">1 Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/gather-take"><code>gather</code> und
+<code>take</code></a> — <span class="has-q"><a
+href="/de/advanced/gather-take#practice">1 Quiz</a></span> und <span
+class="has-e"><a href="/de/advanced/gather-take/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/statement-prefixes">Anweisungspräfixe</a> —
+<span class="has-e"><a
+href="/de/advanced/statement-prefixes/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/statement-prefixes/do-prefix">do und der Wert
+eines Blocks</a> — <span class="has-q"><a
+href="/de/advanced/statement-prefixes/do-prefix#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/statement-prefixes/lazy-eager">Laziness und
+Eagerness</a></li>
+<li><a href="/de/advanced/statement-prefixes/sink-quietly">sink und
+quietly</a> — <span class="has-q"><a
+href="/de/advanced/statement-prefixes/sink-quietly#practice">1
+Quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="subroutinen"><a
+href="/de/advanced/subroutines">Subroutinen</a></h4>
+<ul>
+<li><a href="/de/advanced/signatures">Signaturen</a> — <span
+class="has-q"><a href="/de/advanced/signatures#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/advanced/signatures/exercises">3 Übungen</a></span></li>
+<li><a href="/de/advanced/whatever">Der Whatever-Stern</a> — <span
+class="has-q"><a href="/de/advanced/whatever#practice">1 Quiz</a></span>
+und <span class="has-e"><a href="/de/advanced/whatever/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/colon-calls">Aufruf mit Doppelpunkt</a> —
+<span class="has-q"><a href="/de/advanced/colon-calls#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/advanced/colon-calls/exercises">3 Übungen</a></span></li>
+<li><a href="/de/advanced/multiple-dispatch">Mehrfach-Dispatch</a> —
+<span class="has-q"><a href="/de/advanced/multiple-dispatch#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/advanced/multiple-dispatch/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/more-on-main">Mehr zu MAIN-Unterprogrammen</a>
+— <span class="has-q"><a href="/de/advanced/more-on-main#practice">1
+Quiz</a></span> und <span class="has-e"><a
+href="/de/advanced/more-on-main/exercises">3 Übungen</a></span></li>
+<li><a href="/de/advanced/nested-subroutines">Verschachtelte
+Unterprogramme</a> — <span class="has-q"><a
+href="/de/advanced/nested-subroutines#practice">1 Quiz</a></span> und
+<span class="has-e"><a
+href="/de/advanced/nested-subroutines/exercises">3
+Übungen</a></span></li>
+<li><a href="/de/advanced/anonymous-subroutines">Anonyme
+Unterprogramme</a> — <span class="has-q"><a
+href="/de/advanced/anonymous-subroutines#practice">1 Quiz</a></span> und
+<span class="has-e"><a
+href="/de/advanced/anonymous-subroutines/exercises">3
+Übungen</a></span></li>
+</ul>
+<h4 id="module"><a href="/de/advanced/modules">Module</a></h4>
+<ul>
+<li><a href="/de/advanced/modules-basics">Modul-Grundlagen</a> — <span
+class="has-e"><a href="/de/advanced/modules-basics/exercises">7
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/modules-basics/creating-modules">Module
+erstellen</a> — <span class="has-q"><a
+href="/de/advanced/modules-basics/creating-modules#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/modules-basics/using-modules">Module
+verwenden</a> — <span class="has-q"><a
+href="/de/advanced/modules-basics/using-modules#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/modules-basics/importing">Importieren</a> —
+<span class="has-q"><a
+href="/de/advanced/modules-basics/importing#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/modules-basics/export-tags">Export-Tags</a> —
+<span class="has-q"><a
+href="/de/advanced/modules-basics/export-tags#practice">1
+Quiz</a></span></li>
+</ul></li>
+<li><a href="/de/advanced/module-introspection">Modul-Introspektion</a>
+— <span class="has-q"><a
+href="/de/advanced/module-introspection#practice">1 Quiz</a></span> und
+<span class="has-e"><a
+href="/de/advanced/module-introspection/exercises">2
+Übungen</a></span></li>
+<li><a href="/de/advanced/installing-modules">Module aus dem Web
+installieren</a></li>
+<li><a href="/de/advanced/packages">Pakete und Namensräume</a> — <span
+class="has-e"><a href="/de/advanced/packages/exercises">3
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/packages/packages-modules">Pakete und
+Module</a> — <span class="has-q"><a
+href="/de/advanced/packages/packages-modules#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/packages/namespaces">Namensräume und
+our</a></li>
+</ul></li>
+<li><a href="/de/advanced/distributing">Module verteilen</a> — <span
+class="has-e"><a href="/de/advanced/distributing/exercises">2
+Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/distributing/meta6">Die META6-Datei</a> —
+<span class="has-q"><a href="/de/advanced/distributing/meta6#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/distributing/zef-ecosystem">zef und das
+Ökosystem</a></li>
+<li><a href="/de/advanced/distributing/fez">Veröffentlichen mit
+fez</a></li>
+</ul></li>
+</ul>
+<h4 id="testen-und-dokumentation"><a
+href="/de/advanced/testing-and-docs">Testen und Dokumentation
+🆕</a></h4>
+<ul>
+<li><a href="/de/advanced/testing">Testen</a> — <span class="has-e"><a
+href="/de/advanced/testing/exercises">3 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/testing/test-module">Das Test-Modul</a> —
+<span class="has-q"><a
+href="/de/advanced/testing/test-module#practice">1 Quiz</a></span></li>
+<li><a href="/de/advanced/testing/comparisons">Vergleiche und
+Pläne</a></li>
+<li><a href="/de/advanced/testing/running-tests">Tests
+ausführen</a></li>
+</ul></li>
+<li><a href="/de/advanced/pod">Code dokumentieren</a> — <span
+class="has-e"><a href="/de/advanced/pod/exercises">2 Übungen</a></span>
+<ul>
+<li><a href="/de/advanced/pod/pod-basics">Pod-Grundlagen</a> — <span
+class="has-q"><a href="/de/advanced/pod/pod-basics#practice">1
+Quiz</a></span></li>
+<li><a href="/de/advanced/pod/pod-formatting">Formatierung und
+Code</a></li>
+<li><a href="/de/advanced/pod/rendering-pod">Pod rendern</a></li>
+<li><a href="/de/advanced/pod/accessing-pod">Auf Pod zugreifen</a></li>
+</ul></li>
+</ul>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

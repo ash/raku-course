@@ -1,5 +1,5 @@
 ---
-title: Lesen von Befehlszeilenargumenten
+title: Lesen der Befehlszeilenargumente
 ---
 
 {% include menu.html %}

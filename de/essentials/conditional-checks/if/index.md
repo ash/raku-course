@@ -1,5 +1,5 @@
 ---
-title: Bedingte Überprüfungen mit if
+title: '`if`-Blöcke'
 ---
 
 {% include menu.html %}

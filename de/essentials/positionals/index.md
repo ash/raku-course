@@ -1,5 +1,5 @@
 ---
-title: Positionsdaten-Typen
+title: Positionale Datentypen
 ---
 
 {% include menu.html %}

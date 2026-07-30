@@ -1,5 +1,5 @@
 ---
-title: Untersuchung des Ergebnisses der Eingabeaufforderung — Strings
+title: Das Ergebnis von `prompt` untersuchen — Zeichenketten
 ---
 
 {% include menu.html %}

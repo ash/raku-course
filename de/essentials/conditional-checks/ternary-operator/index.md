@@ -1,5 +1,5 @@
 ---
-title: Ternary operator
+title: Ternärer Operator
 ---
 
 {% include menu.html %}

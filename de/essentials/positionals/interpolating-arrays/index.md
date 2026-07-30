@@ -1,5 +1,5 @@
 ---
-title: Interpolieren von Arrays
+title: Interpolation von Arrays
 ---
 
 {% include menu.html %}

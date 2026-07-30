@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Hashes
+title: Quiz 1 — Hashes
 ---
 
 {% include menu.html %}

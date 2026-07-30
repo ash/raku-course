@@ -1,5 +1,5 @@
 ---
-title: Ganze Zahlen in Raku
+title: Ganze Zahlen
 ---
 
 {% include menu.html %}

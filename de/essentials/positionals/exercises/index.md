@@ -1,5 +1,5 @@
 ---
-title: 'Übungen: Positionale'
+title: 'Exercises: Positionale Datentypen'
 ---
 
 {% include menu.html %}

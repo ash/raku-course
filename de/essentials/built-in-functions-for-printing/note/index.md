@@ -1,5 +1,5 @@
 ---
-title: Die Notizroutine
+title: '`note`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Übung 'Boolesche Tabellen’
+title: Boolesche Tabellen
 ---
 
 {% include menu.html %}

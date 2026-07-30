@@ -1,5 +1,5 @@
 ---
-title: String-Verkettung in Raku
+title: Zeichenkettenverkettung
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Verwendung der einheitsspezifischen Definition
+title: Quiz* — Verwendung der unit-skopierten Definition
 ---
 
 {% include menu.html %}

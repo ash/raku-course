@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: Ampeln'
+title: 'Solution: Ampeln'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say @lights[102 % @lights];
 say @lights[305 % @lights];
 ```
 
-🦋 Finde das Programm in der Datei [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/traffic-lights.raku).
+🦋 Finde das Programm in der Datei [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/traffic-lights.raku).
 
 ## Ausgabe
 

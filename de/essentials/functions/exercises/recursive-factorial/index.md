@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Rekursive Fakultät'
+title: Rekursive Fakultät
 ---
 
 {% include menu.html %}

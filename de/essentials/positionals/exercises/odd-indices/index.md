@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Ungerade Indizes'
+title: Ungerade Indizes
 ---
 
 {% include menu.html %}

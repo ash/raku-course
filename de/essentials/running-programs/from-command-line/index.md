@@ -1,5 +1,5 @@
 ---
-title: Ausführen von der Kommandozeile
+title: Ausführen von der Befehlszeile
 ---
 
 {% include menu.html %}

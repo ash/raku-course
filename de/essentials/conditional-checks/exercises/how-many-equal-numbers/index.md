@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Wie viele Zahlen sind gleich?'
+title: Wie viele Zahlen sind gleich?
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Hallo, Welt! in Raku
+title: Hallo, Welt!
 ---
 
 {% include menu.html %}

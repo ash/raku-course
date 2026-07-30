@@ -1,5 +1,5 @@
 ---
-title: Drucke Befehlszeilenargumente
+title: Befehlszeilenargumente drucken
 ---
 
 {% include menu.html %}

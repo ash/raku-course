@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Ampeln'
+title: Ampeln
 ---
 
 {% include menu.html %}

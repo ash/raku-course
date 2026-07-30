@@ -1,5 +1,5 @@
 ---
-title: Übung 'Eine Person begrüßen'
+title: Eine Person begrüßen
 ---
 
 {% include menu.html %}

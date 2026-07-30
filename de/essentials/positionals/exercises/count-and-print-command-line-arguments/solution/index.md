@@ -1,5 +1,5 @@
 ---
-title: Lösung des Programms ‘Zähle und drucke Kommandozeilenargumente’
+title: 'Solution: Befehlszeilenargumente zählen und drucken'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Finde das Programm in der Datei [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Finde das Programm in der Datei [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Ausgabe
 

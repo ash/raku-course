@@ -1,5 +1,5 @@
 ---
-title: Quiz — Lesen von Befehlszeilenargumenten in der MAIN-Funktion
+title: Quiz — Lesen der Befehlszeilenargumente
 ---
 
 {% include menu.html %}

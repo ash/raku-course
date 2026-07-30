@@ -1,5 +1,5 @@
 ---
-title: Übung 'Wahr- und Falsch-Strings
+title: Wahre und falsche Zeichenketten
 ---
 
 {% include menu.html %}

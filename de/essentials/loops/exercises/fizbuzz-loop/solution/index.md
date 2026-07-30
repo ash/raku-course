@@ -1,5 +1,5 @@
 ---
-title: 'Lösung: FizzBuzz in einer Schleife'
+title: 'Solution: FizzBuzz in einer Schleife'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..50 -> $n {
 }
 ```
 
-🦋 Finde das Programm in der Datei [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fizbuzz-loop.raku).
+🦋 Finde das Programm in der Datei [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fizbuzz-loop.raku).
 
 ## Ausgabe
 

@@ -1,5 +1,5 @@
 ---
-title: Lösung des ‘Fakultät’
+title: 'Solution: Fakultät'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ $f *= $_ for 2..$n;
 say $f;
 ```
 
-🦋 Finde das Programm in der Datei [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku).
+🦋 Finde das Programm in der Datei [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/factorial.raku).
 
 ## Ausgabe
 

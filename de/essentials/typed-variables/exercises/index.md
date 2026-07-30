@@ -1,5 +1,5 @@
 ---
-title: Übungen zu 'Typisierte Variablen'
+title: 'Exercises: Typisierte Variablen'
 ---
 
 {% include menu.html %}

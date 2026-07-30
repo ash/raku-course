@@ -1,5 +1,5 @@
 ---
-title: Quiz — Erstellen von Bereichen
+title: Quiz — Erstellen von Bereichen
 ---
 
 {% include menu.html %}

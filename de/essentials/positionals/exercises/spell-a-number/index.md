@@ -1,5 +1,5 @@
 ---
-title: 'Übung: Eine Zahl buchstabieren'
+title: Eine Zahl schreiben
 ---
 
 {% include menu.html %}

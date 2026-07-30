@@ -1,5 +1,5 @@
 ---
-title: Übung ‘Benutzereingabe in eine Zahl umwandeln’
+title: Benutzereingabe in eine Zahl umwandeln
 ---
 
 {% include menu.html %}

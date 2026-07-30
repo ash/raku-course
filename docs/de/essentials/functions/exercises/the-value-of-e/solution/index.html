@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Lösung: Der Wert von e</title>
-    <meta property="og:title" content="Lösung: Der Wert von e" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Lösung: Der Wert von e — Raku-Kurs</title>
+    <meta property="og:title" content="Lösung: Der Wert von e — Raku-Kurs" />
     <meta property="og:locale" content="de" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Lösung: Der Wert von e</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,29 +88,53 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/de/">Raku-Kurs</a> / <a href="/de/essentials">Grundlagen</a> / <a href="/de/essentials/functions/">Erstellen und Aufrufen von Funktionen</a> / <a href="/de/essentials/functions/exercises/">Übungen</a> / <a href="/de/essentials/functions/exercises/the-value-of-e">Der Wert von e</a></p>
-
+          <p><a href="/de/">Raku-Kurs</a> / <a
+href="/de/essentials">Grundlagen</a> / <a
+href="/de/essentials/functions-essentials">Grundlagen der Funktionen</a>
+/ <a href="/de/essentials/functions">Erstellen und Aufrufen von
+Funktionen</a> / <a
+href="/de/essentials/functions/exercises">Übungen</a> / <a
+href="/de/essentials/functions/exercises/the-value-of-e">Der Wert von
+e</a></p>
 <h1 id="lösung-der-wert-von-e">Lösung: Der Wert von e</h1>
-
 <h2 id="haftungsausschluss">Haftungsausschluss</h2>
-
-<p>In Raku gibt es eine eingebaute Konstante <code class="language-plaintext highlighter-rouge">e</code>, die die sofortige Antwort auf die Aufgabe liefert. Die unten gezeigte Lösung ist zu Bildungszwecken gedacht.</p>
-
+<p>In Raku gibt es eine eingebaute Konstante <code>e</code>, die die
+sofortige Antwort auf die Aufgabe liefert. Die unten gezeigte Lösung ist
+zu Bildungszwecken gedacht.</p>
 <h2 id="code">Code</h2>
-
-<p>Die Formel in dieser Aufgabe enthält eine Fakultät, und wir haben bereits mindestens zwei Lösungen, um sie zu berechnen (weitere folgen). Das folgende Programm definiert zwei Funktionen: eine zur Berechnung der Fakultät und eine weitere für die Teilsumme gemäß der Formel.</p>
-
-<p>Da es erforderlich ist, dass die Funktion ohne Argumente aufgerufen werden kann, in welchem Fall sie eine vordefinierte Anzahl von Iterationen ausführt, können wir einen <a href="/de/essentials/functions/default-values">Standardwert</a> des Parameters hinzufügen: <code class="language-plaintext highlighter-rouge">sub e-approx($max = 100)</code>.</p>
-
-<p>Beachten Sie im Code die Ähnlichkeiten, wie die Ergebniswerte in einer <a href="/de/essentials/loops/postfix-for">postfix <code class="language-plaintext highlighter-rouge">for</code> Schleife</a> über einen <a href="/de/essentials/ranges">Bereich</a> akkumuliert werden.</p>
-
+<p>Die Formel in dieser Aufgabe enthält eine Fakultät, und wir haben
+bereits mindestens zwei Lösungen, um sie zu berechnen (weitere folgen).
+Das folgende Programm definiert zwei Funktionen: eine zur Berechnung der
+Fakultät und eine weitere für die Teilsumme gemäß der Formel.</p>
+<p>Da es erforderlich ist, dass die Funktion ohne Argumente aufgerufen
+werden kann, in welchem Fall sie eine vordefinierte Anzahl von
+Iterationen ausführt, können wir einen <a
+href="/de/essentials/functions/default-values">Standardwert</a> des
+Parameters hinzufügen: <code>sub e-approx($max = 100)</code>.</p>
+<p>Beachten Sie im Code die Ähnlichkeiten, wie die Ergebniswerte in
+einer <a href="/de/essentials/loops/postfix-for">postfix
+<code>for</code> Schleife</a> über einen <a
+href="/de/essentials/ranges">Bereich</a> akkumuliert werden.</p>
 <p>Hier ist die Lösung:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">factorial</span>(<span class="nv">$n</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">factorial</span>(<span class="nv">$n</span>) {
     <span class="k">my</span> <span class="nv">$f</span> = <span class="mi">1</span>;
     <span class="nv">$f</span> *= <span class="nv">$_</span> <span class="k">for</span> <span class="mi">1</span>..<span class="nv">$n</span>;
 
@@ -75,45 +149,51 @@
 }
 
 <span class="nb">say</span> <span class="n">e-approx</span>(<span class="mi">10</span>);
-<span class="nb">say</span> <span class="n">e-approx</span>();
-</pre></div>
+<span class="nb">say</span> <span class="n">e-approx</span>();</pre></div>
 
-
-<p>🦋 Finden Sie das Programm in der Datei <a href="https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku">the-value-of-e.raku</a>.</p>
-
+<p>🦋 Finden Sie das Programm in der Datei <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku">the-value-of-e.raku</a>.</p>
 <h2 id="ausgabe">Ausgabe</h2>
-
-<p>Mit 10 und 100 Iterationen erhalten wir die folgenden Ergebnisse. Versuchen Sie auch andere Werte für <code class="language-plaintext highlighter-rouge">$max</code>.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/functions/the-value-of-e.raku
-<span class="go">2.7182818
-2.718281828459045
-</span></code></pre></div></div>
-
+<p>Mit 10 und 100 Iterationen erhalten wir die folgenden Ergebnisse.
+Versuchen Sie auch andere Werte für <code>$max</code>.</p>
+<div class="highlight"><pre>$ raku exercises/functions/the-value-of-e.raku
+2.7182818
+2.718281828459045</pre></div>
 <h2 id="kursnavigation">Kursnavigation</h2>
-
-<p>←
-    <a href="/de/essentials/associatives">Assoziative Datentypen</a>
-        / <a href="/de/essentials/associatives/interpolating-hashes">Interpolation von Hashes</a>
-  |  
-    <a href="/de/essentials/more-on-functions">Mehr über Funktionen</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Diese Seite wurde automatisch mit ChatGPT 4o übersetzt. <a href="/essentials/functions/exercises/the-value-of-e/solution/">Originaler englischer Text.</a></p>
-
-  <p>Übersetzungen dieser Seite: <a href="/essentials/functions/exercises/the-value-of-e/solution/">English</a> • <strong>Deutsch</strong> • <a href="/es/essentials/functions/exercises/the-value-of-e/solution/">Español</a> • <a href="/it/essentials/functions/exercises/the-value-of-e/solution/">Italiano</a> • <a href="/lv/essentials/functions/exercises/the-value-of-e/solution/">Latviešu</a> • <a href="/nl/essentials/functions/exercises/the-value-of-e/solution/">Nederlands</a> • <a href="/bg/essentials/functions/exercises/the-value-of-e/solution/">Български</a> • <a href="/ru/essentials/functions/exercises/the-value-of-e/solution/">Русский</a> • <a href="/uk/essentials/functions/exercises/the-value-of-e/solution/">Українська</a></p>
+<p>← <a href="/de/essentials/functions/exercises/the-value-of-e">Der
+Wert von e</a>   |   <a href="/de/essentials/functions/quiz">Quiz
+— Erstellen einer Funktion</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/functions/exercises/the-value-of-e/solution">English</a>
+• <strong>Deutsch</strong> • <a
+href="/es/essentials/functions/exercises/the-value-of-e/solution">Español</a>
+• <a
+href="/it/essentials/functions/exercises/the-value-of-e/solution">Italiano</a>
+• <a
+href="/lv/essentials/functions/exercises/the-value-of-e/solution">Latviešu</a>
+• <a
+href="/nl/essentials/functions/exercises/the-value-of-e/solution">Nederlands</a>
+• <a
+href="/bg/essentials/functions/exercises/the-value-of-e/solution">Български</a>
+• <a
+href="/ru/essentials/functions/exercises/the-value-of-e/solution">Русский</a>
+• <a
+href="/uk/essentials/functions/exercises/the-value-of-e/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
+<p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschrieben von <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

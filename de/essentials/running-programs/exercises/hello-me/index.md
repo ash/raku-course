@@ -1,5 +1,5 @@
 ---
-title: Übung 'Hallo, Ich!'
+title: Hallo, ich!
 ---
 
 {% include menu.html %}

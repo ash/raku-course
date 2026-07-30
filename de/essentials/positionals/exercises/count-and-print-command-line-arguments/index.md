@@ -1,5 +1,5 @@
 ---
-title: Zähle und drucke Befehlszeilenargumente
+title: Befehlszeilenargumente zählen und drucken
 ---
 
 {% include menu.html %}

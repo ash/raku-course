@@ -1,5 +1,5 @@
 ---
-title: Lösung für 'Kauftisch'
+title: 'Solution: Einkaufstabelle'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ Alle Zahlen sind fest codiert und in einer Anzahl von Variablen gespeichert. Wir
 
 Die drei Zeilen, die die Ausgabe erzeugen, drucken die drei Zeilen der Tabelle, einschließlich ihrer Kopfzeile. Beachten Sie, wie die Spalten durch die Tabulatorzeichen `\t` getrennt sind. In den Datenzeilen sehen wir auch ein maskiertes Dollarzeichen: `\$` sowie verschiedene Variablen, die wir interpolieren möchten.
 
-🦋 Sie können den Quellcode in der Datei [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku) finden.
+🦋 Sie können den Quellcode in der Datei [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku) finden.
 
 ## Ausgabe
 

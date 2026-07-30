@@ -1,5 +1,5 @@
 ---
-title: Ausgabe mit say
+title: Ausgabe mit `say`
 ---
 
 {% include menu.html %}
