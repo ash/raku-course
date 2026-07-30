@@ -1,5 +1,5 @@
 ---
-title: Oplossing van 'Tel en print command-line argumenten'
+title: 'Solution: Tellen en printen van commandoregelargumenten'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Vind het programma in het bestand [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Vind het programma in het bestand [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Uitvoer
 

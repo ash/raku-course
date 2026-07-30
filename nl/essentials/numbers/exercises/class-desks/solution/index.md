@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘Klasbanken’
+title: 'Solution: Schoolbanken'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my $desks = $students div 2 + $students % 2;
 say "$desks desks must be bought.";
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/class-desks.raku).
+🦋 Je kunt de volledige code vinden in het bestand [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/class-desks.raku).
 
 ## Uitvoer
 

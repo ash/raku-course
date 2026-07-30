@@ -1,5 +1,5 @@
 ---
-title: Opmerkingen in Raku
+title: Opmerkingen
 ---
 
 {% include menu.html %}

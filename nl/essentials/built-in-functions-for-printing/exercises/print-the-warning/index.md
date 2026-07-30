@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Print de waarschuwing'
+title: Druk de waarschuwing af
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Recursieve faculteit'
+title: Recursieve faculteit
 ---
 
 {% include menu.html %}

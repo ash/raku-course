@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Vervang met antoniemen'
+title: Vervangen met antoniemen
 ---
 
 {% include menu.html %}

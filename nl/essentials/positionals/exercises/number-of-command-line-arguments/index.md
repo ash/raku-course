@@ -1,23 +1,25 @@
 ---
-title: Het aantal commandoregelargumenten
+title: Het aantal argumenten op de opdrachtregel
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Taak
+## Opgave
 
-Schrijf een programma dat het aantal argumenten dat aan het programma in de commandoregel is doorgegeven, afdrukt.
+Schrijf een programma dat in een volledige zin meldt hoeveel argumenten het van de opdrachtregel heeft gekregen. Zorg dat de grammatica klopt: gebruik het woord `argument` als er precies één is meegegeven en `arguments` in alle andere gevallen.
 
 ## Voorbeeld
 
-Dit is hoe het programma zou moeten reageren:
+Zo hoort het programma te reageren:
 
 ```console
 $ raku number-of-command-line-arguments.raku make them count us now
-5
-```
+You passed 5 arguments.
 
-Het programma krijgt vijf woorden in de commandoregel en drukt `5` af.
+$ raku number-of-command-line-arguments.raku solo
+You passed 1 argument.
+```
 
 ## Oplossing
 

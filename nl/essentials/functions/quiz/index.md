@@ -1,5 +1,5 @@
 ---
-title: Quiz — Een functie maken
+title: Quiz — Functie maken
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Ranges maken
+title: Quiz — Reeksen maken
 ---
 
 {% include menu.html %}

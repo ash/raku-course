@@ -1,5 +1,5 @@
 ---
-title: Oplossing van 'Gebruikersinvoer omzetten naar een nummer'
+title: 'Solution: Gebruikersinvoer naar een getal converteren'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my Int $n = prompt 'Enter a number: ';
 say $n;
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 Je kunt de broncode vinden in het bestand [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Voorbeeld
 

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Fibonacci-getallen'
+title: Fibonacci getallen
 ---
 
 {% include menu.html %}

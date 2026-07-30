@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Scalaire variabelen'
+title: 'Exercises: Scalare variabelen'
 ---
 
 {% include menu.html %}

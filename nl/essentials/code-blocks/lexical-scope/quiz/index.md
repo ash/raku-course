@@ -1,5 +1,5 @@
 ---
-title: Quiz — Lexicale scope
+title: Quiz — Lexicaal bereik
 ---
 
 {% include menu.html %}

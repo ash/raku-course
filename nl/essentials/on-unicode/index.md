@@ -1,5 +1,5 @@
 ---
-title: Notities over het gebruik van Unicode
+title: Opmerkingen over het gebruik van Unicode
 ---
 
 {% include menu.html %}

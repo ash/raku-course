@@ -1,5 +1,5 @@
 ---
-title: Typen converteren met voorvoegseloperatoren
+title: Typen converteren met prefix operatoren
 ---
 
 {% include menu.html %}

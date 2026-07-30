@@ -1,5 +1,5 @@
 ---
-title: De oplossing van 'Het antwoord op het leven, het Universum en alles'
+title: 'Solution: Het antwoord op het leven, het universum en alles'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Je kunt de broncode vinden in het bestand [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Uitvoer
 

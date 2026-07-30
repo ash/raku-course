@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Hallo, Concatenatie!'
+title: Hallo, Concatenatie!
 ---
 
 {% include menu.html %}

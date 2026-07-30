@@ -1,5 +1,5 @@
 ---
-title: Print command-line arguments
+title: Commandoregelargumenten printen
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — de conditie in if
+title: Quiz 2 — de voorwaarde in `if`*
 ---
 
 {% include menu.html %}

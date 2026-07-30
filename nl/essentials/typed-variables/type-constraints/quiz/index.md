@@ -1,5 +1,5 @@
 ---
-title: Quiz — Type constraints
+title: Quiz — Type beperkingen
 ---
 
 {% include menu.html %}

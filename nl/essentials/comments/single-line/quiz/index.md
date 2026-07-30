@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Enkele-regel opmerkingen'
+title: 'Quiz: Eenzijnige opmerkingen'
 ---
 
 {% include menu.html %}

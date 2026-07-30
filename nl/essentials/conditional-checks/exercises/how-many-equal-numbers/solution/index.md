@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Hoeveel nummers zijn gelijk?'
+title: 'Solution: Hoeveel getallen zijn gelijk?'
 ---
 
 {% include menu.html %}
@@ -30,7 +30,7 @@ else {
 }
 ```
 
-🦋 Vind het programma in het bestand [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Vind het programma in het bestand [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
 ## Uitvoer
 

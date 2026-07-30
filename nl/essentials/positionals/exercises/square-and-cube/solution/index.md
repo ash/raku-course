@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Vierkanten en kubussen’
+title: 'Solution: Vierkant en kubus'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n ** 2;
 say $n ** 3;
 ```
 
-🦋 Vind het programma in het bestand [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube.raku).
+🦋 Vind het programma in het bestand [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube.raku).
 
 ## Code 2
 
@@ -26,7 +26,7 @@ say $n²;
 say $n³;
 ```
 
-🦋 Vind het programma in het bestand [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube-2.raku).
+🦋 Vind het programma in het bestand [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube-2.raku).
 
 ## Output
 

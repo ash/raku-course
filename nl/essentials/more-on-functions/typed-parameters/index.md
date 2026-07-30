@@ -1,5 +1,5 @@
 ---
-title: Getypte parameters van functies
+title: Getypte parameters
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Reizen afstand'
+title: Reisafstand*
 ---
 
 {% include menu.html %}

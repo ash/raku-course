@@ -1,5 +1,5 @@
 ---
-title: Oplossing van 'Wissel de waarden'
+title: 'Solution: Waarden ruilen'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 Je kunt de broncode vinden in het bestand [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
 ## Uitvoer
 

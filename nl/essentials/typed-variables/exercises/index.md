@@ -1,5 +1,5 @@
 ---
-title: Oefeningen voor 'Getypte variabelen'
+title: 'Exercises: Getypte variabelen'
 ---
 
 {% include menu.html %}

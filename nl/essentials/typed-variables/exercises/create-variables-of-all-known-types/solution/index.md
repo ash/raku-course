@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Maak variabelen van alle bekende typen’
+title: 'Solution: Maak variabelen van alle bekende typen'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Vind het programma in het bestand [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Vind het programma in het bestand [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
 ## Uitvoer
 

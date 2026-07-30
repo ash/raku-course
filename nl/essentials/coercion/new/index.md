@@ -1,5 +1,5 @@
 ---
-title: Typen converteren met behulp van constructorvormen
+title: Typen converteren met constructor vormen
 ---
 
 {% include menu.html %}

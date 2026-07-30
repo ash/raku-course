@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Digitale trappen'
+title: 'Solution: Digitale trappen'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Vind het programma in het bestand [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Vind het programma in het bestand [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
 ## Uitvoer
 

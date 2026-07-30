@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘Driedubbele negatie’
+title: 'Solution: Drievoudige negatie'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Je kunt de volledige code vinden in het bestand [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Uitvoer
 

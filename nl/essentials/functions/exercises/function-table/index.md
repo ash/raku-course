@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Functietabel'
+title: Functietabel
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Boolean type
+title: Quiz: Boolean waarden
 ---
 
 {% include menu.html %}

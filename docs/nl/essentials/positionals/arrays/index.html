@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Arrays</title>
-    <meta property="og:title" content="Arrays" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Arrays — Raku-cursus</title>
+    <meta property="og:title" content="Arrays — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Arrays</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,99 +88,118 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/positionals">Positionele datentypen</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/more-about-types">Meer over types</a> / <a
+href="/nl/essentials/positionals">Positionele datentypen</a></p>
 <h1 id="arrays">Arrays</h1>
+<p>Arrays zijn aggregatiedatatypen die meer dan één waarde kunnen
+bevatten. Dat onderscheidt arrays van <a
+href="/nl/essentials/scalar-variables">scalaire items</a>.
+Array-elementen kunnen worden geïndexeerd (of <em>gesubscript</em>). Met
+andere woorden, de elementen hebben een positie (wat de algemene naam
+voor dit soort data verklaart: positionals).</p>
+<p>Array-variabelen gebruiken een ander soort sigil: <code>@</code>. De
+regels voor de variabelenaam zijn hetzelfde als <a
+href="/nl/essentials/scalar-variables/identifiers/">voor
+scalairs</a>.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;</pre></div>
 
-<p>Arrays zijn aggregatiedatatypen die meer dan één waarde kunnen bevatten. Dat onderscheidt arrays van <a href="/nl/essentials/scalar-variables">scalaire items</a>. Array-elementen kunnen worden geïndexeerd (of <em>gesubscript</em>). Met andere woorden, de elementen hebben een positie (wat de algemene naam voor dit soort data verklaart: positionals).</p>
+<p>Tot nu toe is de array genaamd <code>@cities</code> aangemaakt. Je
+kunt deze vullen met enkele waarden:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">@cities</span> = <span class="s">'Parijs'</span>, <span class="s">'Rome'</span>, <span class="s">'Berlijn'</span>;</pre></div>
 
-<p>Array-variabelen gebruiken een ander soort sigil: <code class="language-plaintext highlighter-rouge">@</code>. De regels voor de variabelenaam zijn hetzelfde als <a href="/nl/essentials/scalar-variables/identifiers/">voor scalairs</a>.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;
-</pre></div>
-
-
-<p>Tot nu toe is de array genaamd <code class="language-plaintext highlighter-rouge">@cities</code> aangemaakt. Je kunt deze vullen met enkele waarden:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">@cities</span> = <span class="s">&#39;Parijs&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlijn&#39;</span>;
-</pre></div>
-
-
-<p>Als alternatief is het mogelijk om de waarden direct te initialiseren:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">&#39;Parijs&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlijn&#39;</span>;
-</pre></div>
-
+<p>Als alternatief is het mogelijk om de waarden direct te
+initialiseren:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">'Parijs'</span>, <span class="s">'Rome'</span>, <span class="s">'Berlijn'</span>;</pre></div>
 
 <h2 id="indexeren">Indexeren</h2>
+<p>Om toegang te krijgen tot een enkel item van een array, gebruik je
+een paar haakjes die je na de naam van de variabele plaatst:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];</pre></div>
 
-<p>Om toegang te krijgen tot een enkel item van een array, gebruik je een paar haakjes die je na de naam van de variabele plaatst:</p>
+<p>Merk op dat de sigil altijd hetzelfde blijft. Aangezien elementen
+vanaf nul worden geteld, is het element <code>@cities[1]</code>
+<code>'Rome'</code> in ons voorbeeld.</p>
+<p>Arrays zijn muteerbaar, dus je kunt de items ervan eenvoudig wijzigen
+door er simpelweg een nieuwe waarde aan toe te wijzen:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">'Rome'</span>;
+<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">'Parijs'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];
-</pre></div>
-
-
-<p>Merk op dat de sigil altijd hetzelfde blijft. Aangezien elementen vanaf nul worden geteld, is het element <code class="language-plaintext highlighter-rouge">@cities[1]</code> <code class="language-plaintext highlighter-rouge">'Rome'</code> in ons voorbeeld.</p>
-
-<p>Arrays zijn muteerbaar, dus je kunt de items ervan eenvoudig wijzigen door er simpelweg een nieuwe waarde aan toe te wijzen:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">&#39;Rome&#39;</span>;
-<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">&#39;Parijs&#39;</span>;
-</pre></div>
-
-
-<p>Hierna zal de uitspraak <code class="language-plaintext highlighter-rouge">say @cities[1]</code> de nieuwe waarde <code class="language-plaintext highlighter-rouge">'Parijs'</code> afdrukken.</p>
-
+<p>Hierna zal de uitspraak <code>say @cities[1]</code> de nieuwe waarde
+<code>'Parijs'</code> afdrukken.</p>
 <h2 id="grootte">Grootte</h2>
+<p>Om de huidige lengte van een array te krijgen, of, met andere
+woorden, het aantal elementen, gebruik je de
+<code>elems</code>-methode:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span></pre></div>
 
-<p>Om de huidige lengte van een array te krijgen, of, met andere woorden, het aantal elementen, gebruik je de <code class="language-plaintext highlighter-rouge">elems</code>-methode:</p>
+<p>Als de array verschijnt in een context waar de verwachte parameter
+een getal is, is de retourwaarde de grootte van de array:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
-</pre></div>
-
-
-<p>Als de array verschijnt in een context waar de verwachte parameter een getal is, is de retourwaarde de grootte van de array:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span>
-</pre></div>
-
-
-<p>Hier vereist de <a href="/nl/essentials/coercion/prefixes"><code class="language-plaintext highlighter-rouge">+</code> prefix-operator</a> een numerieke waarde van zijn argument, dus het resultaat van <code class="language-plaintext highlighter-rouge">+@cities</code> is <code class="language-plaintext highlighter-rouge">3</code>.</p>
-
-<p><div class="practice"></p>
-<h2 id="oefening">Oefening</h2>
-
-<p>Maak de quiz die de inhoud van dit onderwerp behandelt.</p>
+<p>Hier vereist de <a
+href="/nl/essentials/coercion/prefixes"><code>+</code>
+prefix-operator</a> een numerieke waarde van zijn argument, dus het
+resultaat van <code>+@cities</code> is <code>3</code>.</p>
+<section id="praktijk" class="practice" data-markdown="1">
+<h2>Praktijk</h2>
+<p>Maak de 1 quiz over de inhoud van dit onderwerp.</p>
 <ul>
-  <li><a href="/nl/essentials/positionals/arrays/quiz">Quiz — Arrays</a></li>
+<li><a href="/nl/essentials/positionals/arrays/quiz">Quiz
+— Arrays</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-        <a href="/nl/essentials/positionals">Positionele datentypen</a>
-  |  
-        <a href="/nl/essentials/positionals">Positionele datentypen</a> / <a href="/nl/essentials/positionals/nested-arrays">Geneste arrays</a>
+<p>← <a href="/nl/essentials/positionals">Positionele datentypen</a>
+  |   <a href="/nl/essentials/positionals/arrays/quiz">Quiz — Arrays</a>
 →</p>
-
-<p><br />
-💪 Or jump directly <a href="/nl/essentials/positionals/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/positionals/arrays/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <a href="/es/essentials/positionals/arrays/">Español</a> • <a href="/it/essentials/positionals/arrays/">Italiano</a> • <a href="/lv/essentials/positionals/arrays/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/positionals/arrays/">Български</a> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+<p><br /> 💪 Of ga direct <a
+href="/nl/essentials/positionals/exercises">naar de oefeningen in deze
+sectie</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/positionals/arrays">English</a> • <a
+href="/de/essentials/positionals/arrays">Deutsch</a> • <a
+href="/es/essentials/positionals/arrays">Español</a> • <a
+href="/it/essentials/positionals/arrays">Italiano</a> • <a
+href="/lv/essentials/positionals/arrays">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/positionals/arrays">Български</a> • <a
+href="/ru/essentials/positionals/arrays">Русский</a> • <a
+href="/uk/essentials/positionals/arrays">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Voorwaardelijke controles'
+title: 'Exercises: Voorwaardelijke controles'
 ---
 
 {% include menu.html %}

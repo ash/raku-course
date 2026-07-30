@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Omtrek van een rechthoek'
+title: Omtrek van een rechthoek
 ---
 
 {% include menu.html %}

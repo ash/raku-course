@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Output met say</title>
-    <meta property="og:title" content="Output met say" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Uitvoer met say — Raku-cursus</title>
+    <meta property="og:title" content="Uitvoer met say — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Output met say</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,65 +88,87 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/simple-input-output">Eenvoudige invoer en uitvoer</a></p>
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/getting-started">Programma’s schrijven en
+uitvoeren</a> / <a href="/nl/essentials/simple-input-output">Eenvoudige
+invoer en uitvoer</a></p>
+<h1 id="uitvoer-met-say">Uitvoer met <code>say</code></h1>
+<p>De <code>say</code> functie (of een subroutine, of simpelweg routine)
+print de waarden naar de standaard uitvoerstream, <code>STDOUT</code>.
+Als je het programma vanuit een terminal uitvoert, verschijnt de uitvoer
+daar. Als je online diensten gebruikt, wordt de uitvoer naar een
+speciaal gebied van de webpagina gestuurd.</p>
+<p>Hier is een voorbeeld van het gebruik van <code>say</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;</pre></div>
 
-<h1 id="uitvoer-met-say">Uitvoer met <code class="language-plaintext highlighter-rouge">say</code></h1>
-
-<p>De <code class="language-plaintext highlighter-rouge">say</code> functie (of een subroutine, of simpelweg routine) print de waarden naar de standaard uitvoerstream, <code class="language-plaintext highlighter-rouge">STDOUT</code>. Als je het programma vanuit een terminal uitvoert, verschijnt de uitvoer daar. Als je online diensten gebruikt, wordt de uitvoer naar een speciaal gebied van de webpagina gestuurd.</p>
-
-<p>Hier is een voorbeeld van het gebruik van <code class="language-plaintext highlighter-rouge">say</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
-</pre></div>
-
-
-<p>Deze regel kan ofwel een deel van een groter programma zijn of het hele programma zelf. Het print duidelijk <code class="language-plaintext highlighter-rouge">42</code> naar de uitvoer.</p>
-
+<p>Deze regel kan ofwel een deel van een groter programma zijn of het
+hele programma zelf. Het print duidelijk <code>42</code> naar de
+uitvoer.</p>
 <p>Laten we nu met strings werken:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello, World!'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello, World!&#39;</span>;
-</pre></div>
+<p>Voilà, we hebben <code>Hello, World!</code> op het scherm.</p>
+<p>De <code>say</code> routine kan meer dan één argument accepteren, dus
+we kunnen meer waarden in één keer printen:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">'Hello, World!'</span>;</pre></div>
 
+<p>Let er wel op dat de delen van deze uitvoer worden samengevoegd tot
+een enkele string: <code>42Hello, World!</code>, dus het is beter om een
+spatie tussen hen toe te voegen. En je zou dit probleem nu moeten kunnen
+oplossen, bijvoorbeeld, zo:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">' '</span>, <span class="s">'Hello, World!'</span>;</pre></div>
 
-<p>Voilà, we hebben <code class="language-plaintext highlighter-rouge">Hello, World!</code> op het scherm.</p>
-
-<p>De <code class="language-plaintext highlighter-rouge">say</code> routine kan meer dan één argument accepteren, dus we kunnen meer waarden in één keer printen:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">&#39;Hello, World!&#39;</span>;
-</pre></div>
-
-
-<p>Let er wel op dat de delen van deze uitvoer worden samengevoegd tot een enkele string: <code class="language-plaintext highlighter-rouge">42Hello, World!</code>, dus het is beter om een spatie tussen hen toe te voegen. En je zou dit probleem nu moeten kunnen oplossen, bijvoorbeeld, zo:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">&#39; &#39;</span>, <span class="s">&#39;Hello, World!&#39;</span>;
-</pre></div>
-
-
-<p>Na het printen van alle argumenten, voegt de <code class="language-plaintext highlighter-rouge">say</code> routine een nieuwe regelkarakter toe aan de uitvoer.</p>
-
-<p></div></p>
-
+<p>Na het printen van alle argumenten, voegt de <code>say</code> routine
+een nieuwe regelkarakter toe aan de uitvoer.</p>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-        <a href="/nl/essentials/simple-input-output">Eenvoudige invoer en uitvoer</a>
-  |  
-        <a href="/nl/essentials/simple-input-output">Eenvoudige invoer en uitvoer</a> / <a href="/nl/essentials/simple-input-output/prompt">Invoer met <code class="language-plaintext highlighter-rouge">prompt</code></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/simple-input-output/say/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/simple-input-output/say/">English</a> • <a href="/de/essentials/simple-input-output/say/">Deutsch</a> • <a href="/es/essentials/simple-input-output/say/">Español</a> • <a href="/it/essentials/simple-input-output/say/">Italiano</a> • <a href="/lv/essentials/simple-input-output/say/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/simple-input-output/say/">Български</a> • <a href="/ru/essentials/simple-input-output/say/">Русский</a> • <a href="/uk/essentials/simple-input-output/say/">Українська</a></p>
+<p>← <a href="/nl/essentials/simple-input-output">Eenvoudige invoer en
+uitvoer</a>   |   <a
+href="/nl/essentials/simple-input-output/prompt">Invoer met
+<code>prompt</code></a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/simple-input-output/say">English</a> • <a
+href="/de/essentials/simple-input-output/say">Deutsch</a> • <a
+href="/es/essentials/simple-input-output/say">Español</a> • <a
+href="/it/essentials/simple-input-output/say">Italiano</a> • <a
+href="/lv/essentials/simple-input-output/say">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/simple-input-output/say">Български</a> • <a
+href="/ru/essentials/simple-input-output/say">Русский</a> • <a
+href="/uk/essentials/simple-input-output/say">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

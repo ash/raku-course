@@ -1,10 +1,10 @@
 ---
-title: 'Oplossing: Vervangen met antoniemen'
+title: 'Solution: Vervangen met antoniemen'
 ---
 
 {% include menu.html %}
 
-Om de taak op te lossen, wordt de inhoud van het bestand [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) gekopieerd naar het oplossingsbestand [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku). Daarna probeert een lus over de invoerargumenten het woord in het woordenboek te vinden, en als dat lukt, neemt het het antoniem. Als er geen dergelijk woord in het woordenboek staat, wordt het oorspronkelijke woord gebruikt.
+Om de taak op te lossen, wordt de inhoud van het bestand [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) gekopieerd naar het oplossingsbestand [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku). Daarna probeert een lus over de invoerargumenten het woord in het woordenboek te vinden, en als dat lukt, neemt het het antoniem. Als er geen dergelijk woord in het woordenboek staat, wordt het oorspronkelijke woord gebruikt.
 
 ## Code
 
@@ -25,7 +25,7 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Vind het programma in het bestand [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Vind het programma in het bestand [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
 ## Uitvoer
 

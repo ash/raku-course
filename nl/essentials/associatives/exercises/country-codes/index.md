@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Landcodes'
+title: Landcodes
 ---
 
 {% include menu.html %}

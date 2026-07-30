@@ -1,102 +1,82 @@
 ---
-title: Over deze cursus
+title: Over de cursus
+translations_gpt:
 ---
 
-{% assign course_title = site.data.toc["nl"].title %}
+{% include menu.html %}
 
-[{{course_title}}](/nl/)
+Welkom bij de cursus van de programmeertaal Raku!
 
-# Over deze cursus
+Deze cursus behandelt alle belangrijke kanten van de taal die je in je dagelijkse praktijk nodig hebt. Hij bestaat uit vijf delen die de theorie uitleggen en veel praktische opdrachten bieden. De bedoeling is dat je de taken zelf probeert op te lossen voordat je naar de oplossing kijkt.
 
-Welkom bij de cursus van de Raku programmeertaal!
-
-Deze cursus behandelt alle belangrijke aspecten van de taal die je nodig hebt in je dagelijkse praktijk. De cursus bestaat uit vijf delen die de theorie uitleggen en veel praktische opdrachten bieden. Het is de bedoeling dat je probeert de taken zelf op te lossen voordat je naar de oplossing kijkt.
-
-Als je net begint met het leren van Raku, wordt je geadviseerd om alle delen in de volgorde te doorlopen zoals ze in de inhoudsopgave staan vermeld. Als je al wat ervaring hebt en specifieke training wilt, kun je beginnen met het gewenste gedeelte.
+Als je net begint met Raku, doe je er goed aan alle delen te doorlopen in de volgorde waarin ze in de inhoudsopgave staan. Heb je al wat ervaring en wil je iets specifieks oefenen, begin dan gerust meteen bij de gewenste sectie.
 
 ## Structuur
 
-De cursus is verdeeld in vijf delen, elk met verschillende secties, die op hun beurt een aantal onderwerpen bevatten (of, simpel gezegd, verschillende pagina's met hun unieke URL).
+De cursus is verdeeld in vijf delen, elk met verschillende secties, die op hun beurt een aantal onderwerpen bevatten (of, simpel gezegd, losse pagina's met hun eigen URL).
 
-De cursus bevat materialen van de volgende vier typen:
+De cursus bevat materiaal van vier soorten:
 
-* — Theorie die het huidige onderwerp behandelt
-* — Quizzen die je begrip van de theorie van het onderwerp en/of de sectie testen
-* — Oefeningen voor het materiaal van de hele sectie
+* — Theorie over het huidige onderwerp
+* — Quizzen die toetsen hoe goed je de theorie van het onderwerp en de sectie begrijpt
+* — Oefeningen over het materiaal van de hele sectie
 * — Antwoorden op de oefeningen
 
-Soms geven praktische opdrachten (zowel quizzen als oefeningen) aanvullende informatie over het onderwerp, dus om het meeste uit de cursus te halen, wordt aanbevolen deze niet over te slaan.
+De praktische opdrachten — zowel de quizzen als de oefeningen — geven soms extra informatie over het onderwerp, dus om het meeste uit de cursus te halen, kun je ze beter niet overslaan.
 
-Onder elke pagina bevindt zich een navigatieblok dat je kunt gebruiken om door de hele cursus te navigeren. Je kunt ook altijd naar de gewenste sectie springen met behulp van het broodkruimelmenu bovenaan de pagina.
+Onder elke pagina staat een navigatieblok waarmee je de hele cursus kunt doorlopen. Bovendien kun je altijd naar de gewenste sectie springen via het kruimelpad bovenaan de pagina.
 
-Hoewel de navigatie je door de opdrachten in een bepaalde volgorde leidt, kun je ze min of meer in willekeurige volgorde binnen de huidige sectie of het onderwerp oplossen.
+De navigatie leidt je in een bepaalde volgorde door de opdrachten, maar binnen de huidige sectie of het huidige onderwerp kun je ze min of meer in willekeurige volgorde maken.
 
 ## Inhoud
 
-De cursus bestaat uit vijf delen:
+De cursus bestaat uit vijf delen, die allemaal volledig geschreven en gepubliceerd zijn:
 
-| N | Naam | Status
-| 1 | [Raku essentials](/nl/essentials) | Gepubliceerd
-| 2 | [Advanced Raku subjects](/nl/advanced) | In progress<span id="ProgressBar">...</span>
-| 3 | Object-georiënteerd programmeren in Raku | 
-| 4 | Regexes en grammatica's | 
-| 5 | Functioneel, gelijktijdig en reactief programmeren | 
+<style>
+table td:first-child, table th:first-child { width: 99%; }
+table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; padding-left: 1.5em; }
+</style>
 
-<script>
-    let ProgressBar = document.getElementById('ProgressBar');
-    let current_progress = 0;
-    setInterval(function() {
-        current_progress++;
-        current_progress %= 6;
+| Deel | Onderwerpen | Quizzen | Oefeningen |
+|------|------------:|--------:|-----------:|
+| [Raku essentiëlen](/nl/essentials) | 91 | 73 | 65 |
+| [Gevorderde Raku-onderwerpen](/nl/advanced) | 86 | 48 | 115 |
+| [Objecten, I/O en excepties](/nl/oop) | 33 | 20 | 55 |
+| [Reguliere expressies en grammatica's](/nl/regexes) | 34 | 29 | 49 |
+| [Functioneel, concurrent, reactief en webprogrammeren](/nl/paradigms) | 40 | 31 | 56 |
+| ★ [De eindtoets](/nl/final-test) | — | 100 | — |
+| [Aanhangsel: uitgebreide oefeningen](/nl/addendum) | 8 | — | 50 |
 
-        let bar = '';
-        for (let c = 0; c < current_progress; c++) {
-            bar += ',';
-        }
-        bar += '...';
-        for (let c = current_progress; c < 6; c++) {
-            bar += ',';
-        }
-        
-        bar = bar.substr(3, 3);
-        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
-        ProgressBar.innerHTML = bar;
-    }, 200);
-</script>
+Na de vijf delen komt **de eindtoets** — honderd vragen uit de hele cursus in één zitting, ongeveer in de volgorde waarin je de stof geleerd hebt. Elk antwoord wordt meteen nagekeken, en aan het eind krijg je je score en een link die je kunt bewaren om je resultaat te delen of na te lopen.
 
-Op dit moment is het eerste deel volledig geschreven en gepubliceerd. De andere delen zijn in ontwikkeling. Merk op dat aangezien de cursus nog in ontwikkeling is, de URL's van de verschillende delen in de toekomst enigszins kunnen veranderen.
+Het zesde deel, het **Aanhangsel**, is een aparte verzameling van pittigere, omvangrijkere oefeningen die op de hele cursus tegelijk leunen — precies het soort oefening waar je naar grijpt zodra de kernstof achter de rug is.
 
-Het eerste deel, 'Raku essentials', bevat:
+Houd er rekening mee dat de cursus nog verfijnd wordt, dus de URL's van de verschillende delen kunnen in de toekomst iets veranderen. In de al gepubliceerde onderwerpen kunnen nieuwe oefeningen en quizzen verschijnen, en de theoretische delen kunnen licht aangepast worden voor een betere opbouw van de cursus.
 
-- 91 onderwerpen
-- 73 quizzen
-- 65 oefeningen
+## Wat je nodig hebt
 
-Nieuwe oefeningen en quizzen kunnen verschijnen in de reeds gepubliceerde onderwerpen, en de theoretische delen kunnen enigszins worden aangepast om de beste doorstroming van de cursus te bereiken.
+Om de cursus te volgen en de oefeningen te maken, heb je een werkende compiler nodig. Er zijn verschillende mogelijkheden:
 
-## Vereisten
+* — Probeer de ingebouwde <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku-speeltuin</a> direct in je browser, zonder iets te installeren, of
+* — Installeer de Rakudo-compiler, of
+* — Gebruik onlinediensten, of
+* — Gebruik dockercontainers
 
-Om de cursus te volgen en oefeningen uit te voeren, heb je een werkende compiler nodig. Er zijn een aantal opties:
-
-* — Installeer de Rakudo compiler of het Rakudo Star pakket of
-* — Gebruik online diensten of
-* — Gebruik docker containers
-
-De verschillende installatieopties worden beschreven aan het begin van het eerste deel.
+De verschillende installatiemogelijkheden worden aan het begin van het eerste deel beschreven.
 
 ## Over de auteur
 
-De cursus is geschreven door [Andrew Shitov](https://andrewshitov.com), die de ontwikkeling van Raku volgt sinds ongeveer 2000 (toen het bekend stond als Perl 6). Hij is de auteur van een aantal [boeken over programmeren in Raku](https://andrewshitov.com/books). Het cursusmateriaal is gebaseerd op dagelijkse ervaring, met name op bijdragen aan [The Weekly Challenge](https://perlweeklychallenge.org) en het beoordelen van de oplossingen van andere deelnemers, evenals op de ervaring die is opgedaan met het gebruik van Raku als de hoofdtaal voor de [Covid Observer](https://covid.observer) website.
+De cursus is geschreven door [Andrew Shitov](https://andrewshitov.com), die de ontwikkeling van Raku al sinds ongeveer 2000 volgt (toen de taal nog Perl 6 heette). Hij is de auteur van een aantal [boeken over programmeren in Raku](https://andrewshitov.com/books). Het cursusmateriaal is gebaseerd op dagelijkse ervaring, in het bijzonder op deelname aan [The Weekly Challenge](https://perlweeklychallenge.org) en het doornemen van de oplossingen van andere deelnemers, en op de ervaring met Raku als hoofdtaal voor de website [Covid Observer](https://covid.observer).
 
 ## Bijdragen, gebruiksvoorwaarden en feedback
 
-De creatie van de cursus wordt ondersteund door de subsidie van [The Perl Foundation](https://www.perlfoundation.org). Je kunt de cursus gebruiken voor zelfstudie of als een set kant-en-klare materialen om anderen les te geven. Commercieel gebruik in lessen is toegestaan zonder toestemming. Het uitbrengen van de cursus als een apart product moet eerst worden overlegd met de auteur.
+De totstandkoming van de cursus wordt ondersteund door een subsidie van [The Perl & Raku Foundation](https://www.perlfoundation.org). Je mag de cursus gebruiken voor zelfstudie of als kant-en-klaar materiaal om anderen les te geven. Commercieel gebruik in lessen is toegestaan zonder aparte toestemming. Het uitbrengen van de cursus als afzonderlijk product moet eerst met de auteur overlegd worden.
 
-De bronbestanden zijn beschikbaar op GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Voel je vrij om een pull request in te dienen om mogelijke fouten of typefouten te corrigeren of een issue aan te maken op GitHub als je een breder onderwerp wilt bespreken. Je kunt ook contact opnemen met de auteur via [e-mail](mailto:andy@shitov.ru).
+De bronbestanden staan op GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Stuur gerust een pull request om eventuele fouten of typefouten te verbeteren, of maak een issue aan op GitHub als je iets breders wilt bespreken. Je kunt de auteur ook per [e-mail](mailto:mail@andreyshitov.com) bereiken.
 
 ## Cursusnavigatie
 
-← [Start](/nl/) 
+← [Begin](/nl/) 
 &nbsp;&nbsp;|&nbsp;&nbsp;
 [Wat is Raku](/nl/essentials/what-is-raku) →
 

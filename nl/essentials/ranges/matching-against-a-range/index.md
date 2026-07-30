@@ -1,5 +1,5 @@
 ---
-title: Vergelijken met een bereik
+title: Afstemmen tegen een reeks
 ---
 
 {% include menu.html %}

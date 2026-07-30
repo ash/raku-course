@@ -1,5 +1,5 @@
 ---
-title: String-arrays citeren
+title: Citeren van string arrays
 ---
 
 {% include menu.html %}

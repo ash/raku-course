@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Functie om xʸ te berekenen'
+title: Functie om _xʸ_ te berekenen
 ---
 
 {% include menu.html %}

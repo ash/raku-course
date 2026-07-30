@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Rationale getallen in Raku</title>
-    <meta property="og:title" content="Rationale getallen in Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Rationale getallen — Raku-cursus</title>
+    <meta property="og:title" content="Rationale getallen — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Rationale getallen in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,111 +88,126 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/numbers">Getallen</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/variables">Basis van variabelen en datatypes</a> /
+<a href="/nl/essentials/numbers">Getallen</a></p>
 <h1 id="rationale-getallen">Rationale getallen</h1>
+<p>Rationale getallen zijn een uniek kenmerk van Raku. Het
+<code>Rat</code> gegevenstype vertegenwoordigt zulke getallen.</p>
+<p>Intern vertegenwoordigen rationale getallen breuken met twee gehele
+delen: teller en noemer. Dus, je kunt gemakkelijk getallen zoals 1/3
+presenteren zonder precisie te verliezen.</p>
+<p>Er zijn een paar manieren om een <code>Rat</code> getal in een
+programma in Raku op te schrijven:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span>/<span class="mi">2</span>;
+<span class="k">my</span> <span class="nv">$y</span> = <span class="s">&lt;2/3&gt;</span>;</pre></div>
 
-<p>Rationale getallen zijn een uniek kenmerk van Raku. Het <code class="language-plaintext highlighter-rouge">Rat</code> gegevenstype vertegenwoordigt zulke getallen.</p>
+<p>Merk op dat de schuine streep hier een deel van de notatie is. Het is
+geen delingsoperator, dus <code>1/2</code> betekent niet dat je 1 deelt
+door 2. Bij het afdrukken worden rationalen echter weergegeven als
+decimale getallen of gehele getallen:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">1</span>/<span class="mi">2</span>; <span class="c1"># 0.5</span>
+<span class="nb">say</span> <span class="mi">3</span>/<span class="mi">4</span>; <span class="c1"># 0.75</span></pre></div>
 
-<p>Intern vertegenwoordigen rationale getallen breuken met twee gehele delen: teller en noemer. Dus, je kunt gemakkelijk getallen zoals 1/3 presenteren zonder precisie te verliezen.</p>
-
-<p>Er zijn een paar manieren om een <code class="language-plaintext highlighter-rouge">Rat</code> getal in een programma in Raku op te schrijven:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>;
-<span class="k">my</span> <span class="nv">$y</span> = <span class="s">&lt;2/3&gt;</span>;
-</pre></div>
-
-
-<p>Merk op dat de schuine streep hier een deel van de notatie is. Het is geen delingsoperator, dus <code class="language-plaintext highlighter-rouge">1/2</code> betekent niet dat je 1 deelt door 2. Bij het afdrukken worden rationalen echter weergegeven als decimale getallen of gehele getallen:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>; <span class="c1"># 0.5</span>
-<span class="nb">say</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>; <span class="c1"># 0.75</span>
-</pre></div>
-
-
-<p>Het deel van de regel na het <code class="language-plaintext highlighter-rouge">#</code> symbool is een commentaar en wordt genegeerd door de compiler. Zulke commentaren zullen in de cursus worden gebruikt om de uitvoer van het programma te laten zien.</p>
-
+<p>Het deel van de regel na het <code>#</code> symbool is een commentaar
+en wordt genegeerd door de compiler. Zulke commentaren zullen in de
+cursus worden gebruikt om de uitvoer van het programma te laten
+zien.</p>
 <h2 id="decimale-vorm">Decimale vorm</h2>
-
-<p>Het is belangrijk om te beseffen dat wanneer je het getal in decimale vorm schrijft, bijvoorbeeld <code class="language-plaintext highlighter-rouge">0.5</code>, Raku op dat moment een <code class="language-plaintext highlighter-rouge">Rat</code> getal creëert. Het is geen geheel getal, maar het is ook geen drijvendekommagetal (<code class="language-plaintext highlighter-rouge">float</code> of <code class="language-plaintext highlighter-rouge">double</code> in andere talen). Het is nog steeds een rationaal getal!</p>
-
+<p>Het is belangrijk om te beseffen dat wanneer je het getal in decimale
+vorm schrijft, bijvoorbeeld <code>0.5</code>, Raku op dat moment een
+<code>Rat</code> getal creëert. Het is geen geheel getal, maar het is
+ook geen drijvendekommagetal (<code>float</code> of <code>double</code>
+in andere talen). Het is nog steeds een rationaal getal!</p>
 <p>Beschouw het volgende voorbeeld:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">0.1</span> + <span class="mf">0.2</span> - <span class="mf">0.3</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">0.1</span> + <span class="mf">0.2</span> - <span class="mf">0.3</span>;
-</pre></div>
-
-
-<p>Als een programmeertaal drijvendekommarekenkunde gebruikt voor deze berekeningen, zal het resultaat niet gelijk zijn aan 0. De website <a href="https://0.30000000000000004.com">0.30000000000000004.com</a> geeft een uitgebreide lijst van voorbeelden waar drijvendekommarekenkunde geen verwacht resultaat geeft.</p>
-
-<p>Maar Raku drukt exact <code class="language-plaintext highlighter-rouge">0</code> af. Dit gebeurt omdat het de getallen <code class="language-plaintext highlighter-rouge">0.1</code>, <code class="language-plaintext highlighter-rouge">0.2</code> en <code class="language-plaintext highlighter-rouge">0.3</code> behandelt als rationale getallen en ze intern bewaart als <code class="language-plaintext highlighter-rouge">1/10</code>, <code class="language-plaintext highlighter-rouge">2/10</code> en <code class="language-plaintext highlighter-rouge">3/10</code>. Voer het uit vanaf de opdrachtregel om het te bevestigen:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku <span class="nt">-e</span> <span class="s1">'say 0.1 + 0.2 - 0.3'</span>
-<span class="go">0
-</span></code></pre></div></div>
-
+<p>Als een programmeertaal drijvendekommarekenkunde gebruikt voor deze
+berekeningen, zal het resultaat niet gelijk zijn aan 0. De website <a
+href="https://0.30000000000000004.com">0.30000000000000004.com</a> geeft
+een uitgebreide lijst van voorbeelden waar drijvendekommarekenkunde geen
+verwacht resultaat geeft.</p>
+<p>Maar Raku drukt exact <code>0</code> af. Dit gebeurt omdat het de
+getallen <code>0.1</code>, <code>0.2</code> en <code>0.3</code>
+behandelt als rationale getallen en ze intern bewaart als
+<code>1/10</code>, <code>2/10</code> en <code>3/10</code>. Voer het uit
+vanaf de opdrachtregel om het te bevestigen:</p>
+<div class="highlight"><pre>$ raku -e 'say 0.1 + 0.2 - 0.3'
+0</pre></div>
 <h2 id="unicode-vormen">Unicode vormen</h2>
-
-<p>Het is ook mogelijk om Unicode-tekens te gebruiken die de breuken vertegenwoordigen, zoals <code class="language-plaintext highlighter-rouge">½</code> of <code class="language-plaintext highlighter-rouge">¼</code> of <code class="language-plaintext highlighter-rouge">¾</code>. Waarschijnlijk is het niet altijd gemakkelijk om dit met het toetsenbord te typen, maar deze breuken zijn precies dezelfde waarden als hun ASCII-versies gespeld als een breuk of als een decimaal getal:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">½</code></td>
-      <td><code class="language-plaintext highlighter-rouge">1/2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">&lt;1/2&gt;</code></td>
-      <td><code class="language-plaintext highlighter-rouge">0.5</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">¼</code></td>
-      <td><code class="language-plaintext highlighter-rouge">1/4</code></td>
-      <td><code class="language-plaintext highlighter-rouge">&lt;1/4&gt;</code></td>
-      <td><code class="language-plaintext highlighter-rouge">0.25</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">¾</code></td>
-      <td><code class="language-plaintext highlighter-rouge">3/4</code></td>
-      <td><code class="language-plaintext highlighter-rouge">&lt;3/4&gt;</code></td>
-      <td><code class="language-plaintext highlighter-rouge">0.75</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Bij sommige breuken, zoals <code class="language-plaintext highlighter-rouge">1/3</code>, heb je minder opties, <code class="language-plaintext highlighter-rouge">⅓</code> of <code class="language-plaintext highlighter-rouge">&lt;1/3&gt;</code>, omdat de decimale vorm een oneindig aantal cijfers zou vereisen.</p>
-
-<p><div class="practice"></p>
-<h2 id="oefening">Oefening</h2>
-
-<p>Maak de quiz die de inhoud van dit onderwerp behandelt.</p>
+<p>Het is ook mogelijk om Unicode-tekens te gebruiken die de breuken
+vertegenwoordigen, zoals <code>½</code> of <code>¼</code> of
+<code>¾</code>. Waarschijnlijk is het niet altijd gemakkelijk om dit met
+het toetsenbord te typen, maar deze breuken zijn precies dezelfde
+waarden als hun ASCII-versies gespeld als een breuk of als een decimaal
+getal:</p>
+<p><code>½</code> | <code>1/2</code> | <code>&lt;1/2&gt;</code> |
+<code>0.5</code> <code>¼</code> | <code>1/4</code> |
+<code>&lt;1/4&gt;</code> | <code>0.25</code> <code>¾</code> |
+<code>3/4</code> | <code>&lt;3/4&gt;</code> | <code>0.75</code></p>
+<p>Bij sommige breuken, zoals <code>1/3</code>, heb je minder opties,
+<code>⅓</code> of <code>&lt;1/3&gt;</code>, omdat de decimale vorm een
+oneindig aantal cijfers zou vereisen.</p>
+<section id="praktijk" class="practice" data-markdown="1">
+<h2>Praktijk</h2>
+<p>Maak de 1 quiz over de inhoud van dit onderwerp.</p>
 <ul>
-  <li><a href="/nl/essentials/numbers/rats/quiz">Quiz: Rationale getallen in Raku</a></li>
+<li><a href="/nl/essentials/numbers/rats/quiz">Quiz: Rationale getallen
+in Raku</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-        <a href="/nl/essentials/numbers">Getallen</a> / <a href="/nl/essentials/numbers/integers">Gehele getallen</a>
-  |  
-        <a href="/nl/essentials/numbers">Getallen</a> / <a href="/nl/essentials/numbers/numeric">Floating-point getallen</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/nl/essentials/numbers/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/numbers/rats/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/numbers/rats/">English</a> • <a href="/de/essentials/numbers/rats/">Deutsch</a> • <a href="/es/essentials/numbers/rats/">Español</a> • <a href="/it/essentials/numbers/rats/">Italiano</a> • <a href="/lv/essentials/numbers/rats/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/numbers/rats/">Български</a> • <a href="/ru/essentials/numbers/rats/">Русский</a> • <a href="/uk/essentials/numbers/rats/">Українська</a></p>
+<p>← <a href="/nl/essentials/numbers/integers/quiz2">Quiz: Unicode
+cijfers en getallen</a>   |   <a
+href="/nl/essentials/numbers/rats/quiz">Quiz: Rationale getallen in
+Raku</a> →</p>
+<p><br /> 💪 Of ga direct <a
+href="/nl/essentials/numbers/exercises">naar de oefeningen in deze
+sectie</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/rats">English</a> • <a
+href="/de/essentials/numbers/rats">Deutsch</a> • <a
+href="/es/essentials/numbers/rats">Español</a> • <a
+href="/it/essentials/numbers/rats">Italiano</a> • <a
+href="/lv/essentials/numbers/rats">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/numbers/rats">Български</a> • <a
+href="/ru/essentials/numbers/rats">Русский</a> • <a
+href="/uk/essentials/numbers/rats">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

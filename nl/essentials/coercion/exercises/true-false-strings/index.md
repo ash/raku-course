@@ -1,5 +1,5 @@
 ---
-title: Oefening ‘True and False strings
+title: True en False strings
 ---
 
 {% include menu.html %}

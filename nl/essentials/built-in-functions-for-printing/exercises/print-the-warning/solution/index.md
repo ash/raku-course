@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Print de waarschuwing'
+title: 'Solution: Druk de waarschuwing af'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Vind het programma in het bestand [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Vind het programma in het bestand [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Uitvoer
 

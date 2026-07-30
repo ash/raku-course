@@ -1,5 +1,5 @@
 ---
-title: De print-routine
+title: '`print`'
 ---
 
 {% include menu.html %}

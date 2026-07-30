@@ -1,5 +1,5 @@
 ---
-title: Operaties met getallen
+title: Bewerkingen met getallen
 ---
 
 {% include menu.html %}

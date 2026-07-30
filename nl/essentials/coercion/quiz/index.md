@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Wat is het type?'
+title: 'Quiz: Wat is zijn type?'
 ---
 
 {% include menu.html %}

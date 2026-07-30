@@ -1,5 +1,5 @@
 ---
-title: Quiz — Genaamde parameters
+title: Quiz 1 — Benoemde parameters
 ---
 
 {% include menu.html %}

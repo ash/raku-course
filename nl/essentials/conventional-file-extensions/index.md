@@ -1,5 +1,5 @@
 ---
-title: Conventionele bestandsextensies in Raku
+title: Conventionele bestandsextensies
 ---
 
 {% include menu.html %}

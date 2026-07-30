@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Bereiken'
+title: 'Exercises: Reeksen'
 ---
 
 {% include menu.html %}

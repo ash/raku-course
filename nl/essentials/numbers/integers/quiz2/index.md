@@ -1,5 +1,5 @@
 ---
-title: Quiz — Unicode cijfers en nummers
+title: 'Quiz: Unicode cijfers en getallen'
 ---
 
 {% include menu.html %}

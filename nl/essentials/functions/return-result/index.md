@@ -1,5 +1,5 @@
 ---
-title: Het resultaat retourneren
+title: Het resultaat teruggeven
 ---
 
 {% include menu.html %}

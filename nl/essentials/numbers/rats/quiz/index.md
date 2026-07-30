@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Rationale getallen'
+title: 'Quiz: Rationale getallen in Raku'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Oneven indices'
+title: Oneven indices
 ---
 
 {% include menu.html %}

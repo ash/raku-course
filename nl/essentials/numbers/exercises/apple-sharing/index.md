@@ -1,5 +1,5 @@
 ---
-title: Appels delen
+title: Appel delen
 ---
 
 {% include menu.html %}

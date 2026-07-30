@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Intervalfunctie'
+title: Intervalfunctie
 ---
 
 {% include menu.html %}

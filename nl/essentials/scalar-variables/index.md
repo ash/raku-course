@@ -1,5 +1,5 @@
 ---
-title: Scalaire variabelen
+title: Scalare variabelen
 ---
 
 {% include menu.html %}

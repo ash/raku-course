@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Notities over het gebruik van Unicode</title>
-    <meta property="og:title" content="Notities over het gebruik van Unicode" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Opmerkingen over het gebruik van Unicode — Raku-cursus</title>
+    <meta property="og:title" content="Opmerkingen over het gebruik van Unicode — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Notities over het gebruik van Unicode</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,47 +88,94 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a></p>
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/getting-started">Programma’s schrijven en
+uitvoeren</a></p>
+<h1 id="opmerkingen-over-het-gebruik-van-unicode">Opmerkingen over het
+gebruik van Unicode</h1>
+<p>Raku gaat ervan uit dat al je programmabestanden zijn opgeslagen als
+UTF-8 bestanden. Vanuit praktisch oogpunt betekent dit dat je je geen
+zorgen hoeft te maken over niet-ASCII tekens in bijvoorbeeld
+string-literals. Maar dat is niet alles. Je hoeft je
+hoogstwaarschijnlijk ook geen zorgen te maken als je programma een
+tekstbestand leest dat ook een UTF-8 bestand is. Dit betekent ook dat de
+stringlengte correct wordt gedetecteerd als het aantal tekens en niet
+als het aantal bytes. (We zullen hier later dieper op ingaan.)</p>
+<p>Het volgende dat je moet weten, is dat je niet-Latijnse of
+niet-Engelse letters kunt gebruiken voor identificatoren. Je kunt je
+variabele <code>$ι</code> noemen in plaats van <code>$i</code> als je
+dat liever hebt, en de compiler zal het correct parsen.</p>
+<p>Raku behandelt de Unicode-eigenschappen van de tekens nauwgezet
+genoeg. Bijvoorbeeld, het weet niet alleen of een teken een letter of
+een cijfer is, maar identificeert ook correct paartekens zoals haakjes
+of verschillende soorten haken. In veel gevallen kun je een ander type
+haakjes kiezen voor afzonderlijke delen van het programma. Bijvoorbeeld,
+je kunt ons ‘Hello, World!’ programma aanpassen om deze niet-Latijnse
+aanhalingstekens te gebruiken (je zult ze opnieuw zien wanneer we met
+Raku-grammatica’s werken):</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ｢<span class="n">Hello</span>, <span class="n">World</span>!｣;</pre></div>
 
-<h1 id="opmerkingen-over-het-gebruik-van-unicode">Opmerkingen over het gebruik van Unicode</h1>
-
-<p>Raku gaat ervan uit dat al je programmabestanden zijn opgeslagen als UTF-8 bestanden. Vanuit praktisch oogpunt betekent dit dat je je geen zorgen hoeft te maken over niet-ASCII tekens in bijvoorbeeld string-literals. Maar dat is niet alles. Je hoeft je hoogstwaarschijnlijk ook geen zorgen te maken als je programma een tekstbestand leest dat ook een UTF-8 bestand is. Dit betekent ook dat de stringlengte correct wordt gedetecteerd als het aantal tekens en niet als het aantal bytes. (We zullen hier later dieper op ingaan.)</p>
-
-<p>Het volgende dat je moet weten, is dat je niet-Latijnse of niet-Engelse letters kunt gebruiken voor identificatoren. Je kunt je variabele <code class="language-plaintext highlighter-rouge">$ι</code> noemen in plaats van <code class="language-plaintext highlighter-rouge">$i</code> als je dat liever hebt, en de compiler zal het correct parsen.</p>
-
-<p>Raku behandelt de Unicode-eigenschappen van de tekens nauwgezet genoeg. Bijvoorbeeld, het weet niet alleen of een teken een letter of een cijfer is, maar identificeert ook correct paartekens zoals haakjes of verschillende soorten haken. In veel gevallen kun je een ander type haakjes kiezen voor afzonderlijke delen van het programma. Bijvoorbeeld, je kunt ons ‘Hello, World!’ programma aanpassen om deze niet-Latijnse aanhalingstekens te gebruiken (je zult ze opnieuw zien wanneer we met Raku-grammatica’s werken):</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> ｢<span class="n">Hello</span>, <span class="n">World</span>!｣;
-</pre></div>
-
-
-<p>Sommige ingebouwde operators hebben twee vormen: een Unicode en een ASCII versie. Bijvoorbeeld, je kunt een ontkende vergelijking typen als <code class="language-plaintext highlighter-rouge">!=</code> of als <code class="language-plaintext highlighter-rouge">≠</code>. Hetzelfde geldt voor setbewerkingen: bijvoorbeeld, <code class="language-plaintext highlighter-rouge">∈</code> heeft een puur ASCII-equivalent <code class="language-plaintext highlighter-rouge">(elem)</code>. Of, er is een ingebouwde constante waarnaar je kunt verwijzen als <code class="language-plaintext highlighter-rouge">pi</code> of <code class="language-plaintext highlighter-rouge">π</code>.</p>
-
-<p>Bij het werken met getallen kun je ervoor kiezen om breuken te gebruiken in de vorm van <code class="language-plaintext highlighter-rouge">½</code> in plaats van <code class="language-plaintext highlighter-rouge">0.5</code>. Of, het kwadraat van <code class="language-plaintext highlighter-rouge">$x</code> evalueren als <code class="language-plaintext highlighter-rouge">$x²</code> met behulp van een superscript-teken.</p>
-
-<p>Vind de volledige lijst van dergelijke paren op de volgende documentatiepagina: 📖 <a href="https://docs.raku.org/language/unicode_ascii">Unicode versus ASCII symbolen</a>.</p>
-
+<p>Sommige ingebouwde operators hebben twee vormen: een Unicode en een
+ASCII versie. Bijvoorbeeld, je kunt een ontkende vergelijking typen als
+<code>!=</code> of als <code>≠</code>. Hetzelfde geldt voor
+setbewerkingen: bijvoorbeeld, <code>∈</code> heeft een puur
+ASCII-equivalent <code>(elem)</code>. Of, er is een ingebouwde constante
+waarnaar je kunt verwijzen als <code>pi</code> of <code>π</code>.</p>
+<p>Bij het werken met getallen kun je ervoor kiezen om breuken te
+gebruiken in de vorm van <code>½</code> in plaats van <code>0.5</code>.
+Of, het kwadraat van <code>$x</code> evalueren als <code>$x²</code> met
+behulp van een superscript-teken.</p>
+<p>Vind de volledige lijst van dergelijke paren op de volgende
+documentatiepagina: 📖 <a
+href="https://docs.raku.org/language/unicode_ascii">Unicode versus ASCII
+symbolen</a>.</p>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-    <a href="/nl/essentials/hello-world">Hallo, Wereld!</a>
-  |  
-        <a href="/nl/essentials/running-programs">Programma’s uitvoeren</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/on-unicode/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/on-unicode/">English</a> • <a href="/de/essentials/on-unicode/">Deutsch</a> • <a href="/es/essentials/on-unicode/">Español</a> • <a href="/it/essentials/on-unicode/">Italiano</a> • <a href="/lv/essentials/on-unicode/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/on-unicode/">Български</a> • <a href="/ru/essentials/on-unicode/">Русский</a> • <a href="/uk/essentials/on-unicode/">Українська</a></p>
+<p>← <a href="/nl/essentials/hello-world">Hallo, Wereld!</a>   |   <a
+href="/nl/essentials/running-programs">Programma’s uitvoeren</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/on-unicode">English</a> • <a
+href="/de/essentials/on-unicode">Deutsch</a> • <a
+href="/es/essentials/on-unicode">Español</a> • <a
+href="/it/essentials/on-unicode">Italiano</a> • <a
+href="/lv/essentials/on-unicode">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/on-unicode">Български</a> • <a
+href="/ru/essentials/on-unicode">Русский</a> • <a
+href="/uk/essentials/on-unicode">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Herken lijsten
+title: Quiz 2 — Herkennen van lijsten
 ---
 
 {% include menu.html %}

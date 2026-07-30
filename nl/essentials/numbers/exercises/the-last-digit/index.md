@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Het laatste cijfer'
+title: De laatste cijfer
 ---
 
 {% include menu.html %}

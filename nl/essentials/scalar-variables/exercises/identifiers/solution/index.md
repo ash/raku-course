@@ -1,5 +1,5 @@
 ---
-title: Oplossing van 'Corrigeer de identificatoren'
+title: 'Solution: Corrigeer de identificatoren'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'London to Paris';
 
 Alle identificatoren zijn geldig, maar het is waarschijnlijk beter om namen met apostroffen te vermijden als je `$don't` geen sterke redenen hebt om ze te gebruiken.
 
-🦋 Je kunt de broncode vinden in het bestand [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Je kunt de broncode vinden in het bestand [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Uitvoer
 

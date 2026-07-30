@@ -1,5 +1,5 @@
 ---
-title: Uitvoeren vanuit IDE
+title: Uitvoeren vanaf IDE
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Het gebruik van ‘of’
+title: Gebruik van `of`
 ---
 
 {% include menu.html %}

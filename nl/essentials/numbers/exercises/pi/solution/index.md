@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘De waarde van π’
+title: 'Solution: De waarde van π'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Het programma om de waarde van π af te drukken is eenvoudig genoeg.
 say π;
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Je kunt de volledige code vinden in het bestand [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Uitvoer
 

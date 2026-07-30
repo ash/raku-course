@@ -1,5 +1,5 @@
 ---
-title: Quiz — Lezen van command-line argumenten in de MAIN functie
+title: Quiz — Lezen van commandoregelargumenten
 ---
 
 {% include menu.html %}

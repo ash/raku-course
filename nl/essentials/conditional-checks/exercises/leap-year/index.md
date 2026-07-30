@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Schrikkeljaar'
+title: Schrikkeljaar
 ---
 
 {% include menu.html %}

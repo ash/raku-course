@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Faculteit met multi-functies'
+title: Faculteit met multi-functies
 ---
 
 {% include menu.html %}

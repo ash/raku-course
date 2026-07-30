@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Hallo, Ik!'
+title: Hallo, ik!
 ---
 
 {% include menu.html %}

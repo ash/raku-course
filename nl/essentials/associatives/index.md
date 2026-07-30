@@ -1,5 +1,5 @@
 ---
-title: Associatieve gegevenstypen
+title: Associatieve datentypen
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Spel een nummer'
+title: Schrijf een getal
 ---
 
 {% include menu.html %}

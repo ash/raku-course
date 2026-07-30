@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Gebruikersinvoer omzetten naar een getal'
+title: Gebruikersinvoer naar een getal converteren
 ---
 
 {% include menu.html %}

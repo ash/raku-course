@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: lussen'
+title: 'Exercises: Lussen'
 ---
 
 {% include menu.html %}

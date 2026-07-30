@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Oneven of even'
+title: 'Solution: Oneven of even'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Vind het programma in het bestand [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Vind het programma in het bestand [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Uitvoer
 

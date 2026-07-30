@@ -1,5 +1,5 @@
 ---
-title: De uiteinden van een bereik uitsluiten
+title: Uitsluiting van eindpunten
 ---
 
 {% include menu.html %}

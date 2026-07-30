@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Item- en lijstcontext — Raku-cursus</title>
+    <meta property="og:title" content="Item- en lijstcontext — Raku-cursus" />
+    <meta property="og:locale" content="nl" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/advanced">Geavanceerd</a> / <a
+href="/nl/advanced/containers-overview">Containers</a> / <a
+href="/nl/advanced/contexts">Contexten</a></p>
+<h1 id="item--en-lijstcontext">Item- en lijstcontext</h1>
+<p>Twee verdere contexten bepalen of iets wordt behandeld als een
+<strong>lijst</strong> van meerdere waarden of als een enkel
+<strong>item</strong>. Dit is het verschil achter de <code>@</code>- en
+<code>$</code>-sigils.</p>
+<p>In <em>lijstcontext</em> wordt een array uitgespreid tot zijn
+elementen. Een <code>for</code>-lus plaatst zijn argument in
+lijstcontext, zodat het over elk element itereert:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>;
+
+<span class="k">my</span> <span class="nv">$count</span> = <span class="mi">0</span>;
+<span class="nv">$count</span>++ <span class="k">for</span> <span class="nv">@a</span>;
+<span class="nb">say</span> <span class="nv">$count</span>; <span class="c1"># 3</span></pre></div>
+
+<p>In <em>itemcontext</em> wordt dezelfde array behandeld als één enkele
+waarde. De <code>$( … )</code>-contextomzetter dwingt itemcontext af,
+zodat de lus nu slechts één ding ziet en één keer wordt uitgevoerd:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>;
+
+<span class="k">my</span> <span class="nv">$count</span> = <span class="mi">0</span>;
+<span class="nv">$count</span>++ <span class="k">for</span> $(<span class="nv">@a</span>);
+<span class="nb">say</span> <span class="nv">$count</span>; <span class="c1"># 1</span></pre></div>
+
+<p>Dit is de reden waarom het toewijzen van een array aan een scalar
+deze als een enkel item verpakt in plaats van de elementen te kopiëren:
+<code>my $x = @a</code> plaatst <code>@a</code> in itemcontext. Merk op
+dat dat enkele element een andere container kan zijn met veel items
+erin:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>;
+
+<span class="k">my</span> <span class="nv">$var</span> = <span class="nv">@a</span>;
+<span class="nb">say</span> <span class="nv">$var</span>;      <span class="c1"># [1 2 3]</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>; <span class="c1"># (Array)</span></pre></div>
+
+<p>De variabele <code>$var</code> bevat nu een enkel (want het is een
+scalaire container) object, dat een <code>Array</code> is. Je kunt dit
+eenvoudig bewijzen door <code>$x</code> te behandelen als een soort
+array-referentie (zoals je het in andere talen zou noemen):</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$var</span>[<span class="mi">1</span>]; <span class="c1"># 2</span></pre></div>
+
+<p>De bijbehorende <code>@( … )</code>-contextomzetter doet het
+tegenovergestelde en dwingt lijstcontext af.</p>
+<p>Er is ook <em>sink-context</em> — de context van een statement
+waarvan de waarde wordt weggegooid, zoals een regel die alleen bestaat
+vanwege zijn neveneffect. Wanneer een waarde in sink-context terechtkomt
+zonder iets nuttigs te doen, kan Raku waarschuwen voor een “useless
+use”, wat een handige hint is dat je vergeten bent een resultaat te
+gebruiken.</p>
+<p>De sigil die je kiest (<code>$</code> versus <code>@</code>) is
+eigenlijk een keuze van context, en de contextomzetters
+<code>$( )</code> en <code>@( )</code> laten je deze waar nodig
+overschrijven.</p>
+<section id="praktijk" class="practice" data-markdown="1">
+<h2>Praktijk</h2>
+<p>Maak de 1 quiz over de inhoud van dit onderwerp.</p>
+<ul>
+<li><a href="/nl/advanced/contexts/item-and-list/quiz">Quiz —
+Itemcontext</a></li>
+</ul>
+</section>
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+<p>← <a href="/nl/advanced/contexts/coercion-contexts/quiz">Quiz —
+Contexten</a>   |   <a
+href="/nl/advanced/contexts/item-and-list/quiz">Quiz — Itemcontext</a>
+→</p>
+<p><br /> 💪 Of ga direct <a href="/nl/advanced/contexts/exercises">naar
+de oefeningen in deze sectie</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

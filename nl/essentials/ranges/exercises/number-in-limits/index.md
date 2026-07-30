@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Als het getal binnen de limieten valt'
+title: Als het nummer binnen de limieten valt
 ---
 
 {% include menu.html %}

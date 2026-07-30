@@ -1,5 +1,5 @@
 ---
-title: Ingebouwde functies voor afdrukken
+title: Ingebouwde functies voor het afdrukken
 ---
 
 {% include menu.html %}

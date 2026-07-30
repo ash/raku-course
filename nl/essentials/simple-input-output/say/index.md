@@ -1,5 +1,5 @@
 ---
-title: Output met say
+title: Uitvoer met `say`
 ---
 
 {% include menu.html %}

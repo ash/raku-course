@@ -1,5 +1,5 @@
 ---
-title: Het resultaat van de prompt onderzoeken — Nummers
+title: Onderzoek het resultaat van `prompt` — Getallen
 ---
 
 {% include menu.html %}

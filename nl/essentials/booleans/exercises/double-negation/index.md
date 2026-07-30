@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Dubbele en driedubbele ontkenningen’
+title: Dubbele negatie
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Vergelijk `say` en `put`'
+title: 'Solution: Vergelijk `say` en `put`'
 ---
 
 {% include menu.html %}
@@ -42,7 +42,7 @@ put %h;
 
 Voor meer zekerheid kun je ook het type van de variabele afdrukken, bijvoorbeeld zoals getoond voor arrays en lijsten, om er zeker van te zijn dat je een variabele van het gewenste type hebt gemaakt.
 
-🦋 Vind het programma in het bestand [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Vind het programma in het bestand [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Output
 

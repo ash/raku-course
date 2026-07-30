@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Maandnamen'
+title: 'Solution: Maandnamen'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ my @months = <
 say @months[@*ARGS[0] - 1];
 ```
 
-🦋 Vind het programma in het bestand [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/months-names.raku).
+🦋 Vind het programma in het bestand [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/months-names.raku).
 
 ## Uitvoer
 

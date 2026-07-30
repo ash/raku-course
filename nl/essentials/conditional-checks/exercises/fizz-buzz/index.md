@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Lite FizzBuzz'
+title: FizzBuzz
 ---
 
 {% include menu.html %}

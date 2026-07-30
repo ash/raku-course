@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Hoeveel getallen zijn gelijk?'
+title: Hoeveel getallen zijn gelijk?
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Meervoudige uitgang'
+title: Meervoudige uitgang
 ---
 
 {% include menu.html %}

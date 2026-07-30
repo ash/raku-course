@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Als het getal binnen de grenzen valt'
+title: 'Solution: Als het nummer binnen de limieten valt'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ my $n = prompt 'Wat is het getal? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Vind het programma in het bestand [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Vind het programma in het bestand [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
 ## Uitvoer
 

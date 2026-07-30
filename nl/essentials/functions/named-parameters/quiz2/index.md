@@ -1,5 +1,5 @@
 ---
-title: Quiz — Variabelen als benoemde parameters
+title: Quiz 2 — Variabelen als benoemde parameters
 ---
 
 {% include menu.html %}

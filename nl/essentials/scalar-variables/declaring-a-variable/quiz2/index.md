@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Scalar variables
+title: Quiz 2: Declareren van meerdere variabelen
 ---
 
 {% include menu.html %}

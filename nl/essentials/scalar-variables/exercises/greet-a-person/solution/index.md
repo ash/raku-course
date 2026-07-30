@@ -1,5 +1,5 @@
 ---
-title: De oplossing van 'Begroet een persoon'
+title: 'Solution: Groet een persoon'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $naam = prompt 'Wat is je naam? ';
 say 'Hallo, ', $naam, '!';
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/greet-a-person.raku).
+🦋 Je kunt de broncode vinden in het bestand [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/greet-a-person.raku).
 
 ## Uitvoer
 

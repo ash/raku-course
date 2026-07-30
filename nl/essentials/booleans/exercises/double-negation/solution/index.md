@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor 'Dubbele negatie'
+title: 'Solution: Dubbele negatie'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Je kunt de volledige code vinden in het bestand [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Opmerkingen
 

@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Meervoudsuitgang’
+title: 'Solution: Meervoudige uitgang'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n bestand{$ending} gekopieerd.";
 ```
 
-🦋 Vind het programma in het bestand [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Vind het programma in het bestand [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Uitvoer
 

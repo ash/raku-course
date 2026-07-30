@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Booleaans type'
+title: 'Exercises: Boolean type'
 ---
 
 {% include menu.html %}

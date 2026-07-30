@@ -1,5 +1,5 @@
 ---
-title: Pairs
+title: Paren
 ---
 
 {% include menu.html %}

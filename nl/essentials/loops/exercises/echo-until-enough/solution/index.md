@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Echo tot genoeg'
+title: 'Solution: Echo tot genoeg'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ repeat {
 say 'OK, klaar.';
 ```
 
-🦋 Vind het programma in het bestand [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/echo-until-enough.raku).
+🦋 Vind het programma in het bestand [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/echo-until-enough.raku).
 
 ## Uitvoer
 

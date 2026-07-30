@@ -1,5 +1,5 @@
 ---
-title: Maak variabelen van alle bekende types
+title: Maak variabelen van alle bekende typen
 ---
 
 {% include menu.html %}

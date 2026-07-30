@@ -1,5 +1,5 @@
 ---
-title: Code interpolatie in Raku strings
+title: Code interpolatie
 ---
 
 {% include menu.html %}

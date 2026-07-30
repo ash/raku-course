@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor 'Hallo, Interpolatie!'
+title: 'Solution: Hallo, Interpolatie!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Wat is je naam? ';
 say "Hallo, $name!";
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 Je kunt de broncode vinden in het bestand [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
 ## Uitvoer
 

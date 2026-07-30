@@ -1,5 +1,5 @@
 ---
-title: Quiz — Gehele getallen
+title: 'Quiz: Gehele getallen'
 ---
 
 {% include menu.html %}

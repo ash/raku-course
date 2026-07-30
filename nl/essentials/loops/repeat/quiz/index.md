@@ -1,5 +1,5 @@
 ---
-title: Quiz — De herhaal lus
+title: Quiz — de `repeat` lus
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Kwadraten en kubussen in een lus'
+title: 'Solution: Kwadraten en kubussen in een lus'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Vind het programma in het bestand [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Vind het programma in het bestand [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Voorbeeld
 

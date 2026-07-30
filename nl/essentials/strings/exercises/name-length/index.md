@@ -1,5 +1,5 @@
 ---
-title: Oefening ‘Naam lengte‘
+title: Naam lengte
 ---
 
 {% include menu.html %}

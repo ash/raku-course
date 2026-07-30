@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Functies maken en gebruiken in Raku'
+title: 'Exercises: Functies maken en aanroepen'
 ---
 
 {% include menu.html %}

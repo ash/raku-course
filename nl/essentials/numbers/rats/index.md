@@ -1,5 +1,5 @@
 ---
-title: Rationale getallen in Raku
+title: Rationale getallen
 ---
 
 {% include menu.html %}

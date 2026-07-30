@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Lijst en scalar vs. lijst en array
+title: Quiz — Lijst en scalar vs. lijst en array
 ---
 
 {% include menu.html %}

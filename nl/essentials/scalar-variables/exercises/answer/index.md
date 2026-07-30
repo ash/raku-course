@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Het antwoord op het leven, het Universum en alles'
+title: Het antwoord op het leven, het universum en alles
 ---
 
 {% include menu.html %}

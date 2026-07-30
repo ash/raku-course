@@ -1,5 +1,5 @@
 ---
-title: Quiz — Quoting string arrays
+title: Quiz 1 — Citeren van string arrays
 ---
 
 {% include menu.html %}

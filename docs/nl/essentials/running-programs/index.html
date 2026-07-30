@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Programma's uitvoeren</title>
-    <meta property="og:title" content="Programma's uitvoeren" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Programma's uitvoeren — Raku-cursus</title>
+    <meta property="og:title" content="Programma's uitvoeren — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Programma's uitvoeren</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,57 +88,97 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/getting-started">Programma’s schrijven en
+uitvoeren</a></p>
 <h1 id="programmas-uitvoeren">Programma’s uitvoeren</h1>
-
-<p>In <a href="../hello-world">een van de vorige secties</a> hebben we een eenvoudig programma gemaakt, maar we hebben het nog niet uitgevoerd. Er zijn veel manieren om het programma uit te voeren: met behulp van een geïnstalleerd opdrachtregelhulpmiddel, met behulp van een REPL-shell, het direct uitvoeren van een programma vanuit een <a href="../editors-and-ides">IDE</a> of met een online dienst zoals <a href="https://glot.io/new/raku">glot.io</a>, of met behulp van een docker-container.</p>
-
-<p>Er zijn vijf onderwerpen in deze sectie. Blader door alle onderwerpen of bekijk alleen die welke je geschikt vindt voor jouw behoeften. Na de secties is er een opdracht.</p>
-
-<p><div class="topics"></p>
-<h2 id="onderwerpen-in-deze-sectie">Onderwerpen in deze sectie</h2>
+<p>In <a href="../hello-world">een van de vorige secties</a> hebben we
+een eenvoudig programma gemaakt, maar we hebben het nog niet uitgevoerd.
+Er zijn veel manieren om het programma uit te voeren: met behulp van een
+geïnstalleerd opdrachtregelhulpmiddel, met behulp van een REPL-shell,
+het direct uitvoeren van een programma vanuit een <a
+href="../editors-and-ides">IDE</a> of met een online dienst zoals <a
+href="https://glot.io/new/raku">glot.io</a>, of met behulp van een
+docker-container.</p>
+<p>Er zijn vijf onderwerpen in deze sectie. Blader door alle onderwerpen
+of bekijk alleen die welke je geschikt vindt voor jouw behoeften. Na de
+secties is er een opdracht.</p>
+<section id="onderwerpen-in-deze-sectie" class="topics"
+data-markdown="1">
+<h2>Onderwerpen in deze sectie</h2>
 <ul>
-  <li><a href="/nl/essentials/running-programs/from-command-line">Uitvoeren vanaf de opdrachtregel</a></li>
-  <li><a href="/nl/essentials/running-programs/from-repl">Uitvoeren vanaf REPL</a></li>
-  <li><a href="/nl/essentials/running-programs/from-ide">Uitvoeren vanaf IDE</a></li>
-  <li><a href="/nl/essentials/running-programs/using-docker">Gebruik van docker</a></li>
-  <li><a href="/nl/essentials/running-programs/using-online-services">Gebruik van online diensten</a></li>
+<li><a
+href="/nl/essentials/running-programs/from-command-line">Uitvoeren vanaf
+de opdrachtregel</a></li>
+<li><a href="/nl/essentials/running-programs/from-repl">Uitvoeren vanaf
+REPL</a></li>
+<li><a href="/nl/essentials/running-programs/from-ide">Uitvoeren vanaf
+IDE</a></li>
+<li><a href="/nl/essentials/running-programs/using-docker">Gebruik van
+docker</a></li>
+<li><a
+href="/nl/essentials/running-programs/using-online-services">Gebruik van
+online diensten</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="oefening">Oefening</h2>
-
-<p>Deze sectie bevat een oefening die je moet doen nadat je alle onderwerpen van deze sectie hebt bestudeerd.</p>
-
-<p>💪 <a href="/nl/essentials/running-programs/exercises/hello-me">Hallo, ik!</a></p>
-
-<p></div></p>
-
+</section>
+<section id="oefeningen" class="exercises" data-markdown="1">
+<h2>Oefeningen</h2>
+<p>Deze sectie bevat <a href="exercises">1 oefening</a>. Bekijk alle
+onderwerpen van deze sectie voordat je aan de oefeningen begint.</p>
+<ol type="1">
+<li><a href="/nl/essentials/running-programs/exercises/hello-me">Hallo,
+ik!</a></li>
+</ol>
+</section>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-    <a href="/nl/essentials/on-unicode">Opmerkingen over het gebruik van Unicode</a>
-  |  
-        <a href="/nl/essentials/running-programs/from-command-line">Uitvoeren vanaf de opdrachtregel</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/running-programs/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/running-programs/">English</a> • <a href="/de/essentials/running-programs/">Deutsch</a> • <a href="/es/essentials/running-programs/">Español</a> • <a href="/it/essentials/running-programs/">Italiano</a> • <a href="/lv/essentials/running-programs/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/running-programs/">Български</a> • <a href="/ru/essentials/running-programs/">Русский</a> • <a href="/uk/essentials/running-programs/">Українська</a></p>
+<p>← <a href="/nl/essentials/on-unicode">Opmerkingen over het gebruik
+van Unicode</a>   |   <a
+href="/nl/essentials/running-programs/from-command-line">Uitvoeren vanaf
+de opdrachtregel</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/running-programs">English</a> • <a
+href="/de/essentials/running-programs">Deutsch</a> • <a
+href="/es/essentials/running-programs">Español</a> • <a
+href="/it/essentials/running-programs">Italiano</a> • <a
+href="/lv/essentials/running-programs">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/running-programs">Български</a> • <a
+href="/ru/essentials/running-programs">Русский</a> • <a
+href="/uk/essentials/running-programs">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

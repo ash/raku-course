@@ -1,5 +1,5 @@
 ---
-title: Oplossing van 'Fibonacci-getallen'
+title: 'Solution: Fibonacci getallen'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ for ^19 {
 }
 ```
 
-🦋 Vind het programma in het bestand [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fibonacci-numbers.raku).
+🦋 Vind het programma in het bestand [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fibonacci-numbers.raku).
 
 ## Uitvoer
 

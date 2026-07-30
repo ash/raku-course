@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Aankoop tabel'
+title: Aankoop tabel
 ---
 
 {% include menu.html %}

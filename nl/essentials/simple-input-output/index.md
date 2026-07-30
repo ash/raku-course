@@ -1,5 +1,5 @@
 ---
-title: Eenvoudige invoer en uitvoer in Raku
+title: Eenvoudige invoer en uitvoer
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Aantal tientallen
+title: Aantal tienen
 ---
 
 {% include menu.html %}

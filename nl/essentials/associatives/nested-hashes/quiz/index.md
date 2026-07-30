@@ -1,5 +1,5 @@
 ---
-title: Quiz — Meerdere niveaus hashes
+title: Quiz — Meerlagige hashes
 ---
 
 {% include menu.html %}

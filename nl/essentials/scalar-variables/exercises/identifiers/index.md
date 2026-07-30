@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Corrigeer de identificatoren'
+title: Corrigeer de identificatoren
 ---
 
 {% include menu.html %}

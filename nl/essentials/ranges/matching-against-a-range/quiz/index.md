@@ -1,5 +1,5 @@
 ---
-title: Overeenkomen met een bereik
+title: Quiz — Afstemmen tegen een reeks
 ---
 
 {% include menu.html %}

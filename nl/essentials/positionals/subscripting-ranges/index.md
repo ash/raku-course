@@ -1,5 +1,5 @@
 ---
-title: Subscriptiebereiken
+title: Subscriptie van reeksen
 ---
 
 {% include menu.html %}

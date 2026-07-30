@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Strings'
+title: 'Exercises: Strings'
 ---
 
 {% include menu.html %}

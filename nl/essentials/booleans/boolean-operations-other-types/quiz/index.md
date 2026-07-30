@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Booleaanse operaties met niet-Booleaanse gegevens'
+title: 'Quiz: Boolean bewerkingen met niet-Boolean gegevens'
 ---
 
 {% include menu.html %}

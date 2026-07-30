@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Wat retourneert WHAT?'
+title: 'Quiz: Wat geeft WHAT terug?'
 ---
 
 {% include menu.html %}

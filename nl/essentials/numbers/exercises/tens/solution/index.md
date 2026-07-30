@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘Aantal tientallen’
+title: 'Solution: Aantal tienen'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Voer een positief geheel getal in: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Je kunt de volledige code vinden in het bestand [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Uitvoer
 

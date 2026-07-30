@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Delen via aftrekken'
+title: Deling door aftrekking
 ---
 
 {% include menu.html %}

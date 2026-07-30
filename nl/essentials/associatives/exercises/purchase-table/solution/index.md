@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Aankoop tabel'
+title: 'Solution: Aankoop tabel'
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ for @items -> $item {
 }
 ```
 
-🦋 Vind het programma in het bestand [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku).
+🦋 Vind het programma in het bestand [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/purchase-table.raku).
 
 ## Uitvoer
 

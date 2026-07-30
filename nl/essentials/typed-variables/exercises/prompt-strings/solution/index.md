@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Het onderzoeken van de uitvoer van prompt — Strings’
+title: 'Solution: Onderzoek het resultaat van `prompt` — Strings'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Je kunt de broncode vinden in het bestand [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Testuitvoeringen
 

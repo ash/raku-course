@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Vergelijk `say` en `put`'
+title: Vergelijk `say` en `put`
 ---
 
 {% include menu.html %}

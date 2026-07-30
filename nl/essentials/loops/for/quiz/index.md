@@ -1,5 +1,5 @@
 ---
-title: 'Begrip van de `for`-lus'
+title: De `for` lus begrijpen
 ---
 
 {% include menu.html %}

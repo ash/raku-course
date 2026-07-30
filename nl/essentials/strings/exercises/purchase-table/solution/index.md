@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor 'Aankoop tabel'
+title: 'Solution: Aankoop tabel'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ Alle getallen zijn hardcoded en opgeslagen in een aantal variabelen. We gebruike
 
 De drie regels die de uitvoer genereren, printen de drie regels van de tabel, inclusief de kop. Let op hoe de kolommen worden gescheiden door de tabkarakters `\t`. In de datarijen zien we ook een geëscapet dollarteken: `\$` evenals verschillende variabelen die we willen interpoleren.
 
-🦋 Je kunt de broncode vinden in het bestand [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Je kunt de broncode vinden in het bestand [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Uitvoer
 

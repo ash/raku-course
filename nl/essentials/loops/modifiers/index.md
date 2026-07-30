@@ -1,5 +1,5 @@
 ---
-title: while en until als statement modifiers
+title: '`while` en `until` als zinsmodificatoren'
 ---
 
 {% include menu.html %}

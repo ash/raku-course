@@ -1,5 +1,5 @@
 ---
-title: Oplossing van 'Hallo, ik!'
+title: 'Solution: Hallo, ik!'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Hier is de oplossing voor het probleem '[Hallo, ik!](../)'.
 say 'Hallo, Andrew!';
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 Je kunt de volledige code vinden in het bestand [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
 ## Uitvoer
 

@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Positionals'
+title: 'Exercises: Positionele datentypen'
 ---
 
 {% include menu.html %}

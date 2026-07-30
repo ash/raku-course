@@ -1,5 +1,5 @@
 ---
-title: Functies maken en aanroepen in Raku
+title: Functies maken en aanroepen
 ---
 
 {% include menu.html %}

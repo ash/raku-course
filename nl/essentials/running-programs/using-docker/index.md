@@ -1,5 +1,5 @@
 ---
-title: Docker gebruiken om Raku uit te voeren
+title: Gebruik van docker
 ---
 
 {% include menu.html %}

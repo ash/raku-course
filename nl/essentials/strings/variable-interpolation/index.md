@@ -1,5 +1,5 @@
 ---
-title: Variabele interpolatie in Raku strings
+title: Variabele interpolatie
 ---
 
 {% include menu.html %}

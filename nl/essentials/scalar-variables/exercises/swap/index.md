@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Wissel de waarden'
+title: Waarden ruilen
 ---
 
 {% include menu.html %}

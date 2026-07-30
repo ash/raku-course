@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Associatieve gegevenstypen'
+title: 'Exercises: Associatieve datentypen'
 ---
 
 {% include menu.html %}

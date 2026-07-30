@@ -1,5 +1,5 @@
 ---
-title: Booleaans type in Raku
+title: Boolean type
 ---
 
 {% include menu.html %}

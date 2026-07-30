@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: De waarde van e'
+title: 'Solution: De waarde van e'
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Vind het programma in het bestand [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Vind het programma in het bestand [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
 ## Uitvoer
 

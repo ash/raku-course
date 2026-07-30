@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Oplossing voor 'Aankoop tabel'</title>
-    <meta property="og:title" content="Oplossing voor 'Aankoop tabel'" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Oplossing: Aankoop tabel — Raku-cursus</title>
+    <meta property="og:title" content="Oplossing: Aankoop tabel — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Oplossing voor 'Aankoop tabel'</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,19 +88,35 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/strings/">Strings</a> / <a href="/nl/essentials/strings/exercises/">Oefeningen</a> / <a href="/nl/essentials/strings/exercises/purchase-table">Aankoop tabel</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/variables">Basis van variabelen en datatypes</a> /
+<a href="/nl/essentials/strings">Strings</a> / <a
+href="/nl/essentials/strings/exercises">Oefeningen</a> / <a
+href="/nl/essentials/strings/exercises/purchase-table">Aankoop
+tabel</a></p>
 <h1 id="oplossing-aankoop-tabel">Oplossing: Aankoop tabel</h1>
-
 <h2 id="code">Code</h2>
-
 <p>Hier is een mogelijke oplossing:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$stoel-prijs</span> = <span class="mf">20.57</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$stoel-prijs</span> = <span class="mf">20.57</span>;
 <span class="k">my</span> <span class="nv">$stoelen</span> = <span class="mi">4</span>;
 <span class="k">my</span> <span class="nv">$stoelen-totaal</span> = <span class="nv">$stoel-prijs</span> * <span class="nv">$stoelen</span>;
 
@@ -60,66 +126,77 @@
 
 <span class="nb">say</span> <span class="s">&quot;Item\tPrijs\tN\tTotaal&quot;</span>;
 <span class="nb">say</span> <span class="s">&quot;Stoelen\t\$$stoel-prijs\t$stoelen\t\$$stoelen-totaal&quot;</span>;
-<span class="nb">say</span> <span class="s">&quot;Tafels\t\$$tafel-prijs\t$tafels\t\$$tafels-totaal&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">&quot;Tafels\t\$$tafel-prijs\t$tafels\t\$$tafels-totaal&quot;</span>;</pre></div>
 
-
-<p>Alle getallen zijn hardcoded en opgeslagen in een aantal variabelen. We gebruiken ook de vermenigvuldigingsoperator <code class="language-plaintext highlighter-rouge">*</code> om het resultaat te berekenen. We zullen meer leren over operators in de volgende secties van deze cursus, maar op dit moment zou de constructie zoals <code class="language-plaintext highlighter-rouge">$stoel-prijs * $stoelen</code> geen vragen moeten oproepen.</p>
-
-<p>De drie regels die de uitvoer genereren, printen de drie regels van de tabel, inclusief de kop. Let op hoe de kolommen worden gescheiden door de tabkarakters <code class="language-plaintext highlighter-rouge">\t</code>. In de datarijen zien we ook een geëscapet dollarteken: <code class="language-plaintext highlighter-rouge">\$</code> evenals verschillende variabelen die we willen interpoleren.</p>
-
-<p>🦋 Je kunt de broncode vinden in het bestand <a href="https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku">purchase-table.raku</a>.</p>
-
+<p>Alle getallen zijn hardcoded en opgeslagen in een aantal variabelen.
+We gebruiken ook de vermenigvuldigingsoperator <code>*</code> om het
+resultaat te berekenen. We zullen meer leren over operators in de
+volgende secties van deze cursus, maar op dit moment zou de constructie
+zoals <code>$stoel-prijs * $stoelen</code> geen vragen moeten
+oproepen.</p>
+<p>De drie regels die de uitvoer genereren, printen de drie regels van
+de tabel, inclusief de kop. Let op hoe de kolommen worden gescheiden
+door de tabkarakters <code>\t</code>. In de datarijen zien we ook een
+geëscapet dollarteken: <code>\$</code> evenals verschillende variabelen
+die we willen interpoleren.</p>
+<p>🦋 Je kunt de broncode vinden in het bestand <a
+href="https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku">purchase-table.raku</a>.</p>
 <h2 id="uitvoer">Uitvoer</h2>
-
 <p>Voer het programma uit en zie hoe het de tabel afdrukt:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku exercises/strings/purchase-table.raku
+<div class="highlight"><pre>$ raku exercises/strings/purchase-table.raku
 Item    Prijs   N      Totaal
 Stoelen $20.57  4      $82.28
-Tafels  $50.18  1      $50.18
-</code></pre></div></div>
-
+Tafels  $50.18  1      $50.18</pre></div>
 <h2 id="opmerkingen">Opmerkingen</h2>
-
-<p>Heb je de streepjes in de namen van de variabelen zoals <code class="language-plaintext highlighter-rouge">$stoel-prijs</code> of <code class="language-plaintext highlighter-rouge">$tafels-totaal</code> opgemerkt? Dit is een perfect acceptabele manier om variabelen te benoemen in Raku.</p>
-
-<p>Laat je niet verwarren door de twee aangrenzende dollartekens. Raku leest ze afzonderlijk. Bijvoorbeeld, in de substring <code class="language-plaintext highlighter-rouge">\$$prijs</code>, wordt het eerste dollarteken geëscapet en vertegenwoordigt het zichzelf, terwijl het tweede deel uitmaakt van de variabelenaam <code class="language-plaintext highlighter-rouge">$prijs</code>.</p>
-
-<p>Alle strings zijn geciteerd in dubbele aanhalingstekens om interpolatie van de variabelen en de speciale tekens mogelijk te maken.</p>
-
-<p>Laten we terugkeren naar deze taak nadat we vertrouwd zijn geraakt met arrays en hashes.</p>
-
-<p><div class="exercises"></p>
-<h2 id="volgende-oefening">Volgende oefening</h2>
-
-<p>💪 <a href="/nl/essentials/strings/exercises/name-length">Naam lengte</a>
-</div></p>
-
+<p>Heb je de streepjes in de namen van de variabelen zoals
+<code>$stoel-prijs</code> of <code>$tafels-totaal</code> opgemerkt? Dit
+is een perfect acceptabele manier om variabelen te benoemen in Raku.</p>
+<p>Laat je niet verwarren door de twee aangrenzende dollartekens. Raku
+leest ze afzonderlijk. Bijvoorbeeld, in de substring
+<code>\$$prijs</code>, wordt het eerste dollarteken geëscapet en
+vertegenwoordigt het zichzelf, terwijl het tweede deel uitmaakt van de
+variabelenaam <code>$prijs</code>.</p>
+<p>Alle strings zijn geciteerd in dubbele aanhalingstekens om
+interpolatie van de variabelen en de speciale tekens mogelijk te
+maken.</p>
+<p>Laten we terugkeren naar deze taak nadat we vertrouwd zijn geraakt
+met arrays en hashes.</p>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-    <a href="/nl/essentials/scalar-variables">Scalare variabelen</a>
-        / <a href="/nl/essentials/scalar-variables/identifiers">Namen van de variabelen</a>
-  |  
-    <a href="/nl/essentials/numbers">Getallen</a>
+<p>← <a href="/nl/essentials/strings/exercises/purchase-table">Aankoop
+tabel</a>   |   <a
+href="/nl/essentials/strings/exercises/name-length">Naam lengte</a>
 →</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/strings/exercises/purchase-table/solution/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/strings/exercises/purchase-table/solution/">English</a> • <a href="/de/essentials/strings/exercises/purchase-table/solution/">Deutsch</a> • <a href="/es/essentials/strings/exercises/purchase-table/solution/">Español</a> • <a href="/it/essentials/strings/exercises/purchase-table/solution/">Italiano</a> • <a href="/lv/essentials/strings/exercises/purchase-table/solution/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/strings/exercises/purchase-table/solution/">Български</a> • <a href="/ru/essentials/strings/exercises/purchase-table/solution/">Русский</a> • <a href="/uk/essentials/strings/exercises/purchase-table/solution/">Українська</a></p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/strings/exercises/purchase-table/solution">English</a>
+• <a
+href="/de/essentials/strings/exercises/purchase-table/solution">Deutsch</a>
+• <a
+href="/es/essentials/strings/exercises/purchase-table/solution">Español</a>
+• <a
+href="/it/essentials/strings/exercises/purchase-table/solution">Italiano</a>
+• <a
+href="/lv/essentials/strings/exercises/purchase-table/solution">Latviešu</a>
+• <strong>Nederlands</strong> • <a
+href="/bg/essentials/strings/exercises/purchase-table/solution">Български</a>
+• <a
+href="/ru/essentials/strings/exercises/purchase-table/solution">Русский</a>
+• <a
+href="/uk/essentials/strings/exercises/purchase-table/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

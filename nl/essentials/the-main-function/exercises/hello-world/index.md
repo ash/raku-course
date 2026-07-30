@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Hallo Wereld!'
+title: Hallo, Wereld!
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Omtrek van een rechthoek'
+title: 'Solution: Omtrek van een rechthoek'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ sub MAIN($a, $b = $a) {
 }
 ```
 
-🦋 Vind het programma in het bestand [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Vind het programma in het bestand [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
 ## Output
 

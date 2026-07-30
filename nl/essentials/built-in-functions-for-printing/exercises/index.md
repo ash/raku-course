@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Ingebouwde functies voor afdrukken'
+title: 'Exercises: Ingebouwde functies voor het afdrukken'
 ---
 
 {% include menu.html %}

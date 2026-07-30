@@ -1,5 +1,5 @@
 ---
-title: Wetenschappelijke notatie in Raku
+title: Floating-point getallen
 ---
 
 {% include menu.html %}

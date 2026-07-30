@@ -1,5 +1,5 @@
 ---
-title: Quiz — Pairs
+title: Quiz — Paren
 ---
 
 {% include menu.html %}

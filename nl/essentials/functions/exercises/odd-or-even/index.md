@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Oneven of even'
+title: Oneven of even
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Het laatste cijfer'
+title: 'Solution: De laatste cijfer'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my $d = $n % 10;
 say "Het laatste cijfer van $n is $d.";
 ```
 
-🦋 Vind het programma in het bestand [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/the-last-digit.raku).
+🦋 Vind het programma in het bestand [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/the-last-digit.raku).
 
 ## Uitvoer
 

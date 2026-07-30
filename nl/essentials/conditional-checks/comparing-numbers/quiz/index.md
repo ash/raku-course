@@ -1,5 +1,5 @@
 ---
-title: Quiz — Vergelijk getallen
+title: Quiz — Getallen vergelijken
 ---
 
 {% include menu.html %}

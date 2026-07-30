@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Getallen'
+title: 'Exercises: Getallen'
 ---
 
 {% include menu.html %}

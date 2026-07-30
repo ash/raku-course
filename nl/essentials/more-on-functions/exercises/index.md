@@ -1,5 +1,5 @@
 ---
-title: 'Oefeningen: Meer over functies'
+title: 'Exercises: Meer over functies'
 ---
 
 {% include menu.html %}

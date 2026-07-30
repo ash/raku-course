@@ -1,5 +1,5 @@
 ---
-title: Quiz — Interpolating hashes
+title: Quiz — Interpolatie van hashes
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Oefeningen voor 'Gegevenstype conversie'
+title: 'Exercises: Datentyp-conversie'
 ---
 
 {% include menu.html %}

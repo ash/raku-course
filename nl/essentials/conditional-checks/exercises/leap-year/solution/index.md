@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Schrikkeljaar'
+title: 'Solution: Schrikkeljaar'
 ---
 
 {% include menu.html %}
@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Vind het programma in het bestand [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Vind het programma in het bestand [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Code 2
 
@@ -52,7 +52,7 @@ my $year = prompt 'Year: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Leap year' !! 'Common year';
 ```
 
-🦋 Vind het programma in het bestand [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Vind het programma in het bestand [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
 ## Output
 

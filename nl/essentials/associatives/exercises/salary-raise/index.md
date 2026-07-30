@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Salarisverhoging'
+title: Salarisverhoging
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — De while-lus
+title: Quiz — de `while` lus
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Vierkanten en kubussen
+title: Vierkant en kubus
 ---
 
 {% include menu.html %}

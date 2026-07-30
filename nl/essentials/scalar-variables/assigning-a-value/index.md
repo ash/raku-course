@@ -1,5 +1,5 @@
 ---
-title: Een waarde toewijzen
+title: Toekennen van een waarde
 ---
 
 {% include menu.html %}

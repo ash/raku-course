@@ -1,5 +1,5 @@
 ---
-title: Type constraints
+title: Type beperkingen
 ---
 
 {% include menu.html %}

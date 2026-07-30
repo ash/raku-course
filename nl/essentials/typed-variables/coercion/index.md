@@ -1,5 +1,5 @@
 ---
-title: Typeconversie voor getypeerde variabelen
+title: Type conversie voor getypte variabelen
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Fractioneel deel'
+title: Fractieel deel
 ---
 
 {% include menu.html %}

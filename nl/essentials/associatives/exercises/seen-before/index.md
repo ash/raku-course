@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Eerder gezien?'
+title: Eerder gezien?
 ---
 
 {% include menu.html %}

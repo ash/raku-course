@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Booleaanse tabellen’
+title: Boolean tabellen
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Eenregelige opmerkingen
+title: Eenzijnige opmerkingen
 ---
 
 {% include menu.html %}

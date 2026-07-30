@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Het onderzoeken van het resultaat van prompt — Nummers’
+title: 'Solution: Onderzoek het resultaat van `prompt` — Getallen'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
+🦋 Je kunt de broncode vinden in het bestand [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-numbers.raku).
 
 ## Testuitvoeringen
 

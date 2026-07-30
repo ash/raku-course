@@ -1,5 +1,5 @@
 ---
-title: Code blocks
+title: Code blokken
 ---
 
 {% include menu.html %}

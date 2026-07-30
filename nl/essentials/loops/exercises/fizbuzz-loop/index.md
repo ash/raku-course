@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: FizzBuzz in een lus'
+title: FizzBuzz in een lus
 ---
 
 {% include menu.html %}

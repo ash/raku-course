@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘Som van getallen van 1 tot 100’
+title: 'Solution: Som van getallen van 1 tot 100'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $N * (1 + $N) / 2;
 say "De som van de getallen van 1 tot $N is $sum.";
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum1-100.raku).
+🦋 Je kunt de volledige code vinden in het bestand [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum1-100.raku).
 
 ## Uitvoer
 

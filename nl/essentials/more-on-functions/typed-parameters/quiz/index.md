@@ -1,5 +1,5 @@
 ---
-title: Quiz — Getypte parameters
+title: Quiz — Getypte parameters
 ---
 
 {% include menu.html %}

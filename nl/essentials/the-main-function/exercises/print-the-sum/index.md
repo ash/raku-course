@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Print de som'
+title: Druk de som af
 ---
 
 {% include menu.html %}

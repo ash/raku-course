@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Print command line arguments’
+title: 'Solution: Commandoregelargumenten printen'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Het programma haalt de argumenten van de commandoregel in de array `@*ARGS`. Dus
 .say for @*ARGS;
 ```
 
-🦋 Vind het programma in het bestand [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Vind het programma in het bestand [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Uitvoer
 

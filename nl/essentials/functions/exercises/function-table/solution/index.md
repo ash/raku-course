@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Functietabel'
+title: 'Solution: Functietabel'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ loop (my $x = -3; $x <= 3; $x += 0.1) {
 }
 ```
 
-🦋 Vind het programma in het bestand [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-table.raku).
+🦋 Vind het programma in het bestand [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-table.raku).
 
 ## Uitvoer
 

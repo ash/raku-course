@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Over deze cursus</title>
-    <meta property="og:title" content="Over deze cursus" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Over deze cursus — Raku-cursus</title>
+    <meta property="og:title" content="Over deze cursus — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Over deze cursus</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,149 +88,194 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a></p>
 <h1 id="over-deze-cursus">Over deze cursus</h1>
-
-<p>Welkom bij de cursus van de Raku programmeertaal!</p>
-
-<p>Deze cursus behandelt alle belangrijke aspecten van de taal die je nodig hebt in je dagelijkse praktijk. De cursus bestaat uit vijf delen die de theorie uitleggen en veel praktische opdrachten bieden. Het is de bedoeling dat je probeert de taken zelf op te lossen voordat je naar de oplossing kijkt.</p>
-
-<p>Als je net begint met het leren van Raku, wordt je geadviseerd om alle delen in de volgorde te doorlopen zoals ze in de inhoudsopgave staan vermeld. Als je al wat ervaring hebt en specifieke training wilt, kun je beginnen met het gewenste gedeelte.</p>
-
+<p>Welkom bij de cursus van de programmeertaal Raku!</p>
+<p>Deze cursus behandelt alle belangrijke kanten van de taal die je in
+je dagelijkse praktijk nodig hebt. Hij bestaat uit vijf delen die de
+theorie uitleggen en veel praktische opdrachten bieden. De bedoeling is
+dat je de taken zelf probeert op te lossen voordat je naar de oplossing
+kijkt.</p>
+<p>Als je net begint met Raku, doe je er goed aan alle delen te
+doorlopen in de volgorde waarin ze in de inhoudsopgave staan. Heb je al
+wat ervaring en wil je iets specifieks oefenen, begin dan gerust meteen
+bij de gewenste sectie.</p>
 <h2 id="structuur">Structuur</h2>
-
-<p>De cursus is verdeeld in vijf delen, elk met verschillende secties, die op hun beurt een aantal onderwerpen bevatten (of, simpel gezegd, verschillende pagina’s met hun unieke URL).</p>
-
-<p>De cursus bevat materialen van de volgende vier typen:</p>
-
+<p>De cursus is verdeeld in vijf delen, elk met verschillende secties,
+die op hun beurt een aantal onderwerpen bevatten (of, simpel gezegd,
+losse pagina’s met hun eigen URL).</p>
+<p>De cursus bevat materiaal van vier soorten:</p>
 <ul>
-  <li>— Theorie die het huidige onderwerp behandelt</li>
-  <li>— Quizzen die je begrip van de theorie van het onderwerp en/of de sectie testen</li>
-  <li>— Oefeningen voor het materiaal van de hele sectie</li>
-  <li>— Antwoorden op de oefeningen</li>
+<li>— Theorie over het huidige onderwerp</li>
+<li>— Quizzen die toetsen hoe goed je de theorie van het onderwerp en de
+sectie begrijpt</li>
+<li>— Oefeningen over het materiaal van de hele sectie</li>
+<li>— Antwoorden op de oefeningen</li>
 </ul>
-
-<p>Soms geven praktische opdrachten (zowel quizzen als oefeningen) aanvullende informatie over het onderwerp, dus om het meeste uit de cursus te halen, wordt aanbevolen deze niet over te slaan.</p>
-
-<p>Onder elke pagina bevindt zich een navigatieblok dat je kunt gebruiken om door de hele cursus te navigeren. Je kunt ook altijd naar de gewenste sectie springen met behulp van het broodkruimelmenu bovenaan de pagina.</p>
-
-<p>Hoewel de navigatie je door de opdrachten in een bepaalde volgorde leidt, kun je ze min of meer in willekeurige volgorde binnen de huidige sectie of het onderwerp oplossen.</p>
-
+<p>De praktische opdrachten — zowel de quizzen als de oefeningen — geven
+soms extra informatie over het onderwerp, dus om het meeste uit de
+cursus te halen, kun je ze beter niet overslaan.</p>
+<p>Onder elke pagina staat een navigatieblok waarmee je de hele cursus
+kunt doorlopen. Bovendien kun je altijd naar de gewenste sectie springen
+via het kruimelpad bovenaan de pagina.</p>
+<p>De navigatie leidt je in een bepaalde volgorde door de opdrachten,
+maar binnen de huidige sectie of het huidige onderwerp kun je ze min of
+meer in willekeurige volgorde maken.</p>
 <h2 id="inhoud">Inhoud</h2>
-
-<p>De cursus bestaat uit vijf delen:</p>
-
+<p>De cursus bestaat uit vijf delen, die allemaal volledig geschreven en
+gepubliceerd zijn:</p>
+<style>
+table td:first-child, table th:first-child { width: 99%; }
+table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; padding-left: 1.5em; }
+</style>
 <table>
-  <tbody>
-    <tr>
-      <td>N</td>
-      <td>Naam</td>
-      <td>Status</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td><a href="/nl/essentials">Raku essentials</a></td>
-      <td>Gepubliceerd</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><a href="/nl/advanced">Advanced Raku subjects</a></td>
-      <td>In progress<span id="ProgressBar">…</span></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Object-georiënteerd programmeren in Raku</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Regexes en grammatica’s</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Functioneel, gelijktijdig en reactief programmeren</td>
-      <td> </td>
-    </tr>
-  </tbody>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 32%" />
+<col style="width: 22%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Deel</th>
+<th style="text-align: right;">Onderwerpen</th>
+<th style="text-align: right;">Quizzen</th>
+<th style="text-align: right;">Oefeningen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/nl/essentials">Raku essentiëlen</a></td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr>
+<td><a href="/nl/advanced">Gevorderde Raku-onderwerpen</a></td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">115</td>
+</tr>
+<tr>
+<td><a href="/nl/oop">Objecten, I/O en excepties</a></td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td><a href="/nl/regexes">Reguliere expressies en grammatica’s</a></td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr>
+<td><a href="/nl/paradigms">Functioneel, concurrent, reactief en
+webprogrammeren</a></td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>★ <a href="/nl/final-test">De eindtoets</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><a href="/nl/addendum">Aanhangsel: uitgebreide oefeningen</a></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">50</td>
+</tr>
+</tbody>
 </table>
-
-<script>
-    let ProgressBar = document.getElementById('ProgressBar');
-    let current_progress = 0;
-    setInterval(function() {
-        current_progress++;
-        current_progress %= 6;
-
-        let bar = '';
-        for (let c = 0; c < current_progress; c++) {
-            bar += ',';
-        }
-        bar += '...';
-        for (let c = current_progress; c < 6; c++) {
-            bar += ',';
-        }
-        
-        bar = bar.substr(3, 3);
-        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
-        ProgressBar.innerHTML = bar;
-    }, 200);
-</script>
-
-<p>Op dit moment is het eerste deel volledig geschreven en gepubliceerd. De andere delen zijn in ontwikkeling. Merk op dat aangezien de cursus nog in ontwikkeling is, de URL’s van de verschillende delen in de toekomst enigszins kunnen veranderen.</p>
-
-<p>Het eerste deel, ‘Raku essentials’, bevat:</p>
-
+<p>Na de vijf delen komt <strong>de eindtoets</strong> — honderd vragen
+uit de hele cursus in één zitting, ongeveer in de volgorde waarin je de
+stof geleerd hebt. Elk antwoord wordt meteen nagekeken, en aan het eind
+krijg je je score en een link die je kunt bewaren om je resultaat te
+delen of na te lopen.</p>
+<p>Het zesde deel, het <strong>Aanhangsel</strong>, is een aparte
+verzameling van pittigere, omvangrijkere oefeningen die op de hele
+cursus tegelijk leunen — precies het soort oefening waar je naar grijpt
+zodra de kernstof achter de rug is.</p>
+<p>Houd er rekening mee dat de cursus nog verfijnd wordt, dus de URL’s
+van de verschillende delen kunnen in de toekomst iets veranderen. In de
+al gepubliceerde onderwerpen kunnen nieuwe oefeningen en quizzen
+verschijnen, en de theoretische delen kunnen licht aangepast worden voor
+een betere opbouw van de cursus.</p>
+<h2 id="wat-je-nodig-hebt">Wat je nodig hebt</h2>
+<p>Om de cursus te volgen en de oefeningen te maken, heb je een werkende
+compiler nodig. Er zijn verschillende mogelijkheden:</p>
 <ul>
-  <li>91 onderwerpen</li>
-  <li>73 quizzen</li>
-  <li>65 oefeningen</li>
+<li>— Probeer de ingebouwde
+<a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku-speeltuin</a>
+direct in je browser, zonder iets te installeren, of</li>
+<li>— Installeer de Rakudo-compiler, of</li>
+<li>— Gebruik onlinediensten, of</li>
+<li>— Gebruik dockercontainers</li>
 </ul>
-
-<p>Nieuwe oefeningen en quizzen kunnen verschijnen in de reeds gepubliceerde onderwerpen, en de theoretische delen kunnen enigszins worden aangepast om de beste doorstroming van de cursus te bereiken.</p>
-
-<h2 id="vereisten">Vereisten</h2>
-
-<p>Om de cursus te volgen en oefeningen uit te voeren, heb je een werkende compiler nodig. Er zijn een aantal opties:</p>
-
-<ul>
-  <li>— Installeer de Rakudo compiler of het Rakudo Star pakket of</li>
-  <li>— Gebruik online diensten of</li>
-  <li>— Gebruik docker containers</li>
-</ul>
-
-<p>De verschillende installatieopties worden beschreven aan het begin van het eerste deel.</p>
-
+<p>De verschillende installatiemogelijkheden worden aan het begin van
+het eerste deel beschreven.</p>
 <h2 id="over-de-auteur">Over de auteur</h2>
-
-<p>De cursus is geschreven door <a href="https://andrewshitov.com">Andrew Shitov</a>, die de ontwikkeling van Raku volgt sinds ongeveer 2000 (toen het bekend stond als Perl 6). Hij is de auteur van een aantal <a href="https://andrewshitov.com/books">boeken over programmeren in Raku</a>. Het cursusmateriaal is gebaseerd op dagelijkse ervaring, met name op bijdragen aan <a href="https://perlweeklychallenge.org">The Weekly Challenge</a> en het beoordelen van de oplossingen van andere deelnemers, evenals op de ervaring die is opgedaan met het gebruik van Raku als de hoofdtaal voor de <a href="https://covid.observer">Covid Observer</a> website.</p>
-
-<h2 id="bijdragen-gebruiksvoorwaarden-en-feedback">Bijdragen, gebruiksvoorwaarden en feedback</h2>
-
-<p>De creatie van de cursus wordt ondersteund door de subsidie van <a href="https://www.perlfoundation.org">The Perl Foundation</a>. Je kunt de cursus gebruiken voor zelfstudie of als een set kant-en-klare materialen om anderen les te geven. Commercieel gebruik in lessen is toegestaan zonder toestemming. Het uitbrengen van de cursus als een apart product moet eerst worden overlegd met de auteur.</p>
-
-<p>De bronbestanden zijn beschikbaar op GitHub: <a href="https://github.com/ash/raku-course">github.com/ash/raku-course</a>. Voel je vrij om een pull request in te dienen om mogelijke fouten of typefouten te corrigeren of een issue aan te maken op GitHub als je een breder onderwerp wilt bespreken. Je kunt ook contact opnemen met de auteur via <a href="mailto:andy@shitov.ru">e-mail</a>.</p>
-
+<p>De cursus is geschreven door <a
+href="https://andrewshitov.com">Andrew Shitov</a>, die de ontwikkeling
+van Raku al sinds ongeveer 2000 volgt (toen de taal nog Perl 6 heette).
+Hij is de auteur van een aantal <a
+href="https://andrewshitov.com/books">boeken over programmeren in
+Raku</a>. Het cursusmateriaal is gebaseerd op dagelijkse ervaring, in
+het bijzonder op deelname aan <a
+href="https://perlweeklychallenge.org">The Weekly Challenge</a> en het
+doornemen van de oplossingen van andere deelnemers, en op de ervaring
+met Raku als hoofdtaal voor de website <a
+href="https://covid.observer">Covid Observer</a>.</p>
+<h2 id="bijdragen-gebruiksvoorwaarden-en-feedback">Bijdragen,
+gebruiksvoorwaarden en feedback</h2>
+<p>De totstandkoming van de cursus wordt ondersteund door een subsidie
+van <a href="https://www.perlfoundation.org">The Perl &amp; Raku
+Foundation</a>. Je mag de cursus gebruiken voor zelfstudie of als
+kant-en-klaar materiaal om anderen les te geven. Commercieel gebruik in
+lessen is toegestaan zonder aparte toestemming. Het uitbrengen van de
+cursus als afzonderlijk product moet eerst met de auteur overlegd
+worden.</p>
+<p>De bronbestanden staan op GitHub: <a
+href="https://github.com/ash/raku-course">github.com/ash/raku-course</a>.
+Stuur gerust een pull request om eventuele fouten of typefouten te
+verbeteren, of maak een issue aan op GitHub als je iets breders wilt
+bespreken. Je kunt de auteur ook per <a
+href="mailto:mail@andreyshitov.com">e-mail</a> bereiken.</p>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>← <a href="/nl/">Start</a> 
-  |  
-<a href="/nl/essentials/what-is-raku">Wat is Raku</a> →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/about-this-course/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/about-this-course/">English</a> • <a href="/de/about-this-course/">Deutsch</a> • <a href="/es/about-this-course/">Español</a> • <a href="/it/about-this-course/">Italiano</a> • <a href="/lv/about-this-course/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/about-this-course/">Български</a> • <a href="/ru/about-this-course/">Русский</a> • <a href="/uk/about-this-course/">Українська</a></p>
-</div>
+<p>← <a href="/nl/">Begin</a>   |   <a
+href="/nl/essentials/what-is-raku">Wat is Raku</a> →</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘Apple sharing’
+title: 'Solution: Appel delen'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Each person gets $gets apple(s).";
 say "There are $remains apple(s) remaining.";
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Je kunt de volledige code vinden in het bestand [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Uitvoer
 

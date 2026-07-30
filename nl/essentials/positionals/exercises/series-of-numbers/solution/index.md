@@ -1,5 +1,5 @@
 ---
-title: Oplossing van ‘Print een reeks getallen’
+title: 'Solution: Print een reeks van getallen'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ my $end = prompt 'End: ';
 .say for $begin .. $end;
 ```
 
-🦋 Vind het programma in het bestand [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
+🦋 Vind het programma in het bestand [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers.raku).
 
 ## Code 2
 
@@ -32,7 +32,7 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Vind het programma in het bestand [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
+🦋 Vind het programma in het bestand [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers-loop.raku).
 
 Zoals je kunt zien, is de eerste variant aanzienlijk korter en expressiever.
 

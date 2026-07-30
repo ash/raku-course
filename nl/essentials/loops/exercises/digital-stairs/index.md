@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Digitale trappen'
+title: Digitale trappen
 ---
 
 {% include menu.html %}

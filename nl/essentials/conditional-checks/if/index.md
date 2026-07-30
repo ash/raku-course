@@ -1,5 +1,5 @@
 ---
-title: Voorwaardelijke controles met if
+title: '`if` blokken'
 ---
 
 {% include menu.html %}

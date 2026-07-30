@@ -1,5 +1,5 @@
 ---
-title: Quiz — Het definiëren van standaardwaarden
+title: Quiz — Standaardwaarden definiëren
 ---
 
 {% include menu.html %}

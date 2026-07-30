@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Spel een nummer'
+title: 'Solution: Schrijf een getal'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Veelvouden van 10, bijv. 50
 }
 ```
 
-🦋 Vind het programma in het bestand [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Vind het programma in het bestand [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Voorbeeld
 

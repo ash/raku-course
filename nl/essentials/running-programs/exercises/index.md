@@ -1,5 +1,5 @@
 ---
-title: "Oefeningen: Programma's uitvoeren"
+title: 'Exercises: Programma''s uitvoeren'
 ---
 
 {% include menu.html %}

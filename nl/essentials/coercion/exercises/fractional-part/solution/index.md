@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Fractioneel deel'
+title: 'Solution: Fractieel deel'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ my $n = 15.8972;
 say $n - $n.Int;
 ```
 
-🦋 Vind het programma in het bestand [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/fractional-part.raku).
+🦋 Vind het programma in het bestand [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/fractional-part.raku).
 
 ## Uitvoer
 

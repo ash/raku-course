@@ -1,5 +1,5 @@
 ---
-title: Het resultaat van de prompt onderzoeken — Strings
+title: Onderzoek het resultaat van `prompt` — Strings
 ---
 
 {% include menu.html %}

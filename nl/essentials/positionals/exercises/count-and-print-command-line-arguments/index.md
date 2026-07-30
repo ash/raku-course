@@ -1,5 +1,5 @@
 ---
-title: Tel en print command-line argumenten
+title: Tellen en printen van commandoregelargumenten
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: De @*ARGS array
+title: De `@*ARGS` array
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Print een reeks van nummers
+title: Print een reeks van getallen
 ---
 
 {% include menu.html %}

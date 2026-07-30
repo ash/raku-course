@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Faculteit'
+title: Faculteit
 ---
 
 {% include menu.html %}

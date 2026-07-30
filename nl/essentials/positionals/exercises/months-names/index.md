@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Maandnamen'
+title: Maandnamen
 ---
 
 {% include menu.html %}

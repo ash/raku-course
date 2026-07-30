@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Oplossing: Omtrek van een rechthoek</title>
-    <meta property="og:title" content="Oplossing: Omtrek van een rechthoek" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Oplossing: Omtrek van een rechthoek — Raku-cursus</title>
+    <meta property="og:title" content="Oplossing: Omtrek van een rechthoek — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Oplossing: Omtrek van een rechthoek</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,72 +88,99 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/the-main-function/">De <code class="language-plaintext highlighter-rouge">MAIN</code> functie</a> / <a href="/nl/essentials/the-main-function/exercises/">Oefeningen</a> / <a href="/nl/essentials/the-main-function/exercises/perimeter">Omtrek van een rechthoek</a></p>
-
-<h1 id="oplossing-omtrek-van-een-rechthoek">Oplossing: Omtrek van een rechthoek</h1>
-
-<p>Dit programma moet in staat zijn om één of twee command-line argumenten te accepteren. Een nieuwe truc wordt hier in de oplossing getoond. De standaardwaarde van de tweede variabele wordt ingesteld op de waarde van de eerste variabele: <code class="language-plaintext highlighter-rouge">sub MAIN($a, $b = $a)</code>. Dus, in plaats van het creëren van twee multi-functies, hebben we een algemene functie die de grootte van de tweede zijde instelt als de figuur een vierkant is.</p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/functions-essentials">Basis van functies</a> / <a
+href="/nl/essentials/the-main-function">De <code>MAIN</code> functie</a>
+/ <a href="/nl/essentials/the-main-function/exercises">Oefeningen</a> /
+<a href="/nl/essentials/the-main-function/exercises/perimeter">Omtrek
+van een rechthoek</a></p>
+<h1 id="oplossing-omtrek-van-een-rechthoek">Oplossing: Omtrek van een
+rechthoek</h1>
+<p>Dit programma moet in staat zijn om één of twee command-line
+argumenten te accepteren. Een nieuwe truc wordt hier in de oplossing
+getoond. De standaardwaarde van de tweede variabele wordt ingesteld op
+de waarde van de eerste variabele: <code>sub MAIN($a, $b = $a)</code>.
+Dus, in plaats van het creëren van twee multi-functies, hebben we een
+algemene functie die de grootte van de tweede zijde instelt als de
+figuur een vierkant is.</p>
 <h2 id="code">Code</h2>
-
 <p>Hier is de oplossing:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$a</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">MAIN</span>(<span class="nv">$a</span>, <span class="nv">$b</span> = <span class="nv">$a</span>) {
     <span class="k">my</span> <span class="nv">$perimeter</span> = <span class="mi">2</span> * (<span class="nv">$a</span> + <span class="nv">$b</span>);
 
-    <span class="k">my</span> <span class="nv">$shape</span> = <span class="nv">$a</span> == <span class="nv">$b</span> ?? <span class="s">&#39;vierkant&#39;</span> !! <span class="s">&#39;rechthoek&#39;</span>;
+    <span class="k">my</span> <span class="nv">$shape</span> = <span class="nv">$a</span> == <span class="nv">$b</span> ?? <span class="s">'vierkant'</span> !! <span class="s">'rechthoek'</span>;
     <span class="nb">say</span> <span class="s">&quot;De omtrek van een $shape is $perimeter.&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
-
-<p>🦋 Vind het programma in het bestand <a href="https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku">perimeter.raku</a>.</p>
-
+<p>🦋 Vind het programma in het bestand <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku">perimeter.raku</a>.</p>
 <h2 id="output">Output</h2>
+<p>Probeer verschillende invoerwaarden om zowel vierkanten als
+rechthoeken te testen.</p>
+<div class="highlight"><pre>$ raku exercises/the-main-function/perimeter.raku 1    
+De omtrek van een vierkant is 4.
 
-<p>Probeer verschillende invoerwaarden om zowel vierkanten als rechthoeken te testen.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1    
-<span class="go">De omtrek van een vierkant is 4.
-
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 1 2
-<span class="go">De omtrek van een rechthoek is 6.
-</span></code></pre></div></div>
-
-<p>Merk op dat er een derde geval is dat ook getest moet worden. Als twee gelijke getallen worden doorgegeven, moet het programma nog steeds begrijpen dat dit een vierkant was:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/the-main-function/perimeter.raku 2 2
-<span class="go">De omtrek van een vierkant is 8.
-</span></code></pre></div></div>
-
+$ raku exercises/the-main-function/perimeter.raku 1 2
+De omtrek van een rechthoek is 6.</pre></div>
+<p>Merk op dat er een derde geval is dat ook getest moet worden. Als
+twee gelijke getallen worden doorgegeven, moet het programma nog steeds
+begrijpen dat dit een vierkant was:</p>
+<div class="highlight"><pre>$ raku exercises/the-main-function/perimeter.raku 2 2
+De omtrek van een vierkant is 8.</pre></div>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-    <a href="/nl/essentials/built-in-functions-for-printing">Ingebouwde functies voor het afdrukken</a>
-        / <a href="/nl/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a>
-  |  
-    <a href="/nl/essentials/"></a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/the-main-function/exercises/perimeter/solution/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/the-main-function/exercises/perimeter/solution/">English</a> • <a href="/de/essentials/the-main-function/exercises/perimeter/solution/">Deutsch</a> • <a href="/es/essentials/the-main-function/exercises/perimeter/solution/">Español</a> • <a href="/it/essentials/the-main-function/exercises/perimeter/solution/">Italiano</a> • <a href="/lv/essentials/the-main-function/exercises/perimeter/solution/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/the-main-function/exercises/perimeter/solution/">Български</a> • <a href="/ru/essentials/the-main-function/exercises/perimeter/solution/">Русский</a> • <a href="/uk/essentials/the-main-function/exercises/perimeter/solution/">Українська</a></p>
+<p>← <a
+href="/nl/essentials/the-main-function/exercises/perimeter">Omtrek van
+een rechthoek</a>   |   <a href="/nl/advanced">Geavanceerd</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/the-main-function/exercises/perimeter/solution">English</a>
+• <a
+href="/de/essentials/the-main-function/exercises/perimeter/solution">Deutsch</a>
+• <a
+href="/es/essentials/the-main-function/exercises/perimeter/solution">Español</a>
+• <a
+href="/it/essentials/the-main-function/exercises/perimeter/solution">Italiano</a>
+• <a
+href="/lv/essentials/the-main-function/exercises/perimeter/solution">Latviešu</a>
+• <strong>Nederlands</strong> • <a
+href="/bg/essentials/the-main-function/exercises/perimeter/solution">Български</a>
+• <a
+href="/ru/essentials/the-main-function/exercises/perimeter/solution">Русский</a>
+• <a
+href="/uk/essentials/the-main-function/exercises/perimeter/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Print de som'
+title: 'Solution: Druk de som af'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ sub MAIN(Int $a, Int $b) {
 }
 ```
 
-🦋 Vind het programma in het bestand [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/print-the-sum.raku).
+🦋 Vind het programma in het bestand [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/print-the-sum.raku).
 
 ## Uitvoer
 

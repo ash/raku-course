@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>De say routine</title>
-    <meta property="og:title" content="De say routine" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>say — Raku-cursus</title>
+    <meta property="og:title" content="say — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>De say routine</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,78 +88,104 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/built-in-functions-for-printing">Ingebouwde functies voor het afdrukken</a></p>
-
-<h1 id="say"><code class="language-plaintext highlighter-rouge">say</code></h1>
-
-<p>De ingebouwde routine <code class="language-plaintext highlighter-rouge">say</code> voert de volgende acties uit:</p>
-
-<ol>
-  <li>Roept de <code class="language-plaintext highlighter-rouge">gist</code> methode aan op zijn argumenten.</li>
-  <li>Voegt een nieuwe regel teken toe.</li>
-  <li>Converteert het resultaat naar UTF-8.</li>
-  <li>Stuurt het naar de <code class="language-plaintext highlighter-rouge">STDOUT</code> stream.</li>
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/functions-essentials">Basis van functies</a> / <a
+href="/nl/essentials/built-in-functions-for-printing">Ingebouwde
+functies voor het afdrukken</a></p>
+<h1 id="say"><code>say</code></h1>
+<p>De ingebouwde routine <code>say</code> voert de volgende acties
+uit:</p>
+<ol type="1">
+<li>Roept de <code>gist</code> methode aan op zijn argumenten.</li>
+<li>Voegt een nieuwe regel teken toe.</li>
+<li>Converteert het resultaat naar UTF-8.</li>
+<li>Stuurt het naar de <code>STDOUT</code> stream.</li>
 </ol>
+<p>Vanuit het perspectief van de gebruiker, drukt <code>say</code>
+simpelweg de inhoud van een variabele af naar de terminal en voegt een
+nieuwe regel toe.</p>
+<p>De eerste stap vereist enige uitleg. De <code>gist</code> methode is
+een methode die is gedefinieerd voor elk ingebouwd gegevenstype, zoals
+gehele getallen of strings. Voor zulke eenvoudige types is het
+retourresultaat een menselijk leesbare waarde die het item
+vertegenwoordigt.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
+<span class="nb">say</span> <span class="s">'Raku'</span>; <span class="c1"># Raku</span></pre></div>
 
-<p>Vanuit het perspectief van de gebruiker, drukt <code class="language-plaintext highlighter-rouge">say</code> simpelweg de inhoud van een variabele af naar de terminal en voegt een nieuwe regel toe.</p>
-
-<p>De eerste stap vereist enige uitleg. De <code class="language-plaintext highlighter-rouge">gist</code> methode is een methode die is gedefinieerd voor elk ingebouwd gegevenstype, zoals gehele getallen of strings. Voor zulke eenvoudige types is het retourresultaat een menselijk leesbare waarde die het item vertegenwoordigt.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
-<span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>; <span class="c1"># Raku</span>
-</pre></div>
-
-
-<p>Voor complexere gegevens, zoals arrays of hashes, voegt de <code class="language-plaintext highlighter-rouge">gist</code> methode enige opmaak toe.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">&#39;alpha&#39;</span>, <span class="s">&#39;beta&#39;</span>, <span class="s">&#39;gamma&#39;</span>;
+<p>Voor complexere gegevens, zoals arrays of hashes, voegt de
+<code>gist</code> methode enige opmaak toe.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">'alpha'</span>, <span class="s">'beta'</span>, <span class="s">'gamma'</span>;
 <span class="nb">say</span> <span class="nv">@data</span>; <span class="c1"># [alpha beta gamma]</span>
 
 <span class="k">my</span> <span class="nv">%data</span> = <span class="n">alpha</span> =&gt; <span class="mi">1</span>, <span class="n">beta</span> =&gt; <span class="mi">2</span>, <span class="n">gamma</span> =&gt; <span class="mi">3</span>;
-<span class="nb">say</span> <span class="nv">%data</span>; <span class="c1"># {alpha =&gt; 1, beta =&gt; 2, gamma =&gt; 3}</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%data</span>; <span class="c1"># {alpha =&gt; 1, beta =&gt; 2, gamma =&gt; 3}</span></pre></div>
 
-
-<p>De <code class="language-plaintext highlighter-rouge">say</code> routine kan zowel als functie of als methode worden aangeroepen:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
+<p>De <code>say</code> routine kan zowel als functie of als methode
+worden aangeroepen:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
 <span class="nb">say</span>(<span class="mi">42</span>);
-<span class="mi">42</span>.<span class="nb">say</span>;
-</pre></div>
+<span class="mi">42</span>.<span class="nb">say</span>;</pre></div>
 
-
-<p>Je kunt meer dan één argument doorgeven aan <code class="language-plaintext highlighter-rouge">say</code>. De uitvoerstukken worden zonder spaties ertussen samengevoegd.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span>
-</pre></div>
-
-
-<p></div></p>
+<p>Je kunt meer dan één argument doorgeven aan <code>say</code>. De
+uitvoerstukken worden zonder spaties ertussen samengevoegd.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span></pre></div>
 
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-        <a href="/nl/essentials/built-in-functions-for-printing">Ingebouwde functies voor het afdrukken</a>
-  |  
-        <a href="/nl/essentials/built-in-functions-for-printing">Ingebouwde functies voor het afdrukken</a> / <a href="/nl/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a>
+<p>← <a href="/nl/essentials/built-in-functions-for-printing">Ingebouwde
+functies voor het afdrukken</a>   |   <a
+href="/nl/essentials/built-in-functions-for-printing/print"><code>print</code></a>
 →</p>
-
-<p><br />
-💪 Or jump directly <a href="/nl/essentials/built-in-functions-for-printing/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/built-in-functions-for-printing/say/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/built-in-functions-for-printing/say/">English</a> • <a href="/de/essentials/built-in-functions-for-printing/say/">Deutsch</a> • <a href="/es/essentials/built-in-functions-for-printing/say/">Español</a> • <a href="/it/essentials/built-in-functions-for-printing/say/">Italiano</a> • <a href="/lv/essentials/built-in-functions-for-printing/say/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/built-in-functions-for-printing/say/">Български</a> • <a href="/ru/essentials/built-in-functions-for-printing/say/">Русский</a> • <a href="/uk/essentials/built-in-functions-for-printing/say/">Українська</a></p>
+<p><br /> 💪 Of ga direct <a
+href="/nl/essentials/built-in-functions-for-printing/exercises">naar de
+oefeningen in deze sectie</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/built-in-functions-for-printing/say">English</a> • <a
+href="/de/essentials/built-in-functions-for-printing/say">Deutsch</a> •
+<a href="/es/essentials/built-in-functions-for-printing/say">Español</a>
+• <a
+href="/it/essentials/built-in-functions-for-printing/say">Italiano</a> •
+<a
+href="/lv/essentials/built-in-functions-for-printing/say">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/built-in-functions-for-printing/say">Български</a>
+• <a
+href="/ru/essentials/built-in-functions-for-printing/say">Русский</a> •
+<a
+href="/uk/essentials/built-in-functions-for-printing/say">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

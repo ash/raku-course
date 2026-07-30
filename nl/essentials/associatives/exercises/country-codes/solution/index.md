@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: Landcodes'
+title: 'Solution: Landcodes'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ my @codes = < FR IT DE EE LV US CN IN BR >;
 say %cc{$_} for @codes;
 ```
 
-🦋 Vind het programma in het bestand [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/country-codes.raku).
+🦋 Vind het programma in het bestand [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/country-codes.raku).
 
 ## Uitvoer
 

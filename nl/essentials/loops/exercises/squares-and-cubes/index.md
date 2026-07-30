@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Kwadraten en kubussen in een lus'
+title: Kwadraten en kubussen in een lus
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Begroet een persoon'
+title: Groet een persoon
 ---
 
 {% include menu.html %}

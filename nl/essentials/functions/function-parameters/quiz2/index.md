@@ -1,5 +1,5 @@
 ---
-title: Quiz — Argumenten doorgeven
+title: Argumenten doorgeven
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor ‘Som van getallen’
+title: 'Solution: Som van getallen'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $som = $a + $b + $c;
 say "De som van de getallen is $som.";
 ```
 
-🦋 Je kunt de volledige code vinden in het bestand [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum-of-numbers.raku).
+🦋 Je kunt de volledige code vinden in het bestand [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum-of-numbers.raku).
 
 ## Uitvoer
 

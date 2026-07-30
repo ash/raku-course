@@ -1,5 +1,5 @@
 ---
-title: Positionele gegevenstypen
+title: Positionele datentypen
 ---
 
 {% include menu.html %}

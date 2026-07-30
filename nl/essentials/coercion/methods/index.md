@@ -1,5 +1,5 @@
 ---
-title: Types converteren met type-coercie methoden
+title: Typen converteren met type coercie methoden
 ---
 
 {% include menu.html %}

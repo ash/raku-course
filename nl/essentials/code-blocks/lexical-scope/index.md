@@ -1,5 +1,5 @@
 ---
-title: Lexical scope
+title: Lexicaal bereik
 ---
 
 {% include menu.html %}

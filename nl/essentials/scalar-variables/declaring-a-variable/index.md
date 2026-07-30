@@ -1,5 +1,5 @@
 ---
-title: Scalaire variabelen
+title: Declareren van een variabele
 ---
 
 {% include menu.html %}

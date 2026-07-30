@@ -1,5 +1,5 @@
 ---
-title: Gegevenstype conversie
+title: Datentyp-conversie
 ---
 
 {% include menu.html %}

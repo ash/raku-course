@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Scalaire variabelen
+title: Quiz 1: Declareren van een variabele
 ---
 
 {% include menu.html %}

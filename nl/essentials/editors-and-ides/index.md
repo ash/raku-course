@@ -1,5 +1,5 @@
 ---
-title: Editors en IDE's voor Raku
+title: Editors en IDE's
 ---
 
 {% include menu.html %}

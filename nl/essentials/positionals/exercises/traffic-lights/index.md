@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Verkeerslichten'
+title: Verkeerslichten
 ---
 
 {% include menu.html %}

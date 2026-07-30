@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: De waarde van e'
+title: De waarde van e
 ---
 
 {% include menu.html %}

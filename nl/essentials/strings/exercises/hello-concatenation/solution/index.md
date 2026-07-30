@@ -1,5 +1,5 @@
 ---
-title: Oplossing voor 'Hallo, Concatenatie!'
+title: 'Solution: Hallo, Concatenatie!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Wat is je naam? ';
 say 'Hallo, ' ~ $name ~ '!';
 ```
 
-🦋 Je kunt de broncode vinden in het bestand [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
+🦋 Je kunt de broncode vinden in het bestand [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-concatenation.raku).
 
 ## Output
 

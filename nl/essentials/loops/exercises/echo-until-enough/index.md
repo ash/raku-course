@@ -1,5 +1,5 @@
 ---
-title: 'Oefening: Echo tot genoeg'
+title: Echo tot genoeg
 ---
 
 {% include menu.html %}

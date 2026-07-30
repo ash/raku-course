@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Twee waarden toewijzen
+title: Quiz 2: Toekennen van twee waarden
 ---
 
 {% include menu.html %}

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Operaties met getallen</title>
-    <meta property="og:title" content="Operaties met getallen" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Bewerkingen met getallen — Raku-cursus</title>
+    <meta property="og:title" content="Bewerkingen met getallen — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Operaties met getallen</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,188 +88,141 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a> / <a href="/nl/essentials/numbers">Getallen</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/variables">Basis van variabelen en datatypes</a> /
+<a href="/nl/essentials/numbers">Getallen</a></p>
 <h1 id="bewerkingen-met-getallen">Bewerkingen met getallen</h1>
-
-<p>Er is geen twijfel dat je al enkele van de bewerkingen kent die je met Raku-getallen kunt doen. Om te vermelden dat het symbool van de <em>bewerking</em> een <em>operator</em> wordt genoemd. De objecten waarop we bewerkingen uitvoeren, worden <em>operanden</em> genoemd.</p>
-
+<p>Er is geen twijfel dat je al enkele van de bewerkingen kent die je
+met Raku-getallen kunt doen. Om te vermelden dat het symbool van de
+<em>bewerking</em> een <em>operator</em> wordt genoemd. De objecten
+waarop we bewerkingen uitvoeren, worden <em>operanden</em> genoemd.</p>
 <h2 id="rekenkunde">Rekenkunde</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Operator</strong></td>
-      <td><strong>Bewerking</strong></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">+</code></td>
-      <td>Optelling</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">-</code></td>
-      <td>Aftrekking</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">*</code></td>
-      <td>Vermenigvuldiging</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">/</code></td>
-      <td>Deling</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Aangezien Raku <a href="/nl/essentials/on-unicode">Unicode ondersteunt</a> echt goed, hebben sommige van deze operators niet-ASCII-equivalenten:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">×</code></td>
-      <td>Vermenigvuldiging</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
-      <td>Deling</td>
-    </tr>
-  </tbody>
-</table>
-
+<p><strong>Operator</strong> | <strong>Bewerking</strong> <code>+</code>
+| Optelling <code>-</code> | Aftrekking <code>*</code> |
+Vermenigvuldiging <code>/</code> | Deling</p>
+<p>Aangezien Raku <a href="/nl/essentials/on-unicode">Unicode
+ondersteunt</a> echt goed, hebben sommige van deze operators
+niet-ASCII-equivalenten:</p>
+<p><code>×</code> | Vermenigvuldiging <code>÷</code> | Deling</p>
 <p>Om de volgorde van uitvoering te wijzigen, gebruik je haakjes:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
-<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span></pre></div>
 
 <h2 id="modulo">Modulo</h2>
-
-<p>De modulo-operator is <code class="language-plaintext highlighter-rouge">%</code> zoals in veel andere talen.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%</code></td>
-      <td>Modulo</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Het retourneert de rest van de gehele deling van twee getallen, dus <code class="language-plaintext highlighter-rouge">10 % 3</code> is <code class="language-plaintext highlighter-rouge">1</code>. Merk op dat <code class="language-plaintext highlighter-rouge">-10 % 3</code> <code class="language-plaintext highlighter-rouge">2</code> is omdat het resultaat van de bewerking wordt gedefinieerd als het verschil tussen het eerste getal en de naar beneden afgeronde deling vermenigvuldigd met het tweede getal. Dus, <code class="language-plaintext highlighter-rouge">$a % $b</code> is gelijk aan <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
-
+<p>De modulo-operator is <code>%</code> zoals in veel andere talen.</p>
+<p><code>%</code> | Modulo</p>
+<p>Het retourneert de rest van de gehele deling van twee getallen, dus
+<code>10 % 3</code> is <code>1</code>. Merk op dat <code>-10 % 3</code>
+<code>2</code> is omdat het resultaat van de bewerking wordt
+gedefinieerd als het verschil tussen het eerste getal en de naar beneden
+afgeronde deling vermenigvuldigd met het tweede getal. Dus,
+<code>$a % $b</code> is gelijk aan
+<code>$a - $b * floor($a / $b)</code>.</p>
 <h2 id="deelbaarheid">Deelbaarheid</h2>
-
-<p>Raku voegt een nuttige operator toe om te testen of het getal deelbaar is door een ander getal.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
-      <td>Deelbaarheid</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Dit is een infix-operator die twee operanden nodig heeft: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Als de eerste operand deelbaar is door de tweede operand, is het resultaat een Booleaanse <code class="language-plaintext highlighter-rouge">True</code>. Anders <code class="language-plaintext highlighter-rouge">False</code>.</p>
-
+<p>Raku voegt een nuttige operator toe om te testen of het getal
+deelbaar is door een ander getal.</p>
+<p><code>%%</code> | Deelbaarheid</p>
+<p>Dit is een infix-operator die twee operanden nodig heeft:
+<code>10 %% 3</code>. Als de eerste operand deelbaar is door de tweede
+operand, is het resultaat een Booleaanse <code>True</code>. Anders
+<code>False</code>.</p>
 <h2 id="gehele-getal-bewerkingen">Gehele getal bewerkingen</h2>
-
-<p>Er zijn speciale bewerkingen die gehele getal resultaten retourneren. Hun operators zijn woorden in plaats van symbolen.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">div</code></td>
-      <td>Gehele deling</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
-      <td>Gehele modulo</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>De <code class="language-plaintext highlighter-rouge">div</code> operator rondt het resultaat naar beneden af, dus <code class="language-plaintext highlighter-rouge">10 div 3</code> is <code class="language-plaintext highlighter-rouge">3</code>, en <code class="language-plaintext highlighter-rouge">-10 div 3</code> is <code class="language-plaintext highlighter-rouge">-4</code>.</p>
-
-<p>Zowel <code class="language-plaintext highlighter-rouge">div</code> als <code class="language-plaintext highlighter-rouge">mod</code> verwachten gehele operanden. Dus, het volgende programma zal niet werken als je de regels die gemarkeerd zijn als <code class="language-plaintext highlighter-rouge">Error</code> uitcommentarieert:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<p>Er zijn speciale bewerkingen die gehele getal resultaten retourneren.
+Hun operators zijn woorden in plaats van symbolen.</p>
+<p><code>div</code> | Gehele deling <code>mod</code> | Gehele modulo</p>
+<p>De <code>div</code> operator rondt het resultaat naar beneden af, dus
+<code>10 div 3</code> is <code>3</code>, en <code>-10 div 3</code> is
+<code>-4</code>.</p>
+<p>Zowel <code>div</code> als <code>mod</code> verwachten gehele
+operanden. Dus, het volgende programma zal niet werken als je de regels
+die gemarkeerd zijn als <code>Error</code> uitcommentarieert:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 mod 3; # Error</span>
 
 <span class="nb">say</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
-<span class="c1"># say 10.3 div 3.3; # Error</span>
-</pre></div>
-
+<span class="c1"># say 10.3 div 3.3; # Error</span></pre></div>
 
 <h2 id="macht">Macht</h2>
-
-<p>Er zijn twee manieren om het resultaat van <em>x</em> tot de macht <em>y</em> te krijgen. Ten eerste kun je de <code class="language-plaintext highlighter-rouge">**</code> operator gebruiken:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
-</pre></div>
-
+<p>Er zijn twee manieren om het resultaat van <em>x</em> tot de macht
+<em>y</em> te krijgen. Ten eerste kun je de <code>**</code> operator
+gebruiken:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span></pre></div>
 
 <p>Ten tweede kun je superscript cijfers gebruiken, bijvoorbeeld:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span>⁴; <span class="c1"># 81</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
-</pre></div>
-
-
-<p>Het is mogelijk om meer dan één superscript cijfer te plaatsen om de waarde van een macht groter dan 9 te krijgen. Bijvoorbeeld:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
-</pre></div>
-
+<p>Het is mogelijk om meer dan één superscript cijfer te plaatsen om de
+waarde van een macht groter dan 9 te krijgen. Bijvoorbeeld:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span>¹⁵; <span class="c1"># 32768</span></pre></div>
 
 <p>Negatieve machten zijn ook geen probleem:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="nb">say</span> <span class="mi">2</span>⁻²; <span class="c1"># 0.25</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
-<span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
-</pre></div>
-
-
-<p>Merk op dat het resultaat van de laatste twee uitdrukkingen een <code class="language-plaintext highlighter-rouge">Rat</code> getal is.</p>
-
+<p>Merk op dat het resultaat van de laatste twee uitdrukkingen een
+<code>Rat</code> getal is.</p>
 <h2 id="operaties-met-toewijzing">Operaties met toewijzing</h2>
-
-<p>Alle bewerkingen ondersteunen de snelkoppeling syntaxis wanneer je de variabele moet bijwerken. Laten we dit demonstreren aan de hand van het voorbeeld van <code class="language-plaintext highlighter-rouge">+</code>.</p>
-
+<p>Alle bewerkingen ondersteunen de snelkoppeling syntaxis wanneer je de
+variabele moet bijwerken. Laten we dit demonstreren aan de hand van het
+voorbeeld van <code>+</code>.</p>
 <p>De volledige vorm</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;</pre></div>
 
 <p>is gelijk aan:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
-</pre></div>
-
-
-<p></div></p>
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;</pre></div>
 
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-        <a href="/nl/essentials/numbers">Getallen</a> / <a href="/nl/essentials/numbers/numeric">Floating-point getallen</a>
-  |  
-        💪 <a href="/nl/essentials/numbers/exercises">Oefeningen: Getallen</a>
+<p>← <a href="/nl/essentials/numbers/numeric">Floating-point
+getallen</a>   |   <a
+href="/nl/essentials/numbers/exercises/apple-sharing">Appel delen</a>
 →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/numbers/operations/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/numbers/operations/">English</a> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+<p><br /> 💪 Of ga direct <a
+href="/nl/essentials/numbers/exercises">naar de oefeningen in deze
+sectie</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/operations">English</a> • <a
+href="/de/essentials/numbers/operations">Deutsch</a> • <a
+href="/es/essentials/numbers/operations">Español</a> • <a
+href="/it/essentials/numbers/operations">Italiano</a> • <a
+href="/lv/essentials/numbers/operations">Latviešu</a> •
+<strong>Nederlands</strong> • <a
+href="/bg/essentials/numbers/operations">Български</a> • <a
+href="/ru/essentials/numbers/operations">Русский</a> • <a
+href="/uk/essentials/numbers/operations">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

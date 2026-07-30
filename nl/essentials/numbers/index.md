@@ -1,5 +1,5 @@
 ---
-title: Getallen in Raku
+title: Getallen
 ---
 
 {% include menu.html %}

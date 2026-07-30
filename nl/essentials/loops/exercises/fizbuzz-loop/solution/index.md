@@ -1,5 +1,5 @@
 ---
-title: 'Oplossing: FizzBuzz in een lus'
+title: 'Solution: FizzBuzz in een lus'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..50 -> $n {
 }
 ```
 
-🦋 Vind het programma in het bestand [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fizbuzz-loop.raku).
+🦋 Vind het programma in het bestand [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fizbuzz-loop.raku).
 
 ## Uitvoer
 

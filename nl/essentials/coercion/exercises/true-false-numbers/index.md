@@ -1,5 +1,5 @@
 ---
-title: Oefening 'True en False gehele getallen'
+title: True en False getallen
 ---
 
 {% include menu.html %}

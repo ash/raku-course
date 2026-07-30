@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Ontvangen voorbij het einde — Raku-cursus</title>
+    <meta property="og:title" content="Ontvangen voorbij het einde — Raku-cursus" />
+    <meta property="og:locale" content="nl" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/nl/">Cursus Raku</a> / <a href="/nl/paradigms">Functioneel,
+concurrent, reactief en webprogrammeren</a> / <a
+href="/nl/paradigms/concurrent">Concurrent programmeren</a> / <a
+href="/nl/paradigms/channels">Channels</a></p>
+<h1 id="ontvangen-voorbij-het-einde">Ontvangen voorbij het einde</h1>
+<p>Wat gebeurt er als je <code>.receive</code> vaker aanroept dan er
+waarden op te halen zijn? Het antwoord hangt ervan af of het kanaal
+<strong>gesloten</strong> is.</p>
+<p>Neem het voorbeeld met producent en consument van eerder: een
+achtergrondtaak verstuurt drie waarden en sluit het kanaal. Wat als de
+consument om een vierde vraagt?</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
+    <span class="nv">$c</span>.<span class="nb">close</span>;
+}
+
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># one receive too many</span></pre></div>
+
+<h2 id="op-een-gesloten-kanaal-werpt-een-extra-receive">Op een gesloten
+kanaal werpt een extra receive</h2>
+<p>Sluiten gooit de al in de wachtrij staande waarden niet weg — de drie
+<code>.receive</code>-aanroepen hierboven geven nog steeds
+<code>1</code>, <code>2</code> en <code>3</code> terug. Maar zodra het
+kanaal gesloten <strong>en</strong> leeg is, kunnen er nooit meer
+waarden aankomen, dus laat Raku je niet eeuwig wachten maar werpt het
+een exceptie:</p>
+<div class="highlight"><pre>Cannot receive a message on a closed channel</pre></div>
+<p>De exceptie is <code>X::Channel::ReceiveOnClosed</code>. Dat is
+behulpzaam en niet vervelend: het vertelt de consument ondubbelzinnig
+dat hij het kanaal leeggehaald heeft. In de praktijk vermijd je haar
+door met <code>.list</code> te consumeren (dat netjes bij de sluiting
+stopt) of door alleen te lussen zolang er waarden over zijn — beide op
+de vorige pagina getoond.</p>
+<h2 id="op-een-open-kanaal-blokkeert-een-extra-receive">Op een open
+kanaal blokkeert een extra receive</h2>
+<p>Als de producent het kanaal nooit sluit, kan <code>.receive</code>
+niet weten of er nog een waarde komt, dus <strong>wacht</strong> het
+eenvoudigweg:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># waits here — the channel is open but empty</span></pre></div>
+
+<p>Het programma blijft bij de tweede <code>.receive</code> hangen,
+omdat er <em>misschien</em> nog een waarde verstuurd wordt. Dat is het
+gevaar waar de vorige pagina voor waarschuwde: vergeet te
+<code>.close</code>-en, en een gewoon “wacht op de volgende waarde”
+wordt een wachten dat nooit eindigt.</p>
+<p>De twee uitkomsten zijn dus op een nuttige manier tegengesteld. Een
+<strong>gesloten</strong> kanaal faalt snel wanneer het leeg is — je
+krijgt een exceptie die je kunt zien en vangen. Een
+<strong>open</strong> kanaal blijft wachten — precies goed zolang een
+producent nog aan het werk is, maar een stille blokkade als de producent
+stilletjes gestopt is zonder te sluiten. Het kanaal sluiten is precies
+wat die stille blokkade verandert in een helder signaal dat de stroom
+geëindigd is.</p>
+<section id="praktijk" class="practice" data-markdown="1">
+<h2>Praktijk</h2>
+<p>Maak de 1 quiz over de inhoud van dit onderwerp.</p>
+<ul>
+<li><a href="/nl/paradigms/channels/receiving-past-the-end/quiz">Quiz —
+Ontvangen voorbij het einde</a></li>
+</ul>
+</section>
+<h2 id="cursusnavigatie">Cursusnavigatie</h2>
+<p>← <a href="/nl/paradigms/channels/closing-a-channel/quiz">Quiz — Een
+channel sluiten</a>   |   <a
+href="/nl/paradigms/channels/receiving-past-the-end/quiz">Quiz —
+Ontvangen voorbij het einde</a> →</p>
+<p><br /> 💪 Of ga direct <a
+href="/nl/paradigms/channels/exercises">naar de oefeningen in deze
+sectie</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

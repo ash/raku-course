@@ -1,5 +1,5 @@
 ---
-title: Oefening 'Hallo, Interpolatie!'
+title: Hallo, Interpolatie!
 ---
 
 {% include menu.html %}

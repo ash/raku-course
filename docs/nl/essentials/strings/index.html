@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="nl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Strings in Raku</title>
-    <meta property="og:title" content="Strings in Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Strings — Raku-cursus</title>
+    <meta property="og:title" content="Strings — Raku-cursus" />
     <meta property="og:locale" content="nl" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Strings in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,83 +88,124 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/nl/">Cursus Raku</a> / <a href="/nl/essentials">Essentiëlen</a></p>
-
+          <p><a href="/nl/">Cursus Raku</a> / <a
+href="/nl/essentials">Essentiëlen</a> / <a
+href="/nl/essentials/variables">Basis van variabelen en
+datatypes</a></p>
 <h1 id="strings">Strings</h1>
+<p>Laten we het hebben over strings. We hebben al strings gebruikt in de
+vorige programma’s. Al deze worden ook string literals genoemd. Een
+string literal is een stuk tekst tussen aanhalingstekens:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'I am a string literal'</span>;</pre></div>
 
-<p>Laten we het hebben over strings. We hebben al strings gebruikt in de vorige programma’s. Al deze worden ook string literals genoemd. Een string literal is een stuk tekst tussen aanhalingstekens:</p>
+<p>Natuurlijk kun je een scalair variabele gebruiken om strings te
+bewaren:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$message</span> = <span class="s">'This is my message'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;I am a string literal&#39;</span>;
-</pre></div>
-
-
-<p>Natuurlijk kun je een scalair variabele gebruiken om strings te bewaren:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$message</span> = <span class="s">&#39;This is my message&#39;</span>;
-</pre></div>
-
-
-<p>Laten we eens kijken welke andere basisfuncties we kunnen leren over strings.</p>
-
-<p><div class="topics"></p>
-<h2 id="onderwerpen-in-deze-sectie">Onderwerpen in deze sectie</h2>
+<p>Laten we eens kijken welke andere basisfuncties we kunnen leren over
+strings.</p>
+<section id="onderwerpen-in-deze-sectie" class="topics"
+data-markdown="1">
+<h2>Onderwerpen in deze sectie</h2>
 <ul>
-  <li><a href="/nl/essentials/strings/string-concatenation">String concatenatie</a></li>
-  <li><a href="/nl/essentials/strings/variable-interpolation">Variabele interpolatie</a></li>
-  <li><a href="/nl/essentials/strings/code-interpolation">Code interpolatie</a></li>
-  <li><a href="/nl/essentials/strings/escaping-special-characters">Speciale tekens escapen</a></li>
-  <li><a href="/nl/essentials/strings/string-length">String lengte</a></li>
+<li><a href="/nl/essentials/strings/string-concatenation">String
+concatenatie</a></li>
+<li><a href="/nl/essentials/strings/variable-interpolation">Variabele
+interpolatie</a></li>
+<li><a href="/nl/essentials/strings/code-interpolation">Code
+interpolatie</a></li>
+<li><a
+href="/nl/essentials/strings/escaping-special-characters">Speciale
+tekens escapen</a></li>
+<li><a href="/nl/essentials/strings/string-length">String
+lengte</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="oefening">Oefening</h2>
-
-<p>Maak de quiz die de inhoud van dit onderwerp behandelt.</p>
+</section>
+<section id="praktijk" class="practice" data-markdown="1">
+<h2>Praktijk</h2>
+<p>Maak de 7 quizzen over de inhoud van deze sectie.</p>
 <ul>
-  <li><a href="/nl/essentials/strings/quiz">Quiz — geldige strings</a></li>
+<li><a href="/nl/essentials/strings/quiz">Quiz — geldige
+strings</a></li>
+<li><a href="/nl/essentials/strings/string-concatenation/quiz1">Quiz 1:
+Strings concateneren</a></li>
+<li><a href="/nl/essentials/strings/string-concatenation/quiz2">Quiz 2:
+Strings en getallen concateneren</a></li>
+<li><a href="/nl/essentials/strings/string-concatenation/quiz3">Quiz 3:
+Strings opnieuw concateneren</a></li>
+<li><a href="/nl/essentials/strings/variable-interpolation/quiz">Quiz:
+String interpolatie</a></li>
+<li><a
+href="/nl/essentials/strings/escaping-special-characters/quiz">Quiz: Een
+backslash in de uitvoer</a></li>
+<li><a href="/nl/essentials/strings/string-length/quiz">Quiz: De lengte
+van een zin</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="oefeningen">Oefeningen</h2>
-
-<p>Deze sectie bevat <a href="/nl/essentials/strings/exercises">
-4 oefeningen</a>. Bekijk alle onderwerpen van deze sectie voordat je naar de codeeroefening gaat.</p>
-<ol>
-  <li><a href="/nl/essentials/strings/exercises/hello-concatenation">Hallo, Concatenatie!</a></li>
-  <li><a href="/nl/essentials/strings/exercises/hello-interpolation">Hallo, Interpolatie!</a></li>
-  <li><a href="/nl/essentials/strings/exercises/purchase-table">Aankoop tabel</a></li>
-  <li><a href="/nl/essentials/strings/exercises/name-length">Naam lengte</a></li>
+</section>
+<section id="oefeningen" class="exercises" data-markdown="1">
+<h2>Oefeningen</h2>
+<p>Deze sectie bevat <a href="exercises">4 oefeningen</a>. Bekijk alle
+onderwerpen van deze sectie voordat je aan de oefeningen begint.</p>
+<ol type="1">
+<li><a
+href="/nl/essentials/strings/exercises/hello-concatenation">Hallo,
+Concatenatie!</a></li>
+<li><a
+href="/nl/essentials/strings/exercises/hello-interpolation">Hallo,
+Interpolatie!</a></li>
+<li><a href="/nl/essentials/strings/exercises/purchase-table">Aankoop
+tabel</a></li>
+<li><a href="/nl/essentials/strings/exercises/name-length">Naam
+lengte</a></li>
 </ol>
-
-<p></div></p>
-
+</section>
 <h2 id="cursusnavigatie">Cursusnavigatie</h2>
-
-<p>←
-    <a href="/nl/essentials/scalar-variables">Scalare variabelen</a>
-        / <a href="/nl/essentials/scalar-variables/identifiers">Namen van de variabelen</a>
-  |  
-        <a href="/nl/essentials/strings/string-concatenation">String concatenatie</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Deze pagina is automatisch vertaald met ChatGPT 4o. <a href="/essentials/strings/">Originele Engelse tekst.</a></p>
-
-  <p>Vertalingen van deze pagina: <a href="/essentials/strings/">English</a> • <a href="/de/essentials/strings/">Deutsch</a> • <a href="/es/essentials/strings/">Español</a> • <a href="/it/essentials/strings/">Italiano</a> • <a href="/lv/essentials/strings/">Latviešu</a> • <strong>Nederlands</strong> • <a href="/bg/essentials/strings/">Български</a> • <a href="/ru/essentials/strings/">Русский</a> • <a href="/uk/essentials/strings/">Українська</a></p>
+<p>← <a
+href="/nl/essentials/scalar-variables/exercises/identifiers/solution">Oplossing:
+Corrigeer de identificatoren</a>   |   <a
+href="/nl/essentials/strings/string-concatenation">String
+concatenatie</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials/strings">English</a>
+• <a href="/de/essentials/strings">Deutsch</a> • <a
+href="/es/essentials/strings">Español</a> • <a
+href="/it/essentials/strings">Italiano</a> • <a
+href="/lv/essentials/strings">Latviešu</a> • <strong>Nederlands</strong>
+• <a href="/bg/essentials/strings">Български</a> • <a
+href="/ru/essentials/strings">Русский</a> • <a
+href="/uk/essentials/strings">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
+<p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Geschreven door <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>
