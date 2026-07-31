@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,18 +117,19 @@ href="/uk/paradigms/supply-kinds">Живі supply та supply на
 кожен вільний приєднатися чи піти коли завгодно. Тут два слухачі
 спостерігають за потоком подій: <code>log</code>, що записує все, та
 <code>alert</code>, що приєднується пізніше й іде раніше.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$events</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
-<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># приєднується перший слухач</span>
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'start'</span>);
+<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># приєднується перший слухач</span>
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;start&#39;</span>);
 
-<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># приєднується другий слухач</span>
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'warning'</span>);
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'all clear'</span>);
+<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># приєднується другий слухач</span>
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;warning&#39;</span>);
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;all clear&#39;</span>);
 
 <span class="nv">$log</span>.<span class="nb">close</span>;                                          <span class="c1"># перший слухач іде</span>
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'stop'</span>);</pre></div>
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;stop&#39;</span>);
+</pre></div>
 
 <p>Це друкує:</p>
 <div class="highlight"><pre>log:   start
@@ -221,6 +222,22 @@ href="/uk/paradigms/supply-kinds/exercises">до вправ цього
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/paradigms/supply-kinds/live-in-action">English</a>
+<a href="/de/paradigms/supply-kinds/live-in-action">Deutsch</a>
+<a href="/eo/paradigms/supply-kinds/live-in-action">Esperanto</a>
+<a href="/es/paradigms/supply-kinds/live-in-action">Español</a>
+<a href="/it/paradigms/supply-kinds/live-in-action">Italiano</a>
+<a href="/la/paradigms/supply-kinds/live-in-action">Latina</a>
+<a href="/lv/paradigms/supply-kinds/live-in-action">Latviešu</a>
+<a href="/nl/paradigms/supply-kinds/live-in-action">Nederlands</a>
+<a href="/bg/paradigms/supply-kinds/live-in-action">Български</a>
+<a href="/ru/paradigms/supply-kinds/live-in-action">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

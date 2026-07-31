@@ -7,7 +7,7 @@ translations_gpt:
 
 ## Problem
 
-Eine Typbeschraenkung auf einem `MAIN`-Parameter wird ebenfalls geprüft, bevor der Koerper ausgefuehrt wird. Schreiben Sie ein Programm, dessen `MAIN` einen einzelnen `Int $n` annimmt und `$n` verdoppelt ausgibt. Wenn das Argument keine gueltige Ganzzahl ist, passt die Signatur nicht, und Raku gibt stattdessen die Verwendungsmeldung aus — Sie erhalten die Validierung kostenlos.
+Eine Typbeschränkung auf einem `MAIN`-Parameter wird ebenfalls geprüft, bevor der Körper ausgeführt wird. Schreiben Sie ein Programm, dessen `MAIN` einen einzelnen `Int $n` annimmt und `$n` verdoppelt ausgibt. Wenn das Argument keine gültige Ganzzahl ist, passt die Signatur nicht, und Raku gibt stattdessen die Verwendungsmeldung aus — Sie erhalten die Validierung kostenlos.
 
 ## Beispiel
 

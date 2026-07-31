@@ -8,10 +8,10 @@ translations_gpt:
 Кога се изпълнява кодът вътре в блока `END`?
 
 {:.quiz}
-0 | before the program starts
-1 | after the main code has finished
-0 | only while the program is compiled
-0 | every time a block is entered
+0 | преди програмата да започне
+1 | след като основният код приключи
+0 | само докато програмата се компилира
+0 | всеки път, когато се влезе в блок
 
 {% include quiz.html %}
 

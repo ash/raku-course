@@ -12,7 +12,7 @@ my @a = 'alpha', 'beta', 'gamma';
 say @a.Str;    # alpha beta gamma
 ```
 
-Beachte, dass das Array **ohne Klammern** zurückkam, mit seinen Elementen einfach durch Leerzeichen verbunden -- das ist der sichtbare Unterschied zu [`.gist`](../gist), das sie beibehält. Vergleiche die beiden nebeneinander:
+Beachte, dass das Array **ohne Klammern** zurückkam, mit seinen Elementen einfach durch Leerzeichen verbunden — das ist der sichtbare Unterschied zu [`.gist`](../gist), das sie beibehält. Vergleiche die beiden nebeneinander:
 
 ```raku
 my @data = 1, 2, 3;

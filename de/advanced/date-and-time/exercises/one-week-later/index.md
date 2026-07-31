@@ -6,7 +6,7 @@ title: Eine Woche später
 
 ## Problem
 
-Nimm das Datum 28. Februar 2027 und gib das Datum genau eine Woche später aus. Verwende die Methode `later` mit dem passenden benannten Argument anstelle des `+`-Operators. Gib in der naechsten Zeile auch die Wochentagsnummer dieses neuen Datums aus.
+Nimm das Datum 28. Februar 2027 und gib das Datum genau eine Woche später aus. Verwende die Methode `later` mit dem passenden benannten Argument anstelle des `+`-Operators. Gib in der nächsten Zeile auch die Wochentagsnummer dieses neuen Datums aus.
 
 ## Beispiel
 

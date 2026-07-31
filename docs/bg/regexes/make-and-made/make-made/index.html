@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,21 +118,24 @@ made</a></p>
 щом съпоставянето стигне до него. Вътре в този блок функцията
 <code>make</code> съхранява стойност върху текущото съвпадение:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">OneNum</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
-}</pre></div>
+    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+}
+</pre></div>
 
 <p>Когато <code>TOP</code> съвпадне, вътрешният блок
 <code>{ make $&lt;number&gt;.Int }</code> се изпълнява — външните
 фигурни скоби са просто тялото на токена — и съхранява цялото число
 върху съвпадението. Прочитате го обратно после с <code>made</code> (или
 с псевдонима му <code>.ast</code>):</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span>; <span class="c1"># 42</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span>; <span class="c1"># 42</span>
+</pre></div>
 
 <p>Понеже съхранихме <code>$&lt;number&gt;.Int</code>, стойността,
 върната от <code>made</code>, е истински <code>Int</code> — самото
 число, а не обектът на съвпадението:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span>
+</pre></div>
 
 <p>Забележете, че точно това <code>+ 1</code> би дало <code>43</code> и
 без <code>.Int</code>, защото в аритметика съвпадението се превръща в
@@ -144,12 +147,13 @@ made</a></p>
 обект. Токенът може и да съчетае стойностите, създадени от подтокените
 му. Например сумиране на две прихванати числа:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>).<span class="k">made</span>; <span class="c1"># 5</span>
+</pre></div>
 
 <p><code>make</code> и <code>made</code> са мостът от „съвпадна“ до „ето
 какво означава“. Поставянето на блоковете вътре в шаблона работи, но
@@ -176,6 +180,22 @@ href="/bg/regexes/make-and-made/exercises">към упражненията в т
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/regexes/make-and-made/make-made">English</a>
+<a href="/de/regexes/make-and-made/make-made">Deutsch</a>
+<a href="/eo/regexes/make-and-made/make-made">Esperanto</a>
+<a href="/es/regexes/make-and-made/make-made">Español</a>
+<a href="/it/regexes/make-and-made/make-made">Italiano</a>
+<a href="/la/regexes/make-and-made/make-made">Latina</a>
+<a href="/lv/regexes/make-and-made/make-made">Latviešu</a>
+<a href="/nl/regexes/make-and-made/make-made">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/regexes/make-and-made/make-made">Русский</a>
+<a href="/uk/regexes/make-and-made/make-made">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

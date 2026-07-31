@@ -36,7 +36,7 @@ adult
 
 1. Der `default`-Block deckt jedes Alter ab 65 ab, das von keinem der aufgelisteten Bereiche erfasst wird.
 
-Du könntest das auch umdrehen und `default` den *ungültigen* Input abfangen lassen. Liste jede anerkannte Lebensphase auf -- einschließlich `senior` als Bedingung `$_ >= 65` -- und behandle alles Übrige (wie ein negatives Alter) als ungültig:
+Du könntest das auch umdrehen und `default` den *ungültigen* Input abfangen lassen. Liste jede anerkannte Lebensphase auf — einschließlich `senior` als Bedingung `$_ >= 65` — und behandle alles Übrige (wie ein negatives Alter) als ungültig:
 
 ```raku
 given $age {

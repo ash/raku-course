@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -111,34 +111,35 @@ href="/de/advanced">Fortgeschritten</a> / <a
 href="/de/advanced/testing-and-docs">Testen und Dokumentation 🆕</a> /
 <a href="/de/advanced/pod">Code dokumentieren</a></p>
 <h1 id="pod-rendern">Pod rendern</h1>
-<p>Sobald eine Datei Pod enthaelt, kann der Compiler sie in formatierten
-Text umwandeln, ohne das Programm auszufuehren, indem die Option
+<p>Sobald eine Datei Pod enthält, kann der Compiler sie in formatierten
+Text umwandeln, ohne das Programm auszuführen, indem die Option
 <code>--doc</code> verwendet wird:</p>
 <div class="highlight"><pre>raku --doc mymodule.raku</pre></div>
-<p>Fuer das Beispiel mit Ueberschrift und Absatz von vorhin gibt dies
+<p>Für das Beispiel mit Ueberschrift und Absatz von vorhin gibt dies
 etwa Folgendes aus:</p>
 <div class="highlight"><pre>My Module
 
 This module does something useful.</pre></div>
-<p>Listen und Codebloecke werden ebenfalls gerendert. Nimm dieses
+<p>Listen und Codeblöcke werden ebenfalls gerendert. Nimm dieses
 Pod:</p>
-<div class="highlight raku"><pre><span></span><span class="c1">=begin pod
+<div class="highlight raku"><pre><span></span><span class="cm">=begin pod</span>
 
-=head1 Shopping list
+<span class="cm">=head1 Shopping list</span>
 
-Things to buy:
+<span class="cm">Things to buy:</span>
 
-=item Apples
-=item Bread
-=item Cheese
+<span class="cm">=item Apples</span>
+<span class="cm">=item Bread</span>
+<span class="cm">=item Cheese</span>
 
-Run it like this:
+<span class="cm">Run it like this:</span>
 
-=begin code
-say 'hello';
-=end code</span>
+<span class="cm">=begin code</span>
+<span class="cm">say &#39;hello&#39;;</span>
+<span class="cm">=end code</span>
 
-<span class="c1">=end pod</span></pre></div>
+<span class="cm">=end pod</span>
+</pre></div>
 
 <p>Gerendert mit <code>raku --doc</code> gibt es Folgendes aus:</p>
 <div class="highlight"><pre>Shopping list
@@ -155,15 +156,15 @@ Run it like this:
 
     say 'hello';</pre></div>
 <p>Jedes <code>=item</code> wird zu einem Aufzählungszeichen, und der
-<code>=begin code ... =end code</code>-Block wird woertlich und
-eingerueckt angezeigt, genau wie geschrieben.</p>
+<code>=begin code ... =end code</code>-Block wird wörtlich und
+eingerückt angezeigt, genau wie geschrieben.</p>
 <h2 id="rendern-als-html">Rendern als HTML</h2>
-<p>Der gleiche Mechanismus kann andere Formate erzeugen. Fuer HTML
+<p>Der gleiche Mechanismus kann andere Formate erzeugen. Für HTML
 installierst du einmalig ein Formatierungsmodul und gibst es dann nach
 <code>--doc</code> an:</p>
 <div class="highlight"><pre>zef install Pod::To::HTML
 raku --doc=HTML mymodule.raku &gt; mymodule.html</pre></div>
-<p>Nun wird dasselbe Dokument als HTML ausgegeben – die Ueberschrift
+<p>Nun wird dasselbe Dokument als HTML ausgegeben — die Ueberschrift
 wird zu einem <code>&lt;h1&gt;</code>, die Liste zu einer
 <code>&lt;ul&gt;</code> mit <code>&lt;li&gt;</code>, und der Codeblock
 zu einem <code>&lt;pre&gt;</code>:</p>
@@ -176,8 +177,8 @@ zu einem <code>&lt;pre&gt;</code>:</p>
 &lt;/ul&gt;
 &lt;p&gt;Run it like this:&lt;/p&gt;
 &lt;pre class="pod-block-code"&gt;say 'hello';&lt;/pre&gt;</pre></div>
-<p>(Das Werkzeug verpackt dies in eine vollstaendige HTML-Seite.) So
-wird die offizielle Raku-Dokumentation auf <a
+<p>(Das Werkzeug verpackt dies in eine vollständige HTML-Seite.) So wird
+die offizielle Raku-Dokumentation auf <a
 href="https://docs.raku.org">docs.raku.org</a> aus dem Pod in Rakudos
 eigenem Quellcode erzeugt.</p>
 <h2 id="kursnavigation">Kursnavigation</h2>
@@ -191,6 +192,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/advanced/pod/rendering-pod">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/advanced/pod/rendering-pod">Esperanto</a>
+<a href="/es/advanced/pod/rendering-pod">Español</a>
+<a href="/it/advanced/pod/rendering-pod">Italiano</a>
+<a href="/la/advanced/pod/rendering-pod">Latina</a>
+<a href="/lv/advanced/pod/rendering-pod">Latviešu</a>
+<a href="/nl/advanced/pod/rendering-pod">Nederlands</a>
+<a href="/bg/advanced/pod/rendering-pod">Български</a>
+<a href="/ru/advanced/pod/rendering-pod">Русский</a>
+<a href="/uk/advanced/pod/rendering-pod">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

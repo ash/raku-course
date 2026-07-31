@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,13 +117,14 @@ metodo redonas la sekvan valoron, aŭ <code>IterationEnd</code>, kiam
 nenio restas. Jen retronombra itervilo, kiu liveras nombron kaj paŝas al
 nulo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
 
-    <span class="k">method</span> <span class="n">pull-one</span> {
+    <span class="k">method</span> <span class="nb">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n</span>--;
+        <span class="k">return</span> <span class="nv">$!n--</span>;
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Ĉiu voko de <code>pull-one</code> unue kontrolas, ĉu la nombrado
 elĉerpiĝis; se ne, ĝi redonas la kurantan nombron kaj malpliigas ĝin. La
@@ -131,17 +132,19 @@ postmalpliigo <code>$!n--</code> redonas la valoron <em>antaŭ</em> la
 subtraho, do la nombroj eliras kiel <code>3, 2, 1</code>. Konduki ĝin
 mane aspektas ĝuste kiel ĉe ajna alia itervilo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
+</pre></div>
 
 <p>Itervilo per si mem ne estas io, kion buklo <code>for</code> povas
 preni rekte — buklo atendas <em>iterablon</em>. Envolvu la itervilon en
 <code>Seq</code> kaj ĝi fariĝas buklo-irebla:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Tio presas <code>3</code>, <code>2</code>, <code>1</code>. En ĉiutaga
 kodo vi prefere uzus <code>gather</code> / <code>take</code> — la <a
@@ -163,6 +166,22 @@ href="/eo/paradigms/iterators/exercises/sum-with-pull-one">la ekzerco de
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/iterators/writing-an-iterator">English</a>
+<a href="/de/paradigms/iterators/writing-an-iterator">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/iterators/writing-an-iterator">Español</a>
+<a href="/it/paradigms/iterators/writing-an-iterator">Italiano</a>
+<a href="/la/paradigms/iterators/writing-an-iterator">Latina</a>
+<a href="/lv/paradigms/iterators/writing-an-iterator">Latviešu</a>
+<a href="/nl/paradigms/iterators/writing-an-iterator">Nederlands</a>
+<a href="/bg/paradigms/iterators/writing-an-iterator">Български</a>
+<a href="/ru/paradigms/iterators/writing-an-iterator">Русский</a>
+<a href="/uk/paradigms/iterators/writing-an-iterator">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

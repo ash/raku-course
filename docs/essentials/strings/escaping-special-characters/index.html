@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -112,19 +112,22 @@ essentials</a> / <a href="/essentials/strings">Strings</a></p>
 <h1 id="escaping-special-characters">Escaping special characters</h1>
 <p>Imagine you want to print a price label, and you keep both the name
 of the product and its price in scalar variables.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electricity'</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
 
 <p>How do you print the label if the price is meant to be in dollars?
 The expected output is: <code>Electricity costs $3.14</code>. A dollar
 sign in double-quoted strings is an indicator of a variable to be
 interpolated. To print the <code>$</code> character itself, you need to
 escape it:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
 
 <p>Of course, you can use string concatenation and avoid escaping
 <code>$</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' costs $'</span> ~ <span class="nv">$price</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
 
 <p>This variant prints exactly the same string, but interpolation looks
 more natural and easier to read. Note that the <code>$</code> character
@@ -138,8 +141,9 @@ double-quoted strings:</p>
 <code>\"</code> | Double quote <code>\\</code> | Backslash</p>
 <p>The way you quote the string defines how Raku treats special
 characters. Consider these two examples:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'One\nTwo'</span>;
-<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
 
 <p>If you run this program, you will see that the first string appears
 as is on a single line. The second string was split into two pieces:</p>
@@ -152,14 +156,16 @@ sequence of two characters: <code>\</code> and <code>n</code>.</p>
 <p>There’s an interesting exception for <code>'</code> and
 <code>\</code>. In single quotes, you can escape a single quote by
 prefixing it with another <code>\</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
 
 <p>A backslash also has to be escaped if a single quote follows it:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
 
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/essentials/strings/escaping-special-characters/quiz">Quiz:
 A backslash in the output</a></li>
@@ -183,30 +189,28 @@ backslash in the output</a> →</p>
 </div>
 <p><br /> 💪 Or jump directly <a href="/essentials/strings/exercises">to
 the exercises in this section</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <strong>English</strong> • <a
-href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
-<a href="/es/essentials/strings/escaping-special-characters">Español</a>
-• <a
-href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
-<a
-href="/lv/essentials/strings/escaping-special-characters">Latviešu</a> •
-<a
-href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
-• <a
-href="/bg/essentials/strings/escaping-special-characters">Български</a>
-• <a
-href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
-<a
-href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/essentials/strings/escaping-special-characters">Deutsch</a>
+<a href="/eo/essentials/strings/escaping-special-characters">Esperanto</a>
+<a href="/es/essentials/strings/escaping-special-characters">Español</a>
+<a href="/it/essentials/strings/escaping-special-characters">Italiano</a>
+<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
+<a href="/lv/essentials/strings/escaping-special-characters">Latviešu</a>
+<a href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+<a href="/bg/essentials/strings/escaping-special-characters">Български</a>
+<a href="/ru/essentials/strings/escaping-special-characters">Русский</a>
+<a href="/uk/essentials/strings/escaping-special-characters">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

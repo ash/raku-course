@@ -4,7 +4,7 @@ title: Die `.raku`-Methode
 
 {% include menu.html %}
 
-Die dritte Darstellungsmethode, `.raku`, gibt einen String mit einer **codeähnlichen** Darstellung des Wertes zurück -- idealerweise einen String, den du in ein Programm einfügen könntest, um denselben Wert wiederherzustellen. Jeder Wert in Raku verfügt über diese Methode.
+Die dritte Darstellungsmethode, `.raku`, gibt einen String mit einer **codeähnlichen** Darstellung des Wertes zurück — idealerweise einen String, den du in ein Programm einfügen könntest, um denselben Wert wiederherzustellen. Jeder Wert in Raku verfügt über diese Methode.
 
 ```raku
 say 42.raku;        # 42
@@ -12,7 +12,7 @@ say 'Raku'.raku;    # "Raku"
 say (1, 2, 3).raku; # (1, 2, 3)
 ```
 
-Beachte, wie der String `'Raku'` mit den Anführungszeichen zurückkommt, sodass du auf einen Blick eine Zahl von einem String unterscheiden kannst -- genau die Art von Detail, die man beim Debuggen braucht.
+Beachte, wie der String `'Raku'` mit den Anführungszeichen zurückkommt, sodass du auf einen Blick eine Zahl von einem String unterscheiden kannst — genau die Art von Detail, die man beim Debuggen braucht.
 
 Die Methode funktioniert auch für zusammengesetzte Daten, einschließlich verschachtelter Strukturen:
 

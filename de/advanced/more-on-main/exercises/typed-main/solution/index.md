@@ -30,8 +30,8 @@ Usage:
 
 ## Kommentare
 
-1. Die `Int`-Beschraenkung bedeutet, dass das Kommandozeilenwort wie eine Ganzzahl aussehen muss. Bei `5` wird es an `$n` gebunden, und der Koerper gibt `10` aus.
+1. Die `Int`-Beschraenkung bedeutet, dass das Kommandozeilenwort wie eine Ganzzahl aussehen muss. Bei `5` wird es an `$n` gebunden, und der Körper gibt `10` aus.
 
-1. Bei `abc` kann der Wert nicht zu einem `Int` werden, sodass die Signatur nicht passt. Raku fuehrt den Koerper nicht aus — stattdessen gibt es die generierte Verwendungsmeldung aus, was Ihnen die Argumentvalidierung ohne manuelle Pruefungen ermöglicht.
+1. Bei `abc` kann der Wert nicht zu einem `Int` werden, sodass die Signatur nicht passt. Raku führt den Körper nicht aus — stattdessen gibt es die generierte Verwendungsmeldung aus, was Ihnen die Argumentvalidierung ohne manuelle Prüfungen ermöglicht.
 
 {% include nav.html %}

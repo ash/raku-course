@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,13 +117,13 @@ puedes dárselo a un objeto que ya existe, usando el operador
 ejecución y devuelve un objeto nuevo que asume el rol:</p>
 <div class="highlight raku"><pre><span></span><span class="k">role</span> <span class="n">Loud</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="n">callsame</span>().<span class="nb">uc</span>;
+        <span class="nb">callsame</span>().<span class="nb">uc</span>;
     }
 }
 
 <span class="k">class</span> <span class="n">Greeter</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="s">'Hello'</span>;
+        <span class="s">&#39;Hello&#39;</span>;
     }
 }
 
@@ -131,7 +131,8 @@ ejecución y devuelve un objeto nuevo que asume el rol:</p>
 <span class="k">my</span> <span class="nv">$loud</span>  = <span class="n">Greeter</span>.<span class="nb">new</span> <span class="k">but</span> <span class="n">Loud</span>;
 
 <span class="nb">say</span> <span class="nv">$quiet</span>.<span class="n">greet</span>; <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span></pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span>
+</pre></div>
 
 <p>Solo <code>$loud</code> ha adquirido el rol. La clase
 <code>Greeter</code> y todos los demás objetos <code>Greeter</code>
@@ -143,14 +144,16 @@ a la que ha sobrescrito — aquí el <code>greet</code> original de
 <p>Un objeto en el que se ha mezclado un rol se reconoce como portador
 de ese rol:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$quiet</span> ~~ <span class="n">Loud</span>; <span class="c1"># False</span>
-<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span></pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span>
+</pre></div>
 
 <p><code>but</code> deja el objeto original tal cual y te entrega uno
 nuevo. Si prefieres cambiar un objeto existente en el sitio, usa el
 operador <code>does</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$speaker</span> = <span class="n">Greeter</span>.<span class="nb">new</span>;
 <span class="nv">$speaker</span> <span class="k">does</span> <span class="n">Loud</span>;
-<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span></pre></div>
+<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span>
+</pre></div>
 
 <p>Mezclar roles en objetos concretos te permite decidir, objeto a
 objeto, qué comportamiento extra debe asumir, sin definir una clase
@@ -171,6 +174,22 @@ ejercicios de esta sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/oop/roles/mixin">English</a>
+<a href="/de/oop/roles/mixin">Deutsch</a>
+<a href="/eo/oop/roles/mixin">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/oop/roles/mixin">Italiano</a>
+<a href="/la/oop/roles/mixin">Latina</a>
+<a href="/lv/oop/roles/mixin">Latviešu</a>
+<a href="/nl/oop/roles/mixin">Nederlands</a>
+<a href="/bg/oop/roles/mixin">Български</a>
+<a href="/ru/oop/roles/mixin">Русский</a>
+<a href="/uk/oop/roles/mixin">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

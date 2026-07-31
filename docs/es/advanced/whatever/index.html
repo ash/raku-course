@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -124,8 +124,9 @@ la expresión en una función — un <code>WhateverCode</code> — en la que
 la estrella representa el argumento:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
-<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="nb">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span>
+</pre></div>
 
 <p><code>* * 2</code> es una función que multiplica su único argumento
 por dos. Por eso <code>(1..5).map(* * 2)</code> funciona: a
@@ -136,7 +137,8 @@ que también podrías escribir como un bloque. Estas tres son
 equivalentes:</p>
 <div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
 { <span class="nv">$_</span> * <span class="mi">2</span> }
--&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }
+</pre></div>
 
 <p>La forma Whatever no nombra ningún parámetro; la forma de bloque usa
 la variable topica <code>$_</code>; la forma puntiaguda nombra
@@ -147,9 +149,10 @@ basta con leerla como una tercera forma de escribir la misma función de
 un argumento. Para una expresión simple, la estrella es la más compacta,
 por eso es tan común con <code>map</code>, <code>grep</code> y
 <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>Usa un <strong>bloque</strong> cuando la lógica necesite más de una
 expresión, o cuando un parámetro con nombre claro ayude. Usa la
@@ -160,7 +163,8 @@ orden. Así que dos estrellas crean una función de <strong>dos</strong>
 argumentos:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
-<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span>
+</pre></div>
 
 <p>Aquí <code>* + *</code> es una función de dos argumentos que suma sus
 argumentos — por ejemplo un total acumulado y el siguiente elemento.</p>
@@ -170,7 +174,8 @@ o sin limite. Dos usos cotidianos:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
 <span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * es la longitud del arreglo, asi que *-1 es el ultimo indice</span>
 
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* es un rango abierto</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* es un rango abierto</span>
+</pre></div>
 
 <p>En <code>@a[*-1]</code> la estrella representa el numero de
 elementos, y en <code>1..*</code> representa “sin limite superior”. Ya
@@ -205,6 +210,22 @@ con map</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/advanced/whatever">English</a>
+<a href="/de/advanced/whatever">Deutsch</a>
+<a href="/eo/advanced/whatever">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/advanced/whatever">Italiano</a>
+<a href="/la/advanced/whatever">Latina</a>
+<a href="/lv/advanced/whatever">Latviešu</a>
+<a href="/nl/advanced/whatever">Nederlands</a>
+<a href="/bg/advanced/whatever">Български</a>
+<a href="/ru/advanced/whatever">Русский</a>
+<a href="/uk/advanced/whatever">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

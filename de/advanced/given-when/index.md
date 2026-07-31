@@ -6,7 +6,7 @@ title: '`given` und `when`'
 
 Wenn ein Programm zwischen mehreren Alternativen wählen muss, kann eine Kette von `if`- und `elsif`-Prüfungen lang und repetitiv werden. In dieser Situation ist das `given`/`when`-Konstrukt oft übersichtlicher. Es ähnelt der `switch`-Anweisung aus anderen Sprachen.
 
-Der `given`-Block nimmt einen Wert entgegen und macht ihn zum _Thema_ -- der speziellen Variable `$_`. Jeder `when`-Block wird dann mit diesem Thema verglichen, und der erste passende wird ausgeführt:
+Der `given`-Block nimmt einen Wert entgegen und macht ihn zum _Thema_ — der speziellen Variable `$_`. Jeder `when`-Block wird dann mit diesem Thema verglichen, und der erste passende wird ausgeführt:
 
 ```raku
 my $n = 2;

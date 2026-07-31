@@ -6,9 +6,9 @@ title: Der Domain-Teil
 
 ## Problem
 
-`index` sagt dir, *wo* ein Zeichen steht; `substr` laesst dich dann den String an dieser Stelle zerschneiden. Kombiniere beides.
+`index` sagt dir, *wo* ein Zeichen steht; `substr` lässt dich dann den String an dieser Stelle zerschneiden. Kombiniere beides.
 
-Finde bei der E-Mail-Adresse `user@example.com` die Position des `@`-Zeichens und gib alles aus, was danach kommt -- den Domain-Teil.
+Finde bei der E-Mail-Adresse `user@example.com` die Position des `@`-Zeichens und gib alles aus, was danach kommt — den Domain-Teil.
 
 ## Beispiel
 

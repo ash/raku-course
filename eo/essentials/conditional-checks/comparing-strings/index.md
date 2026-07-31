@@ -1,5 +1,5 @@
 ---
-title: Komparante stringojn
+title: Komparante ĉenojn
 ---
 
 {% include menu.html %}

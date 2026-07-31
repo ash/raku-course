@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,29 +119,34 @@ argumentiem. Bet izmantojiet atstarpi pēc <code>for</code> un
 <code>if</code>.</p>
 <h2 id="garā-versija">Garā versija</h2>
 <p>Apskatīsim vienkāršu funkciju:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Pirmkārt, ņemiet vērā, ka nav atstarpes starp funkcijas nosaukumu un
 atverošajām iekavām, kas satur parametrus. Dažos citos programmēšanas
 valodās kodēšanas stili var prasīt atstarpi tur. Raku valodā tas ir
 pieņemami, bet tā nav prakse, kuru vajadzētu ievērot:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Izsaukuma pusē atstarpes neesamība ir svarīga. Ja jūs izsaucat
 funkciju un izlaidat iekavas, tad atstarpe pēc funkcijas nosaukuma ir
 neizbēgama:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
 
 <p>Bet, ja jūs pievienojat iekavas, jūs nevarat ievietot atstarpi pirms
 tām. Šis ir pareizs izsaukums:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Un šis izsaukums ir nepareizs:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Šāds kods izraisa izņēmumu:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -151,11 +156,12 @@ tām. Šis ir pareizs izsaukums:</p>
 nodot vienu argumentu <code>(5, 6)</code> funkcijai. Jūs varat viegli
 pārbaudīt šī argumenta tipu, ja pārrakstīsiet funkciju, lai tā pieņemtu
 tikai vienu argumentu:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
 }
 
-<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
 
 <p>Tātad, izsaucot <code>f (5, 6)</code>, mēs nododam funkcijai <a
 href="/lv/essentials/positionals/lists">sarakstu</a>. Sarakstu kā vienu
@@ -165,9 +171,10 @@ vienību.</p>
 jūs izmantojat iekavas ar vienu no atslēgvārdiem, piemēram,
 <code>if</code> vai <code>for</code> vai <code>loop</code>. Šāds kods ir
 nepareizs:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
-    <span class="nb">say</span> <span class="s">'OK'</span>;
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
 
 <p>Kļūdas ziņojums izskaidro, kas ir nepareizi:</p>
 <pre><code>===SORRY!===
@@ -182,7 +189,8 @@ at /Users/ash/raku-course/t.raku:1
 problēma nevar rasties, ja jūs tās neizmantojat. Bet dažos gadījumos,
 piemēram, ar <code>loop</code>, jums tās ir nepieciešamas, un atstarpe
 kļūst obligāta:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
+</pre></div>
 
 <p>Šajā kodā notiek tas pats: <code>loop(...)</code> tiek saprasts kā
 funkcijas izsaukums. Pievienojiet atstarpi, lai atrisinātu problēmu. Vai
@@ -200,25 +208,26 @@ parametri</a> →</p>
 <p><br /> 💪 Vai arī dodieties tieši <a
 href="/lv/essentials/more-on-functions/exercises/factorial-with-multi-functions">uz
 šīs sadaļas vingrinājumu</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/more-on-functions/mind-the-space">English</a> • <a
-href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a> • <a
-href="/es/essentials/more-on-functions/mind-the-space">Español</a> • <a
-href="/it/essentials/more-on-functions/mind-the-space">Italiano</a> • <a
-href="/la/essentials/more-on-functions/mind-the-space">Latina</a> •
-<strong>Latviešu</strong> • <a
-href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a> •
-<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
-• <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
-• <a
-href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/essentials/more-on-functions/mind-the-space">English</a>
+<a href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a>
+<a href="/eo/essentials/more-on-functions/mind-the-space">Esperanto</a>
+<a href="/es/essentials/more-on-functions/mind-the-space">Español</a>
+<a href="/it/essentials/more-on-functions/mind-the-space">Italiano</a>
+<a href="/la/essentials/more-on-functions/mind-the-space">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a>
+<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
+<a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
+<a href="/uk/essentials/more-on-functions/mind-the-space">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -26,8 +26,8 @@ say $words.total;
 
 ## Kommentare
 
-1. `'the cat sat on the mat'.words` erzeugt die sechs Woerter, und `bag` zählt jedes davon. Die Abfrage mit `<the>` gibt zurück, wie oft `the` vorkam -- zweimal.
+1. `'the cat sat on the mat'.words` erzeugt die sechs Wörter, und `bag` zählt jedes davon. Die Abfrage mit `<the>` gibt zurück, wie oft `the` vorkam — zweimal.
 
-1. Die Methode `total` summiert alle Zaehler, was der Anzahl der in den Bag eingefuegten Woerter entspricht -- `6`.
+1. Die Methode `total` summiert alle Zähler, was der Anzahl der in den Bag eingefuegten Wörter entspricht — `6`.
 
 {% include nav.html %}

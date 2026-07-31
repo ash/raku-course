@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,21 +117,24 @@
 </ul>
 <p>Използвайте <code>^</code>, за да изисквате съвпадението да започва
 от началото:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;http://example&#39;</span> ~~<span class="sr"> /^ http /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;see http://x&#39;</span>   ~~<span class="sr"> /^ http /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Вторият низ съдържа <code>http</code>, но не в началото, така че
 закотвеният шаблон се проваля.</p>
 <p>Слагането на <code>^</code> и <code>$</code> около шаблон го
 принуждава да съвпадне с <strong>целия</strong> низ, без нищо да остава
 от която и да е страна:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello&#39;</span>       ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Това е много често използван похват за проверка — например „точно
 число ли е този низ?“:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;2025&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;20a5&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <h2 id="котви-за-ред">Котви за ред</h2>
 <p>Когато низът има няколко реда, партньорите <code>^^</code> и
@@ -140,8 +143,9 @@
 <code>$</code> изпъква веднага щом текстът, който търсите, не е на
 първия ред: единичните котви виждат само целия низ и се провалят, докато
 удвоените съвпадат на кой да е ред.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^  dog  $/</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^^ dog $$/</span>;  <span class="c1"># True</span>
+</pre></div>
 
 <p>Тук <code>\n</code> започва втори ред. <code>^^</code> изисква
 <code>dog</code> да стои в началото на ред, а <code>$$</code> — в края
@@ -166,6 +170,22 @@ href="/bg/regexes/anchors/exercises">към упражненията в този
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/regexes/anchors/string-anchors">English</a>
+<a href="/de/regexes/anchors/string-anchors">Deutsch</a>
+<a href="/eo/regexes/anchors/string-anchors">Esperanto</a>
+<a href="/es/regexes/anchors/string-anchors">Español</a>
+<a href="/it/regexes/anchors/string-anchors">Italiano</a>
+<a href="/la/regexes/anchors/string-anchors">Latina</a>
+<a href="/lv/regexes/anchors/string-anchors">Latviešu</a>
+<a href="/nl/regexes/anchors/string-anchors">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/regexes/anchors/string-anchors">Русский</a>
+<a href="/uk/regexes/anchors/string-anchors">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

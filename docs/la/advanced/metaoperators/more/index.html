@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,13 +116,15 @@ Tres eorum hic cognoscendi sunt.</p>
 <p>Meta-operator cross <code>X</code> <strong>omne</strong> elementum
 unius listae cum <strong>omni</strong> elemento alterius coniungit —
 productum Cartesianum:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
+</pre></div>
 
 <p>Sicut zip, operatorem involvere potest ut in unoquoque pare agat.
 <code>X~</code> unumquodque par in filum coniungit, et <code>X*</code>
 multiplicat:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
+</pre></div>
 
 <p>Ubi zip duas listas simul percurrit, cross eas omni modo possibili
 combinat.</p>
@@ -133,7 +135,8 @@ elementum</strong> listae applicat. Operator in acutis <code>»…«</code>
 elementum per elementum operatur, sicut zip; cum uno valore ab una
 parte, illum valorem per totam listam extendit:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
+</pre></div>
 
 <p>Duae sagittae non necesse est eandem partem spectent, et eorum
 directio decernit quid fiat cum listae longitudine differunt — apex
@@ -151,11 +154,13 @@ repetitur ut dextrae respondeat;</li>
 <li><code>&lt;&lt;op&gt;&gt;</code> — lista <strong>brevior</strong>
 repetitur ut longiori respondeat.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repetitur ad 10, 20, 10, 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repetitur ad 10, 20, 10, 20</span>
+</pre></div>
 
 <p>Forma unaria quoque est, quae methodum in omni elemento vocat.
 <code>&gt;&gt;.uc</code> unumquodque filum in maiusculas convertit:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
+</pre></div>
 
 <p>Operationes hyper etiam significant opus <em>fortasse</em>
 paralleliter fieri posse — methodum coniunctam <code>.hyper</code>
@@ -167,8 +172,9 @@ negat. Familiaris <code>!=</code> (non aequalis) est exacte hic
 meta-operator ad <code>==</code> applicatus, et idem operatur pro aliis
 operatoribus Booleanis ut <code>eq</code> et <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — non aequales ut fila</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 non est divisibilis per 2</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — non aequales ut fila</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 non est divisibilis per 2</span>
+</pre></div>
 
 <p>Breviter, <code>$a !op $b</code> est tantum elegantior modus
 scribendi <code>!($a op $b)</code>.</p>
@@ -177,7 +183,8 @@ Esperanto, quae unum regularem modum exprimendi unamquamque rem quaerit,
 Raku libenter tibi plures dat — ergo negatus <code>!eq</code> iuxta
 dedicatum operatorem <code>ne</code> vivit, et ambo exacte idem
 significant:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — idem experimentum ac 'a' !eq 'b'</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — idem experimentum ac &#39;a&#39; !eq &#39;b&#39;</span>
+</pre></div>
 
 <section id="exercitatio" class="practice" data-markdown="1">
 <h2>Exercitatio</h2>
@@ -198,6 +205,22 @@ sectionis</a> i.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Haec pagina aliis linguis:">
+<span class="lang-label">Haec pagina aliis linguis:</span>
+<a href="/advanced/metaoperators/more">English</a>
+<a href="/de/advanced/metaoperators/more">Deutsch</a>
+<a href="/eo/advanced/metaoperators/more">Esperanto</a>
+<a href="/es/advanced/metaoperators/more">Español</a>
+<a href="/it/advanced/metaoperators/more">Italiano</a>
+<span class="lang-current">Latina</span>
+<a href="/lv/advanced/metaoperators/more">Latviešu</a>
+<a href="/nl/advanced/metaoperators/more">Nederlands</a>
+<a href="/bg/advanced/metaoperators/more">Български</a>
+<a href="/ru/advanced/metaoperators/more">Русский</a>
+<a href="/uk/advanced/metaoperators/more">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
 <p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

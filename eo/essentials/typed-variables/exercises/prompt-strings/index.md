@@ -1,5 +1,5 @@
 ---
-title: 'Ekzameni la rezulton de `prompt` — Stringoj'
+title: 'Ekzameni la rezulton de `prompt` — Ĉenoj'
 ---
 
 {% include menu.html %}

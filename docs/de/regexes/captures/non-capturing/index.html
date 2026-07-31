@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,29 +121,33 @@ gruppieren.</p>
 <p>Das Gruppieren wird wichtig, sobald Sie einen Quantor anhängen. Ein
 Quantor bindet nur an das Atom unmittelbar davor, das folgende Muster
 wiederholt also nur den letzten Buchstaben:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abccc&#39;</span> ~~<span class="sr"> / abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span>
+</pre></div>
 
 <p>Nur das <code>c</code> wurde dreimal wiederholt. Hüllen Sie das ganze
 Stück in <code>[ ]</code>, um alles zu wiederholen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abcabcabc&#39;</span> ~~<span class="sr"> / [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span>
+</pre></div>
 
 <p>Nun ist <code>[ abc ]</code> eine Einheit, und <code>** 3</code>
 bezieht sich auf die Gruppe.</p>
 <p>Weil <code>[ ]</code> keinen Capture-Platz belegt, bleiben die
 Nummern für die Teile reserviert, auf die es Ihnen wirklich ankommt.
 Vergleichen Sie einen schlichten Treffer aus Schlüssel und Wert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;foo=42&#39;</span> ~~<span class="sr"> / (\w+) &#39;=&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Nehmen wir an, dem Schlüssel darf ein Wort vorangehen, das Sie
 überspringen möchten. Gruppieren Sie dieses Präfix mit <code>[ ]</code>,
 damit es die Nummerierung nicht stört:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;the foo=42&#39;</span> ~~<span class="sr"> / [ \w+ \s ]? (\w+) &#39;=&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Das optionale <code>[ \w+ \s ]?</code> hat <code>the</code>
 getroffen, aber kein Capture beansprucht, <code>$0</code> ist also
@@ -168,6 +172,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/regexes/captures/non-capturing">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/regexes/captures/non-capturing">Esperanto</a>
+<a href="/es/regexes/captures/non-capturing">Español</a>
+<a href="/it/regexes/captures/non-capturing">Italiano</a>
+<a href="/la/regexes/captures/non-capturing">Latina</a>
+<a href="/lv/regexes/captures/non-capturing">Latviešu</a>
+<a href="/nl/regexes/captures/non-capturing">Nederlands</a>
+<a href="/bg/regexes/captures/non-capturing">Български</a>
+<a href="/ru/regexes/captures/non-capturing">Русский</a>
+<a href="/uk/regexes/captures/non-capturing">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

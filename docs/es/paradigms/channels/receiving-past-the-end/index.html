@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,15 +118,16 @@ hay valores que tomar? La respuesta depende de si el canal se ha
 segundo plano envía tres valores y cierra el canal. ¿Y si el consumidor
 pide un cuarto?</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="k">start</span> {
-    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
+<span class="nb">start</span> {
+    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># one receive too many</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># one receive too many</span>
+</pre></div>
 
 <h2 id="en-un-canal-cerrado-un-receive-de-más-lanza-una-excepción">En un
 canal cerrado, un receive de más lanza una excepción</h2>
@@ -148,9 +149,10 @@ abierto, un receive de más se bloquea</h2>
 manera de saber si aún viene otro valor, así que simplemente
 <strong>espera</strong>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># waits here — the channel is open but empty</span></pre></div>
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># waits here — the channel is open but empty</span>
+</pre></div>
 
 <p>El programa se queda colgado en el segundo <code>.receive</code>,
 porque <em>podría</em> enviarse todavía un valor. Este es el peligro del
@@ -185,6 +187,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/channels/receiving-past-the-end">English</a>
+<a href="/de/paradigms/channels/receiving-past-the-end">Deutsch</a>
+<a href="/eo/paradigms/channels/receiving-past-the-end">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/channels/receiving-past-the-end">Italiano</a>
+<a href="/la/paradigms/channels/receiving-past-the-end">Latina</a>
+<a href="/lv/paradigms/channels/receiving-past-the-end">Latviešu</a>
+<a href="/nl/paradigms/channels/receiving-past-the-end">Nederlands</a>
+<a href="/bg/paradigms/channels/receiving-past-the-end">Български</a>
+<a href="/ru/paradigms/channels/receiving-past-the-end">Русский</a>
+<a href="/uk/paradigms/channels/receiving-past-the-end">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

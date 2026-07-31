@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,8 +116,9 @@ een lijst. Methoden als <code>map</code> en <code>grep</code> leveren
 een <strong>nieuwe</strong> supply op waarvan de waarden de omgevormde
 zijn:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="nb">map</span>(* * <span class="mi">10</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span></pre></div>
+<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="n">map</span>(* * <span class="mi">10</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span>
+</pre></div>
 
 <p>De <code>map(* * 10)</code> bouwt een nieuwe supply die tien keer
 elke oorspronkelijke waarde uitzendt, en de tap verzamelt die in
@@ -125,15 +126,17 @@ elke oorspronkelijke waarde uitzendt, en de tap verzamelt die in
 <p><code>grep</code> filtert een supply en laat alleen de waarden door
 waarvoor zijn blok waar is:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span></pre></div>
+<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span>
+</pre></div>
 
 <p>Omdat elke omvorming weer een supply teruggeeft, kun je ze
 aaneenrijgen en zo een kleine pijplijn bouwen die op de stroom
 reageert:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span></pre></div>
+<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span>
+</pre></div>
 
 <p>Dit is dezelfde woordenschat van map en grep die je van lijsten kent,
 toegepast op waarden die in de loop van de tijd binnenkomen. De supply
@@ -158,6 +161,22 @@ sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/paradigms/supplies/transforming">English</a>
+<a href="/de/paradigms/supplies/transforming">Deutsch</a>
+<a href="/eo/paradigms/supplies/transforming">Esperanto</a>
+<a href="/es/paradigms/supplies/transforming">Español</a>
+<a href="/it/paradigms/supplies/transforming">Italiano</a>
+<a href="/la/paradigms/supplies/transforming">Latina</a>
+<a href="/lv/paradigms/supplies/transforming">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/paradigms/supplies/transforming">Български</a>
+<a href="/ru/paradigms/supplies/transforming">Русский</a>
+<a href="/uk/paradigms/supplies/transforming">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

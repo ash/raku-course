@@ -13,8 +13,8 @@ Hier is de oplossing:
 ```raku
 my $n = prompt 'Voer een getal in: ';
 
-print 'Fizz' als $n %% 3;
-print 'Buzz' als $n %% 5;
+print 'Fizz' if $n %% 3;
+print 'Buzz' if $n %% 5;
 print "\n";
 ```
 

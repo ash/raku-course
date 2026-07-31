@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,22 +116,25 @@ uitvoeren 🆕</a></p>
 <code>PATH</code> of <code>USER</code> die het besturingssysteem levert.
 In Raku zijn ze beschikbaar in de dynamische hash
 <code>%*ENV</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;HOME&gt;</span>; <span class="c1"># the home directory, e.g. /home/anna</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">%*ENV&lt;HOME&gt;</span>; <span class="c1"># the home directory, e.g. /home/anna</span>
+</pre></div>
 
 <p>Je leest een omgevingsvariabele door <code>%*ENV</code> met haar naam
 te indexeren. Omdat het een gewone hash is, kun je ook nagaan of een
 variabele gezet is, of haar wijzigen voor programma’s die je start:</p>
-<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
-<span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span>; <span class="c1"># Hello</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
+<span class="nb">say</span> <span class="vg">%*ENV&lt;GREETING&gt;</span>; <span class="c1"># Hello</span>
+</pre></div>
 
 <p>Een sleutel in <code>%*ENV</code> zetten voegt hem toe aan de
 omgeving die elk programma erft dat je daarna met <code>run</code> of
 <code>shell</code> start, en zo geef je configuratie aan een
 kindprogramma door:</p>
-<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
+<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
 
-<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo $GREETING'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># Hello</span></pre></div>
+<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo $GREETING&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># Hello</span>
+</pre></div>
 
 <p>De variabele wordt in de omgeving van jouw programma gezet
 <em>voordat</em> het kind gestart wordt, dus de shell die
@@ -165,6 +168,22 @@ sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/oop/external-programs/environment">English</a>
+<a href="/de/oop/external-programs/environment">Deutsch</a>
+<a href="/eo/oop/external-programs/environment">Esperanto</a>
+<a href="/es/oop/external-programs/environment">Español</a>
+<a href="/it/oop/external-programs/environment">Italiano</a>
+<a href="/la/oop/external-programs/environment">Latina</a>
+<a href="/lv/oop/external-programs/environment">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/oop/external-programs/environment">Български</a>
+<a href="/ru/oop/external-programs/environment">Русский</a>
+<a href="/uk/oop/external-programs/environment">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

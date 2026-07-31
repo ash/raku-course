@@ -4,7 +4,7 @@ title: 'Solvo: Lando kodoj'
 
 {% include menu.html %}
 
-En ĉi tiu programo, konverti kodon al nomo estas farita kiel haketa serĉo `%cc{$_}` en buklo super la `@codes` arrayo.
+En ĉi tiu programo, konverti kodon al nomo estas farita kiel haketa serĉo `%cc{$_}` en buklo super la `@codes` tabelo.
 
 ## Kodo
 

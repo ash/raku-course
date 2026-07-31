@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,16 +117,18 @@ Funktionssignatur. Es erlaubt das Erstellen von Funktionen, die
 denselben Namen teilen, aber unterschiedliche Typen von Eingabedaten
 haben. Verwenden Sie den <code>multi</code> Deklarator für jede der
 Varianten der Funktion.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
+</pre></div>
 
 <p>(Es ist in Ordnung, <code>sub</code> nach <code>multi</code>
 wegzulassen.)</p>
 <p>Wenn Sie zwei Varianten derselben Funktion haben, führt der Compiler
 Multiple Dispatch durch, je nachdem, welche Argumente er im
 Funktionsaufruf sieht. Vergleichen Sie die folgenden zwei Aufrufe:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
+</pre></div>
 
 <p>Der erste Aufruf löst die Funktion mit ganzzahligen Parametern aus,
 während der zweite Aufruf die zweite Variante der Funktion ausführt, die
@@ -135,15 +137,17 @@ zwei Zeichenketten erwartet.</p>
 <p>Ein interessanter Fall für Multi-Funktionen ist es, Varianten zu
 haben, die literale Werte als Parameter haben. Betrachten Sie die
 folgenden zwei Varianten:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Das ist die Antwort'</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x ist nicht die Antwort&quot;</span>}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Das ist die Antwort&#39;</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x ist nicht die Antwort&quot;</span>}
+</pre></div>
 
 <p>Die erste Variante wird nur ausgeführt, wenn Sie die Funktion mit dem
 genauen Wert 42 aufrufen. In anderen Fällen wird die zweite Variante
 verwendet. Die Reihenfolge, in der diese Funktionen definiert sind,
 spielt keine Rolle.</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 ist nicht die Antwort</span>
-<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Das ist die Antwort</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 ist nicht die Antwort</span>
+<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Das ist die Antwort</span>
+</pre></div>
 
 <section id="praxis" class="practice" data-markdown="1">
 <h2>Praxis</h2>
@@ -168,25 +172,26 @@ href="/de/essentials/more-on-functions/multi-functions/quiz1">Quiz 1
 <p><br /> 💪 Oder springen Sie direkt <a
 href="/de/essentials/more-on-functions/exercises/factorial-with-multi-functions">zur
 Übung zu diesem Abschnitt</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/more-on-functions/multi-functions">English</a> •
-<strong>Deutsch</strong> • <a
-href="/es/essentials/more-on-functions/multi-functions">Español</a> • <a
-href="/it/essentials/more-on-functions/multi-functions">Italiano</a> •
-<a href="/lv/essentials/more-on-functions/multi-functions">Latviešu</a>
-• <a
-href="/nl/essentials/more-on-functions/multi-functions">Nederlands</a> •
-<a href="/bg/essentials/more-on-functions/multi-functions">Български</a>
-• <a href="/ru/essentials/more-on-functions/multi-functions">Русский</a>
-• <a
-href="/uk/essentials/more-on-functions/multi-functions">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/essentials/more-on-functions/multi-functions">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/essentials/more-on-functions/multi-functions">Esperanto</a>
+<a href="/es/essentials/more-on-functions/multi-functions">Español</a>
+<a href="/it/essentials/more-on-functions/multi-functions">Italiano</a>
+<a href="/la/essentials/more-on-functions/multi-functions">Latina</a>
+<a href="/lv/essentials/more-on-functions/multi-functions">Latviešu</a>
+<a href="/nl/essentials/more-on-functions/multi-functions">Nederlands</a>
+<a href="/bg/essentials/more-on-functions/multi-functions">Български</a>
+<a href="/ru/essentials/more-on-functions/multi-functions">Русский</a>
+<a href="/uk/essentials/more-on-functions/multi-functions">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

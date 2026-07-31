@@ -8,10 +8,10 @@ translations_gpt:
 Модул декларира `sub hello is export` и `sub goodbye is export(:partings)`. След `use Greeting :partings;`, кои подпрограми може програмата да извика директно?
 
 {:.quiz}
-1 | Only `goodbye`
-0 | Only `hello`
-0 | Both `hello` and `goodbye`
-0 | Neither of them
+1 | Само `goodbye`
+0 | Само `hello`
+0 | И `hello`, и `goodbye`
+0 | Нито една от двете
 
 {% include quiz.html %}
 

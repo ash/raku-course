@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,15 +115,17 @@ href="/eo/regexes/what-is-a-grammar">Kio estas gramatiko</a></p>
 ankaŭ povas doni al ŝablono <strong>nomon</strong> kaj reuzi ĝin, same
 kiel subrutinon. Deklaru unu per <code>my regex</code> (aŭ
 <code>my token</code>, kiun vi ĝuste renkontos baldaŭ):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+</pre></div>
 
 <p>Por uzi nomitan regulesprimon ene de alia ŝablono, skribu ĝian nomon
 en angulaj krampoj, <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
 
-<span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
+<span class="k">if</span> <span class="s">&#39;42 cats&#39;</span> ~~<span class="sr"> / &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Voki <code>&lt;number&gt;</code> kaj kongruas kun la ŝablono
 <strong>kaj</strong> kaptas ĝin sub tiu nomo, do la kongruinta teksto
@@ -132,12 +134,13 @@ ricevas senpage.</p>
 <p>Nomita regulesprimo povas esti uzata plurfoje en unu ŝablono. Kiam ĝi
 aperas pli ol unufoje, la kaptoj fariĝas listo, atingata laŭ
 indekso:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> num</span> {<span class="sr"> \d+ </span>}
 
-<span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
+<span class="k">if</span> <span class="s">&#39;3-4&#39;</span> ~~<span class="sr"> / &lt;num&gt; &#39;-&#39; &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">1</span>]; <span class="c1"># ｢4｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Nomitaj regulesprimoj tenas ŝablonojn legeblaj kaj permesas al vi
 konstrui pli grandajn el pli malgrandaj, bone nomitaj partoj. Ĝuste tion
@@ -161,6 +164,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/regexes/what-is-a-grammar/named-regexes">English</a>
+<a href="/de/regexes/what-is-a-grammar/named-regexes">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/regexes/what-is-a-grammar/named-regexes">Español</a>
+<a href="/it/regexes/what-is-a-grammar/named-regexes">Italiano</a>
+<a href="/la/regexes/what-is-a-grammar/named-regexes">Latina</a>
+<a href="/lv/regexes/what-is-a-grammar/named-regexes">Latviešu</a>
+<a href="/nl/regexes/what-is-a-grammar/named-regexes">Nederlands</a>
+<a href="/bg/regexes/what-is-a-grammar/named-regexes">Български</a>
+<a href="/ru/regexes/what-is-a-grammar/named-regexes">Русский</a>
+<a href="/uk/regexes/what-is-a-grammar/named-regexes">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

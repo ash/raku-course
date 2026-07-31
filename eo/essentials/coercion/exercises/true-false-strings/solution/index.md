@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Veraj kaj falsaj stringoj'
+title: 'Solvo: Veraj kaj falsaj ĉenoj'
 ---
 
 {% include menu.html %}

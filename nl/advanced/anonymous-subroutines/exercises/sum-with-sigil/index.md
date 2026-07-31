@@ -7,7 +7,7 @@ translations_gpt: Oefening 'Som met de `&`-sigil'
 
 ## Probleem
 
-Een pointy block kan meer dan een parameter hebben, en de `&`-sigil laat je het resultaat bij naam aanroepen. Sla een pointy block met twee parameters op dat zijn argumenten optelt in een variabele `&add` die met de `&`-sigil is gedeclareerd. Roep het vervolgens aan als `add(2, 3)` -- zonder de sigil -- en druk het resultaat af.
+Een pointy block kan meer dan een parameter hebben, en de `&`-sigil laat je het resultaat bij naam aanroepen. Sla een pointy block met twee parameters op dat zijn argumenten optelt in een variabele `&add` die met de `&`-sigil is gedeclareerd. Roep het vervolgens aan als `add(2, 3)` — zonder de sigil — en druk het resultaat af.
 
 ## Voorbeeld
 

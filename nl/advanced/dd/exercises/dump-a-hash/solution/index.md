@@ -26,6 +26,6 @@ dd %h;
 
 1. `dd` toont de hash in een codeachtige vorm, met elk paar als `:sleutel(waarde)`.
 
-1. De sleutels komen in gesorteerde volgorde -- `alpha` voor `beta` -- ook al werd `beta` eerst geschreven.
+1. De sleutels komen in gesorteerde volgorde — `alpha` voor `beta` — ook al werd `beta` eerst geschreven.
 
 {% include nav.html %}

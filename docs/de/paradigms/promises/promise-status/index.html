@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,12 +123,13 @@ Ausnahme.</li>
 <code>.status</code> zu lesen wartet nicht — es sagt Ihnen, wo das
 Promise <em>gerade jetzt</em> steht, Sie können es also prüfen, bevor
 das Promise erledigt ist, und danach erneut:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — read at once, while the block is still running</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — read at once, while the block is still running</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># now wait for it to finish</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
+</pre></div>
 
 <p><code>.result</code> liefert den erfüllten Wert. Anders als
 <code>.status</code> <em>wartet</em> es, bis das Promise erledigt ist,
@@ -138,10 +139,11 @@ bei einem unfertigen Promise blockiert es also genau wie
 <p>Wenn Sie einen Fehlschlag ansehen möchten, ohne ihn erneut zu werfen,
 nehmen Sie <code>.cause</code> — das Ausnahmeobjekt eines gebrochenen
 Promise:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># let it settle (and swallow the re-thrown error)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
+</pre></div>
 
 <p><code>.status</code> und <code>.cause</code> untersuchen ein Promise
 also, ohne es zu stören, während <code>await</code> und
@@ -158,6 +160,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/paradigms/promises/promise-status">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/paradigms/promises/promise-status">Esperanto</a>
+<a href="/es/paradigms/promises/promise-status">Español</a>
+<a href="/it/paradigms/promises/promise-status">Italiano</a>
+<a href="/la/paradigms/promises/promise-status">Latina</a>
+<a href="/lv/paradigms/promises/promise-status">Latviešu</a>
+<a href="/nl/paradigms/promises/promise-status">Nederlands</a>
+<a href="/bg/paradigms/promises/promise-status">Български</a>
+<a href="/ru/paradigms/promises/promise-status">Русский</a>
+<a href="/uk/paradigms/promises/promise-status">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,8 +123,9 @@ esprimon en funkcion — <code>WhateverCode</code> — en kiu la stelo
 reprezentas la argumenton:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
-<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="nb">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span>
+</pre></div>
 
 <p><code>* * 2</code> estas funkcio kiu multiplikas sian unu argumenton
 per du. Tial <code>(1..5).map(* * 2)</code> funkcias: <code>map</code>
@@ -134,7 +135,8 @@ ricevas ĝuste tian unu-argumentan funkcion.</p>
 ankaŭ povus skribi kiel blokon. Ĉi tiuj tri estas ekvivalentaj:</p>
 <div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
 { <span class="nv">$_</span> * <span class="mi">2</span> }
--&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }
+</pre></div>
 
 <p>La Whatever-formo ne nomas parametron; la blok-formo uzas la teman
 variablon <code>$_</code>; la pintforma nomas <code>$x</code>. Tiu
@@ -145,9 +147,10 @@ sufiĉas legi ĝin kiel trian manieron skribi la saman unu-argumentan
 funkcion. Por simpla esprimo la stelo estas la plej kompakta, tial ĝi
 estas tiel ofta kun <code>map</code>, <code>grep</code>, kaj
 <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>Uzu <strong>blokon</strong> kiam la logiko bezonas pli ol unu
 esprimon, aŭ kiam pli klara nomita parametro helpas. Uzu la
@@ -157,7 +160,8 @@ esprimon, aŭ kiam pli klara nomita parametro helpas. Uzu la
 du steloj kreas <strong>du</strong>-argumentan funkcion:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
-<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span>
+</pre></div>
 
 <p>Ĉi tie <code>* + *</code> estas du-argumenta funkcio kiu aldonas
 siajn argumentojn — ekzemple kuranta sumo kaj la sekva elemento.</p>
@@ -167,7 +171,8 @@ limo. Du ĉiutagaj uzoj:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
 <span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * estas la tabellongo, do *-1 estas la lasta indekso</span>
 
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* estas senfinpunkta amplekso</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* estas senfinpunkta amplekso</span>
+</pre></div>
 
 <p>En <code>@a[*-1]</code> la stelo reprezentas la nombron de elementoj,
 kaj en <code>1..*</code> ĝi signifas “sen supra limo”. Ĉu ĝi konstruas
@@ -204,6 +209,22 @@ href="/eo/advanced/whatever/exercises/whatever-map">Whatever kun map</a>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/advanced/whatever">English</a>
+<a href="/de/advanced/whatever">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/advanced/whatever">Español</a>
+<a href="/it/advanced/whatever">Italiano</a>
+<a href="/la/advanced/whatever">Latina</a>
+<a href="/lv/advanced/whatever">Latviešu</a>
+<a href="/nl/advanced/whatever">Nederlands</a>
+<a href="/bg/advanced/whatever">Български</a>
+<a href="/ru/advanced/whatever">Русский</a>
+<a href="/uk/advanced/whatever">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

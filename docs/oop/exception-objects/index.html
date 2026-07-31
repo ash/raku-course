@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,15 +116,16 @@ exception object of the type <code>X::AdHoc</code>.</p>
 comes from <code>.^name</code>, and its text from
 <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">'something failed'</span>;
+    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
         }
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Knowing the type lets you treat different errors differently. Raku’s
 built-in exceptions have specific types, whose names start with
@@ -132,17 +133,18 @@ built-in exceptions have specific types, whose names start with
 as you matched values in a <code>given</code>/<code>when</code>
 block:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">'something failed'</span>;
+    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="n">X::AdHoc</span> {
-            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
+        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
+            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">'some other error'</span>;
+            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
         }
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>This prints <code>an ad-hoc error: something failed</code>, because
 the exception matched the <code>X::AdHoc</code> type. Matching on the
@@ -150,7 +152,7 @@ type is the basis of handling specific errors — the idea the section on
 <a href="/oop/custom-exceptions">custom exceptions</a> builds upon.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/oop/exception-objects/quiz">Quiz — Exception
 objects</a></li>
@@ -188,8 +190,24 @@ error</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/oop/exception-objects">Deutsch</a>
+<a href="/eo/oop/exception-objects">Esperanto</a>
+<a href="/es/oop/exception-objects">Español</a>
+<a href="/it/oop/exception-objects">Italiano</a>
+<a href="/la/oop/exception-objects">Latina</a>
+<a href="/lv/oop/exception-objects">Latviešu</a>
+<a href="/nl/oop/exception-objects">Nederlands</a>
+<a href="/bg/oop/exception-objects">Български</a>
+<a href="/ru/oop/exception-objects">Русский</a>
+<a href="/uk/oop/exception-objects">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

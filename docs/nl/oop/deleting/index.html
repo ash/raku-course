@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,11 +114,12 @@ verwijderen</h1>
 <p>Net zoals <code>spurt</code> en <code>mkdir</code> dingen op schijf
 aanmaken, halen twee routines ze weg.</p>
 <p>De routine <code>unlink</code> verwijdert een bestand:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">'temp.txt'</span>, <span class="s">'scratch data'</span>;
-<span class="nb">say</span> <span class="s">'temp.txt'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># True</span>
+<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">&#39;temp.txt&#39;</span>, <span class="s">&#39;scratch data&#39;</span>;
+<span class="nb">say</span> <span class="s">&#39;temp.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># True</span>
 
-<span class="nb">unlink</span> <span class="s">'temp.txt'</span>;
-<span class="nb">say</span> <span class="s">'temp.txt'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># False</span></pre></div>
+<span class="nb">unlink</span> <span class="s">&#39;temp.txt&#39;</span>;
+<span class="nb">say</span> <span class="s">&#39;temp.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p><code>unlink</code> verwijdert het genoemde bestand. Net als de
 andere routines voor het bestandssysteem heeft hij ook een methodevorm
@@ -130,20 +131,22 @@ omdat de typetests <code>.f</code> en <code>.d</code> werpen wanneer het
 pad er niet is.</p>
 <p>De routine <code>rmdir</code> verwijdert een map, maar alleen een
 <strong>lege</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">'reports'</span>;
-<span class="n">rmdir</span> <span class="s">'reports'</span>;
-<span class="nb">say</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">&#39;reports&#39;</span>;
+<span class="nb">rmdir</span> <span class="s">&#39;reports&#39;</span>;
+<span class="nb">say</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Als de map nog iets bevat, verwijdert <code>rmdir</code> niets en
 laat hij haar staan. Dus om een map te verwijderen die bestanden bevat,
 maak je haar eerst leeg en verwijder je haar daarna:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">'reports'</span>;
-<span class="nb">spurt</span> <span class="s">'reports/jan.txt'</span>, <span class="s">'January'</span>;
-<span class="nb">spurt</span> <span class="s">'reports/feb.txt'</span>, <span class="s">'February'</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">&#39;reports&#39;</span>;
+<span class="nb">spurt</span> <span class="s">&#39;reports/jan.txt&#39;</span>, <span class="s">&#39;January&#39;</span>;
+<span class="nb">spurt</span> <span class="s">&#39;reports/feb.txt&#39;</span>, <span class="s">&#39;February&#39;</span>;
 
-.<span class="nb">unlink</span> <span class="k">for</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">dir</span>;   <span class="c1"># delete every entry</span>
-<span class="n">rmdir</span> <span class="s">'reports'</span>;                <span class="c1"># now the directory is empty</span>
-<span class="nb">say</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">e</span>;             <span class="c1"># False</span></pre></div>
+.<span class="nb">unlink</span> <span class="k">for</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">dir</span>;   <span class="c1"># delete every entry</span>
+<span class="nb">rmdir</span> <span class="s">&#39;reports&#39;</span>;                <span class="c1"># now the directory is empty</span>
+<span class="nb">say</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>;             <span class="c1"># False</span>
+</pre></div>
 
 <p><code>'reports'.IO.dir</code> somt de items van de map op (het vorige
 onderwerp behandelde dat), en <code>.unlink</code> op elk ervan
@@ -180,6 +183,22 @@ bestand</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/oop/deleting">English</a>
+<a href="/de/oop/deleting">Deutsch</a>
+<a href="/eo/oop/deleting">Esperanto</a>
+<a href="/es/oop/deleting">Español</a>
+<a href="/it/oop/deleting">Italiano</a>
+<a href="/la/oop/deleting">Latina</a>
+<a href="/lv/oop/deleting">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/oop/deleting">Български</a>
+<a href="/ru/oop/deleting">Русский</a>
+<a href="/uk/oop/deleting">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

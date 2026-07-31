@@ -1,5 +1,5 @@
 ---
-title: Arrayoj
+title: Tabeloj
 ---
 
 {% include menu.html %}

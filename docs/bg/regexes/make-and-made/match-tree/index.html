@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,21 +116,23 @@ made</a></p>
 записи сами са обекти на съвпадението със свои собствени прихващания. Из
 дървото се движите със същия синтаксис <code>&lt;name&gt;</code>, който
 използвате за именувани прихващания:</p>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Pair</span> {
-    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;key&gt;</span> <span class="s">'='</span> <span class="s">&lt;value&gt;</span> }
-    <span class="k">token</span> <span class="n">key</span>   { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">value</span> { \<span class="n">d</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Pair</span> {
+    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;key&gt; &#39;=&#39; &lt;value&gt; </span>}
+    <span class="k">token</span><span class="n"> key</span>   {<span class="sr"> \w+ </span>}
+    <span class="k">token</span><span class="n"> value</span> {<span class="sr"> \d+ </span>}
 }
 
-<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>);
-<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
-<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>; <span class="c1"># ｢5｣</span></pre></div>
+<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>);
+<span class="nb">say</span> <span class="nv">$m&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
+<span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>; <span class="c1"># ｢5｣</span>
+</pre></div>
 
 <p>Всеки клон е пълноценен обект на съвпадението, така че можете да го
 попитате за неговия <code>.Str</code>, за позицията му или да го
 преобразувате. Тук стойността се състои от цифри, така че превръщането ѝ
 в истинско число е само едно извикване на метод:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>.<span class="nb">Int</span>; <span class="c1"># 5</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>.<span class="nb">Int</span>; <span class="c1"># 5</span>
+</pre></div>
 
 <p>При по-дълбоки граматики дървото има повече нива —
 <code>$m&lt;a&gt;&lt;b&gt;</code> стига до токен <code>b</code>,
@@ -157,6 +159,22 @@ href="/bg/regexes/make-and-made/exercises">към упражненията в т
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/regexes/make-and-made/match-tree">English</a>
+<a href="/de/regexes/make-and-made/match-tree">Deutsch</a>
+<a href="/eo/regexes/make-and-made/match-tree">Esperanto</a>
+<a href="/es/regexes/make-and-made/match-tree">Español</a>
+<a href="/it/regexes/make-and-made/match-tree">Italiano</a>
+<a href="/la/regexes/make-and-made/match-tree">Latina</a>
+<a href="/lv/regexes/make-and-made/match-tree">Latviešu</a>
+<a href="/nl/regexes/make-and-made/match-tree">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/regexes/make-and-made/match-tree">Русский</a>
+<a href="/uk/regexes/make-and-made/match-tree">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,31 +118,34 @@ href="/uk/advanced/traits-pragmas">Трейти та прагми 🆕</a></p>
 читання</strong> — присвоїти їм щось усередині підпрограми не можна.
 Трейт <code>is copy</code> дає вам приватну змінювану копію аргументу,
 яку можна змінювати, не зачіпаючи того, хто викликав:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — власна змінна викликача недоторкана</span></pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — власна змінна викликача недоторкана</span>
+</pre></div>
 
 <p>Трейт <code>is rw</code> іде далі: він зв’язує параметр із змінною
 викликача, тож зміна, зроблена всередині підпрограми, видима
 назовні:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
+</pre></div>
 
 <p>Без одного з цих трейтів <code>$n++</code> був би помилкою під час
 компіляції, бо параметр був би доступний лише для читання.</p>
 <p>Ще один поширений трейт задає типове значення:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
+</pre></div>
 
 <p>Тут <code>is default</code> дає змінній значення, до якого можна
 вдатися. Кожен вбудований трейт — <code>is rw</code>,
@@ -170,6 +173,22 @@ href="/uk/advanced/traits-pragmas/exercises">до вправ цього
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/advanced/traits-pragmas/built-in-traits">English</a>
+<a href="/de/advanced/traits-pragmas/built-in-traits">Deutsch</a>
+<a href="/eo/advanced/traits-pragmas/built-in-traits">Esperanto</a>
+<a href="/es/advanced/traits-pragmas/built-in-traits">Español</a>
+<a href="/it/advanced/traits-pragmas/built-in-traits">Italiano</a>
+<a href="/la/advanced/traits-pragmas/built-in-traits">Latina</a>
+<a href="/lv/advanced/traits-pragmas/built-in-traits">Latviešu</a>
+<a href="/nl/advanced/traits-pragmas/built-in-traits">Nederlands</a>
+<a href="/bg/advanced/traits-pragmas/built-in-traits">Български</a>
+<a href="/ru/advanced/traits-pragmas/built-in-traits">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

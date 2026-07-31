@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,10 @@ href="/lv/oop/external-programs">Ārējo programmu palaišana 🆕</a></p>
 <p>Lai nolasītu to, ko ārēja programma izdrukā, nevis ļautu tam aiziet
 uz ekrānu, palaižot padodiet <code>:out</code>. Atgrieztajam
 <code>Proc</code> tad ir turis <code>.out</code>, no kura var lasīt:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hello'</span>, :<span class="n">out</span>;
-<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$output</span>.<span class="n">chomp</span>; <span class="c1"># hello</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hello&#39;</span>, :<span class="n">out</span>;
+<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$output</span>.<span class="nb">chomp</span>; <span class="c1"># hello</span>
+</pre></div>
 
 <p><code>:out</code> novirza programmas standarta izvadi
 <code>Proc</code> iekšienē. Turis <code>.out</code> darbojas kā failu
@@ -128,17 +129,19 @@ atvērts. Visbeidzot <code>.chomp</code> noņem beigu jauno rindu, ko
 <code>echo</code> pievieno.</p>
 <p>Tas pats darbojas ar <code>shell</code>, kas noder cauruļvada
 rezultāta noķeršanai:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">'echo hello | tr a-z A-Z'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># HELLO</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">&#39;echo hello | tr a-z A-Z&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># HELLO</span>
+</pre></div>
 
 <p>Noķert var arī kļūdu plūsmu — ar <code>:err</code> un atbilstošo turi
 <code>.err</code>. Padodot gan <code>:out</code>, gan <code>:err</code>,
 abas plūsmas paliek nošķirtas, katra savā turī, tāpēc tās var lasīt
 atsevišķi:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo out-line; echo err-line &gt;&amp;2'</span>, :<span class="n">out</span>, :<span class="n">err</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo out-line; echo err-line &gt;&amp;2&#39;</span>, :<span class="n">out</span>, :<span class="n">err</span>;
 
-<span class="nb">say</span> <span class="s">'stdout: '</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stdout: out-line</span>
-<span class="nb">say</span> <span class="s">'stderr: '</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stderr: err-line</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;stdout: &#39;</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stdout: out-line</span>
+<span class="nb">say</span> <span class="s">&#39;stderr: &#39;</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stderr: err-line</span>
+</pre></div>
 
 <p>Šeit čaulas komanda izdrukā vienu rindu standarta izvadē un vienu
 standarta kļūdu plūsmā (<code>&gt;&amp;2</code> uz to novirza). Tā kā
@@ -159,6 +162,22 @@ vingrinājumiem</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/oop/external-programs/capturing-output">English</a>
+<a href="/de/oop/external-programs/capturing-output">Deutsch</a>
+<a href="/eo/oop/external-programs/capturing-output">Esperanto</a>
+<a href="/es/oop/external-programs/capturing-output">Español</a>
+<a href="/it/oop/external-programs/capturing-output">Italiano</a>
+<a href="/la/oop/external-programs/capturing-output">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/oop/external-programs/capturing-output">Nederlands</a>
+<a href="/bg/oop/external-programs/capturing-output">Български</a>
+<a href="/ru/oop/external-programs/capturing-output">Русский</a>
+<a href="/uk/oop/external-programs/capturing-output">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

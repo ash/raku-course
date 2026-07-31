@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,21 +117,24 @@ string</li>
 <li><code>$</code> matches at the very <strong>end</strong></li>
 </ul>
 <p>Use <code>^</code> to require that the match begins at the start:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;http://example&#39;</span> ~~<span class="sr"> /^ http /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;see http://x&#39;</span>   ~~<span class="sr"> /^ http /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>The second string contains <code>http</code>, but not at the
 beginning, so the anchored pattern fails.</p>
 <p>Putting <code>^</code> and <code>$</code> around a pattern forces it
 to match the <strong>whole</strong> string, with nothing left over on
 either side:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello&#39;</span>       ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>This is a very common idiom for validation — “is this string exactly
 a number?”, for instance:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;2025&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;20a5&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <h2 id="line-anchors">Line anchors</h2>
 <p>When a string has several lines, the partners <code>^^</code> and
@@ -140,8 +143,9 @@ rather than the whole string. The difference from <code>^</code> and
 <code>$</code> shows up as soon as the text you want is not on the first
 line: the single anchors see only the whole string and fail, while the
 doubled ones match on any line.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^  dog  $/</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^^ dog $$/</span>;  <span class="c1"># True</span>
+</pre></div>
 
 <p>Here <code>\n</code> starts a second line. The <code>^^</code>
 requires <code>dog</code> to sit at the start of a line and
@@ -149,7 +153,7 @@ requires <code>dog</code> to sit at the start of a line and
 doubled anchors succeed where the single ones cannot.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/regexes/anchors/string-anchors/quiz">Quiz — String
 anchors</a></li>
@@ -176,8 +180,24 @@ the exercises in this section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/regexes/anchors/string-anchors">Deutsch</a>
+<a href="/eo/regexes/anchors/string-anchors">Esperanto</a>
+<a href="/es/regexes/anchors/string-anchors">Español</a>
+<a href="/it/regexes/anchors/string-anchors">Italiano</a>
+<a href="/la/regexes/anchors/string-anchors">Latina</a>
+<a href="/lv/regexes/anchors/string-anchors">Latviešu</a>
+<a href="/nl/regexes/anchors/string-anchors">Nederlands</a>
+<a href="/bg/regexes/anchors/string-anchors">Български</a>
+<a href="/ru/regexes/anchors/string-anchors">Русский</a>
+<a href="/uk/regexes/anchors/string-anchors">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

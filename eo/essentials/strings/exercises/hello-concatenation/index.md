@@ -1,5 +1,5 @@
 ---
-title: 'Saluton, Concatenado!'
+title: 'Saluton, Konkatenado!'
 ---
 
 {% include menu.html %}

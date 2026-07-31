@@ -1,5 +1,5 @@
 ---
-title: Citante stringajn arrayojn
+title: Citante ĉenajn tabelojn
 ---
 
 {% include menu.html %}

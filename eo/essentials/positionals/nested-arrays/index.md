@@ -1,5 +1,5 @@
 ---
-title: Nestitaj arrayoj
+title: Nestitaj tabeloj
 ---
 
 {% include menu.html %}

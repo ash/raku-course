@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,21 +119,24 @@ href="/eo/regexes/anchors">Ankroj</a></p>
 </ul>
 <p>Uzu <code>^</code> por postuli, ke la kongruo komenciĝu ĉe la
 komenco:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;http://example&#39;</span> ~~<span class="sr"> /^ http /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;see http://x&#39;</span>   ~~<span class="sr"> /^ http /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>La dua ĉeno enhavas <code>http</code>, sed ne ĉe la komenco, do la
 ankrita ŝablono malsukcesas.</p>
 <p>Meti <code>^</code> kaj <code>$</code> ĉirkaŭ ŝablonon devigas ĝin
 kongrui kun la <strong>tuta</strong> ĉeno, kun nenio restanta ĉe ambaŭ
 flankoj:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello&#39;</span>       ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Tio estas tre ofta idiomaĵo por validigo — «ĉu ĉi tiu ĉeno estas
 ekzakte nombro?», ekzemple:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;2025&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;20a5&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <h2 id="liniaj-ankroj">Liniaj ankroj</h2>
 <p>Kiam ĉeno havas plurajn liniojn, la partneroj <code>^^</code> kaj
@@ -142,8 +145,9 @@ linio</strong> anstataŭ de la tuta ĉeno. La diferenco disde
 <code>^</code> kaj <code>$</code> montriĝas tuj kiam la teksto, kiun vi
 volas, ne estas sur la unua linio: la unuoblaj ankroj vidas nur la tutan
 ĉenon kaj malsukcesas, dum la duoblaj kongruas sur ajna linio.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^  dog  $/</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^^ dog $$/</span>;  <span class="c1"># True</span>
+</pre></div>
 
 <p>Ĉi tie <code>\n</code> komencas duan linion. La <code>^^</code>
 postulas, ke <code>dog</code> sidu ĉe la komenco de linio kaj
@@ -167,6 +171,22 @@ ekzercoj de ĉi tiu sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/regexes/anchors/string-anchors">English</a>
+<a href="/de/regexes/anchors/string-anchors">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/regexes/anchors/string-anchors">Español</a>
+<a href="/it/regexes/anchors/string-anchors">Italiano</a>
+<a href="/la/regexes/anchors/string-anchors">Latina</a>
+<a href="/lv/regexes/anchors/string-anchors">Latviešu</a>
+<a href="/nl/regexes/anchors/string-anchors">Nederlands</a>
+<a href="/bg/regexes/anchors/string-anchors">Български</a>
+<a href="/ru/regexes/anchors/string-anchors">Русский</a>
+<a href="/uk/regexes/anchors/string-anchors">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

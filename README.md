@@ -47,7 +47,7 @@ Beyond the five parts, the course also offers:
 
 * [The Final Test](https://course.raku.org/final-test/) — a 100-question quiz covering the whole course, with a shareable result.
 * An addendum with 50 comprehensive exercises that draw on the material of the entire course.
-* An [online Raku playground](https://raku.online) for running code straight in the browser.
+* An [online Raku playground](https://raku.online/play) for running code straight in the browser.
 
 New exercises and quizzes may appear in the already published topics, and the theory may be slightly modified to achieve the best flow of the course.
 
@@ -59,7 +59,7 @@ To follow the course and run exercises, you need to have a working compiler. The
 
 * Install the Rakudo compiler, or
 * Install the newer [Raku++](https://github.com/ash/rakupp) compiler, or
-* Use the course's own [online playground](https://raku.online) or other online services, or
+* Use the course's own [online playground](https://raku.online/play) or other online services, or
 * Use docker containers
 
 The different installation options are described at the beginning of the first part.

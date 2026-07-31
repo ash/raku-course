@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,13 +117,14 @@ href="/bg/advanced/special-variables">Специални и динамични �
 декларирана, динамичната променлива се намира чрез търсене <strong>навън
 през стека на извикванията</strong> — през този, който е извикал текущия
 код, независимо къде е дефиниран този код.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*greeting</span> = <span class="s">'Hello'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*greeting</span> = <span class="s">&#39;Hello&#39;</span>;
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="nv">$*greeting</span>;
+    <span class="nb">say</span> <span class="vg">$*greeting</span>;
 }
 
-<span class="n">greet</span>(); <span class="c1"># Hello</span></pre></div>
+<span class="n">greet</span>(); <span class="c1"># Hello</span>
+</pre></div>
 
 <p>Подпрограмата <code>greet</code> не декларира <code>$*greeting</code>
 и не я получава като аргумент, но въпреки това може да я види, защото
@@ -135,18 +136,19 @@ href="/bg/advanced/special-variables">Специални и динамични �
 <p>Тъй като търсенето следва стека на извикванията, по-близка декларация
 <strong>заменя</strong> по-далечната за времетраенето на нейния
 блок:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'outer'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;outer&#39;</span>;
 
 <span class="k">sub</span> <span class="n">show</span> {
-    <span class="nb">say</span> <span class="nv">$*level</span>;
+    <span class="nb">say</span> <span class="vg">$*level</span>;
 }
 
 <span class="n">show</span>(); <span class="c1"># outer</span>
 
 {
-    <span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'inner'</span>;
+    <span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;inner&#39;</span>;
     <span class="n">show</span>(); <span class="c1"># inner</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Същата <code>show</code> отпечатва <code>outer</code> първия път и
 <code>inner</code>, когато е извикана отвътре на блока, който
@@ -177,6 +179,22 @@ href="/bg/advanced/special-variables/exercises">към упражненията 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/advanced/special-variables/dynamic-variables">English</a>
+<a href="/de/advanced/special-variables/dynamic-variables">Deutsch</a>
+<a href="/eo/advanced/special-variables/dynamic-variables">Esperanto</a>
+<a href="/es/advanced/special-variables/dynamic-variables">Español</a>
+<a href="/it/advanced/special-variables/dynamic-variables">Italiano</a>
+<a href="/la/advanced/special-variables/dynamic-variables">Latina</a>
+<a href="/lv/advanced/special-variables/dynamic-variables">Latviešu</a>
+<a href="/nl/advanced/special-variables/dynamic-variables">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/advanced/special-variables/dynamic-variables">Русский</a>
+<a href="/uk/advanced/special-variables/dynamic-variables">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

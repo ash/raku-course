@@ -39,6 +39,6 @@ Int $typed = 42
 
 1. Auch die leeren Werte unterscheiden sich. Ein untypisierter Container beginnt mit dem einfachen undefinierten Wert `Any`, während ein typisierter Container mit dem undefinierten Wert *seines* Typs beginnt, `Int`.
 
-1. Nachdem beiden `42` zugewiesen wurde, sehen die Werte gleich aus, aber `$typed` trägt weiterhin seinen Typ und würde einen nicht-ganzzahligen Wert ablehnen -- im Gegensatz zu `$untyped`, der alles akzeptiert.
+1. Nachdem beiden `42` zugewiesen wurde, sehen die Werte gleich aus, aber `$typed` trägt weiterhin seinen Typ und würde einen nicht-ganzzahligen Wert ablehnen — im Gegensatz zu `$untyped`, der alles akzeptiert.
 
 {% include nav.html %}

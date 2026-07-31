@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,31 +119,34 @@ incluye muchos; ya has utilizado algunos.</p>
 lectura</strong> — no puedes asignarles un valor dentro de la rutina. El
 trait <code>is copy</code> te da una copia privada y modificable del
 argumento, que puedes cambiar sin afectar al llamador:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller's own variable is untouched</span></pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller&#39;s own variable is untouched</span>
+</pre></div>
 
 <p>El trait <code>is rw</code> va más allá: vincula el parámetro a la
 variable del llamador, de modo que un cambio realizado dentro de la
 rutina es visible fuera:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
+</pre></div>
 
 <p>Sin uno de estos traits, <code>$n++</code> sería un error en tiempo
 de compilación, porque el parámetro sería de solo lectura.</p>
 <p>Otro trait común establece un valor por defecto:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
+</pre></div>
 
 <p>Aquí <code>is default</code> le da a la variable un valor al que
 recurrir. Cada trait incorporado — <code>is rw</code>,
@@ -171,6 +174,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/advanced/traits-pragmas/built-in-traits">English</a>
+<a href="/de/advanced/traits-pragmas/built-in-traits">Deutsch</a>
+<a href="/eo/advanced/traits-pragmas/built-in-traits">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/advanced/traits-pragmas/built-in-traits">Italiano</a>
+<a href="/la/advanced/traits-pragmas/built-in-traits">Latina</a>
+<a href="/lv/advanced/traits-pragmas/built-in-traits">Latviešu</a>
+<a href="/nl/advanced/traits-pragmas/built-in-traits">Nederlands</a>
+<a href="/bg/advanced/traits-pragmas/built-in-traits">Български</a>
+<a href="/ru/advanced/traits-pragmas/built-in-traits">Русский</a>
+<a href="/uk/advanced/traits-pragmas/built-in-traits">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

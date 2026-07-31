@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,10 +116,12 @@ parametroj</a>, <em>nomitaj</em> parametroj estas referencitaj per iliaj
 nomoj.</p>
 <p>La sekva funkcio prenas du parametrojn nomitajn <code>$from</code>
 kaj <code>$to</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
 
 <p>Nun, por voki la funkcion, vi devas nomi la argumentojn:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Estas eraro pasi la argumentojn kvazaŭ ili estus poziciaj. Ekzemple,
 voko <code>distance(30, 10)</code> generas eraron:</p>
@@ -128,9 +130,10 @@ voko <code>distance(30, 10)</code> generas eraron:</p>
     en bloko &lt;unit&gt; ĉe t.raku linio 2</code></pre>
 <p>La bona parto estas, ke nomitaj argumentoj povas esti listigitaj en
 ajna ordo. La sekvaj du vokoj estas tute ekvivalentaj:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="n">to</span> =&gt; <span class="mi">10</span>, <span class="n">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span></pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <h2 id="pasante-variablojn">Pasante variablojn</h2>
 <p>Kiam la valoro, kiun vi volas pasi al funkcio, estas konservita en
@@ -138,24 +141,28 @@ variablo, kies nomo koincidas kun la nomo de la parametro, vi povas ĝui
 specialan sintakson, kiu reduktas tajpadon:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
 <span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Ĉi tio estas simila al vorteca voko:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$from</span>, <span class="n">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Denove, la ordo ne estas strikta ĉi tie:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Se la nomo de la variablo diferencas de la nomo de la parametro, uzu
 unu el la manieroj pasi paron:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$a</span>, <span class="n">to</span> =&gt; <span class="nv">$b</span>);
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
 
 <span class="c1"># aŭ:</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
+</pre></div>
 
 <section id="praktiko" class="practice" data-markdown="1">
 <h2>Praktiko</h2>
@@ -175,25 +182,26 @@ parametroj</a> →</p>
 <p><br /> 💪 Aŭ iru rekte al <a
 href="/eo/essentials/functions/exercises">la ekzercoj de ĉi tiu
 sekcio</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/functions/named-parameters">English</a> • <a
-href="/de/essentials/functions/named-parameters">Deutsch</a> •
-<strong>Esperanto</strong> • <a
-href="/es/essentials/functions/named-parameters">Español</a> • <a
-href="/it/essentials/functions/named-parameters">Italiano</a> • <a
-href="/la/essentials/functions/named-parameters">Latina</a> • <a
-href="/lv/essentials/functions/named-parameters">Latviešu</a> • <a
-href="/nl/essentials/functions/named-parameters">Nederlands</a> • <a
-href="/bg/essentials/functions/named-parameters">Български</a> • <a
-href="/ru/essentials/functions/named-parameters">Русский</a> • <a
-href="/uk/essentials/functions/named-parameters">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/essentials/functions/named-parameters">English</a>
+<a href="/de/essentials/functions/named-parameters">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/essentials/functions/named-parameters">Español</a>
+<a href="/it/essentials/functions/named-parameters">Italiano</a>
+<a href="/la/essentials/functions/named-parameters">Latina</a>
+<a href="/lv/essentials/functions/named-parameters">Latviešu</a>
+<a href="/nl/essentials/functions/named-parameters">Nederlands</a>
+<a href="/bg/essentials/functions/named-parameters">Български</a>
+<a href="/ru/essentials/functions/named-parameters">Русский</a>
+<a href="/uk/essentials/functions/named-parameters">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

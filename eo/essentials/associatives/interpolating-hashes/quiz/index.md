@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Interpolante haxojn
+title: Kvizo — Interpolante haketmapojn
 ---
 
 {% include menu.html %}

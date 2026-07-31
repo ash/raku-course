@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,7 +115,7 @@ href="/ru/advanced/control-flow">Порядок выполнения</a></p>
 <h2 id="вход-и-выход-из-блока">Вход и выход из блока</h2>
 <p>Фазер <code>ENTER</code> выполняется каждый раз, когда исполнение
 входит в блок, а фазер <code>LEAVE</code> выполняется каждый раз, когда
-выходит из блока – независимо от того, на какой строке они написаны:</p>
+выходит из блока — независимо от того, на какой строке они написаны:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;before block&#39;</span>;
 {
     <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">&#39;leaving&#39;</span>;
@@ -126,7 +126,7 @@ href="/ru/advanced/control-flow">Порядок выполнения</a></p>
 </pre></div>
 
 <p>Вывод показывает, что <code>ENTER</code> выполняется первым, а
-<code>LEAVE</code> – последним, оборачивая тело блока:</p>
+<code>LEAVE</code> — последним, оборачивая тело блока:</p>
 <div class="highlight"><pre>before block
 entering
 inside
@@ -137,7 +137,7 @@ after block</pre></div>
 освобождения ресурсов.</p>
 <p>Фазер может принимать полный блок <code>{ }</code> вместо одного
 выражения, и можно задавать несколько фазеров. Если в блоке несколько
-<code>LEAVE</code>, они срабатывают в обратном порядке – последний
+<code>LEAVE</code>, они срабатывают в обратном порядке — последний
 зарегистрированный выполняется первым, так что блок разматывается как
 стек:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;open A&#39;</span>;
@@ -161,15 +161,15 @@ work
 close B
 close A
 done</pre></div>
-<p>Этот порядок «последним пришёл – первым ушёл» – именно то, что нужно
+<p>Этот порядок «последним пришёл — первым ушёл» — именно то, что нужно
 для очистки: то, что было настроено последним, разрушается первым. Фазер
-<code>END</code> уровня программы ведёт себя так же – несколько блоков
+<code>END</code> уровня программы ведёт себя так же — несколько блоков
 <code>END</code> также выполняются в порядке, обратном порядку их
 написания.</p>
 <h2 id="фазеры-цикла">Фазеры цикла</h2>
 <p>Внутри циклов доступны ещё три фазера, отмечающие этапы итерации:
 <code>FIRST</code> выполняется один раз перед первой итерацией,
-<code>LAST</code> – один раз после последней, а <code>NEXT</code> – в
+<code>LAST</code> — один раз после последней, а <code>NEXT</code> — в
 конце каждой итерации:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span> {
     <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">&#39;-- first&#39;</span>;
@@ -190,7 +190,7 @@ body 3
 -- last</pre></div>
 <p>Как и с другими фазерами, положение <code>FIRST</code>,
 <code>NEXT</code> и <code>LAST</code> в исходном коде не имеет значения
-– каждый выполняется в свой момент.</p>
+— каждый выполняется в свой момент.</p>
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
 <p>Пройдите 1 тест по содержанию этой темы.</p>
@@ -221,6 +221,22 @@ href="/ru/advanced/block-phasers/exercises/clean-up-on-leave">Очистка
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Эта страница на других языках:">
+<span class="lang-label">Эта страница на других языках:</span>
+<a href="/advanced/block-phasers">English</a>
+<a href="/de/advanced/block-phasers">Deutsch</a>
+<a href="/eo/advanced/block-phasers">Esperanto</a>
+<a href="/es/advanced/block-phasers">Español</a>
+<a href="/it/advanced/block-phasers">Italiano</a>
+<a href="/la/advanced/block-phasers">Latina</a>
+<a href="/lv/advanced/block-phasers">Latviešu</a>
+<a href="/nl/advanced/block-phasers">Nederlands</a>
+<a href="/bg/advanced/block-phasers">Български</a>
+<span class="lang-current">Русский</span>
+<a href="/uk/advanced/block-phasers">Українська</a>
+<a class="lang-about" href="/ru/about-translation">О переводе</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
 <p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

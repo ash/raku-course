@@ -7,7 +7,7 @@ translations_gpt:
 
 ## Problem
 
-Ein benannter `Bool`-Parameter von `MAIN` wird zu einem Ein/Aus-**Flag**: Die Angabe von `--flag` setzt ihn auf `True`, und das Weglassen behaelt seinen Standardwert bei. Schreiben Sie ein Programm, dessen `MAIN` den Parameter `Bool :$shout = False` annimmt und `HELLO` ausgibt, wenn das Flag gesetzt ist, oder `hello` andernfalls.
+Ein benannter `Bool`-Parameter von `MAIN` wird zu einem Ein/Aus-**Flag**: Die Angabe von `--flag` setzt ihn auf `True`, und das Weglassen behält seinen Standardwert bei. Schreiben Sie ein Programm, dessen `MAIN` den Parameter `Bool :$shout = False` annimmt und `HELLO` ausgibt, wenn das Flag gesetzt ist, oder `hello` andernfalls.
 
 ## Beispiel
 

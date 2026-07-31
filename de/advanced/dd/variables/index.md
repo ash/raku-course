@@ -28,7 +28,7 @@ dd $var;
 Int $var = 42
 ```
 
-Das ist der Hauptunterschied zu `say`: Ein einzelnes `dd`, das auf einen Skalar aufgerufen wird, zeigt dir den Namen und, wenn bekannt, den Typ der Daten -- sodass du mehrere `dd`-Aufrufe in ein Programm einfügen und trotzdem erkennen kannst, welche Ausgabe zu welcher Variable gehört.
+Das ist der Hauptunterschied zu `say`: Ein einzelnes `dd`, das auf einen Skalar aufgerufen wird, zeigt dir den Namen und, wenn bekannt, den Typ der Daten — sodass du mehrere `dd`-Aufrufe in ein Programm einfügen und trotzdem erkennen kannst, welche Ausgabe zu welcher Variable gehört.
 
 Du kannst auch komplexere Datenstrukturen ausgeben, wie Arrays oder Hashes. Hier gibt `dd` eine codeähnliche Darstellung des Wertes aus:
 

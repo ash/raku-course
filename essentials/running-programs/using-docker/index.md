@@ -4,7 +4,7 @@ title: Using docker to run Raku
 
 {% include menu.html %}
 
-A Rakudo Star docker image can be used for both running a REPL shell and executing a program from a file.
+A Rakudo docker image (named `rakudo-star` for historical reasons) can be used for both running a REPL shell and executing a program from a file.
 
 To start the shell, run the following command. It will pull the latest `rakudo-star` image if needed.
 

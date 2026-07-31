@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,11 @@ href="/it/regexes/captures">Catture</a></p>
 <em>catturarla</em>. Dopo una corrispondenza riuscita, ogni pezzo
 catturato è disponibile come <code>$0</code>, <code>$1</code> e così
 via, numerato da zero nell’ordine in cui si aprono le parentesi:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>La prima coppia di parentesi ha catturato l’anno in <code>$0</code>,
 la seconda ha catturato il mese in <code>$1</code>. Il testo fra di esse
@@ -127,9 +128,10 @@ la seconda ha catturato il mese in <code>$1</code>. Il testo fra di esse
 chiederle il suo <code>.Str</code>, la sua posizione e così via. In una
 stringa fra virgolette doppie una cattura si interpola come il testo che
 ha riconosciuto:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Qui le due parole catturate vengono stampate nell’ordine opposto, il
 che le scambia.</p>
@@ -137,11 +139,12 @@ che le scambia.</p>
 <code>$/</code>, e <code>$0</code> è in realtà un modo breve di scrivere
 <code>$/[0]</code>. Puoi lavorare direttamente attraverso
 <code>$/</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
-    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}
+</pre></div>
 
 <p><code>$/</code> è l’intero oggetto match, indicizzarlo raggiunge le
 catture posizionali, e <code>.elems</code> ti dice quante ce ne
@@ -165,6 +168,22 @@ sezione</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/regexes/captures/positional">English</a>
+<a href="/de/regexes/captures/positional">Deutsch</a>
+<a href="/eo/regexes/captures/positional">Esperanto</a>
+<a href="/es/regexes/captures/positional">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/regexes/captures/positional">Latina</a>
+<a href="/lv/regexes/captures/positional">Latviešu</a>
+<a href="/nl/regexes/captures/positional">Nederlands</a>
+<a href="/bg/regexes/captures/positional">Български</a>
+<a href="/ru/regexes/captures/positional">Русский</a>
+<a href="/uk/regexes/captures/positional">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

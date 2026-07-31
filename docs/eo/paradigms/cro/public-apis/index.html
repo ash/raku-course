@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,15 +118,16 @@ datumstrukturon prefere ol tekston. Ĉi tie ni petas de senpaga
 veterservo la aktualan temperaturon en Berlino:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Client</span>;
 
-<span class="k">my</span> <span class="nv">$url</span> = <span class="s">'https://api.open-meteo.com/v1/forecast'</span>
-        ~ <span class="s">'?latitude=52.52&amp;longitude=13.41&amp;current=temperature_2m,wind_speed_10m'</span>;
+<span class="k">my</span> <span class="nv">$url</span> = <span class="s">&#39;https://api.open-meteo.com/v1/forecast&#39;</span>
+        ~ <span class="s">&#39;?latitude=52.52&amp;longitude=13.41&amp;current=temperature_2m,wind_speed_10m&#39;</span>;
 
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(<span class="nv">$url</span>);
+<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="nb">get</span>(<span class="nv">$url</span>);
 <span class="k">my</span> <span class="nv">%current</span>  = (<span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body</span>)<span class="s">&lt;current&gt;</span>;
 
 <span class="nb">say</span> <span class="s">&quot;Berlin right now:&quot;</span>;
 <span class="nb">say</span> <span class="s">&quot;  temperature: %current&lt;temperature_2m&gt; °C&quot;</span>;
-<span class="nb">say</span> <span class="s">&quot;  wind speed:  %current&lt;wind_speed_10m&gt; km/h&quot;</span>;</pre></div>
+<span class="nb">say</span> <span class="s">&quot;  wind speed:  %current&lt;wind_speed_10m&gt; km/h&quot;</span>;
+</pre></div>
 
 <p>kio presas ion kiel:</p>
 <div class="highlight"><pre>Berlin right now:
@@ -151,11 +152,12 @@ ebligas al vi fiksi petajn kapojn, do prezentu vin kiel unu el la
 terminala popolo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Client</span>;
 
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(
-    <span class="s">'https://wttr.in/Berlin?format=3'</span>,
-    <span class="n">headers</span> =&gt; [ <span class="n">User-Agent</span> =&gt; <span class="s">'curl'</span> ],
+<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="nb">get</span>(
+    <span class="s">&#39;https://wttr.in/Berlin?format=3&#39;</span>,
+    <span class="nb">headers</span> =&gt; [ <span class="n">User-Agent</span> =&gt; <span class="s">&#39;curl&#39;</span> ],
 );
-<span class="nb">print</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>;</pre></div>
+<span class="nb">print</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>;
+</pre></div>
 
 <p>Ĉi tio presas unulinian veterraporton, pretan por ŝela invito aŭ
 statusbreto:</p>
@@ -180,6 +182,22 @@ ekzercoj de ĉi tiu sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/cro/public-apis">English</a>
+<a href="/de/paradigms/cro/public-apis">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/cro/public-apis">Español</a>
+<a href="/it/paradigms/cro/public-apis">Italiano</a>
+<a href="/la/paradigms/cro/public-apis">Latina</a>
+<a href="/lv/paradigms/cro/public-apis">Latviešu</a>
+<a href="/nl/paradigms/cro/public-apis">Nederlands</a>
+<a href="/bg/paradigms/cro/public-apis">Български</a>
+<a href="/ru/paradigms/cro/public-apis">Русский</a>
+<a href="/uk/paradigms/cro/public-apis">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

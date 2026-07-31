@@ -25,6 +25,6 @@ say 2 ** 2 ** 3;
 
 1. Omdat `**` rechts-associatief is, wordt de expressie gegroepeerd als `2 ** (2 ** 3)`.
 
-1. Dat is `2 ** 8`, wat `256` is -- niet `(2 ** 2) ** 3`, wat `64` zou zijn.
+1. Dat is `2 ** 8`, wat `256` is — niet `(2 ** 2) ** 3`, wat `64` zou zijn.
 
 {% include nav.html %}

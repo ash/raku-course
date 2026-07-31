@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,10 @@
 <p>Операторът за заместване е <code>s///</code>. Той изглежда като
 съпоставяне с второ поле: шаблонът стои между първите две наклонени
 черти, а текстът на замяната — между последните две:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
+<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
+</pre></div>
 
 <p>Заместването променя променливата <strong>на място</strong>, така че
 се обновява самата <code>$s</code>. Текстът в частта за замяна е
@@ -124,9 +125,10 @@
 <p>Както и съпоставянето, заместването по подразбиране засяга само
 <strong>първото</strong> появяване. Добавете наречието <code>:g</code>,
 за да замените всяко появяване:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
+</pre></div>
 
 <p>Ако искате да запазите оригинала и да получите променено
 <strong>копие</strong>, вместо да променяте на място, използвайте
@@ -134,18 +136,20 @@
 извършва заместването и връща променения низ, оставяйки оригинала
 недокоснат. Понеже той не обновява променлива на място, насочете го към
 нея с <code>given</code>, а не с <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
-<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
+<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
+</pre></div>
 
 <p>(Записът <code>$orig ~~ S///</code> ви предупреждава да използвате
 <code>given</code> — при <code>S///</code> няма какво да се променя на
 място.)</p>
 <p>Същото неразрушително поведение е налично и като метод —
 <code>.subst</code>, — който връща нов низ:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
+</pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -166,6 +170,22 @@ href="/bg/regexes/substitution/exercises">към упражненията в т�
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/regexes/substitution/s-operator">English</a>
+<a href="/de/regexes/substitution/s-operator">Deutsch</a>
+<a href="/eo/regexes/substitution/s-operator">Esperanto</a>
+<a href="/es/regexes/substitution/s-operator">Español</a>
+<a href="/it/regexes/substitution/s-operator">Italiano</a>
+<a href="/la/regexes/substitution/s-operator">Latina</a>
+<a href="/lv/regexes/substitution/s-operator">Latviešu</a>
+<a href="/nl/regexes/substitution/s-operator">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/regexes/substitution/s-operator">Русский</a>
+<a href="/uk/regexes/substitution/s-operator">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

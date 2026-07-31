@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,29 +120,34 @@ de argumenten. Maar gebruik een spatie na <code>for</code> en
 <code>if</code>.</p>
 <h2 id="lang-verhaal">Lang verhaal</h2>
 <p>Laten we een eenvoudige functie nemen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Let allereerst op de afwezigheid van spaties tussen de naam van de
 functie en de openingshaakjes die de parameters bevatten. Sommige
 codestijlen in andere talen kunnen daar een spatie vereisen. Raku vindt
 dat prima, maar dit is geen praktijk om te volgen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Aan de aanroepzijde is de afwezigheid van spatie belangrijk. Als je
 de functie aanroept en de haakjes weglaat, dan is de spatie na de naam
 van de functie onvermijdelijk:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
 
 <p>Maar als je haakjes toevoegt, kun je geen spatie ervoor hebben. Dit
 is een correcte aanroep:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>En deze aanroep is fout:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Dergelijke code veroorzaakt een uitzondering:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -152,11 +157,12 @@ is een correcte aanroep:</p>
 poging om een enkel argument <code>(5, 6)</code> aan de functie door te
 geven. Je kunt het type van dit argument gemakkelijk controleren als je
 de functie herschrijft om slechts één argument te accepteren:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
 }
 
-<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
 
 <p>Dus, het aanroepen van <code>f (5, 6)</code> betekent dat we een <a
 href="/nl/essentials/positionals/lists">lijst</a> aan de functie
@@ -165,9 +171,10 @@ doorgeven. De lijst als een enkele entiteit.</p>
 <p>In sommige gevallen is het spatiekarakter nodig. Dat gebeurt wanneer
 je haakjes gebruikt met een van de sleutelwoorden, zoals <code>if</code>
 of <code>for</code> of <code>loop</code>. De volgende code is fout:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
-    <span class="nb">say</span> <span class="s">'OK'</span>;
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
 
 <p>Het foutbericht legt uit wat er mis is:</p>
 <pre><code>===SORRY!===
@@ -182,7 +189,8 @@ at /Users/ash/raku-course/t.raku:1
 dus het probleem heeft geen kans om te verschijnen als je ze niet
 gebruikt. Maar in sommige gevallen, zoals bijvoorbeeld met
 <code>loop</code>, moet je ze hebben, en wordt de spatie verplicht:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
+</pre></div>
 
 <p>In deze code gebeurt hetzelfde: <code>loop(...)</code> wordt door de
 compiler begrepen als een functieaanroep. Voeg een spatie toe om het
@@ -201,24 +209,26 @@ parameters</a> →</p>
 <p><br /> 💪 Of ga direct <a
 href="/nl/essentials/more-on-functions/exercises/factorial-with-multi-functions">naar
 de oefening bij deze sectie</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/more-on-functions/mind-the-space">English</a> • <a
-href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a> • <a
-href="/es/essentials/more-on-functions/mind-the-space">Español</a> • <a
-href="/it/essentials/more-on-functions/mind-the-space">Italiano</a> • <a
-href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a> •
-<strong>Nederlands</strong> • <a
-href="/bg/essentials/more-on-functions/mind-the-space">Български</a> •
-<a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a> •
-<a
-href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/essentials/more-on-functions/mind-the-space">English</a>
+<a href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a>
+<a href="/eo/essentials/more-on-functions/mind-the-space">Esperanto</a>
+<a href="/es/essentials/more-on-functions/mind-the-space">Español</a>
+<a href="/it/essentials/more-on-functions/mind-the-space">Italiano</a>
+<a href="/la/essentials/more-on-functions/mind-the-space">Latina</a>
+<a href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
+<a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
+<a href="/uk/essentials/more-on-functions/mind-the-space">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

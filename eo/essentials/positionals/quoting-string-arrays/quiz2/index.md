@@ -21,7 +21,7 @@ say @data[0].WHAT;
 ```
 
 {:.quiz-select}
-(Listo) | Respondo: (: (Arrayo), (Listo), (Str) :)
+(Listo) | Respondo: (: (Tabelo), (Listo), (Str) :)
 
 ## 2
 
@@ -38,7 +38,7 @@ say @data[0].WHAT;
 ```
 
 {:.quiz-select}
-(Arrayo) | Respondo: (: (Arrayo), (Listo), (Str) :)
+(Tabelo) | Respondo: (: (Tabelo), (Listo), (Str) :)
 
 
 {% include quiz.html %}

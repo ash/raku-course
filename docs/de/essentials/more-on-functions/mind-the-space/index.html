@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,30 +121,35 @@ Klammern mit ihren Argumenten hinzu. Verwenden Sie jedoch einen Abstand
 nach <code>for</code> und <code>if</code>.</p>
 <h2 id="lange-geschichte">Lange Geschichte</h2>
 <p>Nehmen wir eine einfache Funktion:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Beachten Sie zunächst das Fehlen von Leerzeichen zwischen dem Namen
 der Funktion und den öffnenden Klammern, die die Parameter enthalten.
 Einige Codierungsstile in anderen Sprachen erfordern dort möglicherweise
 ein Leerzeichen. Raku ist damit einverstanden, aber dies ist keine
 Praxis, der man folgen sollte:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Auf der Aufrufseite ist das Fehlen von Leerzeichen wichtig. Wenn Sie
 die Funktion aufrufen und die Klammern weglassen, ist das Leerzeichen
 nach dem Namen der Funktion unvermeidlich:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
 
 <p>Aber wenn Sie Klammern hinzufügen, dürfen Sie kein Leerzeichen davor
 haben. Dies ist ein korrekter Aufruf:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Und dieser Aufruf ist falsch:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Solcher Code verursacht eine Ausnahme:</p>
 <pre><code>Zu wenige Positionsparameter übergeben; erwartet wurden 2 Argumente, aber es wurde 1 übergeben
@@ -155,11 +160,12 @@ Versuch, ein einzelnes Argument <code>(5, 6)</code> an die Funktion zu
 übergeben. Sie können den Typ dieses Arguments leicht überprüfen, wenn
 Sie die Funktion so umschreiben, dass sie nur ein Argument
 akzeptiert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
 }
 
-<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
 
 <p>Das Aufrufen von <code>f (5, 6)</code> bedeutet also, dass wir eine
 <a href="/de/essentials/positionals/lists">Liste</a> an die Funktion
@@ -170,9 +176,10 @@ benötigt wird</h2>
 wenn Sie Klammern mit einem der Schlüsselwörter wie <code>if</code> oder
 <code>for</code> oder <code>loop</code> verwenden. Der folgende Code ist
 falsch:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
-    <span class="nb">say</span> <span class="s">'OK'</span>;
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
 
 <p>Die Fehlermeldung erklärt, was falsch ist:</p>
 <pre><code>===SORRY!===
@@ -188,7 +195,8 @@ erforderlich, sodass das Problem nicht auftreten kann, wenn Sie sie
 nicht verwenden. Aber in einigen Fällen, wie zum Beispiel bei
 <code>loop</code>, müssen Sie sie haben, und das Leerzeichen wird
 obligatorisch:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
+</pre></div>
 
 <p>In diesem Code passiert dasselbe: <code>loop(...)</code> wird vom
 Compiler als Funktionsaufruf verstanden. Fügen Sie ein Leerzeichen
@@ -207,24 +215,26 @@ Parameter</a> →</p>
 <p><br /> 💪 Oder springen Sie direkt <a
 href="/de/essentials/more-on-functions/exercises/factorial-with-multi-functions">zur
 Übung zu diesem Abschnitt</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/more-on-functions/mind-the-space">English</a> •
-<strong>Deutsch</strong> • <a
-href="/es/essentials/more-on-functions/mind-the-space">Español</a> • <a
-href="/it/essentials/more-on-functions/mind-the-space">Italiano</a> • <a
-href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a> • <a
-href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a> •
-<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
-• <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
-• <a
-href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/essentials/more-on-functions/mind-the-space">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/essentials/more-on-functions/mind-the-space">Esperanto</a>
+<a href="/es/essentials/more-on-functions/mind-the-space">Español</a>
+<a href="/it/essentials/more-on-functions/mind-the-space">Italiano</a>
+<a href="/la/essentials/more-on-functions/mind-the-space">Latina</a>
+<a href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a>
+<a href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a>
+<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
+<a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
+<a href="/uk/essentials/more-on-functions/mind-the-space">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -21,7 +21,7 @@ Wat drukt het volgende programma af?
 
 <div class="extended-explanation">
 
-Een pointy block kan meerdere parameters hebben: `-> $a, $b` accepteert er twee. Hier wordt het helemaal niet in een variabele opgeslagen -- het wordt tussen haakjes gezet en direct aangeroepen met `(3, 4)`, waarbij `$a` wordt gebonden aan `3` en `$b` aan `4`. Het blok vermenigvuldigt ze om `12` te geven, en de postfix `.say` drukt het af.
+Een pointy block kan meerdere parameters hebben: `-> $a, $b` accepteert er twee. Hier wordt het helemaal niet in een variabele opgeslagen — het wordt tussen haakjes gezet en direct aangeroepen met `(3, 4)`, waarbij `$a` wordt gebonden aan `3` en `$b` aan `4`. Het blok vermenigvuldigt ze om `12` te geven, en de postfix `.say` drukt het af.
 
 </div>
 

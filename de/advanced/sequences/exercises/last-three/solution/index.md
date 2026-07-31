@@ -24,6 +24,6 @@ say (5, 10 ... 50).tail(3);
 
 1. Die Startwerte `5, 10` setzen einen arithmetischen Schritt von fünf, und die Sequenz läuft bis zu ihrem Endpunkt `50`.
 
-1. `tail(3)` gibt die letzten drei Werte der endlichen Sequenz zurück -- `40, 45, 50` -- genau wie `head` die ersten paar zurückgeben würde.
+1. `tail(3)` gibt die letzten drei Werte der endlichen Sequenz zurück — `40, 45, 50` — genau wie `head` die ersten paar zurückgeben würde.
 
 {% include nav.html %}

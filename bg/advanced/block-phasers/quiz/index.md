@@ -8,10 +8,10 @@ translations_gpt:
 Кога се изпълнява кодът вътре в блока `LEAVE`?
 
 {:.quiz}
-0 | when the block is entered
-1 | when the block is left
-0 | only at compile time
-0 | once before the program starts
+0 | когато се влезе в блока
+1 | когато се излезе от блока
+0 | само по време на компилация
+0 | веднъж, преди програмата да започне
 
 {% include quiz.html %}
 

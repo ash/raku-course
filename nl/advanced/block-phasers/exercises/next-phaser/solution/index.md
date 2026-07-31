@@ -30,7 +30,7 @@ sum so far: 6
 
 ## Opmerkingen
 
-1. De `NEXT`-phaser staat als eerste geschreven, maar wordt aan het *einde* van elke iteratie uitgevoerd -- nadat de body het huidige getal bij `$sum` heeft opgeteld.
+1. De `NEXT`-phaser staat als eerste geschreven, maar wordt aan het *einde* van elke iteratie uitgevoerd — nadat de body het huidige getal bij `$sum` heeft opgeteld.
 
 1. Dus na de eerste doorgang is `$sum` `1`, na de tweede is het `3`, en na de derde is het `6`. `NEXT` is het lus-equivalent van iets uitvoeren tussen iteraties, onderscheiden van `FIRST` (eenmaal aan het begin) en `LAST` (eenmaal aan het einde).
 

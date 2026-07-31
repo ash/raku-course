@@ -6,7 +6,7 @@ title: Mehrzeilige Kommentare
 
 Sobald Sie einen Kommentar hinterlassen möchten, der größer als eine einzelne Zeile ist, können Sie entweder einige einzeilige Kommentare oder einen einzigen mehrzeiligen Kommentar verwenden.
 
-Mehrzeilige Kommentare beginnen mit einer zweistelligen Kombination ``#` `` und werden von einem Paar einschließender Zeichen `( )`, `{ }`, `[ ]` oder deren wiederholten Kopien gefolgt: `(( ))`, `[[[ ]]]` usw.
+Mehrzeilige Kommentare beginnen mit einer zweistelligen Kombination ``#` `` und werden von einem Paar einschließender Zeichen `( )`, `{ }`, `[ ]` oder `< >` oder deren wiederholten Kopien gefolgt: `(( ))`, `[[[ ]]]` usw.
 
 Zum Beispiel:
 

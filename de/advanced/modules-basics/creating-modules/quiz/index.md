@@ -7,10 +7,10 @@ title: Quiz — `is export`
 Ein Modul definiert eine Subroutine ohne den Trait `is export`. Was kann ein Programm, das das Modul verwendet, mit dieser Subroutine tun?
 
 {:.quiz}
-0 | call it like any imported subroutine
-1 | nothing — it stays private to the module
-0 | call it, but only once
-0 | redefine it
+0 | sie wie jede importierte Subroutine aufrufen
+1 | nichts — sie bleibt privat im Modul
+0 | sie aufrufen, aber nur einmal
+0 | sie neu definieren
 
 {% include quiz.html %}
 

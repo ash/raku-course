@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,19 +117,21 @@ objeto; el <code>.^method</code> llama a un método sobre el
 <strong>metaobjeto</strong> del objeto: pregunta algo sobre el tipo en
 lugar de actuar como el tipo.</p>
 <p>Ya conoces <code>.^name</code>, que devuelve el nombre del tipo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="n">name</span>; <span class="c1"># Int</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="nb">name</span>; <span class="c1"># Int</span>
+</pre></div>
 
 <p>Otros metamétodos inspeccionan la estructura de un tipo.
 <code>.^attributes</code> enumera sus atributos y
 <code>.^find_method</code> te dice si un método existe:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Animal</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
-    <span class="k">method</span> <span class="n">speak</span> { <span class="s">'generic'</span> }
+    <span class="k">method</span> <span class="n">speak</span> { <span class="s">&#39;generic&#39;</span> }
 }
 
-<span class="nb">say</span> <span class="n">Animal</span>.^<span class="n">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'speak'</span>);   <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'fly'</span>);     <span class="c1"># False</span></pre></div>
+<span class="nb">say</span> <span class="n">Animal</span>.^<span class="nb">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;speak&#39;</span>);   <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;fly&#39;</span>);     <span class="c1"># False</span>
+</pre></div>
 
 <p><code>.^mro</code> devuelve el <em>method resolution order</em>: la
 cadena de tipos que Raku recorre, en orden, al buscar un método. Es la
@@ -137,7 +139,8 @@ línea de herencia de una clase:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">A</span> {}
 <span class="k">class</span> <span class="n">B</span> <span class="k">is</span> <span class="n">A</span> {}
 
-<span class="nb">say</span> <span class="n">B</span>.^<span class="n">mro</span>.<span class="nb">map</span>(*.^<span class="n">name</span>); <span class="c1"># (B A Any Mu)</span></pre></div>
+<span class="nb">say</span> <span class="n">B</span>.^<span class="nb">mro</span>.<span class="n">map</span>(*.^<span class="nb">name</span>); <span class="c1"># (B A Any Mu)</span>
+</pre></div>
 
 <p><code>B</code> hereda de <code>A</code>, y todo tipo en última
 instancia de <code>Any</code> y <code>Mu</code>, así que una llamada a
@@ -160,6 +163,22 @@ ejercicios de esta sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/oop/mop/meta-methods">English</a>
+<a href="/de/oop/mop/meta-methods">Deutsch</a>
+<a href="/eo/oop/mop/meta-methods">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/oop/mop/meta-methods">Italiano</a>
+<a href="/la/oop/mop/meta-methods">Latina</a>
+<a href="/lv/oop/mop/meta-methods">Latviešu</a>
+<a href="/nl/oop/mop/meta-methods">Nederlands</a>
+<a href="/bg/oop/mop/meta-methods">Български</a>
+<a href="/ru/oop/mop/meta-methods">Русский</a>
+<a href="/uk/oop/mop/meta-methods">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

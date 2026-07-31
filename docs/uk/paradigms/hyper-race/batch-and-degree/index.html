@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,7 +120,8 @@ href="/uk/paradigms/hyper-race">hyper і race 🆕</a></p>
 робітників</h2>
 <p><code>:degree</code> задає, скільки робочих потоків працюють
 одночасно:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25)</span>
+</pre></div>
 
 <p>Типово degree близький до кількості ядер процесора машини — на
 восьмиядерній машині це <code>7</code>, лишаючи одне ядро головній
@@ -131,7 +132,8 @@ href="/uk/paradigms/hyper-race">hyper і race 🆕</a></p>
 елементів за раз</h2>
 <p><code>:batch</code> задає, скільки елементів кожен робітник бере за
 один захід, перш ніж повернутися по нові:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">hyper</span>(:<span class="nb">batch</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25 36)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">hyper</span>(:<span class="n">batch</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25 36)</span>
+</pre></div>
 
 <p>Типовий batch дорівнює <code>64</code>, і розмір є компромісом:</p>
 <ul>
@@ -144,15 +146,17 @@ href="/uk/paradigms/hyper-race">hyper і race 🆕</a></p>
 </ul>
 <p>Обидва можна задати водночас, і на <code>.race</code> так само, як на
 <code>.hyper</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="nb">batch</span>(<span class="mi">3</span>)).<span class="nb">map</span>(*²).<span class="nb">sum</span>; <span class="c1"># 91</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="n">batch</span>(<span class="mi">3</span>)).<span class="n">map</span>(*<span class="n">²</span>).<span class="nb">sum</span>; <span class="c1"># 91</span>
+</pre></div>
 
 <div style="font-size: 85%; opacity: .8;">
 <p>Якщо вам цікаво, які ж типові значення насправді, ви можете зазирнути
 в них через нутрощі Rakudo. Зауважте, що це читає <em>приватний</em>
 атрибут — це не стабільний API, і числа залежать від вашої машини:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>;
-<span class="nb">say</span> <span class="nv">$h</span>.^<span class="n">attributes</span>.<span class="nb">first</span>(*.<span class="n">name</span>.<span class="n">contains</span>(<span class="s">'config'</span>)).<span class="n">get_value</span>(<span class="nv">$h</span>).<span class="nb">raku</span>;
-<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>;
+<span class="nb">say</span> <span class="nv">$h</span>.^<span class="nb">attributes</span>.<span class="nb">first</span>(*.<span class="nb">name</span>.<span class="nb">contains</span>(<span class="s">&#39;config&#39;</span>)).<span class="nb">get_value</span>(<span class="nv">$h</span>).<span class="n">raku</span>;
+<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span>
+</pre></div>
 
 <p>Тут <code>batch</code> дорівнює фіксованому типовому <code>64</code>,
 а <code>degree</code> — <code>7</code>, тобто на одиницю менше за вісім
@@ -186,6 +190,22 @@ href="/uk/paradigms/hyper-race/exercises">до вправ цього
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/paradigms/hyper-race/batch-and-degree">English</a>
+<a href="/de/paradigms/hyper-race/batch-and-degree">Deutsch</a>
+<a href="/eo/paradigms/hyper-race/batch-and-degree">Esperanto</a>
+<a href="/es/paradigms/hyper-race/batch-and-degree">Español</a>
+<a href="/it/paradigms/hyper-race/batch-and-degree">Italiano</a>
+<a href="/la/paradigms/hyper-race/batch-and-degree">Latina</a>
+<a href="/lv/paradigms/hyper-race/batch-and-degree">Latviešu</a>
+<a href="/nl/paradigms/hyper-race/batch-and-degree">Nederlands</a>
+<a href="/bg/paradigms/hyper-race/batch-and-degree">Български</a>
+<a href="/ru/paradigms/hyper-race/batch-and-degree">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

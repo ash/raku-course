@@ -32,7 +32,7 @@ ok 2 - remainder
 
 ## Opmerkingen
 
-1. `plan 2` geeft het aantal aan voordat er een test wordt uitgevoerd, waardoor de regel `1..2` als eerste verschijnt. Als het bestand daarna een ander aantal controles zou uitvoeren, wordt de suite als mislukt gerapporteerd -- een beveiliging die `done-testing` je niet kan bieden.
+1. `plan 2` geeft het aantal aan voordat er een test wordt uitgevoerd, waardoor de regel `1..2` als eerste verschijnt. Als het bestand daarna een ander aantal controles zou uitvoeren, wordt de suite als mislukt gerapporteerd — een beveiliging die `done-testing` je niet kan bieden.
 
 1. `is-deeply` vergelijkt de twee lijsten op exacte, typebewuste gelijkheid. Het sorteren van `3, 1, 2` geeft `1, 2, 3`, wat overeenkomt.
 

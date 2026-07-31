@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,29 +120,33 @@ capturenummer aan te besteden. Gebruik daarvoor vierkante haken
 <p>Groeperen doet ertoe zodra je er een kwantor aan hangt. Een kwantor
 bindt alleen aan het atoom er direct voor, dus het onderstaande patroon
 herhaalt slechts de laatste letter:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abccc&#39;</span> ~~<span class="sr"> / abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span>
+</pre></div>
 
 <p>Alleen de <code>c</code> werd drie keer herhaald. Wikkel het hele
 stuk in <code>[ ]</code> om het geheel te herhalen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abcabcabc&#39;</span> ~~<span class="sr"> / [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span>
+</pre></div>
 
 <p>Nu is <code>[ abc ]</code> één eenheid, en <code>** 3</code> hoort
 bij de groep.</p>
 <p>Omdat <code>[ ]</code> geen captureplek inneemt, blijven de nummers
 gereserveerd voor de delen waar het je werkelijk om gaat. Vergelijk een
 gewone match van sleutel en waarde:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;foo=42&#39;</span> ~~<span class="sr"> / (\w+) &#39;=&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Stel dat de sleutel voorafgegaan kan worden door een woord dat je
 wilt overslaan. Groepeer dat voorvoegsel met <code>[ ]</code> zodat het
 de nummering niet verstoort:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;the foo=42&#39;</span> ~~<span class="sr"> / [ \w+ \s ]? (\w+) &#39;=&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>De optionele <code>[ \w+ \s ]?</code> matchte <code>the</code> maar
 eiste geen capture op, dus is <code>$0</code> nog steeds de sleutel en
@@ -166,6 +170,22 @@ de oefeningen in deze sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/regexes/captures/non-capturing">English</a>
+<a href="/de/regexes/captures/non-capturing">Deutsch</a>
+<a href="/eo/regexes/captures/non-capturing">Esperanto</a>
+<a href="/es/regexes/captures/non-capturing">Español</a>
+<a href="/it/regexes/captures/non-capturing">Italiano</a>
+<a href="/la/regexes/captures/non-capturing">Latina</a>
+<a href="/lv/regexes/captures/non-capturing">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/regexes/captures/non-capturing">Български</a>
+<a href="/ru/regexes/captures/non-capturing">Русский</a>
+<a href="/uk/regexes/captures/non-capturing">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

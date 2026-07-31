@@ -20,7 +20,7 @@ say 'programming'.substr: 0, 3;
 
 <div class="extended-explanation">
 
-De dubbele punt consumeert de *hele* rest van de instructie als argumentenlijst, dus `substr: 0, 3` is hetzelfde als `substr(0, 3)` -- beide argumenten worden doorgegeven. Beginnen bij index `0` en `3` tekens nemen levert `pro` op.
+De dubbele punt consumeert de *hele* rest van de instructie als argumentenlijst, dus `substr: 0, 3` is hetzelfde als `substr(0, 3)` — beide argumenten worden doorgegeven. Beginnen bij index `0` en `3` tekens nemen levert `pro` op.
 
 </div>
 

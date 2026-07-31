@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,16 +116,17 @@ tessera grammaticae. Unaquaeque methodus congruentiam illius tesserae ut
 <code>$/</code> accipit, et <code>make</code> vocat ut valorem adfigat —
 exacte quod clausula inserta agebat, sed ab exemplari seiunctum:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
-}</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
+}
+</pre></div>
 
 <p>Grammatica nunc solum exemplar continet; omnis significatio in
 <code>SumActions</code> habitat. Animadverte quomodo methodi
@@ -136,7 +137,8 @@ summamque eorum facit.</p>
 <p>Ut classe actionum utaris, trade exemplar ad <code>.parse</code> per
 argumentum nominatum <code>actions</code>, deinde effectum summum per
 <code>.made</code> lege:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="k">made</span>; <span class="c1"># 5</span>
+</pre></div>
 
 <p>Dum grammatica analysat, methodus uniuscuiusque tesserae sponte
 currit et valorem ab imo sursum aedificat. Effectus in congruentia summa
@@ -160,6 +162,22 @@ sectionis</a> i.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Haec pagina aliis linguis:">
+<span class="lang-label">Haec pagina aliis linguis:</span>
+<a href="/regexes/action-classes/writing-actions">English</a>
+<a href="/de/regexes/action-classes/writing-actions">Deutsch</a>
+<a href="/eo/regexes/action-classes/writing-actions">Esperanto</a>
+<a href="/es/regexes/action-classes/writing-actions">Español</a>
+<a href="/it/regexes/action-classes/writing-actions">Italiano</a>
+<span class="lang-current">Latina</span>
+<a href="/lv/regexes/action-classes/writing-actions">Latviešu</a>
+<a href="/nl/regexes/action-classes/writing-actions">Nederlands</a>
+<a href="/bg/regexes/action-classes/writing-actions">Български</a>
+<a href="/ru/regexes/action-classes/writing-actions">Русский</a>
+<a href="/uk/regexes/action-classes/writing-actions">Українська</a>
+<a class="lang-about" href="/la/about-translation">De translatione</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
 <p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

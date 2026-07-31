@@ -6,7 +6,7 @@ title: Legante komando-linio argumentojn
 
 La funkcio `MAIN` estas utila ne nur por eksplicite trovi la komencon de la programo, sed ankaŭ pro siaj argumentoj, kiuj ricevas la valorojn pasitajn en la komando-linio.
 
-Estas du manieroj legi komando-liniajn argumentojn. Unu el ili estas per la [`@*ARGS` arrayo](/eo/essentials/positionals/args-array), kiun ni jam uzis. Ni nun ekzamenos la duan metodon.
+Estas du manieroj legi komando-liniajn argumentojn. Unu el ili estas per la [`@*ARGS` tabelo](/eo/essentials/positionals/args-array), kiun ni jam uzis. Ni nun ekzamenos la duan metodon.
 
 Konsideru programon, kiu adicias du nombrojn.
 

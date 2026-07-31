@@ -8,10 +8,10 @@ translations_gpt:
 После выполнения `use Greeting;` какие имена из модуля программа может вызывать напрямую, без указания имени модуля?
 
 {:.quiz}
-0 | every subroutine in the module
-1 | only the ones marked `is export`
-0 | none of them
-0 | only the `our` variables
+0 | все подпрограммы модуля
+1 | только помеченные `is export`
+0 | ни одну из них
+0 | только переменные `our`
 
 {% include quiz.html %}
 

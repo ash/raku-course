@@ -5,13 +5,13 @@ translations_gpt:
 
 {% include menu.html %}
 
-Die `MAIN`-Subroutine eines Programms erfordert ein positionales Argument. Was passiert, wenn das Programm ohne Argumente ausgefuehrt wird?
+Die `MAIN`-Subroutine eines Programms erfordert ein positionales Argument. Was passiert, wenn das Programm ohne Argumente ausgeführt wird?
 
 {:.quiz}
-0 | the body runs with an empty value
-1 | Raku prints an automatically generated usage message
-0 | the program waits for input
-0 | nothing is printed
+0 | der Rumpf läuft mit einem leeren Wert
+1 | Raku gibt eine automatisch erzeugte Benutzungsmeldung aus
+0 | das Programm wartet auf eine Eingabe
+0 | es wird nichts ausgegeben
 
 {% include quiz.html %}
 

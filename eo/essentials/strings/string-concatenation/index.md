@@ -1,5 +1,5 @@
 ---
-title: Stringa concatenado
+title: Ĉena konkatenado
 ---
 
 {% include menu.html %}

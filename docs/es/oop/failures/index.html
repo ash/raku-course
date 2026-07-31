@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,12 +120,13 @@ inmediato. En su lugar devuelve a quien la llamó un objeto especial
 <code>Failure</code>. Un <code>Failure</code> no está definido, así que
 quien llama puede comprobarlo con discreción:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">divide</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">fail</span> <span class="s">'cannot divide by zero'</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
+    <span class="nb">fail</span> <span class="s">&#39;cannot divide by zero&#39;</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
     <span class="k">return</span> <span class="nv">$a</span> / <span class="nv">$b</span>;
 }
 
 <span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">2</span>);         <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
+<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>La llamada que funciona devuelve <code>5</code>. La que falla
 devuelve un <code>Failure</code>, que informa <code>False</code> para
@@ -143,13 +144,15 @@ Antes en esta parte te encontraste dos veces con la misma idea.</p>
 <p>Una <strong>división por cero</strong> produce un valor en silencio y
 solo lanza la excepción cuando realmente lo usas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span> / <span class="mi">0</span>;   <span class="c1"># no error yet</span>
-<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span></pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span>
+</pre></div>
 
 <p>Un <strong>programa externo que falla</strong> devuelve un
 <code>Proc</code> que solo lanza una excepción si lo descartas sin
 manejarlo; guárdalo e inspecciónalo y seguirá siendo un valor
 callado:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span>
+</pre></div>
 
 <p>En cada caso un problema no detiene el programa en el momento en que
 ocurre: se convierte en un valor que puedes comprobar, y solo asciende a
@@ -184,6 +187,22 @@ href="/es/oop/failures/exercises/soft-divide">Recíproco suave</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/oop/failures">English</a>
+<a href="/de/oop/failures">Deutsch</a>
+<a href="/eo/oop/failures">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/oop/failures">Italiano</a>
+<a href="/la/oop/failures">Latina</a>
+<a href="/lv/oop/failures">Latviešu</a>
+<a href="/nl/oop/failures">Nederlands</a>
+<a href="/bg/oop/failures">Български</a>
+<a href="/ru/oop/failures">Русский</a>
+<a href="/uk/oop/failures">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

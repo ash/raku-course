@@ -1,5 +1,5 @@
 ---
-title: Interpolante arrayojn
+title: Interpolante tabelojn
 ---
 
 {% include menu.html %}

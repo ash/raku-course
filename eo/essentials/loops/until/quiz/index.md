@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo — la `until` ripeto'
+title: 'Kvizo — la `until` buklo'
 ---
 
 {% include menu.html %}

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,18 +116,19 @@ the moment, several listeners can follow the same stream at once — and
 each is free to join or leave whenever it likes. Here two listeners
 watch a stream of events: a <code>log</code> that records everything,
 and an <code>alert</code> that joins later and leaves earlier.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$events</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
-<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># first listener joins</span>
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'start'</span>);
+<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># first listener joins</span>
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;start&#39;</span>);
 
-<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># a second listener joins</span>
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'warning'</span>);
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'all clear'</span>);
+<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># a second listener joins</span>
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;warning&#39;</span>);
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;all clear&#39;</span>);
 
 <span class="nv">$log</span>.<span class="nb">close</span>;                                          <span class="c1"># the first listener leaves</span>
-<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'stop'</span>);</pre></div>
+<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;stop&#39;</span>);
+</pre></div>
 
 <p>This prints:</p>
 <div class="highlight"><pre>log:   start
@@ -230,8 +231,24 @@ section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/paradigms/supply-kinds/live-in-action">Deutsch</a>
+<a href="/eo/paradigms/supply-kinds/live-in-action">Esperanto</a>
+<a href="/es/paradigms/supply-kinds/live-in-action">Español</a>
+<a href="/it/paradigms/supply-kinds/live-in-action">Italiano</a>
+<a href="/la/paradigms/supply-kinds/live-in-action">Latina</a>
+<a href="/lv/paradigms/supply-kinds/live-in-action">Latviešu</a>
+<a href="/nl/paradigms/supply-kinds/live-in-action">Nederlands</a>
+<a href="/bg/paradigms/supply-kinds/live-in-action">Български</a>
+<a href="/ru/paradigms/supply-kinds/live-in-action">Русский</a>
+<a href="/uk/paradigms/supply-kinds/live-in-action">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

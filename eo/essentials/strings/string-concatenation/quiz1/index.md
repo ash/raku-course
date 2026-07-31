@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo 1: Concatenado de stringoj'
+title: 'Kvizo 1: Konkatenado de ĉenoj'
 ---
 
 {% include menu.html %}

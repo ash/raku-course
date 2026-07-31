@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,7 +115,8 @@ web</a> / <a href="/es/paradigms/functional">Programación funcional</a>
 único operador con nombre, usa la rutina <code>reduce</code>. Recibe un
 bloque de dos argumentos y lo aplica a lo largo de la lista, arrastrando
 el resultado acumulado:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span>
+</pre></div>
 
 <p>El bloque <code>* + *</code> tiene dos estrellas <a
 href="/es/advanced/whatever">Whatever</a>: la primera es el resultado
@@ -127,12 +128,13 @@ bloque.</p>
 paso. Un bloque con flecha devuelve su última expresión, así que
 <code>$x + $y</code> es a la vez lo que el bloque imprime y el valor que
 devuelve a <code>reduce</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(
     -&gt; <span class="nv">$x</span>, <span class="nv">$y</span> {
         <span class="nb">say</span> <span class="s">&quot;$x + $y&quot;</span>;
         <span class="nv">$x</span> + <span class="nv">$y</span>;
     }
-);</pre></div>
+);
+</pre></div>
 
 <p>Esto imprime:</p>
 <div class="highlight"><pre>1 + 2
@@ -153,7 +155,8 @@ devuelve <code>reduce</code> y lo que <code>say</code> imprime en la
 última línea.</p>
 <p>Como el bloque puede ser cualquier cosa, <code>reduce</code> es más
 general. Por ejemplo, construye un valor paso a paso:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span>
+</pre></div>
 
 <p>Cada paso multiplica el acumulador por diez y añade el dígito
 siguiente, convirtiendo los dígitos sueltos <code>1, 2, 3, 4</code> en
@@ -162,7 +165,8 @@ el número <code>1234</code>.</p>
 lee bien con la forma de <a href="/es/advanced/colon-calls">llamada con
 dos puntos</a>, que prescinde de los paréntesis alrededor del
 bloque:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>: * + *; <span class="c1"># 15</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">reduce:</span> * + *; <span class="c1"># 15</span>
+</pre></div>
 
 <p>En resumen, <code>[op]</code> es la forma rápida para un operador con
 nombre, y <code>reduce</code> es la forma flexible para un bloque
@@ -187,6 +191,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/reduction/reduce-routine">English</a>
+<a href="/de/paradigms/reduction/reduce-routine">Deutsch</a>
+<a href="/eo/paradigms/reduction/reduce-routine">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/reduction/reduce-routine">Italiano</a>
+<a href="/la/paradigms/reduction/reduce-routine">Latina</a>
+<a href="/lv/paradigms/reduction/reduce-routine">Latviešu</a>
+<a href="/nl/paradigms/reduction/reduce-routine">Nederlands</a>
+<a href="/bg/paradigms/reduction/reduce-routine">Български</a>
+<a href="/ru/paradigms/reduction/reduce-routine">Русский</a>
+<a href="/uk/paradigms/reduction/reduce-routine">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

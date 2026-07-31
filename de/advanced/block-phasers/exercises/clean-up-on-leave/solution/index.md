@@ -33,6 +33,6 @@ Cleanup
 
 1. Nachdem `Working` ausgegeben wurde, verlässt `return` die Subroutine sofort, sodass `never reached` nie ausgegeben wird.
 
-1. Obwohl der Rumpf vorzeitig verlassen wurde, wird der `LEAVE`-Phaser beim Verlassen trotzdem ausgelöst und gibt `Cleanup` aus. Diese Garantie ist genau der Grund, warum `LEAVE` der richtige Ort ist, um Ressourcen freizugeben -- er wird ausgeführt, egal wie der Block endet.
+1. Obwohl der Rumpf vorzeitig verlassen wurde, wird der `LEAVE`-Phaser beim Verlassen trotzdem ausgelöst und gibt `Cleanup` aus. Diese Garantie ist genau der Grund, warum `LEAVE` der richtige Ort ist, um Ressourcen freizugeben — er wird ausgeführt, egal wie der Block endet.
 
 {% include nav.html %}

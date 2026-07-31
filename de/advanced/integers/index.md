@@ -13,7 +13,7 @@ say 2 ** 100;
 # 1267650600228229401496703205376
 ```
 
-Dies ist ein exakter Wert, keine Naherung. Das Gleiche gilt fur Produkte grosser Zahlen -- die Fakultat von 50 wird zum Beispiel exakt berechnet:
+Dies ist ein exakter Wert, keine Naherung. Das Gleiche gilt fur Produkte grosser Zahlen — die Fakultat von 50 wird zum Beispiel exakt berechnet:
 
 ```raku
 my $factorial = 1;

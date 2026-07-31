@@ -9,7 +9,7 @@ title: Quiz* — Verwendung der unit-skopierten Definition
 Wählen Sie einen der Deklaratoren, um das Programm korrekt zu machen.
 
 {:.quiz-select}
-unit | (: mein, multi, unit :) `sub MAIN(Str $name);`
+unit | (: my, multi, unit :) `sub MAIN(Str $name);`
 . | `say "Hallo, $name!";`
 
 ## 2

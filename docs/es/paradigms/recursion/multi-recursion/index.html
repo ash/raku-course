@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -124,7 +124,8 @@ convierten en dos subrutinas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
+</pre></div>
 
 <p>El primer candidato coincide solo cuando el argumento es exactamente
 <code>0</code>: ese literal de la firma <em>es</em> el caso base.
@@ -149,7 +150,8 @@ Fibonacci necesita dos:</p>
 <span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
 
-<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span></pre></div>
+<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span>
+</pre></div>
 
 <p>Cada caso base es su propio candidato de una línea, y el candidato
 recursivo se ocupa de todo lo demás, sin condicionales anidados.</p>
@@ -157,10 +159,11 @@ recursivo se ocupa de todo lo demás, sin condicionales anidados.</p>
 Cuando el caso base cubre un <em>rango</em> — «<code>$n</code> es
 <code>1</code> o menos» —, usa en su lugar una restricción
 <code>where</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="n">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span>
+</pre></div>
 
 <p>El candidato restringido es más específico, así que Raku lo prueba
 primero; el candidato simple <code>$n</code> recoge todo lo demás.</p>
@@ -191,6 +194,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/recursion/multi-recursion">English</a>
+<a href="/de/paradigms/recursion/multi-recursion">Deutsch</a>
+<a href="/eo/paradigms/recursion/multi-recursion">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/recursion/multi-recursion">Italiano</a>
+<a href="/la/paradigms/recursion/multi-recursion">Latina</a>
+<a href="/lv/paradigms/recursion/multi-recursion">Latviešu</a>
+<a href="/nl/paradigms/recursion/multi-recursion">Nederlands</a>
+<a href="/bg/paradigms/recursion/multi-recursion">Български</a>
+<a href="/ru/paradigms/recursion/multi-recursion">Русский</a>
+<a href="/uk/paradigms/recursion/multi-recursion">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

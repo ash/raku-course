@@ -4,21 +4,21 @@ title: 'Quiz: `if`'
 
 {% include menu.html %}
 
-Complete the following programs.
+Vul de volgende programma’s aan.
 
 ## 1
 
-This program has to check if the age is 21 years or more.
+Dit programma moet controleren of de leeftijd 21 jaar of meer is.
 
 {:.quiz-code}
 . | my $age = 24;
->= { | if $age ␣␣ 21 ␣ | Both `>=` and `≥` can be used here.
+>= { | if $age ␣␣ 21 ␣ | Zowel `>=` als `≥` kunnen hier worden gebruikt.
 . | &nbsp;&nbsp;&nbsp;&nbsp;say 'We can sell it to you.';
 } | ␣
 
 ## 2
 
-In this program, you have to check if `$x` is between 10 and 15 (exclusive).
+In dit programma moet je controleren of `$x` tussen 10 en 15 ligt (exclusief de grenzen).
 
 {:.quiz-code}
 . | my $x = 12.3;

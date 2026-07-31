@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,22 +110,23 @@
 input/output ed eccezioni</a> / <a href="/it/oop/input-and-output">Input
 e output</a> / <a href="/it/oop/external-programs">Eseguire programmi
 esterni 🆕</a> / <a
-href="/it/oop/external-programs/exercises">Esercizi</a> / <a
+href="/it/oop/external-programs/exercises">Exercises</a> / <a
 href="/it/oop/external-programs/exercises/read-env">Passate una
 variabile a un processo figlio</a></p>
 <h1 id="soluzione-passate-una-variabile-a-un-processo-figlio">Soluzione:
 Passate una variabile a un processo figlio</h1>
 <p>Ecco una possibile soluzione del compito.</p>
 <h2 id="codice">Codice</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$file</span> = <span class="s">'notes.txt'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$file</span> = <span class="s">&#39;notes.txt&#39;</span>;
 <span class="nb">spurt</span> <span class="nv">$file</span>, <span class="s">&quot;one\ntwo\nthree\n&quot;</span>;
 
-<span class="nv">%*ENV</span><span class="s">&lt;NOTES&gt;</span> = <span class="nv">$file</span>;
+<span class="vg">%*ENV&lt;NOTES&gt;</span> = <span class="nv">$file</span>;
 
-<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">'wc -l &lt; &quot;$NOTES&quot;'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="nb">trim</span>;
+<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">&#39;wc -l &lt; &quot;$NOTES&quot;&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">trim</span>;
 
-<span class="nb">unlink</span> <span class="nv">$file</span>;</pre></div>
+<span class="nb">unlink</span> <span class="nv">$file</span>;
+</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/oop/external-programs/read-env.raku">read-env.raku</a>.</p>
@@ -155,6 +156,22 @@ href="/it/oop/exceptions">Eccezioni</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/oop/external-programs/exercises/read-env/solution">English</a>
+<a href="/de/oop/external-programs/exercises/read-env/solution">Deutsch</a>
+<a href="/eo/oop/external-programs/exercises/read-env/solution">Esperanto</a>
+<a href="/es/oop/external-programs/exercises/read-env/solution">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/oop/external-programs/exercises/read-env/solution">Latina</a>
+<a href="/lv/oop/external-programs/exercises/read-env/solution">Latviešu</a>
+<a href="/nl/oop/external-programs/exercises/read-env/solution">Nederlands</a>
+<a href="/bg/oop/external-programs/exercises/read-env/solution">Български</a>
+<a href="/ru/oop/external-programs/exercises/read-env/solution">Русский</a>
+<a href="/uk/oop/external-programs/exercises/read-env/solution">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

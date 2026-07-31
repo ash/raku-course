@@ -1,5 +1,5 @@
 ---
-title: Stringa longo
+title: Ĉena longo
 ---
 
 {% include menu.html %}

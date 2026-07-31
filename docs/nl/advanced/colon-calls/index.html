@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,17 +113,19 @@ href="/nl/advanced/subroutines">Subroutines</a></p>
 punt</h1>
 <p>Wanneer je een methode of een subroutine aanroept, zet je de
 argumenten meestal tussen haakjes: <code>@a.grep(* &gt; 5)</code>. Raku
-biedt een tweede vorm – zet een <strong>dubbele punt</strong> na de
+biedt een tweede vorm — zet een <strong>dubbele punt</strong> na de
 naam, en alles na de dubbele punt wordt de argumentenlijst, helemaal
 zonder haakjes:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>De dubbele punt in <code>grep:</code> doet hetzelfde als haakjes
 zouden doen: <code>(1..10).grep: * %% 2</code> betekent precies
 <code>(1..10).grep(* %% 2)</code>. De twee vormen zijn onderling
 verwisselbaar:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
+</pre></div>
 
 <p>De dubbele-puntvorm is het prettigst bij methoden die een
 <strong>blok</strong> of een <a
@@ -132,12 +134,13 @@ het een laag nesting wegneemt. Vergelijk:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># haakjes om het blok</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dubbele punt — geen sluithaakje nodig</span></pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dubbele punt — geen sluithaakje nodig</span>
+</pre></div>
 
 <p>Beide printen <code>(3 2 1)</code>, maar de versie met de dubbele
 punt leest overzichtelijker, vooral wanneer het blok lang is.</p>
 <p>Dit is het methode-aanroep equivalent van de aanroep zonder haakjes
-die je al kent van lijstoperatoren zoals <code>say 1, 2, 3</code> – daar
+die je al kent van lijstoperatoren zoals <code>say 1, 2, 3</code> — daar
 neemt <code>say</code> alles erna als argumenten. De enige regel om te
 onthouden is dat de dubbele-puntvorm de <strong>rest van de
 instructie</strong> als argumenten consumeert, dus hij moet aan het
@@ -147,13 +150,14 @@ instructie</strong> als argumenten consumeert, dus hij moet aan het
 ketenen. Als je meer methoden wilt aanroepen, gebruik dan de vorm met
 haakjes of groepeer de delen van de hele expressie om het duidelijk te
 maken:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
+</pre></div>
 
 <p>Let op: combineer de dubbele punt <strong>niet</strong> met haakjes
 als <code>.grep:( ... )</code>. Die schrijfwijze botst met de
 handtekening-literaal-syntaxis <code>:( ... )</code> en kan niet worden
 geparseerd. Gebruik ofwel <code>.grep( ... )</code> ofwel
-<code>.grep: ...</code> – het een of het ander, niet allebei.</p>
+<code>.grep: ...</code> — het een of het ander, niet allebei.</p>
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
 <p>Maak de 1 quiz over de inhoud van dit onderwerp.</p>
@@ -183,6 +187,22 @@ dubbele-punt-map</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/advanced/colon-calls">English</a>
+<a href="/de/advanced/colon-calls">Deutsch</a>
+<a href="/eo/advanced/colon-calls">Esperanto</a>
+<a href="/es/advanced/colon-calls">Español</a>
+<a href="/it/advanced/colon-calls">Italiano</a>
+<a href="/la/advanced/colon-calls">Latina</a>
+<a href="/lv/advanced/colon-calls">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/advanced/colon-calls">Български</a>
+<a href="/ru/advanced/colon-calls">Русский</a>
+<a href="/uk/advanced/colon-calls">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

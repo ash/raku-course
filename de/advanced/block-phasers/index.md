@@ -8,7 +8,7 @@ Neben den programmweiten Phasern hat Raku auch Phaser, die an den Lebenszyklus e
 
 ## Einen Block betreten und verlassen
 
-Der `ENTER`-Phaser wird jedes Mal ausgeführt, wenn die Ausführung einen Block betritt, und der `LEAVE`-Phaser wird jedes Mal ausgeführt, wenn sie ihn verlässt -- egal in welcher Zeile sie geschrieben stehen:
+Der `ENTER`-Phaser wird jedes Mal ausgeführt, wenn die Ausführung einen Block betritt, und der `LEAVE`-Phaser wird jedes Mal ausgeführt, wenn sie ihn verlässt — egal in welcher Zeile sie geschrieben stehen:
 
 ```raku
 say 'before block';
@@ -32,7 +32,7 @@ after block
 
 `LEAVE` ist besonders nützlich, weil er auch dann ausgeführt wird, wenn der Block vorzeitig verlassen wird, was ihn zu einem zuverlässigen Ort macht, um eine Ressource freizugeben.
 
-Ein Phaser kann einen vollständigen `{ }`-Block anstelle einer einzelnen Anweisung enthalten, und du kannst mehrere davon einrichten. Wenn ein Block mehr als einen `LEAVE` hat, werden sie in umgekehrter Reihenfolge ausgelöst -- der zuletzt registrierte wird zuerst ausgeführt, sodass der Block wie ein Stapel abgebaut wird:
+Ein Phaser kann einen vollständigen `{ }`-Block anstelle einer einzelnen Anweisung enthalten, und du kannst mehrere davon einrichten. Wenn ein Block mehr als einen `LEAVE` hat, werden sie in umgekehrter Reihenfolge ausgelöst — der zuletzt registrierte wird zuerst ausgeführt, sodass der Block wie ein Stapel abgebaut wird:
 
 ```raku
 say 'open A';
@@ -60,7 +60,7 @@ close A
 done
 ```
 
-Diese Last-in-first-out-Reihenfolge ist genau das, was du für Aufräumarbeiten brauchst: Was zuletzt eingerichtet wurde, wird zuerst abgebaut. Der programmweite `END`-Phaser verhält sich genauso -- mehrere `END`-Blöcke werden ebenfalls in umgekehrter Reihenfolge ihrer Niederschrift ausgeführt.
+Diese Last-in-first-out-Reihenfolge ist genau das, was du für Aufräumarbeiten brauchst: Was zuletzt eingerichtet wurde, wird zuerst abgebaut. Der programmweite `END`-Phaser verhält sich genauso — mehrere `END`-Blöcke werden ebenfalls in umgekehrter Reihenfolge ihrer Niederschrift ausgeführt.
 
 ## Schleifen-Phaser
 
@@ -88,6 +88,6 @@ body 3
 -- last
 ```
 
-Wie bei den anderen Phasern spielt die Position von `FIRST`, `NEXT` und `LAST` im Quelltext keine Rolle -- jeder wird zu seinem eigenen Zeitpunkt ausgeführt.
+Wie bei den anderen Phasern spielt die Position von `FIRST`, `NEXT` und `LAST` im Quelltext keine Rolle — jeder wird zu seinem eigenen Zeitpunkt ausgeführt.
 
 {% include nav.html %}

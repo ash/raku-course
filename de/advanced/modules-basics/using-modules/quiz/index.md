@@ -7,10 +7,10 @@ title: Quiz — `use`
 Nachdem ein Programm `use Greeting;` ausgeführt hat, welche Namen aus dem Modul kann es direkt aufrufen, ohne sie mit dem Modulnamen zu qualifizieren?
 
 {:.quiz}
-0 | every subroutine in the module
-1 | only the ones marked `is export`
-0 | none of them
-0 | only the `our` variables
+0 | jede Subroutine im Modul
+1 | nur die mit `is export` markierten
+0 | keine davon
+0 | nur die `our`-Variablen
 
 {% include quiz.html %}
 

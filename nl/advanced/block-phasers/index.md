@@ -9,7 +9,7 @@ Naast de programma-brede phasers heeft Raku phasers die gekoppeld zijn aan de le
 
 ## Een blok betreden en verlaten
 
-De `ENTER`-phaser wordt uitgevoerd telkens wanneer de uitvoering een blok betreedt, en de `LEAVE`-phaser wordt uitgevoerd telkens wanneer het blok verlaten wordt -- ongeacht op welke regel ze geschreven staan:
+De `ENTER`-phaser wordt uitgevoerd telkens wanneer de uitvoering een blok betreedt, en de `LEAVE`-phaser wordt uitgevoerd telkens wanneer het blok verlaten wordt — ongeacht op welke regel ze geschreven staan:
 
 ```raku
 say 'before block';
@@ -33,7 +33,7 @@ after block
 
 `LEAVE` is bijzonder nuttig omdat het ook wordt uitgevoerd als het blok vroegtijdig verlaten wordt, wat het een betrouwbare plek maakt om een resource vrij te geven.
 
-Een phaser kan een volledig `{ }`-blok bevatten in plaats van een enkele instructie, en je kunt er meerdere instellen. Wanneer een blok meer dan een `LEAVE` heeft, worden ze in omgekeerde volgorde uitgevoerd -- de laatst geregistreerde wordt als eerste uitgevoerd, zodat het blok als een stapel wordt afgewikkeld:
+Een phaser kan een volledig `{ }`-blok bevatten in plaats van een enkele instructie, en je kunt er meerdere instellen. Wanneer een blok meer dan een `LEAVE` heeft, worden ze in omgekeerde volgorde uitgevoerd — de laatst geregistreerde wordt als eerste uitgevoerd, zodat het blok als een stapel wordt afgewikkeld:
 
 ```raku
 say 'open A';
@@ -61,7 +61,7 @@ close A
 done
 ```
 
-Deze last-in, first-out volgorde is precies wat je wilt voor opruimwerk: wat het meest recent is ingesteld, wordt als eerste afgebroken. De programma-brede `END`-phaser gedraagt zich op dezelfde manier -- meerdere `END`-blokken worden ook in omgekeerde volgorde uitgevoerd ten opzichte van de volgorde waarin ze geschreven zijn.
+Deze last-in, first-out volgorde is precies wat je wilt voor opruimwerk: wat het meest recent is ingesteld, wordt als eerste afgebroken. De programma-brede `END`-phaser gedraagt zich op dezelfde manier — meerdere `END`-blokken worden ook in omgekeerde volgorde uitgevoerd ten opzichte van de volgorde waarin ze geschreven zijn.
 
 ## Lus-phasers
 
@@ -89,6 +89,6 @@ body 3
 -- last
 ```
 
-Net als bij de andere phasers maakt de positie van `FIRST`, `NEXT` en `LAST` in de broncode niet uit -- elk wordt op het eigen moment uitgevoerd.
+Net als bij de andere phasers maakt de positie van `FIRST`, `NEXT` en `LAST` in de broncode niet uit — elk wordt op het eigen moment uitgevoerd.
 
 {% include nav.html %}

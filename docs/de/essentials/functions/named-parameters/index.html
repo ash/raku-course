@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,10 +117,12 @@ Parametern</a> werden <em>benannte</em> Parameter durch ihre Namen
 referenziert.</p>
 <p>Die folgende Funktion nimmt zwei Parameter namens <code>$from</code>
 und <code>$to</code> entgegen.</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
 
 <p>Um die Funktion aufzurufen, müssen Sie die Argumente benennen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Es ist ein Fehler, die Argumente so zu übergeben, als wären sie
 positionsbasiert. Zum Beispiel erzeugt ein Aufruf
@@ -131,9 +133,10 @@ positionsbasiert. Zum Beispiel erzeugt ein Aufruf
 <p>Der Vorteil ist, dass benannte Argumente in beliebiger Reihenfolge
 aufgelistet werden können. Die folgenden beiden Aufrufe sind völlig
 gleichwertig:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="n">to</span> =&gt; <span class="mi">10</span>, <span class="n">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span></pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <h2 id="variablen-übergeben">Variablen übergeben</h2>
 <p>Wenn der Wert, den Sie an eine Funktion übergeben möchten, in einer
@@ -142,24 +145,28 @@ Variablen gespeichert ist, deren Name mit dem Namen des Parameters
 Tippen reduziert:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
 <span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Dies ist ähnlich wie ein ausführlicher Aufruf:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$from</span>, <span class="n">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Auch hier ist die Reihenfolge nicht streng:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Wenn der Name der Variablen vom Namen des Parameters abweicht,
 verwenden Sie eine der Möglichkeiten, ein Paar zu übergeben:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$a</span>, <span class="n">to</span> =&gt; <span class="nv">$b</span>);
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
 
 <span class="c1"># oder:</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
+</pre></div>
 
 <section id="praxis" class="practice" data-markdown="1">
 <h2>Praxis</h2>
@@ -179,23 +186,26 @@ Parameter</a> →</p>
 <p><br /> 💪 Oder springen Sie direkt <a
 href="/de/essentials/functions/exercises">zu den Übungen dieses
 Abschnitts</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/functions/named-parameters">English</a> •
-<strong>Deutsch</strong> • <a
-href="/es/essentials/functions/named-parameters">Español</a> • <a
-href="/it/essentials/functions/named-parameters">Italiano</a> • <a
-href="/lv/essentials/functions/named-parameters">Latviešu</a> • <a
-href="/nl/essentials/functions/named-parameters">Nederlands</a> • <a
-href="/bg/essentials/functions/named-parameters">Български</a> • <a
-href="/ru/essentials/functions/named-parameters">Русский</a> • <a
-href="/uk/essentials/functions/named-parameters">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/essentials/functions/named-parameters">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/essentials/functions/named-parameters">Esperanto</a>
+<a href="/es/essentials/functions/named-parameters">Español</a>
+<a href="/it/essentials/functions/named-parameters">Italiano</a>
+<a href="/la/essentials/functions/named-parameters">Latina</a>
+<a href="/lv/essentials/functions/named-parameters">Latviešu</a>
+<a href="/nl/essentials/functions/named-parameters">Nederlands</a>
+<a href="/bg/essentials/functions/named-parameters">Български</a>
+<a href="/ru/essentials/functions/named-parameters">Русский</a>
+<a href="/uk/essentials/functions/named-parameters">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

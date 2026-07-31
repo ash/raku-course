@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,8 +123,9 @@ hele uitdrukking een functie — een <code>WhateverCode</code> — waarin de
 ster voor het argument staat:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
-<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="nb">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span>
+</pre></div>
 
 <p><code>* * 2</code> is een functie die haar ene argument met twee
 vermenigvuldigt. Daarom werkt <code>(1..5).map(* * 2)</code>:
@@ -136,7 +137,8 @@ schrijven die je ook als blok zou kunnen schrijven. Deze drie zijn
 gelijkwaardig:</p>
 <div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
 { <span class="nv">$_</span> * <span class="mi">2</span> }
--&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }
+</pre></div>
 
 <p>De Whatever-vorm noemt geen parameter; de blokvorm gebruikt de
 onderwerpsvariabele <code>$_</code>; de pijlvorm noemt <code>$x</code>.
@@ -147,9 +149,10 @@ volstaat het om hem te lezen als een derde manier om dezelfde functie
 met één argument te schrijven. Voor een eenvoudige uitdrukking is de
 ster het compactst, en daarom is hij zo gebruikelijk bij
 <code>map</code>, <code>grep</code> en <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>Grijp naar een <strong>blok</strong> wanneer de logica meer dan één
 uitdrukking nodig heeft, of wanneer een duidelijker benoemde parameter
@@ -161,7 +164,8 @@ volgorde. Twee sterren maken dus een functie met <strong>twee</strong>
 argumenten:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
-<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span>
+</pre></div>
 
 <p>Hier is <code>* + *</code> een functie met twee argumenten die ze
 optelt — bijvoorbeeld een lopend totaal en het volgende element.</p>
@@ -171,7 +175,8 @@ of geen grens. Twee alledaagse toepassingen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
 <span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * is de lengte van de array, dus *-1 is de laatste index</span>
 
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* is een open bereik</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* is een open bereik</span>
+</pre></div>
 
 <p>In <code>@a[*-1]</code> staat de ster voor het aantal elementen, en
 in <code>1..*</code> staat hij voor “geen bovengrens”. Of hij nu een
@@ -206,6 +211,22 @@ met map</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/advanced/whatever">English</a>
+<a href="/de/advanced/whatever">Deutsch</a>
+<a href="/eo/advanced/whatever">Esperanto</a>
+<a href="/es/advanced/whatever">Español</a>
+<a href="/it/advanced/whatever">Italiano</a>
+<a href="/la/advanced/whatever">Latina</a>
+<a href="/lv/advanced/whatever">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/advanced/whatever">Български</a>
+<a href="/ru/advanced/whatever">Русский</a>
+<a href="/uk/advanced/whatever">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

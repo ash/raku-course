@@ -1,5 +1,5 @@
 ---
-title: Kvizo 1 — Haxoj
+title: Kvizo 1 — Haketmapoj
 ---
 
 {% include menu.html %}

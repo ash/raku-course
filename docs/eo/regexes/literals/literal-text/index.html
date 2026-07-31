@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,8 +114,9 @@ href="/eo/regexes/literals">Literaloj kaj signoklasoj</a></p>
 <p>La plej simpla ŝablono estas sekvenco de literoj kaj ciferoj. Tia
 ŝablono kongruas ekzakte kun tiuj signoj, en tiu ordo, ie ajn en la
 ĉeno:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
+</pre></div>
 
 <p>La kongruo ne devas komenciĝi ĉe la komenco de la ĉeno — la
 regulesprima motoro serĉas la ŝablonon ĉe ĉiu pozicio, ĝis ĝi trovas
@@ -127,23 +128,26 @@ kun kiu ĝi kongruis, envolvitan en la angulaj krampoj <code>｢ ｣</code>.
 Se la ŝablono ne ĉeestas, la kongruo anstataŭe malsukcesas: la sagaca
 kongruigo produktas <code>Nil</code>, nedifinitan valoron, kiu
 kalkuliĝas kiel malvera en Boolea testo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
+</pre></div>
 
 <p>Ene de regulesprimo, spacoj <strong>ne</strong> estas signifaj
 defaŭlte — ili estas tie nur por fari la ŝablonon legebla. Do
 <code>/ ell /</code> kongruas ekzakte kun tio, kun kio
 <code>/ell/</code> kongruus; la ĉirkaŭaj spacoj estas simple
 ignorataj:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
+</pre></div>
 
 <p>Ĉar spaco en la ŝablono estas ignorata, kongruigi <em>efektivan</em>
 spacon postulas <strong>citilojn</strong>: kion ajn vi metas en citilojn
 estas kongruigata laŭvorte. Tiu sama citado estas la maniero kongruigi
 interpunkcian signon, kiu alie havus specialan signifon en
 regulesprimo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
+</pre></div>
 
 <p>(Por blankspaco vi ankaŭ povas uzi la klason <code>\s</code>, kiun vi
 baldaŭ renkontos.)</p>
@@ -156,6 +160,22 @@ ekzercoj de ĉi tiu sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/regexes/literals/literal-text">English</a>
+<a href="/de/regexes/literals/literal-text">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/regexes/literals/literal-text">Español</a>
+<a href="/it/regexes/literals/literal-text">Italiano</a>
+<a href="/la/regexes/literals/literal-text">Latina</a>
+<a href="/lv/regexes/literals/literal-text">Latviešu</a>
+<a href="/nl/regexes/literals/literal-text">Nederlands</a>
+<a href="/bg/regexes/literals/literal-text">Български</a>
+<a href="/ru/regexes/literals/literal-text">Русский</a>
+<a href="/uk/regexes/literals/literal-text">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

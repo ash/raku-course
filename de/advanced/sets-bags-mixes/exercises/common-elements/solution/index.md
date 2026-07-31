@@ -28,7 +28,7 @@ False
 
 ## Kommentare
 
-1. Der Durchschnitt `$a ∩ $b` ist selbst ein Set -- hier `{banana, cherry}` -- und hat daher `2` Elemente. Wenn du ASCII bevorzugst, schreibe `(&)` anstelle von `∩`.
+1. Der Durchschnitt `$a ∩ $b` ist selbst ein Set — hier `{banana, cherry}` — und hat daher `2` Elemente. Wenn du ASCII bevorzugst, schreibe `(&)` anstelle von `∩`.
 
 1. Da der Durchschnitt ein Set ist, kannst du die Zugehoerigkeitsfrage mit `∈` stellen. `apple` ist nur im ersten Set enthalten, also ist es nicht im Durchschnitt, und der Test gibt `False` zurück.
 

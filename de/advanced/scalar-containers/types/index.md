@@ -25,7 +25,7 @@ $value = 42
 $value = "forty-two"
 ```
 
-Zunächst ist die Variable leer, und `dd` meldet ihren Wert als `Any` -- den undefinierten Basiswert, mit dem ein untypisierter Container beginnt. Nach den Zuweisungen zeigt `dd` die Ganzzahl und dann den String.
+Zunächst ist die Variable leer, und `dd` meldet ihren Wert als `Any` — den undefinierten Basiswert, mit dem ein untypisierter Container beginnt. Nach den Zuweisungen zeigt `dd` die Ganzzahl und dann den String.
 
 Beachte, dass `dd` hier keinen Typ vor dem Namen ausgibt. Ein untypisierter Container legt sich auf keinen Typ fest, sodass nur der Wert angezeigt wird. Wie du im nächsten Thema sehen wirst, verhält sich [ein Container mit deklariertem Typ](/de/advanced/scalar-containers/type-constraints) anders.
 

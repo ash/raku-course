@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,16 +117,17 @@ como <code>$/</code> y llama a <code>make</code> para adjuntar un valor:
 exactamente lo que hacía el bloque en línea, pero mantenido aparte del
 patrón:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
-}</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
+}
+</pre></div>
 
 <p>La gramática contiene ahora solo el patrón; todo el significado vive
 en <code>SumActions</code>. Fíjate en cómo cooperan los métodos:
@@ -136,7 +137,8 @@ en <code>SumActions</code>. Fíjate en cómo cooperan los métodos:
 <p>Para usar la clase de acciones, pasa una instancia a
 <code>.parse</code> con el argumento con nombre <code>actions</code> y
 lee después el resultado de arriba con <code>.made</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="k">made</span>; <span class="c1"># 5</span>
+</pre></div>
 
 <p>Mientras la gramática analiza, el método de cada token se ejecuta
 automáticamente y construye el valor de abajo arriba. El resultado de la
@@ -161,6 +163,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/regexes/action-classes/writing-actions">English</a>
+<a href="/de/regexes/action-classes/writing-actions">Deutsch</a>
+<a href="/eo/regexes/action-classes/writing-actions">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/regexes/action-classes/writing-actions">Italiano</a>
+<a href="/la/regexes/action-classes/writing-actions">Latina</a>
+<a href="/lv/regexes/action-classes/writing-actions">Latviešu</a>
+<a href="/nl/regexes/action-classes/writing-actions">Nederlands</a>
+<a href="/bg/regexes/action-classes/writing-actions">Български</a>
+<a href="/ru/regexes/action-classes/writing-actions">Русский</a>
+<a href="/uk/regexes/action-classes/writing-actions">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

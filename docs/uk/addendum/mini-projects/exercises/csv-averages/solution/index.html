@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -109,18 +109,18 @@
           <p><a href="/uk/">Курс Raku</a> / <a href="/uk/addendum">Додаток 🆕</a>
 / <a href="/uk/addendum/bringing-it-together">Збираємо все разом</a> /
 <a href="/uk/addendum/mini-projects">Мішані міні-проєкти</a> / <a
-href="/uk/addendum/mini-projects/exercises">Вправи</a> / <a
+href="/uk/addendum/mini-projects/exercises">Exercises</a> / <a
 href="/uk/addendum/mini-projects/exercises/csv-averages">Оцінки з рядків
 CSV</a></p>
 <h1 id="розвязання-оцінки-з-рядків-csv">Розв’язання: Оцінки з рядків
 CSV</h1>
 <p>Ось одне з можливих розв’язань задачі.</p>
 <h2 id="код">Код</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">'Anna,90'</span>, <span class="s">'Bob,72'</span>, <span class="s">'Cara,84'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">&#39;Anna,90&#39;</span>, <span class="s">&#39;Bob,72&#39;</span>, <span class="s">&#39;Cara,84&#39;</span>;
 <span class="k">my</span> <span class="nv">%score</span>;
 
 <span class="k">for</span> <span class="nv">@lines</span> -&gt; <span class="nv">$line</span> {
-    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">','</span>);
+    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>);
     <span class="nv">%score</span>{<span class="nv">$name</span>} = <span class="nv">$mark</span>.<span class="nb">Int</span>;
 }
 
@@ -129,8 +129,9 @@ CSV</h1>
 
 <span class="nb">say</span> <span class="s">&quot;above average:&quot;</span>;
 <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span> -&gt; <span class="nv">$pair</span> {
-    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="n">value</span> &gt; <span class="nv">$average</span>;
-}</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="nb">value</span> &gt; <span class="nv">$average</span>;
+}
+</pre></div>
 
 <p>🦋 Знайдіть програму у файлі <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/csv-averages.raku">csv-averages.raku</a>.</p>
@@ -151,7 +152,8 @@ above average:
 упорядковує пари, <code>grep</code> залишає ті, що вищі за середнє, а
 <code>map</code> зводить кожну вцілілу пару до її імені, — тож у тілі
 циклу не лишається жодної логіки, лише друк:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="n">value</span> &gt; <span class="nv">$average</span>).<span class="nb">map</span>(*.<span class="n">key</span>);</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="nb">value</span> &gt; <span class="nv">$average</span>).<span class="n">map</span>(*.<span class="nb">key</span>);
+</pre></div>
 
 <p>Читаючи зліва направо, це каже рівно те, що робить: відсортуй, залиш
 тих, хто вищий за середнє, візьми їхні імена. Кожен етап є невеликим
@@ -166,6 +168,22 @@ href="/uk/advanced/whatever">зірочками Whatever</a>, що на льот
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/addendum/mini-projects/exercises/csv-averages/solution">English</a>
+<a href="/de/addendum/mini-projects/exercises/csv-averages/solution">Deutsch</a>
+<a href="/eo/addendum/mini-projects/exercises/csv-averages/solution">Esperanto</a>
+<a href="/es/addendum/mini-projects/exercises/csv-averages/solution">Español</a>
+<a href="/it/addendum/mini-projects/exercises/csv-averages/solution">Italiano</a>
+<a href="/la/addendum/mini-projects/exercises/csv-averages/solution">Latina</a>
+<a href="/lv/addendum/mini-projects/exercises/csv-averages/solution">Latviešu</a>
+<a href="/nl/addendum/mini-projects/exercises/csv-averages/solution">Nederlands</a>
+<a href="/bg/addendum/mini-projects/exercises/csv-averages/solution">Български</a>
+<a href="/ru/addendum/mini-projects/exercises/csv-averages/solution">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

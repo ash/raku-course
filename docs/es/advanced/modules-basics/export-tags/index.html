@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,23 +120,27 @@ nombre y dejar que cada programa elija el conjunto que desea.</p>
 <code>is export</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
+</pre></div>
 
 <p><code>hello</code> no tiene etiqueta, por lo que pertenece al grupo
 predeterminado; <code>goodbye</code> está etiquetada con
 <code>:partings</code>.</p>
 <p>Un simple <code>use</code> importa solo el grupo predeterminado:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span>
+</pre></div>
 
 <p>Nombrar una etiqueta importa ese grupo en su lugar — y, quizás
 sorprendentemente, <em>no</em> el predeterminado también:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span>
+</pre></div>
 
 <p>Pedir <code>:partings</code> te da exactamente ese grupo. Para
 incorporar todo lo que un módulo exporta, usa la etiqueta incorporada
 <code>:ALL</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span>
+</pre></div>
 
 <p>Vale la pena conocer dos etiquetas especiales. <code>:ALL</code> es
 soportada por todos los módulos e importa todas sus exportaciones.
@@ -170,6 +174,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/advanced/modules-basics/export-tags">English</a>
+<a href="/de/advanced/modules-basics/export-tags">Deutsch</a>
+<a href="/eo/advanced/modules-basics/export-tags">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/advanced/modules-basics/export-tags">Italiano</a>
+<a href="/la/advanced/modules-basics/export-tags">Latina</a>
+<a href="/lv/advanced/modules-basics/export-tags">Latviešu</a>
+<a href="/nl/advanced/modules-basics/export-tags">Nederlands</a>
+<a href="/bg/advanced/modules-basics/export-tags">Български</a>
+<a href="/ru/advanced/modules-basics/export-tags">Русский</a>
+<a href="/uk/advanced/modules-basics/export-tags">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

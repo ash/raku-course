@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,17 +113,19 @@ href="/uk/paradigms/await">await</a></p>
 <h1 id="очікування-промиса">Очікування промиса</h1>
 <p><code>await</code> приймає обіцянку, чекає її завершення й повертає
 її результат:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
+</pre></div>
 
 <p>Програма зупиняється на <code>await</code> лише настільки, наскільки
 потрібно, а потім продовжується зі значенням, яке дала обіцянка.</p>
 <p>Отримавши кілька обіцянок, <code>await</code> чекає на
 <strong>всі</strong> й повертає їхні результати в тому самому порядку, у
 якому обіцянки стоять у списку:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
+</pre></div>
 
 <p>Завдання виконуються конкурентно, але <code>await @jobs</code> не
 повертається, доки не завершиться кожне з них. Кожен результат тоді
@@ -134,10 +136,11 @@ href="/uk/paradigms/await">await</a></p>
 <code>await</code>. Це означає, що помилки у фоновій роботі виринають
 там, де ви на неї чекаєте, тож ви можете обробити їх звичними
 <code>try</code> / <code>CATCH</code> із частини про винятки:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
+</pre></div>
 
 <p>Це друкує:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>
@@ -167,6 +170,22 @@ href="/uk/paradigms/await/exercises">до вправ цього розділу</
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/paradigms/await/awaiting-promises">English</a>
+<a href="/de/paradigms/await/awaiting-promises">Deutsch</a>
+<a href="/eo/paradigms/await/awaiting-promises">Esperanto</a>
+<a href="/es/paradigms/await/awaiting-promises">Español</a>
+<a href="/it/paradigms/await/awaiting-promises">Italiano</a>
+<a href="/la/paradigms/await/awaiting-promises">Latina</a>
+<a href="/lv/paradigms/await/awaiting-promises">Latviešu</a>
+<a href="/nl/paradigms/await/awaiting-promises">Nederlands</a>
+<a href="/bg/paradigms/await/awaiting-promises">Български</a>
+<a href="/ru/paradigms/await/awaiting-promises">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

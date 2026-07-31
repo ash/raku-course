@@ -4,7 +4,7 @@ title: Standardwerte
 
 {% include menu.html %}
 
-Wenn eine neue skalare Variable ohne sofortige Zuweisung erstellt wird, enthält der Container dennoch einen Wert -- seinen Standardwert. Der genaue Standardwert hängt vom Typ der Variable ab.
+Wenn eine neue skalare Variable ohne sofortige Zuweisung erstellt wird, enthält der Container dennoch einen Wert — seinen Standardwert. Der genaue Standardwert hängt vom Typ der Variable ab.
 
 Das folgende Programm ist nicht die beste Art, Raku zu verwenden, aber es verdeutlicht den Punkt:
 

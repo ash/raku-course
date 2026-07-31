@@ -8,10 +8,10 @@ translations_gpt:
 След като програмата изпълни `use Greeting;`, кои имена от модула може да извика директно, без да ги квалифицира с името на модула?
 
 {:.quiz}
-0 | every subroutine in the module
-1 | only the ones marked `is export`
-0 | none of them
-0 | only the `our` variables
+0 | всяка подпрограма в модула
+1 | само отбелязаните с `is export`
+0 | нито една от тях
+0 | само променливите `our`
 
 {% include quiz.html %}
 

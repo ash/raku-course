@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,17 +113,19 @@ href="/de/paradigms/await">await</a></p>
 <h1 id="auf-ein-promise-warten">Auf ein Promise warten</h1>
 <p><code>await</code> nimmt ein Promise auf, wartet auf sein Ende und
 liefert sein Ergebnis:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
+</pre></div>
 
 <p>Das Programm hält bei <code>await</code> nur so lange an, wie nötig,
 und läuft dann mit dem Wert weiter, den das Promise erzeugt hat.</p>
 <p>Bei mehreren Promises wartet <code>await</code> auf
 <strong>alle</strong> und liefert ihre Ergebnisse in derselben
 Reihenfolge wie die Promises in der Liste:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
+</pre></div>
 
 <p>Die Aufgaben laufen nebenläufig, doch <code>await @jobs</code> kehrt
 erst zurück, wenn jede fertig ist. Jedes Ergebnis steht danach an
@@ -135,10 +137,11 @@ der Stelle des <code>await</code> erneut. Fehler in Hintergrundarbeit
 tauchen also dort auf, wo Sie darauf warten, sodass Sie sie mit dem
 gewohnten <code>try</code> / <code>CATCH</code> aus dem Teil über
 Ausnahmen behandeln können:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
+</pre></div>
 
 <p>Das gibt aus:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>
@@ -170,6 +173,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/paradigms/await/awaiting-promises">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/paradigms/await/awaiting-promises">Esperanto</a>
+<a href="/es/paradigms/await/awaiting-promises">Español</a>
+<a href="/it/paradigms/await/awaiting-promises">Italiano</a>
+<a href="/la/paradigms/await/awaiting-promises">Latina</a>
+<a href="/lv/paradigms/await/awaiting-promises">Latviešu</a>
+<a href="/nl/paradigms/await/awaiting-promises">Nederlands</a>
+<a href="/bg/paradigms/await/awaiting-promises">Български</a>
+<a href="/ru/paradigms/await/awaiting-promises">Русский</a>
+<a href="/uk/paradigms/await/awaiting-promises">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

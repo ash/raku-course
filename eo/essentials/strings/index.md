@@ -1,5 +1,5 @@
 ---
-title: Stringoj
+title: Ĉenoj
 ---
 
 {% include menu.html %}

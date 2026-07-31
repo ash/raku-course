@@ -1,5 +1,5 @@
 ---
-title: Kvizo 1 — Citante stringajn arrayojn
+title: Kvizo 1 — Citante ĉenajn tabelojn
 ---
 
 {% include menu.html %}

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,18 +113,21 @@ href="/lv/essentials/strings">Virknes</a></p>
 izbēgšana</h1>
 <p>Iedomājieties, ka vēlaties izdrukāt cenu zīmi, un jūs saglabājat gan
 produkta nosaukumu, gan tā cenu skalārajos mainīgajos?</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electricity'</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
 
 <p>Kā izdrukāt zīmi, ja cena ir domāta dolāros? Paredzētā izvade ir:
 <code>Electricity costs $3.14</code>. Dolāra zīme dubultajās pēdiņās ir
 mainīgā interpolācijas indikators. Lai izdrukātu pašu <code>$</code>
 rakstzīmi, jums tā jāizvairās:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
 
 <p>Protams, jūs varat izmantot virknes savienošanu un izvairīties no
 <code>$</code> izvairīšanās:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' costs $'</span> ~ <span class="nv">$price</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
 
 <p>Šis variants izdrukā tieši tādu pašu virkni, bet interpolācija
 izskatās dabiskāk un ir vieglāk lasāma. Ņemiet vērā, ka <code>$</code>
@@ -139,8 +142,9 @@ tabulācija <code>\"</code> | Dubultā pēdiņa <code>\\</code> |
 Atpakaļslīpsvītra</p>
 <p>Tas, kā jūs citējat virkni, nosaka, kā Raku apstrādā speciālās
 rakstzīmes. Apsveriet šos divus piemērus:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'One\nTwo'</span>;
-<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
 
 <p>Ja jūs palaidīsiet šo programmu, jūs redzēsiet, ka pirmā virkne
 parādās tāda, kāda tā ir vienā rindā. Otrā virkne tika sadalīta divās
@@ -154,11 +158,13 @@ parasta divu rakstzīmju secība: <code>\</code> un <code>n</code>.</p>
 <p>Ir interesants izņēmums priekš <code>'</code> un <code>\</code>.
 Vienkāršajās pēdiņās jūs varat izvairīties no vienkāršās pēdiņas,
 pievienojot tai priekšā vēl vienu <code>\</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
 
 <p>Arī atpakaļslīpsvītra ir jāizvairās, ja tai seko vienkāršā
 pēdiņa:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
 
 <section id="prakse" class="practice" data-markdown="1">
 <h2>Prakse</h2>
@@ -177,28 +183,26 @@ Atpakaļslīpsvītra izvades rindā</a> →</p>
 <p><br /> 💪 Vai arī dodieties tieši <a
 href="/lv/essentials/strings/exercises">uz šīs sadaļas
 vingrinājumiem</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/strings/escaping-special-characters">English</a> • <a
-href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
-<a href="/es/essentials/strings/escaping-special-characters">Español</a>
-• <a
-href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
-<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
-• <strong>Latviešu</strong> • <a
-href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
-• <a
-href="/bg/essentials/strings/escaping-special-characters">Български</a>
-• <a
-href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
-<a
-href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/essentials/strings/escaping-special-characters">English</a>
+<a href="/de/essentials/strings/escaping-special-characters">Deutsch</a>
+<a href="/eo/essentials/strings/escaping-special-characters">Esperanto</a>
+<a href="/es/essentials/strings/escaping-special-characters">Español</a>
+<a href="/it/essentials/strings/escaping-special-characters">Italiano</a>
+<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+<a href="/bg/essentials/strings/escaping-special-characters">Български</a>
+<a href="/ru/essentials/strings/escaping-special-characters">Русский</a>
+<a href="/uk/essentials/strings/escaping-special-characters">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

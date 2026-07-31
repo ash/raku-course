@@ -4,7 +4,7 @@ title: De `.raku`-methode
 
 {% include menu.html %}
 
-De derde representatiemethode, `.raku`, geeft een string terug met een **codeachtige** representatie van de waarde -- idealiter een string die je terug in een programma zou kunnen plakken om dezelfde waarde opnieuw te creeren. Elke waarde in Raku heeft deze methode.
+De derde representatiemethode, `.raku`, geeft een string terug met een **codeachtige** representatie van de waarde — idealiter een string die je terug in een programma zou kunnen plakken om dezelfde waarde opnieuw te creeren. Elke waarde in Raku heeft deze methode.
 
 ```raku
 say 42.raku;        # 42
@@ -12,7 +12,7 @@ say 'Raku'.raku;    # "Raku"
 say (1, 2, 3).raku; # (1, 2, 3)
 ```
 
-Merk op hoe de string `'Raku'` terugkomt met aanhalingstekens eromheen, zodat je in een oogopslag een getal van een string kunt onderscheiden -- precies het soort detail dat je wilt bij het debuggen.
+Merk op hoe de string `'Raku'` terugkomt met aanhalingstekens eromheen, zodat je in een oogopslag een getal van een string kunt onderscheiden — precies het soort detail dat je wilt bij het debuggen.
 
 De methode werkt ook voor samengestelde gegevens, inclusief geneste structuren:
 

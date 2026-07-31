@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,28 +121,32 @@ vertelt wie het gestart heeft met een klein geheel getal of het geslaagd
 is: <code>0</code> betekent succes, en elk ander getal is een foutcode
 die het programma zelf kiest. <code>.exitcode</code> geeft je dat
 getal:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
+</pre></div>
 
 <p>Voor de gewone ja/nee-vraag — heeft het gewerkt? — is een
 <code>Proc</code> eenvoudigweg waar wanneer de exitcode <code>0</code>
 is en anders onwaar, zodat je hem rechtstreeks kunt testen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
+</pre></div>
 
 <p>Een <code>Proc</code> onthoudt ook het commando dat hij gestart
 heeft, in <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
+</pre></div>
 
 <p>Eén ding om op te letten: als een commando mislukt en je de
 teruggegeven <code>Proc</code> eenvoudigweg <strong>negeert</strong>,
 werpt Raku een exceptie in plaats van de mislukking onopgemerkt te laten
 passeren:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
-<span class="c1"># dies: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
+<span class="c1"># dies: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
+</pre></div>
 
 <p>Omdat een exit ongelijk aan nul meestal betekent dat er iets misging,
 werpt een mislukkende <code>Proc</code> die weggegooid wordt zodra hij
@@ -150,8 +154,9 @@ buiten bereik raakt. De aanleiding is het <em>weggooien</em> van het
 resultaat, niet het negeren van de exitcode: de <code>Proc</code> gewoon
 in een variabele bewaren is al genoeg om de exceptie te vermijden, ook
 als je er nooit meer naar kijkt.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># no error, even though it failed</span>
-<span class="c1"># …and $proc is never used again</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># no error, even though it failed</span>
+<span class="c1"># …and $proc is never used again</span>
+</pre></div>
 
 <p>Dus als je <em>verwacht</em> dat een commando kan mislukken, bewaar
 dan zijn <code>Proc</code> en kijk naar <code>.exitcode</code> (of test
@@ -176,6 +181,22 @@ sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/oop/external-programs/the-proc-object">English</a>
+<a href="/de/oop/external-programs/the-proc-object">Deutsch</a>
+<a href="/eo/oop/external-programs/the-proc-object">Esperanto</a>
+<a href="/es/oop/external-programs/the-proc-object">Español</a>
+<a href="/it/oop/external-programs/the-proc-object">Italiano</a>
+<a href="/la/oop/external-programs/the-proc-object">Latina</a>
+<a href="/lv/oop/external-programs/the-proc-object">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/oop/external-programs/the-proc-object">Български</a>
+<a href="/ru/oop/external-programs/the-proc-object">Русский</a>
+<a href="/uk/oop/external-programs/the-proc-object">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -122,29 +122,32 @@ brackets:</p>
 <p>The assertion itself matches no characters; it only tests the
 position. For example, match a number only when it is followed by the
 word <code>dollars</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' dollars'&gt; /</span>; <span class="c1"># ｢100｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; dollars&#39;&gt; /</span>; <span class="c1"># ｢100｣</span>
+</pre></div>
 
 <p>The match is just <code>100</code> — the text <code>dollars</code>
 was checked but not included.</p>
 <p>Because the lookahead only asserts what follows, the same number
 matches or not depending on the currency after it:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'100 euro'</span>    ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 euro&#39;</span>    ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>The digits are identical in both strings, but the assertion accepts
 <code>100</code> only when <code>euro</code> comes next.</p>
 <p>The negative form is useful for “… but not when followed by …”. Match
 <code>cat</code> only when it is <strong>not</strong> followed by a
 digit:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'cats'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'cat5'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cats&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cat5&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>In <code>cat5</code> the lookahead sees a digit right after
 <code>cat</code>, so the negative assertion fails and the whole match
 fails.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/regexes/assertions/lookahead/quiz">Quiz —
 Lookahead</a></li>
@@ -171,8 +174,24 @@ the exercises in this section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/regexes/assertions/lookahead">Deutsch</a>
+<a href="/eo/regexes/assertions/lookahead">Esperanto</a>
+<a href="/es/regexes/assertions/lookahead">Español</a>
+<a href="/it/regexes/assertions/lookahead">Italiano</a>
+<a href="/la/regexes/assertions/lookahead">Latina</a>
+<a href="/lv/regexes/assertions/lookahead">Latviešu</a>
+<a href="/nl/regexes/assertions/lookahead">Nederlands</a>
+<a href="/bg/regexes/assertions/lookahead">Български</a>
+<a href="/ru/regexes/assertions/lookahead">Русский</a>
+<a href="/uk/regexes/assertions/lookahead">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

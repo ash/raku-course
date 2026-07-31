@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,23 +113,25 @@ href="/it/regexes/creating-grammars">Creare grammatiche</a></p>
 <h1 id="analizzare-con-parse">Analizzare con parse</h1>
 <p>Per far girare una grammatica, chiama il suo metodo
 <code>.parse</code> con la stringa da analizzare:</p>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Pair</span> {
-    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;key&gt;</span> <span class="s">'='</span> <span class="s">&lt;value&gt;</span> }
-    <span class="k">token</span> <span class="n">key</span>   { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">value</span> { \<span class="n">w</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Pair</span> {
+    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;key&gt; &#39;=&#39; &lt;value&gt; </span>}
+    <span class="k">token</span><span class="n"> key</span>   {<span class="sr"> \w+ </span>}
+    <span class="k">token</span><span class="n"> value</span> {<span class="sr"> \w+ </span>}
 }
 
-<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>);
-<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
-<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>; <span class="c1"># ｢5｣</span></pre></div>
+<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>);
+<span class="nb">say</span> <span class="nv">$m&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
+<span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>; <span class="c1"># ｢5｣</span>
+</pre></div>
 
 <p><code>.parse</code> restituisce un oggetto match quando la grammatica
 riconosce l’<strong>intera</strong> stringa, e <code>Nil</code> quando
 non lo fa. Poiché tutto l’input deve corrispondere, non servono le
 ancore <code>^</code> e <code>$</code>: <code>.parse</code> aggiunge
 quel requisito al posto tuo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x='</span>).<span class="nb">defined</span>;  <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=&#39;</span>).<span class="nb">defined</span>;  <span class="c1"># False</span>
+</pre></div>
 
 <p>L’<a href="/it/regexes/matching/match-object">oggetto match</a>
 funziona proprio come quelli che hai incontrato prima. Ogni token usato
@@ -157,6 +159,22 @@ sezione</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/regexes/creating-grammars/parse-method">English</a>
+<a href="/de/regexes/creating-grammars/parse-method">Deutsch</a>
+<a href="/eo/regexes/creating-grammars/parse-method">Esperanto</a>
+<a href="/es/regexes/creating-grammars/parse-method">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/regexes/creating-grammars/parse-method">Latina</a>
+<a href="/lv/regexes/creating-grammars/parse-method">Latviešu</a>
+<a href="/nl/regexes/creating-grammars/parse-method">Nederlands</a>
+<a href="/bg/regexes/creating-grammars/parse-method">Български</a>
+<a href="/ru/regexes/creating-grammars/parse-method">Русский</a>
+<a href="/uk/regexes/creating-grammars/parse-method">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

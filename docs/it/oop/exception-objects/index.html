@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,15 +117,16 @@ messaggio in un oggetto eccezione di tipo <code>X::AdHoc</code>.</p>
 tipo viene da <code>.^name</code> e il suo testo da
 <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">'something failed'</span>;
+    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
         }
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Conoscere il tipo ti permette di trattare errori diversi in modo
 diverso. Le eccezioni incorporate di Raku hanno tipi specifici, i cui
@@ -133,17 +134,18 @@ nomi cominciano con <code>X::</code>, e puoi confrontarle con
 <code>when</code>, proprio come confrontavi valori in un blocco
 <code>given</code>/<code>when</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">'something failed'</span>;
+    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="n">X::AdHoc</span> {
-            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
+        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
+            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">'some other error'</span>;
+            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
         }
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Questo stampa <code>an ad-hoc error: something failed</code>, perché
 l’eccezione corrisponde al tipo <code>X::AdHoc</code>. Confrontare il
@@ -183,6 +185,22 @@ l’errore</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/oop/exception-objects">English</a>
+<a href="/de/oop/exception-objects">Deutsch</a>
+<a href="/eo/oop/exception-objects">Esperanto</a>
+<a href="/es/oop/exception-objects">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/oop/exception-objects">Latina</a>
+<a href="/lv/oop/exception-objects">Latviešu</a>
+<a href="/nl/oop/exception-objects">Nederlands</a>
+<a href="/bg/oop/exception-objects">Български</a>
+<a href="/ru/oop/exception-objects">Русский</a>
+<a href="/uk/oop/exception-objects">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

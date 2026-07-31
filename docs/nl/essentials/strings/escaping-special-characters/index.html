@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,19 +113,22 @@ href="/nl/essentials/variables">Basis van variabelen en datatypes</a> /
 <h1 id="speciale-tekens-escapen">Speciale tekens escapen</h1>
 <p>Stel je voor dat je een prijslabel wilt afdrukken en je bewaart zowel
 de naam van het product als de prijs in scalair variabelen?</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electriciteit'</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electriciteit&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
 
 <p>Hoe druk je het label af als de prijs in dollars moet zijn? De
 verwachte output is: <code>Electriciteit kost $3.14</code>. Een
 dollarteken in dubbel aanhalingstekens is een indicator van een te
 interpoleren variabele. Om het <code>$</code>-teken zelf af te drukken,
 moet je het ontsnappen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product kost \$$price&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product kost \$$price&quot;</span>;
+</pre></div>
 
 <p>Natuurlijk kun je stringconcatenatie gebruiken en het ontsnappen van
 <code>$</code> vermijden:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' kost $'</span> ~ <span class="nv">$price</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; kost $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
 
 <p>Deze variant drukt exact dezelfde string af, maar interpolatie ziet
 er natuurlijker uit en is gemakkelijker te lezen. Merk op dat het
@@ -140,8 +143,9 @@ hebben in dubbel aanhalingstekens strings:</p>
 <code>\"</code> | Dubbel aanhalingsteken <code>\\</code> | Backslash</p>
 <p>De manier waarop je de string aanhaalt, bepaalt hoe Raku speciale
 tekens behandelt. Overweeg deze twee voorbeelden:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Een\nTwee'</span>;
-<span class="nb">say</span> <span class="s">&quot;Drie\nVier&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Een\nTwee&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Drie\nVier&quot;</span>;
+</pre></div>
 
 <p>Als je dit programma uitvoert, zul je zien dat de eerste string zoals
 hij is op één regel verschijnt. De tweede string werd in twee stukken
@@ -157,11 +161,13 @@ tekens was: <code>\</code> en <code>n</code>.</p>
 <code>\</code>. In enkele aanhalingstekens kun je een enkel
 aanhalingsteken ontsnappen door het te prefixen met een andere
 <code>\</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
 
 <p>Een backslash moet ook worden ontsnapt als er een enkel
 aanhalingsteken op volgt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
 
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
@@ -180,27 +186,26 @@ backslash in de uitvoer</a> →</p>
 <p><br /> 💪 Of ga direct <a
 href="/nl/essentials/strings/exercises">naar de oefeningen in deze
 sectie</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/strings/escaping-special-characters">English</a> • <a
-href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
-<a href="/es/essentials/strings/escaping-special-characters">Español</a>
-• <a
-href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
-<a
-href="/lv/essentials/strings/escaping-special-characters">Latviešu</a> •
-<strong>Nederlands</strong> • <a
-href="/bg/essentials/strings/escaping-special-characters">Български</a>
-• <a
-href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
-<a
-href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/essentials/strings/escaping-special-characters">English</a>
+<a href="/de/essentials/strings/escaping-special-characters">Deutsch</a>
+<a href="/eo/essentials/strings/escaping-special-characters">Esperanto</a>
+<a href="/es/essentials/strings/escaping-special-characters">Español</a>
+<a href="/it/essentials/strings/escaping-special-characters">Italiano</a>
+<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
+<a href="/lv/essentials/strings/escaping-special-characters">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/essentials/strings/escaping-special-characters">Български</a>
+<a href="/ru/essentials/strings/escaping-special-characters">Русский</a>
+<a href="/uk/essentials/strings/escaping-special-characters">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

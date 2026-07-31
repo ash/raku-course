@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -109,7 +109,7 @@
           <p><a href="/it/">Corso di Raku</a> / <a href="/it/addendum">Appendice
 🆕</a> / <a href="/it/addendum/bringing-it-together">Mettere tutto
 insieme</a> / <a href="/it/addendum/mini-projects">Mini-progetti
-misti</a> / <a href="/it/addendum/mini-projects/exercises">Esercizi</a>
+misti</a> / <a href="/it/addendum/mini-projects/exercises">Exercises</a>
 / <a href="/it/addendum/mini-projects/exercises/sieve">Crivello di
 Eratostene</a></p>
 <h1 id="soluzione-crivello-di-eratostene">Soluzione: Crivello di
@@ -120,13 +120,14 @@ Eratostene</h1>
 <span class="k">my</span> <span class="nv">%composite</span>;
 
 <span class="k">for</span> <span class="mi">2</span> .. <span class="nv">$limit</span> -&gt; <span class="nv">$i</span> {
-    <span class="k">next</span> <span class="k">if</span> <span class="nv">%composite</span>{<span class="nv">$i</span>};
-    <span class="k">for</span> (<span class="nv">$i</span>², <span class="nv">$i</span>² + <span class="nv">$i</span> ... <span class="nv">$limit</span>) -&gt; <span class="nv">$multiple</span> {
-        <span class="nv">%composite</span>{<span class="nv">$multiple</span>} = <span class="n">True</span>;
+    <span class="nb">next</span> <span class="k">if</span> <span class="nv">%composite</span>{<span class="nv">$i</span>};
+    <span class="k">for</span> (<span class="nv">$i²</span>, <span class="nv">$i²</span> + <span class="nv">$i</span> ... <span class="nv">$limit</span>) -&gt; <span class="nv">$multiple</span> {
+        <span class="nv">%composite</span>{<span class="nv">$multiple</span>} = <span class="nb">True</span>;
     }
 }
 
-<span class="nb">say</span> (<span class="mi">2</span>..<span class="nv">$limit</span>).<span class="nb">grep</span>({ !<span class="nv">%composite</span>{<span class="nv">$_</span>} });</pre></div>
+<span class="nb">say</span> (<span class="mi">2</span>..<span class="nv">$limit</span>).<span class="nb">grep</span>({ !<span class="nv">%composite</span>{<span class="nv">$_</span>} });
+</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/sieve.raku">sieve.raku</a>.</p>
@@ -149,7 +150,8 @@ e prosegue fino al limite. Per <code>$i</code> = <code>3</code> questo
 significa cominciare da <code>9</code>, poi <code>12</code>, quindi il
 passo è <code>3</code>, e il ciclo percorre l’intera lista:</p>
 <div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$i</span> = <span class="mi">3</span>;
-<span class="nb">say</span> (<span class="nv">$i</span>², <span class="nv">$i</span>² + <span class="nv">$i</span> ... <span class="mi">30</span>); <span class="c1"># (9 12 15 18 21 24 27 30)</span></pre></div>
+<span class="nb">say</span> (<span class="nv">$i²</span>, <span class="nv">$i²</span> + <span class="nv">$i</span> ... <span class="mi">30</span>); <span class="c1"># (9 12 15 18 21 24 27 30)</span>
+</pre></div>
 
 <p>Quindi <code>for</code> riceve un’unica lista da percorrere —
 <code>9, 12, 15, …</code> — invece di tre clausole separate.</p></li>
@@ -169,6 +171,22 @@ righe CSV</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/addendum/mini-projects/exercises/sieve/solution">English</a>
+<a href="/de/addendum/mini-projects/exercises/sieve/solution">Deutsch</a>
+<a href="/eo/addendum/mini-projects/exercises/sieve/solution">Esperanto</a>
+<a href="/es/addendum/mini-projects/exercises/sieve/solution">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/addendum/mini-projects/exercises/sieve/solution">Latina</a>
+<a href="/lv/addendum/mini-projects/exercises/sieve/solution">Latviešu</a>
+<a href="/nl/addendum/mini-projects/exercises/sieve/solution">Nederlands</a>
+<a href="/bg/addendum/mini-projects/exercises/sieve/solution">Български</a>
+<a href="/ru/addendum/mini-projects/exercises/sieve/solution">Русский</a>
+<a href="/uk/addendum/mini-projects/exercises/sieve/solution">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

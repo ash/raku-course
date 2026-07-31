@@ -25,6 +25,6 @@ False
 
 1. Das Adverb `:exists` gibt zurück, ob der Schlüssel vorhanden ist, ohne den Wert abzurufen.
 
-1. Der Hash hat keinen Schlüssel `z`, daher wird `False` zurückgegeben -- und im Gegensatz zu einer normalen Abfrage wird der Schlüssel nicht als Nebeneffekt erzeugt.
+1. Der Hash hat keinen Schlüssel `z`, daher wird `False` zurückgegeben — und im Gegensatz zu einer normalen Abfrage wird der Schlüssel nicht als Nebeneffekt erzeugt.
 
 {% include nav.html %}

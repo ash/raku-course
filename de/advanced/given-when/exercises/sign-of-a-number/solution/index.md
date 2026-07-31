@@ -32,6 +32,6 @@ even
 
 1. `when $_ %% 2` ist eine Bedingung, wobei `$_` das durch `given` gesetzte Thema ist: Der `%%`-Operator prüft, ob es sich ohne Rest durch zwei teilen lässt. Der Wert `12` ist nicht null, aber durch zwei teilbar, daher gibt das Programm `even` aus.
 
-1. `default` deckt alles Übrige ab -- die Zahlen, die weder null noch gerade sind, also die ungeraden.
+1. `default` deckt alles Übrige ab — die Zahlen, die weder null noch gerade sind, also die ungeraden.
 
 {% include nav.html %}

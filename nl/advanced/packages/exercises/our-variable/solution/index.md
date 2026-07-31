@@ -32,6 +32,6 @@ False
 
 1. `our $port` wordt onderdeel van de `Config`-naamruimte, dus het is van buitenaf bereikbaar als `$Config::port`, wat `8080` afdrukt.
 
-1. `my $secret` is lexicaal -- priv&eacute; voor het pakketblok -- dus het zit niet in de naamruimte. Het pad `$Config::secret` vindt niets, een ongedefinieerde waarde, dus `.defined` geeft `False`. Dit is het verschil dat `our` maakt.
+1. `my $secret` is lexicaal — priv&eacute; voor het pakketblok — dus het zit niet in de naamruimte. Het pad `$Config::secret` vindt niets, een ongedefinieerde waarde, dus `.defined` geeft `False`. Dit is het verschil dat `our` maakt.
 
 {% include nav.html %}

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,13 +116,14 @@ lexical variable, which is visible only in the block where it is
 declared, a dynamic variable is found by looking <strong>outward through
 the call stack</strong> — through whoever called the current code, no
 matter where that code is defined.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*greeting</span> = <span class="s">'Hello'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*greeting</span> = <span class="s">&#39;Hello&#39;</span>;
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="nv">$*greeting</span>;
+    <span class="nb">say</span> <span class="vg">$*greeting</span>;
 }
 
-<span class="n">greet</span>(); <span class="c1"># Hello</span></pre></div>
+<span class="n">greet</span>(); <span class="c1"># Hello</span>
+</pre></div>
 
 <p>The subroutine <code>greet</code> does not declare
 <code>$*greeting</code> and does not receive it as an argument, yet it
@@ -134,18 +135,19 @@ in the next example.</p>
 <p>Because the lookup follows the call stack, a closer declaration
 <strong>overrides</strong> a farther one for the duration of its
 block:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'outer'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;outer&#39;</span>;
 
 <span class="k">sub</span> <span class="n">show</span> {
-    <span class="nb">say</span> <span class="nv">$*level</span>;
+    <span class="nb">say</span> <span class="vg">$*level</span>;
 }
 
 <span class="n">show</span>(); <span class="c1"># outer</span>
 
 {
-    <span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'inner'</span>;
+    <span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;inner&#39;</span>;
     <span class="n">show</span>(); <span class="c1"># inner</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>The same <code>show</code> prints <code>outer</code> the first time
 and <code>inner</code> when called from inside the block that redeclared
@@ -158,7 +160,7 @@ that should flow into called code without being passed as an explicit
 argument.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/advanced/special-variables/dynamic-variables/quiz">Quiz —
 Dynamic variables</a></li>
@@ -191,8 +193,24 @@ section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/advanced/special-variables/dynamic-variables">Deutsch</a>
+<a href="/eo/advanced/special-variables/dynamic-variables">Esperanto</a>
+<a href="/es/advanced/special-variables/dynamic-variables">Español</a>
+<a href="/it/advanced/special-variables/dynamic-variables">Italiano</a>
+<a href="/la/advanced/special-variables/dynamic-variables">Latina</a>
+<a href="/lv/advanced/special-variables/dynamic-variables">Latviešu</a>
+<a href="/nl/advanced/special-variables/dynamic-variables">Nederlands</a>
+<a href="/bg/advanced/special-variables/dynamic-variables">Български</a>
+<a href="/ru/advanced/special-variables/dynamic-variables">Русский</a>
+<a href="/uk/advanced/special-variables/dynamic-variables">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

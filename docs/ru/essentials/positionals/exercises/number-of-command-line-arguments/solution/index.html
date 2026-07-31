@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,62 +110,61 @@
 href="/ru/essentials">Основы</a> / <a
 href="/ru/essentials/more-about-types">Больше о типах</a> / <a
 href="/ru/essentials/positionals">Позиционные типы данных</a> / <a
-href="/ru/essentials/positionals/exercises">Упражнения</a> / <a
+href="/ru/essentials/positionals/exercises">Exercises</a> / <a
 href="/ru/essentials/positionals/exercises/number-of-command-line-arguments">Количество
 аргументов командной строки</a></p>
 <h1 id="решение-количество-аргументов-командной-строки">Решение:
 Количество аргументов командной строки</h1>
-<p>Решение довольно простое.</p>
+<p>Количество аргументов по-прежнему берётся из
+<code>@*ARGS.elems</code>, но на этот раз с ним нужно что-то сделать, а
+не просто вывести его. Сохраните количество в переменной, а затем
+выберите подходящее слово с помощью тернарного оператора:</p>
 <h2 id="код">Код</h2>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="vg">@*ARGS</span>.<span class="nb">elems</span>;
+<span class="k">my</span> <span class="nv">$word</span> = <span class="nv">$n</span> == <span class="mi">1</span> ?? <span class="s">&#39;argument&#39;</span> !! <span class="s">&#39;arguments&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;You passed $n $word.&quot;</span>;
 </pre></div>
 
-<p>Или, можно объединить все методы в цепочку:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">@*ARGS</span>.<span class="nb">elems</span>.<span class="nb">say</span>;
-</pre></div>
-
-<p>🦋 Найдите программу в файле <a
+<p>🦋 Исходный код можно найти в файле <a
 href="https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku">number-of-command-line-arguments.raku</a>.</p>
 <h2 id="вывод">Вывод</h2>
-<p>Эта программа требует тестирования в двух случаях:</p>
-<ol type="1">
-<li>Аргументы не переданы.</li>
-<li>Передано ненулевое количество аргументов.</li>
-</ol>
+<p>Стоит проверить три интересных случая: аргументов нет, ровно один и
+много. Только во втором случае используется форма единственного
+числа.</p>
 <div class="highlight"><pre>$ raku exercises/positionals/number-of-command-line-arguments.raku
-0
+You passed 0 arguments.
+
+$ raku exercises/positionals/number-of-command-line-arguments.raku solo
+You passed 1 argument.
 
 $ raku exercises/positionals/number-of-command-line-arguments.raku one 2 three 4 five 6 seven
-7</pre></div>
+You passed 7 arguments.</pre></div>
 <h2 id="навигация-по-курсу">Навигация по курсу</h2>
 <p>← <a
 href="/ru/essentials/positionals/exercises/number-of-command-line-arguments">Количество
 аргументов командной строки</a>   |   <a
 href="/ru/essentials/positionals/exercises/print-command-line-arguments">Вывод
 аргументов командной строки</a> →</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/positionals/exercises/number-of-command-line-arguments/solution">English</a>
-• <a
-href="/de/essentials/positionals/exercises/number-of-command-line-arguments/solution">Deutsch</a>
-• <a
-href="/es/essentials/positionals/exercises/number-of-command-line-arguments/solution">Español</a>
-• <a
-href="/it/essentials/positionals/exercises/number-of-command-line-arguments/solution">Italiano</a>
-• <a
-href="/lv/essentials/positionals/exercises/number-of-command-line-arguments/solution">Latviešu</a>
-• <a
-href="/nl/essentials/positionals/exercises/number-of-command-line-arguments/solution">Nederlands</a>
-• <a
-href="/bg/essentials/positionals/exercises/number-of-command-line-arguments/solution">Български</a>
-• <strong>Русский</strong> • <a
-href="/uk/essentials/positionals/exercises/number-of-command-line-arguments/solution">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Эта страница на других языках:">
+<span class="lang-label">Эта страница на других языках:</span>
+<a href="/essentials/positionals/exercises/number-of-command-line-arguments/solution">English</a>
+<a href="/de/essentials/positionals/exercises/number-of-command-line-arguments/solution">Deutsch</a>
+<a href="/eo/essentials/positionals/exercises/number-of-command-line-arguments/solution">Esperanto</a>
+<a href="/es/essentials/positionals/exercises/number-of-command-line-arguments/solution">Español</a>
+<a href="/it/essentials/positionals/exercises/number-of-command-line-arguments/solution">Italiano</a>
+<a href="/la/essentials/positionals/exercises/number-of-command-line-arguments/solution">Latina</a>
+<a href="/lv/essentials/positionals/exercises/number-of-command-line-arguments/solution">Latviešu</a>
+<a href="/nl/essentials/positionals/exercises/number-of-command-line-arguments/solution">Nederlands</a>
+<a href="/bg/essentials/positionals/exercises/number-of-command-line-arguments/solution">Български</a>
+<span class="lang-current">Русский</span>
+<a href="/uk/essentials/positionals/exercises/number-of-command-line-arguments/solution">Українська</a>
+<a class="lang-about" href="/ru/about-translation">О переводе</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>
 <p style="margin:.35em 0;"><a href="/ru/about-this-course">О курсе</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Открытый исходный код · При поддержке <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

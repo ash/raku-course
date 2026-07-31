@@ -6,9 +6,9 @@ title: Numerischer, String- und Boolescher Kontext
 
 Drei sehr häufige Kontexte fordern einen Wert auf, sich als Zahl, als String oder als Boolescher Wert zu verhalten. Jeder hat einen Präfixoperator, der ihn explizit erzwingt:
 
-* `+` -- numerischer Kontext
-* `~` -- Stringkontext
-* `?` -- Boolescher Kontext
+* `+` — numerischer Kontext
+* `~` — Stringkontext
+* `?` — Boolescher Kontext
 
 Auf ein Array angewendet, ergeben sie seine Länge, seine durch Leerzeichen verbundenen Elemente und ob es Elemente enthält:
 

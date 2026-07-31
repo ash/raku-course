@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,10 @@ href="/lv/paradigms/threads">Pavedieni</a></p>
 <p>Lai sagaidītu pavediena pabeigšanu, izsauciet tam
 <code>.finish</code> (ko raksta arī kā <code>.join</code>). Galvenā
 programma tur apstājas, līdz pavediens ir gatavs:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
-<span class="nv">$t</span>.<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">&#39;in the thread&#39;</span> });
+<span class="nv">$t</span>.<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
+</pre></div>
 
 <p>Tas izdrukā:</p>
 <div class="highlight"><pre>in the thread
@@ -129,9 +130,10 @@ izdevies kaut ko izdrukāt.</p>
 būtu droši, ka visi ir pabeiguši:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
-<span class="nv">$a</span>.<span class="n">finish</span>;
-<span class="nv">$b</span>.<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
+<span class="nv">$a</span>.<span class="nb">finish</span>;
+<span class="nv">$b</span>.<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
+</pre></div>
 
 <p>Abi pavedieni darbojas vienlaikus, un abu sagaidīšana pirms pēdējā
 <code>say</code> garantē, ka <code>both finished</code> tiek izdrukāts
@@ -145,8 +147,9 @@ izsauciet savienojumam <code>.finish</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
-(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
+(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
+</pre></div>
 
 <p><code>.finish</code> izsaukums <code>$a &amp; $b</code> izpilda to
 abiem pavedieniem, tāpēc programma gaida, līdz neviens no tiem vairs
@@ -165,6 +168,22 @@ vingrinājumiem</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/paradigms/threads/joining-threads">English</a>
+<a href="/de/paradigms/threads/joining-threads">Deutsch</a>
+<a href="/eo/paradigms/threads/joining-threads">Esperanto</a>
+<a href="/es/paradigms/threads/joining-threads">Español</a>
+<a href="/it/paradigms/threads/joining-threads">Italiano</a>
+<a href="/la/paradigms/threads/joining-threads">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/paradigms/threads/joining-threads">Nederlands</a>
+<a href="/bg/paradigms/threads/joining-threads">Български</a>
+<a href="/ru/paradigms/threads/joining-threads">Русский</a>
+<a href="/uk/paradigms/threads/joining-threads">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

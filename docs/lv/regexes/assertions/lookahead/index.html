@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -122,22 +122,25 @@ href="/lv/regexes/assertions">Apskates apgalvojumi</a></p>
 <p>Pats apgalvojums nesakrīt ne ar vienu rakstzīmi; tas tikai pārbauda
 pozīciju. Piemēram, piemeklējiet skaitli tikai tad, kad tam seko vārds
 <code>dollars</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' dollars'&gt; /</span>; <span class="c1"># ｢100｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; dollars&#39;&gt; /</span>; <span class="c1"># ｢100｣</span>
+</pre></div>
 
 <p>Sakritība ir tikai <code>100</code> — teksts <code>dollars</code>
 tika pārbaudīts, bet nav iekļauts.</p>
 <p>Tā kā lūkošanās uz priekšu tikai apgalvo, kas seko, tas pats skaitlis
 sakrīt vai nesakrīt atkarībā no valūtas aiz tā:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'100 euro'</span>    ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 euro&#39;</span>    ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Cipari abās virknēs ir vienādi, taču apgalvojums pieņem
 <code>100</code> tikai tad, kad tālāk seko <code>euro</code>.</p>
 <p>Negatīvā forma noder gadījumam «… bet ne tad, kad tam seko …».
 Piemeklējiet <code>cat</code> tikai tad, kad tam <strong>neseko</strong>
 cipars:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'cats'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'cat5'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cats&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cat5&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Virknē <code>cat5</code> lūkošanās uz priekšu tūlīt aiz
 <code>cat</code> ierauga ciparu, tāpēc negatīvais apgalvojums neizdodas
@@ -161,6 +164,22 @@ vingrinājumiem</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/regexes/assertions/lookahead">English</a>
+<a href="/de/regexes/assertions/lookahead">Deutsch</a>
+<a href="/eo/regexes/assertions/lookahead">Esperanto</a>
+<a href="/es/regexes/assertions/lookahead">Español</a>
+<a href="/it/regexes/assertions/lookahead">Italiano</a>
+<a href="/la/regexes/assertions/lookahead">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/regexes/assertions/lookahead">Nederlands</a>
+<a href="/bg/regexes/assertions/lookahead">Български</a>
+<a href="/ru/regexes/assertions/lookahead">Русский</a>
+<a href="/uk/regexes/assertions/lookahead">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

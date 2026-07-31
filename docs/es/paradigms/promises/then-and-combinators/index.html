@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,10 @@ concurrente</a> / <a href="/es/paradigms/promises">Promesas</a></p>
 necesidad más común es esperar <strong>varias</strong> a la vez.
 <code>await</code> acepta una lista de promesas y devuelve sus
 resultados en orden:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
+</pre></div>
 
 <p>Los tres trabajos corren de forma concurrente;
 <code>await @jobs</code> los espera a todos y devuelve
@@ -127,9 +128,10 @@ que las promesas, puedes reducirlos como de costumbre.</p>
 <code>.then</code>, que ejecuta un bloque de seguimiento en cuanto la
 promesa está lista. Dentro de él, <code>.result</code> es el valor de la
 promesa original:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
+</pre></div>
 
 <p><code>$q</code> es una promesa nueva que duplica el resultado de
 <code>$p</code>. Esperarla da <code>20</code>.</p>
@@ -138,7 +140,8 @@ terminada como la variable de tema <code>$_</code>, y por eso funciona
 un <code>.result</code> a secas: en realidad es <code>$_.result</code>.
 Si prefieres darle un nombre a esa promesa, usa un bloque con
 flecha:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
+</pre></div>
 
 <p>Esto se comporta exactamente igual; <code>$prev</code> es la promesa
 original <code>$p</code>, y <code>$prev.result</code> es su valor.</p>
@@ -166,6 +169,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/promises/then-and-combinators">English</a>
+<a href="/de/paradigms/promises/then-and-combinators">Deutsch</a>
+<a href="/eo/paradigms/promises/then-and-combinators">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/promises/then-and-combinators">Italiano</a>
+<a href="/la/paradigms/promises/then-and-combinators">Latina</a>
+<a href="/lv/paradigms/promises/then-and-combinators">Latviešu</a>
+<a href="/nl/paradigms/promises/then-and-combinators">Nederlands</a>
+<a href="/bg/paradigms/promises/then-and-combinators">Български</a>
+<a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
+<a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -109,7 +109,7 @@
           <p><a href="/it/">Corso di Raku</a> / <a href="/it/addendum">Appendice
 🆕</a> / <a href="/it/addendum/bringing-it-together">Mettere tutto
 insieme</a> / <a href="/it/addendum/mini-projects">Mini-progetti
-misti</a> / <a href="/it/addendum/mini-projects/exercises">Esercizi</a>
+misti</a> / <a href="/it/addendum/mini-projects/exercises">Exercises</a>
 / <a href="/it/addendum/mini-projects/exercises/rpn-calculator">Una
 calcolatrice in notazione polacca inversa</a></p>
 <h1
@@ -117,26 +117,27 @@ id="soluzione-una-calcolatrice-in-notazione-polacca-inversa">Soluzione:
 Una calcolatrice in notazione polacca inversa</h1>
 <p>Ecco una possibile soluzione del compito.</p>
 <h2 id="codice">Codice</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$expression</span> = <span class="s">'3 4 + 5 *'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$expression</span> = <span class="s">&#39;3 4 + 5 *&#39;</span>;
 <span class="k">my</span> <span class="nv">@stack</span>;
 
 <span class="k">for</span> <span class="nv">$expression</span>.<span class="nb">words</span> -&gt; <span class="nv">$token</span> {
-    <span class="k">if</span> <span class="nv">$token</span> ~~ <span class="sr">/ ^ \d+ $ /</span> {
+    <span class="k">if</span> <span class="nv">$token</span> ~~<span class="sr"> / ^ \d+ $ /</span> {
         <span class="nv">@stack</span>.<span class="nb">push</span>(<span class="nv">$token</span>.<span class="nb">Int</span>);
     }
     <span class="k">else</span> {
         <span class="k">my</span> <span class="nv">$b</span> = <span class="nv">@stack</span>.<span class="nb">pop</span>;
         <span class="k">my</span> <span class="nv">$a</span> = <span class="nv">@stack</span>.<span class="nb">pop</span>;
-        <span class="nv">@stack</span>.<span class="nb">push</span>( <span class="k">do</span> <span class="k">given</span> <span class="nv">$token</span> {
-            <span class="k">when</span> <span class="s">'+'</span> { <span class="nv">$a</span> + <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">'-'</span> { <span class="nv">$a</span> - <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">'*'</span> { <span class="nv">$a</span> * <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">'/'</span> { <span class="nv">$a</span> / <span class="nv">$b</span> }
+        <span class="nv">@stack</span>.<span class="nb">push</span>( <span class="nb">do</span> <span class="k">given</span> <span class="nv">$token</span> {
+            <span class="k">when</span> <span class="s">&#39;+&#39;</span> { <span class="nv">$a</span> + <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">&#39;-&#39;</span> { <span class="nv">$a</span> - <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">&#39;*&#39;</span> { <span class="nv">$a</span> * <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">&#39;/&#39;</span> { <span class="nv">$a</span> / <span class="nv">$b</span> }
         });
     }
 }
 
-<span class="nb">say</span> <span class="nv">@stack</span>[<span class="mi">0</span>];</pre></div>
+<span class="nb">say</span> <span class="nv">@stack</span>[<span class="mi">0</span>];
+</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/rpn-calculator.raku">rpn-calculator.raku</a>.</p>
@@ -161,6 +162,22 @@ testuale</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/addendum/mini-projects/exercises/rpn-calculator/solution">English</a>
+<a href="/de/addendum/mini-projects/exercises/rpn-calculator/solution">Deutsch</a>
+<a href="/eo/addendum/mini-projects/exercises/rpn-calculator/solution">Esperanto</a>
+<a href="/es/addendum/mini-projects/exercises/rpn-calculator/solution">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/addendum/mini-projects/exercises/rpn-calculator/solution">Latina</a>
+<a href="/lv/addendum/mini-projects/exercises/rpn-calculator/solution">Latviešu</a>
+<a href="/nl/addendum/mini-projects/exercises/rpn-calculator/solution">Nederlands</a>
+<a href="/bg/addendum/mini-projects/exercises/rpn-calculator/solution">Български</a>
+<a href="/ru/addendum/mini-projects/exercises/rpn-calculator/solution">Русский</a>
+<a href="/uk/addendum/mini-projects/exercises/rpn-calculator/solution">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

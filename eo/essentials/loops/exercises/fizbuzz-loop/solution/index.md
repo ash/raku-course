@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: FizzBuzz en ripeto'
+title: 'Solvo: FizzBuzz en buklo'
 ---
 
 {% include menu.html %}

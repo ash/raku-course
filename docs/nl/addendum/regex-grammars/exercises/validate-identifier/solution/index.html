@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,18 +110,19 @@
 🆕</a> / <a href="/nl/addendum/types-and-text-machines">Types en
 tekstmachines</a> / <a href="/nl/addendum/regex-grammars">Reguliere
 expressies en grammatica’s</a> / <a
-href="/nl/addendum/regex-grammars/exercises">Oefeningen</a> / <a
+href="/nl/addendum/regex-grammars/exercises">Exercises</a> / <a
 href="/nl/addendum/regex-grammars/exercises/validate-identifier">Valideer
 identifiers</a></p>
 <h1 id="oplossing-valideer-identifiers">Oplossing: Valideer
 identifiers</h1>
 <p>Hier is een mogelijke oplossing voor de taak.</p>
 <h2 id="code">Code</h2>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
-}</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
+}
+</pre></div>
 
 <p>🦋 Je kunt de broncode vinden in het bestand <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/validate-identifier.raku">validate-identifier.raku</a>.</p>
@@ -142,7 +143,8 @@ precies de klassieke identifierregel.</p></li>
 <li><p>De tweede klasse kun je ook als <code>\w</code> schrijven, de
 ingebouwde afkorting voor een woordteken (een letter, een cijfer of een
 underscore):</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;
+</pre></div>
 
 <p>Eén verschil om op te letten: <code>\w</code> is in Raku
 Unicode-bewust, dus een naam als <code>café</code> slaagt ook — wat
@@ -156,11 +158,12 @@ koppelteken (of een apostrof, zoals in <code>isn't</code>) binnen een
 naam toe, zolang er een letter op volgt — en daarom lezen subroutines
 als <code>is-prime</code> zo natuurlijk. Om <em>Raku</em>-identifiers te
 valideren, sta je zulke groepen achter het klassieke deel toe:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* [ '-' &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
+<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* [ &#39;-&#39; &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
-}</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
+}
+</pre></div>
 
 <p>Elke groep tussen haken <code>[ '-' &lt;[A..Za..z]&gt; \w* ]</code>
 aanvaardt een koppelteken alleen wanneer er een letter op volgt, dus
@@ -178,6 +181,22 @@ grammatica voor volledige namen</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/addendum/regex-grammars/exercises/validate-identifier/solution">English</a>
+<a href="/de/addendum/regex-grammars/exercises/validate-identifier/solution">Deutsch</a>
+<a href="/eo/addendum/regex-grammars/exercises/validate-identifier/solution">Esperanto</a>
+<a href="/es/addendum/regex-grammars/exercises/validate-identifier/solution">Español</a>
+<a href="/it/addendum/regex-grammars/exercises/validate-identifier/solution">Italiano</a>
+<a href="/la/addendum/regex-grammars/exercises/validate-identifier/solution">Latina</a>
+<a href="/lv/addendum/regex-grammars/exercises/validate-identifier/solution">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/addendum/regex-grammars/exercises/validate-identifier/solution">Български</a>
+<a href="/ru/addendum/regex-grammars/exercises/validate-identifier/solution">Русский</a>
+<a href="/uk/addendum/regex-grammars/exercises/validate-identifier/solution">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

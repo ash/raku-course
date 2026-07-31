@@ -8,10 +8,10 @@ translations_gpt:
 Чем `need Module;` отличается от `use Module;`?
 
 {:.quiz}
-1 | `need` loads the module but does not import its exported names
-0 | `need` runs the module twice
-0 | `need` is exactly the same as `use`
-0 | `need` only works for installed modules
+1 | `need` загружает модуль, но не импортирует экспортируемые им имена
+0 | `need` выполняет модуль дважды
+0 | `need` — это ровно то же самое, что `use`
+0 | `need` работает только для установленных модулей
 
 {% include quiz.html %}
 

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,12 +123,13 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 Четенето на <code>.status</code> не чака — то ви казва къде е обещанието
 <em>точно сега</em>, така че можете да го проверите и преди то да се
 уреди, и после:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — прочетено веднага, докато блокът още работи</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — прочетено веднага, докато блокът още работи</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># сега изчакваме да приключи</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
+</pre></div>
 
 <p><code>.result</code> дава запазената стойност. За разлика от
 <code>.status</code>, той <em>чака</em>, докато обещанието се уреди,
@@ -138,10 +139,11 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 <p>Когато искате да погледнете провала, без да го хвърляте отново,
 използвайте <code>.cause</code> — обекта на изключението на счупеното
 обещание:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># оставяме го да се уреди (и поглъщаме повторно хвърлената грешка)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
+</pre></div>
 
 <p>Така <code>.status</code> и <code>.cause</code> разглеждат
 обещанието, без да го безпокоят, докато <code>await</code> и
@@ -158,6 +160,22 @@ href="/bg/paradigms/promises/exercises">към упражненията в то�
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/paradigms/promises/promise-status">English</a>
+<a href="/de/paradigms/promises/promise-status">Deutsch</a>
+<a href="/eo/paradigms/promises/promise-status">Esperanto</a>
+<a href="/es/paradigms/promises/promise-status">Español</a>
+<a href="/it/paradigms/promises/promise-status">Italiano</a>
+<a href="/la/paradigms/promises/promise-status">Latina</a>
+<a href="/lv/paradigms/promises/promise-status">Latviešu</a>
+<a href="/nl/paradigms/promises/promise-status">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/paradigms/promises/promise-status">Русский</a>
+<a href="/uk/paradigms/promises/promise-status">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,10 @@ href="/es/regexes/substitution">Sustitución y reemplazo</a></p>
 <p>El operador de sustitución es <code>s///</code>. Parece un
 emparejamiento con una segunda ranura: el patrón va entre las dos
 primeras barras y el texto de reemplazo entre las dos últimas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
+<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
+</pre></div>
 
 <p>La sustitución cambia la variable <strong>en el sitio</strong>, así
 que <code>$s</code> se actualiza. El texto de la parte de reemplazo es
@@ -124,9 +125,10 @@ literal: no lo pones entre comillas.</p>
 <p>Igual que el emparejamiento, la sustitución toca por omisión solo la
 <strong>primera</strong> aparición. Añade el adverbio <code>:g</code>
 para reemplazar todas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
+</pre></div>
 
 <p>Si quieres conservar el original y producir una
 <strong>copia</strong> modificada en lugar de cambiarlo en el sitio, usa
@@ -134,18 +136,20 @@ el operador en <strong>mayúscula</strong> <code>S///</code>: hace la
 sustitución y devuelve la cadena cambiada, dejando intacto el original.
 Como no actualiza ninguna variable en el sitio, apúntalo a una con
 <code>given</code> en lugar de con <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
-<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
+<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
+</pre></div>
 
 <p>(Escribir <code>$orig ~~ S///</code> te avisa de que uses
 <code>given</code> en su lugar: con <code>S///</code> no hay nada que
 modificar en el sitio.)</p>
 <p>El mismo comportamiento no destructivo está también disponible como
 método, <code>.subst</code>, que devuelve una cadena nueva:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
+</pre></div>
 
 <section id="práctica" class="practice" data-markdown="1">
 <h2>Práctica</h2>
@@ -166,6 +170,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/regexes/substitution/s-operator">English</a>
+<a href="/de/regexes/substitution/s-operator">Deutsch</a>
+<a href="/eo/regexes/substitution/s-operator">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/regexes/substitution/s-operator">Italiano</a>
+<a href="/la/regexes/substitution/s-operator">Latina</a>
+<a href="/lv/regexes/substitution/s-operator">Latviešu</a>
+<a href="/nl/regexes/substitution/s-operator">Nederlands</a>
+<a href="/bg/regexes/substitution/s-operator">Български</a>
+<a href="/ru/regexes/substitution/s-operator">Русский</a>
+<a href="/uk/regexes/substitution/s-operator">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

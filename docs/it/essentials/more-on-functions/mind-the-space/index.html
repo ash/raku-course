@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,29 +119,34 @@ con i suoi argomenti. Ma usa uno spazio dopo <code>for</code> e
 <code>if</code>.</p>
 <h2 id="storia-lunga">Storia lunga</h2>
 <p>Prendiamo una semplice funzione:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Prima di tutto, nota l’assenza di spazi tra il nome della funzione e
 la parentesi aperta che contiene i parametri. Alcuni stili di codifica
 in altre lingue possono richiedere uno spazio lì. Raku va bene con
 questo, ma non è una pratica da seguire:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Dal lato della chiamata, l’assenza di spazio è importante. Se chiami
 la funzione e ometti le parentesi, allora lo spazio dopo il nome della
 funzione è inevitabile:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
 
 <p>Ma se aggiungi le parentesi, non puoi avere uno spazio prima di esse.
 Questa è una chiamata corretta:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>E questa chiamata è sbagliata:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Tale codice causa un’eccezione:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -151,11 +156,12 @@ Questa è una chiamata corretta:</p>
 tentativo di passare un singolo argomento <code>(5, 6)</code> alla
 funzione. Puoi facilmente controllare il tipo di questo argomento se
 riscrivi la funzione per accettare solo un argomento:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
 }
 
-<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
 
 <p>Quindi, chiamare <code>f (5, 6)</code> significa che stiamo passando
 una <a href="/it/essentials/positionals/lists">lista</a> alla funzione.
@@ -166,9 +172,10 @@ spazio</h2>
 quando usi le parentesi con una delle parole chiave, come
 <code>if</code> o <code>for</code> o <code>loop</code>. Il seguente
 codice è sbagliato:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
-    <span class="nb">say</span> <span class="s">'OK'</span>;
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
 
 <p>Il messaggio di errore spiega cosa c’è di sbagliato:</p>
 <pre><code>===SORRY!===
@@ -183,7 +190,8 @@ at /Users/ash/raku-course/t.raku:1
 necessarie, quindi il problema non ha possibilità di apparire se non le
 usi. Ma in alcuni casi, come, ad esempio, con <code>loop</code>, devi
 averle, e lo spazio diventa obbligatorio:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
+</pre></div>
 
 <p>In questo codice, accade la stessa cosa: <code>loop(...)</code> è
 interpretato dal compilatore come una chiamata di funzione. Aggiungi uno
@@ -202,25 +210,26 @@ tipizzati</a> →</p>
 <p><br /> 💪 Oppure vai direttamente <a
 href="/it/essentials/more-on-functions/exercises/factorial-with-multi-functions">all’esercizio
 di questa sezione</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/more-on-functions/mind-the-space">English</a> • <a
-href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a> • <a
-href="/es/essentials/more-on-functions/mind-the-space">Español</a> •
-<strong>Italiano</strong> • <a
-href="/la/essentials/more-on-functions/mind-the-space">Latina</a> • <a
-href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a> • <a
-href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a> •
-<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
-• <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
-• <a
-href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/essentials/more-on-functions/mind-the-space">English</a>
+<a href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a>
+<a href="/eo/essentials/more-on-functions/mind-the-space">Esperanto</a>
+<a href="/es/essentials/more-on-functions/mind-the-space">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/essentials/more-on-functions/mind-the-space">Latina</a>
+<a href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a>
+<a href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a>
+<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
+<a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
+<a href="/uk/essentials/more-on-functions/mind-the-space">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

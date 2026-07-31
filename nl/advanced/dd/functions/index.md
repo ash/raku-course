@@ -5,7 +5,7 @@ translations_gpt: Functiesignaturen dumpen
 
 {% include menu.html %}
 
-Een kale `dd` -- aangeroepen zonder argumenten binnen een subroutine -- toont de signatuur van die subroutine: de naam en de lijst van parameters, als die er zijn. Bekijk het volgende voorbeeld met twee subroutines:
+Een kale `dd` — aangeroepen zonder argumenten binnen een subroutine — toont de signatuur van die subroutine: de naam en de lijst van parameters, als die er zijn. Bekijk het volgende voorbeeld met twee subroutines:
 
 ```raku
 sub f1 {

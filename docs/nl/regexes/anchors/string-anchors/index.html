@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,21 +119,24 @@ string</li>
 </ul>
 <p>Gebruik <code>^</code> om te eisen dat de match bij het begin
 begint:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;http://example&#39;</span> ~~<span class="sr"> /^ http /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;see http://x&#39;</span>   ~~<span class="sr"> /^ http /</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>De tweede string bevat <code>http</code>, maar niet aan het begin,
 dus het verankerde patroon mislukt.</p>
 <p><code>^</code> en <code>$</code> om een patroon zetten dwingt het de
 <strong>hele</strong> string te matchen, zonder dat er aan weerskanten
 iets overblijft:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello&#39;</span>       ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Dit is een heel gebruikelijk idioom voor validatie — bijvoorbeeld “is
 deze string precies een getal?”:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;2025&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;20a5&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># False</span>
+</pre></div>
 
 <h2 id="regelankers">Regelankers</h2>
 <p>Wanneer een string uit meerdere regels bestaat, matchen de partners
@@ -143,8 +146,9 @@ verschil met <code>^</code> en <code>$</code> blijkt zodra de tekst die
 je zoekt niet op de eerste regel staat: de enkele ankers zien alleen de
 hele string en mislukken, terwijl de verdubbelde op elke regel
 matchen.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
-<span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^  dog  $/</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^^ dog $$/</span>;  <span class="c1"># True</span>
+</pre></div>
 
 <p>Hier begint <code>\n</code> een tweede regel. De <code>^^</code> eist
 dat <code>dog</code> aan het begin van een regel staat en
@@ -169,6 +173,22 @@ de oefeningen in deze sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/regexes/anchors/string-anchors">English</a>
+<a href="/de/regexes/anchors/string-anchors">Deutsch</a>
+<a href="/eo/regexes/anchors/string-anchors">Esperanto</a>
+<a href="/es/regexes/anchors/string-anchors">Español</a>
+<a href="/it/regexes/anchors/string-anchors">Italiano</a>
+<a href="/la/regexes/anchors/string-anchors">Latina</a>
+<a href="/lv/regexes/anchors/string-anchors">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/regexes/anchors/string-anchors">Български</a>
+<a href="/ru/regexes/anchors/string-anchors">Русский</a>
+<a href="/uk/regexes/anchors/string-anchors">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

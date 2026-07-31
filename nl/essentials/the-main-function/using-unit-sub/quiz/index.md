@@ -9,8 +9,8 @@ title: Quiz* — Gebruik van de unit-scoped definitie
 Kies een van de declarators om het programma correct te maken.
 
 {:.quiz-select}
-unit | (: mijn, multi, unit :) `sub MAIN(Str $name);`
-. | `zeg "Hallo, $name!";`
+unit | (: my, multi, unit :) `sub MAIN(Str $name);`
+. | `say "Hallo, $name!";`
 
 ## 2
 
@@ -18,7 +18,7 @@ Geef aan of het programma correct is.
 
 ```raku
 unit sub MAIN(Str $name) {
-    zeg "Hallo, $name!";
+    say "Hallo, $name!";
 }
 ```
 
@@ -31,11 +31,11 @@ Is dit programma correct?
 
 ```raku
 unit multi sub MAIN() {
-    zeg 'Hallo, iedereen!';
+    say 'Hallo, iedereen!';
 }
 
 unit multi sub MAIN($name) {
-    zeg "Hallo, $name!";
+    say "Hallo, $name!";
 }
 ```
 

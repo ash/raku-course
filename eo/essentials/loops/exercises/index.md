@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Ripetoj'
+title: 'Ekzercoj: Bukloj'
 ---
 
 {% include menu.html %}

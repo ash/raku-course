@@ -4,12 +4,12 @@ title: Formatierung und Code
 
 {% include menu.html %}
 
-Innerhalb von Pod-Text markierst du Woerter mit einbuchstabigen _Formatierungscodes_, die als Buchstabe gefolgt von spitzen Klammern um den Text geschrieben werden:
+Innerhalb von Pod-Text markierst du Wörter mit einbuchstabigen _Formatierungscodes_, die als Buchstabe gefolgt von spitzen Klammern um den Text geschrieben werden:
 
-* `B<...>` -- fett
-* `I<...>` -- kursiv
-* `C<...>` -- Code (Festbreitenschrift)
-* `L<...>` -- ein Link
+* `B<...>` — fett
+* `I<...>` — kursiv
+* `C<...>` — Code (Festbreitenschrift)
+* `L<...>` — ein Link
 
 ```raku
 =begin pod
@@ -21,7 +21,7 @@ This is B<important>, and C<say> is a built-in.
 
 Beim Rendern erscheint `important` fett und `say` in einer Code-Schriftart. Die Codes können verschachtelt und kombiniert werden, sodass `B<C<say>>` fetter Code ist.
 
-Fuer einen ganzen Codeblock statt eines Inline-Ausschnitts verwendest du einen begrenzten Codeblock -- `=begin code ... =end code` -- der den Text woertlich bewaehrt:
+Für einen ganzen Codeblock statt eines Inline-Ausschnitts verwendest du einen begrenzten Codeblock — `=begin code ... =end code` — der den Text wörtlich bewaehrt:
 
 ```raku
 =begin pod
@@ -35,6 +35,6 @@ say greet('world');
 =end pod
 ```
 
-Die Zeilen innerhalb des Codeblocks werden genau so angezeigt, wie sie geschrieben sind, ohne als Pod interpretiert zu werden. Mit den Inline-Codes und Codebloecken kann Pod eine API mit formatierter Prosa und ausfuehrbar aussehenden Beispielen dokumentieren, alles direkt neben dem Code, den es beschreibt.
+Die Zeilen innerhalb des Codeblocks werden genau so angezeigt, wie sie geschrieben sind, ohne als Pod interpretiert zu werden. Mit den Inline-Codes und Codebloecken kann Pod eine API mit formatierter Prosa und ausführbar aussehenden Beispielen dokumentieren, alles direkt neben dem Code, den es beschreibt.
 
 {% include nav.html %}

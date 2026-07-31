@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,10 +116,11 @@ uzu?</p>
 <p><strong>Enliniaj agoj</strong> metas blokon <code>{ make … }</code>
 rekte ene de la ĵetono:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
-}</pre></div>
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+}
+</pre></div>
 
 <p>Ili estas rapide skribeblaj kaj taŭgaj por eta gramatiko aŭ unufoja
 skripto. La kosto estas, ke la ŝablono kaj la logiko estas implikitaj
@@ -127,16 +128,17 @@ kune.</p>
 <p><strong>Agoklaso</strong> tenas la du apartaj — la gramatiko
 priskribas la formon, la agoklaso priskribas la signifon:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
-}</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
+}
+</pre></div>
 
 <p>Ĉi tiu apartigo havas verajn avantaĝojn, kiam gramatiko kreskas: la
 ŝablono restas legebla, kaj vi povas pari <strong>unu gramatikon kun
@@ -164,6 +166,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/regexes/action-classes/inline-vs-class">English</a>
+<a href="/de/regexes/action-classes/inline-vs-class">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/regexes/action-classes/inline-vs-class">Español</a>
+<a href="/it/regexes/action-classes/inline-vs-class">Italiano</a>
+<a href="/la/regexes/action-classes/inline-vs-class">Latina</a>
+<a href="/lv/regexes/action-classes/inline-vs-class">Latviešu</a>
+<a href="/nl/regexes/action-classes/inline-vs-class">Nederlands</a>
+<a href="/bg/regexes/action-classes/inline-vs-class">Български</a>
+<a href="/ru/regexes/action-classes/inline-vs-class">Русский</a>
+<a href="/uk/regexes/action-classes/inline-vs-class">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

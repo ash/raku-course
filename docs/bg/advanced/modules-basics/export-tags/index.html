@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,24 +120,28 @@ href="/bg/advanced/modules-basics">Основи на модулите</a></p>
 <p>Тагът се записва в скоби след <code>is export</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
+</pre></div>
 
 <p><code>hello</code> няма таг, така че принадлежи към групата по
 подразбиране; <code>goodbye</code> е маркиран с
 <code>:partings</code>.</p>
 <p>Обикновен <code>use</code> импортира само групата по
 подразбиране:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span>
+</pre></div>
 
 <p>Посочването на таг импортира тази група вместо това — и, може би
 изненадващо, <em>не</em> включва групата по подразбиране:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span>
+</pre></div>
 
 <p>Заявяването на <code>:partings</code> ви дава точно тази група. За да
 получите всичко, което модулът експортира, използвайте вградения таг
 <code>:ALL</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span>
+</pre></div>
 
 <p>Два специални тага си заслужават да се знаят. <code>:ALL</code> се
 поддържа от всеки модул и импортира всички негови експорти.
@@ -169,6 +173,22 @@ href="/bg/advanced/modules-basics/exercises">към упражненията в 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/advanced/modules-basics/export-tags">English</a>
+<a href="/de/advanced/modules-basics/export-tags">Deutsch</a>
+<a href="/eo/advanced/modules-basics/export-tags">Esperanto</a>
+<a href="/es/advanced/modules-basics/export-tags">Español</a>
+<a href="/it/advanced/modules-basics/export-tags">Italiano</a>
+<a href="/la/advanced/modules-basics/export-tags">Latina</a>
+<a href="/lv/advanced/modules-basics/export-tags">Latviešu</a>
+<a href="/nl/advanced/modules-basics/export-tags">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/advanced/modules-basics/export-tags">Русский</a>
+<a href="/uk/advanced/modules-basics/export-tags">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

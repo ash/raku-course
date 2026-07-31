@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,14 +114,16 @@ href="/eo/advanced/subroutines">Subprogramoj</a></p>
 argumentojn en krampojn: <code>@a.grep(* &gt; 5)</code>. Raku ofertas
 duan formon — metu <strong>dupunkton</strong> post la nomo, kaj chio
 post la dupunkto farighas la argumenta listo, tute sen krampoj:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>La dupunkto en <code>grep:</code> faras la saman laboron kiel la
 krampoj farus: <code>(1..10).grep: * %% 2</code> signifas ekzakte
 <code>(1..10).grep(* %% 2)</code>. La du formoj estas
 intershanghebla:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
+</pre></div>
 
 <p>La dupunkta formo estas plej agrabla kun metodoj kiuj akceptas
 <strong>blokon</strong> au <a
@@ -130,7 +132,8 @@ tavolon de nestado. Komparu:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># krampoj chirkaue de la bloko</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dupunkto — neniu ferma krampo por pari</span></pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dupunkto — neniu ferma krampo por pari</span>
+</pre></div>
 
 <p>Ambau presas <code>(3 2 1)</code>, sed la dupunkta versio legeblas
 pli klare, precipe kiam la bloko estas longa.</p>
@@ -144,7 +147,8 @@ de la deklaro</strong> kiel argumentojn, do ghi devas esti che la
 <code>grep</code> estas la lasta voko, kaj estas nenio por cheni post
 ghi. Se vi bezonas daure voki pliajn metodojn, uzu la krampan formon
 anstatau au grupigu la partojn de la tuta esprimo por klarigi:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
+</pre></div>
 
 <p>Unu afero por atenti: ne kombinu la dupunkton <strong>kaj</strong>
 krampojn kiel <code>.grep:( … )</code>. Tiu skribmaniero kolizias kun la
@@ -180,6 +184,22 @@ map</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/advanced/colon-calls">English</a>
+<a href="/de/advanced/colon-calls">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/advanced/colon-calls">Español</a>
+<a href="/it/advanced/colon-calls">Italiano</a>
+<a href="/la/advanced/colon-calls">Latina</a>
+<a href="/lv/advanced/colon-calls">Latviešu</a>
+<a href="/nl/advanced/colon-calls">Nederlands</a>
+<a href="/bg/advanced/colon-calls">Български</a>
+<a href="/ru/advanced/colon-calls">Русский</a>
+<a href="/uk/advanced/colon-calls">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

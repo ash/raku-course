@@ -44,7 +44,7 @@ say $var[1]; # 2
 
 Der passende Kontextualisierer `@( … )` bewirkt das Gegenteil und erzwingt den Listenkontext.
 
-Es gibt auch den _Sink-Kontext_ -- den Kontext einer Anweisung, deren Wert verworfen wird, wie eine Zeile, die nur wegen ihres Seiteneffekts existiert. Wenn ein Wert im Sink-Kontext landet und nichts Nützliches damit zu tun ist, kann Raku vor einer "useless use" warnen, was ein hilfreicher Hinweis ist, dass du vergessen hast, ein Ergebnis zu verwenden.
+Es gibt auch den _Sink-Kontext_ — den Kontext einer Anweisung, deren Wert verworfen wird, wie eine Zeile, die nur wegen ihres Seiteneffekts existiert. Wenn ein Wert im Sink-Kontext landet und nichts Nützliches damit zu tun ist, kann Raku vor einer "useless use" warnen, was ein hilfreicher Hinweis ist, dass du vergessen hast, ein Ergebnis zu verwenden.
 
 Das Sigil, das du wählst (`$` versus `@`), ist eigentlich eine Wahl des Kontexts, und die Kontextualisierer `$( )` und `@( )` ermöglichen es dir, ihn bei Bedarf zu überschreiben.
 

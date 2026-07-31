@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,7 +118,8 @@ sed ili estas tio, kion vi uzas, kiam vi agordas por rapideco.</p>
 <h2 id="degree-kiom-da-laborantoj"><code>:degree</code> — kiom da
 laborantoj</h2>
 <p><code>:degree</code> fiksas, kiom da laborfadenoj kuras samtempe:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25)</span>
+</pre></div>
 
 <p>Defaŭlte la grado estas proksima al la nombro de procesoraj kernoj,
 kiujn la maŝino havas — sur okkerna maŝino ĝi estas <code>7</code>,
@@ -129,7 +130,8 @@ kaj la kroma kunordigo povas eĉ malrapidigi la aferon.</p>
 elementoj samtempe</h2>
 <p><code>:batch</code> fiksas, kiom da elementoj ĉiu laboranto prenas
 per unu fojo antaŭ ol reveni por pliaj:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">hyper</span>(:<span class="nb">batch</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25 36)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">hyper</span>(:<span class="n">batch</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25 36)</span>
+</pre></div>
 
 <p>La defaŭlta aro estas <code>64</code>, kaj la grando estas
 kompromiso:</p>
@@ -144,16 +146,18 @@ da kunordigo.</li>
 </ul>
 <p>Vi povas fiksi ambaŭ samtempe, sur <code>.race</code> same kiel sur
 <code>.hyper</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="nb">batch</span>(<span class="mi">3</span>)).<span class="nb">map</span>(*²).<span class="nb">sum</span>; <span class="c1"># 91</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="n">batch</span>(<span class="mi">3</span>)).<span class="n">map</span>(*<span class="n">²</span>).<span class="nb">sum</span>; <span class="c1"># 91</span>
+</pre></div>
 
 <div style="font-size: 85%; opacity: .8;">
 <p>Se vi scivolas, kiaj la defaŭltoj efektive estas, vi povas rigardi
 ilin tra la internaĵoj de Rakudo. Notu, ke ĉi tio legas
 <em>privatan</em> atributon — ĝi ne estas stabila API, kaj la nombroj
 dependas de via maŝino:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>;
-<span class="nb">say</span> <span class="nv">$h</span>.^<span class="n">attributes</span>.<span class="nb">first</span>(*.<span class="n">name</span>.<span class="n">contains</span>(<span class="s">'config'</span>)).<span class="n">get_value</span>(<span class="nv">$h</span>).<span class="nb">raku</span>;
-<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>;
+<span class="nb">say</span> <span class="nv">$h</span>.^<span class="nb">attributes</span>.<span class="nb">first</span>(*.<span class="nb">name</span>.<span class="nb">contains</span>(<span class="s">&#39;config&#39;</span>)).<span class="nb">get_value</span>(<span class="nv">$h</span>).<span class="n">raku</span>;
+<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span>
+</pre></div>
 
 <p>Ĉi tie <code>batch</code> estas la fiksita defaŭlto <code>64</code>,
 dum <code>degree</code> estas <code>7</code> — unu malpli ol la ok
@@ -186,6 +190,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/hyper-race/batch-and-degree">English</a>
+<a href="/de/paradigms/hyper-race/batch-and-degree">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/hyper-race/batch-and-degree">Español</a>
+<a href="/it/paradigms/hyper-race/batch-and-degree">Italiano</a>
+<a href="/la/paradigms/hyper-race/batch-and-degree">Latina</a>
+<a href="/lv/paradigms/hyper-race/batch-and-degree">Latviešu</a>
+<a href="/nl/paradigms/hyper-race/batch-and-degree">Nederlands</a>
+<a href="/bg/paradigms/hyper-race/batch-and-degree">Български</a>
+<a href="/ru/paradigms/hyper-race/batch-and-degree">Русский</a>
+<a href="/uk/paradigms/hyper-race/batch-and-degree">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

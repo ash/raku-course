@@ -28,7 +28,7 @@ say @all.elems;
 
 ## Kommentare
 
-1. `my @all = @first, @second` zu schreiben würde _kein_ flaches Array ergeben -- es würde ein verschachteltes Array aus zwei Arrays erstellen, `[[1 2] [3 4 5]]`.
+1. `my @all = @first, @second` zu schreiben würde _kein_ flaches Array ergeben — es würde ein verschachteltes Array aus zwei Arrays erstellen, `[[1 2] [3 4 5]]`.
 
 1. Die Routine `flat` verschmilzt die Elemente beider Arrays zu einer einzigen flachen Sequenz, die dann in `@all` gespeichert wird. Das Ergebnis hat fünf Elemente.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Saluton, Concatenado!'
+title: 'Solvo: Saluton, Konkatenado!'
 ---
 
 {% include menu.html %}

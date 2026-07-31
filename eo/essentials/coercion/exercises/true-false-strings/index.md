@@ -1,5 +1,5 @@
 ---
-title: Veraj kaj falsaj stringoj
+title: Veraj kaj falsaj ĉenoj
 ---
 
 {% include menu.html %}

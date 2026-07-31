@@ -34,6 +34,6 @@ Cleanup
 
 1. Nadat `Working` is afgedrukt, verlaat de `return` de subroutine onmiddellijk, dus `never reached` wordt nooit afgedrukt.
 
-1. Hoewel de body vroegtijdig verlaten werd, wordt de `LEAVE`-phaser toch uitgevoerd bij het verlaten, en drukt `Cleanup` af. Deze garantie is precies waarom `LEAVE` de juiste plek is om resources vrij te geven -- het wordt uitgevoerd ongeacht hoe het blok eindigt.
+1. Hoewel de body vroegtijdig verlaten werd, wordt de `LEAVE`-phaser toch uitgevoerd bij het verlaten, en drukt `Cleanup` af. Deze garantie is precies waarom `LEAVE` de juiste plek is om resources vrij te geven — het wordt uitgevoerd ongeacht hoe het blok eindigt.
 
 {% include nav.html %}

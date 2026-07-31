@@ -23,7 +23,7 @@ given 5 {
 
 <div class="extended-explanation">
 
-Ein `when`-Block *bricht automatisch* aus dem `given` aus, nachdem er gepasst hat -- es gibt kein Fall-Through. `5` erfüllt die erste Bedingung `$_ > 0`, also wird `positive` ausgegeben und das zweite `when 5` wird nie erreicht, obwohl es ebenfalls gepasst hätte.
+Ein `when`-Block *bricht automatisch* aus dem `given` aus, nachdem er gepasst hat — es gibt kein Fall-Through. `5` erfüllt die erste Bedingung `$_ > 0`, also wird `positive` ausgegeben und das zweite `when 5` wird nie erreicht, obwohl es ebenfalls gepasst hätte.
 
 </div>
 

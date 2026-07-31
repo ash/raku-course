@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,18 +110,19 @@
 🆕</a> / <a href="/it/addendum/types-and-text-machines">Tipi e macchine
 per il testo</a> / <a href="/it/addendum/regex-grammars">Espressioni
 regolari e grammatiche</a> / <a
-href="/it/addendum/regex-grammars/exercises">Esercizi</a> / <a
+href="/it/addendum/regex-grammars/exercises">Exercises</a> / <a
 href="/it/addendum/regex-grammars/exercises/validate-identifier">Convalidate
 gli identificatori</a></p>
 <h1 id="soluzione-convalidate-gli-identificatori">Soluzione: Convalidate
 gli identificatori</h1>
 <p>Ecco una possibile soluzione del compito.</p>
 <h2 id="codice">Codice</h2>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
-}</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
+}
+</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/validate-identifier.raku">validate-identifier.raku</a>.</p>
@@ -143,7 +144,8 @@ identificatori.</p></li>
 <li><p>La seconda classe si può anche scrivere come <code>\w</code>, la
 scorciatoia incorporata per un carattere di parola (una lettera, una
 cifra o un trattino basso):</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;
+</pre></div>
 
 <p>Una differenza di cui essere consapevoli: <code>\w</code> in Raku è
 consapevole di Unicode, quindi anche un nome come <code>café</code>
@@ -158,11 +160,12 @@ seguito da una lettera — ed è per questo che subroutine come
 <code>is-prime</code> si leggono così naturalmente. Per convalidare gli
 identificatori <em>Raku</em>, ammetti gruppi simili dopo la parte
 classica:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* [ '-' &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
+<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* [ &#39;-&#39; &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
-}</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
+}
+</pre></div>
 
 <p>Ogni gruppo fra parentesi <code>[ '-' &lt;[A..Za..z]&gt; \w* ]</code>
 accetta un trattino solo quando segue una lettera, quindi
@@ -180,6 +183,22 @@ grammatica per i nomi completi</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/addendum/regex-grammars/exercises/validate-identifier/solution">English</a>
+<a href="/de/addendum/regex-grammars/exercises/validate-identifier/solution">Deutsch</a>
+<a href="/eo/addendum/regex-grammars/exercises/validate-identifier/solution">Esperanto</a>
+<a href="/es/addendum/regex-grammars/exercises/validate-identifier/solution">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/addendum/regex-grammars/exercises/validate-identifier/solution">Latina</a>
+<a href="/lv/addendum/regex-grammars/exercises/validate-identifier/solution">Latviešu</a>
+<a href="/nl/addendum/regex-grammars/exercises/validate-identifier/solution">Nederlands</a>
+<a href="/bg/addendum/regex-grammars/exercises/validate-identifier/solution">Български</a>
+<a href="/ru/addendum/regex-grammars/exercises/validate-identifier/solution">Русский</a>
+<a href="/uk/addendum/regex-grammars/exercises/validate-identifier/solution">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

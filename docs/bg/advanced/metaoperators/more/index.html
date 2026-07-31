@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,13 +118,15 @@ href="/bg/advanced/metaoperators">Метаоператори</a></p>
 <p>Метаоператорът cross <code>X</code> сдвоява <strong>всеки</strong>
 елемент от единия списък с <strong>всеки</strong> елемент от другия —
 декартово произведение:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
+</pre></div>
 
 <p>Както zip, той може да обвие оператор, за да действа върху всяка
 двойка. <code>X~</code> съединява всяка двойка в низ, а <code>X*</code>
 умножава:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
+</pre></div>
 
 <p>Докато zip обхожда два списъка в крак, cross ги комбинира по всеки
 възможен начин.</p>
@@ -135,7 +137,8 @@ href="/bg/advanced/metaoperators">Метаоператори</a></p>
 по елемент, както zip; с единична стойност от едната страна, тя се
 разтяга върху целия списък:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
+</pre></div>
 
 <p>Двете стрелки не е задължително да сочат в една и съща посока, а
 тяхната посока определя какво се случва, когато списъците се различават
@@ -152,11 +155,13 @@ href="/bg/advanced/metaoperators">Метаоператори</a></p>
 <li><code>&lt;&lt;op&gt;&gt;</code> — <strong>по-късият</strong> списък
 се повтаря, за да съвпадне с по-дългия.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span>
+</pre></div>
 
 <p>Има и унарна форма, която извиква метод върху всеки елемент.
 <code>&gt;&gt;.uc</code> превръща всеки низ в главни букви:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
+</pre></div>
 
 <p>Хипер операциите също сигнализират, че работата <em>може</em> да бъде
 изпълнена паралелно — ще се запознаете със свързания метод
@@ -169,8 +174,9 @@ href="/bg/paradigms/hyper-race">раздела за конкурентно
 метаоператор, приложен към <code>==</code>, и същото работи за други
 булеви оператори като <code>eq</code> и <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — не са равни като низове</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не се дели на 2</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — не са равни като низове</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не се дели на 2</span>
+</pre></div>
 
 <p>Накратко, <code>$a !op $b</code> е просто по-подреден начин да се
 запише <code>!($a op $b)</code>.</p>
@@ -179,7 +185,8 @@ href="/bg/paradigms/hyper-race">раздела за конкурентно
 всяко нещо, Raku с удоволствие ви предлага няколко — така отрицателният
 <code>!eq</code> съжителства с отделния оператор <code>ne</code>, и
 двата означават абсолютно едно и също:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — същата проверка като 'a' !eq 'b'</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — същата проверка като &#39;a&#39; !eq &#39;b&#39;</span>
+</pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -200,6 +207,22 @@ href="/bg/advanced/metaoperators/exercises">към упражненията в �
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/advanced/metaoperators/more">English</a>
+<a href="/de/advanced/metaoperators/more">Deutsch</a>
+<a href="/eo/advanced/metaoperators/more">Esperanto</a>
+<a href="/es/advanced/metaoperators/more">Español</a>
+<a href="/it/advanced/metaoperators/more">Italiano</a>
+<a href="/la/advanced/metaoperators/more">Latina</a>
+<a href="/lv/advanced/metaoperators/more">Latviešu</a>
+<a href="/nl/advanced/metaoperators/more">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/advanced/metaoperators/more">Русский</a>
+<a href="/uk/advanced/metaoperators/more">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

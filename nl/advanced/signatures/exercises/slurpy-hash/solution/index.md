@@ -30,7 +30,7 @@ Anna: colour=red, size=5
 
 1. De vaste positionele parameter `$name` wordt eerst ingevuld, en de slurpy `*%opts` verzamelt vervolgens alle overige benoemde argumenten in een hash.
 
-1. `%opts.sort` sorteert de paren op sleutel, zodat de uitvoer deterministisch is -- `colour` komt voor `size`. De `.map` zet elk paar om in een `sleutel=waarde`-string met `.key` en `.value`, en `.join(', ')` voegt ze samen.
+1. `%opts.sort` sorteert de paren op sleutel, zodat de uitvoer deterministisch is — `colour` komt voor `size`. De `.map` zet elk paar om in een `sleutel=waarde`-string met `.key` en `.value`, en `.join(', ')` voegt ze samen.
 
 1. De uiteindelijke string interpoleert `$name` en het samengestelde `$details`, wat `Anna: colour=red, size=5` oplevert.
 

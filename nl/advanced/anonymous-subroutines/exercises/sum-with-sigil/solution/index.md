@@ -29,6 +29,6 @@ say add(2, 3);
 
 1. Het pointy block heeft twee parameters, `-> $a, $b`, dus de anonieme subroutine accepteert twee argumenten.
 
-1. Omdat de variabele met de `&`-sigil is gedeclareerd, kan hij worden aangeroepen als `add(2, 3)`, precies zoals een benoemde subroutine -- zonder sigil op de aanroepplaats -- wat `5` oplevert.
+1. Omdat de variabele met de `&`-sigil is gedeclareerd, kan hij worden aangeroepen als `add(2, 3)`, precies zoals een benoemde subroutine — zonder sigil op de aanroepplaats — wat `5` oplevert.
 
 {% include nav.html %}

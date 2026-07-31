@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,13 +118,15 @@ Drei davon sind hier wissenswert.</p>
 <p>Der Kreuz-Meta-Operator <code>X</code> paart <strong>jedes</strong>
 Element einer Liste mit <strong>jedem</strong> Element einer anderen —
 das kartesische Produkt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
+</pre></div>
 
 <p>Wie Zip kann er einen Operator umhüllen, um auf jedes Paar
 einzuwirken. <code>X~</code> verbindet jedes Paar zu einer Zeichenkette,
 und <code>X*</code> multipliziert:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
+</pre></div>
 
 <p>Während Zip zwei Listen im Gleichschritt durchläuft, kombiniert Kreuz
 sie auf jede mögliche Weise.</p>
@@ -136,7 +138,8 @@ Element</strong> einer Liste an. Der Operator wird in die spitzen
 elementweise, wie Zip; mit einem einzelnen Wert auf einer Seite wird
 dieser Wert über die gesamte Liste gestreckt:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
+</pre></div>
 
 <p>Die beiden Pfeile müssen nicht in die gleiche Richtung zeigen, und
 ihre Richtung bestimmt, was passiert, wenn die Listen unterschiedlich
@@ -154,12 +157,14 @@ wird wiederholt, um zur rechten zu passen;</li>
 <li><code>&lt;&lt;op&gt;&gt;</code> — die <strong>kürzere</strong> Liste
 wird wiederholt, um zur längeren zu passen.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span>
+</pre></div>
 
 <p>Es gibt auch eine unäre Form, die eine Methode auf jedes Element
 aufruft. <code>&gt;&gt;.uc</code> wandelt jede Zeichenkette in
 Großbuchstaben um:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
+</pre></div>
 
 <p>Hyper-Operationen signalisieren auch, dass die Arbeit
 <em>möglicherweise parallel</em> ausgeführt werden kann — Sie werden die
@@ -173,8 +178,9 @@ Meta-Operator, angewendet auf <code>==</code>, und dasselbe funktioniert
 für andere boolesche Operatoren wie <code>eq</code> und
 <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — nicht gleich als Zeichenketten</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 ist nicht teilbar durch 2</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — nicht gleich als Zeichenketten</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 ist nicht teilbar durch 2</span>
+</pre></div>
 
 <p>Kurz gesagt: <code>$a !op $b</code> ist nur eine sauberere
 Schreibweise von <code>!($a op $b)</code>.</p>
@@ -183,7 +189,8 @@ Sprache wie Esperanto, die einen einzigen regelmäßigen Weg anstrebt,
 jede Sache auszudrücken, bietet Raku Ihnen gerne mehrere — so lebt das
 negierte <code>!eq</code> direkt neben dem dedizierten
 <code>ne</code>-Operator, und beide bedeuten genau dasselbe:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — derselbe Test wie 'a' !eq 'b'</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — derselbe Test wie &#39;a&#39; !eq &#39;b&#39;</span>
+</pre></div>
 
 <section id="praxis" class="practice" data-markdown="1">
 <h2>Praxis</h2>
@@ -204,6 +211,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/advanced/metaoperators/more">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/advanced/metaoperators/more">Esperanto</a>
+<a href="/es/advanced/metaoperators/more">Español</a>
+<a href="/it/advanced/metaoperators/more">Italiano</a>
+<a href="/la/advanced/metaoperators/more">Latina</a>
+<a href="/lv/advanced/metaoperators/more">Latviešu</a>
+<a href="/nl/advanced/metaoperators/more">Nederlands</a>
+<a href="/bg/advanced/metaoperators/more">Български</a>
+<a href="/ru/advanced/metaoperators/more">Русский</a>
+<a href="/uk/advanced/metaoperators/more">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

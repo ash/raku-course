@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,31 +117,35 @@ finiĝis — kaj decidi ĝin mem, kiam la rezulto (aŭ la novaĵo) estas
 preta. <code>.keep</code> plenumas ĝin per valoro:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># freŝa, ankoraŭ nedecidita promeso</span>
 
-<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># plenumu ĝin per valoro</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
+<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">42</span>);           <span class="c1"># plenumu ĝin per valoro</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span>
+</pre></div>
 
 <p><code>.break</code> estas la malsukcesa kazo. Atendi rompitan
 promeson reĵetas la eraron, ĝuste kiel ĉe bloko <code>start</code>, kiu
 <a href="/eo/paradigms/await/awaiting-promises">mortis</a> — kaj se
 nenio kaptas ĝin, tiu escepto haltigas la programon:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
+<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
 
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># mortas ĉi tie kun 'disk full'</span>
-<span class="nb">say</span> <span class="s">'never reached'</span>;      <span class="c1"># ĉi tiu linio ne plenumiĝas</span></pre></div>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># mortas ĉi tie kun &#39;disk full&#39;</span>
+<span class="nb">say</span> <span class="s">&#39;never reached&#39;</span>;      <span class="c1"># ĉi tiu linio ne plenumiĝas</span>
+</pre></div>
 
 <p>Por daŭrigi, kaptu la malsukceson per <code>try</code>, precize kiel
 vi farus ĉirkaŭ ajna kodo, kiu povus morti:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
+<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span></pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span>
+</pre></div>
 
 <p>Se la rezulto jam estas konata, du mallongigoj faras promeson, kiu
 ekestas jam decidita: <code>Promise.kept($value)</code> kaj
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="nb">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span>
+</pre></div>
 
 <p>Kial fari promeson mane? Ĉar ne ĉiu rezulto venas de bloko
 <code>start</code>. Evento, kiu okazas poste, mesaĝo, kiu alvenas,
@@ -160,6 +164,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/promises/making-a-promise">English</a>
+<a href="/de/paradigms/promises/making-a-promise">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/promises/making-a-promise">Español</a>
+<a href="/it/paradigms/promises/making-a-promise">Italiano</a>
+<a href="/la/paradigms/promises/making-a-promise">Latina</a>
+<a href="/lv/paradigms/promises/making-a-promise">Latviešu</a>
+<a href="/nl/paradigms/promises/making-a-promise">Nederlands</a>
+<a href="/bg/paradigms/promises/making-a-promise">Български</a>
+<a href="/ru/paradigms/promises/making-a-promise">Русский</a>
+<a href="/uk/paradigms/promises/making-a-promise">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

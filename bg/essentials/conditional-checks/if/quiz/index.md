@@ -4,21 +4,21 @@ title: 'Тест: `if`'
 
 {% include menu.html %}
 
-Complete the following programs.
+Допълнете следващите програми.
 
 ## 1
 
-This program has to check if the age is 21 years or more.
+Тази програма трябва да провери дали възрастта е 21 години или повече.
 
 {:.quiz-code}
 . | my $age = 24;
->= { | if $age ␣␣ 21 ␣ | Both `>=` and `≥` can be used here.
+>= { | if $age ␣␣ 21 ␣ | Тук могат да се използват както `>=`, така и `≥`.
 . | &nbsp;&nbsp;&nbsp;&nbsp;say 'We can sell it to you.';
 } | ␣
 
 ## 2
 
-In this program, you have to check if `$x` is between 10 and 15 (exclusive).
+В тази програма трябва да проверите дали `$x` е между 10 и 15 (без границите).
 
 {:.quiz-code}
 . | my $x = 12.3;

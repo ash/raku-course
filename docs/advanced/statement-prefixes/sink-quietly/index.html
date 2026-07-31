@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,8 +115,9 @@ its value.</p>
 <p>The <code>sink</code> prefix evaluates something in <em>sink
 context</em> — purely for its side effects, discarding the result. It is
 useful with a lazy operation that you want to force to run:</p>
-<div class="highlight raku"><pre><span></span><span class="n">sink</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
-<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">sink</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
+<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span>
+</pre></div>
 
 <p>The <code>map</code> here is run only for the printing it does;
 <code>sink</code> makes sure it actually executes and throws the
@@ -126,9 +127,10 @@ result is never used might not run at all.</p>
 <strong>warnings suppressed</strong>. Code that would normally print a
 warning to the error stream stays silent:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
-<span class="k">quietly</span> {
+<span class="n">quietly</span> {
     <span class="nb">say</span> <span class="nv">$value</span> + <span class="mi">1</span>; <span class="c1"># 1, with no &quot;uninitialized value&quot; warning</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Adding <code>1</code> to an undefined <code>$value</code> normally
 warns about using an uninitialized value, but inside
@@ -137,7 +139,7 @@ do something that warns and do not want the noise — but sparingly, since
 warnings usually point at a real mistake.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/advanced/statement-prefixes/sink-quietly/quiz">Quiz —
 Statement prefixes</a></li>
@@ -167,8 +169,24 @@ section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/advanced/statement-prefixes/sink-quietly">Deutsch</a>
+<a href="/eo/advanced/statement-prefixes/sink-quietly">Esperanto</a>
+<a href="/es/advanced/statement-prefixes/sink-quietly">Español</a>
+<a href="/it/advanced/statement-prefixes/sink-quietly">Italiano</a>
+<a href="/la/advanced/statement-prefixes/sink-quietly">Latina</a>
+<a href="/lv/advanced/statement-prefixes/sink-quietly">Latviešu</a>
+<a href="/nl/advanced/statement-prefixes/sink-quietly">Nederlands</a>
+<a href="/bg/advanced/statement-prefixes/sink-quietly">Български</a>
+<a href="/ru/advanced/statement-prefixes/sink-quietly">Русский</a>
+<a href="/uk/advanced/statement-prefixes/sink-quietly">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

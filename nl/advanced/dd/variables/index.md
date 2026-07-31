@@ -29,7 +29,7 @@ dd $var;
 Int $var = 42
 ```
 
-Dit is het belangrijkste verschil met `say`: een enkele `dd`-aanroep op een scalar vertelt je de naam en, indien bekend, het type van de gegevens -- zodat je meerdere `dd`-aanroepen in een programma kunt plaatsen en toch kunt herkennen welke uitvoer bij welke variabele hoort.
+Dit is het belangrijkste verschil met `say`: een enkele `dd`-aanroep op een scalar vertelt je de naam en, indien bekend, het type van de gegevens — zodat je meerdere `dd`-aanroepen in een programma kunt plaatsen en toch kunt herkennen welke uitvoer bij welke variabele hoort.
 
 Je kunt ook complexere datastructuren dumpen, zoals arrays of hashes. Hier toont `dd` een codeachtige weergave van de waarde:
 

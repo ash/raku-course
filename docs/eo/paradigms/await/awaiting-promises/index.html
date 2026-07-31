@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,17 +113,19 @@ href="/eo/paradigms/await">await</a></p>
 <h1 id="atendi-promeson">Atendi promeson</h1>
 <p><code>await</code> prenas promeson, atendas ĝian kompletiĝon kaj
 redonas ĝian rezulton:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
+</pre></div>
 
 <p>La programo paŭzas ĉe <code>await</code> nur tiom longe, kiom
 necesas, poste daŭrigas per la valoro, kiun la promeso produktis.</p>
 <p>Donite plurajn promesojn, <code>await</code> atendas
 <strong>ĉiujn</strong> el ili kaj redonas iliajn rezultojn en la sama
 ordo kiel la promesoj en la listo:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
+</pre></div>
 
 <p>La taskoj kuras samtempe, sed <code>await @jobs</code> ne revenas
 antaŭ ol ĉiu el ili estas finita. Ĉiu rezulto poste sidas sur la sama
@@ -134,10 +136,11 @@ escepton — <code>await</code> reĵetas tiun escepton ĉe la punkto de la
 <code>await</code>. Tio signifas, ke eraroj en fona laboro aperas tie,
 kie vi atendas ĝin, do vi povas trakti ilin per la kutimaj
 <code>try</code> / <code>CATCH</code> el la parto pri esceptoj:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
+</pre></div>
 
 <p>Ĉi tio presas:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>
@@ -168,6 +171,22 @@ ekzercoj de ĉi tiu sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/await/awaiting-promises">English</a>
+<a href="/de/paradigms/await/awaiting-promises">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/await/awaiting-promises">Español</a>
+<a href="/it/paradigms/await/awaiting-promises">Italiano</a>
+<a href="/la/paradigms/await/awaiting-promises">Latina</a>
+<a href="/lv/paradigms/await/awaiting-promises">Latviešu</a>
+<a href="/nl/paradigms/await/awaiting-promises">Nederlands</a>
+<a href="/bg/paradigms/await/awaiting-promises">Български</a>
+<a href="/ru/paradigms/await/awaiting-promises">Русский</a>
+<a href="/uk/paradigms/await/awaiting-promises">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo: Stringa interpolado'
+title: 'Kvizo: Ĉena interpolado'
 ---
 
 {% include menu.html %}

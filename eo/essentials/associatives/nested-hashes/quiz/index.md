@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Multnivelaj haxoj
+title: Kvizo — Multnivelaj haketmapoj
 ---
 
 {% include menu.html %}

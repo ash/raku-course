@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,26 +119,27 @@ construyes dentro de un bloque <code>route</code> con la palabra clave
 <span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
 
 <span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
-    <span class="n">get</span> -&gt; <span class="s">'hello'</span> {
-        <span class="n">content</span> <span class="s">'text/plain'</span>, <span class="s">'Hello from Cro!'</span>;
+    <span class="nb">get</span> -&gt; <span class="s">&#39;hello&#39;</span> {
+        <span class="n">content</span> <span class="s">&#39;text/plain&#39;</span>, <span class="s">&#39;Hello from Cro!&#39;</span>;
     }
 }
 
 <span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
-    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">host</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
     :<span class="n">port</span>(<span class="mi">8080</span>),
     :<span class="n">application</span>(<span class="nv">$application</span>),
 );
 <span class="nv">$server</span>.<span class="nb">start</span>;
 
-<span class="nb">say</span> <span class="s">'Listening on http://127.0.0.1:8080/hello — press Ctrl-C to stop'</span>;
+<span class="nb">say</span> <span class="s">&#39;Listening on http://127.0.0.1:8080/hello — press Ctrl-C to stop&#39;</span>;
 
-<span class="k">react</span> {
-    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+<span class="n">react</span> {
+    <span class="n">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
         <span class="nv">$server</span>.<span class="n">stop</span>;
-        <span class="n">done</span>;
+        <span class="nb">done</span>;
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Lee la ruta como «una petición <code>GET</code> a la ruta
 <code>hello</code> devuelve el texto <code>Hello from Cro!</code>». La
@@ -188,6 +189,22 @@ los ejercicios de esta sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/cro/a-cro-route">English</a>
+<a href="/de/paradigms/cro/a-cro-route">Deutsch</a>
+<a href="/eo/paradigms/cro/a-cro-route">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/cro/a-cro-route">Italiano</a>
+<a href="/la/paradigms/cro/a-cro-route">Latina</a>
+<a href="/lv/paradigms/cro/a-cro-route">Latviešu</a>
+<a href="/nl/paradigms/cro/a-cro-route">Nederlands</a>
+<a href="/bg/paradigms/cro/a-cro-route">Български</a>
+<a href="/ru/paradigms/cro/a-cro-route">Русский</a>
+<a href="/uk/paradigms/cro/a-cro-route">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

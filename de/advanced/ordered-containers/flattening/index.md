@@ -35,7 +35,7 @@ say flat(@a, @b).elems; # 5
 
 ## Itemisierung
 
-Manchmal willst du das Gegenteil: einen Container davor schützen, abgeflacht zu werden, auch innerhalb von `flat`. Das Konstrukt `$(...)` _itemisiert_ sein Argument -- es markiert das Ergebnis als einzelnes Element. Vergleiche das vorherige Beispiel mit diesem:
+Manchmal willst du das Gegenteil: einen Container davor schützen, abgeflacht zu werden, auch innerhalb von `flat`. Das Konstrukt `$(...)` _itemisiert_ sein Argument — es markiert das Ergebnis als einzelnes Element. Vergleiche das vorherige Beispiel mit diesem:
 
 ```raku
 my @a = 1, 2, 3;

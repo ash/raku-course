@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,8 +115,9 @@ href="/eo/paradigms/supplies">Supply</a></p>
 listo. Metodoj kiel <code>map</code> kaj <code>grep</code> produktas
 <strong>novan</strong> supply, kies valoroj estas la transformitaj:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="nb">map</span>(* * <span class="mi">10</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span></pre></div>
+<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="n">map</span>(* * <span class="mi">10</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span>
+</pre></div>
 
 <p>La <code>map(* * 10)</code> konstruas novan supply, kiu eligas
 dekoblon de ĉiu originala valoro, kaj la konekto kolektas tiujn en
@@ -124,14 +125,16 @@ dekoblon de ĉiu originala valoro, kaj la konekto kolektas tiujn en
 <p><code>grep</code> filtras supply, transdonante nur la valorojn, por
 kiuj ĝia bloko estas vera:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span></pre></div>
+<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span>
+</pre></div>
 
 <p>Ĉar ĉiu transformo redonas alian supply, vi povas ĉenigi ilin,
 konstruante malgrandan ĉenstacion, kiu reagas al la fluo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span></pre></div>
+<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span>
+</pre></div>
 
 <p>Jen la sama vortprovizo de map/grep, kiun vi konas el listoj,
 aplikita al valoroj alvenantaj en la tempo. La supply faras la puŝadon;
@@ -156,6 +159,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/supplies/transforming">English</a>
+<a href="/de/paradigms/supplies/transforming">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/supplies/transforming">Español</a>
+<a href="/it/paradigms/supplies/transforming">Italiano</a>
+<a href="/la/paradigms/supplies/transforming">Latina</a>
+<a href="/lv/paradigms/supplies/transforming">Latviešu</a>
+<a href="/nl/paradigms/supplies/transforming">Nederlands</a>
+<a href="/bg/paradigms/supplies/transforming">Български</a>
+<a href="/ru/paradigms/supplies/transforming">Русский</a>
+<a href="/uk/paradigms/supplies/transforming">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

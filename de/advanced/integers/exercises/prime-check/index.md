@@ -8,7 +8,7 @@ title: Primzahl oder nicht
 
 Die Methode `is-prime` beantwortet eine Frage, die man normalerweise nicht auf den ersten Blick beantworten kann. Verwende sie für zwei Zahlen, die beide auf den ersten Blick wie Primzahlen aussehen: `97` und `91`. Gib das Ergebnis für jede Zahl in einer eigenen Zeile aus.
 
-(`91` ist der Trick -- es ist gleich `7 × 13`.)
+(`91` ist der Trick — es ist gleich `7 × 13`.)
 
 ## Beispiel
 

@@ -32,6 +32,6 @@ say "[$s]";
 
 1. Een native `str` begint als de lege string, daarom komen de haken uit zonder iets ertussen. Geen van de native typen bevat ooit een ongedefinieerde waarde.
 
-1. De typespecificaties zijn hier essentieel. Laat ze weg -- schrijf `my $n; my $s;` -- en de variabelen worden gewone containers die *ongedefinieerd* (`Any`) beginnen. Dan drukt `say $n` `(Any)` af, en het interpoleren van de ongedefinieerde `$s` geeft de waarschuwing *"Use of uninitialized value ... in string context"*. Het zijn de native `num`- en `str`-typen die de standaardwaarden `0` en lege string garanderen.
+1. De typespecificaties zijn hier essentieel. Laat ze weg — schrijf `my $n; my $s;` — en de variabelen worden gewone containers die *ongedefinieerd* (`Any`) beginnen. Dan drukt `say $n` `(Any)` af, en het interpoleren van de ongedefinieerde `$s` geeft de waarschuwing *"Use of uninitialized value ... in string context"*. Het zijn de native `num`- en `str`-typen die de standaardwaarden `0` en lege string garanderen.
 
 {% include nav.html %}

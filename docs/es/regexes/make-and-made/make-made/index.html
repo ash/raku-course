@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,21 +119,24 @@ un <code>{ … }</code> interior escrito entre el patrón — que se ejecuta
 en cuanto el emparejamiento lo alcanza. Dentro de ese bloque, la función
 <code>make</code> guarda un valor en la coincidencia actual:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">OneNum</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
-}</pre></div>
+    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+}
+</pre></div>
 
 <p>Cuando <code>TOP</code> coincide, el bloque interior
 <code>{ make $&lt;number&gt;.Int }</code> se ejecuta — las llaves
 exteriores son solo el cuerpo del token — y guarda el entero en la
 coincidencia. Lo lees después con <code>made</code> (o con su alias
 <code>.ast</code>):</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span>; <span class="c1"># 42</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span>; <span class="c1"># 42</span>
+</pre></div>
 
 <p>Como guardamos <code>$&lt;number&gt;.Int</code>, el valor que
 devuelve <code>made</code> es un <code>Int</code> de verdad: el número
 en sí, no el objeto de coincidencia:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span>
+</pre></div>
 
 <p>Fíjate en que este <code>+ 1</code> en concreto daría <code>43</code>
 incluso sin el <code>.Int</code>, ya que una coincidencia se convierte
@@ -146,12 +149,13 @@ en bruto.</p>
 array, un objeto. Un token también puede combinar los valores producidos
 por sus subtokens. Por ejemplo, sumando dos números capturados:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>).<span class="k">made</span>; <span class="c1"># 5</span>
+</pre></div>
 
 <p><code>make</code> y <code>made</code> son el puente entre «coincidió»
 y «aquí está el significado». Poner los bloques en línea funciona, pero
@@ -178,6 +182,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/regexes/make-and-made/make-made">English</a>
+<a href="/de/regexes/make-and-made/make-made">Deutsch</a>
+<a href="/eo/regexes/make-and-made/make-made">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/regexes/make-and-made/make-made">Italiano</a>
+<a href="/la/regexes/make-and-made/make-made">Latina</a>
+<a href="/lv/regexes/make-and-made/make-made">Latviešu</a>
+<a href="/nl/regexes/make-and-made/make-made">Nederlands</a>
+<a href="/bg/regexes/make-and-made/make-made">Български</a>
+<a href="/ru/regexes/make-and-made/make-made">Русский</a>
+<a href="/uk/regexes/make-and-made/make-made">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

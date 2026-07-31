@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,18 +110,19 @@
 izteiksmes un gramatikas</a> / <a
 href="/lv/regexes/grammars">Gramatikas</a> / <a
 href="/lv/regexes/creating-grammars">Gramatiku veidošana</a> / <a
-href="/lv/regexes/creating-grammars/exercises">Vingrinājumi</a> / <a
+href="/lv/regexes/creating-grammars/exercises">Exercises</a> / <a
 href="/lv/regexes/creating-grammars/exercises/parse-hashtag">Parsējiet
 tēmturi</a></p>
 <h1 id="risinājums-parsējiet-tēmturi">Risinājums: Parsējiet tēmturi</h1>
 <p>Šeit ir iespējams risinājums uzdevumam.</p>
 <h2 id="kods">Kods</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">'#'</span> <span class="s">&lt;tag&gt;</span> }
-    <span class="k">token</span> <span class="n">tag</span> { \<span class="n">w</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &#39;#&#39; &lt;tag&gt; </span>}
+    <span class="k">token</span><span class="n"> tag</span> {<span class="sr"> \w+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span>;</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;</span>;
+</pre></div>
 
 <p>🦋 Atrodiet programmu failā <a
 href="https://github.com/ash/raku-course/blob/master/exercises/regexes/creating-grammars/parse-hashtag.raku">parse-hashtag.raku</a>.</p>
@@ -139,12 +140,13 @@ tad ir pieejama kā tvērums <code>&lt;tag&gt;</code>.</p></li>
 <code>#</code> kopā ar vārdu — un vārdu sasniegt caur ligzdotu likumu
 <code>word</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span> <span class="n">TOP</span>  { <span class="s">&lt;tag&gt;</span> }
-    <span class="k">token</span> <span class="n">tag</span>  { <span class="s">'#'</span> <span class="s">&lt;word&gt;</span> }
-    <span class="k">token</span> <span class="n">word</span> { \<span class="n">w</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span>  {<span class="sr"> &lt;tag&gt; </span>}
+    <span class="k">token</span><span class="n"> tag</span>  {<span class="sr"> &#39;#&#39; &lt;word&gt; </span>}
+    <span class="k">token</span><span class="n"> word</span> {<span class="sr"> \w+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span><span class="s">&lt;word&gt;</span>;</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;&lt;word&gt;</span>;
+</pre></div>
 
 <p>Tas izdrukā to pašu <code>｢raku｣</code>. Tagad
 <code>&lt;tag&gt;</code> satver visu <code>#raku</code>, bet vārds tā
@@ -162,6 +164,22 @@ laiku</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/regexes/creating-grammars/exercises/parse-hashtag/solution">English</a>
+<a href="/de/regexes/creating-grammars/exercises/parse-hashtag/solution">Deutsch</a>
+<a href="/eo/regexes/creating-grammars/exercises/parse-hashtag/solution">Esperanto</a>
+<a href="/es/regexes/creating-grammars/exercises/parse-hashtag/solution">Español</a>
+<a href="/it/regexes/creating-grammars/exercises/parse-hashtag/solution">Italiano</a>
+<a href="/la/regexes/creating-grammars/exercises/parse-hashtag/solution">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/regexes/creating-grammars/exercises/parse-hashtag/solution">Nederlands</a>
+<a href="/bg/regexes/creating-grammars/exercises/parse-hashtag/solution">Български</a>
+<a href="/ru/regexes/creating-grammars/exercises/parse-hashtag/solution">Русский</a>
+<a href="/uk/regexes/creating-grammars/exercises/parse-hashtag/solution">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

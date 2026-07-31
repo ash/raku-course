@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,8 +118,9 @@ l’<strong>intero</strong> schema. Scritto dentro il regex,
 <code>:i</code> è <em>posizionale</em>: si applica solo dal punto in cui
 compare in poi. Questo ti permette di allentare la regola sulle
 maiuscole per una sola parte di uno schema:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'RAKU'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
-<span class="nb">say</span> <span class="s">'raku'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># Nil</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;RAKU&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
+<span class="nb">say</span> <span class="s">&#39;raku&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># Nil</span>
+</pre></div>
 
 <p>Qui la <code>R</code> iniziale viene ancora riconosciuta distinguendo
 le maiuscole — quindi il minuscolo <code>raku</code> fallisce — mentre
@@ -132,15 +133,17 @@ sia <code>raku</code>.</p>
 racchiude. In <code>/[:i abc]def/</code> solo <code>abc</code> ignora le
 maiuscole; il <code>def</code> dopo il gruppo viene riconosciuto in modo
 stretto:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># Nil</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># Nil</span>
+</pre></div>
 
 <h2 id="spegnere-un-avverbio">Spegnere un avverbio</h2>
 <p>Per rispegnere un avverbio a metà schema, negalo con un
 <code>!</code>. Quindi <code>:!i</code> ripristina la distinzione di
 maiuscole da quel punto in poi:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># Nil</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># Nil</span>
+</pre></div>
 
 <p><code>:i</code> allenta la regola sulle maiuscole per
 <code>abc</code>, poi <code>:!i</code> la rimette a posto così che
@@ -159,6 +162,22 @@ sezione</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/regexes/adverbs/adverb-scope">English</a>
+<a href="/de/regexes/adverbs/adverb-scope">Deutsch</a>
+<a href="/eo/regexes/adverbs/adverb-scope">Esperanto</a>
+<a href="/es/regexes/adverbs/adverb-scope">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/regexes/adverbs/adverb-scope">Latina</a>
+<a href="/lv/regexes/adverbs/adverb-scope">Latviešu</a>
+<a href="/nl/regexes/adverbs/adverb-scope">Nederlands</a>
+<a href="/bg/regexes/adverbs/adverb-scope">Български</a>
+<a href="/ru/regexes/adverbs/adverb-scope">Русский</a>
+<a href="/uk/regexes/adverbs/adverb-scope">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

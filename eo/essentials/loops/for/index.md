@@ -1,5 +1,5 @@
 ---
-title: '`for` ripetoj'
+title: '`for` bukloj'
 ---
 
 {% include menu.html %}

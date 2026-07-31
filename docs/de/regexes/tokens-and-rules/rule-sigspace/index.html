@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -124,27 +124,30 @@ Muster <strong>übergangen</strong>,
 ohne irgendetwas dazwischen. Da <code>\w+</code> am Leerzeichen anhält,
 trifft eine Eingabe mit Leerzeichen nicht:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithToken</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
-    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
+    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
+    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">WithToken</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
+<span class="nb">say</span> <span class="n">WithToken</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Sie <em>können</em> das Leerzeichen in einem <code>token</code>
 annehmen — Sie müssen es nur selbst treffen, etwa mit
 <code>\s+</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;first&gt;</span> \<span class="n">s</span>+ <span class="s">&lt;second&gt;</span> }      <span class="c1"># now 'foo bar' parses</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;first&gt; \s+ &lt;second&gt; </span>}      <span class="c1"># now &#39;foo bar&#39; parses</span>
+</pre></div>
 
 <p>Eine <code>rule</code> fügt dieses Leerraum-Treffen für Sie ein, ein
 schlichtes Leerzeichen zwischen den Teilen genügt also:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithRule</span> {
-    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
-    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
+    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
+    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
+    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">WithRule</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># True</span></pre></div>
+<span class="nb">say</span> <span class="n">WithRule</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+</pre></div>
 
 <p>Ein verbreitetes Vorgehen ist, <code>rule</code> für den
 übergeordneten Aufbau zu nehmen — wo die Teile durch Leerzeichen
@@ -171,6 +174,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/regexes/tokens-and-rules/rule-sigspace">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/regexes/tokens-and-rules/rule-sigspace">Esperanto</a>
+<a href="/es/regexes/tokens-and-rules/rule-sigspace">Español</a>
+<a href="/it/regexes/tokens-and-rules/rule-sigspace">Italiano</a>
+<a href="/la/regexes/tokens-and-rules/rule-sigspace">Latina</a>
+<a href="/lv/regexes/tokens-and-rules/rule-sigspace">Latviešu</a>
+<a href="/nl/regexes/tokens-and-rules/rule-sigspace">Nederlands</a>
+<a href="/bg/regexes/tokens-and-rules/rule-sigspace">Български</a>
+<a href="/ru/regexes/tokens-and-rules/rule-sigspace">Русский</a>
+<a href="/uk/regexes/tokens-and-rules/rule-sigspace">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,15 +116,16 @@ zijn aan de levensduur van een enkel blok of een lus.</p>
 verlaten</h2>
 <p>De <code>ENTER</code>-phaser wordt uitgevoerd telkens wanneer de
 uitvoering een blok betreedt, en de <code>LEAVE</code>-phaser wordt
-uitgevoerd telkens wanneer het blok verlaten wordt – ongeacht op welke
+uitgevoerd telkens wanneer het blok verlaten wordt — ongeacht op welke
 regel ze geschreven staan:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'before block'</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;before block&#39;</span>;
 {
-    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">'leaving'</span>;
-    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">'entering'</span>;
-    <span class="nb">say</span> <span class="s">'inside'</span>;
+    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">&#39;leaving&#39;</span>;
+    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">&#39;entering&#39;</span>;
+    <span class="nb">say</span> <span class="s">&#39;inside&#39;</span>;
 }
-<span class="nb">say</span> <span class="s">'after block'</span>;</pre></div>
+<span class="nb">say</span> <span class="s">&#39;after block&#39;</span>;
+</pre></div>
 
 <p>De uitvoer laat zien dat <code>ENTER</code> als eerste wordt
 uitgevoerd en <code>LEAVE</code> als laatste, rondom de body van het
@@ -140,20 +141,21 @@ maakt om een resource vrij te geven.</p>
 <p>Een phaser kan een volledig <code>{ }</code>-blok bevatten in plaats
 van een enkele instructie, en je kunt er meerdere instellen. Wanneer een
 blok meer dan een <code>LEAVE</code> heeft, worden ze in omgekeerde
-volgorde uitgevoerd – de laatst geregistreerde wordt als eerste
+volgorde uitgevoerd — de laatst geregistreerde wordt als eerste
 uitgevoerd, zodat het blok als een stapel wordt afgewikkeld:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'open A'</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;open A&#39;</span>;
 {
     <span class="k">LEAVE</span> {
-        <span class="nb">say</span> <span class="s">'close A'</span>;
+        <span class="nb">say</span> <span class="s">&#39;close A&#39;</span>;
     }
-    <span class="nb">say</span> <span class="s">'open B'</span>;
+    <span class="nb">say</span> <span class="s">&#39;open B&#39;</span>;
     <span class="k">LEAVE</span> {
-        <span class="nb">say</span> <span class="s">'close B'</span>;
+        <span class="nb">say</span> <span class="s">&#39;close B&#39;</span>;
     }
-    <span class="nb">say</span> <span class="s">'work'</span>;
+    <span class="nb">say</span> <span class="s">&#39;work&#39;</span>;
 }
-<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
+<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
+</pre></div>
 
 <p>Resource <code>A</code> wordt als eerste geopend en als laatste
 gesloten:</p>
@@ -166,7 +168,7 @@ done</pre></div>
 <p>Deze last-in, first-out volgorde is precies wat je wilt voor
 opruimwerk: wat het meest recent is ingesteld, wordt als eerste
 afgebroken. De programma-brede <code>END</code>-phaser gedraagt zich op
-dezelfde manier – meerdere <code>END</code>-blokken worden ook in
+dezelfde manier — meerdere <code>END</code>-blokken worden ook in
 omgekeerde volgorde uitgevoerd ten opzichte van de volgorde waarin ze
 geschreven zijn.</p>
 <h2 id="lus-phasers">Lus-phasers</h2>
@@ -174,12 +176,13 @@ geschreven zijn.</p>
 <code>FIRST</code> wordt eenmalig uitgevoerd voor de eerste iteratie,
 <code>LAST</code> wordt eenmalig uitgevoerd na de laatste, en
 <code>NEXT</code> wordt aan het einde van elke iteratie uitgevoerd:</p>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span> {
-    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">'-- first'</span>;
-    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">'-- last'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span> {
+    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">&#39;-- first&#39;</span>;
+    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">&#39;-- last&#39;</span>;
     <span class="k">NEXT</span>  <span class="nb">say</span> <span class="s">&quot;-- next (was $_)&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;body $_&quot;</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>De lus produceert:</p>
 <div class="highlight"><pre>-- first
@@ -192,7 +195,7 @@ body 3
 -- last</pre></div>
 <p>Net als bij de andere phasers maakt de positie van
 <code>FIRST</code>, <code>NEXT</code> en <code>LAST</code> in de
-broncode niet uit – elk wordt op het eigen moment uitgevoerd.</p>
+broncode niet uit — elk wordt op het eigen moment uitgevoerd.</p>
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
 <p>Maak de 1 quiz over de inhoud van dit onderwerp.</p>
@@ -223,6 +226,22 @@ bij verlaten</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/advanced/block-phasers">English</a>
+<a href="/de/advanced/block-phasers">Deutsch</a>
+<a href="/eo/advanced/block-phasers">Esperanto</a>
+<a href="/es/advanced/block-phasers">Español</a>
+<a href="/it/advanced/block-phasers">Italiano</a>
+<a href="/la/advanced/block-phasers">Latina</a>
+<a href="/lv/advanced/block-phasers">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/advanced/block-phasers">Български</a>
+<a href="/ru/advanced/block-phasers">Русский</a>
+<a href="/uk/advanced/block-phasers">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

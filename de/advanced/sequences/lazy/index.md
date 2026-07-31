@@ -12,7 +12,7 @@ Um eine unendliche Sequenz zu schreiben, verwende `Inf` als Endpunkt. Setze die 
 my $naturals = (1 ... Inf);
 ```
 
-Ohne die Klammern würde `my $naturals = 1 ... Inf` nur `1` der Variablen zuweisen und dann die Sequenz eigenständig aufbauen -- und das Auswerten einer endlosen Sequenz ohne Ergebnis würde das Programm zum Hängen bringen.
+Ohne die Klammern würde `my $naturals = 1 ... Inf` nur `1` der Variablen zuweisen und dann die Sequenz eigenständig aufbauen — und das Auswerten einer endlosen Sequenz ohne Ergebnis würde das Programm zum Hängen bringen.
 
 Es wird noch nichts berechnet. Die Sequenz gibt Werte erst heraus, wenn du danach fragst. Die Methode `head` nimmt die ersten paar:
 

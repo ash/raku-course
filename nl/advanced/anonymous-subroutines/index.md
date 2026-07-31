@@ -19,7 +19,7 @@ De variabele `$double` bevat de subroutine, en `$double(5)` roept hem aan met he
 
 ## Pointy blocks
 
-Raku biedt een kortere notatie voor hetzelfde -- het _pointy block_. Het gebruikt de pijl `->` om de parameters te introduceren, en heeft noch het woord `sub` noch haakjes eromheen nodig:
+Raku biedt een kortere notatie voor hetzelfde — het _pointy block_. Het gebruikt de pijl `->` om de parameters te introduceren, en heeft noch het woord `sub` noch haakjes eromheen nodig:
 
 ```raku
 my $double = -> $x {
@@ -45,7 +45,7 @@ say triple(4); # 12
 
 ## Doorgeven aan een andere functie
 
-Je hoeft een anonieme subroutine helemaal niet in een variabele op te slaan. Omdat het gewoon een waarde is, kun je het direct doorgeven aan een functie die er een verwacht -- zoals `map`, `grep` of `sort`:
+Je hoeft een anonieme subroutine helemaal niet in een variabele op te slaan. Omdat het gewoon een waarde is, kun je het direct doorgeven aan een functie die er een verwacht — zoals `map`, `grep` of `sort`:
 
 ```raku
 say (1, 2, 3).map(-> $x { $x * 2 }); # (2 4 6)

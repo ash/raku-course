@@ -7,10 +7,10 @@ translations_gpt:
 
 Naast `ok` en `is` heeft de `Test`-module vergelijkingen voor verschillende soorten waarden. De meest bruikbare zijn:
 
-* `is` -- vergelijkt twee waarden op gelijkheid (als strings/getallen)
-* `is-deeply` -- vergelijkt twee datastructuren op exacte, typebewuste gelijkheid
-* `like` -- controleert of een string overeenkomt met een regex
-* `isnt` -- slaagt wanneer twee waarden **niet** gelijk zijn
+* `is` — vergelijkt twee waarden op gelijkheid (als strings/getallen)
+* `is-deeply` — vergelijkt twee datastructuren op exacte, typebewuste gelijkheid
+* `like` — controleert of een string overeenkomt met een regex
+* `isnt` — slaagt wanneer twee waarden **niet** gelijk zijn
 
 `is-deeply` is de juiste keuze voor arrays, hashes en geneste data, omdat het structuur en type nauwkeurig vergelijkt:
 

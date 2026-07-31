@@ -9,7 +9,7 @@ Im Essentials-Teil haben Sie `MAIN` verwendet, [um Kommandozeilenargumente zu em
 
 ## Die Verwendungsmeldung
 
-Wenn die Argumente auf der Kommandozeile nicht zur Signatur von `MAIN` passen, fuehrt Raku den Koerper nicht aus. Stattdessen gibt es eine automatisch generierte _Verwendungsmeldung_ aus, die beschreibt, wie das Programm aufgerufen werden sollte.
+Wenn die Argumente auf der Kommandozeile nicht zur Signatur von `MAIN` passen, führt Raku den Körper nicht aus. Stattdessen gibt es eine automatisch generierte _Verwendungsmeldung_ aus, die beschreibt, wie das Programm aufgerufen werden sollte.
 
 Nehmen Sie dieses Programm:
 
@@ -34,7 +34,7 @@ Usage:
   hello.raku <name>
 ```
 
-Die Meldung wird aus den Parameternamen erstellt. Wenn Sie ihnen aussagekraeftige Namen geben, wird der Hilfetext automatisch nuetzlich.
+Die Meldung wird aus den Parameternamen erstellt. Wenn Sie ihnen aussagekraeftige Namen geben, wird der Hilfetext automatisch nützlich.
 
 ## Benannte Argumente
 

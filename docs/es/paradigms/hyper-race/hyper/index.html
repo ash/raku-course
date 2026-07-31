@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,7 +116,8 @@ concurrente</a> / <a href="/es/paradigms/hyper-race">hyper y race
 <code>map</code> o un <code>grep</code> y el trabajo se reparte entre
 varios hilos trabajadores, mientras que los resultados siguen volviendo
 en el <strong>orden original</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>.<span class="nb">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>.<span class="n">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>Esto se parece exactamente a un <code>map</code> corriente, y el
 resultado es idéntico; la única diferencia es que las duplicaciones
@@ -124,7 +125,8 @@ pueden haberse calculado en núcleos distintos al mismo tiempo.</p>
 <p><code>.hyper</code> funciona con <code>grep</code> exactamente igual:
 cada elemento se comprueba en paralelo, y los que pasan siguen volviendo
 en su orden original:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>Como <code>.hyper</code> preserva el orden, es un sustituto directo
 de un <code>map</code> o un <code>grep</code> lento: no hay que cambiar
@@ -147,7 +149,8 @@ como una oportunidad de acelerar, no como una garantía de ello.</p>
 él siguen saliendo bien. Aquí cada palabra se pasa a mayúsculas en
 paralelo y, aun así, las piezas se vuelven a unir en la frase en su
 secuencia original:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="k">is</span> <span class="n">fun</span>&gt;.<span class="nb">hyper</span>.<span class="nb">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">' '</span>); <span class="c1"># RAKU IS FUN</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku is fun&gt;</span>.<span class="nb">hyper</span>.<span class="n">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">&#39; &#39;</span>); <span class="c1"># RAKU IS FUN</span>
+</pre></div>
 
 <section id="práctica" class="practice" data-markdown="1">
 <h2>Práctica</h2>
@@ -166,6 +169,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/hyper-race/hyper">English</a>
+<a href="/de/paradigms/hyper-race/hyper">Deutsch</a>
+<a href="/eo/paradigms/hyper-race/hyper">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/hyper-race/hyper">Italiano</a>
+<a href="/la/paradigms/hyper-race/hyper">Latina</a>
+<a href="/lv/paradigms/hyper-race/hyper">Latviešu</a>
+<a href="/nl/paradigms/hyper-race/hyper">Nederlands</a>
+<a href="/bg/paradigms/hyper-race/hyper">Български</a>
+<a href="/ru/paradigms/hyper-race/hyper">Русский</a>
+<a href="/uk/paradigms/hyper-race/hyper">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

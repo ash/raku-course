@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Kvadratoj kaj kuboj en ripeto'
+title: 'Solvo: Kvadratoj kaj kuboj en buklo'
 ---
 
 {% include menu.html %}

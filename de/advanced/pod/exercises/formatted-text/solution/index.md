@@ -22,7 +22,7 @@ Hello, B<world>!
 
 ## Ausgabe
 
-Ausfuehrung mit `raku --doc`:
+Ausführung mit `raku --doc`:
 
 ```
 Greeting
@@ -34,8 +34,8 @@ Hello, world!
 
 1. `B<world>` markiert das Wort fett; in der Nur-Text-Ausgabe erscheint es als normaler Text, aber reichhaltigere Formate zeigen es fett an.
 
-1. `raku --doc` rendert das Pod, ohne Programmcode auszufuehren.
+1. `raku --doc` rendert das Pod, ohne Programmcode auszuführen.
 
-1. Um die Fettschrift tatsaechlich zu *sehen*, rendere in ein Format, das Formatierungen unterstuetzt. Installiere einen Formatierer wie `Pod::To::HTML` mit `zef install Pod::To::HTML` und fuehre dann `raku --doc=HTML formatted-text.raku` aus; das Wort wird nun in ein HTML-`<b>`-Element eingebettet. Die Nur-Text-Ausgabe von `--doc` hat dagegen keine Moeglichkeit, Fettschrift darzustellen, sobald sie in eine Datei oder eine Pipe geschrieben wird.
+1. Um die Fettschrift tatsächlich zu *sehen*, rendere in ein Format, das Formatierungen unterstützt. Installiere einen Formatierer wie `Pod::To::HTML` mit `zef install Pod::To::HTML` und führe dann `raku --doc=HTML formatted-text.raku` aus; das Wort wird nun in ein HTML-`<b>`-Element eingebettet. Die Nur-Text-Ausgabe von `--doc` hat dagegen keine Möglichkeit, Fettschrift darzustellen, sobald sie in eine Datei oder eine Pipe geschrieben wird.
 
 {% include nav.html %}

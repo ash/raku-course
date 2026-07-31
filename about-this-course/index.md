@@ -56,7 +56,7 @@ Note that the course is still being refined, so the URLs of its different parts 
 
 To follow the course and run exercises, you need to have a working compiler. There are a number of options:
 
-* — Try the built-in <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> right in your browser, with nothing to install, or
+* — Try the built-in <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> right in your browser, with nothing to install, or
 * — Install the Rakudo compiler or
 * — Use online services or
 * — Use docker containers
@@ -71,7 +71,7 @@ The course is written by [Andrew Shitov](https://andrewshitov.com), who has been
 
 The creation of the course is supported by the grant of [The Perl & Raku Foundation](https://www.perlfoundation.org). You can use the course for self-study or as a set of ready-to-use materials for teaching others. The commercial usage in classes is allowed without permission. Releasing the course as a separate product must be first negotiated with the author.
 
-The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:andy@shitov.ru).
+The source files are available on GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Feel free to submit a pull request to correct the potential mistakes or typos or create an issue on GitHub if you want to discuss a broader subject. You can also contact the author by [e-mail](mailto:mail@andreyshitov.com).
 
 ## Course navigation
 

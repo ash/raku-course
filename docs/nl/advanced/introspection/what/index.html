@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,8 +116,9 @@ type van een waarde. Je kunt het op vrijwel dezelfde manier gebruiken
 als <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span> = <span class="mi">42</span>;
 
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;</pre></div>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;
+</pre></div>
 
 <p>De twee drukken het type af met een klein verschil in weergave:
 <code>.^name</code> geeft de kale naam, terwijl <code>WHAT</code> het
@@ -129,22 +130,24 @@ type object toont, geschreven tussen haakjes:</p>
 <code>^name</code> als <code>WHAT</code> het type van de opgeslagen
 waarde:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Any</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Any)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Any)</span>
 
-<span class="nv">$var</span> = <span class="s">'Hello'</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
+<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+</pre></div>
 
 <p>Met een typebeperking is het type direct bekend, zelfs voordat er
 iets is toegewezen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
 
-<span class="nv">$var</span> = <span class="s">'Hello'</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
+<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+</pre></div>
 
 <h2 id="type-objects-vergelijken">Type objects vergelijken</h2>
 <p>Omdat <code>WHAT</code> het type object zelf teruggeeft, kun je er
@@ -155,9 +158,10 @@ om te testen of twee waarden hetzelfde type delen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">42</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">100</span>;
 
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nv">$b</span>.<span class="n">WHAT</span>; <span class="c1"># True  — both are Int</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span></pre></div>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nv">$b</span>.<span class="nb">WHAT</span>; <span class="c1"># True  — both are Int</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span>
+</pre></div>
 
 <p>Anders dan <code>==</code>, dat getallen vergelijkt, vergelijkt
 <code>===</code> identiteit, dus het werkt direct voor type objects (en
@@ -181,6 +185,22 @@ sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/advanced/introspection/what">English</a>
+<a href="/de/advanced/introspection/what">Deutsch</a>
+<a href="/eo/advanced/introspection/what">Esperanto</a>
+<a href="/es/advanced/introspection/what">Español</a>
+<a href="/it/advanced/introspection/what">Italiano</a>
+<a href="/la/advanced/introspection/what">Latina</a>
+<a href="/lv/advanced/introspection/what">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/advanced/introspection/what">Български</a>
+<a href="/ru/advanced/introspection/what">Русский</a>
+<a href="/uk/advanced/introspection/what">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

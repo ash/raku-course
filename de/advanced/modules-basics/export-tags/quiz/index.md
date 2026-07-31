@@ -7,10 +7,10 @@ title: Quiz — Export-Tags
 Ein Modul deklariert `sub hello is export` und `sub goodbye is export(:partings)`. Nach `use Greeting :partings;`, welche Subroutinen kann das Programm direkt aufrufen?
 
 {:.quiz}
-1 | Only `goodbye`
-0 | Only `hello`
-0 | Both `hello` and `goodbye`
-0 | Neither of them
+1 | Nur `goodbye`
+0 | Nur `hello`
+0 | Sowohl `hello` als auch `goodbye`
+0 | Keine von beiden
 
 {% include quiz.html %}
 

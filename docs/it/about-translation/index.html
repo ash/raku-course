@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Informazioni sulla traduzione — Corso di Raku</title>
+    <meta property="og:title" content="Informazioni sulla traduzione — Corso di Raku" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/it/">Corso di Raku</a></p>
+<h1 id="informazioni-sulla-traduzione">Informazioni sulla
+traduzione</h1>
+<p><strong>Questa traduzione è stata prodotta da una macchina.</strong>
+La versione italiana del corso è stata tradotta dall’originale inglese
+da un modello linguistico, senza una successiva revisione da parte di un
+madrelingua. Il contenuto, gli esempi di codice e l’output dei programmi
+sono intatti, ma qua e là una formulazione può risultare goffa e un
+termine non essere il più consueto.</p>
+<p>Se un passaggio risulta oscuro, confrontatelo con l’<a
+href="/">originale inglese</a>: resta sempre la fonte autorevole.</p>
+<p>Il codice non viene mai tradotto. Le parole chiave di Raku, i nomi di
+tipi, metodi e subroutine e l’output dei programmi (<code>True</code>,
+<code>False</code>, <code>Nil</code> e simili) restano come sono —
+esattamente come li vede il compilatore.</p>
+<p>Avete trovato un errore o una traduzione infelice? Segnalatela <a
+href="https://github.com/ash/raku-course">su GitHub</a>: è il modo
+migliore per migliorare il testo.</p>
+<h2 id="glossario">Glossario</h2>
+<p>Ecco come si chiamano in italiano i concetti principali del corso. Se
+avete letto di Raku in inglese, questa tabella aiuta a metterli a
+confronto.</p>
+<table>
+<thead>
+<tr>
+<th>English</th>
+<th>Italiano</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strings</td>
+<td>Stringhe</td>
+</tr>
+<tr>
+<td>Numbers</td>
+<td>Numeri</td>
+</tr>
+<tr>
+<td>Ranges</td>
+<td>Intervalli</td>
+</tr>
+<tr>
+<td>Arrays</td>
+<td>Array</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>Liste</td>
+</tr>
+<tr>
+<td>Hashes</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>Pairs</td>
+<td>Coppie</td>
+</tr>
+<tr>
+<td>Loops</td>
+<td>Cicli</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>Commenti</td>
+</tr>
+<tr>
+<td>Containers</td>
+<td>Contenitori</td>
+</tr>
+<tr>
+<td>Contexts</td>
+<td>Contesti</td>
+</tr>
+<tr>
+<td>Twigils</td>
+<td>Twigil</td>
+</tr>
+<tr>
+<td>Integers</td>
+<td>Interi</td>
+</tr>
+<tr>
+<td>Sequences</td>
+<td>Sequenze</td>
+</tr>
+<tr>
+<td>Enumerations</td>
+<td>Enumerazioni</td>
+</tr>
+<tr>
+<td>Operators</td>
+<td>Operatori</td>
+</tr>
+<tr>
+<td>Meta-operators</td>
+<td>Meta-operatori</td>
+</tr>
+<tr>
+<td>Subroutines</td>
+<td>Subroutine</td>
+</tr>
+<tr>
+<td>Signatures</td>
+<td>Firme</td>
+</tr>
+<tr>
+<td>Modules</td>
+<td>Moduli</td>
+</tr>
+<tr>
+<td>Phasers</td>
+<td>Phaser</td>
+</tr>
+<tr>
+<td>Debugging</td>
+<td>Debug</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Test</td>
+</tr>
+<tr>
+<td>Classes</td>
+<td>Classi</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Attributi</td>
+</tr>
+<tr>
+<td>Methods</td>
+<td>Metodi</td>
+</tr>
+<tr>
+<td>Roles</td>
+<td>Ruoli</td>
+</tr>
+<tr>
+<td>Inheritance</td>
+<td>Ereditarietà</td>
+</tr>
+<tr>
+<td>Exceptions</td>
+<td>Eccezioni</td>
+</tr>
+<tr>
+<td>Regexes</td>
+<td>Espressioni regolari</td>
+</tr>
+<tr>
+<td>Grammars</td>
+<td>Grammatiche</td>
+</tr>
+<tr>
+<td>Captures</td>
+<td>Catture</td>
+</tr>
+<tr>
+<td>Quantifiers</td>
+<td>Quantificatori</td>
+</tr>
+<tr>
+<td>Anchors</td>
+<td>Ancore</td>
+</tr>
+<tr>
+<td>Alternations</td>
+<td>Alternative</td>
+</tr>
+<tr>
+<td>Recursion</td>
+<td>Ricorsione</td>
+</tr>
+<tr>
+<td>Closures</td>
+<td>Chiusure</td>
+</tr>
+<tr>
+<td>Reduction</td>
+<td>Riduzione</td>
+</tr>
+<tr>
+<td>Generators</td>
+<td>Generatori</td>
+</tr>
+<tr>
+<td>Iterators</td>
+<td>Iteratori</td>
+</tr>
+<tr>
+<td>Junctions</td>
+<td>Junction</td>
+</tr>
+<tr>
+<td>Threads</td>
+<td>Thread</td>
+</tr>
+<tr>
+<td>Promises</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td>Channels</td>
+<td>Channel</td>
+</tr>
+<tr>
+<td>Supplies</td>
+<td>Supply</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/de/about-translation">Deutsch</a>
+<a href="/eo/about-translation">Esperanto</a>
+<a href="/es/about-translation">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/about-translation">Latina</a>
+<a href="/lv/about-translation">Latviešu</a>
+<a href="/nl/about-translation">Nederlands</a>
+<a href="/bg/about-translation">Български</a>
+<a href="/ru/about-translation">Русский</a>
+<a href="/uk/about-translation">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

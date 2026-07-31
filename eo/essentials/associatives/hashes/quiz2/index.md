@@ -1,5 +1,5 @@
 ---
-title: Kvizo 2 — Haxaj elementoj
+title: Kvizo 2 — Haketmapaj elementoj
 ---
 
 {% include menu.html %}

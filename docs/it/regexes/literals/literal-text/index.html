@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,8 +114,9 @@ href="/it/regexes/literals">Letterali e classi di caratteri</a></p>
 <p>Lo schema più semplice è una sequenza di lettere e cifre. Uno schema
 simile riconosce esattamente quei caratteri, in quell’ordine, in
 qualunque punto della stringa:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
+</pre></div>
 
 <p>La corrispondenza non deve per forza cominciare all’inizio della
 stringa: il motore dei regex cerca lo schema in ogni posizione finché
@@ -127,23 +128,26 @@ simile ha quando viene stampato: <code>say</code> mostra un
 parentesi angolari <code>｢ ｣</code>. Se lo schema non è presente, la
 corrispondenza fallisce: lo smartmatch produce <code>Nil</code>, un
 valore non definito che vale come falso in una prova booleana:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
+</pre></div>
 
 <p>Dentro un regex gli spazi <strong>non</strong> sono significativi per
 impostazione predefinita: sono lì solo per rendere leggibile lo schema.
 Quindi <code>/ ell /</code> riconosce esattamente ciò che riconoscerebbe
 <code>/ell/</code>; gli spazi attorno vengono semplicemente
 ignorati:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
+</pre></div>
 
 <p>Poiché uno spazio nello schema viene ignorato, riconoscere uno spazio
 <em>vero</em> richiede le <strong>virgolette</strong>: tutto ciò che
 metti fra virgolette viene riconosciuto alla lettera. Quelle stesse
 virgolette servono anche a riconoscere un segno di punteggiatura che
 altrimenti avrebbe un significato speciale in un regex:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
+</pre></div>
 
 <p>(Per gli spazi bianchi puoi anche usare la classe <code>\s</code>,
 che incontrerai fra poco.)</p>
@@ -158,6 +162,22 @@ sezione</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/regexes/literals/literal-text">English</a>
+<a href="/de/regexes/literals/literal-text">Deutsch</a>
+<a href="/eo/regexes/literals/literal-text">Esperanto</a>
+<a href="/es/regexes/literals/literal-text">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/regexes/literals/literal-text">Latina</a>
+<a href="/lv/regexes/literals/literal-text">Latviešu</a>
+<a href="/nl/regexes/literals/literal-text">Nederlands</a>
+<a href="/bg/regexes/literals/literal-text">Български</a>
+<a href="/ru/regexes/literals/literal-text">Русский</a>
+<a href="/uk/regexes/literals/literal-text">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

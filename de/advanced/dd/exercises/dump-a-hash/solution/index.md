@@ -25,6 +25,6 @@ dd %h;
 
 1. `dd` gibt den Hash in einer codeähnlichen Form aus, wobei jedes Paar als `:key(value)` dargestellt wird.
 
-1. Die Schlüssel werden in sortierter Reihenfolge ausgegeben -- `alpha` vor `beta` -- obwohl `beta` zuerst geschrieben wurde.
+1. Die Schlüssel werden in sortierter Reihenfolge ausgegeben — `alpha` vor `beta` — obwohl `beta` zuerst geschrieben wurde.
 
 {% include nav.html %}

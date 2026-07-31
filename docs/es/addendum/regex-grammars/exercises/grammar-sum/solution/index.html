@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,7 +110,7 @@
 🆕</a> / <a href="/es/addendum/types-and-text-machines">Tipos y máquinas
 de texto</a> / <a href="/es/addendum/regex-grammars">Expresiones
 regulares y gramáticas</a> / <a
-href="/es/addendum/regex-grammars/exercises">Ejercicios</a> / <a
+href="/es/addendum/regex-grammars/exercises">Exercises</a> / <a
 href="/es/addendum/regex-grammars/exercises/grammar-sum">Una gramática
 que suma</a></p>
 <h1 id="solución-una-gramática-que-suma">Solución: Una gramática que
@@ -118,15 +118,16 @@ suma</h1>
 <p>Aquí tienes una posible solución para la tarea.</p>
 <h2 id="código">Código</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span>+ % <span class="s">'+'</span> }
-    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt;+ % &#39;+&#39; </span>}
+    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> [+] <span class="nv">$&lt;number&gt;</span>.<span class="nb">map</span>(*.<span class="nb">Int</span>) }
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> [+] <span class="nv">$&lt;number&gt;</span>.<span class="n">map</span>(*.<span class="nb">Int</span>) }
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'3+4+5'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>).<span class="n">made</span>;</pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;3+4+5&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>).<span class="k">made</span>;
+</pre></div>
 
 <p>🦋 Puedes encontrar el código fuente en el archivo <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/grammar-sum.raku">grammar-sum.raku</a>.</p>
@@ -147,9 +148,10 @@ pero <code>'3 + 4 + 5'</code> no (<code>.parse</code> devuelve
 convierte <code>TOP</code> en un <code>rule</code> y separa el
 cuantificador de su átomo:</p>
 <div class="highlight raku no-run"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;number&gt;</span> + % <span class="s">'+'</span> }
-    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
-}</pre></div>
+    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;number&gt; + % &#39;+&#39; </span>}
+    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+}
+</pre></div>
 
 <p>En un <code>rule</code>, el espacio en blanco del patrón representa
 una llamada implícita a <code>&lt;.ws&gt;</code>. Escrito como
@@ -169,6 +171,22 @@ href="/es/addendum/bringing-it-together">Poniéndolo todo junto</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/addendum/regex-grammars/exercises/grammar-sum/solution">English</a>
+<a href="/de/addendum/regex-grammars/exercises/grammar-sum/solution">Deutsch</a>
+<a href="/eo/addendum/regex-grammars/exercises/grammar-sum/solution">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/addendum/regex-grammars/exercises/grammar-sum/solution">Italiano</a>
+<a href="/la/addendum/regex-grammars/exercises/grammar-sum/solution">Latina</a>
+<a href="/lv/addendum/regex-grammars/exercises/grammar-sum/solution">Latviešu</a>
+<a href="/nl/addendum/regex-grammars/exercises/grammar-sum/solution">Nederlands</a>
+<a href="/bg/addendum/regex-grammars/exercises/grammar-sum/solution">Български</a>
+<a href="/ru/addendum/regex-grammars/exercises/grammar-sum/solution">Русский</a>
+<a href="/uk/addendum/regex-grammars/exercises/grammar-sum/solution">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

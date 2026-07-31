@@ -4,13 +4,13 @@ title: Pod rendern
 
 {% include menu.html %}
 
-Sobald eine Datei Pod enthaelt, kann der Compiler sie in formatierten Text umwandeln, ohne das Programm auszufuehren, indem die Option `--doc` verwendet wird:
+Sobald eine Datei Pod enthält, kann der Compiler sie in formatierten Text umwandeln, ohne das Programm auszuführen, indem die Option `--doc` verwendet wird:
 
 ```
 raku --doc mymodule.raku
 ```
 
-Fuer das Beispiel mit Ueberschrift und Absatz von vorhin gibt dies etwa Folgendes aus:
+Für das Beispiel mit Ueberschrift und Absatz von vorhin gibt dies etwa Folgendes aus:
 
 ```
 My Module
@@ -18,7 +18,7 @@ My Module
 This module does something useful.
 ```
 
-Listen und Codebloecke werden ebenfalls gerendert. Nimm dieses Pod:
+Listen und Codeblöcke werden ebenfalls gerendert. Nimm dieses Pod:
 
 ```raku
 =begin pod
@@ -58,18 +58,18 @@ Run it like this:
     say 'hello';
 ```
 
-Jedes `=item` wird zu einem Aufzählungszeichen, und der `=begin code ... =end code`-Block wird woertlich und eingerueckt angezeigt, genau wie geschrieben.
+Jedes `=item` wird zu einem Aufzählungszeichen, und der `=begin code ... =end code`-Block wird wörtlich und eingerückt angezeigt, genau wie geschrieben.
 
 ## Rendern als HTML
 
-Der gleiche Mechanismus kann andere Formate erzeugen. Fuer HTML installierst du einmalig ein Formatierungsmodul und gibst es dann nach `--doc` an:
+Der gleiche Mechanismus kann andere Formate erzeugen. Für HTML installierst du einmalig ein Formatierungsmodul und gibst es dann nach `--doc` an:
 
 ```
 zef install Pod::To::HTML
 raku --doc=HTML mymodule.raku > mymodule.html
 ```
 
-Nun wird dasselbe Dokument als HTML ausgegeben -- die Ueberschrift wird zu einem `<h1>`, die Liste zu einer `<ul>` mit `<li>`, und der Codeblock zu einem `<pre>`:
+Nun wird dasselbe Dokument als HTML ausgegeben — die Ueberschrift wird zu einem `<h1>`, die Liste zu einer `<ul>` mit `<li>`, und der Codeblock zu einem `<pre>`:
 
 ```html
 <h1>Shopping list</h1>
@@ -83,6 +83,6 @@ Nun wird dasselbe Dokument als HTML ausgegeben -- die Ueberschrift wird zu einem
 <pre class="pod-block-code">say 'hello';</pre>
 ```
 
-(Das Werkzeug verpackt dies in eine vollstaendige HTML-Seite.) So wird die offizielle Raku-Dokumentation auf [docs.raku.org](https://docs.raku.org) aus dem Pod in Rakudos eigenem Quellcode erzeugt.
+(Das Werkzeug verpackt dies in eine vollständige HTML-Seite.) So wird die offizielle Raku-Dokumentation auf [docs.raku.org](https://docs.raku.org) aus dem Pod in Rakudos eigenem Quellcode erzeugt.
 
 {% include nav.html %}

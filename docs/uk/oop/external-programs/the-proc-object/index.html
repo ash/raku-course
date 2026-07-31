@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,28 +121,32 @@ href="/uk/oop/external-programs">Запуск зовнішніх програм 
 числом: <code>0</code> означає успіх, а будь-яке інше число є кодом
 невдачі на вибір самої програми. <code>.exitcode</code> дає вам це
 число:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
+</pre></div>
 
 <p>Для звичного запитання «так чи ні» — чи спрацювало? —
 <code>Proc</code> є просто істинним, коли код завершення дорівнює
 <code>0</code>, і хибним в іншому разі, тож його можна перевіряти
 напряму:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
+</pre></div>
 
 <p><code>Proc</code> також пам’ятає команду, яку запустив, у
 <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
+</pre></div>
 
 <p>На що варто зважати: якщо команда зазнає невдачі, а ви просто
 <strong>проігноруєте</strong> повернений <code>Proc</code>, Raku здійме
 виняток, замість дати збою пройти непоміченим:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
-<span class="c1"># гине: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
+<span class="c1"># гине: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
+</pre></div>
 
 <p>Оскільки ненульове завершення зазвичай означає, що щось пішло не так,
 невдалий <code>Proc</code>, який викинули, кидає виняток, коли виходить
@@ -150,8 +154,9 @@ href="/uk/oop/external-programs">Запуск зовнішніх програм 
 результату, а не ігнорування коду завершення: досить просто зберегти
 <code>Proc</code> у змінній, щоб уникнути винятку, навіть якщо ви більше
 ніколи в нього не зазирнете.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># помилки немає, хоч команда й зазнала невдачі</span>
-<span class="c1"># …і $proc більше ніколи не використовується</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># помилки немає, хоч команда й зазнала невдачі</span>
+<span class="c1"># …і $proc більше ніколи не використовується</span>
+</pre></div>
 
 <p>Тож, якщо ви <em>очікуєте</em>, що команда може зазнати невдачі,
 збережіть її <code>Proc</code>, а потім погляньте на
@@ -177,6 +182,22 @@ href="/uk/oop/external-programs/exercises">до вправ цього
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/oop/external-programs/the-proc-object">English</a>
+<a href="/de/oop/external-programs/the-proc-object">Deutsch</a>
+<a href="/eo/oop/external-programs/the-proc-object">Esperanto</a>
+<a href="/es/oop/external-programs/the-proc-object">Español</a>
+<a href="/it/oop/external-programs/the-proc-object">Italiano</a>
+<a href="/la/oop/external-programs/the-proc-object">Latina</a>
+<a href="/lv/oop/external-programs/the-proc-object">Latviešu</a>
+<a href="/nl/oop/external-programs/the-proc-object">Nederlands</a>
+<a href="/bg/oop/external-programs/the-proc-object">Български</a>
+<a href="/ru/oop/external-programs/the-proc-object">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

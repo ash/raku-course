@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,38 +118,42 @@ dato, quel parametro può essere omesso quando si chiama la funzione.</p>
 <h2 id="parametri-posizionali">Parametri posizionali</h2>
 <p>Un esempio di valore predefinito per una funzione con parametri
 posizionali:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> = <span class="s">'World'</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="n">greet</span>(<span class="s">'Merinda'</span>);
-<span class="n">greet</span>();</pre></div>
+<span class="n">greet</span>(<span class="s">&#39;Merinda&#39;</span>);
+<span class="n">greet</span>();
+</pre></div>
 
 <p>La prima chiamata utilizza il nome passato come unico argomento e
 quindi stampa <code>Hello, Merinda!</code>. La seconda chiamata utilizza
 il valore predefinito e stampa <code>Hello, World!</code>.</p>
 <p>Se una funzione ha più di un parametro, i valori predefiniti possono
 essere utilizzati solo alla fine dell’elenco:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># corretto</span>
-<span class="c1"># sub f($a = 10, $b = 20, $c, $d) { . . . } # SBAGLIATO</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$a</span>, <span class="nv">$b</span>, <span class="nv">$c</span> = <span class="mi">42</span>, <span class="nv">$d</span> = <span class="mi">50</span>) { . . . } <span class="c1"># corretto</span>
+<span class="c1"># sub f($a = 10, $b = 20, $c, $d) { . . . } # SBAGLIATO</span>
+</pre></div>
 
 <h2 id="parametri-nominati">Parametri nominati</h2>
 <p>La stessa sintassi viene utilizzata per impostare valori predefiniti
 per i parametri nominati:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$name</span> = <span class="s">'World'</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$name</span> = <span class="s">&#39;World&#39;</span>) {
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="n">greet</span>(<span class="n">name</span> =&gt; <span class="s">'Merinda'</span>); <span class="c1"># Hello, Merinda!</span>
-<span class="n">greet</span>(); <span class="c1"># Hello, World!</span></pre></div>
+<span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Merinda&#39;</span>); <span class="c1"># Hello, Merinda!</span>
+<span class="n">greet</span>(); <span class="c1"># Hello, World!</span>
+</pre></div>
 
 <p>L’ordine dei parametri nominati non importa, quindi ognuno di essi
 può avere valori predefiniti, anche il primo nell’elenco:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$greeting</span> = <span class="s">'Hello'</span>, :<span class="nv">$name</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(:<span class="nv">$greeting</span> = <span class="s">&#39;Hello&#39;</span>, :<span class="nv">$name</span>) {
     <span class="nb">say</span> <span class="s">&quot;$greeting, $name!&quot;</span>;
 }
 
-<span class="n">greet</span>(<span class="n">name</span> =&gt; <span class="s">'Alla'</span>); <span class="c1"># Hello, Alla!</span></pre></div>
+<span class="n">greet</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Alla&#39;</span>); <span class="c1"># Hello, Alla!</span>
+</pre></div>
 
 <section id="pratica" class="practice" data-markdown="1">
 <h2>Pratica</h2>
@@ -169,24 +173,26 @@ di valori predefiniti</a> →</p>
 <p><br /> 💪 Oppure vai direttamente <a
 href="/it/essentials/functions/exercises">agli esercizi di questa
 sezione</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/functions/default-values">English</a> • <a
-href="/de/essentials/functions/default-values">Deutsch</a> • <a
-href="/es/essentials/functions/default-values">Español</a> •
-<strong>Italiano</strong> • <a
-href="/la/essentials/functions/default-values">Latina</a> • <a
-href="/lv/essentials/functions/default-values">Latviešu</a> • <a
-href="/nl/essentials/functions/default-values">Nederlands</a> • <a
-href="/bg/essentials/functions/default-values">Български</a> • <a
-href="/ru/essentials/functions/default-values">Русский</a> • <a
-href="/uk/essentials/functions/default-values">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/essentials/functions/default-values">English</a>
+<a href="/de/essentials/functions/default-values">Deutsch</a>
+<a href="/eo/essentials/functions/default-values">Esperanto</a>
+<a href="/es/essentials/functions/default-values">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/essentials/functions/default-values">Latina</a>
+<a href="/lv/essentials/functions/default-values">Latviešu</a>
+<a href="/nl/essentials/functions/default-values">Nederlands</a>
+<a href="/bg/essentials/functions/default-values">Български</a>
+<a href="/ru/essentials/functions/default-values">Русский</a>
+<a href="/uk/essentials/functions/default-values">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

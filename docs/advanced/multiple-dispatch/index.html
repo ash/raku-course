@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,13 +119,14 @@ looking at the types of the arguments. This mechanism is called
 <em>value</em> as well. It is written after a parameter and holds a
 condition that the argument must satisfy for that candidate to be
 chosen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
 
 <span class="n">info</span>(-<span class="mi">5</span>);
 <span class="n">info</span>(<span class="mi">0</span>);
-<span class="n">info</span>(<span class="mi">7</span>);</pre></div>
+<span class="n">info</span>(<span class="mi">7</span>);
+</pre></div>
 
 <p>Each call goes to the candidate whose condition is true for the given
 value:</p>
@@ -139,10 +140,11 @@ would clash. The conditions make them distinct.</p>
 <p>A common use of <code>where</code> is to provide the stopping point
 of a recursion as a separate candidate. Here is the factorial again,
 split into two multi-subs:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span>)               { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
+</pre></div>
 
 <p>The first candidate handles the base case (<code>$n</code> of
 <code>1</code> or less) and simply returns <code>1</code>. Every other
@@ -152,7 +154,7 @@ the choice of base case versus recursive step is made by the
 dispatcher.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/advanced/multiple-dispatch/quiz">Quiz — Dispatch with
 <code>where</code></a></li>
@@ -192,8 +194,24 @@ pricing</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/advanced/multiple-dispatch">Deutsch</a>
+<a href="/eo/advanced/multiple-dispatch">Esperanto</a>
+<a href="/es/advanced/multiple-dispatch">Español</a>
+<a href="/it/advanced/multiple-dispatch">Italiano</a>
+<a href="/la/advanced/multiple-dispatch">Latina</a>
+<a href="/lv/advanced/multiple-dispatch">Latviešu</a>
+<a href="/nl/advanced/multiple-dispatch">Nederlands</a>
+<a href="/bg/advanced/multiple-dispatch">Български</a>
+<a href="/ru/advanced/multiple-dispatch">Русский</a>
+<a href="/uk/advanced/multiple-dispatch">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

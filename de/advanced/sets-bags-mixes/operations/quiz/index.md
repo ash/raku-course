@@ -20,7 +20,7 @@ say (set(1, 2) ∪ set(2, 3)).elems;
 
 <div class="extended-explanation">
 
-Die Vereinigung sammelt jeden Wert aus beiden Sets, aber ein Set speichert jeden Wert nur einmal. Die beiden Sets teilen `2`, daher ist die Vereinigung `{1, 2, 3}` -- drei verschiedene Elemente.
+Die Vereinigung sammelt jeden Wert aus beiden Sets, aber ein Set speichert jeden Wert nur einmal. Die beiden Sets teilen `2`, daher ist die Vereinigung `{1, 2, 3}` — drei verschiedene Elemente.
 
 </div>
 

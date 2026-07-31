@@ -30,8 +30,8 @@ say $=pod[0].contents.elems;
 
 ## Kommentare
 
-1. `$=pod` enthaelt das Pod der Datei als Liste von Bloecken; `$=pod[0]` ist der einzelne `=begin pod`-Block.
+1. `$=pod` enthält das Pod der Datei als Liste von Blöcken; `$=pod[0]` ist der einzelne `=begin pod`-Block.
 
-1. Seine `.contents` sind die darin verschachtelten Bloecke -- die `=head1`-Ueberschrift und der Absatz -- daher ist `.contents.elems` gleich `2`. So durchlaeuft ein Programm die Struktur, um seine eigene Dokumentation als Daten zu lesen.
+1. Seine `.contents` sind die darin verschachtelten Blöcke — die `=head1`-Ueberschrift und der Absatz — daher ist `.contents.elems` gleich `2`. So durchläuft ein Programm die Struktur, um seine eigene Dokumentation als Daten zu lesen.
 
 {% include nav.html %}

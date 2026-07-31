@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,15 +118,16 @@ are values to take? The answer depends on whether the channel has been
 sends three values and closes the channel. What if the consumer asks for
 a fourth?</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="k">start</span> {
-    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
+<span class="nb">start</span> {
+    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># one receive too many</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># one receive too many</span>
+</pre></div>
 
 <h2 id="on-a-closed-channel-an-extra-receive-throws">On a closed
 channel, an extra receive throws</h2>
@@ -148,9 +149,10 @@ an extra receive blocks</h2>
 no way to know whether another value is still coming, so it simply
 <strong>waits</strong>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># waits here — the channel is open but empty</span></pre></div>
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># waits here — the channel is open but empty</span>
+</pre></div>
 
 <p>The program hangs at the second <code>.receive</code>, because a
 value <em>might</em> still be sent. This is the danger the previous page
@@ -165,7 +167,7 @@ channel is precisely what turns that silent hang into a clear signal
 that the stream has ended.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/paradigms/channels/receiving-past-the-end/quiz">Quiz —
 Receiving past the end</a></li>
@@ -196,8 +198,24 @@ the exercises in this section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/paradigms/channels/receiving-past-the-end">Deutsch</a>
+<a href="/eo/paradigms/channels/receiving-past-the-end">Esperanto</a>
+<a href="/es/paradigms/channels/receiving-past-the-end">Español</a>
+<a href="/it/paradigms/channels/receiving-past-the-end">Italiano</a>
+<a href="/la/paradigms/channels/receiving-past-the-end">Latina</a>
+<a href="/lv/paradigms/channels/receiving-past-the-end">Latviešu</a>
+<a href="/nl/paradigms/channels/receiving-past-the-end">Nederlands</a>
+<a href="/bg/paradigms/channels/receiving-past-the-end">Български</a>
+<a href="/ru/paradigms/channels/receiving-past-the-end">Русский</a>
+<a href="/uk/paradigms/channels/receiving-past-the-end">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

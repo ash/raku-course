@@ -10,15 +10,15 @@ Kio estas la rezulto de ĉiu linio de kodo en la subaj ekzemploj?
 
 {:.quiz-select}
 True | `True && True` estas (: True, False :)
-stringo 'True' | `'True' && 'True'` estas (: Boolea True, Boolea False, stringo 'True', stringo 'False' :) | Ĉi tiuj estas stringoj, kiuj en Boolea kunteksto estas `True` valoroj.
-stringo 'Beta' | `'Alpha' && 'Beta'` estas (: Boolea True, Boolea False, stringo 'Alpha', stringo 'Beta' :) | La rezulto estas la dua stringo.
+ĉeno 'True' | `'True' && 'True'` estas (: Boolea True, Boolea False, ĉeno 'True', ĉeno 'False' :) | Ĉi tiuj estas ĉenoj, kiuj en Boolea kunteksto estas `True` valoroj.
+ĉeno 'Beta' | `'Alpha' && 'Beta'` estas (: Boolea True, Boolea False, ĉeno 'Alpha', ĉeno 'Beta' :) | La rezulto estas la dua ĉeno.
 
 ## 2
 
 {:.quiz-select}
 True | `True || True` estas (: True, False :)
-stringo 'True' | `'True' || 'True'` estas (: Boolea True, Boolea False, stringo 'True', stringo 'False' :)
-stringo 'Alpha' | `'Alpha' || 'Beta'` estas (: Boolea True, Boolea False, stringo 'Alpha', stringo 'Beta' :) | La rezulto estas la unua stringo.
+ĉeno 'True' | `'True' || 'True'` estas (: Boolea True, Boolea False, ĉeno 'True', ĉeno 'False' :)
+ĉeno 'Alpha' | `'Alpha' || 'Beta'` estas (: Boolea True, Boolea False, ĉeno 'Alpha', ĉeno 'Beta' :) | La rezulto estas la unua ĉeno.
 
 ## 3
 

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,15 +118,16 @@ sit.</p>
 in fundo tres valores mittit canalemque claudit. Quid si consumptor
 quartum poscit?</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="k">start</span> {
-    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
+<span class="nb">start</span> {
+    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># unum receive nimium</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># unum receive nimium</span>
+</pre></div>
 
 <h2 id="in-canali-clauso-receive-superfluum-iacit">In canali clauso,
 receive superfluum iacit</h2>
@@ -148,9 +149,10 @@ receive superfluum moratur</h2>
 potest utrum alius valor adhuc veniat, itaque simpliciter
 <strong>exspectat</strong>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># hic exspectat — canalis apertus sed vacuus est</span></pre></div>
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># hic exspectat — canalis apertus sed vacuus est</span>
+</pre></div>
 
 <p>Programma ad secundum <code>.receive</code> pendet, quia valor
 <em>fortasse</em> adhuc mittetur. Hoc est periculum de quo pagina prior
@@ -183,6 +185,22 @@ sectionis</a> i.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Haec pagina aliis linguis:">
+<span class="lang-label">Haec pagina aliis linguis:</span>
+<a href="/paradigms/channels/receiving-past-the-end">English</a>
+<a href="/de/paradigms/channels/receiving-past-the-end">Deutsch</a>
+<a href="/eo/paradigms/channels/receiving-past-the-end">Esperanto</a>
+<a href="/es/paradigms/channels/receiving-past-the-end">Español</a>
+<a href="/it/paradigms/channels/receiving-past-the-end">Italiano</a>
+<span class="lang-current">Latina</span>
+<a href="/lv/paradigms/channels/receiving-past-the-end">Latviešu</a>
+<a href="/nl/paradigms/channels/receiving-past-the-end">Nederlands</a>
+<a href="/bg/paradigms/channels/receiving-past-the-end">Български</a>
+<a href="/ru/paradigms/channels/receiving-past-the-end">Русский</a>
+<a href="/uk/paradigms/channels/receiving-past-the-end">Українська</a>
+<a class="lang-about" href="/la/about-translation">De translatione</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
 <p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,10 @@ href="/eo/paradigms/promises">Promesoj</a></p>
 bezono estas atendi <strong>plurajn</strong> samtempe.
 <code>await</code> akceptas liston de promesoj kaj redonas iliajn
 rezultojn laŭvice:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
+</pre></div>
 
 <p>La tri taskoj kuras samtempe; <code>await @jobs</code> atendas ilin
 ĉiujn kaj redonas <code>(1, 2, 3)</code>. Ĉar la rezultoj revenas en la
@@ -125,9 +126,10 @@ sama ordo kiel la promesoj, vi povas redukti ilin kiel kutime.</p>
 <p>Vi povas ankaŭ ĉenigi laboron al promeso per <code>.then</code>, kiu
 plenumas postsekvan blokon tuj kiam la promeso estas preta. Ene de ĝi,
 <code>.result</code> estas la valoro de la originala promeso:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
+</pre></div>
 
 <p><code>$q</code> estas nova promeso, kiu duobligas la rezulton de
 <code>$p</code>. Atendi ĝin donas <code>20</code>.</p>
@@ -135,7 +137,8 @@ plenumas postsekvan blokon tuj kiam la promeso estas preta. Ene de ĝi,
 promeson kiel la tem-variablon <code>$_</code> — kaj tial nuda
 <code>.result</code> funkcias: ĝi vere estas <code>$_.result</code>. Se
 vi preferas doni al tiu promeso nomon, uzu pintan blokon:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
+</pre></div>
 
 <p>Ĉi tio kondutas precize same; <code>$prev</code> estas la originala
 promeso <code>$p</code>, kaj <code>$prev.result</code> estas ĝia
@@ -164,6 +167,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/paradigms/promises/then-and-combinators">English</a>
+<a href="/de/paradigms/promises/then-and-combinators">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/paradigms/promises/then-and-combinators">Español</a>
+<a href="/it/paradigms/promises/then-and-combinators">Italiano</a>
+<a href="/la/paradigms/promises/then-and-combinators">Latina</a>
+<a href="/lv/paradigms/promises/then-and-combinators">Latviešu</a>
+<a href="/nl/paradigms/promises/then-and-combinators">Nederlands</a>
+<a href="/bg/paradigms/promises/then-and-combinators">Български</a>
+<a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
+<a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

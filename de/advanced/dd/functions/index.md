@@ -4,7 +4,7 @@ title: Funktionssignaturen dumpen
 
 {% include menu.html %}
 
-Ein nacktes `dd` -- ohne Argumente innerhalb einer Subroutine aufgerufen -- gibt die Signatur dieser Subroutine aus: ihren Namen und die Liste der Parameter, falls vorhanden. Betrachte das folgende Beispiel mit zwei Subroutinen:
+Ein nacktes `dd` — ohne Argumente innerhalb einer Subroutine aufgerufen — gibt die Signatur dieser Subroutine aus: ihren Namen und die Liste der Parameter, falls vorhanden. Betrachte das folgende Beispiel mit zwei Subroutinen:
 
 ```raku
 sub f1 {

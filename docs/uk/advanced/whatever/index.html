@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -122,8 +122,9 @@ Whatever</em>, і вираз навколо неї на льоту будує н
 аргумент:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
-<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="nb">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span>
+</pre></div>
 
 <p><code>* * 2</code> — це функція, яка множить свій єдиний аргумент на
 два. Саме тому працює <code>(1..5).map(* * 2)</code>: до
@@ -133,7 +134,8 @@ Whatever</em>, і вираз навколо неї на льоту будує н
 було б записати й блоком. Ці три записи рівносильні:</p>
 <div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
 { <span class="nv">$_</span> * <span class="mi">2</span> }
--&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }
+</pre></div>
 
 <p>Форма з Whatever не називає параметра; форма з блоком використовує
 топічну змінну <code>$_</code>; стрілкова форма називає його
@@ -143,9 +145,10 @@ href="/uk/advanced/anonymous-subroutines">Анонімні підпрограм�
 досить читати її як третій спосіб записати ту саму функцію з одним
 аргументом. Для простого виразу зірочка найкомпактніша, — тому вона така
 поширена з <code>map</code>, <code>grep</code> і <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span>
+</pre></div>
 
 <p>Беріть <strong>блок</strong>, коли логіка потребує більш ніж одного
 виразу або коли зрозуміліший іменований параметр стає в пригоді. Беріть
@@ -155,7 +158,8 @@ href="/uk/advanced/anonymous-subroutines">Анонімні підпрограм�
 дві зірочки створюють функцію з <strong>двома</strong> аргументами:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
-<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span>
+</pre></div>
 
 <p>Тут <code>* + *</code> — це функція двох аргументів, яка їх додає:
 наприклад, накопичену суму й наступний елемент.</p>
@@ -165,7 +169,8 @@ href="/uk/advanced/anonymous-subroutines">Анонімні підпрограм�
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
 <span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * це довжина масиву, тож *-1 це останній індекс</span>
 
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* це відкритий діапазон</span></pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* це відкритий діапазон</span>
+</pre></div>
 
 <p>У <code>@a[*-1]</code> зірочка позначає кількість елементів, а в
 <code>1..*</code> — «без верхньої межі». Чи будує вона функцію, чи
@@ -199,6 +204,22 @@ map</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/advanced/whatever">English</a>
+<a href="/de/advanced/whatever">Deutsch</a>
+<a href="/eo/advanced/whatever">Esperanto</a>
+<a href="/es/advanced/whatever">Español</a>
+<a href="/it/advanced/whatever">Italiano</a>
+<a href="/la/advanced/whatever">Latina</a>
+<a href="/lv/advanced/whatever">Latviešu</a>
+<a href="/nl/advanced/whatever">Nederlands</a>
+<a href="/bg/advanced/whatever">Български</a>
+<a href="/ru/advanced/whatever">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

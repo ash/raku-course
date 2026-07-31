@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,18 +113,21 @@ href="/uk/essentials/strings">Рядки</a></p>
 символів</h1>
 <p>Уявіть, що ви хочете надрукувати цінник і зберігаєте як назву
 продукту, так і його ціну в скалярних змінних?</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electricity'</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
+</pre></div>
 
 <p>Як надрукувати цінник, якщо ціна має бути в доларах? Очікуваний
 результат: <code>Electricity costs $3.14</code>. Знак долара в рядках з
 подвійними лапками є індикатором змінної для інтерполяції. Щоб
 надрукувати сам символ <code>$</code>, потрібно його екранувати:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
+</pre></div>
 
 <p>Звичайно, ви можете використовувати конкатенацію рядків і уникнути
 екранування <code>$</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' costs $'</span> ~ <span class="nv">$price</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
+</pre></div>
 
 <p>Цей варіант друкує точно такий же рядок, але інтерполяція виглядає
 більш природною і легшою для читання. Зверніть увагу, що символ
@@ -139,8 +142,9 @@ href="/uk/essentials/strings">Рядки</a></p>
 коса риска</p>
 <p>Спосіб, яким ви цитуєте рядок, визначає, як Raku обробляє спеціальні
 символи. Розгляньте ці два приклади:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'One\nTwo'</span>;
-<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
+</pre></div>
 
 <p>Якщо ви запустите цю програму, ви побачите, що перший рядок
 з’являється як є на одному рядку. Другий рядок був розділений на дві
@@ -155,11 +159,13 @@ Four</code></pre>
 <p>Є цікаве виключення для <code>'</code> і <code>\</code>. В одинарних
 лапках ви можете екранувати одинарну лапку, додавши перед нею ще одну
 <code>\</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
+</pre></div>
 
 <p>Зворотна коса риска також має бути екранована, якщо за нею слідує
 одинарна лапка:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
+</pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -177,28 +183,26 @@ href="/uk/essentials/strings/escaping-special-characters/quiz">Тест:
 Зворотна коса риса у виводі</a> →</p>
 <p><br /> 💪 Або перейдіть одразу <a
 href="/uk/essentials/strings/exercises">до вправ цього розділу</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/strings/escaping-special-characters">English</a> • <a
-href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
-<a href="/es/essentials/strings/escaping-special-characters">Español</a>
-• <a
-href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
-<a
-href="/lv/essentials/strings/escaping-special-characters">Latviešu</a> •
-<a
-href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
-• <a
-href="/bg/essentials/strings/escaping-special-characters">Български</a>
-• <a
-href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
-<strong>Українська</strong></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/essentials/strings/escaping-special-characters">English</a>
+<a href="/de/essentials/strings/escaping-special-characters">Deutsch</a>
+<a href="/eo/essentials/strings/escaping-special-characters">Esperanto</a>
+<a href="/es/essentials/strings/escaping-special-characters">Español</a>
+<a href="/it/essentials/strings/escaping-special-characters">Italiano</a>
+<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
+<a href="/lv/essentials/strings/escaping-special-characters">Latviešu</a>
+<a href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+<a href="/bg/essentials/strings/escaping-special-characters">Български</a>
+<a href="/ru/essentials/strings/escaping-special-characters">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

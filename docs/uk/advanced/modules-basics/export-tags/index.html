@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,22 +118,26 @@ href="/uk/advanced/modules-basics">Основи модулів</a></p>
 <p>Мітку записують у дужках після <code>is export</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
+</pre></div>
 
 <p><code>hello</code> не має мітки, тож належить до типової групи;
 <code>goodbye</code> позначено міткою <code>:partings</code>.</p>
 <p>Звичайний <code>use</code> імпортує лише типову групу:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello доступна; goodbye ні</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello доступна; goodbye ні</span>
+</pre></div>
 
 <p>Називання мітки імпортує натомість ту групу — і, можливо,
 несподівано, <em>не</em> типову на додачу:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye доступна; hello ні</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye доступна; hello ні</span>
+</pre></div>
 
 <p>Запит <code>:partings</code> дає вам саме цю групу. Щоб підтягнути
 все, що експортує модуль, скористайтеся вбудованою міткою
 <code>:ALL</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># і hello, і goodbye</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># і hello, і goodbye</span>
+</pre></div>
 
 <p>Дві особливі мітки варто знати. <code>:ALL</code> підтримується
 кожним модулем і імпортує всі його експорти. <code>:MANDATORY</code> —
@@ -165,6 +169,22 @@ href="/uk/advanced/modules-basics/exercises">до вправ цього
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/advanced/modules-basics/export-tags">English</a>
+<a href="/de/advanced/modules-basics/export-tags">Deutsch</a>
+<a href="/eo/advanced/modules-basics/export-tags">Esperanto</a>
+<a href="/es/advanced/modules-basics/export-tags">Español</a>
+<a href="/it/advanced/modules-basics/export-tags">Italiano</a>
+<a href="/la/advanced/modules-basics/export-tags">Latina</a>
+<a href="/lv/advanced/modules-basics/export-tags">Latviešu</a>
+<a href="/nl/advanced/modules-basics/export-tags">Nederlands</a>
+<a href="/bg/advanced/modules-basics/export-tags">Български</a>
+<a href="/ru/advanced/modules-basics/export-tags">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

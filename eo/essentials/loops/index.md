@@ -1,5 +1,5 @@
 ---
-title: Ripetoj
+title: Bukloj
 ---
 
 {% include menu.html %}

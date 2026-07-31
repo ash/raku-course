@@ -1,5 +1,5 @@
 ---
-title: Kvizo 1 — Kompari stringojn
+title: Kvizo 1 — Kompari ĉenojn
 ---
 
 {% include menu.html %}

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,21 +118,24 @@ skribitan inter la ŝablono — kiu ruliĝas tuj kiam la kongruigo atingas
 ĝin. Ene de tiu bloko, la funkcio <code>make</code> konservas valoron
 sur la nuna kongruo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">OneNum</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
-}</pre></div>
+    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+}
+</pre></div>
 
 <p>Kiam <code>TOP</code> kongruas, la interna bloko
 <code>{ make $&lt;number&gt;.Int }</code> ruliĝas — la eksteraj kunigaj
 krampoj estas nur la korpo de la ĵetono — kaj konservas la entjeron sur
 la kongruo. Vi relegas ĝin poste per <code>made</code> (aŭ ĝia alinomo
 <code>.ast</code>):</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span>; <span class="c1"># 42</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span>; <span class="c1"># 42</span>
+</pre></div>
 
 <p>Ĉar ni konservis <code>$&lt;number&gt;.Int</code>, la valoro redonita
 de <code>made</code> estas vera <code>Int</code> — la nombro mem, ne la
 kongrua objekto:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span>
+</pre></div>
 
 <p>Notu, ke ĉi tiu aparta <code>+ 1</code> donus <code>43</code> eĉ sen
 la <code>.Int</code>, ĉar kongruo nombriĝas al siaj ciferoj en
@@ -144,12 +147,13 @@ anstataŭ la kruda kongruo.</p>
 objekto. Ĵetono ankaŭ povas kombini la valorojn, kiujn ĝiaj subĵetonoj
 faris. Ekzemple, sumigi du kaptitajn nombrojn:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
+    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>).<span class="k">made</span>; <span class="c1"># 5</span>
+</pre></div>
 
 <p><code>make</code> kaj <code>made</code> estas la ponto de «ĝi
 kongruis» al «jen la signifo». Meti la blokojn enlinie funkcias, sed ĝi
@@ -175,6 +179,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/regexes/make-and-made/make-made">English</a>
+<a href="/de/regexes/make-and-made/make-made">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/regexes/make-and-made/make-made">Español</a>
+<a href="/it/regexes/make-and-made/make-made">Italiano</a>
+<a href="/la/regexes/make-and-made/make-made">Latina</a>
+<a href="/lv/regexes/make-and-made/make-made">Latviešu</a>
+<a href="/nl/regexes/make-and-made/make-made">Nederlands</a>
+<a href="/bg/regexes/make-and-made/make-made">Български</a>
+<a href="/ru/regexes/make-and-made/make-made">Русский</a>
+<a href="/uk/regexes/make-and-made/make-made">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

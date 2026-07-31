@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,10 @@ href="/uk/oop/external-programs">Запуск зовнішніх програм 
 на екран, передайте <code>:out</code> під час запуску. Повернений
 <code>Proc</code> тоді має дескриптор <code>.out</code>, з якого можна
 читати:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hello'</span>, :<span class="n">out</span>;
-<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$output</span>.<span class="n">chomp</span>; <span class="c1"># hello</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hello&#39;</span>, :<span class="n">out</span>;
+<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$output</span>.<span class="nb">chomp</span>; <span class="c1"># hello</span>
+</pre></div>
 
 <p><code>:out</code> перенаправляє стандартний вивід програми в
 <code>Proc</code>. Дескриптор <code>.out</code> працює як дескриптори
@@ -129,17 +130,19 @@ href="/uk/oop/external-programs">Запуск зовнішніх програм 
 перехід рядка, який додає <code>echo</code>.</p>
 <p>Так само працює й <code>shell</code>, що стає в пригоді для
 перехоплення результату конвеєра:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">'echo hello | tr a-z A-Z'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># HELLO</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">&#39;echo hello | tr a-z A-Z&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># HELLO</span>
+</pre></div>
 
 <p>Перехопити можна й потік помилок — через <code>:err</code> і
 відповідний дескриптор <code>.err</code>. Передача одразу
 <code>:out</code> і <code>:err</code> тримає ці два потоки нарізно,
 кожен у своєму дескрипторі, тож їх можна читати окремо:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo out-line; echo err-line &gt;&amp;2'</span>, :<span class="n">out</span>, :<span class="n">err</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo out-line; echo err-line &gt;&amp;2&#39;</span>, :<span class="n">out</span>, :<span class="n">err</span>;
 
-<span class="nb">say</span> <span class="s">'stdout: '</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stdout: out-line</span>
-<span class="nb">say</span> <span class="s">'stderr: '</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stderr: err-line</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;stdout: &#39;</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stdout: out-line</span>
+<span class="nb">say</span> <span class="s">&#39;stderr: &#39;</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stderr: err-line</span>
+</pre></div>
 
 <p>Тут команда оболонки виводить один рядок у стандартний вивід і один —
 у стандартний потік помилок (<code>&gt;&amp;2</code> туди
@@ -160,6 +163,22 @@ href="/uk/oop/external-programs/exercises">до вправ цього
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/oop/external-programs/capturing-output">English</a>
+<a href="/de/oop/external-programs/capturing-output">Deutsch</a>
+<a href="/eo/oop/external-programs/capturing-output">Esperanto</a>
+<a href="/es/oop/external-programs/capturing-output">Español</a>
+<a href="/it/oop/external-programs/capturing-output">Italiano</a>
+<a href="/la/oop/external-programs/capturing-output">Latina</a>
+<a href="/lv/oop/external-programs/capturing-output">Latviešu</a>
+<a href="/nl/oop/external-programs/capturing-output">Nederlands</a>
+<a href="/bg/oop/external-programs/capturing-output">Български</a>
+<a href="/ru/oop/external-programs/capturing-output">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

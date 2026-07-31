@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,40 +114,47 @@ href="/de/advanced/strings">Zeichenketten</a></p>
 <p>Strings können auf verschiedene Weisen in Teile zerlegt und wieder
 zusammengesetzt werden.</p>
 <p>Die Methode <code>words</code> teilt einen String in eine Liste
-seiner durch Leerzeichen getrennten Woerter auf:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello big World'</span>.<span class="nb">words</span>; <span class="c1"># (Hello big World)</span></pre></div>
+seiner durch Leerzeichen getrennten Wörter auf:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello big World&#39;</span>.<span class="nb">words</span>; <span class="c1"># (Hello big World)</span>
+</pre></div>
 
 <p>Die Methode <code>split</code> teilt einen String an einem
 Trennzeichen deiner Wahl:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a,b,c'</span>.<span class="nb">split</span>(<span class="s">','</span>); <span class="c1"># (a b c)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a,b,c&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>); <span class="c1"># (a b c)</span>
+</pre></div>
 
 <p>Ein wichtiger Sonderfall ist das Aufteilen am <strong>leeren
 String</strong> <code>''</code>: Dabei wird ein String in seine
 einzelnen Zeichen zerlegt, aber es wird auch am Anfang und am Ende
-jeweils ein leerer String eingefuegt, sodass das Ergebnis zwei Elemente
-mehr hat, als man erwarten wuerde:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abc'</span>.<span class="nb">split</span>(<span class="s">''</span>).<span class="nb">elems</span>;        <span class="c1"># 5 — the three letters, plus an empty string at each end</span>
-<span class="nb">say</span> <span class="s">'abc'</span>.<span class="nb">split</span>(<span class="s">''</span>, :<span class="n">skip-empty</span>); <span class="c1"># (a b c) — the :skip-empty adverb drops the empties</span></pre></div>
+jeweils ein leerer String eingefügt, sodass das Ergebnis zwei Elemente
+mehr hat, als man erwarten würde:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abc&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;&#39;</span>).<span class="nb">elems</span>;        <span class="c1"># 5 — the three letters, plus an empty string at each end</span>
+<span class="nb">say</span> <span class="s">&#39;abc&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;&#39;</span>, :<span class="n">skip-empty</span>); <span class="c1"># (a b c) — the :skip-empty adverb drops the empties</span>
+</pre></div>
 
 <p>Um einen String in Zeichen aufzuteilen, eignet sich die Methode
-<code>comb</code> ohne Argumente besser – ohne überflüssige leere
+<code>comb</code> ohne Argumente besser — ohne überflüssige leere
 Strings:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Raku'</span>.<span class="nb">comb</span>; <span class="c1"># (R a k u)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>.<span class="nb">comb</span>; <span class="c1"># (R a k u)</span>
+</pre></div>
 
-<p>In die andere Richtung fuegt die Methode <code>join</code> eine Liste
+<p>In die andere Richtung fügt die Methode <code>join</code> eine Liste
 von Werten zu einem einzelnen String zusammen und setzt dabei ein
 Trennzeichen dazwischen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
+</pre></div>
 
 <p>Zwei weitere Methoden arbeiten mit Teilen eines Strings. Die Methode
-<code>substr</code> extrahiert ein Stueck, basierend auf einer
-Startposition und optional einer Laenge:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello World'</span>.<span class="nb">substr</span>(<span class="mi">0</span>, <span class="mi">5</span>); <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="s">'Hello World'</span>.<span class="nb">substr</span>(<span class="mi">6</span>);    <span class="c1"># World</span></pre></div>
+<code>substr</code> extrahiert ein Stück, basierend auf einer
+Startposition und optional einer Länge:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello World&#39;</span>.<span class="nb">substr</span>(<span class="mi">0</span>, <span class="mi">5</span>); <span class="c1"># Hello</span>
+<span class="nb">say</span> <span class="s">&#39;Hello World&#39;</span>.<span class="nb">substr</span>(<span class="mi">6</span>);    <span class="c1"># World</span>
+</pre></div>
 
 <p>Und <code>trim</code> entfernt Leerzeichen an beiden Enden eines
 Strings:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'  hi  '</span>.<span class="nb">trim</span>; <span class="c1"># hi</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;  hi  &#39;</span>.<span class="nb">trim</span>; <span class="c1"># hi</span>
+</pre></div>
 
 <h2 id="kursnavigation">Kursnavigation</h2>
 <p>← <a href="/de/advanced/strings/searching/quiz">Quiz —
@@ -161,6 +168,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/advanced/strings/splitting">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/advanced/strings/splitting">Esperanto</a>
+<a href="/es/advanced/strings/splitting">Español</a>
+<a href="/it/advanced/strings/splitting">Italiano</a>
+<a href="/la/advanced/strings/splitting">Latina</a>
+<a href="/lv/advanced/strings/splitting">Latviešu</a>
+<a href="/nl/advanced/strings/splitting">Nederlands</a>
+<a href="/bg/advanced/strings/splitting">Български</a>
+<a href="/ru/advanced/strings/splitting">Русский</a>
+<a href="/uk/advanced/strings/splitting">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

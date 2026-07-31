@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,15 +117,16 @@ een exceptieobject van het type <code>X::AdHoc</code>.</p>
 type komt van <code>.^name</code> en zijn tekst van
 <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">'something failed'</span>;
+    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
         }
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Het type kennen laat je verschillende fouten verschillend behandelen.
 De ingebouwde excepties van Raku hebben specifieke typen waarvan de
@@ -133,17 +134,18 @@ namen met <code>X::</code> beginnen, en je kunt erop matchen met
 <code>when</code>, precies zoals je waarden matchte in een
 <code>given</code>/<code>when</code>-blok:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">'something failed'</span>;
+    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="n">X::AdHoc</span> {
-            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
+        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
+            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">'some other error'</span>;
+            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
         }
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Dit drukt <code>an ad-hoc error: something failed</code> af, omdat de
 exceptie op het type <code>X::AdHoc</code> matchte. Op het type matchen
@@ -179,6 +181,22 @@ fout</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/oop/exception-objects">English</a>
+<a href="/de/oop/exception-objects">Deutsch</a>
+<a href="/eo/oop/exception-objects">Esperanto</a>
+<a href="/es/oop/exception-objects">Español</a>
+<a href="/it/oop/exception-objects">Italiano</a>
+<a href="/la/oop/exception-objects">Latina</a>
+<a href="/lv/oop/exception-objects">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/oop/exception-objects">Български</a>
+<a href="/ru/oop/exception-objects">Русский</a>
+<a href="/uk/oop/exception-objects">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

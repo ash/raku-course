@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,13 +120,14 @@ argomenti. Una clausola <code>where</code> permette di andare oltre e
 effettuare il dispatch anche in base al <em>valore</em>. Si scrive dopo
 un parametro e contiene una condizione che l’argomento deve soddisfare
 affinche quel candidato venga scelto:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
 
 <span class="n">info</span>(-<span class="mi">5</span>);
 <span class="n">info</span>(<span class="mi">0</span>);
-<span class="n">info</span>(<span class="mi">7</span>);</pre></div>
+<span class="n">info</span>(<span class="mi">7</span>);
+</pre></div>
 
 <p>Ogni chiamata va al candidato la cui condizione risulta vera per il
 valore dato:</p>
@@ -142,10 +143,11 @@ ricorsione</h2>
 <p>Un uso comune di <code>where</code> e fornire il punto di arresto di
 una ricorsione come candidato separato. Ecco di nuovo il fattoriale,
 suddiviso in due multi-sub:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span>)               { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
+</pre></div>
 
 <p>Il primo candidato gestisce il caso base (<code>$n</code> uguale a
 <code>1</code> o inferiore) e restituisce semplicemente <code>1</code>.
@@ -187,6 +189,22 @@ all’ingrosso</a> →</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/advanced/multiple-dispatch">English</a>
+<a href="/de/advanced/multiple-dispatch">Deutsch</a>
+<a href="/eo/advanced/multiple-dispatch">Esperanto</a>
+<a href="/es/advanced/multiple-dispatch">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/advanced/multiple-dispatch">Latina</a>
+<a href="/lv/advanced/multiple-dispatch">Latviešu</a>
+<a href="/nl/advanced/multiple-dispatch">Nederlands</a>
+<a href="/bg/advanced/multiple-dispatch">Български</a>
+<a href="/ru/advanced/multiple-dispatch">Русский</a>
+<a href="/uk/advanced/multiple-dispatch">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

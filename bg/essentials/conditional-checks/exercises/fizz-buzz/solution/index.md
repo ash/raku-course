@@ -13,8 +13,8 @@ title: 'Solution: FizzBuzz'
 ```raku
 my $n = prompt 'Въведете число: ';
 
-print 'Fizz' ако $n %% 3;
-print 'Buzz' ако $n %% 5;
+print 'Fizz' if $n %% 3;
+print 'Buzz' if $n %% 5;
 print "\n";
 ```
 

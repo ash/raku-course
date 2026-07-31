@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,10 @@
 да го изсипе на екрана, подайте <code>:out</code> при стартирането ѝ.
 Върнатият <code>Proc</code> тогава има манипулатор <code>.out</code>, от
 който можете да четете:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hello'</span>, :<span class="n">out</span>;
-<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$output</span>.<span class="n">chomp</span>; <span class="c1"># hello</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hello&#39;</span>, :<span class="n">out</span>;
+<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$output</span>.<span class="nb">chomp</span>; <span class="c1"># hello</span>
+</pre></div>
 
 <p><code>:out</code> пренасочва стандартния изход на програмата в
 <code>Proc</code>. Манипулаторът <code>.out</code> работи като
@@ -130,17 +131,19 @@
 <code>echo</code> добавя.</p>
 <p>Същото работи и с <code>shell</code>, което е удобно за улавяне на
 резултата от конвейер:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">'echo hello | tr a-z A-Z'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># HELLO</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">&#39;echo hello | tr a-z A-Z&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># HELLO</span>
+</pre></div>
 
 <p>Можете да уловите и потока за грешки с <code>:err</code> и съответния
 манипулатор <code>.err</code>. Подаването и на <code>:out</code>, и на
 <code>:err</code> държи двата потока разделени, всеки в свой
 манипулатор, така че можете да ги четете поотделно:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo out-line; echo err-line &gt;&amp;2'</span>, :<span class="n">out</span>, :<span class="n">err</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo out-line; echo err-line &gt;&amp;2&#39;</span>, :<span class="n">out</span>, :<span class="n">err</span>;
 
-<span class="nb">say</span> <span class="s">'stdout: '</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stdout: out-line</span>
-<span class="nb">say</span> <span class="s">'stderr: '</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stderr: err-line</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;stdout: &#39;</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stdout: out-line</span>
+<span class="nb">say</span> <span class="s">&#39;stderr: &#39;</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stderr: err-line</span>
+</pre></div>
 
 <p>Тук командата на обвивката отпечатва един ред в стандартния изход и
 един в стандартната грешка (<code>&gt;&amp;2</code> пренасочва натам).
@@ -161,6 +164,22 @@ href="/bg/oop/external-programs/exercises">към упражненията в т
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/oop/external-programs/capturing-output">English</a>
+<a href="/de/oop/external-programs/capturing-output">Deutsch</a>
+<a href="/eo/oop/external-programs/capturing-output">Esperanto</a>
+<a href="/es/oop/external-programs/capturing-output">Español</a>
+<a href="/it/oop/external-programs/capturing-output">Italiano</a>
+<a href="/la/oop/external-programs/capturing-output">Latina</a>
+<a href="/lv/oop/external-programs/capturing-output">Latviešu</a>
+<a href="/nl/oop/external-programs/capturing-output">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/oop/external-programs/capturing-output">Русский</a>
+<a href="/uk/oop/external-programs/capturing-output">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

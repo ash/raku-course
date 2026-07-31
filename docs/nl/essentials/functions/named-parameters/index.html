@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,10 +116,12 @@ parameters</a>, worden <em>benoemde</em> parameters aangeduid met hun
 namen.</p>
 <p>De volgende functie neemt twee parameters genaamd <code>$from</code>
 en <code>$to</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
+</pre></div>
 
 <p>Om de functie aan te roepen, moet je de argumenten benoemen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Het is een fout om de argumenten door te geven alsof ze positioneel
 zijn. Bijvoorbeeld, een oproep <code>distance(30, 10)</code> genereert
@@ -130,9 +132,10 @@ een fout:</p>
 <p>Het goede nieuws is dat benoemde argumenten in willekeurige volgorde
 kunnen worden vermeld. De volgende twee oproepen zijn volledig
 equivalent:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="n">to</span> =&gt; <span class="mi">10</span>, <span class="n">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span></pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <h2 id="variabelen-doorgeven">Variabelen doorgeven</h2>
 <p>Wanneer de waarde die je aan een functie wilt doorgeven in een
@@ -141,24 +144,28 @@ parameter, kun je genieten van een speciale syntaxis die het typen
 vermindert:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
 <span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Dit is vergelijkbaar met een omslachtige oproep:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$from</span>, <span class="n">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Ook hier is de volgorde niet strikt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
+</pre></div>
 
 <p>Als de naam van de variabele verschilt van de naam van de parameter,
 gebruik dan een van de manieren om een paar door te geven:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$a</span>, <span class="n">to</span> =&gt; <span class="nv">$b</span>);
+<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
 
 <span class="c1"># of:</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
+</pre></div>
 
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
@@ -178,23 +185,26 @@ parameters</a> →</p>
 <p><br /> 💪 Of ga direct <a
 href="/nl/essentials/functions/exercises">naar de oefeningen in deze
 sectie</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <a
-href="/essentials/functions/named-parameters">English</a> • <a
-href="/de/essentials/functions/named-parameters">Deutsch</a> • <a
-href="/es/essentials/functions/named-parameters">Español</a> • <a
-href="/it/essentials/functions/named-parameters">Italiano</a> • <a
-href="/lv/essentials/functions/named-parameters">Latviešu</a> •
-<strong>Nederlands</strong> • <a
-href="/bg/essentials/functions/named-parameters">Български</a> • <a
-href="/ru/essentials/functions/named-parameters">Русский</a> • <a
-href="/uk/essentials/functions/named-parameters">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/essentials/functions/named-parameters">English</a>
+<a href="/de/essentials/functions/named-parameters">Deutsch</a>
+<a href="/eo/essentials/functions/named-parameters">Esperanto</a>
+<a href="/es/essentials/functions/named-parameters">Español</a>
+<a href="/it/essentials/functions/named-parameters">Italiano</a>
+<a href="/la/essentials/functions/named-parameters">Latina</a>
+<a href="/lv/essentials/functions/named-parameters">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/essentials/functions/named-parameters">Български</a>
+<a href="/ru/essentials/functions/named-parameters">Русский</a>
+<a href="/uk/essentials/functions/named-parameters">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

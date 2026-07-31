@@ -26,6 +26,6 @@ Der von `...` erzeugte Wert ist vom Typ `Seq`:
 say (1 ... 5).WHAT; # (Seq)
 ```
 
-Die folgenden Themen zeigen weitere Muster, die der `...`-Operator erkennen kann, und wie eine Sequenz lazy sein kann -- sogar unendlich.
+Die folgenden Themen zeigen weitere Muster, die der `...`-Operator erkennen kann, und wie eine Sequenz lazy sein kann — sogar unendlich.
 
 {% include nav.html %}

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,8 +114,9 @@ href="/de/regexes/literals">Literale und Zeichenklassen</a></p>
 <p>Das einfachste Muster ist eine Folge von Buchstaben und Ziffern. Ein
 solches Muster trifft genau diese Zeichen, in dieser Reihenfolge,
 irgendwo in der Zeichenkette:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
+</pre></div>
 
 <p>Der Treffer muss nicht am Anfang der Zeichenkette beginnen — die
 Regex-Maschine sucht das Muster an jeder Position, bis sie es
@@ -128,23 +129,26 @@ Eckklammern <code>｢ ｣</code>. Ist das Muster nicht vorhanden, schlägt
 der Treffer stattdessen fehl: Der Smartmatch ergibt <code>Nil</code>,
 einen undefinierten Wert, der in einer Wahrheitsprüfung als falsch
 gilt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
+</pre></div>
 
 <p>Innerhalb eines Regex sind Leerzeichen standardmäßig
 <strong>nicht</strong> bedeutsam — sie stehen nur dort, um das Muster
 lesbar zu machen. <code>/ ell /</code> trifft also genau das, was
 <code>/ell/</code> treffen würde; die umgebenden Leerzeichen werden
 schlicht übergangen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
+</pre></div>
 
 <p>Weil ein Leerzeichen im Muster übergangen wird, braucht es für ein
 <em>tatsächliches</em> Leerzeichen <strong>Anführungszeichen</strong>:
 Alles, was Sie in Anführungszeichen setzen, wird wörtlich getroffen.
 Dieselbe Anführung ist auch der Weg, ein Satzzeichen zu treffen, das in
 einem Regex sonst eine besondere Bedeutung hätte:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
+</pre></div>
 
 <p>(Für Leerraum können Sie auch die Klasse <code>\s</code> verwenden,
 die Ihnen gleich begegnet.)</p>
@@ -159,6 +163,22 @@ Abschnitts</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/regexes/literals/literal-text">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/regexes/literals/literal-text">Esperanto</a>
+<a href="/es/regexes/literals/literal-text">Español</a>
+<a href="/it/regexes/literals/literal-text">Italiano</a>
+<a href="/la/regexes/literals/literal-text">Latina</a>
+<a href="/lv/regexes/literals/literal-text">Latviešu</a>
+<a href="/nl/regexes/literals/literal-text">Nederlands</a>
+<a href="/bg/regexes/literals/literal-text">Български</a>
+<a href="/ru/regexes/literals/literal-text">Русский</a>
+<a href="/uk/regexes/literals/literal-text">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

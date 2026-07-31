@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,17 +119,19 @@ automáticamente en la variable especial <code>$/</code>, a veces llamada
 Como cadena, es el texto que coincidió, ya sea con el método
 <code>.Str</code> o con el prefijo <code>~</code>, que es el operador de
 conversión a cadena y hace exactamente lo mismo:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'concatenate'</span> ~~ <span class="sr">/cat/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;concatenate&#39;</span> ~~<span class="sr"> /cat/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>; <span class="c1"># cat</span>
-<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span></pre></div>
+<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span>
+</pre></div>
 
 <p>También sabe <strong>dónde</strong> se encontró la coincidencia en la
 cadena. El método <code>.from</code> da la posición donde empieza y
 <code>.to</code> la posición justo después de su final:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'room 7 left'</span> ~~ <span class="sr">/\d/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;room 7 left&#39;</span> ~~<span class="sr"> /\d/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>;  <span class="c1"># 7</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">from</span>; <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">to</span>;   <span class="c1"># 6</span></pre></div>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">from</span>; <span class="c1"># 5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">to</span>;   <span class="c1"># 6</span>
+</pre></div>
 
 <p>Las posiciones se cuentan desde cero, así que el dígito
 <code>7</code> está en el índice <code>5</code>.</p>
@@ -137,8 +139,9 @@ cadena. El método <code>.from</code> da la posición donde empieza y
 objeto de coincidencia en absoluto: es el valor especial
 <code>Nil</code>. Asignar <code>Nil</code> a un escalar lo deja sin
 definir:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'abc'</span> ~~ <span class="sr">/z/</span>;
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;abc&#39;</span> ~~<span class="sr"> /z/</span>;
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
+</pre></div>
 
 <p>Así que siempre puedes comprobar <code>.defined</code> (o simplemente
 usar el valor en contexto booleano) antes de leer el texto
@@ -163,6 +166,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/regexes/matching/match-object">English</a>
+<a href="/de/regexes/matching/match-object">Deutsch</a>
+<a href="/eo/regexes/matching/match-object">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/regexes/matching/match-object">Italiano</a>
+<a href="/la/regexes/matching/match-object">Latina</a>
+<a href="/lv/regexes/matching/match-object">Latviešu</a>
+<a href="/nl/regexes/matching/match-object">Nederlands</a>
+<a href="/bg/regexes/matching/match-object">Български</a>
+<a href="/ru/regexes/matching/match-object">Русский</a>
+<a href="/uk/regexes/matching/match-object">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

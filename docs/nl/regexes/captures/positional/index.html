@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,11 @@ href="/nl/regexes/captures">Captures</a></p>
 het te <em>capturen</em>. Na een geslaagde match is elk gecapturd stuk
 beschikbaar als <code>$0</code>, <code>$1</code>, enzovoort, genummerd
 vanaf nul in de volgorde waarin de haken openen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Het eerste haakjespaar captureerde het jaar in <code>$0</code>, het
 tweede captureerde de maand in <code>$1</code>. De tekst ertussen — de
@@ -127,20 +128,22 @@ letterlijke <code>-</code> — wordt gematcht maar niet gecapturd.</p>
 <code>.Str</code>, zijn positie enzovoort vragen. In een string met
 dubbele aanhalingstekens interpoleert een capture als zijn gematchte
 tekst:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Hier worden de twee gecapturde woorden in omgekeerde volgorde
 afgedrukt, wat ze verwisselt.</p>
 <p>De captures worden ook in de matchvariabele <code>$/</code> bewaard,
 en <code>$0</code> is eigenlijk een korte manier om <code>$/[0]</code>
 te schrijven. Je kunt rechtstreeks via <code>$/</code> werken:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
-    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}
+</pre></div>
 
 <p><code>$/</code> is het hele matchobject, het indexeren bereikt de
 positionele captures, en <code>.elems</code> vertelt je hoeveel er
@@ -163,6 +166,22 @@ de oefeningen in deze sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/regexes/captures/positional">English</a>
+<a href="/de/regexes/captures/positional">Deutsch</a>
+<a href="/eo/regexes/captures/positional">Esperanto</a>
+<a href="/es/regexes/captures/positional">Español</a>
+<a href="/it/regexes/captures/positional">Italiano</a>
+<a href="/la/regexes/captures/positional">Latina</a>
+<a href="/lv/regexes/captures/positional">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/regexes/captures/positional">Български</a>
+<a href="/ru/regexes/captures/positional">Русский</a>
+<a href="/uk/regexes/captures/positional">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

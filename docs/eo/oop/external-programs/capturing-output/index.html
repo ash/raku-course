@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,10 @@ programojn 🆕</a></p>
 la ekrano, transdonu <code>:out</code> dum lanĉo. La redonita
 <code>Proc</code> tiam havas tenilon <code>.out</code>, el kiu vi povas
 legi:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hello'</span>, :<span class="n">out</span>;
-<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$output</span>.<span class="n">chomp</span>; <span class="c1"># hello</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hello&#39;</span>, :<span class="n">out</span>;
+<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$output</span>.<span class="nb">chomp</span>; <span class="c1"># hello</span>
+</pre></div>
 
 <p><code>:out</code> redirektas la norman eligon de la programo en la
 <code>Proc</code>. La tenilo <code>.out</code> funkcias kiel la
@@ -129,17 +130,19 @@ malfermita. Fine, <code>.chomp</code> forigas la finan linifinon, kiun
 <code>echo</code> aldonas.</p>
 <p>La samo funkcias kun <code>shell</code>, kio estas oportuna por kapti
 la rezulton de dukto:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">'echo hello | tr a-z A-Z'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># HELLO</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">&#39;echo hello | tr a-z A-Z&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># HELLO</span>
+</pre></div>
 
 <p>Vi ankaŭ povas kapti la erarfluon, per <code>:err</code> kaj la
 responda tenilo <code>.err</code>. Transdoni kaj <code>:out</code> kaj
 <code>:err</code> tenas la du fluojn apartaj, ĉiun en sia propra tenilo,
 do vi povas legi ilin aparte:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo out-line; echo err-line &gt;&amp;2'</span>, :<span class="n">out</span>, :<span class="n">err</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo out-line; echo err-line &gt;&amp;2&#39;</span>, :<span class="n">out</span>, :<span class="n">err</span>;
 
-<span class="nb">say</span> <span class="s">'stdout: '</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stdout: out-line</span>
-<span class="nb">say</span> <span class="s">'stderr: '</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stderr: err-line</span></pre></div>
+<span class="nb">say</span> <span class="s">&#39;stdout: &#39;</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stdout: out-line</span>
+<span class="nb">say</span> <span class="s">&#39;stderr: &#39;</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stderr: err-line</span>
+</pre></div>
 
 <p>Ĉi tie la ŝela komando presas unu linion al norma eligo kaj unu al
 norma erarfluo (<code>&gt;&amp;2</code> redirektas al ĝi). Ĉar ni petis
@@ -161,6 +164,22 @@ sekcio</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ĉi tiu paĝo en aliaj lingvoj:">
+<span class="lang-label">Ĉi tiu paĝo en aliaj lingvoj:</span>
+<a href="/oop/external-programs/capturing-output">English</a>
+<a href="/de/oop/external-programs/capturing-output">Deutsch</a>
+<span class="lang-current">Esperanto</span>
+<a href="/es/oop/external-programs/capturing-output">Español</a>
+<a href="/it/oop/external-programs/capturing-output">Italiano</a>
+<a href="/la/oop/external-programs/capturing-output">Latina</a>
+<a href="/lv/oop/external-programs/capturing-output">Latviešu</a>
+<a href="/nl/oop/external-programs/capturing-output">Nederlands</a>
+<a href="/bg/oop/external-programs/capturing-output">Български</a>
+<a href="/ru/oop/external-programs/capturing-output">Русский</a>
+<a href="/uk/oop/external-programs/capturing-output">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/eo/about-translation">Pri la traduko</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
 <p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

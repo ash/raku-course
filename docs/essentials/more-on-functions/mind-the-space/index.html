@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,29 +118,34 @@ parentheses with its arguments. But use a space after <code>for</code>
 and <code>if</code>.</p>
 <h2 id="long-story">Long story</h2>
 <p>Let us take a simple function:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>First of all, note the absence of spaces between the name of the
 function and the opening parentheses that keeps the parameters. Some
 coding styles in other languages may require a space there. Raku is fine
 with that, but this is not a practice to follow:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>On the calling side, the absence of space is important. If you call
 the function and omit the parentheses, then the space after the name of
 the function is unavoidable:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
+</pre></div>
 
 <p>But if you add parentheses, you cannot have a space before them. This
 is a correct call:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>And this call is wrong:</p>
-<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
+</pre></div>
 
 <p>Such code causes an exception:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -150,11 +155,12 @@ is a correct call:</p>
 to pass a single argument <code>(5, 6)</code> to the function. You can
 easily check the type of this argument if you rewrite the function to
 accept only one argument:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
 }
 
-<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
+<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
+</pre></div>
 
 <p>So, calling <code>f (5, 6)</code> means that we are passing a <a
 href="/essentials/positionals/lists">list</a> to the function. The list
@@ -163,9 +169,10 @@ as a single entity.</p>
 <p>In some cases, the space character is needed. That happens when you
 use parentheses with one of the keywords, such as <code>if</code> or
 <code>for</code> or <code>loop</code>. The following code is wrong:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
-    <span class="nb">say</span> <span class="s">'OK'</span>;
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
+    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
+}
+</pre></div>
 
 <p>The error message explains what’s wrong:</p>
 <pre><code>===SORRY!===
@@ -180,7 +187,8 @@ at /Users/ash/raku-course/t.raku:1
 all, so the problem has no chance to appear if you do not use them. But
 in some cases, as, for example, with <code>loop</code>, you need to have
 them, and the space becomes mandatory:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
+</pre></div>
 
 <p>In this code, the same thing happens: <code>loop(...)</code> is
 understood by the compiler as a function call. Add a space to resolve
@@ -208,25 +216,28 @@ parameters</a> →</p>
 <p><br /> 💪 Or jump directly <a
 href="/essentials/more-on-functions/exercises/factorial-with-multi-functions">to
 the exercise to this section</a>.</p>
-<div data-markdown="1"
-style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-<p>Translations of this page: <strong>English</strong> • <a
-href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a> • <a
-href="/es/essentials/more-on-functions/mind-the-space">Español</a> • <a
-href="/it/essentials/more-on-functions/mind-the-space">Italiano</a> • <a
-href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a> • <a
-href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a> •
-<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
-• <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
-• <a
-href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
-</div>
 
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a>
+<a href="/eo/essentials/more-on-functions/mind-the-space">Esperanto</a>
+<a href="/es/essentials/more-on-functions/mind-the-space">Español</a>
+<a href="/it/essentials/more-on-functions/mind-the-space">Italiano</a>
+<a href="/la/essentials/more-on-functions/mind-the-space">Latina</a>
+<a href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a>
+<a href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a>
+<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
+<a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
+<a href="/uk/essentials/more-on-functions/mind-the-space">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

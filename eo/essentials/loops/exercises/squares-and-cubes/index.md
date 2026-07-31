@@ -1,5 +1,5 @@
 ---
-title: Kvadratoj kaj kuboj en ripeto
+title: Kvadratoj kaj kuboj en buklo
 ---
 
 {% include menu.html %}

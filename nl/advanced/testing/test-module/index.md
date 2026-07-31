@@ -58,7 +58,7 @@ not ok 1 - addition works
 # You failed 1 test of 1
 ```
 
-De `not ok`-regel markeert de fout, en de diagnostische regels eronder tonen wat verwacht werd tegenover wat er daadwerkelijk uitkwam -- daarom is `is` nuttiger dan een kale `ok` wanneer een specifieke waarde van belang is.
+De `not ok`-regel markeert de fout, en de diagnostische regels eronder tonen wat verwacht werd tegenover wat er daadwerkelijk uitkwam — daarom is `is` nuttiger dan een kale `ok` wanneer een specifieke waarde van belang is.
 
 `ok`, `is` en `done-testing` zijn al voldoende om een bruikbaar testbestand te schrijven; het volgende onderwerp voegt [de andere vergelijkingen](/nl/advanced/testing/comparisons) toe.
 

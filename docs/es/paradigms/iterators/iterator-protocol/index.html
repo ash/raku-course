@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,15 +115,17 @@ web</a> / <a href="/es/paradigms/functional">Programación funcional</a>
 — puede darte un <em>iterador</em> con el método <code>.iterator</code>.
 Un iterador tiene un método esencial, <code>pull-one</code>, que
 devuelve el valor siguiente cada vez que lo llamas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="n">iterator</span>;
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 10</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 30</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="nb">iterator</span>;
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 10</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 20</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 30</span>
+</pre></div>
 
 <p>Cuando los valores se agotan, <code>pull-one</code> devuelve un
 centinela especial, <code>IterationEnd</code>, en lugar de un elemento
 real. Pedir un valor más al mismo <code>$it</code> lo muestra:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
+</pre></div>
 
 <p>El operador <code>=:=</code> comprueba si se trata del <strong>mismo
 objeto</strong>, que es como se reconoce el centinela. Ese detalle
@@ -134,12 +136,13 @@ acaba mirando el contenedor en lugar de <code>IterationEnd</code>. El
 remedio es <strong>ligarlo</strong> con <code>:=</code>, de modo que la
 variable simplemente <em>sea</em> lo que devolvió
 <code>pull-one</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="n">iterator</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="nb">iterator</span>;
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="n">pull-one</span>;      <span class="c1"># bind, not assign</span>
-    <span class="k">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
+    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="nb">pull-one</span>;      <span class="c1"># bind, not assign</span>
+    <span class="nb">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
     <span class="nb">say</span> <span class="nv">$v</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>El bucle imprime <code>a</code>, <code>b</code>, <code>c</code> y
 después se detiene. Esto es exactamente lo que hace por ti un bucle
@@ -167,6 +170,22 @@ de esta sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/paradigms/iterators/iterator-protocol">English</a>
+<a href="/de/paradigms/iterators/iterator-protocol">Deutsch</a>
+<a href="/eo/paradigms/iterators/iterator-protocol">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/paradigms/iterators/iterator-protocol">Italiano</a>
+<a href="/la/paradigms/iterators/iterator-protocol">Latina</a>
+<a href="/lv/paradigms/iterators/iterator-protocol">Latviešu</a>
+<a href="/nl/paradigms/iterators/iterator-protocol">Nederlands</a>
+<a href="/bg/paradigms/iterators/iterator-protocol">Български</a>
+<a href="/ru/paradigms/iterators/iterator-protocol">Русский</a>
+<a href="/uk/paradigms/iterators/iterator-protocol">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

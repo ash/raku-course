@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,22 +115,25 @@ esterni 🆕</a></p>
 d’ambiente</em> — valori con un nome come <code>HOME</code>,
 <code>PATH</code> o <code>USER</code> che il sistema operativo fornisce.
 In Raku sono disponibili nell’hash dinamico <code>%*ENV</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;HOME&gt;</span>; <span class="c1"># the home directory, e.g. /home/anna</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">%*ENV&lt;HOME&gt;</span>; <span class="c1"># the home directory, e.g. /home/anna</span>
+</pre></div>
 
 <p>Leggi una variabile d’ambiente indicizzando <code>%*ENV</code> con il
 suo nome. Poiché è un hash ordinario, puoi anche controllare se una
 variabile è impostata, o cambiarla per i programmi che lanci:</p>
-<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
-<span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span>; <span class="c1"># Hello</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
+<span class="nb">say</span> <span class="vg">%*ENV&lt;GREETING&gt;</span>; <span class="c1"># Hello</span>
+</pre></div>
 
 <p>Impostare una chiave in <code>%*ENV</code> la aggiunge all’ambiente
 che qualunque programma poi avviato con <code>run</code> o
 <code>shell</code> erediterà, ed è così che passi la configurazione a un
 programma figlio:</p>
-<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
+<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
 
-<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo $GREETING'</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># Hello</span></pre></div>
+<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo $GREETING&#39;</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># Hello</span>
+</pre></div>
 
 <p>La variabile viene impostata nell’ambiente del tuo programma
 <em>prima</em> che il figlio venga lanciato, quindi la shell che
@@ -164,6 +167,22 @@ sezione</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/oop/external-programs/environment">English</a>
+<a href="/de/oop/external-programs/environment">Deutsch</a>
+<a href="/eo/oop/external-programs/environment">Esperanto</a>
+<a href="/es/oop/external-programs/environment">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/oop/external-programs/environment">Latina</a>
+<a href="/lv/oop/external-programs/environment">Latviešu</a>
+<a href="/nl/oop/external-programs/environment">Nederlands</a>
+<a href="/bg/oop/external-programs/environment">Български</a>
+<a href="/ru/oop/external-programs/environment">Русский</a>
+<a href="/uk/oop/external-programs/environment">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

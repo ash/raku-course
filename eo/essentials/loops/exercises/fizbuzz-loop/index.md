@@ -1,5 +1,5 @@
 ---
-title: FizzBuzz en ripeto
+title: FizzBuzz en buklo
 ---
 
 {% include menu.html %}

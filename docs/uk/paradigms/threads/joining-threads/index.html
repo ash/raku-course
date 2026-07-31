@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,10 @@ href="/uk/paradigms/threads">Потоки</a></p>
 <p>Щоб дочекатися завершення потоку, викличте на ньому
 <code>.finish</code> (пишеться також <code>.join</code>). Головна
 програма зупиняється там, аж поки потік не завершиться:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
-<span class="nv">$t</span>.<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">&#39;in the thread&#39;</span> });
+<span class="nv">$t</span>.<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
+</pre></div>
 
 <p>Це друкує:</p>
 <div class="highlight"><pre>in the thread
@@ -129,9 +130,10 @@ done</pre></div>
 певними, що всі вони завершилися:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
-<span class="nv">$a</span>.<span class="n">finish</span>;
-<span class="nv">$b</span>.<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
+<span class="nv">$a</span>.<span class="nb">finish</span>;
+<span class="nv">$b</span>.<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
+</pre></div>
 
 <p>Обидва потоки працюють конкурентно, а приєднання їх обох перед
 останнім <code>say</code> гарантує, що <code>both finished</code>
@@ -146,8 +148,9 @@ href="/uk/paradigms/junctions">з’єднанні</a> поширюється н
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
-(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
+(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
+</pre></div>
 
 <p>Виклик <code>.finish</code> на <code>$a &amp; $b</code> запускає його
 на обох потоках, тож програма чекає, аж поки жоден із них уже не
@@ -165,6 +168,22 @@ href="/uk/paradigms/threads/exercises">до вправ цього розділу
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/paradigms/threads/joining-threads">English</a>
+<a href="/de/paradigms/threads/joining-threads">Deutsch</a>
+<a href="/eo/paradigms/threads/joining-threads">Esperanto</a>
+<a href="/es/paradigms/threads/joining-threads">Español</a>
+<a href="/it/paradigms/threads/joining-threads">Italiano</a>
+<a href="/la/paradigms/threads/joining-threads">Latina</a>
+<a href="/lv/paradigms/threads/joining-threads">Latviešu</a>
+<a href="/nl/paradigms/threads/joining-threads">Nederlands</a>
+<a href="/bg/paradigms/threads/joining-threads">Български</a>
+<a href="/ru/paradigms/threads/joining-threads">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

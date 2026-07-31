@@ -8,10 +8,10 @@ translations_gpt:
 Подпрограма `inner` е дефинирана вътре в друга подпрограма `outer`. Откъде може да бъде извикана `inner`?
 
 {:.quiz}
-1 | only from inside `outer`
-0 | from anywhere in the program
-0 | only from inside another subroutine
-0 | only before `outer` is defined
+1 | само отвътре на `outer`
+0 | отвсякъде в програмата
+0 | само отвътре на друга подпрограма
+0 | само преди `outer` да бъде дефинирана
 
 {% include quiz.html %}
 

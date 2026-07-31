@@ -12,7 +12,7 @@ my @a = 'alpha', 'beta', 'gamma';
 say @a.Str;    # alpha beta gamma
 ```
 
-Merk op dat de array **zonder de vierkante haken** terugkomt, met de elementen eenvoudig door spaties gescheiden -- dat is het zichtbare verschil met [`.gist`](../gist), dat ze wel behoudt. Vergelijk de twee naast elkaar:
+Merk op dat de array **zonder de vierkante haken** terugkomt, met de elementen eenvoudig door spaties gescheiden — dat is het zichtbare verschil met [`.gist`](../gist), dat ze wel behoudt. Vergelijk de twee naast elkaar:
 
 ```raku
 my @data = 1, 2, 3;

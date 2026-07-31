@@ -6,7 +6,7 @@ title: Тест — Типизирани параметри
 
 ## 1
 
-Given the function:
+Дадена е функцията:
 
 ```raku
 sub f(Rat $x) {
@@ -14,19 +14,19 @@ sub f(Rat $x) {
 }
 ```
 
-Which calls are correct?
+Кои извиквания са правилни?
 
 {:.quiz}
-0 | f(3); | Even if `3` can fit in a `Rat` container, the call is wrong as `3` is `Int`, not a `Rat`.
+0 | f(3); | Дори `3` да се побира в контейнер `Rat`, извикването е грешно, защото `3` е `Int`, а не `Rat`.
 1 | f(3.5);
 0 | f(3e0);
 0 | f(&apos;3&apos;);
-1 | f(<4/5>); | This is a `Rat` number.
+1 | f(<4/5>); | Това е число от тип `Rat`.
 
 
 ## 2
 
-Given the function:
+Дадена е функцията:
 
 ```raku
 sub g(Int $a, Str $b) {
@@ -34,13 +34,13 @@ sub g(Int $a, Str $b) {
 }
 ```
 
-Which calls are correct?
+Кои извиквания са правилни?
 
 {:.quiz}
 0 | g(10, 20);
-0 | g(&apos;10&apos;, 20); | Even if either argument can be cast, Raku demands the exact type.
+0 | g(&apos;10&apos;, 20); | Дори всеки от аргументите да може да бъде преобразуван, Raku изисква точния тип.
 1 | g(10, &apos;20&apos;);
-0 | g(&apos;10, 20&apos;); | A single string passed.
+0 | g(&apos;10, 20&apos;); | Подаден е един-единствен низ.
 0 | g(&apos;10&apos;, &apos;20&apos;); 
 
 

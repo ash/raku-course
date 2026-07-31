@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -127,18 +127,18 @@ dimostra che i dati hanno davvero fatto andata e ritorno:</p>
 <span class="k">use</span> <span class="n">Cro::HTTP::Router::WebSocket</span>;
 <span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
 
-<span class="k">my</span> <span class="nv">$chat</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
+<span class="k">my</span> <span class="nv">$chat</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
 
 <span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
-    <span class="n">get</span> -&gt; <span class="s">'chat'</span> {
+    <span class="nb">get</span> -&gt; <span class="s">&#39;chat&#39;</span> {
         <span class="n">web-socket</span> -&gt; <span class="nv">$incoming</span> {
-            <span class="k">supply</span> {
-                <span class="k">whenever</span> <span class="nv">$incoming</span> -&gt; <span class="nv">$message</span> {
-                    <span class="nv">$chat</span>.<span class="n">emit</span>(<span class="nb">uc</span>(<span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>));
-                    <span class="k">LAST</span> { <span class="n">done</span> }
+            <span class="n">supply</span> {
+                <span class="n">whenever</span> <span class="nv">$incoming</span> -&gt; <span class="nv">$message</span> {
+                    <span class="nv">$chat</span>.<span class="nb">emit</span>(<span class="nb">uc</span>(<span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>));
+                    <span class="k">LAST</span> { <span class="nb">done</span> }
                 }
-                <span class="k">whenever</span> <span class="nv">$chat</span> -&gt; <span class="nv">$text</span> {
-                    <span class="n">emit</span> <span class="nv">$text</span>;
+                <span class="n">whenever</span> <span class="nv">$chat</span> -&gt; <span class="nv">$text</span> {
+                    <span class="nb">emit</span> <span class="nv">$text</span>;
                 }
             }
         }
@@ -146,20 +146,21 @@ dimostra che i dati hanno davvero fatto andata e ritorno:</p>
 }
 
 <span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
-    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">host</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
     :<span class="n">port</span>(<span class="mi">8080</span>),
     :<span class="n">application</span>(<span class="nv">$application</span>),
 );
 <span class="nv">$server</span>.<span class="nb">start</span>;
 
-<span class="nb">say</span> <span class="s">'Chat server on ws://127.0.0.1:8080/chat — press Ctrl-C to stop'</span>;
+<span class="nb">say</span> <span class="s">&#39;Chat server on ws://127.0.0.1:8080/chat — press Ctrl-C to stop&#39;</span>;
 
-<span class="k">react</span> {
-    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+<span class="n">react</span> {
+    <span class="n">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
         <span class="nv">$server</span>.<span class="n">stop</span>;
-        <span class="n">done</span>;
+        <span class="nb">done</span>;
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Guarda il blocco <code>web-socket</code>: è la parte reattiva del
 corso in miniatura. Ogni client connesso riceve un <code>supply</code>
@@ -182,20 +183,21 @@ un errore sul server.</p>
 programma Raku lo fa — Cro fornisce anche il lato client:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::WebSocket::Client</span>;
 
-<span class="k">my</span> <span class="nv">$conn</span> = <span class="nb">await</span> <span class="n">Cro::WebSocket::Client</span>.<span class="n">connect</span>(<span class="s">'ws://127.0.0.1:8080/chat'</span>);
+<span class="k">my</span> <span class="nv">$conn</span> = <span class="nb">await</span> <span class="n">Cro::WebSocket::Client</span>.<span class="nb">connect</span>(<span class="s">&#39;ws://127.0.0.1:8080/chat&#39;</span>);
 
 <span class="k">my</span> <span class="nv">$got</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
 
-<span class="nv">$conn</span>.<span class="n">messages</span>.<span class="n">tap</span>(-&gt; <span class="nv">$message</span> {
-    <span class="nb">say</span> <span class="s">'Received: '</span>, <span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>;
-    <span class="nv">$got</span>.<span class="n">keep</span>;
+<span class="nv">$conn</span>.<span class="n">messages</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$message</span> {
+    <span class="nb">say</span> <span class="s">&#39;Received: &#39;</span>, <span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>;
+    <span class="nv">$got</span>.<span class="nb">keep</span>;
 });
 
-<span class="nb">say</span> <span class="s">'Sending:  Hello, chat!'</span>;
-<span class="nv">$conn</span>.<span class="n">send</span>(<span class="s">'Hello, chat!'</span>);
+<span class="nb">say</span> <span class="s">&#39;Sending:  Hello, chat!&#39;</span>;
+<span class="nv">$conn</span>.<span class="nb">send</span>(<span class="s">&#39;Hello, chat!&#39;</span>);
 
 <span class="nb">await</span> <span class="nv">$got</span>;
-<span class="nb">await</span> <span class="nv">$conn</span>.<span class="nb">close</span>;</pre></div>
+<span class="nb">await</span> <span class="nv">$conn</span>.<span class="nb">close</span>;
+</pre></div>
 
 <p><code>.send</code> fa partire il messaggio e ritorna subito; la
 risposta arriva più tardi su un altro thread nel blocco
@@ -237,6 +239,22 @@ sezione</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/paradigms/cro/websockets">English</a>
+<a href="/de/paradigms/cro/websockets">Deutsch</a>
+<a href="/eo/paradigms/cro/websockets">Esperanto</a>
+<a href="/es/paradigms/cro/websockets">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/paradigms/cro/websockets">Latina</a>
+<a href="/lv/paradigms/cro/websockets">Latviešu</a>
+<a href="/nl/paradigms/cro/websockets">Nederlands</a>
+<a href="/bg/paradigms/cro/websockets">Български</a>
+<a href="/ru/paradigms/cro/websockets">Русский</a>
+<a href="/uk/paradigms/cro/websockets">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

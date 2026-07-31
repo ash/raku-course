@@ -18,9 +18,9 @@ This module does something useful.
 
 Innerhalb des Blocks beschreiben Direktiven die Struktur:
 
-* `=head1`, `=head2`, ... -- Ueberschriften auf verschiedenen Ebenen
-* ein normaler Absatz -- einfach Text in eigenen Zeilen
-* `=item` -- ein Element in einer Aufzählungsliste
+* `=head1`, `=head2`, ... — Ueberschriften auf verschiedenen Ebenen
+* ein normaler Absatz — einfach Text in eigenen Zeilen
+* `=item` — ein Element in einer Aufzählungsliste
 
 ```raku
 =begin pod
@@ -34,6 +34,6 @@ Innerhalb des Blocks beschreiben Direktiven die Struktur:
 =end pod
 ```
 
-Die Zeile `=head1` ist eine Ueberschrift der obersten Ebene; die drei `=item`-Zeilen bilden eine Liste. Pod steht neben deinem Code, ohne ihn zu beeinflussen -- der Compiler ignoriert es beim Ausfuehren des Programms, kann es aber auf Anfrage extrahieren und rendern, wie das letzte Thema zeigt.
+Die Zeile `=head1` ist eine Ueberschrift der obersten Ebene; die drei `=item`-Zeilen bilden eine Liste. Pod steht neben deinem Code, ohne ihn zu beeinflussen — der Compiler ignoriert es beim Ausführen des Programms, kann es aber auf Anfrage extrahieren und rendern, wie das letzte Thema zeigt.
 
 {% include nav.html %}

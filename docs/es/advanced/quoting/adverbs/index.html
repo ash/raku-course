@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -129,7 +129,8 @@ escape con barra invertida como <code>\n</code></li>
 <p>Añade uno a <code>q</code> para habilitar una sola característica.
 Por ejemplo, permitir código incrustado pero nada más:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">q/result: {3 * 4}/</span>;   <span class="c1"># result: {3 * 4}  — plain q leaves the block untouched</span>
-<span class="nb">say</span> <span class="s">q:c/result: {3 * 4}/</span>; <span class="c1"># result: 12        — :c runs the block</span></pre></div>
+<span class="nb">say</span> <span class="s">q:c/result: {3 * 4}/</span>; <span class="c1"># result: 12        — :c runs the block</span>
+</pre></div>
 
 <p>Con <code>q</code> simple, <code>{ 3 * 4 }</code> se imprime tal
 cual; solo <code>:c</code> hace que el bloque se ejecute e inserta su
@@ -142,14 +143,16 @@ closure, así que <code>:c</code> lo dejaría literal. Cuando el texto
 contiene un bloque <code>{ … }</code>, elige un delimitador distinto de
 <code>{…}</code> para que el closure realmente se ejecute. Puedes añadir
 interpolación escalar al <code>Q</code>, que por defecto es literal:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
-<span class="nb">say</span> <span class="s">Q:s{Hi, $name}</span>; <span class="c1"># Hi, Anna</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="nb">say</span> <span class="s">Q:s{Hi, $name}</span>; <span class="c1"># Hi, Anna</span>
+</pre></div>
 
 <p>Los adverbios también <strong>desactivan</strong> características con
 un <code>!</code>. Para usar <code>qq</code> pero mantener
 <code>$</code> literal:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$price</span> = <span class="mi">5</span>;
-<span class="nb">say</span> <span class="s">qq:!s{costs $price dollars}; # costs $price dollars</span></pre></div>
+<span class="nb">say</span> <span class="n">qq:</span>!<span class="nb">s</span>{<span class="n">costs</span> <span class="nv">$price</span> <span class="n">dollars</span>}; <span class="c1"># costs $price dollars</span>
+</pre></div>
 
 <p><code>qq</code> equivale a <code>Q</code> con todos los adverbios de
 interpolación activados, y <code>q</code> equivale a <code>Q</code> con
@@ -175,6 +178,22 @@ sección</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Esta página en otros idiomas:">
+<span class="lang-label">Esta página en otros idiomas:</span>
+<a href="/advanced/quoting/adverbs">English</a>
+<a href="/de/advanced/quoting/adverbs">Deutsch</a>
+<a href="/eo/advanced/quoting/adverbs">Esperanto</a>
+<span class="lang-current">Español</span>
+<a href="/it/advanced/quoting/adverbs">Italiano</a>
+<a href="/la/advanced/quoting/adverbs">Latina</a>
+<a href="/lv/advanced/quoting/adverbs">Latviešu</a>
+<a href="/nl/advanced/quoting/adverbs">Nederlands</a>
+<a href="/bg/advanced/quoting/adverbs">Български</a>
+<a href="/ru/advanced/quoting/adverbs">Русский</a>
+<a href="/uk/advanced/quoting/adverbs">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/es/about-translation">Sobre la traducción</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
 <p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -25,7 +25,7 @@ say $M::x.defined;
 
 <div class="extended-explanation">
 
-`$x` is gedeclareerd met `my`, dus het is lexicaal en komt nooit in de `M`-naamruimte terecht. Het pad `$M::x` vindt daarom niets -- een ongedefinieerde waarde -- en `.defined` geeft `False`. Alleen een `our`-variabele zou op deze manier bereikbaar zijn.
+`$x` is gedeclareerd met `my`, dus het is lexicaal en komt nooit in de `M`-naamruimte terecht. Het pad `$M::x` vindt daarom niets — een ongedefinieerde waarde — en `.defined` geeft `False`. Alleen een `our`-variabele zou op deze manier bereikbaar zijn.
 
 </div>
 

@@ -1,5 +1,5 @@
 ---
-title: Nestitaj haxoj
+title: Nestitaj haketmapoj
 ---
 
 {% include menu.html %}

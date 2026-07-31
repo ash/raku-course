@@ -6,7 +6,7 @@ title: Akronym
 
 ## Problem
 
-Bilde ein Akronym aus einem Satz: Nimm den ersten Buchstaben jedes Wortes, fuege sie zusammen und gib das Ergebnis in Grossbuchstaben aus.
+Bilde ein Akronym aus einem Satz: Nimm den ersten Buchstaben jedes Wortes, füge sie zusammen und gib das Ergebnis in Grossbuchstaben aus.
 
 Verwende diesen Satz:
 

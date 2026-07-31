@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,11 @@ href="/lv/regexes/captures">Tvērumi</a></p>
 <em>satvertu</em>. Pēc veiksmīgas sakritības katrs satvertais gabals ir
 pieejams kā <code>$0</code>, <code>$1</code> un tā tālāk, numurēts no
 nulles tādā secībā, kādā iekavas atveras:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Pirmais iekavu pāris satvēra gadu <code>$0</code>, otrais satvēra
 mēnesi <code>$1</code>. Teksts starp tiem — burtiskais <code>-</code> —
@@ -126,20 +127,22 @@ tiek piemeklēts, bet ne satverts.</p>
 <p>Katrs tvērums pats ir mazs sakritības objekts, tāpēc tam var prasīt
 <code>.Str</code>, tā pozīciju un tā tālāk. Virknē ar dubultpēdiņām
 tvērums interpolējas kā tā sakritušais teksts:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Šeit abi satvertie vārdi tiek izdrukāti pretējā secībā, kas tos
 samaina vietām.</p>
 <p>Tvērumi glabājas arī sakritības mainīgajā <code>$/</code>, un
 <code>$0</code> patiesībā ir īss veids, kā uzrakstīt <code>$/[0]</code>.
 Varat strādāt tieši caur <code>$/</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
-    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}
+</pre></div>
 
 <p><code>$/</code> ir viss sakritības objekts, tā indeksēšana sasniedz
 pozicionālos tvērumus, un <code>.elems</code> pasaka, cik to ir.</p>
@@ -162,6 +165,22 @@ vingrinājumiem</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/regexes/captures/positional">English</a>
+<a href="/de/regexes/captures/positional">Deutsch</a>
+<a href="/eo/regexes/captures/positional">Esperanto</a>
+<a href="/es/regexes/captures/positional">Español</a>
+<a href="/it/regexes/captures/positional">Italiano</a>
+<a href="/la/regexes/captures/positional">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/regexes/captures/positional">Nederlands</a>
+<a href="/bg/regexes/captures/positional">Български</a>
+<a href="/ru/regexes/captures/positional">Русский</a>
+<a href="/uk/regexes/captures/positional">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

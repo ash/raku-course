@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,22 +118,24 @@ dat de stroom geëindigd is.</p>
 <code>.list</code>, dat je elke resterende waarde geeft en klaar is
 zodra het kanaal gesloten is:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">3</span>);
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">3</span>);
 <span class="nv">$c</span>.<span class="nb">close</span>;
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">list</span>; <span class="c1"># (1 2 3)</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">list</span>; <span class="c1"># (1 2 3)</span>
+</pre></div>
 
 <p>Omdat <code>.list</code> wacht tot het kanaal gesloten is, is het
 perfect voor “verzamel alles wat de producent verstuurt”. Je kunt het
 resultaat als elke andere lijst behandelen — optellen, tellen,
 enzovoort:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.5</span>;
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>;
 <span class="nv">$c</span>.<span class="nb">close</span>;
 
-<span class="nb">say</span> [+] <span class="nv">$c</span>.<span class="nb">list</span>; <span class="c1"># 15</span></pre></div>
+<span class="nb">say</span> [+] <span class="nv">$c</span>.<span class="n">list</span>; <span class="c1"># 15</span>
+</pre></div>
 
 <p>Sluiten is hoe een consument weet wanneer hij moet stoppen. Zonder
 dat zou <code>.list</code> (of een lus van <code>.receive</code>) eeuwig
@@ -159,6 +161,22 @@ sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/paradigms/channels/closing-a-channel">English</a>
+<a href="/de/paradigms/channels/closing-a-channel">Deutsch</a>
+<a href="/eo/paradigms/channels/closing-a-channel">Esperanto</a>
+<a href="/es/paradigms/channels/closing-a-channel">Español</a>
+<a href="/it/paradigms/channels/closing-a-channel">Italiano</a>
+<a href="/la/paradigms/channels/closing-a-channel">Latina</a>
+<a href="/lv/paradigms/channels/closing-a-channel">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/paradigms/channels/closing-a-channel">Български</a>
+<a href="/ru/paradigms/channels/closing-a-channel">Русский</a>
+<a href="/uk/paradigms/channels/closing-a-channel">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -40,7 +40,7 @@ sumon de la nombroj — kiun `.made` relegas post la analizo.
 
 1. `token` neniam preterpasas spacojn, do ĉi tiu gramatiko estas strikta pri sia enigo:
 `'3+4+5'` analiziĝas, sed `'3 + 4 + 5'` ne (`.parse` redonas `Nil`). Por akcepti
-spacojn ĉirkaŭ la plus-signoj, faru `TOP` `rule` — kaj apartigu la kvantigilon
+spacojn ĉirkaŭ la plus-signoj, faru `TOP` `rule` — kaj apartigu la kvantoron
 de ĝia atomo:
 
     ```raku
@@ -51,7 +51,7 @@ de ĝia atomo:
     ```
 
     En `rule`, spaceto en la ŝablono reprezentas implicitan vokon `<.ws>`.
-Skribita kiel `<number> + % '+'`, kun spaco antaŭ la kvantigilo `+`, tiu
+Skribita kiel `<number> + % '+'`, kun spaco antaŭ la kvantoro `+`, tiu
 implicita spaceto kovras la tutan ripeton — apartigilojn inkluzive — do kaj
 `'3+4+5'` kaj `'3 + 4 + 5'` estas analizataj, kaj la sumo estas `12` ambaŭokaze. (Se vi
 preferas resti ĉe `token`, skribu la spacojn en la apartigilo:

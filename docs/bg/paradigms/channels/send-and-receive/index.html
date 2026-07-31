@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,10 +114,11 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 <p>Създайте канал с <code>Channel.new</code>. Слагайте стойности вътре с
 <code>.send</code>, а ги вземайте с <code>.receive</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span></pre></div>
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
+</pre></div>
 
 <p>Каналът е <strong>опашка</strong>: стойностите излизат в същия ред, в
 който са влезли — първи влязъл, първи излязъл. Затова първият
@@ -128,11 +129,12 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 може да продължава да изпраща, докато потребителят продължава да
 получава, а Raku се грижи никоя стойност да не се загуби или удвои:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="k">start</span> {
-    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
+<span class="nb">start</span> {
+    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
+</pre></div>
 
 <p>Тук фонова задача изпраща <code>1, 2, 3</code>; основната програма
 получава. <code>.receive</code> чака, ако каналът за момента е празен,
@@ -156,6 +158,22 @@ href="/bg/paradigms/channels/exercises">към упражненията в то�
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/paradigms/channels/send-and-receive">English</a>
+<a href="/de/paradigms/channels/send-and-receive">Deutsch</a>
+<a href="/eo/paradigms/channels/send-and-receive">Esperanto</a>
+<a href="/es/paradigms/channels/send-and-receive">Español</a>
+<a href="/it/paradigms/channels/send-and-receive">Italiano</a>
+<a href="/la/paradigms/channels/send-and-receive">Latina</a>
+<a href="/lv/paradigms/channels/send-and-receive">Latviešu</a>
+<a href="/nl/paradigms/channels/send-and-receive">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/paradigms/channels/send-and-receive">Русский</a>
+<a href="/uk/paradigms/channels/send-and-receive">Українська</a>
+<a class="lang-about" href="/bg/about-translation">За превода</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
 <p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

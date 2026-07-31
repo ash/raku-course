@@ -20,7 +20,7 @@ say $d.month; # 6
 say $d.day;   # 27
 ```
 
-Die Methode `day-of-week` gibt zurück, auf welchen Wochentag das Datum faellt, nummeriert von `1` für Montag bis `7` für Sonntag:
+Die Methode `day-of-week` gibt zurück, auf welchen Wochentag das Datum fällt, nummeriert von `1` für Montag bis `7` für Sonntag:
 
 ```raku
 say Date.new(2026, 6, 27).day-of-week; # 6
@@ -35,6 +35,6 @@ say Date.new(2024, 1, 1).is-leap-year; # True
 say Date.new(2026, 1, 1).is-leap-year; # False
 ```
 
-Um das heutige Datum zu erhalten, rufe `Date.today` auf. Wir zeigen die Ausgabe hier nicht, da sie vom Tag abhaengt, an dem du das Programm ausfuehrst.
+Um das heutige Datum zu erhalten, rufe `Date.today` auf. Wir zeigen die Ausgabe hier nicht, da sie vom Tag abhängt, an dem du das Programm ausführst.
 
 {% include nav.html %}

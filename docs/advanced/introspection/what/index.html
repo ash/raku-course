@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,8 +114,9 @@ href="/advanced/introspection">Introspecting containers</a></p>
 a value. You can use it in much the same way as <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span> = <span class="mi">42</span>;
 
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;</pre></div>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;
+</pre></div>
 
 <p>The two print the type with a minor difference in decoration:
 <code>.^name</code> gives the bare name, while <code>WHAT</code> shows
@@ -126,22 +127,24 @@ the type object, written in parentheses:</p>
 <code>Any</code>. As soon as you assign a value, both <code>^name</code>
 and <code>WHAT</code> follow the type of the stored value:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Any</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Any)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Any)</span>
 
-<span class="nv">$var</span> = <span class="s">'Hello'</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
+<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+</pre></div>
 
 <p>With a type constraint, the type is known immediately, even before
 anything is assigned:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
 
-<span class="nv">$var</span> = <span class="s">'Hello'</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
+<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+</pre></div>
 
 <h2 id="comparing-type-objects">Comparing type objects</h2>
 <p>Because <code>WHAT</code> returns the type object itself, you can
@@ -152,16 +155,17 @@ test whether two values share a type:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">42</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">100</span>;
 
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nv">$b</span>.<span class="n">WHAT</span>; <span class="c1"># True  — both are Int</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span></pre></div>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nv">$b</span>.<span class="nb">WHAT</span>; <span class="c1"># True  — both are Int</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span>
+</pre></div>
 
 <p>Unlike <code>==</code>, which compares numbers, <code>===</code>
 compares identity, so it works for type objects (and other values)
 directly.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/advanced/introspection/what/quiz">Quiz — <code>WHAT</code>
 and <code>^name</code></a></li>
@@ -190,8 +194,24 @@ section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/advanced/introspection/what">Deutsch</a>
+<a href="/eo/advanced/introspection/what">Esperanto</a>
+<a href="/es/advanced/introspection/what">Español</a>
+<a href="/it/advanced/introspection/what">Italiano</a>
+<a href="/la/advanced/introspection/what">Latina</a>
+<a href="/lv/advanced/introspection/what">Latviešu</a>
+<a href="/nl/advanced/introspection/what">Nederlands</a>
+<a href="/bg/advanced/introspection/what">Български</a>
+<a href="/ru/advanced/introspection/what">Русский</a>
+<a href="/uk/advanced/introspection/what">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

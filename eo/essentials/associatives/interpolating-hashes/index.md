@@ -1,5 +1,5 @@
 ---
-title: Interpolante haxojn
+title: Interpolante haketmapojn
 ---
 
 {% include menu.html %}

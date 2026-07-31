@@ -23,7 +23,7 @@ say (1, 2, 3).map(sub ($x) { $x * $x });
 
 ## Opmerkingen
 
-1. De `sub ($x) { $x * $x }` heeft geen naam en wordt nooit in een variabele opgeslagen -- hij wordt direct als argument aan `map` doorgegeven.
+1. De `sub ($x) { $x * $x }` heeft geen naam en wordt nooit in een variabele opgeslagen — hij wordt direct als argument aan `map` doorgegeven.
 
 1. `map` past het toe op elk element van `1, 2, 3` en kwadraert ze tot `(1 4 9)`. Een anonieme subroutine op deze manier inline doorgeven is de meest voorkomende reden om er een te schrijven.
 

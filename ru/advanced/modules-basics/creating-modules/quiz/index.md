@@ -8,10 +8,10 @@ translations_gpt:
 Модуль определяет подпрограмму без трейта `is export`. Что может сделать с этой подпрограммой программа, использующая модуль?
 
 {:.quiz}
-0 | call it like any imported subroutine
-1 | nothing — it stays private to the module
-0 | call it, but only once
-0 | redefine it
+0 | вызвать её, как любую импортированную подпрограмму
+1 | ничего — она остаётся приватной для модуля
+0 | вызвать её, но только один раз
+0 | переопределить её
 
 {% include quiz.html %}
 

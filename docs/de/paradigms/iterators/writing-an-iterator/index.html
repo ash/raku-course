@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,13 +118,14 @@ bereitstellt. Diese Methode liefert den nächsten Wert oder
 Abwärtszähler-Iterator, der eine Zahl liefert und auf null
 zuschreitet:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
 
-    <span class="k">method</span> <span class="n">pull-one</span> {
+    <span class="k">method</span> <span class="nb">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n</span>--;
+        <span class="k">return</span> <span class="nv">$!n--</span>;
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Jeder Aufruf von <code>pull-one</code> prüft zuerst, ob die Zählung
 aufgebraucht ist; wenn nicht, liefert er die aktuelle Zahl und
@@ -133,10 +134,11 @@ verringert sie. Das nachgestellte <code>$!n--</code> liefert den Wert
 <code>3, 2, 1</code> heraus. Ihn von Hand anzutreiben sieht aus wie bei
 jedem anderen Iterator:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
+</pre></div>
 
 <p>Ein Iterator für sich ist nichts, was eine <code>for</code>-Schleife
 unmittelbar aufnehmen kann — eine Schleife erwartet etwas
@@ -144,7 +146,8 @@ unmittelbar aufnehmen kann — eine Schleife erwartet etwas
 und er wird schleifenfähig:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Das gibt <code>3</code>, <code>2</code>, <code>1</code> aus. Im
 Alltag würden Sie stattdessen zu <code>gather</code> / <code>take</code>
@@ -166,6 +169,22 @@ diesem Abschnitt</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Diese Seite in anderen Sprachen:">
+<span class="lang-label">Diese Seite in anderen Sprachen:</span>
+<a href="/paradigms/iterators/writing-an-iterator">English</a>
+<span class="lang-current">Deutsch</span>
+<a href="/eo/paradigms/iterators/writing-an-iterator">Esperanto</a>
+<a href="/es/paradigms/iterators/writing-an-iterator">Español</a>
+<a href="/it/paradigms/iterators/writing-an-iterator">Italiano</a>
+<a href="/la/paradigms/iterators/writing-an-iterator">Latina</a>
+<a href="/lv/paradigms/iterators/writing-an-iterator">Latviešu</a>
+<a href="/nl/paradigms/iterators/writing-an-iterator">Nederlands</a>
+<a href="/bg/paradigms/iterators/writing-an-iterator">Български</a>
+<a href="/ru/paradigms/iterators/writing-an-iterator">Русский</a>
+<a href="/uk/paradigms/iterators/writing-an-iterator">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/de/about-translation">Über die Übersetzung</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/de/">Der vollständige Kurs der Programmiersprache Raku</a></p>
 <p style="margin:.35em 0;"><a href="/de/about-this-course">Über den Kurs</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Frei und quelloffen · Unterstützt von <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -112,23 +112,25 @@ href="/regexes/creating-grammars">Creating grammars</a></p>
 <h1 id="parsing-with-parse">Parsing with parse</h1>
 <p>To run a grammar, call its <code>.parse</code> method with the string
 to analyse:</p>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Pair</span> {
-    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;key&gt;</span> <span class="s">'='</span> <span class="s">&lt;value&gt;</span> }
-    <span class="k">token</span> <span class="n">key</span>   { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">value</span> { \<span class="n">w</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Pair</span> {
+    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;key&gt; &#39;=&#39; &lt;value&gt; </span>}
+    <span class="k">token</span><span class="n"> key</span>   {<span class="sr"> \w+ </span>}
+    <span class="k">token</span><span class="n"> value</span> {<span class="sr"> \w+ </span>}
 }
 
-<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>);
-<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
-<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>; <span class="c1"># ｢5｣</span></pre></div>
+<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>);
+<span class="nb">say</span> <span class="nv">$m&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
+<span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>; <span class="c1"># ｢5｣</span>
+</pre></div>
 
 <p><code>.parse</code> returns a match object when the grammar matches
 the <strong>entire</strong> string, and <code>Nil</code> when it does
 not. Because the whole input must match, there is no need for
 <code>^</code> and <code>$</code> anchors — <code>.parse</code> adds
 that requirement for you:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x='</span>).<span class="nb">defined</span>;  <span class="c1"># False</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=&#39;</span>).<span class="nb">defined</span>;  <span class="c1"># False</span>
+</pre></div>
 
 <p>The <a href="/regexes/matching/match-object">match object</a> works
 just like the ones you met earlier. Each token used in the grammar
@@ -138,7 +140,7 @@ a grammar builds a small tree of matches — the subject of a later
 section.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/regexes/creating-grammars/parse-method/quiz">Quiz —
 Creating grammars</a></li>
@@ -170,8 +172,24 @@ section</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/regexes/creating-grammars/parse-method">Deutsch</a>
+<a href="/eo/regexes/creating-grammars/parse-method">Esperanto</a>
+<a href="/es/regexes/creating-grammars/parse-method">Español</a>
+<a href="/it/regexes/creating-grammars/parse-method">Italiano</a>
+<a href="/la/regexes/creating-grammars/parse-method">Latina</a>
+<a href="/lv/regexes/creating-grammars/parse-method">Latviešu</a>
+<a href="/nl/regexes/creating-grammars/parse-method">Nederlands</a>
+<a href="/bg/regexes/creating-grammars/parse-method">Български</a>
+<a href="/ru/regexes/creating-grammars/parse-method">Русский</a>
+<a href="/uk/regexes/creating-grammars/parse-method">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

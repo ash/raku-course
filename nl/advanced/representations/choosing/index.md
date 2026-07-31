@@ -14,9 +14,9 @@ say (foo => 1).raku; # :foo(1)
 
 Een grove vuistregel:
 
-* [`.gist`](../gist) -- voor uitvoer bedoeld om door een persoon *gelezen* te worden (`say`, `note`).
-* [`.Str`](../str) -- voor uitvoer die *platte tekst* is (`print`, `put`, interpolatie, de `~` operator).
-* [`.raku`](../raku-method) -- voor een *codeachtige* representatie bij het debuggen (`dd`).
+* [`.gist`](../gist) — voor uitvoer bedoeld om door een persoon *gelezen* te worden (`say`, `note`).
+* [`.Str`](../str) — voor uitvoer die *platte tekst* is (`print`, `put`, interpolatie, de `~` operator).
+* [`.raku`](../raku-method) — voor een *codeachtige* representatie bij het debuggen (`dd`).
 
 Elk van deze methodes kan je eigen definitie krijgen wanneer je een klasse schrijft, zodat je eigen objecten ook netjes worden afgedrukt. Daar komen we op terug wanneer we [klassen maken](/nl/oop/classes) in het volgende deel.
 

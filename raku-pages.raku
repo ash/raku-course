@@ -10,13 +10,465 @@ my $published-limit = Inf;
 my @languages =
     en => 'English',
     de => 'Deutsch',
+    eo => 'Esperanto',
     es => 'Español',
     it => 'Italiano',
+    la => 'Latina',
     lv => 'Latviešu',
     nl => 'Nederlands',
     bg => 'Български',
     ru => 'Русский',
     uk => 'Українська';
+
+# Interface strings the generator writes itself — page titles it synthesises
+# (solution and exercise-index pages), the section headings in the page footer
+# navigation, and the standard footer. A language that has no entry falls back
+# to English, so adding a language here is optional and incremental.
+my %ui =
+    en => {
+        solution-title  => 'Solution: %s',
+        exercises-title => 'Exercises: %s',
+        exercises-short => 'Exercises',
+        topics-many     => 'Topics in this section',
+        topics-one      => 'Also in this section',
+        practice        => 'Practice',
+        practice-intro  => 'Complete the %count% that %verb% the contents of this %scope%.',
+        scope-section   => 'section',
+        scope-topic     => 'topic',
+        exercises-head  => 'Exercises',
+        section-has     => 'This section contains %s.',
+        section-has-link=> 'This section contains [%s](exercises). Examine all the topics of this section before doing the coding practice.',
+        refresh-head    => 'Refresh your knowledge',
+        refresh-intro   => 'Refer to the contents of this section to find the answers if needed.',
+        course-nav      => 'Course navigation',
+        jump-one        => 'Or jump directly [to the exercise to this section](%s).',
+        jump-many       => 'Or jump directly [to the exercises in this section](%s).',
+        footer-course   => 'The Complete Course of the Raku Programming Language',
+        footer-about    => 'About the course',
+        footer-free     => 'Free and open source · Supported by',
+        footer-written  => 'Written by',
+        quiz-check      => 'Check the answers',
+        quiz-show       => 'Show correct answers',
+        stat-parts      => 'parts',
+        stat-topics     => 'topics',
+        stat-quizzes    => 'quizzes',
+        stat-exercises  => 'exercises',
+        stat-pages      => 'pages',
+        site-name       => 'Raku Course',
+        part-word       => 'Part',
+        and-word        => 'and',
+        languages-label  => 'This page in other languages:',
+        about-translation=> 'About the translation',
+    },
+    ru => {
+        solution-title  => 'Решение: %s',
+        exercises-title => 'Упражнения: %s',
+        exercises-short => 'Упражнения',
+        topics-many     => 'Темы этого раздела',
+        topics-one      => 'Ещё в этом разделе',
+        practice        => 'Практика',
+        practice-intro  => 'Пройдите %count% по содержанию %scope%.',
+        scope-section   => 'этого раздела',
+        scope-topic     => 'этой темы',
+        exercises-head  => 'Упражнения',
+        section-has     => 'В этом разделе %s.',
+        section-has-link=> 'В этом разделе [%s](exercises). Прежде чем приступать к практике, изучите все темы раздела.',
+        refresh-head    => 'Повторение',
+        refresh-intro   => 'При необходимости загляните в материалы этого раздела, чтобы найти ответы.',
+        course-nav      => 'Навигация по курсу',
+        jump-one        => 'Или перейдите сразу [к упражнению этого раздела](%s).',
+        jump-many       => 'Или перейдите сразу [к упражнениям этого раздела](%s).',
+        footer-course   => 'Полный курс языка программирования Raku',
+        footer-about    => 'О курсе',
+        footer-free     => 'Открытый исходный код · При поддержке',
+        footer-written  => 'Автор —',
+        quiz-check      => 'Проверить ответы',
+        quiz-show       => 'Показать правильные ответы',
+        stat-parts      => 'частей',
+        stat-topics     => 'тем',
+        stat-quizzes    => 'тестов',
+        stat-exercises  => 'упражнений',
+        stat-pages      => 'страниц',
+        site-name       => 'Курс Raku',
+        part-word       => 'Часть',
+        and-word        => 'и',
+        languages-label  => 'Эта страница на других языках:',
+        about-translation=> 'О переводе',
+    },
+    uk => {
+        solution-title  => 'Розв\'язання: %s',
+        exercises-title => 'Вправи: %s',
+        exercises-short => 'Вправи',
+        topics-many     => 'Теми цього розділу',
+        topics-one      => 'Ще в цьому розділі',
+        practice        => 'Практика',
+        practice-intro  => 'Виконайте %count% за змістом %scope%.',
+        scope-section   => 'цього розділу',
+        scope-topic     => 'цієї теми',
+        exercises-head  => 'Вправи',
+        section-has     => 'У цьому розділі %s.',
+        section-has-link=> 'У цьому розділі [%s](exercises). Перш ніж братися до практики, вивчіть усі теми розділу.',
+        refresh-head    => 'Повторення',
+        refresh-intro   => 'За потреби зазирніть до матеріалів цього розділу, щоб знайти відповіді.',
+        course-nav      => 'Навігація курсом',
+        jump-one        => 'Або перейдіть одразу [до вправи цього розділу](%s).',
+        jump-many       => 'Або перейдіть одразу [до вправ цього розділу](%s).',
+        footer-course   => 'Повний курс мови програмування Raku',
+        footer-about    => 'Про курс',
+        footer-free     => 'Відкритий вихідний код · За підтримки',
+        footer-written  => 'Автор —',
+        quiz-check      => 'Перевірити відповіді',
+        quiz-show       => 'Показати правильні відповіді',
+        stat-parts      => 'частин',
+        stat-topics     => 'тем',
+        stat-quizzes    => 'тестів',
+        stat-exercises  => 'вправ',
+        stat-pages      => 'сторінок',
+        site-name       => 'Курс Raku',
+        part-word       => 'Частина',
+        and-word        => 'та',
+        languages-label  => 'Ця сторінка іншими мовами:',
+        about-translation=> 'Про переклад',
+    },
+    bg => {
+        solution-title  => 'Решение: %s',
+        exercises-title => 'Упражнения: %s',
+        exercises-short => 'Упражнения',
+        topics-many     => 'Теми в този раздел',
+        topics-one      => 'Още в този раздел',
+        practice        => 'Практика',
+        practice-intro  => 'Направете %count% върху съдържанието на %scope%.',
+        scope-section   => 'този раздел',
+        scope-topic     => 'тази тема',
+        exercises-head  => 'Упражнения',
+        section-has     => 'Този раздел съдържа %s.',
+        section-has-link=> 'Този раздел съдържа [%s](exercises). Разгледайте всички теми в раздела, преди да се захванете с практиката.',
+        refresh-head    => 'Опреснете знанията си',
+        refresh-intro   => 'При нужда надникнете в материалите на този раздел, за да намерите отговорите.',
+        course-nav      => 'Навигация в курса',
+        jump-one        => 'Или преминете направо [към упражнението към този раздел](%s).',
+        jump-many       => 'Или преминете направо [към упражненията в този раздел](%s).',
+        footer-course   => 'Пълен курс по програмния език Raku',
+        footer-about    => 'За курса',
+        footer-free     => 'Отворен код · С подкрепата на',
+        footer-written  => 'Автор:',
+        quiz-check      => 'Проверка на отговорите',
+        quiz-show       => 'Покажи верните отговори',
+        stat-parts      => 'части',
+        stat-topics     => 'теми',
+        stat-quizzes    => 'теста',
+        stat-exercises  => 'упражнения',
+        stat-pages      => 'страници',
+        site-name       => 'Курс по Raku',
+        part-word       => 'Част',
+        and-word        => 'и',
+        languages-label  => 'Тази страница на други езици:',
+        about-translation=> 'За превода',
+    },
+    nl => {
+        solution-title  => 'Oplossing: %s',
+        exercises-title => 'Oefeningen: %s',
+        exercises-short => 'Oefeningen',
+        topics-many     => 'Onderwerpen in deze sectie',
+        topics-one      => 'Ook in deze sectie',
+        practice        => 'Praktijk',
+        practice-intro  => 'Maak de %count% over de inhoud van %scope%.',
+        scope-section   => 'deze sectie',
+        scope-topic     => 'dit onderwerp',
+        exercises-head  => 'Oefeningen',
+        section-has     => 'Deze sectie bevat %s.',
+        section-has-link=> 'Deze sectie bevat [%s](exercises). Bekijk alle onderwerpen van deze sectie voordat je aan de oefeningen begint.',
+        refresh-head    => 'Fris je kennis op',
+        refresh-intro   => 'Raadpleeg zo nodig de inhoud van deze sectie om de antwoorden te vinden.',
+        course-nav      => 'Cursusnavigatie',
+        jump-one        => 'Of ga direct [naar de oefening bij deze sectie](%s).',
+        jump-many       => 'Of ga direct [naar de oefeningen in deze sectie](%s).',
+        footer-course   => 'De volledige cursus van de programmeertaal Raku',
+        footer-about    => 'Over de cursus',
+        footer-free     => 'Vrij en open source · Ondersteund door',
+        footer-written  => 'Geschreven door',
+        quiz-check      => 'Controleer de antwoorden',
+        quiz-show       => 'Toon de juiste antwoorden',
+        stat-parts      => 'delen',
+        stat-topics     => 'onderwerpen',
+        stat-quizzes    => 'quizzen',
+        stat-exercises  => 'oefeningen',
+        stat-pages      => "pagina's",
+        site-name       => 'Raku-cursus',
+        part-word       => 'Deel',
+        and-word        => 'en',
+        languages-label  => 'Deze pagina in andere talen:',
+        about-translation=> 'Over de vertaling',
+    },
+
+    de => {
+        solution-title  => 'Lösung: %s',
+        exercises-title => 'Übungen: %s',
+        exercises-short => 'Übungen',
+        topics-many     => 'Themen in diesem Abschnitt',
+        topics-one      => 'Ebenfalls in diesem Abschnitt',
+        practice        => 'Praxis',
+        practice-intro  => 'Lösen Sie %count% zum Inhalt %scope%.',
+        scope-section   => 'dieses Abschnitts',
+        scope-topic     => 'dieses Themas',
+        exercises-head  => 'Übungen',
+        section-has     => 'Dieser Abschnitt enthält %s.',
+        section-has-link=> 'Dieser Abschnitt enthält [%s](exercises). Sehen Sie sich alle Themen dieses Abschnitts an, bevor Sie mit den Übungen beginnen.',
+        refresh-head    => 'Frischen Sie Ihr Wissen auf',
+        refresh-intro   => 'Ziehen Sie bei Bedarf den Inhalt dieses Abschnitts heran, um die Antworten zu finden.',
+        course-nav      => 'Kursnavigation',
+        jump-one        => 'Oder springen Sie direkt [zur Übung zu diesem Abschnitt](%s).',
+        jump-many       => 'Oder springen Sie direkt [zu den Übungen dieses Abschnitts](%s).',
+        footer-course   => 'Der vollständige Kurs der Programmiersprache Raku',
+        footer-about    => 'Über den Kurs',
+        footer-free     => 'Frei und quelloffen · Unterstützt von',
+        footer-written  => 'Geschrieben von',
+        quiz-check      => 'Antworten prüfen',
+        quiz-show       => 'Richtige Antworten zeigen',
+        stat-parts      => 'Teile',
+        stat-topics     => 'Themen',
+        stat-quizzes    => 'Quiz',
+        stat-exercises  => 'Übungen',
+        stat-pages      => 'Seiten',
+        site-name       => 'Raku-Kurs',
+        part-word       => 'Teil',
+        and-word        => 'und',
+        languages-label  => 'Diese Seite in anderen Sprachen:',
+        about-translation=> 'Über die Übersetzung',
+    },
+
+    it => {
+        solution-title  => 'Soluzione: %s',
+        exercises-title => 'Esercizi: %s',
+        exercises-short => 'Esercizi',
+        topics-many     => 'Argomenti di questa sezione',
+        topics-one      => 'Anche in questa sezione',
+        practice        => 'Pratica',
+        practice-intro  => 'Risolvi %count% sul contenuto %scope%.',
+        scope-section   => 'di questa sezione',
+        scope-topic     => 'di questo argomento',
+        exercises-head  => 'Esercizi',
+        section-has     => 'Questa sezione contiene %s.',
+        section-has-link=> 'Questa sezione contiene [%s](exercises). Guarda tutti gli argomenti di questa sezione prima di iniziare gli esercizi.',
+        refresh-head    => 'Rinfresca le tue conoscenze',
+        refresh-intro   => 'Se serve, consulta il contenuto di questa sezione per trovare le risposte.',
+        course-nav      => 'Navigazione del corso',
+        jump-one        => 'Oppure vai direttamente [all’esercizio di questa sezione](%s).',
+        jump-many       => 'Oppure vai direttamente [agli esercizi di questa sezione](%s).',
+        footer-course   => 'Il corso completo del linguaggio di programmazione Raku',
+        footer-about    => 'Informazioni sul corso',
+        footer-free     => 'Libero e open source · Sostenuto da',
+        footer-written  => 'Scritto da',
+        quiz-check      => 'Controlla le risposte',
+        quiz-show       => 'Mostra le risposte corrette',
+        stat-parts      => 'Parti',
+        stat-topics     => 'Argomenti',
+        stat-quizzes    => 'Quiz',
+        stat-exercises  => 'Esercizi',
+        stat-pages      => 'Pagine',
+        site-name       => 'Corso di Raku',
+        part-word       => 'Parte',
+        and-word        => 'e',
+        languages-label  => 'Questa pagina in altre lingue:',
+        about-translation=> 'Informazioni sulla traduzione',
+    },
+
+    eo => {
+        solution-title  => 'Solvo: %s',
+        exercises-title => 'Ekzercoj: %s',
+        exercises-short => 'Ekzercoj',
+        topics-many     => 'Temoj en ĉi tiu sekcio',
+        topics-one      => 'Ankaŭ en ĉi tiu sekcio',
+        practice        => 'Praktiko',
+        # Esperanto marks a direct object with -n, but decline() also produces
+        # standalone TOC labels ("3 kvizoj") that must stay nominative — so these
+        # sentences are phrased to keep the count as a subject, never an object.
+        practice-intro  => 'Vin atendas %count% pri la enhavo de %scope%.',
+        scope-section   => 'ĉi tiu sekcio',
+        scope-topic     => 'ĉi tiu temo',
+        exercises-head  => 'Ekzercoj',
+        section-has     => 'En ĉi tiu sekcio estas %s.',
+        section-has-link=> 'En ĉi tiu sekcio estas [%s](exercises). Trarigardu ĉiujn temojn de ĉi tiu sekcio antaŭ ol komenci la ekzercojn.',
+        refresh-head    => 'Refreŝigu vian memoron',
+        refresh-intro   => 'Se necese, konsultu la enhavon de ĉi tiu sekcio por trovi la respondojn.',
+        course-nav      => 'Kursa navigado',
+        jump-one        => 'Aŭ iru rekte al [la ekzerco de ĉi tiu sekcio](%s).',
+        jump-many       => 'Aŭ iru rekte al [la ekzercoj de ĉi tiu sekcio](%s).',
+        footer-course   => 'La kompleta kurso de la programlingvo Raku',
+        footer-about    => 'Pri la kurso',
+        footer-free     => 'Libera kaj malfermitkoda · Subtenata de',
+        footer-written  => 'Verkita de',
+        quiz-check      => 'Kontroli la respondojn',
+        quiz-show       => 'Montri la ĝustajn respondojn',
+        stat-parts      => 'partoj',
+        stat-topics     => 'temoj',
+        stat-quizzes    => 'kvizoj',
+        stat-exercises  => 'ekzercoj',
+        stat-pages      => 'paĝoj',
+        site-name       => 'Raku-kurso',
+        part-word       => 'Parto',
+        and-word        => 'kaj',
+        languages-label  => 'Ĉi tiu paĝo en aliaj lingvoj:',
+        about-translation=> 'Pri la traduko',
+    },
+
+    es => {
+        solution-title  => 'Solución: %s',
+        exercises-title => 'Ejercicios: %s',
+        exercises-short => 'Ejercicios',
+        topics-many     => 'Temas de esta sección',
+        topics-one      => 'También en esta sección',
+        practice        => 'Práctica',
+        practice-intro  => 'Resuelve %count% sobre el contenido %scope%.',
+        scope-section   => 'de esta sección',
+        scope-topic     => 'de este tema',
+        exercises-head  => 'Ejercicios',
+        section-has     => 'Esta sección contiene %s.',
+        section-has-link=> 'Esta sección contiene [%s](exercises). Mira todos los temas de esta sección antes de empezar los ejercicios.',
+        refresh-head    => 'Refresca tus conocimientos',
+        refresh-intro   => 'Si hace falta, consulta el contenido de esta sección para encontrar las respuestas.',
+        course-nav      => 'Navegación del curso',
+        jump-one        => 'O ve directamente [al ejercicio de esta sección](%s).',
+        jump-many       => 'O ve directamente [a los ejercicios de esta sección](%s).',
+        footer-course   => 'El curso completo del lenguaje de programación Raku',
+        footer-about    => 'Sobre el curso',
+        footer-free     => 'Libre y de código abierto · Con el apoyo de',
+        footer-written  => 'Escrito por',
+        quiz-check      => 'Comprobar las respuestas',
+        quiz-show       => 'Mostrar las respuestas correctas',
+        stat-parts      => 'Partes',
+        stat-topics     => 'Temas',
+        stat-quizzes    => 'Cuestionarios',
+        stat-exercises  => 'Ejercicios',
+        stat-pages      => 'Páginas',
+        site-name       => 'Curso de Raku',
+        part-word       => 'Parte',
+        and-word        => 'y',
+        languages-label  => 'Esta página en otros idiomas:',
+        about-translation=> 'Sobre la traducción',
+    },
+
+    la => {
+        solution-title  => 'Solutio: %s',
+        exercises-title => 'Exercitationes: %s',
+        exercises-short => 'Exercitationes',
+        topics-many     => 'Argumenta huius sectionis',
+        topics-one      => 'Etiam in hac sectione',
+        practice        => 'Exercitatio',
+        practice-intro  => 'Sequuntur %count% de contentis %scope%.',
+        scope-section   => 'huius sectionis',
+        scope-topic     => 'huius argumenti',
+        exercises-head  => 'Exercitationes',
+        section-has     => 'In hac sectione sunt %s.',
+        section-has-link=> 'In hac sectione sunt [%s](exercises). Omnia huius sectionis argumenta inspice antequam exercitationes incipias.',
+        refresh-head    => 'Memoriam refrica',
+        refresh-intro   => 'Si opus est, contenta huius sectionis inspice ut responsa invenias.',
+        course-nav      => 'Navigatio cursus',
+        jump-one        => 'Vel recta ad [exercitationem huius sectionis](%s) i.',
+        jump-many       => 'Vel recta ad [exercitationes huius sectionis](%s) i.',
+        footer-course   => 'Cursus plenus linguae programmandi Raku',
+        footer-about    => 'De cursu',
+        footer-free     => 'Liber et fontis aperti · Sustinet',
+        footer-written  => 'Scripsit',
+        quiz-check      => 'Responsa examinare',
+        quiz-show       => 'Responsa recta ostendere',
+        stat-parts      => 'partes',
+        stat-topics     => 'argumenta',
+        stat-quizzes    => 'quiz',
+        stat-exercises  => 'exercitia',
+        stat-pages      => 'paginae',
+        site-name       => 'Cursus Raku',
+        part-word       => 'Pars',
+        and-word        => 'et',
+        languages-label  => 'Haec pagina aliis linguis:',
+        about-translation=> 'De translatione',
+    },
+    lv => {
+        solution-title  => 'Risinājums: %s',
+        exercises-title => 'Vingrinājumi: %s',
+        exercises-short => 'Vingrinājumi',
+        topics-many     => 'Šīs sadaļas temati',
+        topics-one      => 'Arī šajā sadaļā',
+        practice        => 'Prakse',
+        practice-intro  => 'Jūs gaida %count% par %scope% saturu.',
+        scope-section   => 'šīs sadaļas',
+        scope-topic     => 'šī temata',
+        exercises-head  => 'Vingrinājumi',
+        section-has     => 'Šajā sadaļā ir %s.',
+        section-has-link=> 'Šajā sadaļā ir [%s](exercises). Pirms ķerieties pie vingrinājumiem, izlasiet visus šīs sadaļas tematus.',
+        refresh-head    => 'Atsvaidziniet zināšanas',
+        refresh-intro   => 'Ja nepieciešams, ieskatieties šīs sadaļas saturā, lai atrastu atbildes.',
+        course-nav      => 'Kursa navigācija',
+        jump-one        => 'Vai arī dodieties tieši [uz šīs sadaļas vingrinājumu](%s).',
+        jump-many       => 'Vai arī dodieties tieši [uz šīs sadaļas vingrinājumiem](%s).',
+        footer-course   => 'Pilns Raku programmēšanas valodas kurss',
+        footer-about    => 'Par kursu',
+        footer-free     => 'Brīvs un atvērtā koda · Atbalsta',
+        footer-written  => 'Autors',
+        quiz-check      => 'Pārbaudīt atbildes',
+        quiz-show       => 'Parādīt pareizās atbildes',
+        stat-parts      => 'Daļas',
+        stat-topics     => 'Temati',
+        stat-quizzes    => 'Viktorīnas',
+        stat-exercises  => 'Vingrinājumi',
+        stat-pages      => 'Lappuses',
+        site-name       => 'Raku kurss',
+        part-word       => 'Daļa',
+        and-word        => 'un',
+        languages-label  => 'Šī lapa citās valodās:',
+        about-translation=> 'Par tulkojumu',
+    };
+
+# Look a string up for $lang, falling back to English.
+sub ui($lang, $key) {
+    return %ui{$lang}{$key} // %ui<en>{$key};
+}
+
+# The language switcher shown in the footer of every page.
+#
+# $url carries no language prefix, so the same path serves every language. A
+# language is listed only when it actually has the page: either a source file
+# exists for it, or the page is synthesised by the generator (subpart landing
+# pages, which have no file in any language). `about-translation` exists only
+# for the translations, so English simply drops out of that page's own row.
+sub language-switcher($lang, $url, Bool :$synthesised = False) {
+    # Built by concatenation rather than interpolation: this markup is full of
+    # braces-free HTML but the strings still must not be parsed as closures.
+    my @links;
+    for @languages -> $language {
+        my $code = $language.key;
+        my $name = $language.value;
+
+        my $src = $code eq 'en' ?? ($url ?? "$url/index.md" !! 'index.md')
+                                !! ($url ?? "$code/$url/index.md" !! "$code/index.md");
+        next unless $synthesised || $src.IO.f;
+
+        if $code eq $lang {
+            @links.push: '<span class="lang-current">' ~ $name ~ '</span>';
+        }
+        else {
+            my $href = $code eq 'en' ?? ('/' ~ $url) !! ('/' ~ $code ~ '/' ~ $url);
+            $href ~~ s/ '/' $ // if $href ne '/';
+            @links.push: '<a href="' ~ $href ~ '">' ~ $name ~ '</a>';
+        }
+    }
+
+    my $label = ui($lang, 'languages-label');
+
+    # The note about the translation — its own page, and only for translations.
+    # The wrapping span is what claims the whole row; the link itself stays
+    # inline, so its hover underline hugs the text instead of the row.
+    my $about = $lang eq 'en'
+        ?? ''
+        !! '<span class="lang-about-row"><a class="lang-about" href="/' ~ $lang
+           ~ '/about-translation">' ~ ui($lang, 'about-translation') ~ '</a></span>';
+
+    return '<nav class="lang-switcher" aria-label="' ~ $label ~ '">' ~ "\n"
+         ~ '<span class="lang-label">' ~ $label ~ '</span>' ~ "\n"
+         ~ @links.join("\n") ~ "\n"
+         ~ $about ~ "\n"
+         ~ '</nav>' ~ "\n";
+}
 
 enum PageType < Part Subpart Section Topic Exercise Exercises Solution Quiz >;
 my %pagetype-key =
@@ -151,7 +603,7 @@ sub get-toc($lang, $is-silent) returns Hash {
 
                 my $solution-url = "$url/solution";
                 %toc{$solution-url} = {
-                    title => "Solution: $level-title",
+                    title => ui($lang, 'solution-title').subst('%s', $level-title),
                     url => 'solution',
                     prev-url => $url,
                     type => Solution,
@@ -169,8 +621,8 @@ sub get-toc($lang, $is-silent) returns Hash {
             my $parent-url = parent-level-url($exercises-url);
 
             %toc{$exercises-url} //= {
-                title => "Exercises: %toc{$parent-url}<title>",
-                short-title => 'Exercises',
+                title => ui($lang, 'exercises-title').subst('%s', %toc{$parent-url}<title>),
+                short-title => ui($lang, 'exercises-short'),
                 url => 'exercises',
                 prev-url => $url,
                 type => Exercises,
@@ -352,25 +804,20 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
         $html = post-process-html($html) if $html ~~ /'%%'/;
         $html = neutralize-unpublished-links($html) if $dir;
 
-        # Part 6 (Addendum) solution pages get runnable code blocks via the
         # raku.online embed widget: it turns each highlighted Raku block into a
-        # play-and-edit editor. `data-selector` targets the course's `.highlight
-        # .raku` blocks (output/console blocks are `.highlight` only, so they are
-        # left alone). The Run button picks up the course blue from the
-        # --rk-embed-accent variable set in course.css.
+        # play-and-edit editor with a Run button. Loaded from raku.online itself
+        # rather than bundled with the course, so it always matches the live
+        # playground and no raku.js/wasm ships in this repository.
+        #
+        # `data-selector` targets only the main `.highlight.raku` solution block.
+        # Output/console blocks are `.highlight` only, and the illustrative code
+        # fragments nested inside numbered comments are marked `.no-run` by
+        # rehighlight-fragments — both are left as static, coloured code. The Run
+        # button picks up the course blue from --rk-embed-accent in course.css.
+        #
+        # $dir carries no language prefix, so this covers every translation too.
         if $dir ~~ /^ 'addendum/' .* '/solution' $/ {
-            # data-selector catches only the main `.highlight.raku` solution block,
-            # which becomes a runnable play-and-edit editor. Code blocks nested
-            # inside numbered comments are illustrative fragments, not full programs
-            # to run: pandoc renders them as `<pre><code class="sourceCode raku">`,
-            # they keep that static highlighting (coloured by the `.sourceCode`
-            # rules in course.css), and — because we do NOT pass `data-auto` — the
-            # widget leaves them alone. So: main solution runs, fragments just show.
-            # Self-hosted so the course is self-sufficient (works even if
-            # raku.online is down): assets/raku.js + rakujs.{js,wasm} ship with
-            # the site. The editor keeps the build-baked `rakupp --highlight`
-            # colouring for display and loads the WASM only when a block is edited.
-            my $embed = '<script src="/assets/raku.js?v=1"'
+            my $embed = '<script src="https://raku.online/raku.js"'
                       ~ ' data-selector=".highlight.raku:not(.no-run)" defer></script>';
             $html .= subst('</body>', "$embed\n</body>");
         }
@@ -379,6 +826,15 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
         try $output-dir.IO.mkdir(:parent);   # `try`: tolerate a peer worker creating a shared parent dir
 
         my $output-path = "$output-dir/index.html";
+        # Never write an empty page. Under --workers>1 the `state` initialisers in
+        # md-to-html are not thread-safe, so a worker can occasionally see a
+        # half-initialised template and return an undefined $html. Writing that
+        # silently produced a 0-byte index.html that a later publish would ship.
+        # Fail loudly instead: rebuild the page (a --workers=1 run always works).
+        die "Refusing to write an empty page for '$dir' ($output-path). "
+          ~ "This is the known --workers>1 race; re-run with --workers=1 "
+          ~ "or rebuild this page with --uri=$dir."
+            unless $html.defined && $html.chars > 200;
         $output-path.IO.spurt($html);
         say "\e[32mSaved to $output-path\e[0m";
 
@@ -454,16 +910,24 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
     sub md-to-html(*%content) {
         state $template = "_templates/default.html".IO.slurp;
 
-        # A simple standard footer shown on every page, including the home page
-        # (which keeps its own translations block above it).
+        # A simple standard footer shown on every page. It opens with the
+        # language switcher, so every page of every translation can be swapped
+        # for the same page in another language.
         sub page-footer() {
             my $year = Date.today.year;
+            # Keep the two in-course footer links inside the page's language.
+            my $p = %content<lang> && %content<lang> ne 'en' ?? "/%content<lang>" !! '';
+            my $switcher = language-switcher(
+                %content<lang>, %content<url> // '',
+                synthesised => !(%content<path> // '').IO.f,
+            );
             return qq:to/FOOTER/;
             <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
-            <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-            <p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
-            <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
-            <p style="margin:.35em 0;">© 2021–{$year} · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+            $switcher
+            <p style="margin:.35em 0;"><a href="$p/">{ui(%content<lang>, 'footer-course')}</a></p>
+            <p style="margin:.35em 0;"><a href="$p/about-this-course">{ui(%content<lang>, 'footer-about')}</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p style="margin:.35em 0;">{ui(%content<lang>, 'footer-free')} <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+            <p style="margin:.35em 0;">© 2021–{$year} · {ui(%content<lang>, 'footer-written')} <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
             </footer>
             FOOTER
         }
@@ -473,9 +937,10 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                 when 'title' {
                     # Home page gets the full course name; every other page gets
                     # its cleaned title followed by the course name.
-                    return 'The Complete Course of the Raku Programming Language'
+                    my $lang = %content<lang>;
+                    return ui($lang, 'footer-course')
                         if (%content<url> // '') eq '';
-                    return clean-title(%content<title> // '') ~ ' — Raku Course';
+                    return clean-title(%content<title> // '') ~ ' — ' ~ ui($lang, 'site-name');
                 }
 
                 when / 'lang' | 'locale' /   { return %content{$from} }
@@ -582,11 +1047,11 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
             return join "\n",
                 '<div class="home-stats">',
-                stat($parts, 'parts'),
-                stat($topics, 'topics'),
-                stat($quizzes, 'quizzes'),
-                stat($exercises, 'exercises'),
-                stat($pages, 'pages'),
+                stat($parts,     ui($lang, 'stat-parts')),
+                stat($topics,    ui($lang, 'stat-topics')),
+                stat($quizzes,   ui($lang, 'stat-quizzes')),
+                stat($exercises, ui($lang, 'stat-exercises')),
+                stat($pages,     ui($lang, 'stat-pages')),
                 '</div>';
         }
 
@@ -615,8 +1080,18 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             return '';
         }
 
+        # Every in-course link on a translated page must stay inside that
+        # language: '' for English, '/ru' for Russian, and so on. Without it a
+        # reader clicking "next" or a breadcrumb falls out into the English site.
+        sub lang-prefix() {
+            return %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+        }
+
         sub include-menu() {
-            my @crumbs = "[Course of Raku](/)";
+            my $prefix = lang-prefix();
+            # The course title comes from the language's own TOC root, so the
+            # first crumb reads in the reader's language too.
+            my @crumbs = "[{%toc{''}<title>}]($prefix/)";
 
             my $full-url = %content<url>;
             my @seg = $full-url.split('/');
@@ -629,7 +1104,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
                 my $toc-item = %toc{$crumb-url};
                 my $title = $toc-item<short-title> // $toc-item<title>;
-                @crumbs.push: "[$title](/$crumb-url)";
+                @crumbs.push: "[$title]($prefix/$crumb-url)";
 
                 # Right after the part crumb, insert the subpart this page's
                 # section belongs to — it groups the sections but is not itself
@@ -639,7 +1114,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                     my $subpart-url = %toc{$section-url}<subpart-url>;
                     if $subpart-url {
                         my $sp = %toc{$subpart-url};
-                        @crumbs.push: "[{$sp<short-title> // $sp<title>}](/$subpart-url)";
+                        @crumbs.push: "[{$sp<short-title> // $sp<title>}]($prefix/$subpart-url)";
                     }
                 }
             }
@@ -658,8 +1133,8 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             prepare_quiz();
             </script>
             <div class="quiz-actions" style="margin: 3em 0;">
-            <button class="quiz-btn quiz-btn-primary" onclick="checkquiz()">Check the answers</button>
-            <button class="quiz-btn quiz-btn-ghost" onclick="showanswers()" id="ShowAnswers" style="display: none;">Show correct answers</button>
+            <button class="quiz-btn quiz-btn-primary" onclick="checkquiz()">{ui(%content<lang>, 'quiz-check')}</button>
+            <button class="quiz-btn quiz-btn-ghost" onclick="showanswers()" id="ShowAnswers" style="display: none;">{ui(%content<lang>, 'quiz-show')}</button>
             </div>
             QUIZ
         }
@@ -673,7 +1148,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
                 my @topics = @($curr<topics>);
 
-                my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+                my $lang-prefix = lang-prefix();
                 my $topics;
                 for @topics -> $topic-url {
                     my $topic = %toc{$topic-url};
@@ -682,7 +1157,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
                 return qq:to/TOPICS/;
                 <div class="topics" markdown="1">
-                ## {@topics.elems > 1 ?? "Topics in this section" !! "Also in this section"}
+                ## {@topics.elems > 1 ?? ui(%content<lang>, 'topics-many') !! ui(%content<lang>, 'topics-one')}
                 $topics
                 </div>
                 TOPICS
@@ -701,19 +1176,29 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
                 return '' unless @quizzes;
 
-                my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+                my $lang-prefix = lang-prefix();
                 my $quizzes;
                 for @quizzes -> $quiz-url {
                     my $quiz = %toc{$quiz-url};
                     $quizzes ~= "* [$quiz<title>]($lang-prefix/$quiz-url)\n";
                 }
 
-                my $scope = $curr<topics> ?? 'section' !! 'topic';
+                # "Complete the 2 quizzes that cover the contents of this section."
+                # Each language supplies its own count form and scope wording.
+                my $lang  = %content<lang>;
+                my $scope = ui($lang, $curr<topics> ?? 'scope-section' !! 'scope-topic');
+                # Named placeholders: a language that needs no verb agreement
+                # simply omits %verb% and that substitution becomes a no-op.
+                my $practice-intro = ui($lang, 'practice-intro')
+                    .subst('%count%', decline(@quizzes.elems, 'quiz', $lang))
+                    .subst('%verb%', (@quizzes.elems == 1 ?? 'covers' !! 'cover'))
+                    .subst('%scope%', $scope);
+
                 return qq:to/QUIZZES/;
                 <div class="practice" markdown="1">
-                ## Practice
+                ## {ui(%content<lang>, 'practice')}
 
-                Complete the quiz{@quizzes.elems > 1 ?? 'zes' !! ''} that cover{@quizzes.elems == 1 ?? 's' !! ''} the contents of this $scope.
+                {$practice-intro}
 
                 $quizzes
                 </div>
@@ -733,7 +1218,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
                 my @exercises = @($curr<exercises>);
 
-                my $lang-prefix = %content<lang> eq 'en' ?? '' !! "/%content<lang>";
+                my $lang-prefix = lang-prefix();
                 my $exercises;
                 for @exercises -> $exercise-url {
                     my $exercise = %toc{$exercise-url};
@@ -746,7 +1231,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                     for @($parent<topics> // []) -> $topic-url {
                         my $topic = %toc{$topic-url};
                         $local-toc ~= qq:to/LOCAL-TOC/;
-                            * [$topic<title>](/$parent-url/$topic<url>)
+                            * [$topic<title>]($lang-prefix/$parent-url/$topic<url>)
                         LOCAL-TOC
                     }
 
@@ -754,16 +1239,16 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                     <div class="exercises" markdown="1">
                     <p></p>
 
-                    This section contains {decline(@exercises.elems, 'exercise')}.
+                    {ui(%content<lang>, 'section-has').subst('%s', decline(@exercises.elems, 'exercise', %content<lang>))}
 
                     $exercises
                     </div>
 
-                    ## Refresh your knowledge
+                    ## {ui(%content<lang>, 'refresh-head')}
 
-                    Refer to the contents of this section to find the answers if needed.
+                    {ui(%content<lang>, 'refresh-intro')}
 
-                    * [$parent<title>](/$parent-url)
+                    * [$parent<title>]($lang-prefix/$parent-url)
                     $local-toc
 
                     EXERCISES
@@ -771,9 +1256,9 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                 else {
                     return qq:to/EXERCISES/;
                     <div class="exercises" markdown="1">
-                    ## Exercises
+                    ## {ui(%content<lang>, 'exercises-head')}
 
-                    This section contains [{decline(@exercises.elems, 'exercise')}](exercises). Examine all the topics of this section before doing the coding practice.
+                    {ui(%content<lang>, 'section-has-link').subst('%s', decline(@exercises.elems, 'exercise', %content<lang>))}
 
                     $exercises
                     </div>
@@ -787,10 +1272,11 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             # Do not offer a "next" link that would jump into an unpublished part.
             my $next-page = ($next-url && !beyond-limit($next-url)) ?? %toc{$next-url} !! Nil;
 
+            my $nav-prefix = lang-prefix();
             my $course-nav = '';
-            $course-nav ~= "← [$prev-page<title>](/$prev-url)" if $prev-page;
-            $course-nav ~= "\n&nbsp;&nbsp;|&nbsp;&nbsp;\n"      if $prev-page && $next-page;
-            $course-nav ~= "[$next-page<title>](/$next-url) →" if $next-page;
+            $course-nav ~= "← [$prev-page<title>]($nav-prefix/$prev-url)" if $prev-page;
+            $course-nav ~= "\n&nbsp;&nbsp;|&nbsp;&nbsp;\n"                if $prev-page && $next-page;
+            $course-nav ~= "[$next-page<title>]($nav-prefix/$next-url) →" if $next-page;
 
             return qq:to/NAV/;
             {topics-list()}
@@ -799,7 +1285,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
             {exercises-list()}
 
-            ## Course navigation
+            ## {ui(%content<lang>, 'course-nav')}
 
             {$course-nav}
 
@@ -818,17 +1304,17 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             # ($extended); on the home page the whole-course TOC omits them.
             sub counts($node, $base) {
                 my @parts;
-                @parts.push: "<span class=\"has-q\">[{decline($node<quizzes>.elems, 'quiz')}]($base#practice)</span>"
+                @parts.push: "<span class=\"has-q\">[{decline($node<quizzes>.elems, 'quiz', $lang)}]($base#practice)</span>"
                     if $node<quizzes>;
-                @parts.push: "<span class=\"has-e\">[{decline($node<exercises>.elems, 'exercise')}]($base/exercises)</span>"
+                @parts.push: "<span class=\"has-e\">[{decline($node<exercises>.elems, 'exercise', $lang)}]($base/exercises)</span>"
                     if $node<exercises>;
-                return @parts ?? ' — ' ~ @parts.join(' and ') !! '';
+                return @parts ?? ' — ' ~ @parts.join(' ' ~ ui($lang, 'and-word') ~ ' ') !! '';
             }
 
             sub render-part($part, Bool $extended, Bool :$heading = True) {
                 my $part-url = $part<url>;
                 my $long     = $part<long-title> // $part<title>;
-                my $toc      = $heading ?? "# Part {$part<part-number>}. $long\n\n" !! '';
+                my $toc      = $heading ?? "# {ui($lang, 'part-word')} {$part<part-number>}. $long\n\n" !! '';
 
                 # The part's own intro, above its table of contents (the same
                 # description shown on the home-page card).
@@ -848,7 +1334,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                         for @($section<items> // []) -> $topic {
                             my $turl = "$surl/$topic<url>";
                             my $tq = ($extended && $topic<quizzes>)
-                                ?? " — <span class=\"has-q\">[{decline($topic<quizzes>.elems, 'quiz')}]($turl#practice)</span>"
+                                ?? " — <span class=\"has-q\">[{decline($topic<quizzes>.elems, 'quiz', $lang)}]($turl#practice)</span>"
                                 !! '';
                             $toc ~= "    - [$topic<title>]($turl)$tq\n";
                         }
@@ -942,7 +1428,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                     for @($section<items> // []) -> $topic {
                         my $turl = "$surl/$topic<url>";
                         my $tq = $topic<quizzes>
-                            ?? " — <span class=\"has-q\">[{decline($topic<quizzes>.elems, 'quiz')}]($turl#practice)</span>"
+                            ?? " — <span class=\"has-q\">[{decline($topic<quizzes>.elems, 'quiz', $lang)}]($turl#practice)</span>"
                             !! '';
                         $toc ~= "    - [$topic<title>]($turl)$tq\n";
                     }
@@ -952,29 +1438,11 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             }
         }
 
+        # The language switcher now lives in the site footer, where it appears on
+        # every page of every language. The `{% include translations.html %}`
+        # token is kept so old pages still build, but it renders nothing.
         sub include-translations() {
-            # Only Part 1 (and the home page) is translated, so the block is
-            # suppressed everywhere else.
-            return '' unless %content<url> eq '' || part-number-of(%content<url>) == 1;
-
-            my @links;
-            for @languages -> $language {
-                my $code = $language.key;
-                my $name = $language.value;
-
-                if $code eq %content<lang> {
-                    @links.push: "**{$name}**";
-                }
-                else {
-                    @links.push: $code eq 'en' ?? "[$name](/%content<url>)" !! "[$name](/$code/%content<url>)";
-                }
-            }
-
-            return qq:to/TRANSLATIONS/;
-            <div markdown="1" style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-            Translations of this page: {@links.join(' • ')}
-            </div>
-            TRANSLATIONS
+            return '';
         }
 
         sub link-exercises-if-any() {
@@ -988,11 +1456,12 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
 
             return '' unless $section<exercises>;
 
+            my $prefix = lang-prefix();
             if $section<exercises>.elems == 1 {
                 return qq:to/GOTOEXERCICE/;
 
                 <br />
-                💪 Or jump directly [to the exercise to this section](/$section<exercises>[0]).
+                💪 {ui(%content<lang>, 'jump-one').subst('%s', "$prefix/" ~ $section<exercises>[0])}
 
                 GOTOEXERCICE
             }
@@ -1000,7 +1469,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
                 return qq:to/GOTOEXERCICES/;
 
                 <br />
-                💪 Or jump directly [to the exercises in this section](/$section-url/exercises).
+                💪 {ui(%content<lang>, 'jump-many').subst('%s', "$prefix/$section-url/exercises")}
 
                 GOTOEXERCICES
             }
@@ -1048,8 +1517,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
         # regex in extract-code() (which needs a column-0 closing ```) skips them
         # and pandoc renders them — as `<pre class="raku"><code>…</code></pre>` with
         # `--no-highlight`. Re-highlight each through format-code so it uses the same
-        # highlighter and pygments classes as every other block; mark it `:norun`
-        # (an illustrative fragment, not a program to run).
+        # highlighter and pygments classes as every other block.
         sub rehighlight-fragments($html is copy) {
             # (.*?) for the class name, not a <-["]> character class: rakupp
             # cannot yet parse a `"` inside a char class within a sub body.
@@ -1186,8 +1654,65 @@ sub html-unescape($s) {
 }
 
 #| "1 exercise", "2 exercises", "1 quiz", "2 quizzes" — pick singular/plural.
-sub decline($n, $word) {
-    my %forms = quiz => <quiz quizzes>, exercise => <exercise exercises>;
+sub decline($n, $word, $lang = 'en') {
+    # Russian and Ukrainian both pick one of three forms by the last digits:
+    # 1 упражнение, 2–4 упражнения, 5–20 упражнений (and 11–14 always take the
+    # last form). Same rule, different words.
+    my %slavic =
+        ru => { quiz     => <тест теста тестов>,
+                exercise => <упражнение упражнения упражнений> },
+        uk => { quiz     => <тест тести тестів>,
+                exercise => <вправа вправи вправ> };
+
+    if %slavic{$lang} -> %forms {
+        my $i = do given $n % 100 {
+            when 11..14 { 2 }
+            default     {
+                given $n % 10 {
+                    when 1      { 0 }
+                    when 2|3|4  { 1 }
+                    default     { 2 }
+                }
+            }
+        };
+        return "$n " ~ %forms{$word}[$i];
+    }
+
+    # Latvian agrees by the last digits too, but with only two forms: a numeral
+    # ending in 1 (except 11) takes the singular — 1 tests, 21 tests, 101 tests —
+    # and everything else takes the plural: 2 testi, 11 testi, 20 testi.
+    my %latvian =
+        lv => { quiz     => <viktorīna viktorīnas>,
+                exercise => <vingrinājums vingrinājumi> };
+
+    if %latvian{$lang} -> %forms {
+        my $i = ($n % 10 == 1 && $n % 100 != 11) ?? 0 !! 1;
+        return "$n " ~ %forms{$word}[$i];
+    }
+
+    # Bulgarian dropped the three-form rule: a masculine noun after any numeral
+    # takes the count form (1 тест, 2 теста, 5 теста), and a neuter noun takes the
+    # ordinary plural — so it is singular/plural, like English, with its own words.
+    # Dutch and German are Germanic and plain singular/plural too
+    # (1 quiz, 2 quizzen; 1 Quiz, 2 Quizze). Italian is the same shape, with
+    # `quiz` invariable as a loanword (1 quiz, 2 quiz); Spanish translates it
+    # outright (1 cuestionario, 2 cuestionarios). Latin is plain singular/plural
+    # as well, and keeps `quiz` invariable for the same reason Italian does — the
+    # word is not Latin, so it is left undeclined rather than given a fake stem.
+    # Esperanto is plain singular/plural too, and perfectly regular about it: the
+    # plural is the noun plus -j, so every loanword takes a normal Esperanto stem
+    # (1 kvizo, 2 kvizoj) rather than staying invariable the way it does in Italian.
+    my %two-form =
+        en => { quiz => <quiz quizzes>,  exercise => <exercise exercises> },
+        eo => { quiz => <kvizo kvizoj>,  exercise => <ekzerco ekzercoj> },
+        bg => { quiz => <тест теста>,    exercise => <упражнение упражнения> },
+        nl => { quiz => <quiz quizzen>,  exercise => <oefening oefeningen> },
+        de => { quiz => <Quiz Quizze>,   exercise => <Übung Übungen> },
+        it => { quiz => <quiz quiz>,     exercise => <esercizio esercizi> },
+        la => { quiz => <quiz quiz>,     exercise => <exercitatio exercitationes> },
+        es => { quiz => <cuestionario cuestionarios>, exercise => <ejercicio ejercicios> };
+
+    my %forms = %two-form{$lang} // %two-form<en>;
     return "$n " ~ %forms{$word}[$n == 1 ?? 0 !! 1];
 }
 

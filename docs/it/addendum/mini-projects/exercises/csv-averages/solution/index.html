@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -109,18 +109,18 @@
           <p><a href="/it/">Corso di Raku</a> / <a href="/it/addendum">Appendice
 🆕</a> / <a href="/it/addendum/bringing-it-together">Mettere tutto
 insieme</a> / <a href="/it/addendum/mini-projects">Mini-progetti
-misti</a> / <a href="/it/addendum/mini-projects/exercises">Esercizi</a>
+misti</a> / <a href="/it/addendum/mini-projects/exercises">Exercises</a>
 / <a href="/it/addendum/mini-projects/exercises/csv-averages">Punteggi
 da righe CSV</a></p>
 <h1 id="soluzione-punteggi-da-righe-csv">Soluzione: Punteggi da righe
 CSV</h1>
 <p>Ecco una possibile soluzione del compito.</p>
 <h2 id="codice">Codice</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">'Anna,90'</span>, <span class="s">'Bob,72'</span>, <span class="s">'Cara,84'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">&#39;Anna,90&#39;</span>, <span class="s">&#39;Bob,72&#39;</span>, <span class="s">&#39;Cara,84&#39;</span>;
 <span class="k">my</span> <span class="nv">%score</span>;
 
 <span class="k">for</span> <span class="nv">@lines</span> -&gt; <span class="nv">$line</span> {
-    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">','</span>);
+    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>);
     <span class="nv">%score</span>{<span class="nv">$name</span>} = <span class="nv">$mark</span>.<span class="nb">Int</span>;
 }
 
@@ -129,8 +129,9 @@ CSV</h1>
 
 <span class="nb">say</span> <span class="s">&quot;above average:&quot;</span>;
 <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span> -&gt; <span class="nv">$pair</span> {
-    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="n">value</span> &gt; <span class="nv">$average</span>;
-}</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="nb">value</span> &gt; <span class="nv">$average</span>;
+}
+</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/csv-averages.raku">csv-averages.raku</a>.</p>
@@ -153,7 +154,8 @@ supera viene elencato. Qui la media risulta un intero
 sopra la media e <code>map</code> riduce ogni coppia sopravvissuta al
 proprio nome — così il corpo del ciclo non porta alcuna logica, solo la
 stampa:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="n">value</span> &gt; <span class="nv">$average</span>).<span class="nb">map</span>(*.<span class="n">key</span>);</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="nb">value</span> &gt; <span class="nv">$average</span>).<span class="n">map</span>(*.<span class="nb">key</span>);
+</pre></div>
 
 <p>Letta da sinistra a destra, dice esattamente ciò che fa: ordina,
 conserva quelli sopra la media, prendine i nomi. Ogni stadio è un passo
@@ -169,6 +171,22 @@ righe CSV</a></p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Questa pagina in altre lingue:">
+<span class="lang-label">Questa pagina in altre lingue:</span>
+<a href="/addendum/mini-projects/exercises/csv-averages/solution">English</a>
+<a href="/de/addendum/mini-projects/exercises/csv-averages/solution">Deutsch</a>
+<a href="/eo/addendum/mini-projects/exercises/csv-averages/solution">Esperanto</a>
+<a href="/es/addendum/mini-projects/exercises/csv-averages/solution">Español</a>
+<span class="lang-current">Italiano</span>
+<a href="/la/addendum/mini-projects/exercises/csv-averages/solution">Latina</a>
+<a href="/lv/addendum/mini-projects/exercises/csv-averages/solution">Latviešu</a>
+<a href="/nl/addendum/mini-projects/exercises/csv-averages/solution">Nederlands</a>
+<a href="/bg/addendum/mini-projects/exercises/csv-averages/solution">Български</a>
+<a href="/ru/addendum/mini-projects/exercises/csv-averages/solution">Русский</a>
+<a href="/uk/addendum/mini-projects/exercises/csv-averages/solution">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/it/about-translation">Informazioni sulla traduzione</a></span>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
 <p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

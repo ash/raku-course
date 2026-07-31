@@ -32,7 +32,7 @@ say $v;
 
 1. Een `uint8` heeft een bereik van `0` tot `255`, dat zijn 256 verschillende waarden. Rekenkundige bewerkingen erop worden effectief modulo 256 uitgevoerd.
 
-1. `250 + 10` zou `260` zijn, wat niet past. Het wrapt terug en komt uit op `260 - 256 = 4` voorbij de onderkant. Overflow is dus niet beperkt tot het overschrijden van de bovenkant met een -- elk resultaat buiten het bereik wordt teruggevouwen.
+1. `250 + 10` zou `260` zijn, wat niet past. Het wrapt terug en komt uit op `260 - 256 = 4` voorbij de onderkant. Overflow is dus niet beperkt tot het overschrijden van de bovenkant met een — elk resultaat buiten het bereik wordt teruggevouwen.
 
 1. De andere kant op overflowt ook: het verlagen van `0` kan geen `-1` opleveren bij een unsigned type, dus het wrapt naar het maximum, `255`.
 

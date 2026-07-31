@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,29 +120,33 @@ numuru. Tam izmantojiet kvadrātiekavas <code>[ ]</code>, kas grupē
 <p>Grupēšanai ir nozīme, tiklīdz piekabināt kvantoru. Kvantors saistās
 tikai ar atomu, kas ir tieši pirms tā, tāpēc zemāk redzamais raksturs
 atkārto tikai pēdējo burtu:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abccc&#39;</span> ~~<span class="sr"> / abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span>
+</pre></div>
 
 <p>Trīs reizes tika atkārtots tikai <code>c</code>. Ietiniet visu gabalu
 <code>[ ]</code>, lai atkārtotu to visu:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abcabcabc&#39;</span> ~~<span class="sr"> / [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span>
+</pre></div>
 
 <p>Tagad <code>[ abc ]</code> ir viena vienība, un <code>** 3</code>
 attiecas uz grupu.</p>
 <p>Tā kā <code>[ ]</code> neaizņem tvēruma vietu, numuri paliek
 rezervēti tām daļām, kas jums patiešām rūp. Salīdziniet vienkāršu
 atslēgas un vērtības sakritību:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;foo=42&#39;</span> ~~<span class="sr"> / (\w+) &#39;=&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Pieņemsim, ka pirms atslēgas var būt vārds, ko vēlaties izlaist.
 Sagrupējiet šo priedēkli ar <code>[ ]</code>, lai tas netraucētu
 numerāciju:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;the foo=42&#39;</span> ~~<span class="sr"> / [ \w+ \s ]? (\w+) &#39;=&#39; (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}</pre></div>
+}
+</pre></div>
 
 <p>Neobligātais <code>[ \w+ \s ]?</code> sakrita ar <code>the</code>,
 taču nepieprasīja nevienu tvērumu, tāpēc <code>$0</code> joprojām ir
@@ -166,6 +170,22 @@ vingrinājumiem</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/regexes/captures/non-capturing">English</a>
+<a href="/de/regexes/captures/non-capturing">Deutsch</a>
+<a href="/eo/regexes/captures/non-capturing">Esperanto</a>
+<a href="/es/regexes/captures/non-capturing">Español</a>
+<a href="/it/regexes/captures/non-capturing">Italiano</a>
+<a href="/la/regexes/captures/non-capturing">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/regexes/captures/non-capturing">Nederlands</a>
+<a href="/bg/regexes/captures/non-capturing">Български</a>
+<a href="/ru/regexes/captures/non-capturing">Русский</a>
+<a href="/uk/regexes/captures/non-capturing">Українська</a>
+<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
 <p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

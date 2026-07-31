@@ -12,9 +12,9 @@ Bekijk dit programma.
 my $x = 100;
 repeat {
     $x = prompt 'Voer een getal in: ';
-    zeg "Je hebt $x ingevoerd.";
+    say "Je hebt $x ingevoerd.";
 } while $x <= 10;
-zeg "$x is groter dan 10.";
+say "$x is groter dan 10.";
 ```
 
 De variabele `$x` is aanvankelijk ingesteld op `100`, en de `while` conditie controleert of `$x` kleiner dan of gelijk aan `10` is. Met de gegeven waarde van de variabele is de conditie al `False`, maar het codeblok wordt toch eerst uitgevoerd.
@@ -34,9 +34,9 @@ Laten we het programma aanpassen om `until` te gebruiken.
 my $x = 0;
 repeat {
     $x = prompt 'Voer een getal in: ';
-    zeg "Je hebt $x ingevoerd.";
+    say "Je hebt $x ingevoerd.";
 } until $x > 10;
-zeg "$x is groter dan 10.";
+say "$x is groter dan 10.";
 ```
 
 Voer het uit om te bevestigen dat het werkt zoals verwacht:

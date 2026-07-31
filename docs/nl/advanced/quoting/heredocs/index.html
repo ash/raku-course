@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,12 +115,13 @@ href="/nl/advanced/quoting">Aanhalingsconstructies</a></p>
 regels. In plaats van scheidingstekens om de tekst heen, geef je een
 afsluitwoord op met <code>:to</code>, en de string loopt vanaf de
 volgende regel tot een regel die alleen dat woord bevat:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/</span>;
-<span class="n">Hello</span>,
-<span class="n">World</span>!
-<span class="k">END</span>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/;</span>
+<span class="s">Hello,</span>
+<span class="s">World!</span>
+<span class="s">END</span>
 
-<span class="nb">print</span> <span class="nv">$text</span>;</pre></div>
+<span class="nb">print</span> <span class="nv">$text</span>;
+</pre></div>
 
 <p>Dit drukt af:</p>
 <div class="highlight"><pre>Hello,
@@ -133,14 +134,15 @@ tweede toevoegen en een lege regel aan het einde achterlaten. Omdat de
 heredoc begint met <code>q:to</code>, wordt de tekst niet
 geinterpoleerd; gebruik <code>qq:to</code> om variabelen te
 interpoleren:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
 
-<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/</span>;
-<span class="n">Dear</span> <span class="nv">$name</span>,
-<span class="n">Welcome</span>!
-<span class="n">EOF</span>
+<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/;</span>
+<span class="s">Dear $name,</span>
+<span class="s">Welcome!</span>
+<span class="s">EOF</span>
 
-<span class="nb">print</span> <span class="nv">$greeting</span>;</pre></div>
+<span class="nb">print</span> <span class="nv">$greeting</span>;
+</pre></div>
 
 <p>Een nuttig detail: de <strong>inspringging van het afsluitende
 afsluitwoord</strong> wordt van elke regel van de tekst verwijderd.
@@ -148,13 +150,14 @@ Hierdoor kun je een heredoc laten inspringen om aan te sluiten bij de
 omringende code zonder dat die inspringging in de string
 terechtkomt:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greeting</span> {
-    <span class="k">return</span> <span class="s">q:to/END/</span>;
-        <span class="n">Hello</span>,
-        <span class="n">World</span>!
-        <span class="k">END</span>
+    <span class="k">return</span> <span class="s">q:to/END/;</span>
+<span class="s">        Hello,</span>
+<span class="s">        World!</span>
+<span class="s">        END</span>
 }
 
-<span class="nb">print</span> <span class="n">greeting</span>;</pre></div>
+<span class="nb">print</span> <span class="n">greeting</span>;
+</pre></div>
 
 <p>Dit drukt hetzelfde <code>Hello,</code> en <code>World!</code> af als
 het eerste voorbeeld. Hier is het afsluitende <code>END</code> acht
@@ -180,6 +183,22 @@ de oefeningen in deze sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/advanced/quoting/heredocs">English</a>
+<a href="/de/advanced/quoting/heredocs">Deutsch</a>
+<a href="/eo/advanced/quoting/heredocs">Esperanto</a>
+<a href="/es/advanced/quoting/heredocs">Español</a>
+<a href="/it/advanced/quoting/heredocs">Italiano</a>
+<a href="/la/advanced/quoting/heredocs">Latina</a>
+<a href="/lv/advanced/quoting/heredocs">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/advanced/quoting/heredocs">Български</a>
+<a href="/ru/advanced/quoting/heredocs">Русский</a>
+<a href="/uk/advanced/quoting/heredocs">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,11 +117,12 @@ handle</em>.</p>
 <p>The simplest way to read a file line by line does not even need an
 explicit handle: the <code>lines</code> method on a path object gives
 the lines one at a time, ready for a <code>for</code> loop:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">'words.txt'</span>, <span class="s">&quot;one\ntwo\nthree\n&quot;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">&#39;words.txt&#39;</span>, <span class="s">&quot;one\ntwo\nthree\n&quot;</span>;
 
-<span class="k">for</span> <span class="s">'words.txt'</span>.<span class="nb">IO</span>.<span class="nb">lines</span> -&gt; <span class="nv">$line</span> {
+<span class="k">for</span> <span class="s">&#39;words.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">lines</span> -&gt; <span class="nv">$line</span> {
     <span class="nb">say</span> <span class="nv">$line</span>.<span class="nb">uc</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Each <code>$line</code> is a single line, without its trailing
 newline. The program prints:</p>
@@ -131,17 +132,18 @@ THREE</pre></div>
 <p>To write to a file through a handle, open it with <code>open</code>
 and the <code>:w</code> (write) flag, use the handle’s <code>say</code>
 or <code>print</code> methods, and <code>close</code> it when done:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$fh</span> = <span class="nb">open</span> <span class="s">'out.txt'</span>, :<span class="n">w</span>;
-<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">'first line'</span>);
-<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">'second line'</span>);
-<span class="nv">$fh</span>.<span class="nb">close</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$fh</span> = <span class="nb">open</span> <span class="s">&#39;out.txt&#39;</span>, :<span class="n">w</span>;
+<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">&#39;first line&#39;</span>);
+<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">&#39;second line&#39;</span>);
+<span class="nv">$fh</span>.<span class="nb">close</span>;
+</pre></div>
 
 <p>Closing the handle makes sure everything you wrote is flushed to
 disk. Reading line by line, as above, is the usual way to handle files
 that are too large to slurp into memory all at once.</p>
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>
-<p>Complete the quiz that covers the contents of this topic.</p>
+<p>Complete the 1 quiz that covers the contents of this topic.</p>
 <ul>
 <li><a href="/oop/file-handles/quiz">Quiz — Reading lines</a></li>
 </ul>
@@ -180,8 +182,24 @@ href="/oop/file-handles/exercises/shout-the-lines">Number the lines</a>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="This page in other languages:">
+<span class="lang-label">This page in other languages:</span>
+<span class="lang-current">English</span>
+<a href="/de/oop/file-handles">Deutsch</a>
+<a href="/eo/oop/file-handles">Esperanto</a>
+<a href="/es/oop/file-handles">Español</a>
+<a href="/it/oop/file-handles">Italiano</a>
+<a href="/la/oop/file-handles">Latina</a>
+<a href="/lv/oop/file-handles">Latviešu</a>
+<a href="/nl/oop/file-handles">Nederlands</a>
+<a href="/bg/oop/file-handles">Български</a>
+<a href="/ru/oop/file-handles">Русский</a>
+<a href="/uk/oop/file-handles">Українська</a>
+
+</nav>
+
 <p style="margin:.35em 0;"><a href="/">The Complete Course of the Raku Programming Language</a></p>
-<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;"><a href="/about-this-course">About the course</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Free and open source · Supported by <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
 <p style="margin:.35em 0;">© 2021–2026 · Written by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
 </footer>

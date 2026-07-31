@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,12 +123,13 @@ href="/uk/paradigms/promises">Промиси</a></p>
 <code>.status</code> не чекає — воно каже вам, де обіцянка перебуває
 <em>просто зараз</em>, тож ви можете перевірити її і до того, як вона
 владналася, і після:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — прочитано одразу, поки блок ще працює</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — прочитано одразу, поки блок ще працює</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># тепер дочекаємося завершення</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
+</pre></div>
 
 <p><code>.result</code> дає збережене значення. На відміну від
 <code>.status</code>, воно <em>чекає</em>, аж поки обіцянку не буде
@@ -138,10 +139,11 @@ href="/uk/paradigms/promises">Промиси</a></p>
 <p>Коли ви хочете подивитися на невдачу, не кидаючи її повторно,
 скористайтеся <code>.cause</code> — об’єктом винятку зламаної
 обіцянки:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># даємо їй владнатися (і ковтаємо повторно кинуту помилку)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
+</pre></div>
 
 <p>Отже, <code>.status</code> та <code>.cause</code> оглядають обіцянку,
 не турбуючи її, тоді як <code>await</code> і <code>.result</code>
@@ -156,6 +158,22 @@ href="/uk/paradigms/promises/exercises">до вправ цього розділ�
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Ця сторінка іншими мовами:">
+<span class="lang-label">Ця сторінка іншими мовами:</span>
+<a href="/paradigms/promises/promise-status">English</a>
+<a href="/de/paradigms/promises/promise-status">Deutsch</a>
+<a href="/eo/paradigms/promises/promise-status">Esperanto</a>
+<a href="/es/paradigms/promises/promise-status">Español</a>
+<a href="/it/paradigms/promises/promise-status">Italiano</a>
+<a href="/la/paradigms/promises/promise-status">Latina</a>
+<a href="/lv/paradigms/promises/promise-status">Latviešu</a>
+<a href="/nl/paradigms/promises/promise-status">Nederlands</a>
+<a href="/bg/paradigms/promises/promise-status">Български</a>
+<a href="/ru/paradigms/promises/promise-status">Русский</a>
+<span class="lang-current">Українська</span>
+<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
 <p style="margin:.35em 0;"><a href="/uk/about-this-course">Про курс</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Відкритий вихідний код · За підтримки <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

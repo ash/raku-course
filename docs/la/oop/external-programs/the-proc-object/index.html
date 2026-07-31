@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,27 +121,31 @@ illud lanciavit indicat utrum successerit per parvum numerum integrum:
 <code>0</code> successum significat, et quilibet alius numerus est codex
 defectus a programmate ipso electus. <code>.exitcode</code> illum
 numerum tibi dat:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
+</pre></div>
 
 <p>Ad quaestionem solitam ita-an-non — operatusne est? —
 <code>Proc</code> simpliciter verum est cum codex exeundi est
 <code>0</code> et falsum aliter, itaque illud directe probare potes:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
+</pre></div>
 
 <p><code>Proc</code> etiam imperatum quod lanciavit meminit, in
 <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
+</pre></div>
 
 <p>Unum cavendum: si imperatum deficit et <code>Proc</code> redditum
 simpliciter <strong>neglegis</strong>, Raku exceptionem excitat potius
 quam defectum inobservatum transire sinat:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
-<span class="c1"># moritur: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
+<span class="c1"># moritur: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
+</pre></div>
 
 <p>Quia exitus non nullus plerumque significat aliquid male cecidisse,
 <code>Proc</code> deficiens quod abicitur iacit cum extra
@@ -149,8 +153,9 @@ circumscriptionem exit. Causa est effectum <em>abicere</em>, non codicem
 exeundi neglegere: <code>Proc</code> in variabili simpliciter servare
 satis est ut exceptionem vites, etiamsi illud numquam iterum
 inspicis.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># nullus error, quamquam defecit</span>
-<span class="c1"># …et $proc numquam iterum adhibetur</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># nullus error, quamquam defecit</span>
+<span class="c1"># …et $proc numquam iterum adhibetur</span>
+</pre></div>
 
 <p>Itaque si <em>exspectas</em> imperatum deficere posse,
 <code>Proc</code> eius serva et deinde <code>.exitcode</code> inspice
@@ -175,6 +180,22 @@ sectionis</a> i.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Haec pagina aliis linguis:">
+<span class="lang-label">Haec pagina aliis linguis:</span>
+<a href="/oop/external-programs/the-proc-object">English</a>
+<a href="/de/oop/external-programs/the-proc-object">Deutsch</a>
+<a href="/eo/oop/external-programs/the-proc-object">Esperanto</a>
+<a href="/es/oop/external-programs/the-proc-object">Español</a>
+<a href="/it/oop/external-programs/the-proc-object">Italiano</a>
+<span class="lang-current">Latina</span>
+<a href="/lv/oop/external-programs/the-proc-object">Latviešu</a>
+<a href="/nl/oop/external-programs/the-proc-object">Nederlands</a>
+<a href="/bg/oop/external-programs/the-proc-object">Български</a>
+<a href="/ru/oop/external-programs/the-proc-object">Русский</a>
+<a href="/uk/oop/external-programs/the-proc-object">Українська</a>
+<a class="lang-about" href="/la/about-translation">De translatione</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
 <p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

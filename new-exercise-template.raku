@@ -2,7 +2,7 @@
 
 use YAMLish;
 
-my %toc = load-yaml('_data/toc.yaml'.IO.slurp);
+my %toc = load-yaml('_data/toc/en.yaml'.IO.slurp);
 
 for %toc<toc><> -> %part {
     for %part<items><> -> %subpart {
@@ -22,14 +22,14 @@ for %toc<toc><> -> %part {
                     }
                     unless "$exercise-url/solution/index.md".IO.f {
                         note "No solution file for [%section<title> / %exercise<title>]($exercise-url)";
-                        solution-template(%exercise<title>, $exercise-url, %section<url>, %exercise<url>);
+                        solution-template(%exercise<title>, $exercise-url, %section<url>, %exercise<url>, %part<url>);
                     }
 
                     my $filename = %exercise<file> // "%exercise<url>.raku";
-                    unless "exercises/%section<url>/$filename".IO.f {
-                        note "No code file at exercises/%section<url>/$filename";
-                        mkdir "exercises/%section<url>";
-                        "exercises/%section<url>/$filename".IO.spurt: '';
+                    unless "exercises/%part<url>/%section<url>/$filename".IO.f {
+                        note "No code file at exercises/%part<url>/%section<url>/$filename";
+                        mkdir "exercises/%part<url>/%section<url>";
+                        "exercises/%part<url>/%section<url>/$filename".IO.spurt: '';
                     }
                 }
             }
@@ -76,7 +76,7 @@ sub exercise-template($title, $url, $section-url, $exercise-url) {
     TMPL
 }
 
-sub solution-template($title, $url, $section-url, $exercise-url) {
+sub solution-template($title, $url, $section-url, $exercise-url, $part-url) {
     mkdir "$url/solution";
 
     "$url/solution/index.md".IO.spurt: qq:to/TMPL/;
@@ -93,12 +93,12 @@ sub solution-template($title, $url, $section-url, $exercise-url) {
     ```raku
     ```
 
-    🦋 Find the program in the file [$exercise-url.raku](https://github.com/ash/raku-course/blob/master/exercises/$section-url/$exercise-url.raku).
+    🦋 Find the program in the file [$exercise-url.raku](https://github.com/ash/raku-course/blob/master/exercises/$part-url/$section-url/$exercise-url.raku).
 
     ## Output
 
     ```console
-    \$ raku exercises/$section-url/$exercise-url.raku
+    \$ raku exercises/$part-url/$section-url/$exercise-url.raku
     ```
 
     \{% include nav.html %}

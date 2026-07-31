@@ -26,7 +26,7 @@ $ raku two-arguments.raku 2 3
 
 ## Kommentare
 
-1. Die zwei positionalen Parameter empfangen die zwei Woerter von der Kommandozeile.
+1. Die zwei positionalen Parameter empfangen die zwei Wörter von der Kommandozeile.
 
 1. Kommandozeilenargumente kommen als Zeichenketten an, aber der `+`-Operator konvertiert sie in Zahlen, sodass `2` und `3` zu `5` addiert werden.
 

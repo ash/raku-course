@@ -6,10 +6,10 @@ title: Schlüssel, Werte und Paare
 
 Andere Adverbien ändern, **was** eine Indizierung zurückgibt. Standardmäßig gibt eine Indizierung den Wert zurück; diese geben mehr zurück:
 
-* `:v` -- den Wert (Standard)
-* `:k` -- den Schlüssel (oder Index)
-* `:kv` -- sowohl den Schlüssel als auch den Wert
-* `:p` -- ein `Pair` aus Schlüssel und Wert
+* `:v` — den Wert (Standard)
+* `:k` — den Schlüssel (oder Index)
+* `:kv` — sowohl den Schlüssel als auch den Wert
+* `:p` — ein `Pair` aus Schlüssel und Wert
 
 Bei einem Array ist der "Schlüssel" der Index:
 

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,13 +117,14 @@ Die methode geeft de volgende waarde terug, of <code>IterationEnd</code>
 wanneer er niets meer over is. Hier is een afteliterator die een getal
 oplevert en naar nul toe stapt:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
 
-    <span class="k">method</span> <span class="n">pull-one</span> {
+    <span class="k">method</span> <span class="nb">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n</span>--;
+        <span class="k">return</span> <span class="nv">$!n--</span>;
     }
-}</pre></div>
+}
+</pre></div>
 
 <p>Elke aanroep van <code>pull-one</code> controleert eerst of de
 telling op is; zo niet, dan geeft ze het huidige getal terug en verlaagt
@@ -132,17 +133,19 @@ terug <em>voordat</em> er afgetrokken wordt, dus komen de getallen er
 als <code>3, 2, 1</code> uit. Hem met de hand aandrijven ziet er net zo
 uit als bij elke andere iterator:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
+</pre></div>
 
 <p>Een iterator op zichzelf is niet iets wat een <code>for</code>-lus
 rechtstreeks kan aannemen — een lus verwacht iets <em>iterabels</em>.
 Wikkel de iterator in een <code>Seq</code> en hij wordt luspaar:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}</pre></div>
+}
+</pre></div>
 
 <p>Dat drukt <code>3</code>, <code>2</code>, <code>1</code> af. In
 alledaagse code zou je in plaats daarvan naar <code>gather</code> /
@@ -165,6 +168,22 @@ oefening bij deze sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/paradigms/iterators/writing-an-iterator">English</a>
+<a href="/de/paradigms/iterators/writing-an-iterator">Deutsch</a>
+<a href="/eo/paradigms/iterators/writing-an-iterator">Esperanto</a>
+<a href="/es/paradigms/iterators/writing-an-iterator">Español</a>
+<a href="/it/paradigms/iterators/writing-an-iterator">Italiano</a>
+<a href="/la/paradigms/iterators/writing-an-iterator">Latina</a>
+<a href="/lv/paradigms/iterators/writing-an-iterator">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/paradigms/iterators/writing-an-iterator">Български</a>
+<a href="/ru/paradigms/iterators/writing-an-iterator">Русский</a>
+<a href="/uk/paradigms/iterators/writing-an-iterator">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>

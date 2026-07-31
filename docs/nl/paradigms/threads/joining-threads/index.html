@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=24">
+    <link rel="stylesheet" href="/assets/course.css?v=25">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,10 @@ href="/nl/paradigms/threads">Threads</a></p>
 <p>Om op de voltooiing van een thread te wachten, roep je er
 <code>.finish</code> op aan (ook geschreven als <code>.join</code>). Het
 hoofdprogramma pauzeert daar tot de thread klaar is:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
-<span class="nv">$t</span>.<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">&#39;in the thread&#39;</span> });
+<span class="nv">$t</span>.<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
+</pre></div>
 
 <p>Dit drukt af:</p>
 <div class="highlight"><pre>in the thread
@@ -129,9 +130,10 @@ eindigen voordat de thread de kans had om af te drukken.</p>
 van te zijn dat ze allemaal klaar zijn:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
-<span class="nv">$a</span>.<span class="n">finish</span>;
-<span class="nv">$b</span>.<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
+<span class="nv">$a</span>.<span class="nb">finish</span>;
+<span class="nv">$b</span>.<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
+</pre></div>
 
 <p>De twee threads lopen gelijktijdig, en beide samenvoegen vóór de
 afsluitende <code>say</code> garandeert dat <code>both finished</code>
@@ -146,8 +148,9 @@ Combineer ze met de <code>all</code>-operator <code>&amp;</code> en roep
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
-(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
-<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
+(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="nb">finish</span>;
+<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
+</pre></div>
 
 <p><code>.finish</code> op <code>$a &amp; $b</code> aanroepen draait die
 op beide threads, dus wacht het programma tot geen van beide nog loopt —
@@ -165,6 +168,22 @@ de oefeningen in deze sectie</a>.</p>
         </div>
       </main>
       <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Deze pagina in andere talen:">
+<span class="lang-label">Deze pagina in andere talen:</span>
+<a href="/paradigms/threads/joining-threads">English</a>
+<a href="/de/paradigms/threads/joining-threads">Deutsch</a>
+<a href="/eo/paradigms/threads/joining-threads">Esperanto</a>
+<a href="/es/paradigms/threads/joining-threads">Español</a>
+<a href="/it/paradigms/threads/joining-threads">Italiano</a>
+<a href="/la/paradigms/threads/joining-threads">Latina</a>
+<a href="/lv/paradigms/threads/joining-threads">Latviešu</a>
+<span class="lang-current">Nederlands</span>
+<a href="/bg/paradigms/threads/joining-threads">Български</a>
+<a href="/ru/paradigms/threads/joining-threads">Русский</a>
+<a href="/uk/paradigms/threads/joining-threads">Українська</a>
+<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+</nav>
+
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>
 <p style="margin:.35em 0;"><a href="/nl/about-this-course">Over de cursus</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 <p style="margin:.35em 0;">Vrij en open source · Ondersteund door <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
