@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Algas paaugstinājums'
+title: 'Risinājums: Algas palielināšana'
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ my $raise = 5; # procentos
 say "Jaunā %employee<full-name> alga: %employee<salary>";
 ```
 
-🦋 Atrodiet programmu failā [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Atrodiet programmu failā [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
 ## Izvade
 

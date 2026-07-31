@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Multi-functions with typed parameters
+title: Quiz 2 — Multi-funzioni con parametri tipizzati
 ---
 
 {% include menu.html %}

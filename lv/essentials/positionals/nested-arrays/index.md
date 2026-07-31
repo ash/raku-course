@@ -1,5 +1,5 @@
 ---
-title: Ligzdošanas masīvi
+title: Ligzdoti masīvi
 ---
 
 {% include menu.html %}

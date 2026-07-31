@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam ‘Desmitu skaits’
+title: 'Risinājums: Desmitdaļu skaits'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Ievadiet pozitīvu veselu skaitli: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Pilnu kodu varat atrast failā [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Pilnu kodu varat atrast failā [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Izvade
 

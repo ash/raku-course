@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Izvade ar say</title>
-    <meta property="og:title" content="Izvade ar say" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Izvade ar say — Raku kurss</title>
+    <meta property="og:title" content="Izvade ar say — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Izvade ar say</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,65 +88,86 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/simple-input-output">Vienkārša ievade un izvade</a></p>
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/getting-started">Programmu rakstīšana un
+izpilde</a> / <a href="/lv/essentials/simple-input-output">Vienkārša
+ievade un izvade</a></p>
+<h1 id="izvade-ar-say">Izvade ar <code>say</code></h1>
+<p>Funkcija <code>say</code> (vai apakšprogramma, vai vienkārši
+programma) izdrukā vērtības uz standarta izvades straumi,
+<code>STDOUT</code>. Ja jūs palaidat programmu no termināļa, izvade
+parādās tur. Ja izmantojat tiešsaistes pakalpojumus, izvade tiek
+nosūtīta uz īpašu tīmekļa lapas apgabalu.</p>
+<p>Šeit ir piemērs, kā izmantot <code>say</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;</pre></div>
 
-<h1 id="izvade-ar-say">Izvade ar <code class="language-plaintext highlighter-rouge">say</code></h1>
-
-<p>Funkcija <code class="language-plaintext highlighter-rouge">say</code> (vai apakšprogramma, vai vienkārši programma) izdrukā vērtības uz standarta izvades straumi, <code class="language-plaintext highlighter-rouge">STDOUT</code>. Ja jūs palaidat programmu no termināļa, izvade parādās tur. Ja izmantojat tiešsaistes pakalpojumus, izvade tiek nosūtīta uz īpašu tīmekļa lapas apgabalu.</p>
-
-<p>Šeit ir piemērs, kā izmantot <code class="language-plaintext highlighter-rouge">say</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
-</pre></div>
-
-
-<p>Šī rinda var būt daļa no lielākas programmas vai būt visa programma pati par sevi. Tā acīmredzami izdrukā <code class="language-plaintext highlighter-rouge">42</code> uz izvades.</p>
-
+<p>Šī rinda var būt daļa no lielākas programmas vai būt visa programma
+pati par sevi. Tā acīmredzami izdrukā <code>42</code> uz izvades.</p>
 <p>Tagad strādāsim ar virkni:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello, World!'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello, World!&#39;</span>;
-</pre></div>
+<p>Voilà, mēs redzam <code>Hello, World!</code> uz ekrāna.</p>
+<p>Funkcija <code>say</code> var pieņemt vairāk nekā vienu argumentu,
+tāpēc mēs varam izdrukāt vairākas vērtības vienā reizē:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">'Hello, World!'</span>;</pre></div>
 
+<p>Vienkārši ņemiet vērā, ka šīs izvades daļas tiek apvienotas vienā
+virknē: <code>42Hello, World!</code>, tāpēc labāk ir pievienot atstarpi
+starp tām. Un jums vajadzētu būt iespējai atrisināt šo problēmu,
+piemēram, šādi:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">' '</span>, <span class="s">'Hello, World!'</span>;</pre></div>
 
-<p>Voilà, mēs redzam <code class="language-plaintext highlighter-rouge">Hello, World!</code> uz ekrāna.</p>
-
-<p>Funkcija <code class="language-plaintext highlighter-rouge">say</code> var pieņemt vairāk nekā vienu argumentu, tāpēc mēs varam izdrukāt vairākas vērtības vienā reizē:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">&#39;Hello, World!&#39;</span>;
-</pre></div>
-
-
-<p>Vienkārši ņemiet vērā, ka šīs izvades daļas tiek apvienotas vienā virknē: <code class="language-plaintext highlighter-rouge">42Hello, World!</code>, tāpēc labāk ir pievienot atstarpi starp tām. Un jums vajadzētu būt iespējai atrisināt šo problēmu, piemēram, šādi:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>, <span class="s">&#39; &#39;</span>, <span class="s">&#39;Hello, World!&#39;</span>;
-</pre></div>
-
-
-<p>Pēc visu argumentu izdrukāšanas funkcija <code class="language-plaintext highlighter-rouge">say</code> pievieno jaunas rindas rakstzīmi izvadei.</p>
-
-<p></div></p>
-
+<p>Pēc visu argumentu izdrukāšanas funkcija <code>say</code> pievieno
+jaunas rindas rakstzīmi izvadei.</p>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/simple-input-output">Vienkārša ievade un izvade</a>
-  |  
-        <a href="/lv/essentials/simple-input-output">Vienkārša ievade un izvade</a> / <a href="/lv/essentials/simple-input-output/prompt">Ievade ar <code class="language-plaintext highlighter-rouge">prompt</code></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/simple-input-output/say/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/simple-input-output/say/">English</a> • <a href="/de/essentials/simple-input-output/say/">Deutsch</a> • <a href="/es/essentials/simple-input-output/say/">Español</a> • <a href="/it/essentials/simple-input-output/say/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/simple-input-output/say/">Nederlands</a> • <a href="/bg/essentials/simple-input-output/say/">Български</a> • <a href="/ru/essentials/simple-input-output/say/">Русский</a> • <a href="/uk/essentials/simple-input-output/say/">Українська</a></p>
+<p>← <a href="/lv/essentials/simple-input-output">Vienkārša ievade un
+izvade</a>   |   <a
+href="/lv/essentials/simple-input-output/prompt">Ievade ar
+<code>prompt</code></a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/simple-input-output/say">English</a> • <a
+href="/de/essentials/simple-input-output/say">Deutsch</a> • <a
+href="/es/essentials/simple-input-output/say">Español</a> • <a
+href="/it/essentials/simple-input-output/say">Italiano</a> • <a
+href="/la/essentials/simple-input-output/say">Latina</a> •
+<strong>Latviešu</strong> • <a
+href="/nl/essentials/simple-input-output/say">Nederlands</a> • <a
+href="/bg/essentials/simple-input-output/say">Български</a> • <a
+href="/ru/essentials/simple-input-output/say">Русский</a> • <a
+href="/uk/essentials/simple-input-output/say">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

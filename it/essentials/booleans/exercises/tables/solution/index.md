@@ -1,5 +1,5 @@
 ---
-title: Soluzione a 'Tabelle Booleane'
+title: 'Solution: Tabelle booleane'
 ---
 
 {% include menu.html %}
@@ -25,7 +25,7 @@ say 'False ^^ True is ', False ^^ True;
 say 'False ^^ False is ', False ^^ False;
 ```
 
-🦋 Puoi trovare il codice completo nel file [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 Puoi trovare il codice completo nel file [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
 ## Output
 

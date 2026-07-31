@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — līdz ciklam
+title: 'Viktorīna — `until` cikls'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ierakstītie mainīgie
+title: Tipizētie mainīgie
 ---
 
 {% include menu.html %}

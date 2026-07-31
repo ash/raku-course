@@ -1,5 +1,5 @@
 ---
-title: Viktorīna 2 — Noklusējuma vērtības
+title: Viktorīna — Noklusējuma vērtības
 ---
 
 {% include menu.html %}

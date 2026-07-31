@@ -1,12 +1,13 @@
 ---
-title: Exercise ’Correct the identifiers‘
+title: Pareizi nosaukumi
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Problem
+## Uzdevums
 
-Make the necessary corrections in the following program to make all variable names valid.
+Izdariet nepieciešamos labojumus šajā programmā tā, lai visi mainīgo nosaukumi būtu derīgi.
 
 ```raku
 my $ A G E = 30;
@@ -16,8 +17,8 @@ my $2address = 'Second street, 12';
 my $from--to = 'London to Paris';
 ```
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

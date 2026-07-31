@@ -1,5 +1,5 @@
 ---
-title: Saskaņošana ar diapazonu
+title: Salīdzināšana ar diapazonu
 ---
 
 {% include menu.html %}

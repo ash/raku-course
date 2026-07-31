@@ -1,5 +1,5 @@
 ---
-title: Būla operācijas
+title: Loģiskās operācijas
 ---
 
 {% include menu.html %}

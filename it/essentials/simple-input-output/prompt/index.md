@@ -1,5 +1,5 @@
 ---
-title: Input with prompt
+title: Input con `prompt`
 ---
 
 {% include menu.html %}

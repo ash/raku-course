@@ -1,5 +1,5 @@
 ---
-title: Print command-line arguments
+title: Komandrindas argumentu drukāšana
 ---
 
 {% include menu.html %}

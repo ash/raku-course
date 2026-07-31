@@ -1,5 +1,5 @@
 ---
-title: Esercizio 'Ciao, Concatenazione!'
+title: Ciao, Concatenazione!
 ---
 
 {% include menu.html %}

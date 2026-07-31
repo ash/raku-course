@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Pārbaudot uzvednes rezultātu — Skaitļi’
+title: 'Risinājums: Izpētiet `prompt` rezultātu — Skaitļi'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 Avota kodu var atrast failā [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
+🦋 Avota kodu var atrast failā [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-numbers.raku).
 
 ## Testa izpildes
 

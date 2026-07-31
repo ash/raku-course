@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Faktoriāls ar vairāku funkciju palīdzību'
+title: 'Risinājums: Faktoriāls ar daudzfunkcijām'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ multi sub factorial($n) { $n * factorial($n - 1) }
 say factorial(@*ARGS[0].Int);
 ```
 
-🦋 Atrodiet programmu failā [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/more-on-functions/factorial-with-multi-functions.raku).
+🦋 Atrodiet programmu failā [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/more-on-functions/factorial-with-multi-functions.raku).
 
 ## Izvade
 

@@ -1,5 +1,5 @@
 ---
-title: Ternary operator
+title: Trīsvērtīgais operators
 ---
 
 {% include menu.html %}

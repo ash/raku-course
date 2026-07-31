@@ -1,5 +1,5 @@
 ---
-title: Conversione dei tipi utilizzando metodi di coercizione dei tipi
+title: Conversione dei tipi usando i metodi di coercizione del tipo
 ---
 
 {% include menu.html %}

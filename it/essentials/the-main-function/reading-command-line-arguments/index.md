@@ -1,5 +1,5 @@
 ---
-title: Reading command line arguments
+title: Lettura degli argomenti della riga di comando
 ---
 
 {% include menu.html %}

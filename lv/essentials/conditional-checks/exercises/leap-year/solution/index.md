@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Atrodiet programmu failā [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Atrodiet programmu failā [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Kods 2
 
@@ -52,7 +52,7 @@ my $year = prompt 'Gads: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Garais gads' !! 'Parastais gads';
 ```
 
-🦋 Atrodiet programmu failā [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Atrodiet programmu failā [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
 ## Izvade
 

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Datu tipu konvertēšana</title>
-    <meta property="og:title" content="Datu tipu konvertēšana" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Datu tipu konvertēšana — Raku kurss</title>
+    <meta property="og:title" content="Datu tipu konvertēšana — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Datu tipu konvertēšana</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,100 +88,106 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a></p>
-
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/more-about-types">Vairāk par tipiem</a></p>
 <h1 id="datu-tipu-konvertēšana">Datu tipu konvertēšana</h1>
-
-<p>Līdz šim mēs esam apskatījuši vairākus datu tipus, ko atbalsta Raku. Tie bija dažādi <a href="/lv/essentials/numbers">skaitļi</a> (veseli skaitļi, racionāli skaitļi un peldošā punkta skaitļi), <a href="/lv/essentials/strings">virknes</a> un <a href="/lv/essentials/booleans">loģiskais</a> tips. Katram datu tipam Raku tipa sistēmā ir savs nosaukums.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Str</code></td>
-      <td>Rakstzīmju virkne</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Int</code></td>
-      <td>Vesels skaitlis</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Rat</code></td>
-      <td>Racionāls skaitlis</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Num</code></td>
-      <td>Peldošā punkta skaitlis</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Bool</code></td>
-      <td>Loģiskais Būla tips</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Ir vēl vairāk datu tipu, kurus Raku saprot. Mēs tos apskatīsim turpmākajās šī kursa sadaļās.</p>
-
+<p>Līdz šim mēs esam apskatījuši vairākus datu tipus, ko atbalsta Raku.
+Tie bija dažādi <a href="/lv/essentials/numbers">skaitļi</a> (veseli
+skaitļi, racionāli skaitļi un peldošā punkta skaitļi), <a
+href="/lv/essentials/strings">virknes</a> un <a
+href="/lv/essentials/booleans">loģiskais</a> tips. Katram datu tipam
+Raku tipa sistēmā ir savs nosaukums.</p>
+<p><code>Str</code> | Rakstzīmju virkne <code>Int</code> | Vesels
+skaitlis <code>Rat</code> | Racionāls skaitlis <code>Num</code> |
+Peldošā punkta skaitlis <code>Bool</code> | Loģiskais Būla tips</p>
+<p>Ir vēl vairāk datu tipu, kurus Raku saprot. Mēs tos apskatīsim
+turpmākajās šī kursa sadaļās.</p>
 <h2 id="uzdevumi">Uzdevumi</h2>
-
-<p>Lūdzu, nepalaidiet garām uzdevumus pēc šīs sadaļas, jo tie atklāj papildu informāciju par Raku datu tipiem.</p>
-
-<p><div class="topics"></p>
-<h2 id="tēmas-šajā-sadaļā">Tēmas šajā sadaļā</h2>
+<p>Lūdzu, nepalaidiet garām uzdevumus pēc šīs sadaļas, jo tie atklāj
+papildu informāciju par Raku datu tipiem.</p>
+<section id="šīs-sadaļas-temati" class="topics" data-markdown="1">
+<h2>Šīs sadaļas temati</h2>
 <ul>
-  <li><a href="/lv/essentials/coercion/what">Introspekcija ar <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-  <li><a href="/lv/essentials/coercion/methods">Tipu konvertēšana, izmantojot tipu piespiedu metodes</a></li>
-  <li><a href="/lv/essentials/coercion/new">Tipu konvertēšana, izmantojot konstruktoru formas</a></li>
-  <li><a href="/lv/essentials/coercion/prefixes">Tipu konvertēšana ar prefiksu operatoriem</a></li>
+<li><a href="/lv/essentials/coercion/what">Introspekcija ar
+<code>WHAT</code></a></li>
+<li><a href="/lv/essentials/coercion/methods">Tipu konvertēšana,
+izmantojot tipu piespiedu metodes</a></li>
+<li><a href="/lv/essentials/coercion/new">Tipu konvertēšana, izmantojot
+konstruktoru formas</a></li>
+<li><a href="/lv/essentials/coercion/prefixes">Tipu konvertēšana ar
+prefiksu operatoriem</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="prakse">Prakse</h2>
-
-<p>Pabeidziet viktorīnu, kas aptver šīs tēmas saturu.</p>
+</section>
+<section id="prakse" class="practice" data-markdown="1">
+<h2>Prakse</h2>
+<p>Jūs gaida 2 viktorīnas par šīs sadaļas saturu.</p>
 <ul>
-  <li><a href="/lv/essentials/coercion/quiz">Tests: Kāds ir tā tips?</a></li>
+<li><a href="/lv/essentials/coercion/quiz">Tests: Kāds ir tā
+tips?</a></li>
+<li><a href="/lv/essentials/coercion/what/quiz">Tests: Ko atgriež
+WHAT?</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="vingrinājumi">Vingrinājumi</h2>
-
-<p>Šī sadaļa satur <a href="/lv/essentials/coercion/exercises">
-3 uzdevumi</a>. Pārbaudiet visas šīs sadaļas tēmas, pirms dodaties uz kodēšanas praksi.</p>
-<ol>
-  <li><a href="/lv/essentials/coercion/exercises/true-false-numbers">True un False skaitļi</a></li>
-  <li><a href="/lv/essentials/coercion/exercises/true-false-strings">True un False virknes</a></li>
-  <li><a href="/lv/essentials/coercion/exercises/fractional-part">Frakcionālā daļa</a></li>
+</section>
+<section id="vingrinājumi" class="exercises" data-markdown="1">
+<h2>Vingrinājumi</h2>
+<p>Šajā sadaļā ir <a href="exercises">3 vingrinājumi</a>. Pirms
+ķerieties pie vingrinājumiem, izlasiet visus šīs sadaļas tematus.</p>
+<ol type="1">
+<li><a href="/lv/essentials/coercion/exercises/true-false-numbers">True
+un False skaitļi</a></li>
+<li><a href="/lv/essentials/coercion/exercises/true-false-strings">True
+un False virknes</a></li>
+<li><a
+href="/lv/essentials/coercion/exercises/fractional-part">Frakcionālā
+daļa</a></li>
 </ol>
-
-<p></div></p>
-
+</section>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-    <a href="/lv/essentials/loops">Cikli</a>
-        / <a href="/lv/essentials/loops/postfix-for">Pēcpārbaudes forma <code class="language-plaintext highlighter-rouge">for</code></a>
-  |  
-        <a href="/lv/essentials/coercion/what">Introspekcija ar <code class="language-plaintext highlighter-rouge">WHAT</code></a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/coercion/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/coercion/">English</a> • <a href="/de/essentials/coercion/">Deutsch</a> • <a href="/es/essentials/coercion/">Español</a> • <a href="/it/essentials/coercion/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/coercion/">Nederlands</a> • <a href="/bg/essentials/coercion/">Български</a> • <a href="/ru/essentials/coercion/">Русский</a> • <a href="/uk/essentials/coercion/">Українська</a></p>
+<p>← <a href="/lv/essentials/more-about-types">Vairāk par tipiem</a>
+  |   <a href="/lv/essentials/coercion/what">Introspekcija ar
+<code>WHAT</code></a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials/coercion">English</a>
+• <a href="/de/essentials/coercion">Deutsch</a> • <a
+href="/es/essentials/coercion">Español</a> • <a
+href="/it/essentials/coercion">Italiano</a> • <a
+href="/la/essentials/coercion">Latina</a> • <strong>Latviešu</strong> •
+<a href="/nl/essentials/coercion">Nederlands</a> • <a
+href="/bg/essentials/coercion">Български</a> • <a
+href="/ru/essentials/coercion">Русский</a> • <a
+href="/uk/essentials/coercion">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

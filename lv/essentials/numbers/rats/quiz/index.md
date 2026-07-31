@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Racionālie skaitļi'
+title: 'Tests: Racionālie skaitļi Raku'
 ---
 
 {% include menu.html %}

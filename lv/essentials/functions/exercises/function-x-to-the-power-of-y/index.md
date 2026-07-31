@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Funkcija, lai aprēķinātu xʸ'
+title: Funkcija xʸ aprēķināšanai
 ---
 
 {% include menu.html %}

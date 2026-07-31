@@ -1,5 +1,5 @@
 ---
-title: Esercizio ‘Lunghezza del nome‘
+title: Lunghezza del nome
 ---
 
 {% include menu.html %}

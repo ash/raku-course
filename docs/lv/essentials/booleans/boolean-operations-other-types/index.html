@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Booleānas operācijas ar citiem tipiem</title>
-    <meta property="og:title" content="Booleānas operācijas ar citiem tipiem" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Loģiskās operācijas ar citiem tipiem — Raku kurss</title>
+    <meta property="og:title" content="Loģiskās operācijas ar citiem tipiem — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Booleānas operācijas ar citiem tipiem</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,59 +88,103 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/booleans">Loģiskais tips</a></p>
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/variables">Mainīgo un datu tipu pamati</a> / <a
+href="/lv/essentials/booleans">Loģiskais tips</a></p>
+<h1 id="loģiskās-operācijas-ar-citiem-tipiem">Loģiskās operācijas ar
+citiem tipiem</h1>
+<p>Nākamajā sekcijā mēs runāsim par datu konvertēšanu no viena tipa uz
+citu. Bet pirms tam ir svarīgi izcelt šādu Raku īpatnību. Kad jūs
+pielietojat booleānas operācijas virknēm vai integeriem, vērtības netiek
+konvertētas uz booleāniem, un rezultāts arī nav booleāna vērtība.
+Apskatīsim šādus piemērus:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> &amp;&amp; <span class="s">'World'</span>; <span class="c1"># World</span>
+<span class="nb">say</span> <span class="s">'Alpha'</span> || <span class="s">'Beta'</span>;  <span class="c1"># Alpha</span>
+<span class="nb">say</span> <span class="mi">0</span> ^^ <span class="mi">42</span>;            <span class="c1"># 42</span></pre></div>
 
-<h1 id="loģiskās-operācijas-ar-citiem-tipiem">Loģiskās operācijas ar citiem tipiem</h1>
-
-<p>Nākamajā sekcijā mēs runāsim par datu konvertēšanu no viena tipa uz citu. Bet pirms tam ir svarīgi izcelt šādu Raku īpatnību. Kad jūs pielietojat booleānas operācijas virknēm vai integeriem, vērtības netiek konvertētas uz booleāniem, un rezultāts arī nav booleāna vērtība. Apskatīsim šādus piemērus:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> &amp;&amp; <span class="s">&#39;World&#39;</span>; <span class="c1"># World</span>
-<span class="nb">say</span> <span class="s">&#39;Alpha&#39;</span> || <span class="s">&#39;Beta&#39;</span>;  <span class="c1"># Alpha</span>
-<span class="nb">say</span> <span class="mi">0</span> ^^ <span class="mi">42</span>;            <span class="c1"># 42</span>
-</pre></div>
-
-
-<p>Izlasīsim noteikumus 📖 <a href="https://docs.raku.org/language/operators#Tight_AND_precedence">no dokumentācijas</a>:</p>
-
+<p>Izlasīsim noteikumus 📖 <a
+href="https://docs.raku.org/language/operators#Tight_AND_precedence">no
+dokumentācijas</a>:</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> atgriež pirmo argumentu, kas booleāna kontekstā tiek novērtēts kā False, pretējā gadījumā atgriež pēdējo argumentu.</li>
-  <li><code class="language-plaintext highlighter-rouge">||</code> atgriež pirmo argumentu, kas booleāna kontekstā tiek novērtēts kā True, pretējā gadījumā atgriež pēdējo argumentu.</li>
-  <li><code class="language-plaintext highlighter-rouge">^^</code> atgriež True argumentu, ja tāds ir (un tikai viens). Atgriež pēdējo argumentu, ja visi argumenti ir False. Atgriež <code class="language-plaintext highlighter-rouge">Nil</code>, ja vairāk nekā viens arguments ir True.</li>
+<li><code>&amp;&amp;</code> atgriež pirmo argumentu, kas booleāna
+kontekstā tiek novērtēts kā False, pretējā gadījumā atgriež pēdējo
+argumentu.</li>
+<li><code>||</code> atgriež pirmo argumentu, kas booleāna kontekstā tiek
+novērtēts kā True, pretējā gadījumā atgriež pēdējo argumentu.</li>
+<li><code>^^</code> atgriež True argumentu, ja tāds ir (un tikai viens).
+Atgriež pēdējo argumentu, ja visi argumenti ir False. Atgriež
+<code>Nil</code>, ja vairāk nekā viens arguments ir True.</li>
 </ul>
-
-<p>Pievērsiet uzmanību, ka mēs tikko sastāpāmies ar ‘null’ vērtību <code class="language-plaintext highlighter-rouge">Nil</code>.</p>
-
-<p><div class="practice"></p>
-<h2 id="prakse">Prakse</h2>
-
-<p>Pabeidziet viktorīnu, kas aptver šīs tēmas saturu.</p>
+<p>Pievērsiet uzmanību, ka mēs tikko sastāpāmies ar ‘null’ vērtību
+<code>Nil</code>.</p>
+<section id="prakse" class="practice" data-markdown="1">
+<h2>Prakse</h2>
+<p>Jūs gaida 1 viktorīna par šī temata saturu.</p>
 <ul>
-  <li><a href="/lv/essentials/booleans/boolean-operations-other-types/quiz">Tests: Loģiskās operācijas ar neloģiskiem datiem</a></li>
+<li><a
+href="/lv/essentials/booleans/boolean-operations-other-types/quiz">Tests:
+Loģiskās operācijas ar neloģiskiem datiem</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/booleans">Loģiskais tips</a> / <a href="/lv/essentials/booleans/operations">Loģiskās operācijas</a>
-  |  
-        💪 <a href="/lv/essentials/booleans/exercises">Vingrinājumi: Loģiskais tips</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/booleans/boolean-operations-other-types/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/booleans/boolean-operations-other-types/">English</a> • <a href="/de/essentials/booleans/boolean-operations-other-types/">Deutsch</a> • <a href="/es/essentials/booleans/boolean-operations-other-types/">Español</a> • <a href="/it/essentials/booleans/boolean-operations-other-types/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/booleans/boolean-operations-other-types/">Nederlands</a> • <a href="/bg/essentials/booleans/boolean-operations-other-types/">Български</a> • <a href="/ru/essentials/booleans/boolean-operations-other-types/">Русский</a> • <a href="/uk/essentials/booleans/boolean-operations-other-types/">Українська</a></p>
+<p>← <a href="/lv/essentials/booleans/operations/quiz">Tests: Loģiskās
+operācijas</a>   |   <a
+href="/lv/essentials/booleans/boolean-operations-other-types/quiz">Tests:
+Loģiskās operācijas ar neloģiskiem datiem</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/essentials/booleans/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/booleans/boolean-operations-other-types">English</a> •
+<a
+href="/de/essentials/booleans/boolean-operations-other-types">Deutsch</a>
+• <a
+href="/es/essentials/booleans/boolean-operations-other-types">Español</a>
+• <a
+href="/it/essentials/booleans/boolean-operations-other-types">Italiano</a>
+• <a
+href="/la/essentials/booleans/boolean-operations-other-types">Latina</a>
+• <strong>Latviešu</strong> • <a
+href="/nl/essentials/booleans/boolean-operations-other-types">Nederlands</a>
+• <a
+href="/bg/essentials/booleans/boolean-operations-other-types">Български</a>
+• <a
+href="/ru/essentials/booleans/boolean-operations-other-types">Русский</a>
+• <a
+href="/uk/essentials/booleans/boolean-operations-other-types">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

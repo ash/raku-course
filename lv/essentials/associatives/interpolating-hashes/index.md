@@ -1,5 +1,5 @@
 ---
-title: Starphu interpolācija
+title: Hashes interpolācija
 ---
 
 {% include menu.html %}

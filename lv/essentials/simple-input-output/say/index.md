@@ -1,5 +1,5 @@
 ---
-title: Izvade ar say
+title: 'Izvade ar `say`'
 ---
 
 {% include menu.html %}

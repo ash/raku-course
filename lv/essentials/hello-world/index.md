@@ -1,5 +1,5 @@
 ---
-title: Hello, World! in Raku
+title: 'Sveika, Pasaule!'
 ---
 
 {% include menu.html %}

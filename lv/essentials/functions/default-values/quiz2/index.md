@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Funkcijas ar noklusējuma vērtībām
+title: Viktorīna — Funkcijas ar noklusējuma vērtībām
 ---
 
 {% include menu.html %}

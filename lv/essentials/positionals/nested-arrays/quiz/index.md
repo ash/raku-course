@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Iekļautie masīvi
+title: Viktorīna — Ligzdoti masīvi
 ---
 
 {% include menu.html %}

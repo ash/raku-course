@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — while cikls
+title: 'Viktorīna — `while` cikls'
 ---
 
 {% include menu.html %}

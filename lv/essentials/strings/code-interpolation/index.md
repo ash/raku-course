@@ -1,5 +1,5 @@
 ---
-title: Koda interpolācija Raku virknēs
+title: Koda interpolācija
 ---
 
 {% include menu.html %}

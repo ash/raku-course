@@ -1,5 +1,5 @@
 ---
-title: Speciālo rakstzīmju izvairīšanās Raku virknēs
+title: Speciālo rakstzīmju izbēgšana
 ---
 
 {% include menu.html %}

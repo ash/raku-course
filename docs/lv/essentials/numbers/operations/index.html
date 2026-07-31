@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Operācijas ar skaitļiem</title>
-    <meta property="og:title" content="Operācijas ar skaitļiem" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Operācijas ar skaitļiem — Raku kurss</title>
+    <meta property="og:title" content="Operācijas ar skaitļiem — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Operācijas ar skaitļiem</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,188 +88,137 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/numbers">Skaitļi</a></p>
-
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/variables">Mainīgo un datu tipu pamati</a> / <a
+href="/lv/essentials/numbers">Skaitļi</a></p>
 <h1 id="operācijas-ar-skaitļiem">Operācijas ar skaitļiem</h1>
-
-<p>Nav šaubu, ka jūs jau zināt dažas operācijas, ko varat veikt ar Raku skaitļiem. Tikai jāpiemin, ka <em>operācijas</em> simbols tiek saukts par <em>operatoru</em>. Objekti, uz kuriem mēs veicam operācijas, tiek saukti par <em>operandiem</em>.</p>
-
+<p>Nav šaubu, ka jūs jau zināt dažas operācijas, ko varat veikt ar Raku
+skaitļiem. Tikai jāpiemin, ka <em>operācijas</em> simbols tiek saukts
+par <em>operatoru</em>. Objekti, uz kuriem mēs veicam operācijas, tiek
+saukti par <em>operandiem</em>.</p>
 <h2 id="aritmētika">Aritmētika</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Operators</strong></td>
-      <td><strong>Operācija</strong></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">+</code></td>
-      <td>Saskaitīšana</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">-</code></td>
-      <td>Atņemšana</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">*</code></td>
-      <td>Reizināšana</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">/</code></td>
-      <td>Dalīšana</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Tā kā Raku <a href="/lv/essentials/on-unicode">ļoti labi atbalsta Unicode</a>, dažiem no šiem operatoriem ir ne-ASCII ekvivalenti:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">×</code></td>
-      <td>Reizināšana</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
-      <td>Dalīšana</td>
-    </tr>
-  </tbody>
-</table>
-
+<p><strong>Operators</strong> | <strong>Operācija</strong>
+<code>+</code> | Saskaitīšana <code>-</code> | Atņemšana <code>*</code>
+| Reizināšana <code>/</code> | Dalīšana</p>
+<p>Tā kā Raku <a href="/lv/essentials/on-unicode">ļoti labi atbalsta
+Unicode</a>, dažiem no šiem operatoriem ir ne-ASCII ekvivalenti:</p>
+<p><code>×</code> | Reizināšana <code>÷</code> | Dalīšana</p>
 <p>Lai mainītu izpildes secību, izmantojiet iekavas:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
-<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span></pre></div>
 
 <h2 id="modulis">Modulis</h2>
-
-<p>Moduļa operators ir <code class="language-plaintext highlighter-rouge">%</code>, kā daudzās citās valodās.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%</code></td>
-      <td>Modulis</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Tas atgriež divu skaitļu veselo dalījumu atlikumu, tāpēc <code class="language-plaintext highlighter-rouge">10 % 3</code> ir <code class="language-plaintext highlighter-rouge">1</code>. Ņemiet vērā, ka <code class="language-plaintext highlighter-rouge">-10 % 3</code> ir <code class="language-plaintext highlighter-rouge">2</code>, jo operācijas rezultāts tiek definēts kā starpība starp pirmo skaitli un noapaļoto dalījumu, kas reizināts ar otro skaitli. Tātad, <code class="language-plaintext highlighter-rouge">$a % $b</code> ir ekvivalents <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
-
+<p>Moduļa operators ir <code>%</code>, kā daudzās citās valodās.</p>
+<p><code>%</code> | Modulis</p>
+<p>Tas atgriež divu skaitļu veselo dalījumu atlikumu, tāpēc
+<code>10 % 3</code> ir <code>1</code>. Ņemiet vērā, ka
+<code>-10 % 3</code> ir <code>2</code>, jo operācijas rezultāts tiek
+definēts kā starpība starp pirmo skaitli un noapaļoto dalījumu, kas
+reizināts ar otro skaitli. Tātad, <code>$a % $b</code> ir ekvivalents
+<code>$a - $b * floor($a / $b)</code>.</p>
 <h2 id="dalāmība">Dalāmība</h2>
-
-<p>Raku pievieno noderīgu operatoru, lai pārbaudītu, vai skaitlis ir dalāms ar citu skaitli.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
-      <td>Dalāmība</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Tas ir infiksu operators, kam nepieciešami divi operandi: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Ja pirmais operands ir dalāms ar otro operandu, rezultāts ir Būla <code class="language-plaintext highlighter-rouge">True</code>. Pretējā gadījumā <code class="language-plaintext highlighter-rouge">False</code>.</p>
-
+<p>Raku pievieno noderīgu operatoru, lai pārbaudītu, vai skaitlis ir
+dalāms ar citu skaitli.</p>
+<p><code>%%</code> | Dalāmība</p>
+<p>Tas ir infiksu operators, kam nepieciešami divi operandi:
+<code>10 %% 3</code>. Ja pirmais operands ir dalāms ar otro operandu,
+rezultāts ir Būla <code>True</code>. Pretējā gadījumā
+<code>False</code>.</p>
 <h2 id="veselo-skaitļu-operācijas">Veselo skaitļu operācijas</h2>
-
-<p>Ir īpašas operācijas, kas atgriež veselu skaitļu rezultātus. To operatori ir vārdi, nevis simboli.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">div</code></td>
-      <td>Veselo skaitļu dalīšana</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
-      <td>Veselo skaitļu modulis</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><code class="language-plaintext highlighter-rouge">div</code> operators noapaļo rezultātu uz leju, tāpēc <code class="language-plaintext highlighter-rouge">10 div 3</code> ir <code class="language-plaintext highlighter-rouge">3</code>, un <code class="language-plaintext highlighter-rouge">-10 div 3</code> ir <code class="language-plaintext highlighter-rouge">-4</code>.</p>
-
-<p>Gan <code class="language-plaintext highlighter-rouge">div</code>, gan <code class="language-plaintext highlighter-rouge">mod</code> pieprasa veselu skaitļu operandus. Tāpēc šāda programma nedarbosies, ja jūs atkomentēsiet rindas, kas atzīmētas kā <code class="language-plaintext highlighter-rouge">Kļūda</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<p>Ir īpašas operācijas, kas atgriež veselu skaitļu rezultātus. To
+operatori ir vārdi, nevis simboli.</p>
+<p><code>div</code> | Veselo skaitļu dalīšana <code>mod</code> | Veselo
+skaitļu modulis</p>
+<p><code>div</code> operators noapaļo rezultātu uz leju, tāpēc
+<code>10 div 3</code> ir <code>3</code>, un <code>-10 div 3</code> ir
+<code>-4</code>.</p>
+<p>Gan <code>div</code>, gan <code>mod</code> pieprasa veselu skaitļu
+operandus. Tāpēc šāda programma nedarbosies, ja jūs atkomentēsiet
+rindas, kas atzīmētas kā <code>Kļūda</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 mod 3; # Kļūda</span>
 
 <span class="nb">say</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
-<span class="c1"># say 10.3 div 3.3; # Kļūda</span>
-</pre></div>
-
+<span class="c1"># say 10.3 div 3.3; # Kļūda</span></pre></div>
 
 <h2 id="pakāpe">Pakāpe</h2>
-
-<p>Ir divi veidi, kā iegūt <em>x</em> pakāpē <em>y</em> rezultātu. Pirmkārt, jūs varat izmantot <code class="language-plaintext highlighter-rouge">**</code> operatoru:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
-</pre></div>
-
+<p>Ir divi veidi, kā iegūt <em>x</em> pakāpē <em>y</em> rezultātu.
+Pirmkārt, jūs varat izmantot <code>**</code> operatoru:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span></pre></div>
 
 <p>Otrkārt, jūs varat izmantot augšraksta ciparus, piemēram:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span>⁴; <span class="c1"># 81</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
-</pre></div>
-
-
-<p>Ir iespējams izmantot vairāk nekā vienu augšraksta ciparu, lai iegūtu vērtību, kas ir lielāka par 9. Piemēram:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
-</pre></div>
-
+<p>Ir iespējams izmantot vairāk nekā vienu augšraksta ciparu, lai iegūtu
+vērtību, kas ir lielāka par 9. Piemēram:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span>¹⁵; <span class="c1"># 32768</span></pre></div>
 
 <p>Negatīva pakāpe arī nav problēma:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="nb">say</span> <span class="mi">2</span>⁻²; <span class="c1"># 0.25</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
-<span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
-</pre></div>
-
-
-<p>Ņemiet vērā, ka pēdējo divu izteiksmju rezultāts ir <code class="language-plaintext highlighter-rouge">Rat</code> skaitlis.</p>
-
+<p>Ņemiet vērā, ka pēdējo divu izteiksmju rezultāts ir <code>Rat</code>
+skaitlis.</p>
 <h2 id="operācijas-ar-piešķiršanu">Operācijas ar piešķiršanu</h2>
-
-<p>Visas operācijas atbalsta saīsināto sintaksi, kad nepieciešams atjaunināt mainīgo. Demonstrēsim to ar <code class="language-plaintext highlighter-rouge">+</code> piemēru.</p>
-
+<p>Visas operācijas atbalsta saīsināto sintaksi, kad nepieciešams
+atjaunināt mainīgo. Demonstrēsim to ar <code>+</code> piemēru.</p>
 <p>Pilnā forma</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;</pre></div>
 
 <p>ir ekvivalenta:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
-</pre></div>
-
-
-<p></div></p>
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;</pre></div>
 
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/numbers">Skaitļi</a> / <a href="/lv/essentials/numbers/numeric">Peldošā punkta skaitļi</a>
-  |  
-        💪 <a href="/lv/essentials/numbers/exercises">Vingrinājumi: Skaitļi</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/numbers/operations/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/numbers/operations/">English</a> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+<p>← <a href="/lv/essentials/numbers/numeric">Peldošā punkta skaitļi</a>
+  |   <a href="/lv/essentials/numbers/exercises/apple-sharing">Ābolu
+dalīšana</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/essentials/numbers/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/operations">English</a> • <a
+href="/de/essentials/numbers/operations">Deutsch</a> • <a
+href="/es/essentials/numbers/operations">Español</a> • <a
+href="/it/essentials/numbers/operations">Italiano</a> • <a
+href="/la/essentials/numbers/operations">Latina</a> •
+<strong>Latviešu</strong> • <a
+href="/nl/essentials/numbers/operations">Nederlands</a> • <a
+href="/bg/essentials/numbers/operations">Български</a> • <a
+href="/ru/essentials/numbers/operations">Русский</a> • <a
+href="/uk/essentials/numbers/operations">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

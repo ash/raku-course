@@ -1,5 +1,5 @@
 ---
-title: while
+title: 'Izmantojot `while`'
 ---
 
 {% include menu.html %}

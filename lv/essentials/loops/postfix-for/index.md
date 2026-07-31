@@ -1,5 +1,5 @@
 ---
-title: 'Postfix form of "for"'
+title: 'Pēcpārbaudes forma `for`'
 ---
 
 {% include menu.html %}

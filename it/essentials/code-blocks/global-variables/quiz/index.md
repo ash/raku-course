@@ -1,5 +1,5 @@
 ---
-title: Quiz — Variabili globali
+title: Quiz — Variabili globali
 ---
 
 {% include menu.html %}

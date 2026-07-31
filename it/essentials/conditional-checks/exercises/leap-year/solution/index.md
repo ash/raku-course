@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Anno bisestile'
+title: 'Solution: Anno bisestile'
 ---
 
 {% include menu.html %}
@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Trova il programma nel file [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Trova il programma nel file [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Codice 2
 
@@ -52,7 +52,7 @@ my $year = prompt 'Anno: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Anno bisestile' !! 'Anno comune';
 ```
 
-🦋 Trova il programma nel file [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Trova il programma nel file [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
 ## Output
 

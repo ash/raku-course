@@ -1,5 +1,5 @@
 ---
-title: Stampa gli argomenti della riga di comando
+title: Stampa degli argomenti della riga di comando
 ---
 
 {% include menu.html %}

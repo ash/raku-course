@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Diapazonu veidošana
+title: Viktorīna — diapazonu veidošana
 ---
 
 {% include menu.html %}

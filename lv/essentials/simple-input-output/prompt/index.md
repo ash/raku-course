@@ -1,5 +1,5 @@
 ---
-title: Ievade ar uzvedni
+title: 'Ievade ar `prompt`'
 ---
 
 {% include menu.html %}

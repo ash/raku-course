@@ -1,5 +1,5 @@
 ---
-title: Raku pamati
+title: Pamati
 ---
 
 {% assign menu_for_part = "essentials" %}

@@ -1,5 +1,5 @@
 ---
-title: Allomorphs
+title: Allomorfi
 ---
 
 {% include menu.html %}

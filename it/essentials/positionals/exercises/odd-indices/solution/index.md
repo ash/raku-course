@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Indici dispari'
+title: 'Solution: Indici dispari'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my @data = 10, 12, 1, 5, -9, 8, 36, 18, 21;
 say @data[2 * $_ - 1] for 1 .. @data/2;
 ```
 
-🦋 Trova il programma nel file [odd-indices.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/odd-indices.raku).
+🦋 Trova il programma nel file [odd-indices.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/odd-indices.raku).
 
 ## Output
 

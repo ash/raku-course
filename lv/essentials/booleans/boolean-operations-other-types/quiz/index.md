@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Būla operācijas ar nebūla datiem'
+title: 'Tests: Loģiskās operācijas ar neloģiskiem datiem'
 ---
 
 {% include menu.html %}

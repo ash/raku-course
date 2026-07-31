@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Speciālo rakstzīmju izvairīšanās Raku virknēs</title>
-    <meta property="og:title" content="Speciālo rakstzīmju izvairīšanās Raku virknēs" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Speciālo rakstzīmju izbēgšana — Raku kurss</title>
+    <meta property="og:title" content="Speciālo rakstzīmju izbēgšana — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Speciālo rakstzīmju izvairīšanās Raku virknēs</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,124 +88,125 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/strings">Virknes</a></p>
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/variables">Mainīgo un datu tipu pamati</a> / <a
+href="/lv/essentials/strings">Virknes</a></p>
+<h1 id="speciālo-rakstzīmju-izbēgšana">Speciālo rakstzīmju
+izbēgšana</h1>
+<p>Iedomājieties, ka vēlaties izdrukāt cenu zīmi, un jūs saglabājat gan
+produkta nosaukumu, gan tā cenu skalārajos mainīgajos?</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electricity'</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
 
-<h1 id="speciālo-rakstzīmju-izbēgšana">Speciālo rakstzīmju izbēgšana</h1>
+<p>Kā izdrukāt zīmi, ja cena ir domāta dolāros? Paredzētā izvade ir:
+<code>Electricity costs $3.14</code>. Dolāra zīme dubultajās pēdiņās ir
+mainīgā interpolācijas indikators. Lai izdrukātu pašu <code>$</code>
+rakstzīmi, jums tā jāizvairās:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;</pre></div>
 
-<p>Iedomājieties, ka vēlaties izdrukāt cenu zīmi, un jūs saglabājat gan produkta nosaukumu, gan tā cenu skalārajos mainīgajos?</p>
+<p>Protams, jūs varat izmantot virknes savienošanu un izvairīties no
+<code>$</code> izvairīšanās:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' costs $'</span> ~ <span class="nv">$price</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
-</pre></div>
+<p>Šis variants izdrukā tieši tādu pašu virkni, bet interpolācija
+izskatās dabiskāk un ir vieglāk lasāma. Ņemiet vērā, ka <code>$</code>
+rakstzīme netika interpolēta vai izvairīta vienkāršajās pēdiņās:
+<code>' costs $'</code>. Tā ir galvenā atšķirība. Speciālās rakstzīmes
+vienkāršajās pēdiņās parādās tādas, kādas tās ir.</p>
+<p>Šeit ir vēl dažas speciālās rakstzīmes, kurām dubultajās pēdiņās ir
+īpaša nozīme:</p>
+<p><code>\$</code> | Dolāra zīme <code>\n</code> | Jauna rinda
+<code>\r</code> | Karietes atgriešana <code>\t</code> | Horizontāla
+tabulācija <code>\"</code> | Dubultā pēdiņa <code>\\</code> |
+Atpakaļslīpsvītra</p>
+<p>Tas, kā jūs citējat virkni, nosaka, kā Raku apstrādā speciālās
+rakstzīmes. Apsveriet šos divus piemērus:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'One\nTwo'</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;</pre></div>
 
-
-<p>Kā izdrukāt zīmi, ja cena ir domāta dolāros? Paredzētā izvade ir: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. Dolāra zīme dubultajās pēdiņās ir mainīgā interpolācijas indikators. Lai izdrukātu pašu <code class="language-plaintext highlighter-rouge">$</code> rakstzīmi, jums tā jāizvairās:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
-</pre></div>
-
-
-<p>Protams, jūs varat izmantot virknes savienošanu un izvairīties no <code class="language-plaintext highlighter-rouge">$</code> izvairīšanās:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
-</pre></div>
-
-
-<p>Šis variants izdrukā tieši tādu pašu virkni, bet interpolācija izskatās dabiskāk un ir vieglāk lasāma. Ņemiet vērā, ka <code class="language-plaintext highlighter-rouge">$</code> rakstzīme netika interpolēta vai izvairīta vienkāršajās pēdiņās: <code class="language-plaintext highlighter-rouge">' costs $'</code>. Tā ir galvenā atšķirība. Speciālās rakstzīmes vienkāršajās pēdiņās parādās tādas, kādas tās ir.</p>
-
-<p>Šeit ir vēl dažas speciālās rakstzīmes, kurām dubultajās pēdiņās ir īpaša nozīme:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
-      <td>Dolāra zīme</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
-      <td>Jauna rinda</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
-      <td>Karietes atgriešana</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
-      <td>Horizontāla tabulācija</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
-      <td>Dubultā pēdiņa</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
-      <td>Atpakaļslīpsvītra</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Tas, kā jūs citējat virkni, nosaka, kā Raku apstrādā speciālās rakstzīmes. Apsveriet šos divus piemērus:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
-<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
-</pre></div>
-
-
-<p>Ja jūs palaidīsiet šo programmu, jūs redzēsiet, ka pirmā virkne parādās tāda, kāda tā ir vienā rindā. Otrā virkne tika sadalīta divās daļās:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>One\nTwo
+<p>Ja jūs palaidīsiet šo programmu, jūs redzēsiet, ka pirmā virkne
+parādās tāda, kāda tā ir vienā rindā. Otrā virkne tika sadalīta divās
+daļās:</p>
+<pre><code>One\nTwo
 Three
-Four
-</code></pre></div></div>
+Four</code></pre>
+<p>Dubultajās pēdiņās speciālā secība <code>\n</code> tika apstrādāta kā
+jaunas rindas rakstzīme, savukārt virknei vienkāršajās pēdiņās tā bija
+parasta divu rakstzīmju secība: <code>\</code> un <code>n</code>.</p>
+<p>Ir interesants izņēmums priekš <code>'</code> un <code>\</code>.
+Vienkāršajās pēdiņās jūs varat izvairīties no vienkāršās pēdiņas,
+pievienojot tai priekšā vēl vienu <code>\</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
 
-<p>Dubultajās pēdiņās speciālā secība <code class="language-plaintext highlighter-rouge">\n</code> tika apstrādāta kā jaunas rindas rakstzīme, savukārt virknei vienkāršajās pēdiņās tā bija parasta divu rakstzīmju secība: <code class="language-plaintext highlighter-rouge">\</code> un <code class="language-plaintext highlighter-rouge">n</code>.</p>
+<p>Arī atpakaļslīpsvītra ir jāizvairās, ja tai seko vienkāršā
+pēdiņa:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
 
-<p>Ir interesants izņēmums priekš <code class="language-plaintext highlighter-rouge">'</code> un <code class="language-plaintext highlighter-rouge">\</code>. Vienkāršajās pēdiņās jūs varat izvairīties no vienkāršās pēdiņas, pievienojot tai priekšā vēl vienu <code class="language-plaintext highlighter-rouge">\</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
-</pre></div>
-
-
-<p>Arī atpakaļslīpsvītra ir jāizvairās, ja tai seko vienkāršā pēdiņa:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
-</pre></div>
-
-
-<p><div class="practice"></p>
-<h2 id="prakse">Prakse</h2>
-
-<p>Pabeidziet viktorīnu, kas aptver šīs tēmas saturu.</p>
+<section id="prakse" class="practice" data-markdown="1">
+<h2>Prakse</h2>
+<p>Jūs gaida 1 viktorīna par šī temata saturu.</p>
 <ul>
-  <li><a href="/lv/essentials/strings/escaping-special-characters/quiz">Tests: Atpakaļslīpsvītra izvades rindā</a></li>
+<li><a
+href="/lv/essentials/strings/escaping-special-characters/quiz">Tests:
+Atpakaļslīpsvītra izvades rindā</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/strings">Virknes</a> / <a href="/lv/essentials/strings/code-interpolation">Koda interpolācija</a>
-  |  
-        <a href="/lv/essentials/strings">Virknes</a> / <a href="/lv/essentials/strings/string-length">Virknes garums</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/lv/essentials/strings/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/strings/escaping-special-characters/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+<p>← <a href="/lv/essentials/strings/code-interpolation">Koda
+interpolācija</a>   |   <a
+href="/lv/essentials/strings/escaping-special-characters/quiz">Tests:
+Atpakaļslīpsvītra izvades rindā</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/essentials/strings/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/strings/escaping-special-characters">English</a> • <a
+href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
+<a href="/es/essentials/strings/escaping-special-characters">Español</a>
+• <a
+href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
+<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
+• <strong>Latviešu</strong> • <a
+href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+• <a
+href="/bg/essentials/strings/escaping-special-characters">Български</a>
+• <a
+href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
+<a
+href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

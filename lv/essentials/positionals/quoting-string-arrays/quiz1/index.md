@@ -1,5 +1,5 @@
 ---
-title: Quiz — Quoting string arrays
+title: Tests 1 — Virkņu masīvu citēšana
 ---
 
 {% include menu.html %}

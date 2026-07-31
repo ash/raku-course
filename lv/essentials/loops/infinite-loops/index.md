@@ -1,5 +1,5 @@
 ---
-title: Bezgalīgas cilpas
+title: Bezgala cikli
 ---
 
 {% include menu.html %}

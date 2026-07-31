@@ -1,5 +1,5 @@
 ---
-title: Izslēdzot diapazona galapunktus
+title: Galapunktu izslēgšana
 ---
 
 {% include menu.html %}

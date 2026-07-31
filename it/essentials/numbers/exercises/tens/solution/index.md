@@ -1,5 +1,5 @@
 ---
-title: Soluzione a ‘Numero delle decine’
+title: 'Solution: Numero di decine'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Inserisci un numero intero positivo: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Puoi trovare il codice completo nel file [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Puoi trovare il codice completo nel file [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Output
 

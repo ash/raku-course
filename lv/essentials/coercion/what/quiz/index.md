@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Ko atgriež WHAT?'
+title: 'Tests: Ko atgriež WHAT?'
 ---
 
 {% include menu.html %}

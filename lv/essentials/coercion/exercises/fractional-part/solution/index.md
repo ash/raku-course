@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Daļskaitļa daļa'
+title: 'Risinājums: Frakcionālā daļa'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ my $n = 15.8972;
 say $n - $n.Int;
 ```
 
-🦋 Atrodiet programmu failā [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/fractional-part.raku).
+🦋 Atrodiet programmu failā [fractional-part.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/fractional-part.raku).
 
 ## Izvade
 

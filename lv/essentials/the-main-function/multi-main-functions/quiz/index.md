@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Multi-MAIN
+title: 'Viktorīna — Multi-`MAIN`'
 ---
 
 {% include menu.html %}

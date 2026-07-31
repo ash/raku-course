@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Masīvu interpolācija
+title: Viktorīna — Masīvu interpolācija
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Soluzione di ‘Plural ending’
+title: 'Solution: Plurale finale'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n file{$ending} copiati.";
 ```
 
-🦋 Trova il programma nel file [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Trova il programma nel file [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Output
 

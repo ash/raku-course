@@ -1,5 +1,5 @@
 ---
-title: Verifiche condizionali con if
+title: Blocchi `if`
 ---
 
 {% include menu.html %}

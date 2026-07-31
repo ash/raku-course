@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Funkciju nosaukumi
+title: Viktorīna — funkciju nosaukumi
 ---
 
 {% include menu.html %}

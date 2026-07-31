@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam ‘True and False strings’
+title: 'Risinājums: True un False virknes'
 ---
 
 {% include menu.html %}
@@ -20,6 +20,6 @@ say ?'0.0';
 
 No visām šīm tikai tukšā virkne tiek uzskatīta par `False`. Visas pārējās virknes, pat tās, kas satur tikai atstarpes vai skaitli `0`, tiek uzskatītas par `True`.
 
-🦋 Pilnu programmu ar iepriekš minēto piemēru var atrast failā [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
+🦋 Pilnu programmu ar iepriekš minēto piemēru var atrast failā [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku).
 
 {% include nav.html %}

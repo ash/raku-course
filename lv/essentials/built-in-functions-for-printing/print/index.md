@@ -1,5 +1,5 @@
 ---
-title: Drukas rutīna
+title: '`print`'
 ---
 
 {% include menu.html %}

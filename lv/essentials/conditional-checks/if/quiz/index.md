@@ -1,24 +1,24 @@
 ---
-title: Quiz — if
+title: 'Tests: `if`'
 ---
 
 {% include menu.html %}
 
-Complete the following programs.
+Pabeidziet šādas programmas.
 
 ## 1
 
-This program has to check if the age is 21 years or more.
+Šai programmai jāpārbauda, vai vecums ir 21 gads vai vairāk.
 
 {:.quiz-code}
 . | my $age = 24;
->= { | if $age ␣␣ 21 ␣ | Both `>=` and `≥` can be used here.
+>= { | if $age ␣␣ 21 ␣ | Šeit var lietot gan `>=`, gan `≥`.
 . | &nbsp;&nbsp;&nbsp;&nbsp;say 'We can sell it to you.';
 } | ␣
 
 ## 2
 
-In this program, you have to check if `$x` is between 10 and 15 (exclusive).
+Šajā programmā jums jāpārbauda, vai `$x` ir starp 10 un 15 (neieskaitot robežas).
 
 {:.quiz-code}
 . | my $x = 12.3;

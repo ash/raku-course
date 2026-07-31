@@ -1,5 +1,5 @@
 ---
-title: Citējot virkņu masīvus
+title: Virkņu masīvu citēšana
 ---
 
 {% include menu.html %}

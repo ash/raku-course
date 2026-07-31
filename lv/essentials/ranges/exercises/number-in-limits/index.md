@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Ja skaitlis ir robežās'
+title: Ja skaitlis ir robežās
 ---
 
 {% include menu.html %}

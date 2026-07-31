@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Distanza di viaggio'
+title: Distanza di viaggio*
 ---
 
 {% include menu.html %}

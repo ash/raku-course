@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Digitālās kāpnes'
+title: Digitālās kāpnes
 ---
 
 {% include menu.html %}

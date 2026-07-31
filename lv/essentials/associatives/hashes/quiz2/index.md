@@ -1,5 +1,5 @@
 ---
-title: Viktorīna 1 — Hash elementi
+title: Tests 2 — Hash elementi
 ---
 
 {% include menu.html %}

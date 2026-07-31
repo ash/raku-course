@@ -1,12 +1,12 @@
 ---
-title: līdz
+title: 'Izmantojot `until`'
 ---
 
 {% include menu.html %}
 
-`līdz` konstruktam ir pretējs `kamēr`. Tas izpilda koda bloku, līdz nosacījums kļūst `True` (vai, citiem vārdiem sakot, kamēr tas ir `False`).
+Konstrukts `until` ir pretējs `while`. Tas izpilda koda bloku, līdz nosacījums kļūst `True` (vai, citiem vārdiem sakot, kamēr tas ir `False`).
 
-Šeit ir modificēta [programma no iepriekšējās lapas](../while), kas izmanto `līdz` un jaunu nosacījumu:
+Šeit ir modificēta [programma no iepriekšējās lapas](../while), kas izmanto `until` un jaunu nosacījumu:
 
 ```raku
 my $x = 0;
@@ -32,9 +32,9 @@ Jūs ievadījāt 20.
 20 ir lielāks par 10.
 ```
 
-## `līdz` vs. `kamēr`
+## `until` pret `while`
 
-Salīdziniet līdzvērtīgas programmas ar `kamēr` un `līdz`:
+Salīdziniet līdzvērtīgas programmas ar `while` un `until`:
 
 ```raku
 while $x <= 10 { . . . }
@@ -42,6 +42,6 @@ while $x <= 10 { . . . }
 until $x > 10 { . . . }
 ```
 
-Kā redzat, nosacījumi ir viens otra noliegumi. Šajā ziņā `kamēr` un `līdz` ir tādās pašās attiecībās kā `ja` un `ja ne`.
+Kā redzat, nosacījumi ir viens otra noliegumi. Šajā ziņā `while` un `until` ir tādās pašās attiecībās kā `if` un `unless`.
 
 {% include nav.html %}

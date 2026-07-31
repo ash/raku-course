@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Scale digitali'
+title: Scale digitali
 ---
 
 {% include menu.html %}

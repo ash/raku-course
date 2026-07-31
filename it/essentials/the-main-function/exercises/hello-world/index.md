@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Hello World!'
+title: Ciao, Mondo!
 ---
 
 {% include menu.html %}

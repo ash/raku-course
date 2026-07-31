@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Numeri di Fibonacci'
+title: Numeri di Fibonacci
 ---
 
 {% include menu.html %}

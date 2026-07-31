@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Visto prima?'
+title: Già visto?
 ---
 
 {% include menu.html %}

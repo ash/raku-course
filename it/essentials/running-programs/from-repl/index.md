@@ -1,5 +1,5 @@
 ---
-title: Esecuzione dal REPL
+title: Esecuzione da REPL
 ---
 
 {% include menu.html %}

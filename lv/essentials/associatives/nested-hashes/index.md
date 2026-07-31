@@ -1,5 +1,5 @@
 ---
-title: Ligzdošanas hash
+title: Ligzdoti hashes
 ---
 
 {% include menu.html %}

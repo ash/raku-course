@@ -1,5 +1,5 @@
 ---
-title: Soluzione di ‘Stringhe Vere e False’
+title: 'Solution: Stringhe vere e false'
 ---
 
 {% include menu.html %}
@@ -20,6 +20,6 @@ say ?'0.0';
 
 Di tutte queste, solo la stringa vuota viene considerata `False`. Tutte le altre stringhe, anche quelle che contengono solo spazi o un carattere esplicito `0`, diventano `True`.
 
-🦋 Puoi trovare il programma completo con l'esempio sopra nel file [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
+🦋 Puoi trovare il programma completo con l'esempio sopra nel file [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku).
 
 {% include nav.html %}

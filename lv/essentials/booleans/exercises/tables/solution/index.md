@@ -1,5 +1,5 @@
 ---
-title: Risinājums 'Būla tabulām'
+title: 'Risinājums: Loģiskās tabulas'
 ---
 
 {% include menu.html %}
@@ -25,7 +25,7 @@ say 'False ^^ True ir ', False ^^ True;
 say 'False ^^ False ir ', False ^^ False;
 ```
 
-🦋 Pilnu kodu var atrast failā [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 Pilnu kodu var atrast failā [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
 ## Izvade
 

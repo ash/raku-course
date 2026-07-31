@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Allomorphs</title>
-    <meta property="og:title" content="Allomorphs" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Allomorfi — Raku kurss</title>
+    <meta property="og:title" content="Allomorfi — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Allomorphs</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,76 +88,105 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/typed-variables">Tipizētie mainīgie</a></p>
-
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/more-about-types">Vairāk par tipiem</a> / <a
+href="/lv/essentials/typed-variables">Tipizētie mainīgie</a></p>
 <h1 id="allomorfi">Allomorfi</h1>
-
-<p>Apsveriet šādu programmu. Pirms to palaist, vai jūs varat pateikt, kuri ievades vērtības to salauzīs un kurā rindā?</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">&#39;Enter something: &#39;</span>;
+<p>Apsveriet šādu programmu. Pirms to palaist, vai jūs varat pateikt,
+kuri ievades vērtības to salauzīs un kurā rindā?</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$input</span> = <span class="nb">prompt</span> <span class="s">'Enter something: '</span>;
 <span class="k">my</span> <span class="nb">Int</span> <span class="nv">$i</span> = <span class="nv">$input</span>;
 <span class="k">my</span> <span class="nb">Str</span> <span class="nv">$s</span> = <span class="nv">$input</span>;
 
 <span class="nb">say</span> <span class="nv">$i</span>;
-<span class="nb">say</span> <span class="nv">$s</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$s</span>;</pre></div>
 
-
-<p>Šeit tiek izveidoti trīs skalārie mainīgie. Divi no tiem, <code class="language-plaintext highlighter-rouge">$i</code> un <code class="language-plaintext highlighter-rouge">$s</code>, ir tipizēti mainīgie. Tas nozīmē, ka <code class="language-plaintext highlighter-rouge">$i</code> var glabāt tikai veselus skaitļus un <code class="language-plaintext highlighter-rouge">$s</code> var glabāt tikai virknes.</p>
-
-<p><code class="language-plaintext highlighter-rouge">prompt</code> atgriešanas tips ir atkarīgs no ievadītajiem rakstzīmēm. Ja ievades virkne var pārstāvēt veselu skaitli, rezultāts būs <code class="language-plaintext highlighter-rouge">IntStr</code> tips, kas ir <em>gan</em> <code class="language-plaintext highlighter-rouge">Int</code>, gan <code class="language-plaintext highlighter-rouge">Str</code>, un tādējādi to var piešķirt gan <code class="language-plaintext highlighter-rouge">Int</code>, gan <code class="language-plaintext highlighter-rouge">Str</code> mainīgajam. Tātad, ja ievadāt, piemēram, <code class="language-plaintext highlighter-rouge">1234</code>, programma nesalauzīsies.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+<p>Šeit tiek izveidoti trīs skalārie mainīgie. Divi no tiem,
+<code>$i</code> un <code>$s</code>, ir tipizēti mainīgie. Tas nozīmē, ka
+<code>$i</code> var glabāt tikai veselus skaitļus un <code>$s</code> var
+glabāt tikai virknes.</p>
+<p><code>prompt</code> atgriešanas tips ir atkarīgs no ievadītajiem
+rakstzīmēm. Ja ievades virkne var pārstāvēt veselu skaitli, rezultāts
+būs <code>IntStr</code> tips, kas ir <em>gan</em> <code>Int</code>, gan
+<code>Str</code>, un tādējādi to var piešķirt gan <code>Int</code>, gan
+<code>Str</code> mainīgajam. Tātad, ja ievadāt, piemēram,
+<code>1234</code>, programma nesalauzīsies.</p>
+<div class="highlight"><pre>$ raku allomorphs.raku
 Enter something: 1234
 1234
-1234
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">IntStr</code> tips ir tā saucamā <em>allomorfa</em> piemērs — datu tips, kas apvieno divus citus tipus. Šeit ir vēl daži piemēri.</p>
-
-<p>Ja ievadāt virkni, kas nevar būt vesels skaitlis, programma salūzīs brīdī, kad mēs piešķiram <code class="language-plaintext highlighter-rouge">$input</code> uz <code class="language-plaintext highlighter-rouge">$i</code>:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+1234</pre></div>
+<p><code>IntStr</code> tips ir tā saucamā <em>allomorfa</em> piemērs —
+datu tips, kas apvieno divus citus tipus. Šeit ir vēl daži piemēri.</p>
+<p>Ja ievadāt virkni, kas nevar būt vesels skaitlis, programma salūzīs
+brīdī, kad mēs piešķiram <code>$input</code> uz <code>$i</code>:</p>
+<div class="highlight"><pre>$ raku allomorphs.raku
 Enter something: Hello, World!
 Type check failed in assignment to $i; expected Int but got Str ("Hello, World!")
-  in block &lt;unit&gt; at allomorphs.raku line 2
-</code></pre></div></div>
-
-<p>Pamaniet, ka jūs saņemat kļūdu pat tad, ja ievades virkne var tikt pārveidota par skaitli, bet ne par veselu skaitli. Tā kā nav iespējams glabāt peldošā punkta vai racionālu skaitli vesela skaitļa konteinerā, Raku izmetīs izņēmumu:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ raku allomorphs.raku
+  in block &lt;unit&gt; at allomorphs.raku line 2</pre></div>
+<p>Pamaniet, ka jūs saņemat kļūdu pat tad, ja ievades virkne var tikt
+pārveidota par skaitli, bet ne par veselu skaitli. Tā kā nav iespējams
+glabāt peldošā punkta vai racionālu skaitli vesela skaitļa konteinerā,
+Raku izmetīs izņēmumu:</p>
+<div class="highlight"><pre>$ raku allomorphs.raku
 Enter something: 3.14
 Type check failed in assignment to $i; expected Int but got RatStr (RatStr.new(3.14, "3....)
-  in block &lt;unit&gt; at allomorphs.raku line 2
-</code></pre></div></div>
-
-<p>Otrā piešķiršana, <code class="language-plaintext highlighter-rouge">$s = $input</code>, nekad nesalauzīsies, jo virkne var pieņemt jebkuru ievadi.</p>
-
-<p>🦋 Jūs varat atrast šīs programmas avota kodu failā <a href="https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku">allomorphs.raku</a>.</p>
-
-<p></div></p>
-
+  in block &lt;unit&gt; at allomorphs.raku line 2</pre></div>
+<p>Otrā piešķiršana, <code>$s = $input</code>, nekad nesalauzīsies, jo
+virkne var pieņemt jebkuru ievadi.</p>
+<p>🦋 Jūs varat atrast šīs programmas avota kodu failā <a
+href="https://github.com/ash/raku-course/blob/master/essentials/typed-variables/allomorphs/allomorphs.raku">allomorphs.raku</a>.</p>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/typed-variables">Tipizētie mainīgie</a> / <a href="/lv/essentials/typed-variables/coercion">Tipu konvertēšana tipizētajiem mainīgajiem</a>
-  |  
-        💪 <a href="/lv/essentials/typed-variables/exercises">Vingrinājumi: Tipizētie mainīgie</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/typed-variables/allomorphs/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/typed-variables/allomorphs/">English</a> • <a href="/de/essentials/typed-variables/allomorphs/">Deutsch</a> • <a href="/es/essentials/typed-variables/allomorphs/">Español</a> • <a href="/it/essentials/typed-variables/allomorphs/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/typed-variables/allomorphs/">Nederlands</a> • <a href="/bg/essentials/typed-variables/allomorphs/">Български</a> • <a href="/ru/essentials/typed-variables/allomorphs/">Русский</a> • <a href="/uk/essentials/typed-variables/allomorphs/">Українська</a></p>
+<p>← <a href="/lv/essentials/typed-variables/coercion/quiz">Viktorīna —
+tipu konvertēšana</a>   |   <a
+href="/lv/essentials/typed-variables/exercises/create-variables-of-all-known-types">Izveidot
+mainīgos no visiem zināmajiem tipiem</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/essentials/typed-variables/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/typed-variables/allomorphs">English</a> • <a
+href="/de/essentials/typed-variables/allomorphs">Deutsch</a> • <a
+href="/es/essentials/typed-variables/allomorphs">Español</a> • <a
+href="/it/essentials/typed-variables/allomorphs">Italiano</a> • <a
+href="/la/essentials/typed-variables/allomorphs">Latina</a> •
+<strong>Latviešu</strong> • <a
+href="/nl/essentials/typed-variables/allomorphs">Nederlands</a> • <a
+href="/bg/essentials/typed-variables/allomorphs">Български</a> • <a
+href="/ru/essentials/typed-variables/allomorphs">Русский</a> • <a
+href="/uk/essentials/typed-variables/allomorphs">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

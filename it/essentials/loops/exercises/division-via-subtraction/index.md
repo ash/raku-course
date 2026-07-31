@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Divisione tramite sottrazione'
+title: Divisione tramite sottrazione
 ---
 
 {% include menu.html %}

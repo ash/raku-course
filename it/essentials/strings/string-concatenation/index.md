@@ -1,5 +1,5 @@
 ---
-title: Concatenazione di stringhe in Raku
+title: Concatenazione di stringhe
 ---
 
 {% include menu.html %}

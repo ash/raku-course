@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Fattoriale'
+title: Fattoriale
 ---
 
 {% include menu.html %}

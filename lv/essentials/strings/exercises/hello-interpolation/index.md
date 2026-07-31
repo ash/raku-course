@@ -1,5 +1,5 @@
 ---
-title: Exercise ’Hello, Interpolation!‘
+title: 'Sveika, Interpolācija!'
 ---
 
 {% include menu.html %}

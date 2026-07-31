@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Būla tips'
+title: 'Vingrinājumi: Loģiskais tips'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Restituire il risultato
+title: Restituzione del risultato
 ---
 
 {% include menu.html %}

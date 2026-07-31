@@ -1,5 +1,5 @@
 ---
-title: Mainīgais topic
+title: Tēmas mainīgais
 ---
 
 {% include menu.html %}

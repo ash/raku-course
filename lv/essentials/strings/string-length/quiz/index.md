@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Frāzes garums'
+title: 'Tests: Frāzes garums'
 ---
 
 {% include menu.html %}

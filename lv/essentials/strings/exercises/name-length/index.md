@@ -1,5 +1,5 @@
 ---
-title: Uzdevums ‘Vārda garums‘
+title: Vārda garums
 ---
 
 {% include menu.html %}

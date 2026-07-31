@@ -1,5 +1,5 @@
 ---
-title: Kvadrāti un kubi
+title: Kvadrāts un kubs
 ---
 
 {% include menu.html %}

@@ -1,22 +1,23 @@
 ---
-title: Exercise 'Double and tripple negations’
+title: Dubultā noliegšana
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Problem
+## Uzdevums
 
-What is the output of the following program?
+Kāda ir šīs programmas izvade?
 
 ```raku
 my $value = False;
 say !!$value;
 ```
 
-Extend the program to repeat the actions, but for the value of `True`.
+Papildiniet programmu tā, lai tā atkārtotu tās pašas darbības, bet ar vērtību `True`.
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

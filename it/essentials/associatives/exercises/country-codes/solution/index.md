@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Codici dei paesi'
+title: 'Solution: Codici dei paesi'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ my @codes = < FR IT DE EE LV US CN IN BR >;
 say %cc{$_} for @codes;
 ```
 
-🦋 Trova il programma nel file [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/country-codes.raku).
+🦋 Trova il programma nel file [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/country-codes.raku).
 
 ## Output
 

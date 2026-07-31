@@ -1,5 +1,5 @@
 ---
-title: Numero delle decine
+title: Numero di decine
 ---
 
 {% include menu.html %}

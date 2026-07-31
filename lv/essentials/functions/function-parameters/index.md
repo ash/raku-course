@@ -1,5 +1,5 @@
 ---
-title: Funkcijas parametri
+title: Funkciju parametri
 ---
 
 {% include menu.html %}

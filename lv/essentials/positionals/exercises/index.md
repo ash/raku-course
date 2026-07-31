@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Pozicionālie'
+title: 'Vingrinājumi: Pozicionālie datu tipi'
 ---
 
 {% include menu.html %}

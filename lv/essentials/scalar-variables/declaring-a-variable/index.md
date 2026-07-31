@@ -1,5 +1,5 @@
 ---
-title: Skalārie mainīgie
+title: Mainīgā deklarēšana
 ---
 
 {% include menu.html %}

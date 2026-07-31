@@ -1,5 +1,5 @@
 ---
-title: Notazione scientifica in Raku
+title: Numeri a virgola mobile
 ---
 
 {% include menu.html %}

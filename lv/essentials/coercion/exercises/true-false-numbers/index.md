@@ -1,5 +1,5 @@
 ---
-title: Uzdevums ‘Patiesi un Nepatiesi veseli skaitļi’
+title: True un False skaitļi
 ---
 
 {% include menu.html %}

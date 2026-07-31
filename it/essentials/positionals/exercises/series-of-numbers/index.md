@@ -1,5 +1,5 @@
 ---
-title: Stampa una serie di numeri
+title: Stampa di una serie di numeri
 ---
 
 {% include menu.html %}

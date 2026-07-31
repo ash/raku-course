@@ -1,10 +1,10 @@
 ---
-title: Quiz 2 — the conditition in if
+title: 'Tests 2 — nosacījums `if`'
 ---
 
 {% include menu.html %}
 
-Correct the program and answer the question.
+Izlabojiet programmu un atbildiet uz jautājumu.
 
 {:.quiz-code .fill}
 . | my $password = prompt 'Enter your password: ';
@@ -17,12 +17,12 @@ eq = | if $password ␣␣ '*&(#&$#Y' {
 . | }
 
 
-With the `=` in the test, what does this program do?
+Ar `=` pārbaudē — ko šī programma dara?
 
 {:.quiz-select}
-Always prints ‘Correct’ | Your answer:&nbsp; (: Always prints ‘Correct’, Always prints ’Incorrect’, Prints ’Correct’ for correct passwords and ‘Incorrect’ for incorrect ones, Prints ’Incorrect’ for correct passwords and ’Correct’ for incorrect ones :)
+Vienmēr izdrukā ‘Correct’ | Jūsu atbilde:&nbsp; (: Vienmēr izdrukā ‘Correct’, Vienmēr izdrukā ’Incorrect’, Izdrukā ’Correct’ pareizām parolēm un ‘Incorrect’ nepareizām, Izdrukā ’Incorrect’ pareizām parolēm un ’Correct’ nepareizām :)
 
-<div class="extended-explanation">The program always prints ’Correct’ because <code>$password = '*&(#&$#Y'</code> is an assignment that sets the new value of the <code>$password</code> variable. As the value is neither zero nor an empty string, it is considered <code>True</code>. The password that the user enters is never checked in this case.<br/><br/>If you type <code>==</code>, then the program will break as it tries to convert the strings (the user password and the correct password) to numbers and fails.</div>
+<div class="extended-explanation">Programma vienmēr izdrukā ’Correct’, jo <code>$password = '*&(#&$#Y'</code> ir piešķīrums, kas mainīgajam <code>$password</code> uzstāda jaunu vērtību. Tā kā vērtība nav ne nulle, ne tukša virkne, tā tiek uzskatīta par <code>True</code>. Parole, ko ievada lietotājs, šajā gadījumā netiek pārbaudīta nemaz.<br/><br/>Ja ierakstīsiet <code>==</code>, programma salūzīs, jo mēģinās virknes (lietotāja paroli un pareizo paroli) pārvērst skaitļos un neizdosies.</div>
 
 {% include quiz.html %}
 

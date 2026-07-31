@@ -1,5 +1,5 @@
 ---
-title: Quiz — Passaggio di argomenti
+title: Passaggio degli argomenti
 ---
 
 {% include menu.html %}

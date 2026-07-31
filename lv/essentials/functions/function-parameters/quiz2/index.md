@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Argumentu nodošana
+title: Parametru nodošana
 ---
 
 {% include menu.html %}

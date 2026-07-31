@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Rekursīvs faktoriāls'
+title: Rekursīvais faktoriāls
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Semafori'
+title: Semafori
 ---
 
 {% include menu.html %}

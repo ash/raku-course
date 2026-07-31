@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam ‘Klases soli’
+title: 'Risinājums: Klases galdi'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my $desks = $students div 2 + $students % 2;
 say "$desks desks must be bought.";
 ```
 
-🦋 Pilnu kodu var atrast failā [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/class-desks.raku).
+🦋 Pilnu kodu var atrast failā [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/class-desks.raku).
 
 ## Izvade
 

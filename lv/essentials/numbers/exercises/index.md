@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Skaitļi'
+title: 'Vingrinājumi: Skaitļi'
 ---
 
 {% include menu.html %}

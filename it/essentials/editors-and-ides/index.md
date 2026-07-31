@@ -1,5 +1,5 @@
 ---
-title: Editor e IDE per Raku
+title: Editor e IDE
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Commenti su una singola linea
+title: Commenti su una sola linea
 ---
 
 {% include menu.html %}

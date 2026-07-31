@@ -1,5 +1,5 @@
 ---
-title: Risinājums 'Pirkuma tabulai'
+title: 'Risinājums: Pirkumu tabula'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ Visi skaitļi ir cieti kodēti un saglabāti vairākos mainīgajos. Mēs arī iz
 
 Trīs rindas, kas ģenerē izvadi, izdrukā tabulas trīs rindas, ieskaitot tās galveni. Pamaniet, kā kolonnas ir atdalītas ar tabulācijas rakstzīmēm `\t`. Datu rindās mēs arī redzam aizbēgtu dolāra rakstzīmi: `\$`, kā arī dažādus mainīgos, kurus vēlamies interpolēt.
 
-🦋 Jūs varat atrast pirmkodu failā [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Jūs varat atrast pirmkodu failā [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Izvade
 

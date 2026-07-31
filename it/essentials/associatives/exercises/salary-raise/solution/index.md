@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Aumento di stipendio'
+title: 'Solution: Aumento di stipendio'
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ my $raise = 5; # in percentuale
 say "Nuovo stipendio di %employee<full-name>: %employee<salary>";
 ```
 
-🦋 Trova il programma nel file [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Trova il programma nel file [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
 ## Output
 

@@ -1,5 +1,5 @@
 ---
-title: Confronto con un intervallo
+title: Quiz — Confronto con un intervallo
 ---
 
 {% include menu.html %}

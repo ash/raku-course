@@ -1,5 +1,5 @@
 ---
-title: Leksemas darbības joma
+title: Leksiskā darbības joma
 ---
 
 {% include menu.html %}

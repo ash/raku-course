@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Būla tips
+title: 'Tests: Loģiskās vērtības'
 ---
 
 {% include menu.html %}

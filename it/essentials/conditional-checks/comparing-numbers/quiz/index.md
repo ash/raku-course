@@ -1,5 +1,5 @@
 ---
-title: Quiz — Confronta i numeri
+title: Quiz — Confronto dei numeri
 ---
 
 {% include menu.html %}

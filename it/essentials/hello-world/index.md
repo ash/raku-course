@@ -1,5 +1,5 @@
 ---
-title: Ciao, Mondo! in Raku
+title: Ciao, Mondo!
 ---
 
 {% include menu.html %}

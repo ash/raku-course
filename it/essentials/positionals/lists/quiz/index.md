@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Lista e scalare vs. lista e array
+title: Quiz — Lista e scalare vs. lista e array
 ---
 
 {% include menu.html %}

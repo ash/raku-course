@@ -1,5 +1,5 @@
 ---
-title: Uzdevums ‘Pirkumu tabula‘
+title: Pirkumu tabula
 ---
 
 {% include menu.html %}

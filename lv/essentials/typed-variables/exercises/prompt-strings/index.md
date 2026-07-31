@@ -1,5 +1,5 @@
 ---
-title: Izpētīt uzvednes rezultātu — Virknes
+title: 'Izpētiet `prompt` rezultātu — Virknes'
 ---
 
 {% include menu.html %}

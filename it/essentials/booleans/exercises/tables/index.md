@@ -1,5 +1,5 @@
 ---
-title: Esercizio 'Tabelle booleane’
+title: Tabelle booleane
 ---
 
 {% include menu.html %}

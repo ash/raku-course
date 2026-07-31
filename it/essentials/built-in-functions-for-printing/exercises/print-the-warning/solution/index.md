@@ -1,5 +1,5 @@
 ---
-title: "Soluzione: Stampa l'avviso"
+title: 'Solution: Stampa l''avviso'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Trova il programma nel file [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Trova il programma nel file [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Output
 

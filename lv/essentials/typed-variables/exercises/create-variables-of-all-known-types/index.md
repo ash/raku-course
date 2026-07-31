@@ -1,5 +1,5 @@
 ---
-title: Izveidojiet visu zināmo tipu mainīgos
+title: Izveidot mainīgos no visiem zināmajiem tipiem
 ---
 
 {% include menu.html %}

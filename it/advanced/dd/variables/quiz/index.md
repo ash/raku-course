@@ -1,0 +1,23 @@
+---
+title: Quiz — Leggere un dump `dd`
+translations_gpt:
+---
+
+{% include menu.html %}
+
+Cosa stampa il seguente programma?
+
+```raku
+my $n = 7;
+dd $n;
+```
+
+{:.quiz}
+0 | Int $n = 7
+1 | $n = 7
+0 | 7
+0 | Int = 7
+
+{% include quiz.html %}
+
+{% include nav.html %}

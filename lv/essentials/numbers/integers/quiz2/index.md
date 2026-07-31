@@ -1,29 +1,30 @@
 ---
-title: Quiz — Unicode digits and numbers
+title: 'Tests: Unikode cipari un skaitļi'
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Try to find out which of the following digits form integers that Raku accepts as the `Int` type values.
+Mēģiniet noskaidrot, kuri no šiem cipariem veido veselus skaitļus, ko Raku pieņem kā `Int` tipa vērtības.
 
 {:.quiz}
 1 | 3
 1 | 12345
-1 | ⓷ | This is considered a number, not a single digit.
-0 | ⓵⓶⓷⓸⓹ | So you cannot combine them in such a way to get `12345`.
+1 | ⓷ | Tas tiek uzskatīts par skaitli, nevis par atsevišķu ciparu.
+0 | ⓵⓶⓷⓸⓹ | Tātad tos nevar šādi savienot, lai iegūtu `12345`.
 1 | ❷
 0 | ❸❹❺
-1 | ㊷ | A single Unicode character named `CIRCLED NUMBER FOURTY TWO`.
-0 | ⓸⓶ | But the two numbers are not a number.
-1 | ㊄ | Circled Chinese 5 and it is a number `CIRCLED IDEOGRAPH FIVE`.
-0 | 五 | While this means 5, the character is neither a digit nor a number.
+1 | ㊷ | Viena Unikoda rakstzīme ar nosaukumu `CIRCLED NUMBER FOURTY TWO`.
+0 | ⓸⓶ | Taču divi skaitļi blakus nav skaitlis.
+1 | ㊄ | Aplītī ietverta ķīniešu 5, un tas ir skaitlis `CIRCLED IDEOGRAPH FIVE`.
+0 | 五 | Lai gan tas nozīmē 5, rakstzīme nav ne cipars, ne skaitlis.
 0 | 一二三四五
 
 {% include quiz.html %}
 
-## Comments
+## Komentāri
 
-You can take the following program as a starting point to play with and explore the properties of such digits. Uncomment the lines to see if that compiles.
+Par sākumpunktu varat ņemt šo programmu, lai paeksperimentētu un izpētītu šādu ciparu īpašības. Noņemiet komentāra zīmes rindām, lai redzētu, vai tās kompilējas.
 
 ```raku
 my $x;
@@ -51,6 +52,6 @@ $x = ㊷;
 say $x;
 ```
 
-🦋 Take the code from GitHub: [unicode-digits.raku](https://github.com/ash/raku-course/blob/master/essentials/numbers/integers/quiz2/unicode-digits.raku).
+🦋 Kodu var paņemt no GitHub: [unicode-digits.raku](https://github.com/ash/raku-course/blob/master/essentials/numbers/integers/quiz2/unicode-digits.raku).
 
 {% include nav.html %}

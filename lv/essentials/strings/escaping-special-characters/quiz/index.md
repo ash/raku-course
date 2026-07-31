@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Atpakaļslīpsvītra izvadei'
+title: 'Tests: Atpakaļslīpsvītra izvades rindā'
 ---
 
 {% include menu.html %}

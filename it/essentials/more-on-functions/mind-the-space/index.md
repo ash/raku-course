@@ -1,5 +1,5 @@
 ---
-title: Attenzione allo spazio
+title: Attenzione agli spazi
 ---
 
 {% include menu.html %}

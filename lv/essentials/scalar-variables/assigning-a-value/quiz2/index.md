@@ -1,10 +1,10 @@
 ---
-title: Quiz 2 — Assigning two values
+title: 'Tests 2: Divu vērtību piešķiršana'
 ---
 
 {% include menu.html %}
 
-This time, the program is a bit more compact compared to its [first variant](../quiz1). Please, fill in the missing elements.
+Šoreiz programma ir mazliet kompaktāka nekā tās [pirmais variants](../quiz1). Lūdzu, aizpildiet trūkstošos elementus.
 
 {:.quiz-code}
 ( , ) | my ␣$first-name␣ $last-name␣;

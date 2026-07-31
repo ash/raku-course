@@ -1,5 +1,5 @@
 ---
-title: Uzdevums 'Sveicināt personu'
+title: Sasveicināties ar personu
 ---
 
 {% include menu.html %}

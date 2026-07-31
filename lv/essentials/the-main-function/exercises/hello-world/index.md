@@ -1,24 +1,25 @@
 ---
-title: 'Exercise: Hello World!'
+title: 'Sveika, Pasaule!'
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Problem
+## Uzdevums
 
-Create a program that contains the `MAIN` function and prints ‘Hello, World!’.
+Izveidojiet programmu, kas satur funkciju `MAIN` un izdrukā ‘Hello, World!’.
 
-## Example
+## Piemērs
 
-An example of using the program:
+Programmas lietošanas piemērs:
 
 ```console
 $ raku hello-world.raku
 Hello, World!
 ```
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

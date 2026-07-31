@@ -1,5 +1,5 @@
 ---
-title: Veseli skaitļi Raku
+title: Veselie skaitļi
 ---
 
 {% include menu.html %}

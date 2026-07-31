@@ -1,5 +1,5 @@
 ---
-title: Risinājums 'Koriģēt identifikatorus'
+title: 'Risinājums: Pareizi nosaukumi'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'Londona uz Parīzi';
 
 Visi identifikatori ir derīgi, bet, iespējams, labāk izvairīties no nosaukumiem ar apostrofiem, ja jums `$nav` spēcīgu iemeslu tos izmantot.
 
-🦋 Jūs varat atrast avota kodu failā [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Jūs varat atrast avota kodu failā [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Izvade
 

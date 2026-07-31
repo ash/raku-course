@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Funzione intervallo'
+title: Funzione di intervallo
 ---
 
 {% include menu.html %}

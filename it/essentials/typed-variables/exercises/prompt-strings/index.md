@@ -1,5 +1,5 @@
 ---
-title: Esaminare il risultato del prompt — Stringhe
+title: Esaminare il risultato di `prompt` — Stringhe
 ---
 
 {% include menu.html %}

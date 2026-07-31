@@ -1,22 +1,23 @@
 ---
-title: Exercise 'Triple negations’
+title: Trīskārša noliegšana
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Problem
+## Uzdevums
 
-What is the output of the following program?
+Kāda ir šīs programmas izvade?
 
 ```raku
 my $value = False;
 say !!!$value;
 ```
 
-Make the corrections to the program if needed.
+Ja nepieciešams, izlabojiet programmu.
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

@@ -1,5 +1,5 @@
 ---
-title: Izmantojot tiešsaistes pakalpojumus, lai palaistu Raku
+title: Tiešsaistes pakalpojumu izmantošana
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ Tiešsaistes pakalpojumiem nav nepieciešami daudzi skaidrojumi. Ielīmējiet pr
 * [glot.io](https://glot.io/new/raku)
 * [TIO](https://tio.run/#perl6)
 * [Repl.it](https://repl.it/new/raku) (nepieciešama iepriekšēja pieteikšanās)
-* [RakuPlay](https://rakudist.raku.org/play/) (izmanto rindu)
+* [Raku Playground](https://fco.github.io/Raku-Playground/)
 
 Jūs varat arī pārbaudīt [diskusiju Reddit](https://www.reddit.com/r/rakulang/comments/kj63dq/glotio_now_supports_raku/ggxow6n/), lai iegūtu vairāk saites un komentārus par dažādiem tiešsaistes pakalpojumiem.
 

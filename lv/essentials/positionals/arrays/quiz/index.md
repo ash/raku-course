@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Masīvi
+title: Viktorīna — Masīvi
 ---
 
 {% include menu.html %}

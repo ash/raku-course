@@ -1,21 +1,22 @@
 ---
-title: 'Exercise: Lite FizzBuzz'
+title: FizzBuzz
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Problem
+## Uzdevums
 
-Here is a simplified version of the standard [FizzBuzz problem](https://en.wikipedia.org/wiki/Fizz_buzz). 
+Šī ir vienkāršota versija standarta [FizzBuzz uzdevumam](https://en.wikipedia.org/wiki/Fizz_buzz). 
 
-Create a program that asks to enter a positive integer number and prints:
+Izveidojiet programmu, kas lūdz ievadīt pozitīvu veselu skaitli un izdrukā:
 
-* `Fizz` if the number is divisible by 3.
-* `Buzz` if the number is divisible by 5.
+* `Fizz`, ja skaitlis dalās ar 3.
+* `Buzz`, ja skaitlis dalās ar 5.
 
-## Example
+## Piemērs
 
-When you run the program, it prompts to enter a number, and then prints the result.
+Palaižot programmu, tā aicina ievadīt skaitli un pēc tam izdrukā rezultātu.
 
 ```console
 $ raku fizz-buzz.raku
@@ -23,8 +24,8 @@ Enter a number: 10
 Buzz
 ```
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

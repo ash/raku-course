@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Cik daudz skaitļu ir vienādi?'
+title: Cik daudz skaitļi ir vienādi?
 ---
 
 {% include menu.html %}

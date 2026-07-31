@@ -1,5 +1,5 @@
 ---
-title: Il blocco else
+title: Blocchi `else`
 ---
 
 {% include menu.html %}

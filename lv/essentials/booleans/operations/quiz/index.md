@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Boolea operācijas'
+title: 'Tests: Loģiskās operācijas'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Asociatīvie datu tipi'
+title: 'Vingrinājumi: Asociatīvie datu tipi'
 ---
 
 {% include menu.html %}

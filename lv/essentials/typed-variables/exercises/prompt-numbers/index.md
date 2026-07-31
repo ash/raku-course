@@ -1,5 +1,5 @@
 ---
-title: Rezultāta pārbaude no uzvednes — Skaitļi
+title: 'Izpētiet `prompt` rezultātu — Skaitļi'
 ---
 
 {% include menu.html %}

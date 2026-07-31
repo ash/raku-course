@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Mainīgo nosaukumi
+title: 'Tests: Derīgi mainīgo nosaukumi'
 ---
 
 {% include menu.html %}

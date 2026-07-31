@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Scrivere un numero'
+title: 'Solution: Scrivere un numero'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Multipli di 10, ad es., 50
 }
 ```
 
-🦋 Trova il programma nel file [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Trova il programma nel file [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Esempio
 

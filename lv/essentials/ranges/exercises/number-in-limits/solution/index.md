@@ -19,7 +19,7 @@ my $n = prompt 'Kāds ir skaitlis? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Atrodiet programmu failā [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Atrodiet programmu failā [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
 ## Izvade
 

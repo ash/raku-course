@@ -1,5 +1,5 @@
 ---
-title: Komentāri Raku valodā
+title: Komentāri
 ---
 
 {% include menu.html %}

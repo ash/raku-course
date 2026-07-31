@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Virknes interpolācija'
+title: 'Tests: Virkņu interpolācija'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Risinājums 'Sveiks, es!'
+title: 'Risinājums: Sveiki, es!'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ title: Risinājums 'Sveiks, es!'
 say 'Sveiks, Andri!';
 ```
 
-🦋 Pilnu kodu var atrast failā [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 Pilnu kodu var atrast failā [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
 ## Izvade
 

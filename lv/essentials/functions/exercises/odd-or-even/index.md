@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Nepāra vai pāra'
+title: Nepāra vai pāra
 ---
 
 {% include menu.html %}

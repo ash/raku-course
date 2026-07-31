@@ -1,5 +1,5 @@
 ---
-title: Programmas palaišana no IDE
+title: Palaišana no IDE
 ---
 
 {% include menu.html %}

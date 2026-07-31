@@ -1,5 +1,5 @@
 ---
-title: Risinājums uz 'Hello, Concatenation!'
+title: 'Risinājums: Sveika, Savienošana!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say 'Hello, ' ~ $name ~ '!';
 ```
 
-🦋 Jūs varat atrast pirmkodu failā [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
+🦋 Jūs varat atrast pirmkodu failā [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-concatenation.raku).
 
 ## Izvade
 

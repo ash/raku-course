@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Tipa ierobežojumi
+title: Viktorīna — Tipu ierobežojumi
 ---
 
 {% include menu.html %}

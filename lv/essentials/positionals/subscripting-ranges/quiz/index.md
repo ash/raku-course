@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — darbs ar diapazoniem
+title: Viktorīna — Darbs ar diapazoniem
 ---
 
 {% include menu.html %}

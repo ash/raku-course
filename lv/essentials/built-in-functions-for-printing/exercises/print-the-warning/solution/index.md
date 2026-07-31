@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Izdrukājiet brīdinājumu'
+title: 'Risinājums: Drukāt brīdinājumu'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Atrodiet programmu failā [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Atrodiet programmu failā [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Izvade
 

@@ -1,5 +1,5 @@
 ---
-title: Esercizio ‘Interi Veri e Falsi’
+title: Numeri veri e falsi
 ---
 
 {% include menu.html %}

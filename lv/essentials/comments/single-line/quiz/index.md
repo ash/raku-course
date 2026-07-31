@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Vienrindes komentāri'
+title: 'Tests: Vienrindas komentāri'
 ---
 
 {% include menu.html %}

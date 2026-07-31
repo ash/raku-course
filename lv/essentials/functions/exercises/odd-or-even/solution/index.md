@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Pāra vai nepāra'
+title: 'Risinājums: Nepāra vai pāra'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Atrodi programmu failā [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Atrodi programmu failā [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Izvade
 

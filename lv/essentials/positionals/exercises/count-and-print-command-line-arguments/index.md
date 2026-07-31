@@ -1,5 +1,5 @@
 ---
-title: Skaitīt un izdrukāt komandrindas argumentus
+title: Komandrindas argumentu skaitīšana un drukāšana
 ---
 
 {% include menu.html %}

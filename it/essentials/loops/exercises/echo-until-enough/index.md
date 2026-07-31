@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Eco fino a abbastanza'
+title: Echo fino a sufficienza
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Esercizi: Intervalli'
+title: 'Exercises: Intervalli'
 ---
 
 {% include menu.html %}

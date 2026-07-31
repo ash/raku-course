@@ -1,5 +1,5 @@
 ---
-title: Quiz — Il ciclo repeat
+title: Quiz — il ciclo `repeat`
 ---
 
 {% include menu.html %}

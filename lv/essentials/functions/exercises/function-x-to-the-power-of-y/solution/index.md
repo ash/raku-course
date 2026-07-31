@@ -18,7 +18,7 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Atrodiet programmu failā [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Atrodiet programmu failā [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
 ## Izvade
 

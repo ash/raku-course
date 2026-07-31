@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Piezīmes par Unicode izmantošanu</title>
-    <meta property="og:title" content="Piezīmes par Unicode izmantošanu" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Piezīmes par Unicode izmantošanu — Raku kurss</title>
+    <meta property="og:title" content="Piezīmes par Unicode izmantošanu — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Piezīmes par Unicode izmantošanu</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,47 +88,90 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a></p>
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/getting-started">Programmu rakstīšana un
+izpilde</a></p>
+<h1 id="piezīmes-par-unicode-izmantošanu">Piezīmes par Unicode
+izmantošanu</h1>
+<p>Raku pieņem, ka visi jūsu programmu faili ir saglabāti kā UTF-8
+faili. No praktiskā viedokļa tas nozīmē, ka jums nav jāuztraucas par
+ne-ASCII rakstzīmēm, piemēram, virknes literāļos. Bet tas nav viss.
+Visticamāk, jums nebūs jāuztraucas, ja jūsu programma lasa teksta failu,
+kas arī ir UTF-8 fails. Tas arī nozīmē, ka virknes garums tiek pareizi
+noteikts kā rakstzīmju skaits, nevis baitu skaits. (Mēs to apskatīsim
+sīkāk vēlāk.)</p>
+<p>Nākamā lieta, ko vēlaties zināt, ir tā, ka jūs varat izmantot
+ne-latīņu vai ne-angļu burtus identifikatoriem. Jūs varat nosaukt savu
+mainīgo <code>$ι</code> tā vietā, lai izmantotu <code>$i</code>, ja
+vēlaties, un kompilators to pareizi parsēs.</p>
+<p>Raku pietiekami pedantiski apstrādā rakstzīmju Unicode īpašības.
+Piemēram, tas ne tikai zina, vai rakstzīme ir burts vai cipars, bet arī
+pareizi identificē pāra rakstzīmes, piemēram, iekavas vai dažāda veida
+iekavas. Daudzos gadījumos jūs varat izvēlēties dažāda veida iekavas
+atsevišķām programmas daļām. Piemēram, jūs varat modificēt mūsu “Hello,
+World!” programmu, lai izmantotu šīs ne-latīņu citēšanas rakstzīmes (jūs
+tās redzēsiet atkal, kad strādāsim ar Raku gramatikām):</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ｢<span class="n">Hello</span>, <span class="n">World</span>!｣;</pre></div>
 
-<h1 id="piezīmes-par-unicode-izmantošanu">Piezīmes par Unicode izmantošanu</h1>
-
-<p>Raku pieņem, ka visi jūsu programmu faili ir saglabāti kā UTF-8 faili. No praktiskā viedokļa tas nozīmē, ka jums nav jāuztraucas par ne-ASCII rakstzīmēm, piemēram, virknes literāļos. Bet tas nav viss. Visticamāk, jums nebūs jāuztraucas, ja jūsu programma lasa teksta failu, kas arī ir UTF-8 fails. Tas arī nozīmē, ka virknes garums tiek pareizi noteikts kā rakstzīmju skaits, nevis baitu skaits. (Mēs to apskatīsim sīkāk vēlāk.)</p>
-
-<p>Nākamā lieta, ko vēlaties zināt, ir tā, ka jūs varat izmantot ne-latīņu vai ne-angļu burtus identifikatoriem. Jūs varat nosaukt savu mainīgo <code class="language-plaintext highlighter-rouge">$ι</code> tā vietā, lai izmantotu <code class="language-plaintext highlighter-rouge">$i</code>, ja vēlaties, un kompilators to pareizi parsēs.</p>
-
-<p>Raku pietiekami pedantiski apstrādā rakstzīmju Unicode īpašības. Piemēram, tas ne tikai zina, vai rakstzīme ir burts vai cipars, bet arī pareizi identificē pāra rakstzīmes, piemēram, iekavas vai dažāda veida iekavas. Daudzos gadījumos jūs varat izvēlēties dažāda veida iekavas atsevišķām programmas daļām. Piemēram, jūs varat modificēt mūsu “Hello, World!” programmu, lai izmantotu šīs ne-latīņu citēšanas rakstzīmes (jūs tās redzēsiet atkal, kad strādāsim ar Raku gramatikām):</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> ｢<span class="n">Hello</span>, <span class="n">World</span>!｣;
-</pre></div>
-
-
-<p>Dažiem iebūvētiem operatoriem ir divas formas: Unicode un ASCII versijas. Piemēram, var rakstīt noliegtu salīdzinājumu kā <code class="language-plaintext highlighter-rouge">!=</code> vai kā <code class="language-plaintext highlighter-rouge">≠</code>. Tas pats attiecas uz kopu operācijām: piemēram, <code class="language-plaintext highlighter-rouge">∈</code> ir tīrs ASCII ekvivalents <code class="language-plaintext highlighter-rouge">(elem)</code>. Vai arī ir iebūvēta konstante, uz kuru var atsaukties kā <code class="language-plaintext highlighter-rouge">pi</code> vai <code class="language-plaintext highlighter-rouge">π</code>.</p>
-
-<p>Strādājot ar skaitļiem, jūs varat izvēlēties izmantot daļskaitļus formā <code class="language-plaintext highlighter-rouge">½</code> tā vietā, lai izmantotu <code class="language-plaintext highlighter-rouge">0.5</code>. Vai arī novērtēt kvadrātu <code class="language-plaintext highlighter-rouge">$x</code> kā <code class="language-plaintext highlighter-rouge">$x²</code>, izmantojot augšraksta rakstzīmi.</p>
-
-<p>Pilnu šādu pāru sarakstu varat atrast šajā dokumentācijas lapā: 📖 <a href="https://docs.raku.org/language/unicode_ascii">Unicode versus ASCII symbols</a>.</p>
-
+<p>Dažiem iebūvētiem operatoriem ir divas formas: Unicode un ASCII
+versijas. Piemēram, var rakstīt noliegtu salīdzinājumu kā
+<code>!=</code> vai kā <code>≠</code>. Tas pats attiecas uz kopu
+operācijām: piemēram, <code>∈</code> ir tīrs ASCII ekvivalents
+<code>(elem)</code>. Vai arī ir iebūvēta konstante, uz kuru var
+atsaukties kā <code>pi</code> vai <code>π</code>.</p>
+<p>Strādājot ar skaitļiem, jūs varat izvēlēties izmantot daļskaitļus
+formā <code>½</code> tā vietā, lai izmantotu <code>0.5</code>. Vai arī
+novērtēt kvadrātu <code>$x</code> kā <code>$x²</code>, izmantojot
+augšraksta rakstzīmi.</p>
+<p>Pilnu šādu pāru sarakstu varat atrast šajā dokumentācijas lapā: 📖 <a
+href="https://docs.raku.org/language/unicode_ascii">Unicode versus ASCII
+symbols</a>.</p>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-    <a href="/lv/essentials/hello-world">Sveika, Pasaule!</a>
-  |  
-        <a href="/lv/essentials/running-programs">Programmu palaišana</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/on-unicode/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/on-unicode/">English</a> • <a href="/de/essentials/on-unicode/">Deutsch</a> • <a href="/es/essentials/on-unicode/">Español</a> • <a href="/it/essentials/on-unicode/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/on-unicode/">Nederlands</a> • <a href="/bg/essentials/on-unicode/">Български</a> • <a href="/ru/essentials/on-unicode/">Русский</a> • <a href="/uk/essentials/on-unicode/">Українська</a></p>
+<p>← <a href="/lv/essentials/hello-world">Sveika, Pasaule!</a>   |   <a
+href="/lv/essentials/running-programs">Programmu palaišana</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/on-unicode">English</a> • <a
+href="/de/essentials/on-unicode">Deutsch</a> • <a
+href="/es/essentials/on-unicode">Español</a> • <a
+href="/it/essentials/on-unicode">Italiano</a> • <a
+href="/la/essentials/on-unicode">Latina</a> • <strong>Latviešu</strong>
+• <a href="/nl/essentials/on-unicode">Nederlands</a> • <a
+href="/bg/essentials/on-unicode">Български</a> • <a
+href="/ru/essentials/on-unicode">Русский</a> • <a
+href="/uk/essentials/on-unicode">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

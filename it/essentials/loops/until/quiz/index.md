@@ -1,5 +1,5 @@
 ---
-title: Quiz — Il ciclo until
+title: Quiz — il ciclo `until`
 ---
 
 {% include menu.html %}

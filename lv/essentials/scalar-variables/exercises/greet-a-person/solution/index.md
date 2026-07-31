@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam 'Sveicināt personu'
+title: 'Risinājums: Sasveicināties ar personu'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say 'Hello, ', $name, '!';
 ```
 
-🦋 Avota kodu var atrast failā [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/greet-a-person.raku).
+🦋 Avota kodu var atrast failā [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/greet-a-person.raku).
 
 ## Izvade
 

@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Confronta stringhe
+title: Quiz 1 — Confronto delle stringhe
 ---
 
 {% include menu.html %}

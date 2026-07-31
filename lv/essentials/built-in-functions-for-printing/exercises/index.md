@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Iebūvētās funkcijas drukāšanai'
+title: 'Vingrinājumi: Iebūvētās drukāšanas funkcijas'
 ---
 
 {% include menu.html %}

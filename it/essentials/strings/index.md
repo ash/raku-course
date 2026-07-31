@@ -1,5 +1,5 @@
 ---
-title: Stringhe in Raku
+title: Stringhe
 ---
 
 {% include menu.html %}

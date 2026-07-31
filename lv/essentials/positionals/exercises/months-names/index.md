@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Mēnešu nosaukumi'
+title: Mēnešu nosaukumi
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Nomi di variabili
+title: 'Quiz: Nomi validi delle variabili'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Funkciju parametri
+title: Funkciju parametri
 ---
 
 {% include menu.html %}

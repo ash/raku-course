@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Leksiskais apjoms
+title: Viktorīna — leksiskā darbības joma
 ---
 
 {% include menu.html %}

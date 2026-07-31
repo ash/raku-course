@@ -1,5 +1,5 @@
 ---
-title: Numeri razionali in Raku
+title: Numeri razionali
 ---
 
 {% include menu.html %}

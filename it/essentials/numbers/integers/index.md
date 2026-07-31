@@ -1,5 +1,5 @@
 ---
-title: Numeri interi in Raku
+title: Numeri interi
 ---
 
 {% include menu.html %}

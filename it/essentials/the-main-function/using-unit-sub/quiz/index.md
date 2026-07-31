@@ -1,5 +1,5 @@
 ---
-title: Quiz — Using the unit-scoped definition
+title: Quiz* — Uso della definizione a livello di unità
 ---
 
 {% include menu.html %}

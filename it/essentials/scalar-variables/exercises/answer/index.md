@@ -1,5 +1,5 @@
 ---
-title: Esercizio 'La risposta alla vita, all'Universo e a tutto quanto'
+title: La risposta alla vita, all'Universo e a tutto quanto
 ---
 
 {% include menu.html %}

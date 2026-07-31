@@ -1,5 +1,5 @@
 ---
-title: Tipo di ritorno delle funzioni
+title: Tipo di ritorno
 ---
 
 {% include menu.html %}

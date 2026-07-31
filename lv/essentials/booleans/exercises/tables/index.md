@@ -1,5 +1,5 @@
 ---
-title: Uzdevums 'Būla tabulas’
+title: Loģiskās tabulas
 ---
 
 {% include menu.html %}

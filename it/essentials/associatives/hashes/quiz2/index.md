@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Elementi Hash
+title: Quiz 2 — Elementi di hash
 ---
 
 {% include menu.html %}

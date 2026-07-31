@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Izrunāt skaitli'
+title: 'Risinājums: Skaitļa izrunāšana'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Desmitu reizinājumi, piem., 50
 }
 ```
 
-🦋 Atrodiet programmu failā [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Atrodiet programmu failā [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Piemērs
 

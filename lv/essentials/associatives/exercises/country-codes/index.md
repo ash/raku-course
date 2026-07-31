@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Valstu kodi'
+title: Valstu kodi
 ---
 
 {% include menu.html %}

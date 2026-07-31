@@ -1,5 +1,5 @@
 ---
-title: Skaitļi Raku
+title: Skaitļi
 ---
 
 {% include menu.html %}

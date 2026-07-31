@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Traffic lights'
+title: Satiksmes luksofori
 ---
 
 {% include menu.html %}

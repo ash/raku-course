@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Izpētot prompt izvadi — Virknes’
+title: 'Risinājums: Izpētiet `prompt` rezultātu — Virknes'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Jūs varat atrast pirmkodu failā [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Jūs varat atrast pirmkodu failā [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Testa izpildes
 

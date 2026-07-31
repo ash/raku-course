@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Daudzlīmeņu heši
+title: Viktorīna — Daudzlīmeņu hashes
 ---
 
 {% include menu.html %}

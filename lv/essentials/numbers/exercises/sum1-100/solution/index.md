@@ -1,5 +1,5 @@
 ---
-title: Risinājums uz ‘Summa no 1 līdz 100’
+title: 'Risinājums: Skaitļu summa no 1 līdz 100'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $N * (1 + $N) / 2;
 say "Skaitļu summa no 1 līdz $N ir $sum.";
 ```
 
-🦋 Pilnu kodu var atrast failā [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum1-100.raku).
+🦋 Pilnu kodu var atrast failā [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum1-100.raku).
 
 ## Rezultāts
 

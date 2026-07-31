@@ -1,5 +1,5 @@
 ---
-title: Esercizio 'Tabella di acquisto'
+title: Tabella degli acquisti
 ---
 
 {% include menu.html %}

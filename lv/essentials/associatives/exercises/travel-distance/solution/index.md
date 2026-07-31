@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Ceļojuma attālums'
+title: 'Risinājums: Ceļošanas attālums'
 ---
 
 {% include menu.html %}
@@ -41,7 +41,7 @@ for 0 .. @itinerary.elems - 2 -> $index {
 say "Total trip: $total km";
 ```
 
-🦋 Atrodiet programmu ar visu datu struktūru failā [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/travel-distance.raku).
+🦋 Atrodiet programmu ar visu datu struktūru failā [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/travel-distance.raku).
 
 ## Izvade
 

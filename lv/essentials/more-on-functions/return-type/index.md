@@ -1,5 +1,5 @@
 ---
-title: Funkciju atgriešanas tips
+title: Atgriešanas tips
 ---
 
 {% include menu.html %}

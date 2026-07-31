@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Atkārtošanas cikls
+title: 'Viktorīna — `repeat` cikls'
 ---
 
 {% include menu.html %}

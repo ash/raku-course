@@ -4,7 +4,7 @@ title: 'Risinājums: Aizstāt ar antonīmiem'
 
 {% include menu.html %}
 
-Lai atrisinātu uzdevumu, faila [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) saturs tiek nokopēts risinājuma failā [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku). Pēc tam cikls pār input argumentiem mēģina atrast vārdu vārdnīcā, un, ja tas izdodas, tiek ņemts antonīms. Ja vārdnīcā šāda vārda nav, tiek izmantots oriģinālais vārds.
+Lai atrisinātu uzdevumu, faila [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) saturs tiek nokopēts risinājuma failā [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku). Pēc tam cikls pār input argumentiem mēģina atrast vārdu vārdnīcā, un, ja tas izdodas, tiek ņemts antonīms. Ja vārdnīcā šāda vārda nav, tiek izmantots oriģinālais vārds.
 
 ## Kods
 
@@ -25,7 +25,7 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Atrodiet programmu failā [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Atrodiet programmu failā [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
 ## Izvade
 

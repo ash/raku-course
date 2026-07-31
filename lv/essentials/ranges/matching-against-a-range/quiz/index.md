@@ -1,5 +1,5 @@
 ---
-title: Saskaņošana ar diapazonu
+title: Viktorīna — salīdzināšana ar diapazonu
 ---
 
 {% include menu.html %}

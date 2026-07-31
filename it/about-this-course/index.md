@@ -1,98 +1,78 @@
 ---
-title: About this course
+title: Informazioni sul corso
+translations_gpt:
 ---
 
-{% assign course_title = site.data.toc["it"].title %}
-
-[{{course_title}}](/it/)
-
-# Informazioni su questo corso
+{% include menu.html %}
 
 Benvenuto al corso sul linguaggio di programmazione Raku!
 
-Questo corso copre tutti gli aspetti principali del linguaggio che devi utilizzare nella tua pratica quotidiana. Il corso è composto da cinque parti che spiegano la teoria e offrono molti compiti pratici. Si presume che tu provi a risolvere i compiti da solo prima di guardare la soluzione.
+Questo corso copre tutti gli aspetti principali del linguaggio che servono nella pratica quotidiana. È composto da cinque parti che spiegano la teoria e propongono molti compiti pratici. L'idea è che tu provi a risolverli da solo prima di guardare la soluzione.
 
-Se stai appena iniziando a imparare Raku, ti consigliamo di seguire tutte le parti nell'ordine in cui sono elencate nella tabella dei contenuti. Se hai già un po' di pratica e desideri un addestramento specifico, sei libero di iniziare con la sezione desiderata.
+Se stai appena iniziando a imparare Raku, conviene seguire tutte le parti nell'ordine in cui compaiono nell'indice. Se hai già un po' di pratica e cerchi un allenamento mirato, sei libero di partire dalla sezione che ti interessa.
 
 ## Struttura
 
-Il corso è diviso in cinque parti, ciascuna delle quali include diverse sezioni, che a loro volta includono un certo numero di argomenti (o, semplicemente, pagine diverse con il loro URL unico).
+Il corso è diviso in cinque parti, ciascuna delle quali comprende diverse sezioni, che a loro volta comprendono un certo numero di argomenti (o, più semplicemente, singole pagine con il proprio URL).
 
-Il corso include materiali dei seguenti quattro tipi:
+Il corso comprende materiali di quattro tipi:
 
-* — Teoria che copre l'argomento attuale
-* — Quiz che testano la tua comprensione della teoria dell'argomento e/o della sezione
-* — Esercizi per il materiale dell'intera sezione
-* — Risposte agli esercizi
+* — Teoria sull'argomento corrente
+* — Quiz che verificano quanto hai capito della teoria dell'argomento e della sezione
+* — Esercizi sul materiale dell'intera sezione
+* — Soluzioni degli esercizi
 
-A volte, i compiti pratici (sia quiz che esercizi) forniscono informazioni aggiuntive sull'argomento, quindi per ottenere il massimo dal corso, si consiglia di non saltarli.
+I compiti pratici — sia i quiz sia gli esercizi — a volte forniscono informazioni aggiuntive sull'argomento: per trarre il massimo dal corso, è meglio non saltarli.
 
-Sotto ogni pagina, c'è un blocco di navigazione che puoi utilizzare per attraversare l'intero corso. Puoi anche sempre saltare alla sezione desiderata utilizzando il menu dei breadcrumb in cima alla pagina.
+Sotto ogni pagina c'è un blocco di navigazione che permette di percorrere l'intero corso. Puoi inoltre saltare in qualsiasi momento alla sezione desiderata usando il percorso in cima alla pagina.
 
-Mentre la navigazione ti guida attraverso i compiti in un ordine particolare, puoi risolverli in ordine più o meno casuale all'interno della sezione o dell'argomento attuale.
+La navigazione ti guida attraverso i compiti in un ordine preciso, ma all'interno della sezione o dell'argomento corrente puoi affrontarli più o meno nell'ordine che preferisci.
 
 ## Contenuti
 
-Il corso include cinque parti:
+Il corso è composto da cinque parti, tutte interamente scritte e pubblicate:
 
-| N | Nome | Stato
-| 1 | [Fondamenti di Raku](/it/essentials) | Pubblicato
-| 2 | [Argomenti avanzati di Raku](/it/advanced) | In corso<span id="ProgressBar">...</span>
-| 3 | Programmazione orientata agli oggetti in Raku | 
-| 4 | Regex e grammatiche | 
-| 5 | Programmazione funzionale, concorrente e reattiva | 
+<style>
+table td:first-child, table th:first-child { width: 99%; }
+table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; padding-left: 1.5em; }
+</style>
 
-<script>
-    let ProgressBar = document.getElementById('ProgressBar');
-    let current_progress = 0;
-    setInterval(function() {
-        current_progress++;
-        current_progress %= 6;
+| Parte | Argomenti | Quiz | Esercizi |
+|-------|----------:|-----:|---------:|
+| [Fondamenti di Raku](/it/essentials) | 91 | 73 | 65 |
+| [Argomenti avanzati di Raku](/it/advanced) | 86 | 48 | 115 |
+| [Oggetti, I/O ed eccezioni](/it/oop) | 33 | 20 | 55 |
+| [Espressioni regolari e grammatiche](/it/regexes) | 34 | 29 | 49 |
+| [Programmazione funzionale, concorrente, reattiva e web](/it/paradigms) | 40 | 31 | 56 |
+| ★ [La prova finale](/it/final-test) | — | 100 | — |
+| [Appendice: esercizi estesi](/it/addendum) | 8 | — | 50 |
 
-        let bar = '';
-        for (let c = 0; c < current_progress; c++) {
-            bar += ',';
-        }
-        bar += '...';
-        for (let c = current_progress; c < 6; c++) {
-            bar += ',';
-        }
-        
-        bar = bar.substr(3, 3);
-        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
-        ProgressBar.innerHTML = bar;
-    }, 200);
-</script>
+Dopo le cinque parti viene **la prova finale**: cento domande su tutto il corso in un'unica sessione, all'incirca nell'ordine in cui hai imparato la materia. Ogni risposta viene verificata subito e alla fine ottieni il tuo punteggio e un link da conservare per condividere il risultato o per rivederlo.
 
-Al momento, la prima parte è completamente scritta e pubblicata. Le altre parti sono in corso. Nota che poiché il corso è ancora in sviluppo, gli URL delle sue diverse parti potrebbero cambiare leggermente in futuro.
+La sesta parte, l'**appendice**, è una raccolta a sé di esercizi più impegnativi e più ampi, che si appoggiano contemporaneamente a tutto il corso — proprio il tipo di esercizio a cui si ricorre una volta digerito il materiale principale.
 
-La prima parte, ‘Fondamenti di Raku’, contiene:
+Tieni presente che il corso è ancora in fase di rifinitura, quindi gli URL delle sue diverse parti potrebbero cambiare leggermente in futuro. Negli argomenti già pubblicati possono comparire nuovi esercizi e quiz, e le parti teoriche possono essere ritoccate per ottenere un flusso migliore.
 
-- 91 argomenti
-- 73 quiz
-- 65 esercizi
+## Cosa serve
 
-Nuovi esercizi e quiz possono apparire negli argomenti già pubblicati, così come le parti teoriche possono essere leggermente modificate per ottenere il miglior flusso del corso.
+Per seguire il corso e svolgere gli esercizi serve un compilatore funzionante. Ci sono diverse possibilità:
 
-## Prerequisiti
-
-Per seguire il corso ed eseguire gli esercizi, è necessario avere un compilatore funzionante. Ci sono diverse opzioni:
-
-* — Installare il compilatore Rakudo o il pacchetto Rakudo Star o
-* — Utilizzare servizi online o
-* — Utilizzare container docker
+* — Provare il <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">campo da gioco di Raku</a> direttamente nel browser, senza installare nulla, oppure
+* — Installare il compilatore Rakudo, oppure
+* — Usare servizi online, oppure
+* — Usare container Docker
 
 Le diverse opzioni di installazione sono descritte all'inizio della prima parte.
 
 ## Informazioni sull'autore
 
-Il corso è scritto da [Andrew Shitov](https://andrewshitov.com), che segue lo sviluppo di Raku dal 2000 circa (quando era conosciuto come Perl 6). È autore di numerosi [libri sulla programmazione in Raku](https://andrewshitov.com/books). Il materiale del corso si basa sull'esperienza quotidiana, in particolare sul contributo a [The Weekly Challenge](https://perlweeklychallenge.org) e sulla revisione delle soluzioni di altri partecipanti, nonché sull'esperienza ottenuta utilizzando Raku come linguaggio principale per il sito web [Covid Observer](https://covid.observer).
+Il corso è scritto da [Andrew Shitov](https://andrewshitov.com), che segue lo sviluppo di Raku dal 2000 circa (quando il linguaggio si chiamava ancora Perl 6). È autore di diversi [libri sulla programmazione in Raku](https://andrewshitov.com/books). Il materiale del corso si basa sull'esperienza quotidiana, in particolare sulla partecipazione a [The Weekly Challenge](https://perlweeklychallenge.org) e sulla lettura delle soluzioni degli altri partecipanti, oltre che sull'esperienza maturata usando Raku come linguaggio principale per il sito [Covid Observer](https://covid.observer).
 
-## Contributi, termini di utilizzo e feedback
+## Contributi, condizioni d'uso e commenti
 
-La creazione del corso è supportata dal finanziamento di [The Perl Foundation](https://www.perlfoundation.org). Puoi utilizzare il corso per l'autoapprendimento o come insieme di materiali pronti per insegnare ad altri. L'uso commerciale nelle classi è consentito senza permesso. Il rilascio del corso come prodotto separato deve essere prima negoziato con l'autore.
+La creazione del corso è sostenuta da una borsa della [Perl & Raku Foundation](https://www.perlfoundation.org). Puoi usare il corso per lo studio individuale o come materiale già pronto per insegnare ad altri. L'uso commerciale in aula è consentito senza autorizzazione. La pubblicazione del corso come prodotto autonomo va concordata prima con l'autore.
 
-I file sorgente sono disponibili su GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Sentiti libero di inviare una pull request per correggere eventuali errori o refusi o creare un problema su GitHub se desideri discutere un argomento più ampio. Puoi anche contattare l'autore via [e-mail](mailto:andy@shitov.ru).
+I file sorgente sono su GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Manda pure una pull request per correggere errori o refusi, oppure apri una issue su GitHub se vuoi discutere qualcosa di più ampio. Puoi anche scrivere all'autore per [e-mail](mailto:mail@andreyshitov.com).
 
 ## Navigazione del corso
 

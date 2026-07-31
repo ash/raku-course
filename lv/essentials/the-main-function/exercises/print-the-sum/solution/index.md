@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Izdrukāt summu'
+title: 'Risinājums: Drukāt summu'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ sub MAIN(Int $a, Int $b) {
 }
 ```
 
-🦋 Atrodi programmu failā [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/print-the-sum.raku).
+🦋 Atrodi programmu failā [print-the-sum.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/print-the-sum.raku).
 
 ## Izvade
 

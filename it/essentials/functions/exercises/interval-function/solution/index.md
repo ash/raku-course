@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Funzione intervallo'
+title: 'Solution: Funzione di intervallo'
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Trova il programma nel file [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku).
+🦋 Trova il programma nel file [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/interval-function.raku).
 
 ## Output
 

@@ -37,7 +37,7 @@ for @items -> $item {
 }
 ```
 
-🦋 Atrodiet programmu failā [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku).
+🦋 Atrodiet programmu failā [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/purchase-table.raku).
 
 ## Izvade
 

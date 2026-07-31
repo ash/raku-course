@@ -1,5 +1,5 @@
 ---
-title: 'Esercizi: Esecuzione dei programmi'
+title: 'Exercises: Esecuzione dei programmi'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Conversione dei tipi utilizzando i costruttori
+title: Conversione dei tipi usando le forme del costruttore
 ---
 
 {% include menu.html %}

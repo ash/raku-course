@@ -1,5 +1,5 @@
 ---
-title: Variabile topic
+title: Variabile di argomento
 ---
 
 {% include menu.html %}

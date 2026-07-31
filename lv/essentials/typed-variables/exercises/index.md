@@ -1,5 +1,5 @@
 ---
-title: Uzdevumi par 'Tipizētām mainīgajām'
+title: 'Vingrinājumi: Tipizētie mainīgie'
 ---
 
 {% include menu.html %}

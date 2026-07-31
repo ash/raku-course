@@ -1,5 +1,5 @@
 ---
-title: Confronto di stringhe
+title: Confronto delle stringhe
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Atgriešanās no funkcijas
+title: Viktorīna — Rezultāta atgriešana no funkcijas
 ---
 
 {% include menu.html %}

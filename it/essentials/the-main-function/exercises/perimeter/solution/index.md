@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Perimetro di un rettangolo'
+title: 'Solution: Perimetro di un rettangolo'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ sub MAIN($a, $b = $a) {
 }
 ```
 
-🦋 Trova il programma nel file [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Trova il programma nel file [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
 ## Output
 

@@ -42,7 +42,7 @@ put %h;
 
 Lai iegūtu lielāku pārliecību, varat arī izdrukāt mainīgā tipu, piemēram, kā parādīts masīviem un sarakstiem, lai pārliecinātos, ka esat izveidojis mainīgo vēlamajā tipā.
 
-🦋 Atrodiet programmu failā [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Atrodiet programmu failā [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Izvade
 

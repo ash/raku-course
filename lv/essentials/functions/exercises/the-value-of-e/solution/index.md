@@ -37,7 +37,7 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Atrodiet programmu failā [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Atrodiet programmu failā [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
 ## Izvade
 

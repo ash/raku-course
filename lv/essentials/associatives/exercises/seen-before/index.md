@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Redzēts iepriekš?'
+title: Redzēts agrāk?
 ---
 
 {% include menu.html %}

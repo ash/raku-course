@@ -1,5 +1,5 @@
 ---
-title: Rindu savienošana Raku
+title: Virkņu savienošana
 ---
 
 {% include menu.html %}

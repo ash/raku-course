@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Funkciju izveide un izmantošana Raku'
+title: 'Vingrinājumi: Funkciju izveide un izsaukšana'
 ---
 
 {% include menu.html %}

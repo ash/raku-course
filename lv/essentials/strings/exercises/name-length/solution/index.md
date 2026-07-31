@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam 'Vārda garums'
+title: 'Risinājums: Vārda garums'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say $name.chars;
 ```
 
-🦋 Jūs varat atrast pirmkodu failā [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/name-length.raku).
+🦋 Jūs varat atrast pirmkodu failā [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/name-length.raku).
 
 ## Izvade
 

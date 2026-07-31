@@ -1,5 +1,5 @@
 ---
-title: Soluzione di ‘Stampa gli argomenti della riga di comando’
+title: 'Solution: Stampa degli argomenti della riga di comando'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Il programma ottiene gli argomenti dalla riga di comando nell'array `@*ARGS`. Qu
 .say for @*ARGS;
 ```
 
-🦋 Trova il programma nel file [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Trova il programma nel file [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Output
 

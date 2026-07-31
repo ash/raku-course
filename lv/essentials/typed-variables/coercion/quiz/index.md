@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Tipa ierobežojumi
+title: Viktorīna — tipu konvertēšana
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Skalārie mainīgie
+title: Skalarie mainīgie
 ---
 
 {% include menu.html %}

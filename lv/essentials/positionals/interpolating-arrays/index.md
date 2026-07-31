@@ -1,5 +1,5 @@
 ---
-title: Starpelementu interpolācija masīvos
+title: Masīvu interpolācija
 ---
 
 {% include menu.html %}

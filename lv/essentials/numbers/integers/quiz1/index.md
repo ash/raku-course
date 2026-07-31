@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Veseli skaitļi
+title: 'Tests: Veselie skaitļi'
 ---
 
 {% include menu.html %}

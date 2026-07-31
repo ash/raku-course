@@ -1,5 +1,5 @@
 ---
-title: Soluzione a ‘Class desks’
+title: 'Solution: Banchi in classe'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my $desks = $students div 2 + $students % 2;
 say "$desks desks must be bought.";
 ```
 
-🦋 Puoi trovare il codice completo nel file [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/class-desks.raku).
+🦋 Puoi trovare il codice completo nel file [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/class-desks.raku).
 
 ## Output
 

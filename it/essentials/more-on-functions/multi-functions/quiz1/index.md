@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Simple multi-functions
+title: Quiz 1 — Semplici multi-funzioni
 ---
 
 {% include menu.html %}

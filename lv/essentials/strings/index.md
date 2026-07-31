@@ -1,5 +1,5 @@
 ---
-title: Virknes Raku
+title: Virknes
 ---
 
 {% include menu.html %}

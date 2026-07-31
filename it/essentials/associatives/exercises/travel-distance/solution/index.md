@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Distanza di viaggio'
+title: 'Solution: Distanza di viaggio*'
 ---
 
 {% include menu.html %}
@@ -41,7 +41,7 @@ for 0 .. @itinerary.elems - 2 -> $index {
 say "Total trip: $total km";
 ```
 
-🦋 Trova il programma con l'intera struttura dati nel file [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/travel-distance.raku).
+🦋 Trova il programma con l'intera struttura dati nel file [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/travel-distance.raku).
 
 ## Output
 

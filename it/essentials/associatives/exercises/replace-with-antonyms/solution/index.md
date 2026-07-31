@@ -1,10 +1,10 @@
 ---
-title: 'Soluzione: Sostituire con antonimi'
+title: 'Solution: Sostituire con contrari'
 ---
 
 {% include menu.html %}
 
-Per risolvere il compito, il contenuto del file [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) viene copiato nel file di soluzione [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku). Dopo di ciò, un ciclo sugli argomenti di input cerca di trovare la parola nel dizionario e, se la trova, prende l'antonymo. Se non esiste tale parola nel dizionario, viene utilizzata la parola originale.
+Per risolvere il compito, il contenuto del file [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) viene copiato nel file di soluzione [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku). Dopo di ciò, un ciclo sugli argomenti di input cerca di trovare la parola nel dizionario e, se la trova, prende l'antonymo. Se non esiste tale parola nel dizionario, viene utilizzata la parola originale.
 
 ## Codice
 
@@ -25,7 +25,7 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Trova il programma nel file [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Trova il programma nel file [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
 ## Output
 

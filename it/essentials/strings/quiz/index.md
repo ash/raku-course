@@ -1,5 +1,5 @@
 ---
-title: Quiz — valid strings
+title: Quiz — stringhe valide
 ---
 
 {% include menu.html %}

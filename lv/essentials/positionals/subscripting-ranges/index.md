@@ -1,5 +1,5 @@
 ---
-title: Apakšindeksēšanas diapazoni
+title: Diapazonu apakšizteiksmes
 ---
 
 {% include menu.html %}

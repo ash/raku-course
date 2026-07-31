@@ -1,5 +1,5 @@
 ---
-title: Vairākrindu komentāri
+title: Daudzrindu komentāri
 ---
 
 {% include menu.html %}

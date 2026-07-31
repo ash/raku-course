@@ -1,5 +1,5 @@
 ---
-title: Funkciju tipizētie parametri
+title: Tipizētie parametri
 ---
 
 {% include menu.html %}

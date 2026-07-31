@@ -1,5 +1,5 @@
 ---
-title: Soluzione di ‘Esaminare l'output del prompt — Stringhe’
+title: 'Solution: Esaminare il risultato di `prompt` — Stringhe'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Puoi trovare il codice sorgente nel file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Puoi trovare il codice sorgente nel file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Esecuzioni di test
 

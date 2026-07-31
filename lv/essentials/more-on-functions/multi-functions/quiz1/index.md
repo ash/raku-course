@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Vienkāršas daudzfunkcijas
+title: Tests 1 — Vienkāršas daudzfunkcijas
 ---
 
 {% include menu.html %}

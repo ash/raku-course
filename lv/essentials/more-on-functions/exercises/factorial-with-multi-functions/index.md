@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Faktoriāls ar vairākiem funkcijām'
+title: Faktoriāls ar daudzfunkcijām
 ---
 
 {% include menu.html %}

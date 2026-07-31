@@ -1,5 +1,5 @@
 ---
-title: Nosacījumu pārbaudes ar if
+title: '`if` bloki'
 ---
 
 {% include menu.html %}

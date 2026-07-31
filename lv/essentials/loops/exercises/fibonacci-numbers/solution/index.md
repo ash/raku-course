@@ -1,5 +1,5 @@
 ---
-title: Risinājums 'Fibonači skaitļiem'
+title: 'Risinājums: Fibonači skaitļi'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ for ^19 {
 }
 ```
 
-🦋 Atrodiet programmu failā [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fibonacci-numbers.raku).
+🦋 Atrodiet programmu failā [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fibonacci-numbers.raku).
 
 ## Izvade
 

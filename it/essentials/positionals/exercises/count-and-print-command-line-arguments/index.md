@@ -1,5 +1,5 @@
 ---
-title: Conta e stampa gli argomenti della riga di comando
+title: Conta e stampa degli argomenti della riga di comando
 ---
 
 {% include menu.html %}

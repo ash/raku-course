@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Daļskaitļa daļa'
+title: Frakcionālā daļa
 ---
 
 {% include menu.html %}

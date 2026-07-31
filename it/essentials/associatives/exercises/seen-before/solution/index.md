@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Visto prima?'
+title: 'Solution: Già visto?'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ loop {
 }
 ```
 
-🦋 Trova il programma nel file [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku).
+🦋 Trova il programma nel file [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/seen-before.raku).
 
 ## Output
 

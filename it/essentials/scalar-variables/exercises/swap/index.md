@@ -1,5 +1,5 @@
 ---
-title: Esercizio 'Scambia i valori'
+title: Scambiare valori
 ---
 
 {% include menu.html %}

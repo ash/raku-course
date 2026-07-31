@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Indici dispari'
+title: Indici dispari
 ---
 
 {% include menu.html %}

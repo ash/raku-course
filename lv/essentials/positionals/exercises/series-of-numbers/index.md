@@ -1,5 +1,5 @@
 ---
-title: Izdrukāt skaitļu sēriju
+title: Skaitļu sērijas drukāšana
 ---
 
 {% include menu.html %}

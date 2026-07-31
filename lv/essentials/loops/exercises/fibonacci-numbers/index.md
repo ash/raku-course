@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Fibonači skaitļi'
+title: Fibonači skaitļi
 ---
 
 {% include menu.html %}

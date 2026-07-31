@@ -1,5 +1,5 @@
 ---
-title: while un until kā teikuma modifikatori
+title: '`while` un `until` kā izteiksmes modifikatori'
 ---
 
 {% include menu.html %}

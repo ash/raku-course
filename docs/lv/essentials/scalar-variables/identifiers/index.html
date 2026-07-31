@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mainīgo nosaukumi</title>
-    <meta property="og:title" content="Mainīgo nosaukumi" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Mainīgo nosaukumi — Raku kurss</title>
+    <meta property="og:title" content="Mainīgo nosaukumi — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Mainīgo nosaukumi</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,89 +88,122 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/scalar-variables">Skalarie mainīgie</a></p>
-
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/variables">Mainīgo un datu tipu pamati</a> / <a
+href="/lv/essentials/scalar-variables">Skalarie mainīgie</a></p>
 <h1 id="mainīgo-nosaukumi">Mainīgo nosaukumi</h1>
-
-<p>Pirms turpinām tālāk, pavadīsim nedaudz laika interesantajā tēmā par atļautajiem mainīgo nosaukumiem. Līdz šim mēs esam redzējuši vienkāršus nosaukumus, piemēram, <code class="language-plaintext highlighter-rouge">$name</code> vai <code class="language-plaintext highlighter-rouge">$age</code>, kas pilnībā sastāvēja no mazajiem burtiem angļu alfabētā. Bet ir arī citas iespējas.</p>
-
-<h2 id="lielo-un-mazo-burtu-atšķirība">Lielo un mazo burtu atšķirība</h2>
-
-<p>Mainīgo (vai <em>identifikatoru</em>) nosaukumi ir reģistrjutīgi. Tas nozīmē, ka visi zemāk minētie nosaukumi attiecas uz dažādiem skalāriem konteineriem:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$myname</span>
+<p>Pirms turpinām tālāk, pavadīsim nedaudz laika interesantajā tēmā par
+atļautajiem mainīgo nosaukumiem. Līdz šim mēs esam redzējuši vienkāršus
+nosaukumus, piemēram, <code>$name</code> vai <code>$age</code>, kas
+pilnībā sastāvēja no mazajiem burtiem angļu alfabētā. Bet ir arī citas
+iespējas.</p>
+<h2 id="lielo-un-mazo-burtu-atšķirība">Lielo un mazo burtu
+atšķirība</h2>
+<p>Mainīgo (vai <em>identifikatoru</em>) nosaukumi ir reģistrjutīgi. Tas
+nozīmē, ka visi zemāk minētie nosaukumi attiecas uz dažādiem skalāriem
+konteineriem:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$myname</span>
 
 <span class="nv">$MyName</span>
 
 <span class="nv">$myName</span>
 
-<span class="nv">$MYNAME</span>
-</pre></div>
+<span class="nv">$MYNAME</span></pre></div>
 
-
-<p>Tas ir atkarīgs no jums, kādu nosaukumu shēmu izmantot, bet jūs varat rezervēt visus lielos burtus konstantiem.</p>
-
+<p>Tas ir atkarīgs no jums, kādu nosaukumu shēmu izmantot, bet jūs varat
+rezervēt visus lielos burtus konstantiem.</p>
 <h2 id="citi-rakstzīmes">Citi rakstzīmes</h2>
+<p>Starp ASCII rakstzīmēm varat izmantot ciparus, apakšsvītru
+<code>_</code>, defisi <code>-</code> un vienpēdiņu (kas apzīmē
+apostrofu) <code>'</code>. Ņemiet vērā, ka pirmajai identifikatora
+rakstzīmei jābūt vai nu burtam, vai apakšsvītrai. Gan <code>-</code>,
+gan <code>'</code> jāseko alfabētiskai rakstzīmei. Šeit ir daži citi
+derīgi identifikatori:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$___</span>
 
-<p>Starp ASCII rakstzīmēm varat izmantot ciparus, apakšsvītru <code class="language-plaintext highlighter-rouge">_</code>, defisi <code class="language-plaintext highlighter-rouge">-</code> un vienpēdiņu (kas apzīmē apostrofu) <code class="language-plaintext highlighter-rouge">'</code>. Ņemiet vērā, ka pirmajai identifikatora rakstzīmei jābūt vai nu burtam, vai apakšsvītrai. Gan <code class="language-plaintext highlighter-rouge">-</code>, gan <code class="language-plaintext highlighter-rouge">'</code> jāseko alfabētiskai rakstzīmei. Šeit ir daži citi derīgi identifikatori:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$___</span>
-
-<span class="nv">$a&#39;b&#39;c</span>
+<span class="nv">$a'b'c</span>
 
 <span class="nv">$my-name</span>
 
-<span class="nv">$address2</span>
-</pre></div>
+<span class="nv">$address2</span></pre></div>
 
-
-<p>Atkal, tas ir atkarīgs no jums, kādus nosaukumus izvēlēties, bet, iespējams, nav laba prakse apzināti izvēlēties nosaukumus, kas izskatās kriptiski.</p>
-
+<p>Atkal, tas ir atkarīgs no jums, kādus nosaukumus izvēlēties, bet,
+iespējams, nav laba prakse apzināti izvēlēties nosaukumus, kas izskatās
+kriptiski.</p>
 <h2 id="unicode-rakstzīmes">Unicode rakstzīmes</h2>
+<p>Burtu un ciparu definīcija faktiski tiek paplašināta, lai iekļautu
+visas tās rakstzīmes, kas tiek uzskatītas par burtiem un decimālajiem
+cipariem saskaņā ar to Unicode īpašībām. Piemēram, šie mainīgie ir
+derīgi Raku valodā:</p>
+<div class="highlight raku"><pre><span></span>$привет
 
-<p>Burtu un ciparu definīcija faktiski tiek paplašināta, lai iekļautu visas tās rakstzīmes, kas tiek uzskatītas par burtiem un decimālajiem cipariem saskaņā ar to Unicode īpašībām. Piemēram, šie mainīgie ir derīgi Raku valodā:</p>
+$駱駝道
 
-<div class="highlight"><pre><span></span><span class="nv">$привет</span>
+$αβγ
 
-<span class="nv">$駱駝道</span>
+$Δ۲ <span class="c1"># kur ۲ ir cipars</span></pre></div>
 
-<span class="nv">$αβγ</span>
-
-<span class="nv">$Δ۲</span> <span class="c1"># kur ۲ ir cipars</span>
-</pre></div>
-
-
-<p><div class="practice"></p>
-<h2 id="prakse">Prakse</h2>
-
-<p>Pabeidziet viktorīnu, kas aptver šīs tēmas saturu.</p>
+<section id="prakse" class="practice" data-markdown="1">
+<h2>Prakse</h2>
+<p>Jūs gaida 1 viktorīna par šī temata saturu.</p>
 <ul>
-  <li><a href="/lv/essentials/scalar-variables/identifiers/quiz">Tests: Derīgi mainīgo nosaukumi</a></li>
+<li><a href="/lv/essentials/scalar-variables/identifiers/quiz">Tests:
+Derīgi mainīgo nosaukumi</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/scalar-variables">Skalarie mainīgie</a> / <a href="/lv/essentials/scalar-variables/defined-or-operator">Definē-vai operators</a>
-  |  
-        💪 <a href="/lv/essentials/scalar-variables/exercises">Vingrinājumi: Skalarie mainīgie</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/scalar-variables/identifiers/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/scalar-variables/identifiers/">English</a> • <a href="/de/essentials/scalar-variables/identifiers/">Deutsch</a> • <a href="/es/essentials/scalar-variables/identifiers/">Español</a> • <a href="/it/essentials/scalar-variables/identifiers/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/scalar-variables/identifiers/">Nederlands</a> • <a href="/bg/essentials/scalar-variables/identifiers/">Български</a> • <a href="/ru/essentials/scalar-variables/identifiers/">Русский</a> • <a href="/uk/essentials/scalar-variables/identifiers/">Українська</a></p>
+<p>← <a
+href="/lv/essentials/scalar-variables/defined-or-operator">Definē-vai
+operators</a>   |   <a
+href="/lv/essentials/scalar-variables/identifiers/quiz">Tests: Derīgi
+mainīgo nosaukumi</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/essentials/scalar-variables/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/scalar-variables/identifiers">English</a> • <a
+href="/de/essentials/scalar-variables/identifiers">Deutsch</a> • <a
+href="/es/essentials/scalar-variables/identifiers">Español</a> • <a
+href="/it/essentials/scalar-variables/identifiers">Italiano</a> • <a
+href="/la/essentials/scalar-variables/identifiers">Latina</a> •
+<strong>Latviešu</strong> • <a
+href="/nl/essentials/scalar-variables/identifiers">Nederlands</a> • <a
+href="/bg/essentials/scalar-variables/identifiers">Български</a> • <a
+href="/ru/essentials/scalar-variables/identifiers">Русский</a> • <a
+href="/uk/essentials/scalar-variables/identifiers">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

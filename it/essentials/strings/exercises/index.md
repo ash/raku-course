@@ -1,5 +1,5 @@
 ---
-title: 'Esercizi: Stringhe'
+title: 'Exercises: Stringhe'
 ---
 
 {% include menu.html %}

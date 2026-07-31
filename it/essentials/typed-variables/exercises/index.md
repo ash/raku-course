@@ -1,5 +1,5 @@
 ---
-title: Esercizi su ‘Variabili tipizzate’
+title: 'Exercises: Variabili tipizzate'
 ---
 
 {% include menu.html %}

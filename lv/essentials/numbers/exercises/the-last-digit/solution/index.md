@@ -16,7 +16,7 @@ my $d = $n % 10;
 say "Pēdējais cipars skaitlim $n ir $d.";
 ```
 
-🦋 Atrodiet programmu failā [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/the-last-digit.raku).
+🦋 Atrodiet programmu failā [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/the-last-digit.raku).
 
 ## Izvade
 

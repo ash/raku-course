@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Globālās mainīgās
+title: Viktorīna — globālie mainīgie
 ---
 
 {% include menu.html %}

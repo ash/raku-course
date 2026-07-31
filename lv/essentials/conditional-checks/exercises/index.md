@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Nosacījumu pārbaudes'
+title: 'Vingrinājumi: Nosacījumu pārbaudes'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Funzioni con valori di default
+title: Quiz — Funzioni con valori predefiniti
 ---
 
 {% include menu.html %}

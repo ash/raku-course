@@ -1,5 +1,5 @@
 ---
-title: Docker izmantošana Raku palaišanai
+title: Docker izmantošana
 ---
 
 {% include menu.html %}

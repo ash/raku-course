@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Salīdzināt skaitļus
+title: Viktorīna — skaitļu salīdzināšana
 ---
 
 {% include menu.html %}

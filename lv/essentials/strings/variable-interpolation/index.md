@@ -1,5 +1,5 @@
 ---
-title: Mainīgo interpolācija Raku virknes
+title: Mainīgo interpolācija
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Assegnare due valori
+title: Quiz 2: Assegnazione di due valori
 ---
 
 {% include menu.html %}

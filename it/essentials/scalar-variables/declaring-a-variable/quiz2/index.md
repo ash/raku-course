@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Variabili scalari
+title: Quiz 2: Dichiarazione di più variabili
 ---
 
 {% include menu.html %}

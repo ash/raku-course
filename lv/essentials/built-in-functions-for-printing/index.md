@@ -1,5 +1,5 @@
 ---
-title: Iebūvētās funkcijas drukāšanai
+title: Iebūvētās drukāšanas funkcijas
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Uzdevumi par ‘Datu tipu konvertēšana’
+title: 'Vingrinājumi: Datu tipu konvertēšana'
 ---
 
 {% include menu.html %}

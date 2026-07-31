@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Mainīgie kā nosauktie parametri
+title: Tests 2 — Mainīgie kā nosauktie parametri
 ---
 
 {% include menu.html %}

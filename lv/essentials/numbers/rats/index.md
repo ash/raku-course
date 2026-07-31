@@ -1,5 +1,5 @@
 ---
-title: Racionālie skaitļi Raku
+title: Racionālie skaitļi
 ---
 
 {% include menu.html %}

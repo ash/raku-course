@@ -1,5 +1,5 @@
 ---
-title: "Esercizio: Stampa l'avvertimento"
+title: Stampa l'avviso
 ---
 
 {% include menu.html %}

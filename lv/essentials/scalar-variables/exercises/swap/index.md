@@ -1,5 +1,5 @@
 ---
-title: Uzdevums 'Mainīt vērtības'
+title: Vērtību apmaiņa
 ---
 
 {% include menu.html %}

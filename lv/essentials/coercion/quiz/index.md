@@ -1,5 +1,5 @@
 ---
-title: 'Viktorīna: Kāds ir tā tips?'
+title: 'Tests: Kāds ir tā tips?'
 ---
 
 {% include menu.html %}

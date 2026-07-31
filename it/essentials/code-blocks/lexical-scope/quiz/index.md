@@ -1,5 +1,5 @@
 ---
-title: Quiz — Ambito lessicale
+title: Quiz — Ambito lessicale
 ---
 
 {% include menu.html %}

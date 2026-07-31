@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Sarakstu atpazīšana
+title: Tests 2 — Sarakstu atpazīšana
 ---
 
 {% include menu.html %}

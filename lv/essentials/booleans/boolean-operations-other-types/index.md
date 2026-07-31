@@ -1,5 +1,5 @@
 ---
-title: Booleānas operācijas ar citiem tipiem
+title: Loģiskās operācijas ar citiem tipiem
 ---
 
 {% include menu.html %}

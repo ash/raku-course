@@ -1,38 +1,35 @@
 ---
-title: Risinājums ‘Komandrindas argumentu skaits’
+title: 'Risinājums: Komandrindas argumentu skaits'
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Risinājums ir diezgan vienkāršs.
+Argumentu skaitu joprojām dod `@*ARGS.elems`, taču šoreiz ar to jāizdara kas vairāk nekā tikai jāizdrukā. Saglabājiet skaitu mainīgajā un pēc tam ar trejdaļīgo operatoru izvēlieties pareizo vārdu:
 
 ## Kods
 
 ```raku
-say @*ARGS.elems;
+my $n = @*ARGS.elems;
+my $word = $n == 1 ?? 'argument' !! 'arguments';
+say "You passed $n $word.";
 ```
 
-Alternatīvi, jūs varat ķēdēt visas metodes:
-
-```raku
-@*ARGS.elems.say;
-```
-
-🦋 Atrodiet programmu failā [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/number-of-command-line-arguments.raku).
+🦋 Atrodiet programmu failā [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku).
 
 ## Izvade
 
-Šai programmai ir nepieciešams pārbaudīt divus gadījumus:
-
-1. Nav nodoti argumenti.
-1. Ir nodots kāds nenulles argumentu skaits.
+Ir vērts pārbaudīt trīs interesantus gadījumus: neviena argumenta, tieši viena un daudzu. Tikai otrajā tiek lietota vienskaitļa forma.
 
 ```console
 $ raku exercises/positionals/number-of-command-line-arguments.raku
-0
+You passed 0 arguments.
+
+$ raku exercises/positionals/number-of-command-line-arguments.raku solo
+You passed 1 argument.
 
 $ raku exercises/positionals/number-of-command-line-arguments.raku one 2 three 4 five 6 seven
-7
+You passed 7 arguments.
 ```
 
 {% include nav.html %}

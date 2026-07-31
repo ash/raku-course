@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: GALVENĀ funkcija'
+title: 'Vingrinājumi: `MAIN` funkcija'
 ---
 
 {% include menu.html %}

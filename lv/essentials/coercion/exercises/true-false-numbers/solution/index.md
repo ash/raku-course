@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Patiesi un Nepatiesi veseli skaitļi’
+title: 'Risinājums: True un False skaitļi'
 ---
 
 {% include menu.html %}
@@ -37,6 +37,6 @@ my $int = 0;
 say ?(-$int); # False
 ```
 
-🦋 Jūs varat atrast pilnu programmu ar iepriekš minēto piemēru failā [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku).
+🦋 Jūs varat atrast pilnu programmu ar iepriekš minēto piemēru failā [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-numbers.raku).
 
 {% include nav.html %}

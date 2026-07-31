@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Izdrukāt komandrindas argumentus’
+title: 'Risinājums: Komandrindas argumentu drukāšana'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Programma saņem argumentus no komandrindas masīvā `@*ARGS`. Tāpēc mums ir j
 .say for @*ARGS;
 ```
 
-🦋 Atrodiet programmu failā [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Atrodiet programmu failā [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Izvade
 

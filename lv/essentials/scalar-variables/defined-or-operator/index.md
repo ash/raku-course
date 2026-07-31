@@ -1,5 +1,5 @@
 ---
-title: Definētais-vai operators
+title: Definē-vai operators
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Izrunāt skaitli'
+title: Skaitļa izrunāšana
 ---
 
 {% include menu.html %}

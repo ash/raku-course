@@ -1,5 +1,5 @@
 ---
-title: Banchi di classe
+title: Banchi in classe
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Sostituisci con antonimi'
+title: Sostituire con contrari
 ---
 
 {% include menu.html %}

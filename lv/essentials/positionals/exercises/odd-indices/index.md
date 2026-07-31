@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Nepāra indeksi'
+title: Nepāra indeksi
 ---
 
 {% include menu.html %}

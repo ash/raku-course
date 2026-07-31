@@ -1,5 +1,5 @@
 ---
-title: Esercizi sulla ‘Conversione dei tipi di dati’
+title: 'Exercises: Conversione dei tipi di dati'
 ---
 
 {% include menu.html %}

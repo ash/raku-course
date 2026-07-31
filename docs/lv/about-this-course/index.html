@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Par šo kursu</title>
-    <meta property="og:title" content="Par šo kursu" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Par šo kursu — Raku kurss</title>
+    <meta property="og:title" content="Par šo kursu — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Par šo kursu</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,149 +88,187 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a></p>
-
+          <p><a href="/lv/">Raku kurss</a></p>
 <h1 id="par-šo-kursu">Par šo kursu</h1>
-
 <p>Laipni lūdzam Raku programmēšanas valodas kursā!</p>
-
-<p>Šis kurss aptver visus galvenos valodas aspektus, kas jums nepieciešami ikdienas praksē. Kurss sastāv no piecām daļām, kas izskaidro teoriju un piedāvā daudz praktisku uzdevumu. Tiek pieņemts, ka jūs mēģināt atrisināt uzdevumus paši, pirms skatāties risinājumu.</p>
-
-<p>Ja jūs tikai sākat mācīties Raku, ieteicams iziet visas daļas tādā secībā, kādā tās ir uzskaitītas satura rādītājā. Ja jums jau ir kāda pieredze un vēlaties veikt specifisku apmācību, jūs varat sākt ar vēlamo sadaļu.</p>
-
+<p>Šis kurss aptver visus valodas galvenos aspektus, kas nepieciešami
+ikdienas darbā. Kurss sastāv no piecām daļām, kurās izklāstīta teorija
+un piedāvāti daudzi praktiski uzdevumi. Tiek pieņemts, ka uzdevumus
+mēģināt atrisināt pats, pirms ieskatāties risinājumā.</p>
+<p>Ja Raku tikai sākat apgūt, ieteicams iziet visas daļas tādā secībā,
+kādā tās uzskaitītas satura rādītājā. Ja jums jau ir zināma pieredze un
+vēlaties apgūt ko konkrētu, droši sāciet ar vajadzīgo sadaļu.</p>
 <h2 id="struktūra">Struktūra</h2>
-
-<p>Kurss ir sadalīts piecās daļās, katra no tām ietver vairākas sadaļas, kuras savukārt ietver vairākas tēmas (vai, vienkārši sakot, dažādas lapas ar unikālu URL).</p>
-
-<p>Kurss ietver šādus materiālu veidus:</p>
-
+<p>Kurss ir sadalīts piecās daļās, katra no tām ietver vairākas sadaļas,
+kas savukārt ietver virkni tematu (vienkārši sakot, dažādas lappuses ar
+savu unikālu URL).</p>
+<p>Kursā ir šādu četru veidu materiāli:</p>
 <ul>
-  <li>— Teorija, kas aptver pašreizējo tēmu</li>
-  <li>— Viktorīnas, kas pārbauda jūsu izpratni par tēmas un/vai sadaļas teoriju</li>
-  <li>— Uzdevumi par visas sadaļas materiālu</li>
-  <li>— Uzdevumu atbildes</li>
+<li>— Teorija par attiecīgo tematu</li>
+<li>— Testi, kas pārbauda, kā esat izpratis temata un/vai sadaļas
+teoriju</li>
+<li>— Vingrinājumi par visas sadaļas vielu</li>
+<li>— Vingrinājumu atbildes</li>
 </ul>
-
-<p>Dažreiz praktiskie uzdevumi (gan viktorīnas, gan uzdevumi) sniedz papildu informāciju par tēmu, tāpēc, lai maksimāli izmantotu kursu, ieteicams tos nepalaist garām.</p>
-
-<p>Zem katras lapas ir navigācijas bloks, kuru varat izmantot, lai pārvietotos pa visu kursu. Jūs vienmēr varat pāriet uz vēlamo sadaļu, izmantojot maizes drupatas izvēlni lapas augšpusē.</p>
-
-<p>Lai gan navigācija ved jūs cauri uzdevumiem noteiktā secībā, jūs varat tos risināt vairāk vai mazāk nejaušā secībā pašreizējā sadaļā vai tēmā.</p>
-
+<p>Reizēm praktiskie uzdevumi (gan testi, gan vingrinājumi) sniedz
+papildu informāciju par tematu, tāpēc, lai gūtu no kursa vislielāko
+labumu, tos ieteicams neizlaist.</p>
+<p>Zem katras lappuses ir navigācijas bloks, ar kuru varat pārvietoties
+pa visu kursu. Vajadzīgajā sadaļā varat nokļūt arī jebkurā brīdī,
+izmantojot lappuses augšpusē esošo maizes drupatu izvēlni.</p>
+<p>Lai gan navigācija ved cauri uzdevumiem noteiktā secībā, pašreizējās
+sadaļas vai temata ietvaros tos varat risināt vairāk vai mazāk brīvā
+secībā.</p>
 <h2 id="saturs">Saturs</h2>
-
-<p>Kurss ietver piecas daļas:</p>
-
+<p>Kursā ir piecas daļas, un visas ir pilnībā uzrakstītas un
+publicētas:</p>
+<style>
+table td:first-child, table th:first-child { width: 99%; }
+table td:not(:first-child), table th:not(:first-child) { white-space: nowrap; padding-left: 1.5em; }
+</style>
 <table>
-  <tbody>
-    <tr>
-      <td>N</td>
-      <td>Nosaukums</td>
-      <td>Statuss</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td><a href="/lv/essentials">Raku pamati</a></td>
-      <td>Publicēts</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><a href="/lv/advanced">Papildu Raku tēmas</a></td>
-      <td>Izstrādē<span id="ProgressBar">…</span></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Objektorientēta programmēšana Raku</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Regulāras izteiksmes un gramatikas</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Funkcionāla, vienlaicīga un reaktīva programmēšana</td>
-      <td> </td>
-    </tr>
-  </tbody>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 22%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th>Daļa</th>
+<th style="text-align: right;">Temati</th>
+<th style="text-align: right;">Testi</th>
+<th style="text-align: right;">Vingrinājumi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/lv/essentials">Raku pamati</a></td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr>
+<td><a href="/lv/advanced">Padziļinātas Raku tēmas</a></td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">115</td>
+</tr>
+<tr>
+<td><a href="/lv/oop">Objekti, ievade/izvade un izņēmumi</a></td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td><a href="/lv/regexes">Regulārās izteiksmes un gramatikas</a></td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr>
+<td><a href="/lv/paradigms">Funkcionālā, konkurentā, reaktīvā un tīmekļa
+programmēšana</a></td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>★ <a href="/lv/final-test">Noslēguma tests</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><a href="/lv/addendum">Pielikums: apjomīgi vingrinājumi</a></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">50</td>
+</tr>
+</tbody>
 </table>
-
-<script>
-    let ProgressBar = document.getElementById('ProgressBar');
-    let current_progress = 0;
-    setInterval(function() {
-        current_progress++;
-        current_progress %= 6;
-
-        let bar = '';
-        for (let c = 0; c < current_progress; c++) {
-            bar += ',';
-        }
-        bar += '...';
-        for (let c = current_progress; c < 6; c++) {
-            bar += ',';
-        }
-        
-        bar = bar.substr(3, 3);
-        bar = bar.replace(/,/g, '<span style="color: lightgray">.</span>');
-        ProgressBar.innerHTML = bar;
-    }, 200);
-</script>
-
-<p>Pašlaik pirmā daļa ir pilnībā uzrakstīta un publicēta. Pārējās daļas ir izstrādes procesā. Ņemiet vērā, ka, tā kā kurss joprojām tiek izstrādāts, tā dažādu daļu URL nākotnē var nedaudz mainīties.</p>
-
-<p>Pirmā daļa, ‘Raku pamati’, satur:</p>
-
+<p>Pēc piecām daļām seko <strong>Noslēguma tests</strong> — vienā
+piegājienā simt jautājumu par visu kursu, aptuveni tādā secībā, kādā
+vielu esat apguvis. Katra atbilde tiek pārbaudīta uzreiz, un beigās jūs
+saņemat savu rezultātu un saiti, ko varat paturēt, lai to parādītu
+citiem vai pārskatītu.</p>
+<p>Sestā daļa — <strong>Pielikums</strong> — ir atsevišķa grūtāku un
+apjomīgāku vingrinājumu kolekcija, kas balstās uz visu kursu vienlaikus;
+tāda prakse, pie kuras ķerties, kad pamatviela jau ir aiz muguras.</p>
+<p>Ņemiet vērā, ka kurss joprojām tiek pilnveidots, tāpēc tā dažādo daļu
+URL nākotnē var nedaudz mainīties. Jau publicētajos tematos var
+parādīties jauni vingrinājumi un testi, kā arī teorētiskās daļas var
+tikt nedaudz pārveidotas, lai kursa plūdums būtu pēc iespējas
+labāks.</p>
+<h2 id="priekšnosacījumi">Priekšnosacījumi</h2>
+<p>Lai sekotu kursam un izpildītu vingrinājumus, jums nepieciešams
+strādājošs kompilators. Ir vairākas iespējas:</p>
 <ul>
-  <li>91 tēmu</li>
-  <li>73 viktorīnas</li>
-  <li>65 uzdevumus</li>
+<li>— Izmēģiniet iebūvēto
+<a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku
+spēļu laukumu</a> tieši pārlūkprogrammā, neko neinstalējot, vai</li>
+<li>— Instalējiet Rakudo kompilatoru, vai</li>
+<li>— Izmantojiet tiešsaistes pakalpojumus, vai</li>
+<li>— Izmantojiet docker konteinerus</li>
 </ul>
-
-<p>Jauni uzdevumi un viktorīnas var parādīties jau publicētajās tēmās, kā arī teorētiskās daļas var nedaudz mainīties, lai nodrošinātu labāko kursa plūsmu.</p>
-
-<h2 id="priekšnoteikumi">Priekšnoteikumi</h2>
-
-<p>Lai sekotu kursam un veiktu uzdevumus, jums ir nepieciešams strādājošs kompilators. Ir vairāki varianti:</p>
-
-<ul>
-  <li>— Instalēt Rakudo kompilatoru vai Rakudo Star paketi vai</li>
-  <li>— Izmantot tiešsaistes pakalpojumus vai</li>
-  <li>— Izmantot Docker konteinerus</li>
-</ul>
-
-<p>Dažādas instalēšanas iespējas ir aprakstītas pirmās daļas sākumā.</p>
-
+<p>Dažādās instalēšanas iespējas ir aprakstītas pirmās daļas sākumā.</p>
 <h2 id="par-autoru">Par autoru</h2>
-
-<p>Kursu ir uzrakstījis <a href="https://andrewshitov.com">Andrew Shitov</a>, kurš seko Raku attīstībai kopš aptuveni 2000. gada (kad tas bija pazīstams kā Perl 6). Viņš ir vairāku <a href="https://andrewshitov.com/books">grāmatu par programmēšanu Raku autors</a>. Kursa materiāls ir balstīts uz ikdienas pieredzi, īpaši piedaloties <a href="https://perlweeklychallenge.org">The Weekly Challenge</a> un pārskatot citu dalībnieku risinājumus, kā arī izmantojot Raku kā galveno valodu <a href="https://covid.observer">Covid Observer</a> vietnei.</p>
-
-<h2 id="ieguldījumi-lietošanas-noteikumi-un-atsauksmes">Ieguldījumi, lietošanas noteikumi un atsauksmes</h2>
-
-<p>Kursa izveidi atbalsta <a href="https://www.perlfoundation.org">The Perl Foundation</a> grants. Jūs varat izmantot kursu pašmācībai vai kā gatavu materiālu kopumu citu mācīšanai. Komerciāla izmantošana klasēs ir atļauta bez atļaujas. Kursa izdošana kā atsevišķs produkts vispirms ir jāapspriež ar autoru.</p>
-
-<p>Avota faili ir pieejami GitHub: <a href="https://github.com/ash/raku-course">github.com/ash/raku-course</a>. Jūtieties brīvi iesniegt pull request, lai labotu iespējamos kļūdas vai drukas kļūdas, vai izveidot problēmu GitHub, ja vēlaties apspriest plašāku tēmu. Jūs varat arī sazināties ar autoru pa <a href="mailto:andy@shitov.ru">e-pastu</a>.</p>
-
+<p>Kursu ir sarakstījis <a href="https://andrewshitov.com">Andrew
+Shitov</a>, kurš Raku attīstībai seko līdzi kopš aptuveni 2000. gada
+(kad valoda bija pazīstama kā Perl 6). Viņš ir vairāku <a
+href="https://andrewshitov.com/books">grāmatu par programmēšanu Raku
+valodā</a> autors. Kursa viela balstās uz ikdienas pieredzi, jo īpaši uz
+dalību <a href="https://perlweeklychallenge.org">The Weekly
+Challenge</a> un citu dalībnieku risinājumu izskatīšanu, kā arī uz
+pieredzi, kas gūta, izmantojot Raku kā galveno valodu vietnei <a
+href="https://covid.observer">Covid Observer</a>.</p>
+<h2 id="ieguldījums-lietošanas-noteikumi-un-atsauksmes">Ieguldījums,
+lietošanas noteikumi un atsauksmes</h2>
+<p>Kursa tapšanu atbalsta <a href="https://www.perlfoundation.org">The
+Perl &amp; Raku Foundation</a> piešķirtais grants. Kursu varat izmantot
+pašmācībai vai kā gatavu materiālu kopumu citu apmācīšanai. Komerciāla
+izmantošana nodarbībās ir atļauta bez atsevišķas atļaujas. Kursa
+izdošana kā atsevišķa produkta vispirms jāsaskaņo ar autoru.</p>
+<p>Pirmkoda faili ir pieejami GitHub: <a
+href="https://github.com/ash/raku-course">github.com/ash/raku-course</a>.
+Droši iesniedziet izmaiņu pieprasījumu (pull request), lai izlabotu
+iespējamās kļūdas vai drukas kļūdas, vai izveidojiet problēmziņojumu
+(issue) GitHub, ja vēlaties apspriest ko plašāku. Ar autoru varat
+sazināties arī pa <a
+href="mailto:mail@andreyshitov.com">e-pastu</a>.</p>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>← <a href="/lv/">Sākt</a> 
-  |  
-<a href="/lv/essentials/what-is-raku">Kas ir Raku</a> →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/about-this-course/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/about-this-course/">English</a> • <a href="/de/about-this-course/">Deutsch</a> • <a href="/es/about-this-course/">Español</a> • <a href="/it/about-this-course/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/about-this-course/">Nederlands</a> • <a href="/bg/about-this-course/">Български</a> • <a href="/ru/about-this-course/">Русский</a> • <a href="/uk/about-this-course/">Українська</a></p>
-</div>
+<p>← <a href="/lv/">Sākums</a>   |   <a
+href="/lv/essentials/what-is-raku">Kas ir Raku</a> →</p>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

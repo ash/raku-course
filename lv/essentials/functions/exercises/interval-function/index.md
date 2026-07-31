@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Intervāla funkcija'
+title: Intervāla funkcija
 ---
 
 {% include menu.html %}

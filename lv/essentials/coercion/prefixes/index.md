@@ -1,5 +1,5 @@
 ---
-title: Tipu pārvēršana ar prefiksa operatoriem
+title: Tipu konvertēšana ar prefiksu operatoriem
 ---
 
 {% include menu.html %}

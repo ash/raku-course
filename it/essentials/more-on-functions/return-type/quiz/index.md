@@ -1,5 +1,5 @@
 ---
-title: Quiz — Funzioni con valori predefiniti
+title: Quiz — Tipo di ritorno
 ---
 
 {% include menu.html %}

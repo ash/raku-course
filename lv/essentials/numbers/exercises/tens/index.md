@@ -1,5 +1,5 @@
 ---
-title: Desmitu skaits
+title: Desmitdaļu skaits
 ---
 
 {% include menu.html %}

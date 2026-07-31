@@ -1,5 +1,5 @@
 ---
-title: Function names
+title: Nomi delle funzioni
 ---
 
 {% include menu.html %}

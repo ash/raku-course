@@ -1,5 +1,5 @@
 ---
-title: Esercizio ‘Stringhe Vero e Falso
+title: Stringhe vere e false
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Quadrati e cubi in un ciclo'
+title: Quadrati e cubi in un ciclo
 ---
 
 {% include menu.html %}

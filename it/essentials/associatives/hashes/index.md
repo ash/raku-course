@@ -1,5 +1,5 @@
 ---
-title: Hashes
+title: Hash
 ---
 
 {% include menu.html %}

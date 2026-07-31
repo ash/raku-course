@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Taisnstūra perimetrs'
+title: Taisnstūra perimetrs
 ---
 
 {% include menu.html %}

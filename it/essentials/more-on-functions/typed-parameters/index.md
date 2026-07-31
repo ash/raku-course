@@ -1,5 +1,5 @@
 ---
-title: Parametri tipizzati delle funzioni
+title: Parametri tipizzati
 ---
 
 {% include menu.html %}

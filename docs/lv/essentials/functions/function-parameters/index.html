@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="lv">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Funkcijas parametri</title>
-    <meta property="og:title" content="Funkcijas parametri" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Funkciju parametri — Raku kurss</title>
+    <meta property="og:title" content="Funkciju parametri — Raku kurss" />
     <meta property="og:locale" content="lv" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Funkcijas parametri</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,110 +88,124 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> / <a href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a></p>
-
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/functions-essentials">Funkciju pamati</a> / <a
+href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a></p>
 <h1 id="funkciju-parametri">Funkciju parametri</h1>
-
-<p>Ir pienācis laiks nodot datus funkcijai. Tā var pieņemt parametrus, kas uzskaitīti iekavās uzreiz pēc funkcijas nosaukuma.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span>) {
+<p>Ir pienācis laiks nodot datus funkcijai. Tā var pieņemt parametrus,
+kas uzskaitīti iekavās uzreiz pēc funkcijas nosaukuma.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span>) {
     <span class="nb">say</span> <span class="s">&quot;Sveiki, $name!&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
+<p>Tagad jūs varat izmantot funkciju un nodot tai dažādus
+argumentus:</p>
+<div class="highlight raku"><pre><span></span><span class="n">greet</span>(<span class="s">'Alla'</span>);
+<span class="n">greet</span>(<span class="s">'Karlis'</span>);</pre></div>
 
-<p>Tagad jūs varat izmantot funkciju un nodot tai dažādus argumentus:</p>
-
-<div class="highlight"><pre><span></span><span class="n">greet</span>(<span class="s">&#39;Alla&#39;</span>);
-<span class="n">greet</span>(<span class="s">&#39;Karlis&#39;</span>);
-</pre></div>
-
-
-<p>Divi vienas un tās pašas funkcijas izsaukumi tagad radīs dažādus rezultātus:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
-<span class="go">Sveiki, Alla!
-Sveiki, Karlis!
-</span></code></pre></div></div>
-
-<p><div class="tip"></p>
-
+<p>Divi vienas un tās pašas funkcijas izsaukumi tagad radīs dažādus
+rezultātus:</p>
+<div class="highlight"><pre>$ raku t.raku
+Sveiki, Alla!
+Sveiki, Karlis!</pre></div>
+<div class="tip"><p></p>
 <h2 id="parametrs-vai-arguments">Parametrs vai arguments</h2>
-
-<p>Šie termini bieži tiek lietoti savstarpēji aizvietojami. Tie abi attiecas uz ‘to pašu lietu’, bet raugās uz to no dažādām perspektīvām.</p>
-
+<p>Šie termini bieži tiek lietoti savstarpēji aizvietojami. Tie abi
+attiecas uz ‘to pašu lietu’, bet raugās uz to no dažādām
+perspektīvām.</p>
 <ul>
-  <li>Parametrs ir tas, ko funkcija sagaida.</li>
-  <li>Arguments ir tas, ko jūs tai nododat.</li>
+<li>Parametrs ir tas, ko funkcija sagaida.</li>
+<li>Arguments ir tas, ko jūs tai nododat.</li>
 </ul>
-
-<p>Iepriekšējā piemērā <code class="language-plaintext highlighter-rouge">$name</code> ir funkcijas parametrs, savukārt <code class="language-plaintext highlighter-rouge">'Alla'</code> un <code class="language-plaintext highlighter-rouge">'Karlis'</code> ir tās argumenti.</p>
-
-<p></div></p>
-
+<p>Iepriekšējā piemērā <code>$name</code> ir funkcijas parametrs,
+savukārt <code>'Alla'</code> un <code>'Karlis'</code> ir tās
+argumenti.</p>
+</div>
 <h2 id="vairāk-parametru">Vairāk parametru</h2>
-
-<p>Funkcija var pieņemt vairāk nekā vienu parametru. Šajā gadījumā uzskaitiet tos visus, atdalot ar komatiem:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<p>Funkcija var pieņemt vairāk nekā vienu parametru. Šajā gadījumā
+uzskaitiet tos visus, atdalot ar komatiem:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="nb">say</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
 }
 
-<span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-</pre></div>
-
+<span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span></pre></div>
 
 <h2 id="bez-parametriem">Bez parametriem</h2>
-
-<p>Ir derīgs gadījums, kad funkcija nepieņem nekādus parametrus. Šajā gadījumā jūs varat vai nu pievienot tukšu iekavu pāri, vai arī pilnībā tās izlaist, kā mēs darījām <a href="../">šīs sadaļas sākumā</a>.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>() {
-    <span class="nb">say</span> <span class="s">&#39;Sveiki, Pasaule!&#39;</span>;
+<p>Ir derīgs gadījums, kad funkcija nepieņem nekādus parametrus. Šajā
+gadījumā jūs varat vai nu pievienot tukšu iekavu pāri, vai arī pilnībā
+tās izlaist, kā mēs darījām <a href="../">šīs sadaļas sākumā</a>.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>() {
+    <span class="nb">say</span> <span class="s">'Sveiki, Pasaule!'</span>;
 }
 
-<span class="n">greet</span>();
-</pre></div>
-
+<span class="n">greet</span>();</pre></div>
 
 <h2 id="paraksts">Paraksts</h2>
-
 <p>Funkcijas parametru sarakstu sauc par <em>parakstu</em>.</p>
-
-<p><div class="practice"></p>
-<h2 id="prakse">Prakse</h2>
-
-<p>Pabeidziet viktorīnas, kas aptver šīs tēmas saturu.</p>
+<section id="prakse" class="practice" data-markdown="1">
+<h2>Prakse</h2>
+<p>Jūs gaida 2 viktorīnas par šī temata saturu.</p>
 <ul>
-  <li><a href="/lv/essentials/functions/function-parameters/quiz1">Funkciju parametri</a></li>
-  <li><a href="/lv/essentials/functions/function-parameters/quiz2">Parametru nodošana</a></li>
+<li><a
+href="/lv/essentials/functions/function-parameters/quiz1">Funkciju
+parametri</a></li>
+<li><a
+href="/lv/essentials/functions/function-parameters/quiz2">Parametru
+nodošana</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
-
-<p>←
-        <a href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a> / <a href="/lv/essentials/functions/identifiers">Funkciju nosaukumi</a>
-  |  
-        <a href="/lv/essentials/functions">Funkciju izveide un izsaukšana</a> / <a href="/lv/essentials/functions/return-result">Rezultāta atgriešana</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/lv/essentials/functions/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Šī lapa ir automātiski tulkota ar ChatGPT 4o. <a href="/essentials/functions/function-parameters/">Oriģinālais teksts angļu valodā.</a></p>
-
-  <p>Šīs lapas tulkojumi: <a href="/essentials/functions/function-parameters/">English</a> • <a href="/de/essentials/functions/function-parameters/">Deutsch</a> • <a href="/es/essentials/functions/function-parameters/">Español</a> • <a href="/it/essentials/functions/function-parameters/">Italiano</a> • <strong>Latviešu</strong> • <a href="/nl/essentials/functions/function-parameters/">Nederlands</a> • <a href="/bg/essentials/functions/function-parameters/">Български</a> • <a href="/ru/essentials/functions/function-parameters/">Русский</a> • <a href="/uk/essentials/functions/function-parameters/">Українська</a></p>
+<p>← <a href="/lv/essentials/functions/identifiers/quiz">Viktorīna —
+funkciju nosaukumi</a>   |   <a
+href="/lv/essentials/functions/function-parameters/quiz1">Funkciju
+parametri</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/essentials/functions/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/functions/function-parameters">English</a> • <a
+href="/de/essentials/functions/function-parameters">Deutsch</a> • <a
+href="/es/essentials/functions/function-parameters">Español</a> • <a
+href="/it/essentials/functions/function-parameters">Italiano</a> • <a
+href="/la/essentials/functions/function-parameters">Latina</a> •
+<strong>Latviešu</strong> • <a
+href="/nl/essentials/functions/function-parameters">Nederlands</a> • <a
+href="/bg/essentials/functions/function-parameters">Български</a> • <a
+href="/ru/essentials/functions/function-parameters">Русский</a> • <a
+href="/uk/essentials/functions/function-parameters">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

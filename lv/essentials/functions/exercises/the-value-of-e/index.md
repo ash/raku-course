@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: e vērtība'
+title: e vērtība
 ---
 
 {% include menu.html %}

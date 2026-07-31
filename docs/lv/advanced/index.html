@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Padziļināti — Raku kurss</title>
+    <meta property="og:title" content="Padziļināti — Raku kurss" />
+    <meta property="og:locale" content="lv" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/lv/">Raku kurss</a></p>
+<h1 id="daļa-2.-padziļinātas-raku-tēmas">Daļa 2. Padziļinātas Raku
+tēmas</h1>
+<p>Iedziļinieties: konteineri un konteksti, pilns iebūvēto tipu un
+operatoru klāsts, bagātīgākas apakšprogrammas, kā arī koda iesaiņošana
+moduļos ar testiem un dokumentāciju.</p>
+<h4 id="atkļūdošana"><a
+href="/lv/advanced/debugging">Atkļūdošana</a></h4>
+<ul>
+<li><a href="/lv/advanced/representations">Vērtību pārvēršana tekstā</a>
+<ul>
+<li><a href="/lv/advanced/representations/gist">Metode
+<code>.gist</code></a></li>
+<li><a href="/lv/advanced/representations/str">Metode
+<code>.Str</code></a> — <span class="has-q"><a
+href="/lv/advanced/representations/str#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/representations/raku-method">Metode
+<code>.raku</code></a></li>
+<li><a href="/lv/advanced/representations/choosing">Pareizā
+metode</a></li>
+</ul></li>
+<li><a href="/lv/advanced/dd">Atkļūdošana ar <code>dd</code></a> — <span
+class="has-e"><a href="/lv/advanced/dd/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/dd/variables">Mainīgo izgūšana</a> — <span
+class="has-q"><a href="/lv/advanced/dd/variables#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/dd/functions">Funkciju parakstu
+izgūšana</a></li>
+</ul></li>
+</ul>
+<h4 id="konteineri"><a
+href="/lv/advanced/containers-overview">Konteineri</a></h4>
+<ul>
+<li><a href="/lv/advanced/containers">Raku konteineru izpratne</a></li>
+<li><a href="/lv/advanced/scalar-containers">Skalārie konteineri</a> —
+<span class="has-e"><a href="/lv/advanced/scalar-containers/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/scalar-containers/types">Datu tipi un skalārie
+konteineri</a></li>
+<li><a href="/lv/advanced/scalar-containers/type-constraints">Tipu
+ierobežojumi</a> — <span class="has-q"><a
+href="/lv/advanced/scalar-containers/type-constraints#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/scalar-containers/default">Noklusējuma
+vērtības</a></li>
+<li><a href="/lv/advanced/scalar-containers/proxying">Metožu izsaukumu
+pāradresēšana</a></li>
+</ul></li>
+<li><a href="/lv/advanced/ordered-containers">Kārtotie konteineri</a> —
+<span class="has-e"><a
+href="/lv/advanced/ordered-containers/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/ordered-containers/arrays">Masīvi</a></li>
+<li><a href="/lv/advanced/ordered-containers/lists">Saraksti</a> — <span
+class="has-q"><a href="/lv/advanced/ordered-containers/lists#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/ordered-containers/binding">Saistīšana ar
+<code>:=</code></a></li>
+<li><a href="/lv/advanced/ordered-containers/flattening">Saplacināšana
+un vienuma veidošana</a> — <span class="has-q"><a
+href="/lv/advanced/ordered-containers/flattening#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/contexts">Konteksti 🆕</a> — <span
+class="has-e"><a href="/lv/advanced/contexts/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/contexts/coercion-contexts">Skaitliskais,
+virkņu un Būla konteksts</a> — <span class="has-q"><a
+href="/lv/advanced/contexts/coercion-contexts#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/contexts/item-and-list">Vienuma un saraksta
+konteksts</a> — <span class="has-q"><a
+href="/lv/advanced/contexts/item-and-list#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/subscript-adverbs">Indeksa apzīmētāji 🆕</a> —
+<span class="has-e"><a href="/lv/advanced/subscript-adverbs/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/subscript-adverbs/exists-and-delete">Exists un
+delete</a> — <span class="has-q"><a
+href="/lv/advanced/subscript-adverbs/exists-and-delete#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/subscript-adverbs/kv-and-pairs">Atslēgas,
+vērtības un pāri</a></li>
+</ul></li>
+<li><a href="/lv/advanced/special-variables">Speciālie un dinamiskie
+mainīgie 🆕</a> — <span class="has-e"><a
+href="/lv/advanced/special-variables/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/special-variables/twigils">Tvigili</a> — <span
+class="has-q"><a
+href="/lv/advanced/special-variables/twigils#practice">1
+viktorīna</a></span></li>
+<li><a
+href="/lv/advanced/special-variables/dynamic-variables">Dinamiskie
+mainīgie</a> — <span class="has-q"><a
+href="/lv/advanced/special-variables/dynamic-variables#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/special-variables/built-in">Iebūvētie
+speciālie mainīgie</a> — <span class="has-q"><a
+href="/lv/advanced/special-variables/built-in#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/introspection">Konteineru introspekcija</a> —
+<span class="has-e"><a href="/lv/advanced/introspection/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/introspection/what"><code>WHAT</code>
+izmantošana</a> — <span class="has-q"><a
+href="/lv/advanced/introspection/what#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/introspection/var"><code>VAR</code>
+izmantošana</a></li>
+<li><a href="/lv/advanced/introspection/who-how"><code>WHO</code> un
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+<h4 id="vairāk-par-iebūvētajiem-tipiem"><a
+href="/lv/advanced/built-in-types">Vairāk par iebūvētajiem
+tipiem</a></h4>
+<ul>
+<li><a href="/lv/advanced/integers">Veseli skaitļi</a> — <span
+class="has-e"><a href="/lv/advanced/integers/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/integers/number-bases">Skaitļu bāzes</a> —
+<span class="has-q"><a
+href="/lv/advanced/integers/number-bases#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/integers/methods">Veselo skaitļu
+metodes</a></li>
+</ul></li>
+<li><a href="/lv/advanced/native-types">Natīvie tipi 🆕</a> — <span
+class="has-e"><a href="/lv/advanced/native-types/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/native-types/machine-types">Mašīnas līmeņa
+tipi</a> — <span class="has-q"><a
+href="/lv/advanced/native-types/machine-types#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/native-types/sized-types">Izmēra tipi un
+pārpilde</a> — <span class="has-q"><a
+href="/lv/advanced/native-types/sized-types#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/strings">Virknes</a> — <span class="has-e"><a
+href="/lv/advanced/strings/exercises">3 vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/strings/searching">Meklēšana virknēs</a> —
+<span class="has-q"><a href="/lv/advanced/strings/searching#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/strings/splitting">Sadalīšana un
+apvienošana</a></li>
+</ul></li>
+<li><a href="/lv/advanced/quoting">Citēšanas konstrukcijas 🆕</a> —
+<span class="has-e"><a href="/lv/advanced/quoting/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/quoting/q-qq-big-q">q, qq un Q</a> — <span
+class="has-q"><a href="/lv/advanced/quoting/q-qq-big-q#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/quoting/adverbs">Citēšanas apzīmētāji</a> —
+<span class="has-q"><a href="/lv/advanced/quoting/adverbs#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/quoting/heredocs">Heredoc</a></li>
+</ul></li>
+<li><a href="/lv/advanced/date-and-time">Datums un laiks</a> — <span
+class="has-e"><a href="/lv/advanced/date-and-time/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/date-and-time/arithmetic">Datumu
+aritmētika</a> — <span class="has-q"><a
+href="/lv/advanced/date-and-time/arithmetic#practice">2
+viktorīnas</a></span></li>
+<li><a href="/lv/advanced/date-and-time/time">Darbs ar laiku</a></li>
+</ul></li>
+<li><a href="/lv/advanced/sets-bags-mixes">Kopas, somas un maisījumi</a>
+— <span class="has-e"><a href="/lv/advanced/sets-bags-mixes/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/sets-bags-mixes/operations">Kopu
+operācijas</a> — <span class="has-q"><a
+href="/lv/advanced/sets-bags-mixes/operations#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/sets-bags-mixes/bags">Somas un
+maisījumi</a></li>
+</ul></li>
+<li><a href="/lv/advanced/sequences">Secības</a> — <span
+class="has-e"><a href="/lv/advanced/sequences/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/sequences/patterns">Secību raksti</a> — <span
+class="has-q"><a href="/lv/advanced/sequences/patterns#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/sequences/lazy">Slinkas un bezgalīgas
+secības</a></li>
+</ul></li>
+<li><a href="/lv/advanced/enumerations">Uzskaitījumi 🆕</a> — <span
+class="has-e"><a href="/lv/advanced/enumerations/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/enumerations/defining">Uzskaitījuma
+definēšana</a> — <span class="has-q"><a
+href="/lv/advanced/enumerations/defining#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/enumerations/values-and-keys">Vērtības un
+atslēgas</a> — <span class="has-q"><a
+href="/lv/advanced/enumerations/values-and-keys#practice">1
+viktorīna</a></span></li>
+</ul></li>
+</ul>
+<h4 id="operatori"><a href="/lv/advanced/operators">Operatori</a></h4>
+<ul>
+<li><a href="/lv/advanced/operator-types">Raku operatoru tipi</a> —
+<span class="has-q"><a href="/lv/advanced/operator-types#practice">3
+viktorīnas</a></span> un <span class="has-e"><a
+href="/lv/advanced/operator-types/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/operators-overview">Operatoru uzvedības
+pārskats</a> — <span class="has-q"><a
+href="/lv/advanced/operators-overview#practice">1 viktorīna</a></span>
+un <span class="has-e"><a
+href="/lv/advanced/operators-overview/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/metaoperators">Metaoperatori</a> — <span
+class="has-e"><a href="/lv/advanced/metaoperators/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/metaoperators/reduction">Reducēšanas
+metaoperatori</a> — <span class="has-q"><a
+href="/lv/advanced/metaoperators/reduction#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/metaoperators/zip">Zip metaoperatori</a></li>
+<li><a href="/lv/advanced/metaoperators/more">Krustojuma, hiper un
+noliedzošie</a> — <span class="has-q"><a
+href="/lv/advanced/metaoperators/more#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/user-defined-operators">Lietotāja definēti
+operatori</a> — <span class="has-q"><a
+href="/lv/advanced/user-defined-operators#practice">1
+viktorīna</a></span> un <span class="has-e"><a
+href="/lv/advanced/user-defined-operators/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/traits-pragmas">Īpašības un pragmas 🆕</a> —
+<span class="has-e"><a href="/lv/advanced/traits-pragmas/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/traits-pragmas/built-in-traits">Iebūvētās
+īpašības</a> — <span class="has-q"><a
+href="/lv/advanced/traits-pragmas/built-in-traits#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/traits-pragmas/writing-a-trait">Īpašības
+rakstīšana</a></li>
+<li><a href="/lv/advanced/traits-pragmas/pragmas">Pragmas</a> — <span
+class="has-q"><a href="/lv/advanced/traits-pragmas/pragmas#practice">1
+viktorīna</a></span></li>
+</ul></li>
+</ul>
+<h4 id="izpildes-plūsma"><a href="/lv/advanced/control-flow">Izpildes
+plūsma</a></h4>
+<ul>
+<li><a href="/lv/advanced/phasers">Fāzeri</a> — <span class="has-q"><a
+href="/lv/advanced/phasers#practice">1 viktorīna</a></span> un <span
+class="has-e"><a href="/lv/advanced/phasers/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/block-phasers">Bloku fāzeri</a> — <span
+class="has-q"><a href="/lv/advanced/block-phasers#practice">1
+viktorīna</a></span> un <span class="has-e"><a
+href="/lv/advanced/block-phasers/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/given-when"><code>given</code> un
+<code>when</code></a> — <span class="has-e"><a
+href="/lv/advanced/given-when/exercises">3 vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/given-when/matching">Diapazonu, tipu un
+nosacījumu salīdzināšana</a> — <span class="has-q"><a
+href="/lv/advanced/given-when/matching#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/gather-take"><code>gather</code> un
+<code>take</code></a> — <span class="has-q"><a
+href="/lv/advanced/gather-take#practice">1 viktorīna</a></span> un <span
+class="has-e"><a href="/lv/advanced/gather-take/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/statement-prefixes">Priekšrakstu prefiksi
+🆕</a> — <span class="has-e"><a
+href="/lv/advanced/statement-prefixes/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/statement-prefixes/do-prefix">do un bloka
+vērtība</a> — <span class="has-q"><a
+href="/lv/advanced/statement-prefixes/do-prefix#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/statement-prefixes/lazy-eager">Slinkums un
+dedzīgums</a></li>
+<li><a href="/lv/advanced/statement-prefixes/sink-quietly">sink un
+quietly</a> — <span class="has-q"><a
+href="/lv/advanced/statement-prefixes/sink-quietly#practice">1
+viktorīna</a></span></li>
+</ul></li>
+</ul>
+<h4 id="apakšprogrammas"><a
+href="/lv/advanced/subroutines">Apakšprogrammas</a></h4>
+<ul>
+<li><a href="/lv/advanced/signatures">Paraksti</a> — <span
+class="has-q"><a href="/lv/advanced/signatures#practice">1
+viktorīna</a></span> un <span class="has-e"><a
+href="/lv/advanced/signatures/exercises">3 vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/whatever">Whatever zvaigzne 🆕</a> — <span
+class="has-q"><a href="/lv/advanced/whatever#practice">1
+viktorīna</a></span> un <span class="has-e"><a
+href="/lv/advanced/whatever/exercises">3 vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/colon-calls">Izsaukšana ar kolu 🆕</a> — <span
+class="has-q"><a href="/lv/advanced/colon-calls#practice">1
+viktorīna</a></span> un <span class="has-e"><a
+href="/lv/advanced/colon-calls/exercises">3 vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/multiple-dispatch">Daudzkārtēja nosūtīšana</a>
+— <span class="has-q"><a
+href="/lv/advanced/multiple-dispatch#practice">1 viktorīna</a></span> un
+<span class="has-e"><a href="/lv/advanced/multiple-dispatch/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/more-on-main">Vairāk par MAIN
+apakšprogrammām</a> — <span class="has-q"><a
+href="/lv/advanced/more-on-main#practice">1 viktorīna</a></span> un
+<span class="has-e"><a href="/lv/advanced/more-on-main/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/nested-subroutines">Ligzdotas
+apakšprogrammas</a> — <span class="has-q"><a
+href="/lv/advanced/nested-subroutines#practice">1 viktorīna</a></span>
+un <span class="has-e"><a
+href="/lv/advanced/nested-subroutines/exercises">3
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/anonymous-subroutines">Anonīmas
+apakšprogrammas</a> — <span class="has-q"><a
+href="/lv/advanced/anonymous-subroutines#practice">1
+viktorīna</a></span> un <span class="has-e"><a
+href="/lv/advanced/anonymous-subroutines/exercises">3
+vingrinājumi</a></span></li>
+</ul>
+<h4 id="moduļi"><a href="/lv/advanced/modules">Moduļi</a></h4>
+<ul>
+<li><a href="/lv/advanced/modules-basics">Moduļu pamati</a> — <span
+class="has-e"><a href="/lv/advanced/modules-basics/exercises">7
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/modules-basics/creating-modules">Moduļu
+izveide</a> — <span class="has-q"><a
+href="/lv/advanced/modules-basics/creating-modules#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/modules-basics/using-modules">Moduļu
+izmantošana</a> — <span class="has-q"><a
+href="/lv/advanced/modules-basics/using-modules#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/modules-basics/importing">Importēšana</a> —
+<span class="has-q"><a
+href="/lv/advanced/modules-basics/importing#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/modules-basics/export-tags">Eksporta tagi</a>
+— <span class="has-q"><a
+href="/lv/advanced/modules-basics/export-tags#practice">1
+viktorīna</a></span></li>
+</ul></li>
+<li><a href="/lv/advanced/module-introspection">Moduļu introspekcija</a>
+— <span class="has-q"><a
+href="/lv/advanced/module-introspection#practice">1 viktorīna</a></span>
+un <span class="has-e"><a
+href="/lv/advanced/module-introspection/exercises">2
+vingrinājumi</a></span></li>
+<li><a href="/lv/advanced/installing-modules">Moduļu instalēšana no
+tīmekļa</a></li>
+<li><a href="/lv/advanced/packages">Pakotnes un vārdtelpas 🆕</a> —
+<span class="has-e"><a href="/lv/advanced/packages/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/packages/packages-modules">Pakotnes un
+moduļi</a> — <span class="has-q"><a
+href="/lv/advanced/packages/packages-modules#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/packages/namespaces">Vārdtelpas un
+our</a></li>
+</ul></li>
+<li><a href="/lv/advanced/distributing">Moduļu izplatīšana 🆕</a> —
+<span class="has-e"><a href="/lv/advanced/distributing/exercises">2
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/distributing/meta6">META6 fails</a> — <span
+class="has-q"><a href="/lv/advanced/distributing/meta6#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/distributing/zef-ecosystem">zef un
+ekosistēma</a></li>
+<li><a href="/lv/advanced/distributing/fez">Publicēšana ar fez</a></li>
+</ul></li>
+</ul>
+<h4 id="testēšana-un-dokumentācija"><a
+href="/lv/advanced/testing-and-docs">Testēšana un dokumentācija
+🆕</a></h4>
+<ul>
+<li><a href="/lv/advanced/testing">Testēšana 🆕</a> — <span
+class="has-e"><a href="/lv/advanced/testing/exercises">3
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/testing/test-module">Test modulis</a> — <span
+class="has-q"><a href="/lv/advanced/testing/test-module#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/testing/comparisons">Salīdzinājumi un
+plāni</a></li>
+<li><a href="/lv/advanced/testing/running-tests">Testu
+palaišana</a></li>
+</ul></li>
+<li><a href="/lv/advanced/pod">Koda dokumentēšana 🆕</a> — <span
+class="has-e"><a href="/lv/advanced/pod/exercises">2
+vingrinājumi</a></span>
+<ul>
+<li><a href="/lv/advanced/pod/pod-basics">Pod pamati</a> — <span
+class="has-q"><a href="/lv/advanced/pod/pod-basics#practice">1
+viktorīna</a></span></li>
+<li><a href="/lv/advanced/pod/pod-formatting">Formatēšana un
+kods</a></li>
+<li><a href="/lv/advanced/pod/rendering-pod">Pod renderēšana</a></li>
+<li><a href="/lv/advanced/pod/accessing-pod">Piekļuve Pod
+datiem</a></li>
+</ul></li>
+</ul>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

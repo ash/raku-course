@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Funkcijas tabula'
+title: Funkcijas tabula
 ---
 
 {% include menu.html %}

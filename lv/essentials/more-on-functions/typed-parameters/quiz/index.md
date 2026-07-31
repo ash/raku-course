@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Tipizēti parametri
+title: Viktorīna — Tipizētie parametri
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Skaitliskie mainīgie
+title: 'Tests 1: Mainīgā deklarēšana'
 ---
 
 {% include menu.html %}

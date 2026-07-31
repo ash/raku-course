@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam ‘Skaitļu summa’
+title: 'Risinājums: Skaitļu summa'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $a + $b + $c;
 say "Skaitļu summa ir $sum.";
 ```
 
-🦋 Pilnu kodu var atrast failā [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum-of-numbers.raku).
+🦋 Pilnu kodu var atrast failā [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum-of-numbers.raku).
 
 ## Izvade
 

@@ -1,5 +1,5 @@
 ---
-title: Quiz — The while loop
+title: Quiz — il ciclo `while`
 ---
 
 {% include menu.html %}

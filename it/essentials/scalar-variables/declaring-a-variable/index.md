@@ -1,5 +1,5 @@
 ---
-title: Variabili scalari
+title: Dichiarazione di una variabile
 ---
 
 {% include menu.html %}

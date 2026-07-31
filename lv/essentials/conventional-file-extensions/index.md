@@ -1,5 +1,5 @@
 ---
-title: Parastie failu paplašinājumi Raku valodā
+title: Parastie failu paplašinājumi
 ---
 
 {% include menu.html %}

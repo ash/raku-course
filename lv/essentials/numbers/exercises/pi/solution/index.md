@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘π vērtība’
+title: 'Risinājums: π vērtība'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Programma, lai izdrukātu π vērtību, ir pietiekami vienkārša.
 say π;
 ```
 
-🦋 Pilnu kodu var atrast failā [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Pilnu kodu var atrast failā [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Izvade
 

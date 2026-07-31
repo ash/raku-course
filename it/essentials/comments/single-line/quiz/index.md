@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Commenti su una singola linea'
+title: 'Quiz: Commenti su una sola linea'
 ---
 
 {% include menu.html %}

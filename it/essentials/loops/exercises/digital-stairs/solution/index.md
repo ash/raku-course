@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Scale digitali'
+title: 'Solution: Scale digitali'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Trova il programma nel file [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Trova il programma nel file [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
 ## Output
 

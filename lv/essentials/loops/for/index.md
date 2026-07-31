@@ -1,5 +1,5 @@
 ---
-title: '"for" loop'
+title: '`for` cikli'
 ---
 
 {% include menu.html %}

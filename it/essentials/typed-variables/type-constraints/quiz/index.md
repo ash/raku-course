@@ -1,5 +1,5 @@
 ---
-title: Quiz — Vincoli di tipo
+title: Quiz — Vincoli di tipo
 ---
 
 {% include menu.html %}

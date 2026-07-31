@@ -1,5 +1,5 @@
 ---
-title: Vienkārša ievade un izvade Raku valodā
+title: Vienkārša ievade un izvade
 ---
 
 {% include menu.html %}

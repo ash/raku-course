@@ -1,5 +1,5 @@
 ---
-title: Uzdevums 'Sveiki, Konkatenācija!'
+title: 'Sveika, Savienošana!'
 ---
 
 {% include menu.html %}

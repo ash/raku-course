@@ -1,5 +1,5 @@
 ---
-title: 'Quiz 1: Concatenare di nuovo le stringhe'
+title: 'Quiz 3: Concatenazione di stringhe di nuovo'
 ---
 
 {% include menu.html %}

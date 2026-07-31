@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Daudzskaitļa galotne’
+title: 'Risinājums: Daudzskaitļa beigas'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n file{$ending} copied.";
 ```
 
-🦋 Atrodi programmu failā [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Atrodi programmu failā [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Izvade
 

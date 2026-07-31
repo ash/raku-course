@@ -1,5 +1,5 @@
 ---
-title: Risinājums uz 'Atbilde uz dzīvi, Visumu un visu pārējo'
+title: 'Risinājums: Atbilde uz dzīvi, Visumu un visu pārējo'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 Avota kodu var atrast failā [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Avota kodu var atrast failā [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Izvade
 

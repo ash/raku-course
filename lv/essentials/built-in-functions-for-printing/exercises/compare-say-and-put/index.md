@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Salīdzināt `say` un `put`'
+title: 'Salīdziniet `say` un `put`'
 ---
 
 {% include menu.html %}

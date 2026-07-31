@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Scrivi un numero in lettere'
+title: Scrivere un numero
 ---
 
 {% include menu.html %}

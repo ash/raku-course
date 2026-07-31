@@ -1,5 +1,5 @@
 ---
-title: La routine put
+title: '`put`'
 ---
 
 {% include menu.html %}

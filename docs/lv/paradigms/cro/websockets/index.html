@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>WebSocket — Raku kurss</title>
+    <meta property="og:title" content="WebSocket — Raku kurss" />
+    <meta property="og:locale" content="lv" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/paradigms">Funkcionālā,
+paralēlā, reaktīvā un tīmekļa programmēšana</a> / <a
+href="/lv/paradigms/web">Tīmekļa programmēšana</a> / <a
+href="/lv/paradigms/cro">Cro pamati</a></p>
+<h1 id="websocket">WebSocket</h1>
+<p>HTTP saruna ir vienreizēja: klients jautā, serveris atbild, un
+savienojums ir beidzies. <strong>WebSocket</strong> to pārvērš
+ilgdzīvojošā, divvirzienu kanālā — jebkura puse jebkurā brīdī var
+nosūtīt ziņojumu, un tieši tas vajadzīgs tērzēšanai, spēlēm un dzīvajiem
+informācijas paneļiem. Cro atbalsta WebSocket bez papildu pūlēm, un
+WebSocket apstrādātājs ir uzbūvēts no reaktīvajiem rīkiem, ko jau
+pazīstat: ziņojumu straume ir supply.</p>
+<p>Šeit ir sīciņš tērzēšanas serveris. Katru ziņojumu, ko sūta jebkurš
+klients, serveris pārvērš lielajos burtos un izraida visiem
+pieslēgtajiem — tāpēc atpakaļ nāk kaut kas redzami <em>cits</em>, nekā
+aizgāja, un tas pierāda, ka dati tiešām veikuši turp-atpakaļ ceļu:</p>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Router</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Router::WebSocket</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
+
+<span class="k">my</span> <span class="nv">$chat</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
+
+<span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
+    <span class="n">get</span> -&gt; <span class="s">'chat'</span> {
+        <span class="n">web-socket</span> -&gt; <span class="nv">$incoming</span> {
+            <span class="k">supply</span> {
+                <span class="k">whenever</span> <span class="nv">$incoming</span> -&gt; <span class="nv">$message</span> {
+                    <span class="nv">$chat</span>.<span class="n">emit</span>(<span class="nb">uc</span>(<span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>));
+                    <span class="k">LAST</span> { <span class="n">done</span> }
+                }
+                <span class="k">whenever</span> <span class="nv">$chat</span> -&gt; <span class="nv">$text</span> {
+                    <span class="n">emit</span> <span class="nv">$text</span>;
+                }
+            }
+        }
+    }
+}
+
+<span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
+    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">port</span>(<span class="mi">8080</span>),
+    :<span class="n">application</span>(<span class="nv">$application</span>),
+);
+<span class="nv">$server</span>.<span class="nb">start</span>;
+
+<span class="nb">say</span> <span class="s">'Chat server on ws://127.0.0.1:8080/chat — press Ctrl-C to stop'</span>;
+
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+        <span class="nv">$server</span>.<span class="n">stop</span>;
+        <span class="n">done</span>;
+    }
+}</pre></div>
+
+<p>Paskatieties uz <code>web-socket</code> bloku — tā ir kursa reaktīvā
+daļa miniatūrā. Katrs pieslēgtais klients saņem <code>supply</code> ar
+diviem <code>whenever</code>: viens vēro <code>$incoming</code>,
+ziņojumus, kas pienāk <em>no</em> šī klienta, katru pārvērš lielajos
+burtos un iestumj koplietotajā <code>$chat</code> piegādātājā; otrs vēro
+<code>$chat</code> un ar <code>emit</code> sūta katru izraidīto tekstu
+atpakaļ <em>pie</em> klienta. Viens <code>Supplier</code>, kam
+pieslēdzas katrs savienojums, ir visa tērzēšanas istaba.</p>
+<p>Mazais <code>LAST { done }</code> ir svarīgs. Tas ir <a
+href="/lv/advanced/block-phasers">fāzeris</a>, ko satikāt pie cikliem;
+<code>whenever</code> blokā tas nostrādā, kad vērotā straume
+<strong>beidzas</strong> — tas ir, kad šis klients atvienojas.
+<code>done</code> izsaukums tur aizver visu savienojuma supply,
+atrakstot to no <code>$chat</code>. Bez tā aizgājuša klienta
+<code>whenever $chat</code> paliktu karāties, un nākamais izraidījums
+mēģinātu rakstīt aizvērtā ligzdā un izdrukātu kļūdu serverī.</p>
+<p>Ar to var sarunāties pārlūks ar dažām JavaScript rindām, bet tāpat
+var arī cita Raku programma — Cro nodrošina arī klienta pusi:</p>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::WebSocket::Client</span>;
+
+<span class="k">my</span> <span class="nv">$conn</span> = <span class="nb">await</span> <span class="n">Cro::WebSocket::Client</span>.<span class="n">connect</span>(<span class="s">'ws://127.0.0.1:8080/chat'</span>);
+
+<span class="k">my</span> <span class="nv">$got</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
+
+<span class="nv">$conn</span>.<span class="n">messages</span>.<span class="n">tap</span>(-&gt; <span class="nv">$message</span> {
+    <span class="nb">say</span> <span class="s">'Received: '</span>, <span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>;
+    <span class="nv">$got</span>.<span class="n">keep</span>;
+});
+
+<span class="nb">say</span> <span class="s">'Sending:  Hello, chat!'</span>;
+<span class="nv">$conn</span>.<span class="n">send</span>(<span class="s">'Hello, chat!'</span>);
+
+<span class="nb">await</span> <span class="nv">$got</span>;
+<span class="nb">await</span> <span class="nv">$conn</span>.<span class="nb">close</span>;</pre></div>
+
+<p><code>.send</code> ziņojumu izšauj un tūlīt atgriežas; atbilde pienāk
+vēlāk, citā pavedienā, <code>.tap</code> blokā. Galvenajai līnijai tāpēc
+pirms aizvēršanas jāgaida — un, tā vietā lai gulētu un cerētu, tā gaida
+<code>Promise</code>, ko pieslēgums izpilda tajā mirklī, kad atbilde
+nolaižas: šīs daļas agrākie konkurences rīki dara tieši to, kam
+radīti.</p>
+<p>Palaidiet serveri vienā terminālī un šo klientu citā. Klients izdrukā
+abus sarunas virzienus:</p>
+<div class="highlight"><pre>Sending:  Hello, chat!
+Received: HELLO, CHAT!</pre></div>
+<p>Kas aizgāja mazajos burtos, atgriezās lielajos — ziņojums aizceļoja
+<em>pie</em> servera, tur tika pārveidots un pa to pašu savienojumu
+aizceļoja <em>atpakaļ</em>. Tas ir divvirzienu kanāls darbībā. Palaidiet
+klientu vairākos terminālos uzreiz, un katrs ziņojums parādīsies tajos
+visos: strādājoša tērzēšana mazāk nekā trīsdesmit Raku rindās.</p>
+<blockquote>
+<p>Šiem piemēriem vajadzīgs uzstādīts Cro
+(<code>zef install cro</code>).</p>
+</blockquote>
+<p>Šī ir piemērota vieta, kur kursu beigt. Pakalpojums, klients, kas to
+izsauc, un dzīvs divvirzienu kanāls starp tiem balstās uz visu, kas
+bijis pirms tam, — uz objektiem un izņēmumiem, regulārajām izteiksmēm un
+gramatikām un uz šīs daļas funkcionālajiem, konkurentajiem un
+reaktīvajiem rīkiem —, un tomēr kods paliek īss un pasaka tieši to, ko
+domājat. No <a
+href="/lv/paradigms/connections/sending-receiving">baitiem ligzdā</a>
+līdz tērzēšanas istabai viena ekrāna kodā: tas ir Raku.</p>
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+<p>← <a href="/lv/paradigms/cro/public-apis">Pieprasījums publiskam
+API</a>   |   <a href="/lv/paradigms/cro/exercises/second-route">Otrs
+maršruts</a> →</p>
+<p><br /> 💪 Vai arī dodieties tieši <a
+href="/lv/paradigms/cro/exercises">uz šīs sadaļas
+vingrinājumiem</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Postfix for
+title: 'Viktorīna — Pēcpārbaudes `for`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Risinājums 'Vērtību apmaiņa'
+title: 'Risinājums: Vērtību apmaiņa'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 Jūs varat atrast pirmkodu failā [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 Jūs varat atrast pirmkodu failā [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
 ## Izvade
 

@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Perimetro di un rettangolo'
+title: Perimetro di un rettangolo
 ---
 
 {% include menu.html %}

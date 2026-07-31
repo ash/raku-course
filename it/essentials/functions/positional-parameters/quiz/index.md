@@ -1,5 +1,5 @@
 ---
-title: Quiz — Chiamare una funzione
+title: Quiz — Chiamata di una funzione
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Vienības apjoma definīcijas izmantošana
+title: Viktorīna — Izmantojot vienotās darbības definīciju
 ---
 
 {% include menu.html %}

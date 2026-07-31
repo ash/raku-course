@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Dalīšana ar atņemšanu'
+title: Dalīšana, izmantojot atņemšanu
 ---
 
 {% include menu.html %}

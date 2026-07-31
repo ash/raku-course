@@ -1,5 +1,5 @@
 ---
-title: "Quiz: Una barra rovesciata nell'output"
+title: 'Quiz: Una barra rovesciata nell''output'
 ---
 
 {% include menu.html %}

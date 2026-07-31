@@ -1,5 +1,5 @@
 ---
-title: Sottoscrivere intervalli
+title: Sottoscrizione degli intervalli
 ---
 
 {% include menu.html %}

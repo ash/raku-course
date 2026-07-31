@@ -1,5 +1,5 @@
 ---
-title: Quiz — Citazione di array di stringhe
+title: Quiz 1 — Citazione di array di stringhe
 ---
 
 {% include menu.html %}

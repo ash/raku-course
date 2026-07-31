@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Semafori'
+title: 'Solution: Semafori'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say @lights[102 % @lights];
 say @lights[305 % @lights];
 ```
 
-🦋 Trova il programma nel file [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/traffic-lights.raku).
+🦋 Trova il programma nel file [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/traffic-lights.raku).
 
 ## Output
 

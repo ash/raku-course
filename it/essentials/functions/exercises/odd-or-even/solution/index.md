@@ -1,5 +1,5 @@
 ---
-title: 'Soluzione: Pari o dispari'
+title: 'Solution: Pari o dispari'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Trova il programma nel file [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Trova il programma nel file [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Output
 

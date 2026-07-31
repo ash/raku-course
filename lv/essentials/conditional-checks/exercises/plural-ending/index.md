@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Plural ending'
+title: Daudzskaitļa beigas
 ---
 
 {% include menu.html %}

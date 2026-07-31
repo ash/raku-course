@@ -1,5 +1,5 @@
 ---
-title: Viktorīna 1 — Salīdzināt virknes
+title: Tests 1 — virkņu salīdzināšana
 ---
 
 {% include menu.html %}

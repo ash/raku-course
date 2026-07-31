@@ -1,5 +1,5 @@
 ---
-title: Input e output semplici in Raku
+title: Input e output semplici
 ---
 
 {% include menu.html %}

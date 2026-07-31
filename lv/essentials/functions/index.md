@@ -1,5 +1,5 @@
 ---
-title: Funkciju izveide un izsaukšana Raku
+title: Funkciju izveide un izsaukšana
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Salīdzināt skaitļus
+title: Skaitļu salīdzināšana
 ---
 
 {% include menu.html %}

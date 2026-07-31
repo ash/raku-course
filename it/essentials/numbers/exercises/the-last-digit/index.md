@@ -1,5 +1,5 @@
 ---
-title: "Esercizio: L'ultima cifra"
+title: L'ultima cifra
 ---
 
 {% include menu.html %}

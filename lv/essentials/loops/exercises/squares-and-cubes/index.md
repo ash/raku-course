@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Kvadrāti un kubi ciklā'
+title: Kvadrāti un kubi ciklā
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Quiz 1: Vēlreiz virkņu savienošana'
+title: 'Tests 3: Atkal virkņu savienošana'
 ---
 
 {% include menu.html %}

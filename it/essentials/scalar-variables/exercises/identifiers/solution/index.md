@@ -1,5 +1,5 @@
 ---
-title: Soluzione di 'Correggi gli identificatori'
+title: 'Solution: Correggere gli identificatori'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'London to Paris';
 
 Tutti gli identificatori sono validi, ma probabilmente è meglio evitare nomi con apostrofi se `$non` hai forti ragioni per usarli.
 
-🦋 Puoi trovare il codice sorgente nel file [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Puoi trovare il codice sorgente nel file [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Output
 

@@ -1,5 +1,5 @@
 ---
-title: loop
+title: Ciclo `loop` a tre istruzioni
 ---
 
 {% include menu.html %}

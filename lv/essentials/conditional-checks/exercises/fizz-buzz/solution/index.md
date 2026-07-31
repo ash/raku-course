@@ -13,12 +13,12 @@ title: 'Risinājums: FizzBuzz'
 ```raku
 my $n = prompt 'Ievadiet skaitli: ';
 
-print 'Fizz' ja $n %% 3;
-print 'Buzz' ja $n %% 5;
+print 'Fizz' if $n %% 3;
+print 'Buzz' if $n %% 5;
 print "\n";
 ```
 
-🦋 Atrodiet programmu failā [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/exercises/conditional-checks/fizz-buzz.raku).
+🦋 Atrodiet programmu failā [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/fizz-buzz.raku).
 
 ## Piemērs
 

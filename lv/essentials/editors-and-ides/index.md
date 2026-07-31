@@ -1,5 +1,5 @@
 ---
-title: Redaktori un IDE Raku valodai
+title: Redaktori un IDE
 ---
 
 {% include menu.html %}

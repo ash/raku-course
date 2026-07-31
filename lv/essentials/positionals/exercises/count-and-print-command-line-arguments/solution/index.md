@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Skaitīt un izdrukāt komandrindas argumentus’
+title: 'Risinājums: Komandrindas argumentu skaitīšana un drukāšana'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Atrodi programmu failā [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Atrodi programmu failā [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Izvade
 

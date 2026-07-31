@@ -1,5 +1,5 @@
 ---
-title: Escludere gli estremi di un intervallo
+title: Escludere gli endpoint
 ---
 
 {% include menu.html %}

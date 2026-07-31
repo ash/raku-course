@@ -1,5 +1,5 @@
 ---
-title: La routine note
+title: '`note`'
 ---
 
 {% include menu.html %}

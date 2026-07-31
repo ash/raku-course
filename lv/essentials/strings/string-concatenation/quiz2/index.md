@@ -1,5 +1,5 @@
 ---
-title: '1. viktorīna: virkņu un skaitļu savienošana'
+title: 'Tests 2: Virkņu un skaitļu savienošana'
 ---
 
 {% include menu.html %}

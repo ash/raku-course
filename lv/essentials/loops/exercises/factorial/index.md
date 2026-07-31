@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Faktoriāls'
+title: Faktoriāls
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Lokālie mainīgie
+title: Vietējie mainīgie
 ---
 
 {% include menu.html %}

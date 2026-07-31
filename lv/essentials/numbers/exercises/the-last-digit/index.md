@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Pēdējais cipars'
+title: Pēdējais cipars
 ---
 
 {% include menu.html %}

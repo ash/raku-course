@@ -1,12 +1,13 @@
 ---
-title: 'Exercise: Salary raise'
+title: Algas palielināšana
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Problem
+## Uzdevums
 
-Given a hash with the data of an employee:
+Dots jaukteklis ar darbinieka datiem:
 
 ```raku
 my %employee =
@@ -15,19 +16,19 @@ my %employee =
     salary => 3000;
 ```
 
-Increase the salary by 5&thinsp;% and print it together with the employee’s name. Make sure the `%employee` hash keeps correct values after the raise.
+Palieliniet algu par 5&thinsp;% un izdrukājiet to kopā ar darbinieka vārdu. Pārliecinieties, ka pēc palielinājuma jauktekļa `%employee` vērtības joprojām ir pareizas.
 
-## Example
+## Piemērs
 
-Here is the expected output of the program:
+Šāda ir programmas gaidītā izvade:
 
 ```console
 $ raku salary-raise.raku
 New salary of Eliza Vents: 3150
 ```
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

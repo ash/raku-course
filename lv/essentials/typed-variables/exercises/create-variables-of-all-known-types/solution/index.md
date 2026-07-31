@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam ‘Izveidot mainīgos no visiem zināmajiem tipiem’
+title: 'Risinājums: Izveidot mainīgos no visiem zināmajiem tipiem'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Atrodiet programmu failā [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Atrodiet programmu failā [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
 ## Izvade
 

@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Sveika, pasaule!'
+title: 'Risinājums: Sveika, Pasaule!'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ sub MAIN() {
 }
 ```
 
-🦋 Atrodi programmu failā [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world.raku).
+🦋 Atrodi programmu failā [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world.raku).
 
 ## Kods 2
 
@@ -23,7 +23,7 @@ unit sub MAIN;
 say 'Sveika, pasaule!';
 ```
 
-🦋 Atrodi programmu failā [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world-unit.raku).
+🦋 Atrodi programmu failā [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world-unit.raku).
 
 ## Piemērs
 

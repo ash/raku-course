@@ -1,5 +1,5 @@
 ---
-title: Introspekcija ar `WHAT`
+title: 'Introspekcija ar `WHAT`'
 ---
 
 {% include menu.html %}

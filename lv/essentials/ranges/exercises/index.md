@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Diapazoni'
+title: 'Vingrinājumi: Diapazoni'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Parametri tipizzati
+title: Quiz — Parametri tipizzati
 ---
 
 {% include menu.html %}

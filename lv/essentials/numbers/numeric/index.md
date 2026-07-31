@@ -1,5 +1,5 @@
 ---
-title: Zinātniskā notācija Raku
+title: Peldošā punkta skaitļi
 ---
 
 {% include menu.html %}

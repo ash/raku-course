@@ -1,5 +1,5 @@
 ---
-title: Conversione di tipo per variabili tipizzate
+title: Conversione dei tipi per variabili tipizzate
 ---
 
 {% include menu.html %}

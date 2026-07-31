@@ -1,5 +1,5 @@
 ---
-title: Soluzione di ‘Count and print command-line arguments’
+title: 'Solution: Conta e stampa degli argomenti della riga di comando'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Trova il programma nel file [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Trova il programma nel file [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Output
 

@@ -1,5 +1,5 @@
 ---
-title: Say rutīna
+title: '`say`'
 ---
 
 {% include menu.html %}

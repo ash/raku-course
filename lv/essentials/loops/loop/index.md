@@ -1,5 +1,5 @@
 ---
-title: loop
+title: Trīs izteiksmju cikls
 ---
 
 {% include menu.html %}

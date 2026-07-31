@@ -1,5 +1,5 @@
 ---
-title: Izmantojot ‘of’
+title: 'Izmantojot `of`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Atkārto, līdz pietiek'
+title: Echo līdz pietiek
 ---
 
 {% include menu.html %}

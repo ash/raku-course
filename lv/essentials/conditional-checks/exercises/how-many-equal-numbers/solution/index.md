@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Cik daudz skaitļu ir vienādi?'
+title: 'Risinājums: Cik daudz skaitļi ir vienādi?'
 ---
 
 {% include menu.html %}
@@ -30,7 +30,7 @@ else {
 }
 ```
 
-🦋 Atrodiet programmu failā [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Atrodiet programmu failā [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
 ## Izvade
 

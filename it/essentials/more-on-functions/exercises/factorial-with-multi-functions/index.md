@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Fattoriale con multi-funzioni'
+title: Fattoriale con multi-funzioni
 ---
 
 {% include menu.html %}

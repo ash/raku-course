@@ -1,5 +1,5 @@
 ---
-title: 'Exercise: Print the warning'
+title: Drukāt brīdinājumu
 ---
 
 {% include menu.html %}

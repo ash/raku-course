@@ -1,5 +1,5 @@
 ---
-title: Soluzione a 'Tabella degli acquisti'
+title: 'Solution: Tabella degli acquisti'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ Tutti i numeri sono hardcoded e salvati in un numero di variabili. Usiamo anche 
 
 Le tre righe che generano l'output stampano le tre righe della tabella, incluso il suo header. Nota come le colonne sono separate dai caratteri di tabulazione `\t`. Nelle righe dei dati, vediamo anche un carattere dollaro escapato: `\$` così come diverse variabili che vogliamo interpolare.
 
-🦋 Puoi trovare il codice sorgente nel file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Puoi trovare il codice sorgente nel file [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Output
 

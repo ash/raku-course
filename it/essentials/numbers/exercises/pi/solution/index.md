@@ -1,5 +1,5 @@
 ---
-title: Soluzione a ‘Il valore di π’
+title: 'Solution: Il valore di π'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Il programma per stampare il valore di π è abbastanza semplice.
 say π;
 ```
 
-🦋 Puoi trovare il codice completo nel file [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Puoi trovare il codice completo nel file [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Output
 

@@ -1,56 +1,57 @@
 ---
 title: Hashes
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-A _hash_ is another example of associative data types in Raku. It is an aggregate data type that maps the names of its items to their values. Let us introduce the new sigil that hash variables use: `%`.
+_Jauktenis_ ir vēl viens asociatīvo datu tipu piemērs Raku valodā. Tas ir salikts datu tips, kas attēlo savu elementu nosaukumus uz to vērtībām. Iepazīsimies ar jauno sigilu, ko lieto jaukteņu mainīgie: `%`.
 
 ```raku
 my %capitals;
 ```
 
-You can now use the hash and assign some initial values to it.
+Tagad jaukteni var izmantot un piešķirt tam kādas sākotnējās vērtības.
 
 ```raku
 %capitals = France => 'Paris', Italy => 'Rome';
 ```
 
-As with other data types, both actions can be done together:
+Tāpat kā citiem datu tipiem, abas darbības var izdarīt kopā:
 
 ```raku
 my %capitals = France => 'Paris', Italy => 'Rome';
 ```
 
-## Accessing the elements
+## Piekļuve elementiem
 
-Subscripting the elements is similar to what we’ve seen for [pairs](../pairs). Use a pair of angle brackets or curly braces with a string:
+Elementu indeksēšana ir līdzīga tai, ko redzējām [pāriem](../pairs). Izmantojiet leņķa iekavu vai figūriekavu pāri ar virkni:
 
 ```raku
 say %capitals<France>;
 say %capitals{'Italy'};
 ```
 
-Hashes are mutable, so you can both change the existing values as well as add the new ones:
+Jaukteņi ir maināmi, tāpēc esošās vērtības var gan mainīt, gan pievienot jaunas:
 
 ```raku
 %capitals<Germany> = 'Berlin';
 ```
 
-## Keys and values
+## Atslēgas un vērtības
 
-The two built-in methods, `keys` and `values`, return the lists of the keys and the values of a hash:
+Divas iebūvētās metodes `keys` un `values` atgriež jaukteņa atslēgu un vērtību sarakstus:
 
 ```raku
 say %capitals.keys;
 say %capitals.values;
 ```
 
-Here is an example of the output of this program:
+Lūk, šīs programmas izvades piemērs:
 
     (Germany Italy France)
     (Berlin Rome Paris)
 
-Notice that hash elements are not ordered, but the order of the keys and values, returned by the above methods, is identical.
+Ievērojiet, ka jaukteņa elementi nav sakārtoti, taču atslēgu un vērtību secība, ko atgriež minētās metodes, ir vienāda.
 
 {% include nav.html %}

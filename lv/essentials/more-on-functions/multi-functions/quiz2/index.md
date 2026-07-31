@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Multi-functions with typed parameters
+title: Tests 2 — Daudzfunkcijas ar tipizētiem parametriem
 ---
 
 {% include menu.html %}

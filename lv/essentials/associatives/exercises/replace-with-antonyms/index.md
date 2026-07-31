@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Aizstāt ar antonīmiem'
+title: Aizstāt ar antonīmiem
 ---
 
 {% include menu.html %}

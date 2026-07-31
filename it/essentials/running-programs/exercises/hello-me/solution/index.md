@@ -1,5 +1,5 @@
 ---
-title: Soluzione di 'Hello, Me!'
+title: 'Solution: Ciao, sono io!'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Ecco la soluzione al problema '[Hello, me!](../)'.
 say 'Hello, Andrew!';
 ```
 
-🦋 Puoi trovare il codice completo nel file [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 Puoi trovare il codice completo nel file [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
 ## Output
 

@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: FizzBuzz ciklā'
+title: FizzBuzz ciklā
 ---
 
 {% include menu.html %}

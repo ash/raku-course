@@ -1,5 +1,5 @@
 ---
-title: '2. viktorīna: Deklarācija un inicializācija vai deklarācija ar inicializāciju'
+title: 'Tests 2: Deklarācija un inicializācija vai deklarācija ar inicializāciju'
 ---
 
 {% include menu.html %}

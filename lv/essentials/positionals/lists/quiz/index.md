@@ -1,5 +1,5 @@
 ---
-title: Viktorīna 2 — Saraksts un skalārs vs. saraksts un masīvs
+title: Viktorīna — Saraksts un skalārs vs. saraksts un masīvs
 ---
 
 {% include menu.html %}

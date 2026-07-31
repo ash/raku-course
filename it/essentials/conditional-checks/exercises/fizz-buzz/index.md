@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Lite FizzBuzz'
+title: FizzBuzz
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Soluzione a ‘Triple negation’
+title: 'Solution: Tripla negazione'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Puoi trovare il codice completo nel file [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Puoi trovare il codice completo nel file [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Output
 

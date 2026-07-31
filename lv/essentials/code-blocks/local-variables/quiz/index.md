@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Lokālās mainīgās
+title: Viktorīna — vietējie mainīgie
 ---
 
 {% include menu.html %}
@@ -38,6 +38,24 @@ say $value;
 
 {:.quiz-select}
 100 | Atbilde: (: 1, 2, 100, 200 :) | Lokālā mainīgā vērtība tiek mainīta, bet tiek izdrukāta globālā mainīgā vērtība.
+
+
+## 3
+
+Šī programma izskatās gandrīz tāpat, taču blokā nav `my`. Ko tā izdrukā?
+
+```raku
+my $value = 100;
+
+{
+    $value *= 2;
+}
+
+say $value;
+```
+
+{:.quiz-select}
+200 | Atbilde: (: 1, 2, 100, 200 :) | Bez `my` blokam nav sava lokālā mainīgā, tāpēc tas maina to pašu globālo mainīgo.
 
 {% include quiz.html %}
 

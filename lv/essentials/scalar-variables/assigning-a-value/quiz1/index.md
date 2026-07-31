@@ -1,5 +1,5 @@
 ---
-title: Viktorīna 1 — Vērtības piešķiršana
+title: 'Tests 1: Vērtības piešķiršana'
 ---
 
 {% include menu.html %}

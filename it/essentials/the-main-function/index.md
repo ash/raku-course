@@ -1,5 +1,5 @@
 ---
-title: La funzione MAIN
+title: La funzione `MAIN`
 ---
 
 {% include menu.html %}

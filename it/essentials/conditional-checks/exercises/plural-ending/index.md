@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Desinenza plurale'
+title: Plurale finale
 ---
 
 {% include menu.html %}

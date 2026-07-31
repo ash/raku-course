@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Atkārto līdz pietiek'
+title: 'Risinājums: Echo līdz pietiek'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ repeat {
 say 'Labi, pabeigts.';
 ```
 
-🦋 Atrodi programmu failā [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/echo-until-enough.raku).
+🦋 Atrodi programmu failā [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/echo-until-enough.raku).
 
 ## Izvade
 

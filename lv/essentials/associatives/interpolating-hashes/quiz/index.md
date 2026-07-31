@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Interpolācija ar hešiem
+title: Viktorīna — Hashes interpolācija
 ---
 
 {% include menu.html %}

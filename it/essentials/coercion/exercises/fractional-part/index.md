@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Parte frazionaria'
+title: Parte frazionaria
 ---
 
 {% include menu.html %}

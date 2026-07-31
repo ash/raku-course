@@ -1,5 +1,5 @@
 ---
-title: Uzdevums 'Sveiki, Es!'
+title: 'Sveiki, es!'
 ---
 
 {% include menu.html %}

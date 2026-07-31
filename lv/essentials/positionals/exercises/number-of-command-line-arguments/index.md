@@ -1,12 +1,13 @@
 ---
 title: Komandrindas argumentu skaits
+translations_gpt:
 ---
 
 {% include menu.html %}
 
 ## Uzdevums
 
-Uzrakstiet programmu, kas izdrukā komandrindā nodoto argumentu skaitu.
+Uzrakstiet programmu, kas pilnā teikumā paziņo, cik argumentu tā saņēmusi no komandrindas. Ievērojiet pareizu gramatiku: lietojiet vārdu `argument`, ja nodots tieši viens, un `arguments` visos pārējos gadījumos.
 
 ## Piemērs
 
@@ -14,10 +15,11 @@ Uzrakstiet programmu, kas izdrukā komandrindā nodoto argumentu skaitu.
 
 ```console
 $ raku number-of-command-line-arguments.raku make them count us now
-5
-```
+You passed 5 arguments.
 
-Programma saņem piecus vārdus komandrindā un izdrukā `5`.
+$ raku number-of-command-line-arguments.raku solo
+You passed 1 argument.
+```
 
 ## Risinājums
 

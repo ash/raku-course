@@ -1,5 +1,5 @@
 ---
-title: Quiz — Tipo Booleano
+title: Quiz: Valori booleani
 ---
 
 {% include menu.html %}

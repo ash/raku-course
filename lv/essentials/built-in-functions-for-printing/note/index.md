@@ -1,5 +1,5 @@
 ---
-title: Piezīmes rutīna
+title: '`note`'
 ---
 
 {% include menu.html %}

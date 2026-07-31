@@ -1,5 +1,5 @@
 ---
-title: Viktorīna 2 — Skaitliskie mainīgie
+title: 'Tests 2: Vairāku mainīgo deklarēšana'
 ---
 
 {% include menu.html %}

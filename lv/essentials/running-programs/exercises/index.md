@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: Programmu palaišana'
+title: 'Vingrinājumi: Programmu palaišana'
 ---
 
 {% include menu.html %}

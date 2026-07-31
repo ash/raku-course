@@ -1,5 +1,5 @@
 ---
-title: Risinājums ’Hello, Interpolation!‘
+title: 'Risinājums: Sveika, Interpolācija!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say "Hello, $name!";
 ```
 
-🦋 Jūs varat atrast pirmkodu failā [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 Jūs varat atrast pirmkodu failā [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
 ## Izvade
 

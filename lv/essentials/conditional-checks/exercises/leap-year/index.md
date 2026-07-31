@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Garais gads'
+title: Garais gads
 ---
 
 {% include menu.html %}

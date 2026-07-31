@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Se il numero è entro i limiti'
+title: Se il numero è entro i limiti
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Lietotāja ievades konvertēšana uz skaitli’
+title: 'Risinājums: Lietotāja ievades konvertēšana par skaitli'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my Int $n = prompt 'Ievadiet skaitli: ';
 say $n;
 ```
 
-🦋 Avota kodu var atrast failā [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 Avota kodu var atrast failā [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Piemērs
 

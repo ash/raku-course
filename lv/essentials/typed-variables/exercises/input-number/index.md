@@ -1,5 +1,5 @@
 ---
-title: Uzdevums ‘Lietotāja ievades pārvēršana par skaitli’
+title: Lietotāja ievades konvertēšana par skaitli
 ---
 
 {% include menu.html %}

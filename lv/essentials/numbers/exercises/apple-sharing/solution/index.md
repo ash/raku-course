@@ -1,5 +1,5 @@
 ---
-title: Risinājums uz ‘Ābolu dalīšana’
+title: 'Risinājums: Ābolu dalīšana'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Katrs cilvēks saņem $gets ābolu(s).";
 say "Paliek $remains ābolu(s).";
 ```
 
-🦋 Pilnu kodu var atrast failā [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Pilnu kodu var atrast failā [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Izvade
 

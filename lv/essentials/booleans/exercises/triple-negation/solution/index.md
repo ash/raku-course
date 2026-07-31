@@ -1,5 +1,5 @@
 ---
-title: Risinājums uz ‘Trīskāršā noliegšana’
+title: 'Risinājums: Trīskārša noliegšana'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Pilnu kodu var atrast failā [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Pilnu kodu var atrast failā [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Izvade
 

@@ -1,17 +1,18 @@
 ---
-title: Exercise ‘True and False strings
+title: True un False virknes
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-This is an exploratory assignment, which allows you to explore the features of Raku yourself.
+Šis ir pētniecisks uzdevums, kas ļauj jums pašam izpētīt Raku iespējas.
 
-## Task
+## Uzdevums
 
-Write a program or use a [REPL shell](/lv/essentials/running-programs/from-repl) to find out, which strings become `False` when they are converted to Boolean values.
+Uzrakstiet programmu vai izmantojiet [REPL čaulu](/lv/essentials/running-programs/from-repl), lai noskaidrotu, kuras virknes, pārveidotas par Būla vērtībām, kļūst par `False`.
 
-## Solution
+## Risinājums
 
-✅ [See the solution](solution)
+✅ [Skatīt risinājumu](solution)
 
 {% include nav.html %}

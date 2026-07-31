@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Komandrindas argumentu nolasīšana MAIN funkcijā
+title: Viktorīna — Komandrindas argumentu lasīšana
 ---
 
 {% include menu.html %}

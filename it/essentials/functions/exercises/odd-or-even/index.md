@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Pari o dispari'
+title: Pari o dispari
 ---
 
 {% include menu.html %}

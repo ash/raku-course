@@ -1,5 +1,5 @@
 ---
-title: L'array @*ARGS
+title: L'array `@*ARGS`
 ---
 
 {% include menu.html %}

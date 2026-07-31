@@ -1,5 +1,5 @@
 ---
-title: Risinājums uzdevumam 'Dubultā noliegšana’
+title: 'Risinājums: Dubultā noliegšana'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 Pilnu kodu var atrast failā [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Pilnu kodu var atrast failā [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Komentāri
 

@@ -1,5 +1,5 @@
 ---
-title: Galvenā funkcija
+title: '`MAIN` funkcija'
 ---
 
 {% include menu.html %}

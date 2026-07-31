@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevumi: cilpas'
+title: 'Vingrinājumi: Cikli'
 ---
 
 {% include menu.html %}

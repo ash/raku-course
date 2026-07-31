@@ -1,5 +1,5 @@
 ---
-title: Lunghezza delle stringhe in Raku
+title: Lunghezza della stringa
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Soluzione di ‘Convertire l'input dell'utente in un numero’
+title: 'Solution: Conversione dell''input dell''utente in un numero'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my Int $n = prompt 'Inserisci un numero: ';
 say $n;
 ```
 
-🦋 Puoi trovare il codice sorgente nel file [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 Puoi trovare il codice sorgente nel file [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Esempio
 

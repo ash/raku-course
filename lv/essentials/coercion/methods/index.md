@@ -1,5 +1,5 @@
 ---
-title: Datu tipu konvertēšana, izmantojot tipu piespiedu metodes
+title: Tipu konvertēšana, izmantojot tipu piespiedu metodes
 ---
 
 {% include menu.html %}

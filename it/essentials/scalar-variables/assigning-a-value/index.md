@@ -1,5 +1,5 @@
 ---
-title: Assegnare un valore
+title: Assegnazione di un valore
 ---
 
 {% include menu.html %}

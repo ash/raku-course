@@ -1,5 +1,5 @@
 ---
-title: Put rutīna
+title: '`put`'
 ---
 
 {% include menu.html %}

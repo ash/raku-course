@@ -22,7 +22,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Atrodiet programmu failā [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku).
+🦋 Atrodiet programmu failā [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/interval-function.raku).
 
 ## Izvade
 

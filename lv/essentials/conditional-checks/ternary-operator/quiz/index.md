@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — Ternārais operators
+title: Viktorīna — trīsvērtīgais operators
 ---
 
 {% include menu.html %}

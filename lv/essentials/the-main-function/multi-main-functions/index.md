@@ -1,5 +1,5 @@
 ---
-title: Vairākas MAIN funkcijas
+title: 'Vairākas `MAIN` funkcijas'
 ---
 
 {% include menu.html %}

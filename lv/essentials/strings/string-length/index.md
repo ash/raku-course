@@ -1,5 +1,5 @@
 ---
-title: Virknes garums Raku
+title: Virknes garums
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Esercizio ‘Convertire l'input dell'utente in un numero’
+title: Conversione dell'input dell'utente in un numero
 ---
 
 {% include menu.html %}

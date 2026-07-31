@@ -1,5 +1,5 @@
 ---
-title: Risinājums ‘Izdrukāt skaitļu sēriju’
+title: 'Risinājums: Skaitļu sērijas drukāšana'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ my $end = prompt 'End: ';
 .say for $begin .. $end;
 ```
 
-🦋 Atrodiet programmu failā [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
+🦋 Atrodiet programmu failā [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers.raku).
 
 ## Kods 2
 
@@ -32,7 +32,7 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Atrodiet programmu failā [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
+🦋 Atrodiet programmu failā [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers-loop.raku).
 
 Kā redzat, pirmais variants ir ievērojami īsāks un izteiksmīgāks.
 

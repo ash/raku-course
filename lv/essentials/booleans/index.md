@@ -1,5 +1,5 @@
 ---
-title: Būla tips Raku
+title: Loģiskais tips
 ---
 
 {% include menu.html %}

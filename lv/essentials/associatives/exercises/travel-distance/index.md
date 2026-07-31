@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Ceļojuma distance'
+title: Ceļošanas attālums
 ---
 
 {% include menu.html %}

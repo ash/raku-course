@@ -1,5 +1,5 @@
 ---
-title: Viktorīna — if, elsif, else
+title: 'Tests: `if`, `elsif` un `else`'
 ---
 
 {% include menu.html %}

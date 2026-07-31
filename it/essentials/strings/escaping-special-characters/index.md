@@ -1,5 +1,5 @@
 ---
-title: Escaping special characters in Raku strings
+title: Escape dei caratteri speciali
 ---
 
 {% include menu.html %}

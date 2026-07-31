@@ -1,5 +1,5 @@
 ---
-title: '1. viktorīna: Virkņu savienošana'
+title: 'Tests 1: Virkņu savienošana'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Esercizio: Fattoriale ricorsivo'
+title: Fattoriale ricorsivo
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Creare intervalli
+title: Quiz — Creazione di intervalli
 ---
 
 {% include menu.html %}

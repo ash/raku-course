@@ -1,5 +1,5 @@
 ---
-title: Uzdevums 'Atbilde uz dzīvi, Visumu un visu pārējo'
+title: Atbilde uz dzīvi, Visumu un visu pārējo
 ---
 
 {% include menu.html %}

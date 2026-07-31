@@ -1,5 +1,5 @@
 ---
-title: Tipu konvertēšana tipizētiem mainīgajiem
+title: Tipu konvertēšana tipizētajiem mainīgajiem
 ---
 
 {% include menu.html %}

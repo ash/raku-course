@@ -1,5 +1,5 @@
 ---
-title: 'Risinājums: Redzēts iepriekš?'
+title: 'Risinājums: Redzēts agrāk?'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ loop {
 }
 ```
 
-🦋 Atrodiet programmu failā [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku).
+🦋 Atrodiet programmu failā [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/seen-before.raku).
 
 ## Izvade
 

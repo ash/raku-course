@@ -1,5 +1,5 @@
 ---
-title: Quiz — Reading command-line arguments in the MAIN function
+title: Quiz — Lettura degli argomenti della riga di comando
 ---
 
 {% include menu.html %}

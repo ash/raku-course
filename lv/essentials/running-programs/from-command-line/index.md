@@ -1,5 +1,5 @@
 ---
-title: Palaist no komandrindas
+title: Palaišana no komandrindas
 ---
 
 {% include menu.html %}

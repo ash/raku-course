@@ -1,5 +1,5 @@
 ---
-title: 'Uzdevums: Izdrukājiet summu'
+title: Drukāt summu
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: '@*ARGS masīvs'
+title: '`@*ARGS` masīvs'
 ---
 
 {% include menu.html %}
