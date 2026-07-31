@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Iter itineris'
+title: 'Solutio: Itinera distantia'
 ---
 
 {% include menu.html %}
@@ -34,16 +34,16 @@ for 0 .. @iter.elems - 2 -> $index {
     my $ad = @iter[$index + 1];
 
     my $distantia = %distance{$a}{$ad};
-    dic "$a — $ad: $distantia km";
+    say "$a — $ad: $distantia km";
     $total += $distantia;
 }
 
-dic "Totum iter: $total km";
+say "Totum iter: $total km";
 ```
 
-🦋 Invenies programma cum tota structura datae in archivo [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/travel-distance.raku).
+🦋 Invenies programma cum tota structura datae in archivo [travel-distance.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/travel-distance.raku).
 
-## Output
+## Exitus
 
 Pro dato itinere, output programmatis infra ostenditur. Conare alias vias per civitates quas habemus in hash `%distance`.
 

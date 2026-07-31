@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Boolean operations with non-Boolean data'
+title: 'Quiz: Booleana operationes cum non-Booleana data'
 ---
 
 {% include menu.html %}
@@ -10,7 +10,7 @@ Quid est eventus cuiusque lineae codicis in exemplis infra?
 
 {:.quiz-select}
 Verum | `True && True` est (: Verum, Falsum :)
-stringa 'Verum' | `'True' && 'True'` est (: Boolean Verum, Boolean Falsum, stringa 'Verum', stringa 'Falsum' :) | Hae sunt stringae, quae in contextu Boolean sunt valores `Verum`.
+stringa 'Verum' | `'True' && 'True'` est (: Boolean Verum, Boolean Falsum, stringa 'Verum', stringa 'Falsum' :) | Hae sunt stringae, quae in contextu Boolean sunt valores `True`.
 stringa 'Beta' | `'Alpha' && 'Beta'` est (: Boolean Verum, Boolean Falsum, stringa 'Alpha', stringa 'Beta' :) | Eventus est secunda stringa.
 
 ## 2

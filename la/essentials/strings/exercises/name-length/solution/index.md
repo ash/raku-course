@@ -1,5 +1,5 @@
 ---
-title: Solutio ad 'Longitudinem nominis'
+title: 'Solutio: Nomen longitudo'
 ---
 
 {% include menu.html %}
@@ -10,12 +10,12 @@ Hic est solutio ad munus:
 
 ```raku
 my $name = prompt 'Quod est nomen tuum? ';
-dic $name.chars;
+say $name.chars;
 ```
 
-🦋 Codicem fontis invenire potes in fasciculo [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/name-length.raku).
+🦋 Codicem fontis invenire potes in fasciculo [name-length.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/name-length.raku).
 
-## Effectus
+## Exitus
 
 Programma curre et nomen inserere.
 

@@ -1,5 +1,5 @@
 ---
-title: Comparatio contra spatium
+title: Compatatio contra intervallum
 ---
 
 {% include menu.html %}
@@ -17,6 +17,6 @@ Utens _operatorio callido-comparationis_ `~~`, potes inspicere si valor intra sp
 dic $v ~~ $r;
 ```
 
-In exemplo demonstrato, condicio est `Verum`, itaque programma imprimit `Verum`.
+In exemplo demonstrato, condicio est `True`, itaque programma imprimit `True`.
 
 {% include nav.html %}

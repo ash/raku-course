@@ -1,18 +1,18 @@
 ---
-title: dum
+title: 'Utendo `while`'
 ---
 
 {% include menu.html %}
 
-Constructum `dum` conditionem Booleanam et clausulam codicis habet. Raku clausulam codicis iterum atque iterum exsequitur _dum_ condicio est `Vera`.
+Constructum `while` conditionem Booleanam et clausulam codicis habet. Raku clausulam codicis iterum atque iterum exsequitur _dum_ condicio est `True`.
 
 ```raku
 my $x = 0;
-dum $x <= 10 {
+while $x <= 10 {
     $x = prompt 'Intra numerum, qui non maior est quam 10: ';
-    dic "Intrasti $x.";
+    say "Intrasti $x.";
 }
-dic "$x maior est quam 10.";
+say "$x maior est quam 10.";
 ```
 
 Programma rogat ut numerum intres, et si numerus non maior est quam 10, corpus anuli iteratur. Simul ac numerus intratus conditionem `$x <= 10` frangit, anulus desinit, et sequens linea programmatis exsequitur.

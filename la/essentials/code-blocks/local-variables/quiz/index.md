@@ -1,5 +1,5 @@
 ---
-title: Quiz — Variabiles locales
+title: Quiz — Locales variabiles
 ---
 
 {% include menu.html %}

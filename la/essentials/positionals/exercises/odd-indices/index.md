@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Indices impares'
+title: Indices impares
 ---
 
 {% include menu.html %}

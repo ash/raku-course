@@ -1,20 +1,20 @@
 ---
-title: usque
+title: 'Utendo `until`'
 ---
 
 {% include menu.html %}
 
-Constructum `usque` contrarium est `dum`. Exsequitur codicem donec condicio fit `Vera` (vel, aliter dicendo, dum est `Falsa`).
+Constructum `until` contrarium est `while`. Exsequitur codicem donec condicio fit `True` (vel, aliter dicendo, dum est `False`).
 
-Hic est modificatus [programma ex pagina praecedenti](../while) quod utitur `usque` et nova condicione:
+Hic est modificatus [programma ex pagina praecedenti](../while) quod utitur `until` et nova condicione:
 
 ```raku
 my $x = 0;
-usque $x > 10 {
+until $x > 10 {
     $x = prompt 'Intra numerum, qui non est maior quam 10: ';
-    dic "Intrasti $x.";
+    say "Intrasti $x.";
 }
-dic "$x est maior quam 10.";
+say "$x est maior quam 10.";
 ```
 
 Curre programmam et inspice exitum:
@@ -32,16 +32,16 @@ Intrasti 20.
 20 est maior quam 10.
 ```
 
-## `usque` vs. `dum`
+## `until` vs. `while`
 
-Compara aequivalentes programmata cum `dum` et `usque`:
+Compara aequivalentes programmata cum `while` et `until`:
 
 ```raku
-dum $x <= 10 { . . . }
+while $x <= 10 { . . . }
 
-usque $x > 10 { . . . }
+until $x > 10 { . . . }
 ```
 
-Ut vides, condiciones sunt negatae versiones alterius. Hoc sensu, `dum` et `usque` sunt in eadem relatione ac `si` et `nisi`.
+Ut vides, condiciones sunt negatae versiones alterius. Hoc sensu, `while` et `until` sunt in eadem relatione ac `if` et `unless`.
 
 {% include nav.html %}

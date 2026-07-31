@@ -1,5 +1,5 @@
 ---
-title: Quiz — si
+title: 'Quiz: `if`'
 ---
 
 {% include menu.html %}

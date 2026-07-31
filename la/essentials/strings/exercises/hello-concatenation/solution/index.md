@@ -1,5 +1,5 @@
 ---
-title: Solutio ad 'Salve, Concatenatio!'
+title: 'Solutio: Salve, Concatenatio!'
 ---
 
 {% include menu.html %}
@@ -13,9 +13,9 @@ my $name = prompt 'Quod est nomen tuum? ';
 say 'Salve, ' ~ $name ~ '!';
 ```
 
-🦋 Codicem fontis invenire potes in archivo [salve-concatenatio.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
+🦋 Codicem fontis invenire potes in archivo [salve-concatenatio.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-concatenation.raku).
 
-## Effectus
+## Exitus
 
 Programma curre, et intrabit modum cum exspectat tuum ingressum. Postquam nomen typis et premes Enter, programma pergere et salutem imprimere:
 

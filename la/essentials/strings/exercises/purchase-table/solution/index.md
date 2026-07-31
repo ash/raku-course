@@ -1,5 +1,5 @@
 ---
-title: Solutio ad 'Mensam emptionis'
+title: 'Solutio: Tabula emptio'
 ---
 
 {% include menu.html %}
@@ -17,18 +17,18 @@ my $mensa-pretium = 50.18;
 my $mensae = 1;
 my $mensae-totalis = $mensa-pretium * $mensae;
 
-dic "Item\tPretium\tN\tTotalis";
-dic "Sellae\t\$$sella-pretium\t$sellae\t\$$sellae-totalis";
-dic "Mensae\t\$$mensa-pretium\t$mensae\t\$$mensae-totalis";
+say "Item\tPretium\tN\tTotalis";
+say "Sellae\t\$$sella-pretium\t$sellae\t\$$sellae-totalis";
+say "Mensae\t\$$mensa-pretium\t$mensae\t\$$mensae-totalis";
 ```
 
 Omnes numeri sunt duriter codificati et servati in variis variabilibus. Nos quoque utimur operatore multiplicationis `*` ad computandum eventum. Plura de operatoribus in proximis sectionibus huius cursus discemus, sed hoc tempore, constructio talis ut `$sella-pretium * $sellae` non debet esse aliquid quod quaestiones causat.
 
 Tres lineae generantes output imprimunt tres lineas tabulae, includens eius caput. Animadverte quomodo columnae separantur per characteres tabulationis `\t`. In datis lineis, etiam videmus characterem dollariorum effugientem: `\$` necnon varias variabiles quas interpolare volumus.
 
-🦋 Codicem fontis invenire potes in archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Codicem fontis invenire potes in archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
-## Output
+## Exitus
 
 Curre programmatum et vide quomodo tabulam imprimit:
 

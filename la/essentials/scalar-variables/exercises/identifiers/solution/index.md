@@ -1,5 +1,5 @@
 ---
-title: Solutio 'Corrige Identificatores'
+title: 'Solutio: Corrigere identifiers'
 ---
 
 {% include menu.html %}
@@ -18,9 +18,9 @@ my $from-to = 'London to Paris';
 
 Omnes identificatores sunt validi, sed fortasse melius est vitare nomina cum apostrophis si `$non` habes validas rationes ad eos utendos.
 
-🦋 Codicem fontem invenire potes in archivo [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Codicem fontem invenire potes in archivo [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
-## Output
+## Exitus
 
 Hoc programma nullum output generat, sed non debes errores accipere cum Rakudo illud compilat et exsequitur:
 

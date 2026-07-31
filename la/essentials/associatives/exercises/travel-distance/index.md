@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Iter distantiae'
+title: Itinera distantia
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Nomen variabilium
+title: 'Quiz: Nomina valida variabilium'
 ---
 
 {% include menu.html %}

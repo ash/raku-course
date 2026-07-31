@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Variabiles Scalaris'
+title: 'Exercitationes: Scalari variabiles'
 ---
 
 {% include menu.html %}

@@ -1,10 +1,10 @@
 ---
-title: Examinatio eventus rogationis — Numeri
+title: 'Explorare resultatum `prompt` — Numeri'
 ---
 
 {% include menu.html %}
 
-## Munus
+## Problema
 
 Modifica programma ex exercitio praecedente. Hoc tempore, debet petere ut numerum inseras. Examina genus valoris a `prompt` redditi. Curre programma aliquoties et inseras numeros diversorum generum (integros, rationales, et numeros fluitantes).
 

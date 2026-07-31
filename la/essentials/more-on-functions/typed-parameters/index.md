@@ -1,5 +1,5 @@
 ---
-title: Typed parameters of functions
+title: Typis parametra
 ---
 
 {% include menu.html %}

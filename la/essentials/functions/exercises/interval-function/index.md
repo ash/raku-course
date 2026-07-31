@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Functio Intervallum'
+title: Intervallum functio
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Variabiles typatae
+title: Typis variabiles
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ Hic est alius exemplum miscendi diversa genera datae in eadem expressione:
 ```raku
 my $a = '100';
 my $b = 200;
-dic $a + $b; # 300
+say $a + $b; # 300
 ```
 
 Hoc est, probabiliter, non optima praxis codicis, sed est perfecte valida programma Raku.

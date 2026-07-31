@@ -1,5 +1,5 @@
 ---
-title: Quiz — Reading command-line arguments in the MAIN function
+title: Quiz — Legere linea mandati argumenta
 ---
 
 {% include menu.html %}

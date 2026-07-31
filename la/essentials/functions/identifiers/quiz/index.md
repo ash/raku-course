@@ -1,5 +1,5 @@
 ---
-title: Quiz — Nomina functionum
+title: Quiz — nomina functionum
 ---
 
 {% include menu.html %}

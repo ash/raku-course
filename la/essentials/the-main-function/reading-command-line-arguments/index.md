@@ -1,5 +1,5 @@
 ---
-title: Reading command line arguments
+title: Legere linea mandati argumenta
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Lumina Traffici'
+title: Luminum trafficum
 ---
 
 {% include menu.html %}

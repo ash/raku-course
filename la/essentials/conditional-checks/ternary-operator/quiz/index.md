@@ -1,5 +1,5 @@
 ---
-title: Quiz — Ternary operator
+title: Quiz — Ternarius operator
 ---
 
 {% include menu.html %}

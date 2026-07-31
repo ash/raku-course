@@ -1,14 +1,14 @@
 ---
-title: Exercitium ‘Veri et Falsi filis
+title: Veri et falsi catenae
 ---
 
 {% include menu.html %}
 
 Hoc est assignatio exploratoria, quae permittit te explorare proprietates Raku tui ipsius.
 
-## Munus
+## Problema
 
-Scribe programma vel utere [REPL concha](/la/essentials/running-programs/from-repl) ut invenias, quae fila fiunt `Falsa` cum convertuntur ad valores Booleanos.
+Scribe programma vel utere [REPL concha](/la/essentials/running-programs/from-repl) ut invenias, quae fila fiunt `False` cum convertuntur ad valores Booleanos.
 
 ## Solutio
 

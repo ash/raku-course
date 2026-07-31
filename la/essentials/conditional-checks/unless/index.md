@@ -1,5 +1,5 @@
 ---
-title: Using unless
+title: 'Utendo `unless`'
 ---
 
 {% include menu.html %}
@@ -14,8 +14,8 @@ my $broken = False;
 # ...Aliquid potest $broken ad Verum hic ponere...
     
 unless $broken {
-    dic "Noli sollicitari!";
-    dic "Esto laetus!";
+    say "Noli sollicitari!";
+    say "Esto laetus!";
 }
 ```
 

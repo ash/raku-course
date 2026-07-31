@@ -1,38 +1,35 @@
 ---
-title: Solutio ‘Numeri argumentorum lineae mandati’
+title: 'Solutio: Numerus argumentorum lineae mandati'
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Solutio est satis simplex.
+Numerus argumentorum adhuc ex `@*ARGS.elems` venit, sed hac vice aliquid cum eo agere debemus potius quam illum solum imprimere. Serva numerum in variabili, deinde elige verbum rectum per operatorem ternarium:
 
 ## Codex
 
 ```raku
-say @*ARGS.elems;
+my $n = @*ARGS.elems;
+my $word = $n == 1 ?? 'argument' !! 'arguments';
+say "You passed $n $word.";
 ```
 
-Aliter, potes omnes methodos concatenare:
+🦋 Inveni codicem fontem in archivo [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/number-of-command-line-arguments.raku).
 
-```raku
-@*ARGS.elems.say;
-```
+## Exitus
 
-🦋 Invenias programmatum in fasciculo [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/number-of-command-line-arguments.raku).
-
-## Effectus
-
-Hoc programma requirit probationem duorum casuum:
-
-1. Nulli argumenti praeteriti.
-1. Nonnulli numeri argumentorum praeteriti.
+Operae pretium est tres casus interessantes probare: nullum argumentum, exacte unum, et multa. Solus secundus forma singulari utitur.
 
 ```console
 $ raku exercises/positionals/number-of-command-line-arguments.raku
-0
+You passed 0 arguments.
+
+$ raku exercises/positionals/number-of-command-line-arguments.raku solo
+You passed 1 argument.
 
 $ raku exercises/positionals/number-of-command-line-arguments.raku one 2 three 4 five 6 seven
-7
+You passed 7 arguments.
 ```
 
 {% include nav.html %}

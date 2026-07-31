@@ -1,5 +1,5 @@
 ---
-title: Quiz — Reditus ex functione
+title: Quiz — Redonare ex functione
 ---
 
 {% include menu.html %}

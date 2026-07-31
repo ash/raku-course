@@ -1,5 +1,5 @@
 ---
-title: Matching against a range
+title: Quiz — Compatatio contra intervallum
 ---
 
 {% include menu.html %}

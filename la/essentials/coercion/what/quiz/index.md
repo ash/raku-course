@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Quid agit WHAT?'
+title: 'Quiz: Quid `WHAT` reddit?'
 ---
 
 {% include menu.html %}

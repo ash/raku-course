@@ -1,5 +1,5 @@
 ---
-title: Variabiles scalaris
+title: Declarando variabilem
 ---
 
 {% include menu.html %}

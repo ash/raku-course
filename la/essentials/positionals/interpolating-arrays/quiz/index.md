@@ -1,5 +1,5 @@
 ---
-title: Quiz — Interpolating arrays
+title: Quiz — Interpolando array
 ---
 
 {% include menu.html %}

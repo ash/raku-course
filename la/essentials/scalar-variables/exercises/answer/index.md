@@ -1,5 +1,5 @@
 ---
-title: Exercitium 'Responsio ad vitam, Universum et omnia'
+title: Responsio ad vitam, Universum et omnia
 ---
 
 {% include menu.html %}

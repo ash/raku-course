@@ -1,5 +1,5 @@
 ---
-title: Quiz — Functiones cum valoribus defaltis
+title: Quiz — Redonare typus
 ---
 
 {% include menu.html %}

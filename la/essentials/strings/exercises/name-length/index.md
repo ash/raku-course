@@ -1,5 +1,5 @@
 ---
-title: Exercitatio ‘Nomen longitudinis‘
+title: Nomen longitudo
 ---
 
 {% include menu.html %}

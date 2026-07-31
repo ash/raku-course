@@ -1,5 +1,5 @@
 ---
-title: Class desks
+title: Classis scrinia
 ---
 
 {% include menu.html %}

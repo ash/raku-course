@@ -1,5 +1,5 @@
 ---
-title: Operationes Booleanas
+title: Booleana operationes
 ---
 
 {% include menu.html %}
@@ -7,9 +7,9 @@ title: Operationes Booleanas
 Potes omnes operationes standardas cum valoribus Booleanis facere: Boolean AND, OR, et exclusive OR (vel XOR):
 
 ```raku
-dic False && True; # AND
-dic False || True; # OR
-dic False ^^ True; # XOR
+say False && True; # AND
+say False || True; # OR
+say False ^^ True; # XOR
 ```
 
 Hoc programma haec resultata imprimit:
@@ -23,14 +23,14 @@ Hoc programma haec resultata imprimit:
 Ad negandum valorem Booleanum, utere operatore praefixo `!`:
 
 ```raku
-dic !False; # True
+say !False; # True
 ```
 
 Valores Booleani possunt in variabilibus scalaribus conservari:
 
 ```raku
-meus $fecit = True;
-meus $non fecit = !$fecit;
+my $fecit = True;
+my $non fecit = !$fecit;
 ```
 
 {% include nav.html %}

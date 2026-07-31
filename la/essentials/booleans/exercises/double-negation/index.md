@@ -1,5 +1,5 @@
 ---
-title: Exercitium 'Duplices et triplices negationes’
+title: Duplex negatio
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Perimeterum rectanguli'
+title: Perimetri rectanguli
 ---
 
 {% include menu.html %}

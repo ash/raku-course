@@ -1,10 +1,10 @@
 ---
-title: Quiz — Compara numeros
+title: Quiz — Comparare numeri
 ---
 
 {% include menu.html %}
 
-Reprehende illas expressiones quae `Verum` resultant.
+Reprehende illas expressiones quae `True` resultant.
 
 {:.quiz}
 1 | 10 == 10

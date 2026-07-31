@@ -1,10 +1,10 @@
 ---
-title: Examinans eventum rogationis — Chorda
+title: 'Explorare resultatum `prompt` — Catenae'
 ---
 
 {% include menu.html %}
 
-## Munus
+## Problema
 
 Completa sequentem programmam ut nomen ingressum repetas et typum valoris in variabili `$name` imprimere.
 

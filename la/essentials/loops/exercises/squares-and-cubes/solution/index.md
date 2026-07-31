@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Quadrata et cubi in circulo'
+title: 'Solutio: Quadrata et cubica in ansa'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Invenies programmatum in archivo [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Inveni codicem fontem in archivo [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Exemplum
 

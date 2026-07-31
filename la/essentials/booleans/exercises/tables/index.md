@@ -1,12 +1,12 @@
 ---
-title: Exercitium 'Tabulae Booleanae’
+title: Booleana tabulae
 ---
 
 {% include menu.html %}
 
 ## Problema
 
-Crea programma quod eventus trium operationum Booleanarum pro omnibus combinationibus `Verum` et `Falsum` imprimit.
+Crea programma quod eventus trium operationum Booleanarum pro omnibus combinationibus `True` et `False` imprimit.
 
 ## Exemplum
 

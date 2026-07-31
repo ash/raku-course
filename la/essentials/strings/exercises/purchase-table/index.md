@@ -1,5 +1,5 @@
 ---
-title: Exercitatio ‘Tabula emptionis‘
+title: Tabula emptio
 ---
 
 {% include menu.html %}

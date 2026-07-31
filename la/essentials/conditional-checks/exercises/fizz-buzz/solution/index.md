@@ -4,7 +4,7 @@ title: 'Solutio: FizzBuzz'
 
 {% include menu.html %}
 
-Hoc munus est classica quaestio colloquii quae adiuvat ad cognoscendum si de casibus cogitas ubi ambae condiciones `Verum` sunt. Si numerus est divisibilis tam per 3 quam per 5, programma debet imprimere `FizzBuzz`.
+Hoc munus est classica quaestio colloquii quae adiuvat ad cognoscendum si de casibus cogitas ubi ambae condiciones `True` sunt. Si numerus est divisibilis tam per 3 quam per 5, programma debet imprimere `FizzBuzz`.
 
 ## Codex
 
@@ -13,12 +13,12 @@ Hic est solutio:
 ```raku
 my $n = prompt 'Numerum intra: ';
 
-print 'Fizz' si $n %% 3;
-print 'Buzz' si $n %% 5;
+print 'Fizz' if $n %% 3;
+print 'Buzz' if $n %% 5;
 print "\n";
 ```
 
-🦋 Inveni programma in archivo [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/exercises/conditional-checks/fizz-buzz.raku).
+🦋 Inveni codicem fontem in archivo [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/fizz-buzz.raku).
 
 ## Exemplum
 

@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Monitum imprime'
+title: 'Solutio: Print admonitionem'
 ---
 
 {% include menu.html %}
@@ -11,17 +11,17 @@ Hic est solutio:
 ```raku
 my $aetas = prompt 'Quot annos habes? ';
 
-si $aetas < 0 {
-    nota 'Numerum negativum inseruisti!';
+if $aetas < 0 {
+    note 'Numerum negativum inseruisti!';
 }
-aliter {
-    dic "Aetas tua est $aetas";
+else {
+    say "Aetas tua est $aetas";
 }
 ```
 
-🦋 Invenias programmatum in fasciculo [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Invenias programmatum in fasciculo [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
-## Effectus
+## Exitus
 
 Paucae casus possibiles:
 

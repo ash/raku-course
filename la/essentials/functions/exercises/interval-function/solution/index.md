@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Functio Intervallum'
+title: 'Solutio: Intervallum functio'
 ---
 
 {% include menu.html %}
@@ -22,9 +22,9 @@ say f(0);
 say f(3);
 ```
 
-🦋 Inveni programmatum in archivo [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/interval-function.raku).
+🦋 Inveni codicem fontem in archivo [interval-function.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/interval-function.raku).
 
-## Effectus
+## Exitus
 
 ```console
 $ raku exercises/functions/interval-function.raku

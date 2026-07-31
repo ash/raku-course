@@ -1,5 +1,5 @@
 ---
-title: Quiz — Using the unit-scoped definition
+title: Quiz — Utendo unit-scoped definitio
 ---
 
 {% include menu.html %}
@@ -9,7 +9,7 @@ title: Quiz — Using the unit-scoped definition
 Choose one of the declarators to make the program correct.
 
 {:.quiz-select}
-unit | (: meum, multi, unit :) `sub MAIN(Str $name);`
+unit | (: my, multi, unit :) `sub MAIN(Str $name);`
 . | `dic "Salve, $name!";`
 
 ## 2
@@ -18,7 +18,7 @@ Tell if the program is correct.
 
 ```raku
 unit sub MAIN(Str $name) {
-    dic "Salve, $name!";
+    say "Salve, $name!";
 }
 ```
 
@@ -31,11 +31,11 @@ Is this program correct?
 
 ```raku
 unit multi sub MAIN() {
-    dic 'Salve, omnes!';
+    say 'Salve, omnes!';
 }
 
 unit multi sub MAIN($name) {
-    dic "Salve, $name!";
+    say "Salve, $name!";
 }
 ```
 

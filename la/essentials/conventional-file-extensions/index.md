@@ -1,5 +1,5 @@
 ---
-title: Conventional file extensions in Raku
+title: Conventional file extensions
 ---
 
 {% include menu.html %}

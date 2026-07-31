@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ‘Summa numerorum’
+title: 'Solutio: Summa numerorum'
 ---
 
 {% include menu.html %}
@@ -18,9 +18,9 @@ my $sum = $a + $b + $c;
 say "Summa numerorum est $sum.";
 ```
 
-🦋 Codicem completum invenire potes in archivo [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum-of-numbers.raku).
+🦋 Codicem completum invenire potes in archivo [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum-of-numbers.raku).
 
-## Effectus
+## Exitus
 
 Programma aliquoties exsequi et confirmare illud operari cum numeris diversorum generum.
 

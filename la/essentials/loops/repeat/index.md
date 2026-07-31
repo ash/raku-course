@@ -1,23 +1,23 @@
 ---
-title: Usus repetendi
+title: 'Utendo `repeat`'
 ---
 
 {% include menu.html %}
 
-Blocki `dum` et `donec` numquam exsequi possunt si condicio initio `Falsa` est. Contra, blockum `repetere` semper saltem semel exsequitur. Condicio cessationis post codicem blockum inspicitur. Eadem verba `dum` vel `donec` ad probationem uteris.
+Blocki `while` et `until` numquam exsequi possunt si condicio initio `False` est. Contra, blockum `repeat` semper saltem semel exsequitur. Condicio cessationis post codicem blockum inspicitur. Eadem verba `while` vel `until` ad probationem uteris.
 
 Considera hoc programma.
 
 ```raku
-meum $x = 100;
-repetere {
-    $x = rogare 'Intra numerum: ';
-    dic "Intrasti $x.";
-} dum $x <= 10;
-dic "$x maior est quam 10.";
+my $x = 100;
+repeat {
+    $x = prompt 'Intra numerum: ';
+    say "Intrasti $x.";
+} while $x <= 10;
+say "$x maior est quam 10.";
 ```
 
-Variabilis `$x` initio ad `100` ponitur, et condicio `dum` inspicit utrum `$x` minor vel aequalis `10` sit. Cum data variabilis valore, condicio iam `Falsa` est, sed codex blockum adhuc primo exsequitur.
+Variabilis `$x` initio ad `100` ponitur, et condicio `while` inspicit utrum `$x` minor vel aequalis `10` sit. Cum data variabilis valore, condicio iam `False` est, sed codex blockum adhuc primo exsequitur.
 
 ```console
 $ raku t.raku
@@ -28,15 +28,15 @@ Intrasti 20.
 20 maior est quam 10.
 ```
 
-Mutemus programma ut `donec` utatur.
+Mutemus programma ut `until` utatur.
 
 ```raku
-meum $x = 0;
-repetere {
-    $x = rogare 'Intra numerum: ';
-    dic "Intrasti $x.";
-} donec $x > 10;
-dic "$x maior est quam 10.";
+my $x = 0;
+repeat {
+    $x = prompt 'Intra numerum: ';
+    say "Intrasti $x.";
+} until $x > 10;
+say "$x maior est quam 10.";
 ```
 
 Eum currere ut confirmes operari ut expectatur:

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Parametri nominati
+title: Quiz 1 — Nominate parametra
 ---
 
 {% include menu.html %}

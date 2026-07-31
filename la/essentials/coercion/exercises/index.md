@@ -1,5 +1,5 @@
 ---
-title: Exercitia ad 'Conversio Generis Datae'
+title: 'Exercitationes: Data typus conversio'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Usus ‘of’
+title: 'Utendo `of`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Functio ad computandum xʸ'
+title: 'Solutio: Functio ad computare _xʸ_'
 ---
 
 {% include menu.html %}
@@ -18,9 +18,9 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Inveni programma in fasciculo [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Inveni programma in fasciculo [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
-## Output
+## Exitus
 
 Curre programma ut confirmes illud responsa correcta imprimere:
 

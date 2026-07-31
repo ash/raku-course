@@ -1,5 +1,5 @@
 ---
-title: Citans Series Stringarum
+title: Quoting catena array
 ---
 
 {% include menu.html %}

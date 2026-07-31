@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ‘Valor π’
+title: 'Solutio: Valorem π'
 ---
 
 {% include menu.html %}
@@ -12,9 +12,9 @@ Programma ad valorem π imprimendum satis simplex est.
 say π;
 ```
 
-🦋 Totum codicem invenire potes in archivo [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Totum codicem invenire potes in archivo [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
-## Output
+## Exitus
 
 Programma exsequere et vide quid imprimat:
 

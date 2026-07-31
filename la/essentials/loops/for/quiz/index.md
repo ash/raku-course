@@ -1,5 +1,5 @@
 ---
-title: 'Intellectus de `for` anulo'
+title: 'Intelligendo `for` ansa'
 ---
 
 {% include menu.html %}

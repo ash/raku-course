@@ -1,5 +1,5 @@
 ---
-title: Salve, Mundi! in Raku
+title: 'Salve, Mundi!'
 ---
 
 {% include menu.html %}
@@ -7,7 +7,7 @@ title: Salve, Mundi! in Raku
 Optime, didicimus res essentiales necessarias ad loquendum cum Raku et responsum videndum, ergo eamus directe ad primum verum programma, ‘Salve, Mundi!’.
 
 ```raku
-dic 'Salve, Mundi!';
+say 'Salve, Mundi!';
 ```
 
 Antequam discamus elementa functionum, videamus paucae optiones diversas quas in hoc programmate uti potes.
@@ -15,23 +15,23 @@ Antequam discamus elementa functionum, videamus paucae optiones diversas quas in
 Primum omnium, potes ponere parenthesin circa argumentum functionis:
 
 ```raku
-dic('Salve, Mundi!');
+say('Salve, Mundi!');
 ```
 
-Secundum, potes uti aliis functionibus, scilicet, `pone`, et `imprime`. Iterum, cum vel sine parenthesibus:
+Secundum, potes uti aliis functionibus, scilicet, `put`, et `print`. Iterum, cum vel sine parenthesibus:
 
 ```raku
-pone 'Salve, Mundi!';
+put 'Salve, Mundi!';
 
-imprime("Salve, Mundi!\n");
+print("Salve, Mundi!\n");
 ```
 
-Nota quod necesse est manualiter addere characterem novae lineae in fine nuntii in casu `imprime`. Sed noli curare, omnes hos singulos postea tractabimus.
+Nota quod necesse est manualiter addere characterem novae lineae in fine nuntii in casu `print`. Sed noli curare, omnes hos singulos postea tractabimus.
 
 Antequam pergamus, ostendam unam optionem excitantem. Potes vocare functionem ut methodum directe in chorda:
 
 ```raku
-'Salve, Mundi!'.dic;
+'Salve, Mundi!'.say;
 ```
 
 {% include nav.html %}

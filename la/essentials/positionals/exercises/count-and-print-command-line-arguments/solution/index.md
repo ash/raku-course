@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Count and print command-line arguments’
+title: 'Solutio: Numerare et print argumentorum lineae mandati'
 ---
 
 {% include menu.html %}
@@ -14,9 +14,9 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Invenies programma in archivo [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Invenies programma in archivo [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
-## Effectus
+## Exitus
 
 Curre programma et confirma quod argumenta et lineas numeros imprimit:
 

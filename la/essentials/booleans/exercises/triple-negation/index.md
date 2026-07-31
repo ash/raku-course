@@ -1,10 +1,10 @@
 ---
-title: Exercitium 'Triplices negationes’
+title: Triplex negatio
 ---
 
 {% include menu.html %}
 
-## Quaestio
+## Problema
 
 Quid est exitus sequentis programmatis?
 

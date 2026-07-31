@@ -1,5 +1,5 @@
 ---
-title: Creare et vocare functiones in Raku
+title: Creando et vocando functiones
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ Ad functionem creandam, utere verbo `sub` sequente nomine functionis. Corpus fun
 
 ```raku
 sub saluta {
-    dic 'Salve, Mundi!';
+    say 'Salve, Mundi!';
 }
 ```
 
@@ -23,11 +23,11 @@ sub saluta {
 Ad functionem utendam, pone nomen eius loco ubi eam vocare debes. In Raku, definitio functionis potest collocari ante vel post locum ubi functio adhibetur.
 
 ```raku
-dic 'Hoc est quod primum programma plerumque imprimit:';
+say 'Hoc est quod primum programma plerumque imprimit:';
 saluta;    
 
 sub saluta {
-    dic 'Salve, Mundi!';
+    say 'Salve, Mundi!';
 }
 ```
 

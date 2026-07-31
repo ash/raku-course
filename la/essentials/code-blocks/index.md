@@ -1,5 +1,5 @@
 ---
-title: Claustra Codicis
+title: Codicis sectiones
 ---
 
 {% include menu.html %}
@@ -8,7 +8,7 @@ Claustra codicis sunt fragmenta programmatis tui inclusa in par parvorum uncinar
 
 ```raku
 {
-    dic 'Salve, Munde!';
+    say 'Salve, Munde!';
 }
 ```
 

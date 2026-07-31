@@ -1,5 +1,5 @@
 ---
-title: Solutio 'Saluta hominem'
+title: 'Solutio: Salve personam'
 ---
 
 {% include menu.html %}
@@ -10,12 +10,12 @@ Hic est possibile solutio ad munus.
 
 ```raku
 my $name = prompt 'Quod est nomen tuum? ';
-dic 'Salve, ', $name, '!';
+say 'Salve, ', $name, '!';
 ```
 
-🦋 Codicem fontem invenire potes in fasciculo [saluta-hominem.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/greet-a-person.raku).
+🦋 Codicem fontem invenire potes in fasciculo [saluta-hominem.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/greet-a-person.raku).
 
-## Output
+## Exitus
 
 Programma curre et nomen intra cum rogationem accipis:
 
@@ -27,7 +27,7 @@ Salve, Inge!
 
 ## Commentarii
 
-1. Hoc programma utitur variabili scalari `$name` ad continendum filum quod a usore responsum ad rogationem intratum est. Cum variabilis in indice utitur quem ad `dic` functionem transmittis, nomen in nuntio accipis.
+1. Hoc programma utitur variabili scalari `$name` ad continendum filum quod a usore responsum ad rogationem intratum est. Cum variabilis in indice utitur quem ad `say` functionem transmittis, nomen in nuntio accipis.
 
 1. Est melior modus ad hanc quaestionem solvendi utens interpolatione filorum. Ad hanc quaestionem mox revertamur.
 

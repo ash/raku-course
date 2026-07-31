@@ -1,5 +1,5 @@
 ---
-title: Conversio generis datorum
+title: Data typus conversio
 ---
 
 {% include menu.html %}

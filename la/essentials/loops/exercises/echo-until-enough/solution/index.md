@@ -14,15 +14,15 @@ Sunt plures similes modi ad operandum cum `while`, `until`, vel `repeat`. Unus e
 my $verbum;
 repeat {
     $verbum = prompt 'Tuum verbum: ';
-    dic $verbum;
+    say $verbum;
 } while $verbum ne 'satis';
 
-dic 'OK, confectum.';
+say 'OK, confectum.';
 ```
 
-🦋 Inveni programma in archivo [echo-usque-satis.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/echo-until-enough.raku).
+🦋 Inveni codicem fontem in archivo [echo-usque-satis.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/echo-until-enough.raku).
 
-## Output
+## Exitus
 
 Curre programma, inserere pauca verba diversa, et deinde ansam terminare.
 

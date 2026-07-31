@@ -1,5 +1,5 @@
 ---
-title: Usus servitia online ad currendum Raku
+title: Utendo online servitia
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ Hic est index nonnullorum servitiorum quae Raku sustinent:
 * [glot.io](https://glot.io/new/raku)
 * [TIO](https://tio.run/#perl6)
 * [Repl.it](https://repl.it/new/raku) (primum log-in requiritur)
-* [RakuPlay](https://rakudist.raku.org/play/) (utitur queue)
+* [Raku Playground](https://fco.github.io/Raku-Playground/)
 
 Potes etiam inspicere [disputationem in Reddit](https://www.reddit.com/r/rakulang/comments/kj63dq/glotio_now_supports_raku/ggxow6n/) pro pluribus nexibus et commentariis de variis servitiis online.
 

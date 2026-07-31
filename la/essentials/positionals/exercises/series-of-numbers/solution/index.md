@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Imprime seriem numerorum’
+title: 'Solutio: Print seriem numerorum'
 ---
 
 {% include menu.html %}
@@ -17,7 +17,7 @@ my $end = prompt 'Finis: ';
 .say for $begin .. $end;
 ```
 
-🦋 Invenies programmatum in archivo [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers.raku).
+🦋 Inveni codicem fontem in archivo [series-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers.raku).
 
 ## Codex 2
 
@@ -32,7 +32,7 @@ loop (my $n = $begin; $n <= $end; $n++) {
 }
 ```
 
-🦋 Invenies programmatum in archivo [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/series-of-numbers-loop.raku).
+🦋 Inveni codicem fontem in archivo [series-of-numbers-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/series-of-numbers-loop.raku).
 
 Ut videre potes, prima varians est notabiliter brevior et magis expressiva.
 
@@ -40,7 +40,7 @@ Ut videre potes, prima varians est notabiliter brevior et magis expressiva.
 
 In prima variante programmatis, [postfix forma `for` loop](/la/essentials/loops/postfix-for) adhibetur. In secundo programmate, `loop` eligitur.
 
-## Output
+## Exitus
 
 Transi duo numeros in console et currere programmatum. Utraque varians idem output producit.
 

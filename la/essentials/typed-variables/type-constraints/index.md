@@ -1,5 +1,5 @@
 ---
-title: Vincula generis
+title: Typus limitationes
 ---
 
 {% include menu.html %}

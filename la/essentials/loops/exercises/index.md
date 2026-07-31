@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: anuli'
+title: 'Exercitationes: Ansae'
 ---
 
 {% include menu.html %}

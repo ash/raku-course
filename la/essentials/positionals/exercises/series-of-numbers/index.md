@@ -1,5 +1,5 @@
 ---
-title: Series numerorum imprimere
+title: Print seriem numerorum
 ---
 
 {% include menu.html %}

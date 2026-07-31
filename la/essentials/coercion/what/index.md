@@ -1,5 +1,5 @@
 ---
-title: Introspectio cum `WHAT`
+title: 'Introspectio cum `WHAT`'
 ---
 
 {% include menu.html %}

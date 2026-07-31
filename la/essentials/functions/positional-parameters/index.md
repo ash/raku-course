@@ -1,5 +1,5 @@
 ---
-title: Parametri positionis
+title: Positional parametra
 ---
 
 {% include menu.html %}

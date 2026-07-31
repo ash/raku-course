@@ -1,5 +1,5 @@
 ---
-title: Circuli infiniti
+title: Infinitas ansae
 ---
 
 {% include menu.html %}

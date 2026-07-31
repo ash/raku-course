@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Default values
+title: Quiz — Defaulte valores
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Function parameters
+title: Parametra functionum
 ---
 
 {% include menu.html %}

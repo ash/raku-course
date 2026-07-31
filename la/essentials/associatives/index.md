@@ -1,5 +1,5 @@
 ---
-title: Typi data associativi
+title: Associativa data genera
 ---
 
 {% include menu.html %}

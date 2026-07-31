@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Factorialis’
+title: 'Solutio: Factorial'
 ---
 
 {% include menu.html %}
@@ -12,14 +12,14 @@ Factorialis `N` est productum numerorum integrorum ab 1 usque ad et includens `N
 my $n = 8;
 
 my $f = 1;
-$f *= $_ pro 2..$n;
+$f *= $_ for 2..$n;
 
-dic $f;
+say $f;
 ```
 
-🦋 Inveni programmatum in archivo [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku).
+🦋 Inveni codicem fontem in archivo [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/factorial.raku).
 
-## Output
+## Exitus
 
 Curre programmatum aliquoties et tenta valores diversos `$n`.
 
@@ -38,11 +38,11 @@ Potes uti ‘pleno’ circulo loco formae postfixae:
 my $n = 8;
 
 my $f = 1;
-pro 2..$n -> $x {
+for 2..$n -> $x {
     $f *= $x;
 }
 
-dic $f;
+say $f;
 ```
 
 ## Plus de hoc argumento

@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ‘Triplicem negationem’
+title: 'Solutio: Triplex negatio'
 ---
 
 {% include menu.html %}
@@ -13,9 +13,9 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Totum codicem invenire potes in archivo [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Totum codicem invenire potes in archivo [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
-## Output
+## Exitus
 
 Programma valorem Booleanum inversum imprimit ut probabiliter exspectabas:
 

@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Intervalla'
+title: 'Exercitationes: Intervalla'
 ---
 
 {% include menu.html %}

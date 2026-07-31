@@ -1,5 +1,5 @@
 ---
-title: Conversio typorum pro variabilibus typatis
+title: Typus conversio pro typis variabiles
 ---
 
 {% include menu.html %}

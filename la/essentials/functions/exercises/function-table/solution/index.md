@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Tabula functionis'
+title: 'Solutio: Functio tabula'
 ---
 
 {% include menu.html %}
@@ -18,9 +18,9 @@ loop (my $x = -3; $x <= 3; $x += 0.1) {
 }
 ```
 
-🦋 Inveni programma in archivo [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-table.raku).
+🦋 Inveni codicem fontem in archivo [function-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-table.raku).
 
-## Output
+## Exitus
 
 Programma longam tabulam x — f(x) imprimit. Pars huius output hic ostenditur:
 

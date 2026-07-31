@@ -1,5 +1,5 @@
 ---
-title: Quiz — Definire valores praedefinitos
+title: Quiz — Definire defaulte valores
 ---
 
 {% include menu.html %}

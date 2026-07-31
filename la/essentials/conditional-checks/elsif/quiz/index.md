@@ -1,5 +1,5 @@
 ---
-title: Quiz — if, elsif, else
+title: 'Quiz: `if`, `elsif`, et `else`'
 ---
 
 {% include menu.html %}

@@ -23,9 +23,9 @@ while $a >= $b {
 say $n;
 ```
 
-🦋 Inveni programma in archivo [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/division-via-subtraction.raku).
+🦋 Inveni codicem fontem in archivo [division-via-subtraction.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/division-via-subtraction.raku).
 
-## Output
+## Exitus
 
 Curre programma aliquot vicibus. Incipe cum valoribus datis quae dant exactum numerum integrum:
 

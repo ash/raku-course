@@ -1,5 +1,5 @@
 ---
-title: Valorem assignare
+title: Assignando valorem
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ $nomen = 'Anna';
 Nunc variabile uti potes et, exempli gratia, illud imprimere:
 
 ```raku
-dic $nomen;
+say $nomen;
 ```
 
 ## Multiplices assignationes

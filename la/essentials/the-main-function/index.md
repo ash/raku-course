@@ -1,5 +1,5 @@
 ---
-title: Functio PRINCIPALIS
+title: '`MAIN` functio'
 ---
 
 {% include menu.html %}
@@ -9,16 +9,16 @@ Programma Raku nullum rituale boilerplate requirit, itaque statim utiles instruc
 Si programma functionem cum nomine speciali `MAIN` continet, Raku hanc functionem exsequitur postquam omnia compilavit et postquam codex mainline exsecutus est.
 
 ```raku
-dic '1. Codex mainline';
+say '1. Codex mainline';
 
 sub MAIN {
-    dic '3. MAIN vocata';
+    say '3. MAIN vocata';
 }
 
-dic '2. Etiam mainline';
+say '2. Etiam mainline';
 ```
 
-Hoc programma primum exsequitur `dic` summi gradus, et deinde `MAIN` vocat:
+Hoc programma primum exsequitur `say` summi gradus, et deinde `MAIN` vocat:
 
 ```console
 $ raku t.raku

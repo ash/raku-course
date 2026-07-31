@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Argumentorum mandati lineae imprimere’
+title: 'Solutio: Print argumentorum lineae mandati'
 ---
 
 {% include menu.html %}
@@ -12,9 +12,9 @@ Programma argumenta e linea mandati in serie `@*ARGS` accipit. Ergo, necesse est
 .say for @*ARGS;
 ```
 
-🦋 Invenies programmatum in archivo [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Inveni codicem fontem in archivo [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
-## Effectus
+## Exitus
 
 Programma exsequi et confirma argumenta linea per lineam imprimere:
 

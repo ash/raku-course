@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Auctus Salarialis'
+title: 'Solutio: Stipendium incrementum'
 ---
 
 {% include menu.html %}
@@ -19,12 +19,12 @@ my %employee =
 my $auctus = 5; # in centesimis
 
 %employee<salarium> *= (1 + $auctus / 100);
-dic "Novum salarium %employee<nomen-plenum>: %employee<salarium>";
+say "Novum salarium %employee<nomen-plenum>: %employee<salarium>";
 ```
 
-🦋 Inveni programma in archivo [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Inveni codicem fontem in archivo [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
-## Output
+## Exitus
 
 Cum programma curris, fac ut validas computationes feceris et numerum centesimarum recte convertisti.
 

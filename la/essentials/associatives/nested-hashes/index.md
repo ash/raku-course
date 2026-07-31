@@ -1,5 +1,5 @@
 ---
-title: Nidi Hashium
+title: Nidificata hashes
 ---
 
 {% include menu.html %}

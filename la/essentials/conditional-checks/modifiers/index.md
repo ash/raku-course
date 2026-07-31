@@ -1,15 +1,15 @@
 ---
-title: Postfix forms of if and unless
+title: '`if` et `unless` ut statement modificatores'
 ---
 
 {% include menu.html %}
 
-Raku praebet solutionem valde utilem cum vis simplicem sententiam conditionaliter exsequi. In hoc casu, non opus est separatum codicem creare. Modo pone `si` vel `nisi` statim post sententiam. In Raku, tales structurae vocantur _modificatores sententiae_.
+Raku praebet solutionem valde utilem cum vis simplicem sententiam conditionaliter exsequi. In hoc casu, non opus est separatum codicem creare. Modo pone `if` vel `unless` statim post sententiam. In Raku, tales structurae vocantur _modificatores sententiae_.
 
 ```raku
-dic 'Bonum postmeridianum' si $horae > 12;
+say 'Bonum postmeridianum' if $horae > 12;
 
-dic 'Omnia systemata operantur' nisi $fractum;
+say 'Omnia systemata operantur' unless $fractum;
 ```
 
 {% include nav.html %}

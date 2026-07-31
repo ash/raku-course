@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Typi datorum associativi'
+title: 'Exercitationes: Associativa data genera'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Array annidati
+title: Quiz — Nidificata array
 ---
 
 {% include menu.html %}

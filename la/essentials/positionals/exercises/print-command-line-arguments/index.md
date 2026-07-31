@@ -1,5 +1,5 @@
 ---
-title: Print command-line arguments
+title: Print argumentorum lineae mandati
 ---
 
 {% include menu.html %}

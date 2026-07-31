@@ -1,5 +1,5 @@
 ---
-title: Solutio 'Salve, Ego!'
+title: 'Solutio: Salve, me!'
 ---
 
 {% include menu.html %}
@@ -9,12 +9,12 @@ Hic est solutio ad problema '[Salve, ego!](../)'.
 ## Codex
 
 ```raku
-dic 'Salve, Andrea!';
+say 'Salve, Andrea!';
 ```
 
-🦋 Totum codicem invenire potes in fasciculo [salve-ego.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 Totum codicem invenire potes in fasciculo [salve-ego.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
-## Effectus
+## Exitus
 
 Ut effectum videas, programma curre, ut infra monstratur:
 

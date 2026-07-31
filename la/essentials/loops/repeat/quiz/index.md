@@ -1,5 +1,5 @@
 ---
-title: Quiz — Iteratio repetita
+title: 'Quiz — `repeat` ansa'
 ---
 
 {% include menu.html %}

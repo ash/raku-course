@@ -1,5 +1,5 @@
 ---
-title: Pairs
+title: Paria
 ---
 
 {% include menu.html %}

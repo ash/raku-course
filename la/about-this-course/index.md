@@ -1,12 +1,9 @@
 ---
-title: De hoc cursu
+title: De hoc curriculo
+translations_gpt:
 ---
 
-{% assign course_title = site.data.toc["la"].title %}
-
-[{{course_title}}](/la/)
-
-# De hoc cursu
+{% include menu.html %}
 
 Gratum ad cursum linguae programmandi Raku!
 
@@ -38,7 +35,7 @@ Cursus quinque partes includit:
 | N | Nomen | Status
 | 1 | [Raku essentialia](/la/essentials) | Editum
 | 2 | [Argumenta Raku provecta](/la/advanced) | In progressu<span id="ProgressBar">...</span>
-| 3 | Programmatio objecto-orientata in Raku | 
+| 3 | Programmatio obiecto-orientata in Raku | 
 | 4 | Regexes et grammaticae | 
 | 5 | Programmatio functionalis, concurrentis, et reactiva | 
 
@@ -92,7 +89,7 @@ Cursus scriptus est ab [Andrew Shitov](https://andrewshitov.com), qui evolutione
 
 Creatio cursus sustentatur per donum [The Perl Foundation](https://www.perlfoundation.org). Cursum uti potes ad auto-studium vel ut materiam paratam ad alios docendos. Usus commercialis in classibus sine permissione permittitur. Editio cursus ut productum separatum primum cum auctore tractanda est.
 
-Fontes files in GitHub praesto sunt: [github.com/ash/raku-course](https://github.com/ash/raku-course). Libenter submitte pull request ad errores vel typos corrigendos vel crea issue in GitHub si vis latius argumentum discutere. Potes etiam auctorem per [e-mail](mailto:andy@shitov.ru) contingere.
+Fontes files in GitHub praesto sunt: [github.com/ash/raku-course](https://github.com/ash/raku-course). Libenter submitte pull request ad errores vel typos corrigendos vel crea issue in GitHub si vis latius argumentum discutere. Potes etiam auctorem per [e-mail](mailto:mail@andreyshitov.com) contingere.
 
 ## Navigatio cursus
 

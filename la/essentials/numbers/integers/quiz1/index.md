@@ -1,5 +1,5 @@
 ---
-title: Quiz — Numeri integri
+title: 'Quiz: Numeri integri'
 ---
 
 {% include menu.html %}

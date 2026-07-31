@@ -1,10 +1,10 @@
 ---
-title: Count and print command-line arguments
+title: Numerare et print argumentorum lineae mandati
 ---
 
 {% include menu.html %}
 
-## Munus
+## Problema
 
 Scribe programma quod legit numerum argumentorum arbitrarium ex linea mandati et imprimit eos in lineis separatis, numeratis.
 

@@ -1,5 +1,5 @@
 ---
-title: Comparatio filorum
+title: Comparando catenae
 ---
 
 {% include menu.html %}
@@ -18,9 +18,9 @@ Comparatio filorum utitur suis operatoribus:
 Examina pauca exempla comparationis duorum filorum:
 
 ```raku
-dic 'alpha' lt 'beta'; # Verum
-dic 'word' ne 'Word';  # Verum
-dic 'xyz' gt 'xvw';    # Verum
+say 'alpha' lt 'beta'; # Verum
+say 'word' ne 'Word';  # True
+say 'xyz' gt 'xvw';    # Verum
 ```
 
 {% include nav.html %}

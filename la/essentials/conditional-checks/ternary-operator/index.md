@@ -1,5 +1,5 @@
 ---
-title: Operator ternarius
+title: Ternarius operator
 ---
 
 {% include menu.html %}
@@ -8,8 +8,8 @@ Operator ternarius in Raku est constructio bipartita `??` ... `!!`. Test Boolean
 
 ```raku
 my $shines = 'Sol';
-my $tempus-diei = $shines aequum est 'Sol' ?? 'dies' !! 'nox';
-dic $tempus-diei;
+my $tempus-diei = $shines eq 'Sol' ?? 'dies' !! 'nox';
+say $tempus-diei;
 ```
 
 Cum valore currenti variabilis `$shines`, hic programma imprimit `dies`. Si mutas ad `Luna`, eventus erit `nox`.
@@ -22,7 +22,7 @@ my $tempus-diei =
     $horae <= 6 ?? 'Nox' !!
     $horae <= 12 ?? 'Mane' !! 
     $horae <= 18 ?? 'Postmeridianum' !! 'Vespera';
-dic $tempus-diei;
+say $tempus-diei;
 ```
 
 Hic, secundum valorem in `$horae`, alia pars diei referetur.

@@ -1,5 +1,5 @@
 ---
-title: Notatio scientifica in Raku
+title: Numeri fluitantes
 ---
 
 {% include menu.html %}

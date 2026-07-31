@@ -19,9 +19,9 @@ my $n = prompt 'Quis est numerus? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Inveni programma in archivo [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Inveni codicem fontem in archivo [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
-## Effectus
+## Exitus
 
 Proba varios casus, inclusis cum numerus coincidet cum fine intervalli.
 

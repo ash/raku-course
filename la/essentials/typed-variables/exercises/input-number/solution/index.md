@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Convertendi input usoris ad numerum’
+title: 'Solutio: Convertendo usoris initus ad numerum'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my Int $n = prompt 'Enter a number: ';
 say $n;
 ```
 
-🦋 Codicem fontis invenire potes in fasciculo [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 Codicem fontis invenire potes in fasciculo [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Exemplum
 

@@ -1,5 +1,5 @@
 ---
-title: Solutio de ‘Veris et Falsis integri’
+title: 'Solutio: Veri et falsi numeri'
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ say so $value;
 say $value.so;
 ```
 
-Manifestum est valores non-nullos converti ad `Verum`. Itaque maxime interest spectare ad eas optiones quae fiunt `Falsum`.
+Manifestum est valores non-nullos converti ad `True`. Itaque maxime interest spectare ad eas optiones quae fiunt `Falsum`.
 
 Omnes nullae, integer, punctum-fluctuans, vel rationalis, convertuntur ad `Falsum`:
 
@@ -37,6 +37,6 @@ my $int = 0;
 say ?(-$int); # Falsum
 ```
 
-🦋 Totum programma cum exemplo supra invenire potes in archivo [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-numbers.raku).
+🦋 Totum programma cum exemplo supra invenire potes in archivo [true-false-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-numbers.raku).
 
 {% include nav.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Compara `say` et `put`'
+title: 'Solutio: Comparare `say` et `put`'
 ---
 
 {% include menu.html %}
@@ -42,9 +42,9 @@ put %h;
 
 Ad maiorem fiduciam, potes etiam typum variabilis imprimere, e.g., ut monstratur pro array et list, ut certus sis te variabilem desiderati typi creavisse.
 
-🦋 Invenire programmatum in archivo [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Invenire programmatum in archivo [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
-## Output
+## Exitus
 
 Output programmatis supra monstrati infra monstratur.
 

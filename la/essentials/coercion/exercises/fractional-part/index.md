@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Pars Fractionalis'
+title: Partem fractionalem
 ---
 
 {% include menu.html %}

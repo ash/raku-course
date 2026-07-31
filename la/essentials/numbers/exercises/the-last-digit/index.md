@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Digitus ultimus'
+title: Ultima cifra
 ---
 
 {% include menu.html %}

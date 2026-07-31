@@ -1,5 +1,5 @@
 ---
-title: Quiz — The while loop
+title: 'Quiz — `while` ansa'
 ---
 
 {% include menu.html %}

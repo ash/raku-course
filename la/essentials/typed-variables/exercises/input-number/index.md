@@ -1,5 +1,5 @@
 ---
-title: Exercitatio ‘Convertens input utentis ad numerum’
+title: Convertendo usoris initus ad numerum
 ---
 
 {% include menu.html %}

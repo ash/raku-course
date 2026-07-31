@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Summam Imprimere'
+title: Print summa
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Impare vel Pare'
+title: 'Solutio: Par vel impar'
 ---
 
 {% include menu.html %}
@@ -21,9 +21,9 @@ say f(0);
 say f(3);
 ```
 
-🦋 Inveni programmatum in archivo [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Inveni codicem fontem in archivo [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
-## Output
+## Exitus
 
 ```console
 $ raku exercises/functions/odd-or-even.raku

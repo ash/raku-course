@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — the conditition in if
+title: 'Quiz 2 — condicio in `if`'
 ---
 
 {% include menu.html %}

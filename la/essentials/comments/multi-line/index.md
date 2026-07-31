@@ -18,10 +18,10 @@ input in variabili servet. )
 
 $name = prompt 'Quod est nomen tuum? ';
 #`{ Programma nunc exspectat
-donec utens nomen inserat
+until utens nomen inserat
 et premet Enter. }
 
-dic $name; #`( Et nunc possumus illud imprimere )
+say $name; #`( Et nunc possumus illud imprimere )
 ```
 
 {% include nav.html %}

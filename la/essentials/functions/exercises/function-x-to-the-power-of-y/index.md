@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Functio ad computandum xʸ'
+title: Functio ad computare _xʸ_
 ---
 
 {% include menu.html %}

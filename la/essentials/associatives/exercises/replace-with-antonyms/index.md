@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Cum antonymis reponere'
+title: Reponere cum antonyma
 ---
 
 {% include menu.html %}

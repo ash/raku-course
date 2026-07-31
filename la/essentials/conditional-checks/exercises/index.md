@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Conditiones Verificationes'
+title: 'Exercitationes: Conditiones comprobationes'
 ---
 
 {% include menu.html %}

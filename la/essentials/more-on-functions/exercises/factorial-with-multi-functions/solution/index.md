@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Factorialis cum multi-functionibus'
+title: 'Solutio: Factorial cum multi-functiones'
 ---
 
 {% include menu.html %}
@@ -19,9 +19,9 @@ multi sub factorial($n) { $n * factorial($n - 1) }
 say factorial(@*ARGS[0].Int);
 ```
 
-🦋 Invenias programmatum in archivo [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/more-on-functions/factorial-with-multi-functions.raku).
+🦋 Invenias programmatum in archivo [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/more-on-functions/factorial-with-multi-functions.raku).
 
-## Output
+## Exitus
 
 ```console
 $ raku exercises/more-on-functions/factorial-with-multi-functions.raku 5

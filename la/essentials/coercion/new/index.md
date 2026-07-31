@@ -1,5 +1,5 @@
 ---
-title: Typorum conversiones utens formis constructoris
+title: Convertendo generibus utendo constructoris formis
 ---
 
 {% include menu.html %}

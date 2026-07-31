@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Divisio per subtractionem'
+title: Divisio per subtractionem
 ---
 
 {% include menu.html %}

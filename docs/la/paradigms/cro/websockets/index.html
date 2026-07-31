@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="la">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>WebSocket — Cursus Raku</title>
+    <meta property="og:title" content="WebSocket — Cursus Raku" />
+    <meta property="og:locale" content="la" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/la/">Cursus Raku</a> / <a href="/la/paradigms">Programmatio
+functionalis, simultanea, reactiva et retialis</a> / <a
+href="/la/paradigms/web">Programmatio retialis</a> / <a
+href="/la/paradigms/cro">Fundamenta Cro</a></p>
+<h1 id="websocket">WebSocket</h1>
+<p>Colloquium HTTP unius ictus est: cliens rogat, servitor respondet, et
+coniunctio perfecta est. <strong>WebSocket</strong> illud in canalem
+diuturnum et bilaterem promovet — utraque pars nuntium quolibet momento
+mittere potest, quod est id quo colloquia, ludi et tabulae vivae egent.
+Cro WebSocket sine additamentis sustinet, et tractator WebSocket ex
+instrumentis reactivis quae iam nosti aedificatur: fluxus nuntiorum
+supply est.</p>
+<p>Ecce servitor colloquii exiguus. Omnis nuntius quem quilibet cliens
+mittit a servitore in maiusculas vertitur et ad omnes coniunctos
+diffunditur — itaque id quod redit manifeste <em>non</em> est id quod
+exiit, probans data re vera iter utroque modo fecisse:</p>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Router</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Router::WebSocket</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
+
+<span class="k">my</span> <span class="nv">$chat</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
+
+<span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
+    <span class="n">get</span> -&gt; <span class="s">'chat'</span> {
+        <span class="n">web-socket</span> -&gt; <span class="nv">$incoming</span> {
+            <span class="k">supply</span> {
+                <span class="k">whenever</span> <span class="nv">$incoming</span> -&gt; <span class="nv">$message</span> {
+                    <span class="nv">$chat</span>.<span class="n">emit</span>(<span class="nb">uc</span>(<span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>));
+                    <span class="k">LAST</span> { <span class="n">done</span> }
+                }
+                <span class="k">whenever</span> <span class="nv">$chat</span> -&gt; <span class="nv">$text</span> {
+                    <span class="n">emit</span> <span class="nv">$text</span>;
+                }
+            }
+        }
+    }
+}
+
+<span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
+    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">port</span>(<span class="mi">8080</span>),
+    :<span class="n">application</span>(<span class="nv">$application</span>),
+);
+<span class="nv">$server</span>.<span class="nb">start</span>;
+
+<span class="nb">say</span> <span class="s">'Chat server on ws://127.0.0.1:8080/chat — press Ctrl-C to stop'</span>;
+
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+        <span class="nv">$server</span>.<span class="n">stop</span>;
+        <span class="n">done</span>;
+    }
+}</pre></div>
+
+<p>Aspice blocum <code>web-socket</code> — pars reactiva cursus in parvo
+est. Unusquisque cliens coniunctus <code>supply</code> cum duobus
+<code>whenever</code> accipit: unum <code>$incoming</code> spectat,
+nuntios <em>ab</em> illo cliente advenientes, unumquemque in maiusculas
+vertit eumque in <code>$chat</code> communem trudit; alterum
+<code>$chat</code> spectat et omnem textum diffusum <em>ad</em> clientem
+remittit per <code>emit</code>. Unus <code>Supplier</code>, ad quem
+omnis coniunctio se coniungit, totum conclave colloquii est.</p>
+<p>Parvum <code>LAST { done }</code> refert. Est <a
+href="/la/advanced/block-phasers">phaser</a> quem cum anulis invenisti;
+in bloco <code>whenever</code> emicat cum fluxus spectatus
+<strong>finit</strong> — id est, cum hic cliens se disiungit.
+<code>done</code> ibi vocare totum supply coniunctionis claudit, illud a
+<code>$chat</code> desubscribens. Sine eo, <code>whenever $chat</code>
+clientis abeuntis persisteret, et diffusio proxima ad foramen clausum
+scribere conaretur errorem in servitore imprimens.</p>
+<p>Navigatrum cum hoc paucis lineis JavaScript colloquitur, sed etiam
+aliud programma Raku — Cro partem clientis quoque praebet:</p>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::WebSocket::Client</span>;
+
+<span class="k">my</span> <span class="nv">$conn</span> = <span class="nb">await</span> <span class="n">Cro::WebSocket::Client</span>.<span class="n">connect</span>(<span class="s">'ws://127.0.0.1:8080/chat'</span>);
+
+<span class="k">my</span> <span class="nv">$got</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
+
+<span class="nv">$conn</span>.<span class="n">messages</span>.<span class="n">tap</span>(-&gt; <span class="nv">$message</span> {
+    <span class="nb">say</span> <span class="s">'Received: '</span>, <span class="nb">await</span> <span class="nv">$message</span>.<span class="n">body-text</span>;
+    <span class="nv">$got</span>.<span class="n">keep</span>;
+});
+
+<span class="nb">say</span> <span class="s">'Sending:  Hello, chat!'</span>;
+<span class="nv">$conn</span>.<span class="n">send</span>(<span class="s">'Hello, chat!'</span>);
+
+<span class="nb">await</span> <span class="nv">$got</span>;
+<span class="nb">await</span> <span class="nv">$conn</span>.<span class="nb">close</span>;</pre></div>
+
+<p><code>.send</code> nuntium emittit et statim redit; responsum postea,
+in alio filo, in bloco <code>.tap</code> advenit. Linea principalis
+igitur exspectare debet antequam claudat — et potius quam dormiat et
+speret, <code>Promise</code> exspectat quod coniunctio servat illo
+momento quo responsum advenit: instrumenta simultaneitatis ex parte
+superiore, exacte id agentia ad quod facta sunt.</p>
+<p>Curre servitorem in uno terminali et hunc clientem in altero. Cliens
+utramque partem colloquii imprimit:</p>
+<div class="highlight"><pre>Sending:  Hello, chat!
+Received: HELLO, CHAT!</pre></div>
+<p>Quod minusculis exiit maiusculis rediit — nuntius <em>ad</em>
+servitorem iter fecit, ibi transformatus est, et per eandem
+coniunctionem <em>retro</em> iter fecit. Ille canalis bilater in actione
+est. Incipe clientem in pluribus terminalibus simul et omnis nuntius in
+omnibus apparet: colloquium operans in minus quam triginta lineis
+Raku.</p>
+<blockquote>
+<p>Haec exempla Cro installato egent (<code>zef install cro</code>).</p>
+</blockquote>
+<p>Hic locus aptus est quo cursus finiat. Servitium, cliens qui illud
+vocat, et canalis vivus bilater inter ea super omnibus quae
+praecesserunt stant — super obiectis et exceptionibus, super regexibus
+et grammaticis, et super instrumentis functionalibus, simultaneis et
+reactivis huius partis — et tamen codex brevis manet et exacte dicit
+quod significas. A <a
+href="/la/paradigms/connections/sending-receiving">bytibus in
+foramine</a> ad conclave colloquii in uno scrinio codicis: hoc est
+Raku.</p>
+<h2 id="navigatio-cursus">Navigatio cursus</h2>
+<p>← <a href="/la/paradigms/cro/public-apis">Ab API publico petere</a>
+  |   <a href="/la/paradigms/cro/exercises/second-route">Via secunda</a>
+→</p>
+<p><br /> 💪 Vel recta ad <a
+href="/la/paradigms/cro/exercises">exercitationes huius sectionis</a>
+i.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
+<p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scripsit <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

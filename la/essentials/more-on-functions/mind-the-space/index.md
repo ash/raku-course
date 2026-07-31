@@ -1,5 +1,5 @@
 ---
-title: Cave ne spatium
+title: Cave spatium
 ---
 
 {% include menu.html %}

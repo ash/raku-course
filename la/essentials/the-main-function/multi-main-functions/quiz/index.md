@@ -1,5 +1,5 @@
 ---
-title: Quiz — Multi-MAIN
+title: 'Quiz — Multi-`MAIN`'
 ---
 
 {% include menu.html %}

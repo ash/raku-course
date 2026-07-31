@@ -1,5 +1,5 @@
 ---
-title: Typus Booleanus in Raku
+title: Booleana typus
 ---
 
 {% include menu.html %}

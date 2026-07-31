@@ -1,5 +1,5 @@
 ---
-title: Typi data positionis
+title: Positionalia data genera
 ---
 
 {% include menu.html %}

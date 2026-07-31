@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Codices nationum'
+title: Codices nationum
 ---
 
 {% include menu.html %}

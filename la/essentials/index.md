@@ -1,5 +1,5 @@
 ---
-title: Raku essentialia
+title: Elementa
 ---
 
 {% assign menu_for_part = "essentialia" %}

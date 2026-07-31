@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — List and scalar vs. list and array
+title: Quiz — Lista et scalar contra lista et array
 ---
 
 {% include menu.html %}

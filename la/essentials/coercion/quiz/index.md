@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Quid est eius genus?'
+title: 'Quiz: Quid est eius typus?'
 ---
 
 {% include menu.html %}

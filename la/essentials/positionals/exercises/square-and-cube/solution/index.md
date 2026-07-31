@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Quadrata et Cubi’
+title: 'Solutio: Quadratus et cubus'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n ** 2;
 say $n ** 3;
 ```
 
-🦋 Invenies programmatum in archivo [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube.raku).
+🦋 Inveni codicem fontem in archivo [square-and-cube.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube.raku).
 
 ## Codex 2
 
@@ -26,9 +26,9 @@ say $n²;
 say $n³;
 ```
 
-🦋 Invenies programmatum in archivo [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/square-and-cube-2.raku).
+🦋 Inveni codicem fontem in archivo [square-and-cube-2.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/square-and-cube-2.raku).
 
-## Output
+## Exitus
 
 Curre programmatum aliquoties et experire cum numeris diversis.
 

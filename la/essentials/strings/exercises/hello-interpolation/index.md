@@ -1,5 +1,5 @@
 ---
-title: Exercitatio 'Salve, Interpolatio!'
+title: 'Salve, Interpolatio!'
 ---
 
 {% include menu.html %}

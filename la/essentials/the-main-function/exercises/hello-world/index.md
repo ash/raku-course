@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Salve Mundi!'
+title: 'Salve, Mundi!'
 ---
 
 {% include menu.html %}

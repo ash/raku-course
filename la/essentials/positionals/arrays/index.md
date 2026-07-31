@@ -1,5 +1,5 @@
 ---
-title: Arrays
+title: Array
 ---
 
 {% include menu.html %}

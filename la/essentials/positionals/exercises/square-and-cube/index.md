@@ -1,5 +1,5 @@
 ---
-title: Quadrata et Cubi
+title: Quadratus et cubus
 ---
 
 {% include menu.html %}

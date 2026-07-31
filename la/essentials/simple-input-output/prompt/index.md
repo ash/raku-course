@@ -1,5 +1,5 @@
 ---
-title: Input cum rogatione
+title: 'Initus cum `prompt`'
 ---
 
 {% include menu.html %}

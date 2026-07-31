@@ -1,5 +1,5 @@
 ---
-title: Solutio 'Numerorum Fibonacci'
+title: 'Solutio: Fibonacci numeri'
 ---
 
 {% include menu.html %}
@@ -24,9 +24,9 @@ for ^19 {
 }
 ```
 
-🦋 Invenias programmatum in archivo [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fibonacci-numbers.raku).
+🦋 Invenias programmatum in archivo [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fibonacci-numbers.raku).
 
-## Output
+## Exitus
 
 Hic est exitus programmatis qui primos viginti numeros imprimit.
 

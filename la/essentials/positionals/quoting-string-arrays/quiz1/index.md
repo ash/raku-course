@@ -1,10 +1,10 @@
 ---
-title: Quiz — Quoting string arrays
+title: Quiz 1 — Quoting catena array
 ---
 
 {% include menu.html %}
 
-Reprehendo, pro quibus ex ordinibus, elementum cum indice `1` litteram `B` continet. Aliis verbis, `dic @array[1]` imprimit `B`.
+Reprehendo, pro quibus ex ordinibus, elementum cum indice `1` litteram `B` continet. Aliis verbis, `say @array[1]` imprimit `B`.
 
 {:.quiz}
 1 | mea @array = &lt;A B C&gt;;

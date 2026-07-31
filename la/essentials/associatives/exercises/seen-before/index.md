@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Visum ante?'
+title: Visus prius?
 ---
 
 {% include menu.html %}

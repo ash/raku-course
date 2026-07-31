@@ -1,5 +1,5 @@
 ---
-title: Exercitium 'Corrige Identificatores'
+title: Corrigere identifiers
 ---
 
 {% include menu.html %}

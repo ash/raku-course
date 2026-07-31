@@ -1,5 +1,5 @@
 ---
-title: Numeri integri in Raku
+title: Numeri integri
 ---
 
 {% include menu.html %}

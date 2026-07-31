@@ -1,15 +1,15 @@
 ---
-title: 'Forma Postfix "pro"'
+title: 'Postfixa forma de `for`'
 ---
 
 {% include menu.html %}
 
-Iam vidimus alios modificatores sententiae: [`si` et `aliter`](/la/essentials/conditional-checks/modifiers) et [`dum` et `donec`](/la/essentials/loops/modifiers). Et hoc est causa parvae celebrationis, quia consilium Raku valde constans est.
+Iam vidimus alios modificatores sententiae: [`if` et `else`](/la/essentials/conditional-checks/modifiers) et [`while` et `until`](/la/essentials/loops/modifiers). Et hoc est causa parvae celebrationis, quia consilium Raku valde constans est.
 
-Cum brevi corpore anuli, anulus `pro` in forma postfix scribi potest:
+Cum brevi corpore anuli, anulus `for` in forma postfix scribi potest:
 
 ```raku
-.say pro 1..7;
+.say for 1..7;
 ```
 
 Ut vides, intervalla sunt valde naturalia cum forma postfix "pro" utuntur.
@@ -17,20 +17,20 @@ Ut vides, intervalla sunt valde naturalia cum forma postfix "pro" utuntur.
 Hoc programma aequivalet magis traditae varianti:
 
 ```raku
-pro 1..7 -> $n {
-    dic $n;
+for 1..7 -> $n {
+    say $n;
 }
 ```
 
 Vel, si variabilis anuli defalta adhibetur, ad:
 
 ```raku
-pro 1..7 {
-    .dic;
+for 1..7 {
+    .say;
 }
 ```
 
-Hic, `.dic` est forma brevis pro `$_.dic`.
+Hic, `.say` est forma brevis pro `$_.say`.
 
 
 {% include nav.html %}

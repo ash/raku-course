@@ -1,5 +1,5 @@
 ---
-title: Simple input and output in Raku
+title: Simplex initus et output
 ---
 
 {% include menu.html %}

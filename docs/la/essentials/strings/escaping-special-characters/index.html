@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="la">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Fuga characterum specialium in chordis Raku</title>
-    <meta property="og:title" content="Fuga characterum specialium in chordis Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Escapatio specialium characterum — Cursus Raku</title>
+    <meta property="og:title" content="Escapatio specialium characterum — Cursus Raku" />
     <meta property="og:locale" content="la" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Fuga characterum specialium in chordis Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,124 +88,130 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/strings">Catenae</a></p>
+          <p><a href="/la/">Cursus Raku</a> / <a
+href="/la/essentials">Elementa</a> / <a
+href="/la/essentials/variables">Fundamenta variabilium et generum
+datorum</a> / <a href="/la/essentials/strings">Catenae</a></p>
+<h1 id="escapatio-specialium-characterum">Escapatio specialium
+characterum</h1>
+<p>Imagina te velle imprimere titulum pretii, et servas et nomen
+producti et pretium eius in variabilibus scalaribus?</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electricitas'</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
 
-<h1 id="escapatio-specialium-characterum">Escapatio specialium characterum</h1>
+<p>Quomodo imprimes titulum si pretium destinatur in dollaris? Exitus
+expectatus est: <code>Electricitas costs $3.14</code>. Signum dollari in
+chordis duplici-quotatis est indicator variabilis interpolandi. Ad
+imprimendum characterem <code>$</code> ipsum, necesse est eum
+effugere:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;</pre></div>
 
-<p>Imagina te velle imprimere titulum pretii, et servas et nomen producti et pretium eius in variabilibus scalaribus?</p>
+<p>Certe, potes uti concatenatione chorda et evitare effugium
+<code>$</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' costs $'</span> ~ <span class="nv">$price</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricitas&#39;</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
-</pre></div>
+<p>Haec varietas exacte eandem chordam imprimit, sed interpolatio
+videtur naturalior et facilius legitur. Nota quod character
+<code>$</code> neque interpolatus neque effugitus est in chorda
+simplici-quotata: <code>' costs $'</code>. Haec est differentia
+principalis. Characteres speciales in simplicibus quotatis apparent ut
+sunt.</p>
+<p>Hic sunt aliquot characteres speciales qui habent significationem
+specialem in chordis duplici-quotatis:</p>
+<p><code>\$</code> | Signum dollari <code>\n</code> | Linea nova
+<code>\r</code> | Reditus currus <code>\t</code> | Tabula horizontalis
+<code>\"</code> | Quotatio duplici <code>\\</code> | Retroversus</p>
+<p>Modus quo chorda quotatur definit quomodo Raku tractet characteres
+speciales. Considera haec duo exempla:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Unus\nDuo'</span>;
+<span class="nb">say</span> <span class="s">&quot;Tres\nQuattuor&quot;</span>;</pre></div>
 
-
-<p>Quomodo imprimes titulum si pretium destinatur in dollaris? Exitus expectatus est: <code class="language-plaintext highlighter-rouge">Electricitas costs $3.14</code>. Signum dollari in chordis duplici-quotatis est indicator variabilis interpolandi. Ad imprimendum characterem <code class="language-plaintext highlighter-rouge">$</code> ipsum, necesse est eum effugere:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
-</pre></div>
-
-
-<p>Certe, potes uti concatenatione chorda et evitare effugium <code class="language-plaintext highlighter-rouge">$</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
-</pre></div>
-
-
-<p>Haec varietas exacte eandem chordam imprimit, sed interpolatio videtur naturalior et facilius legitur. Nota quod character <code class="language-plaintext highlighter-rouge">$</code> neque interpolatus neque effugitus est in chorda simplici-quotata: <code class="language-plaintext highlighter-rouge">' costs $'</code>. Haec est differentia principalis. Characteres speciales in simplicibus quotatis apparent ut sunt.</p>
-
-<p>Hic sunt aliquot characteres speciales qui habent significationem specialem in chordis duplici-quotatis:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
-      <td>Signum dollari</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
-      <td>Linea nova</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
-      <td>Reditus currus</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
-      <td>Tabula horizontalis</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
-      <td>Quotatio duplici</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
-      <td>Retroversus</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Modus quo chorda quotatur definit quomodo Raku tractet characteres speciales. Considera haec duo exempla:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Unus\nDuo&#39;</span>;
-<span class="nb">say</span> <span class="s">&quot;Tres\nQuattuor&quot;</span>;
-</pre></div>
-
-
-<p>Si curris hoc programma, videbis primam chordam apparere ut est in una linea. Secunda chorda divisa est in duas partes:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unus\nDuo
+<p>Si curris hoc programma, videbis primam chordam apparere ut est in
+una linea. Secunda chorda divisa est in duas partes:</p>
+<pre><code>Unus\nDuo
 Tres
-Quattuor
-</code></pre></div></div>
-
-<p>In duplicibus quotatis, sequens specialis <code class="language-plaintext highlighter-rouge">\n</code> processa est ut character novae lineae, dum in chorda simplici-quotata erat regularis sequens duorum characterum: <code class="language-plaintext highlighter-rouge">\</code> et <code class="language-plaintext highlighter-rouge">n</code>.</p>
-
-<p>Est exceptio interesting pro <code class="language-plaintext highlighter-rouge">'</code> et <code class="language-plaintext highlighter-rouge">\</code>. In simplicibus quotatis, potes effugere simplicem quotationem praefigendo eam cum alio <code class="language-plaintext highlighter-rouge">\</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
-</pre></div>
-
+Quattuor</code></pre>
+<p>In duplicibus quotatis, sequens specialis <code>\n</code> processa
+est ut character novae lineae, dum in chorda simplici-quotata erat
+regularis sequens duorum characterum: <code>\</code> et
+<code>n</code>.</p>
+<p>Est exceptio interesting pro <code>'</code> et <code>\</code>. In
+simplicibus quotatis, potes effugere simplicem quotationem praefigendo
+eam cum alio <code>\</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
 
 <p>Retroversus etiam effugere debet si sequitur simplicis quotatio:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
-</pre></div>
-
-
-<p><div class="practice"></p>
-<h2 id="praxis">Praxis</h2>
-
-<p>Perfice quaestionem quae argumenta huius thematis comprehendit.</p>
+<section id="exercitatio" class="practice" data-markdown="1">
+<h2>Exercitatio</h2>
+<p>Sequuntur 1 quiz de contentis huius argumenti.</p>
 <ul>
-  <li><a href="/la/essentials/strings/escaping-special-characters/quiz">Quiz: Inversus punctus in output</a></li>
+<li><a
+href="/la/essentials/strings/escaping-special-characters/quiz">Quiz:
+Inversus punctus in output</a></li>
 </ul>
-
-<p></div></p>
-
-<h2 id="cursus-navigatio">Cursus navigatio</h2>
-
-<p>←
-        <a href="/la/essentials/strings">Catenae</a> / <a href="/la/essentials/strings/code-interpolation">Codice interpolatio</a>
-  |  
-        <a href="/la/essentials/strings">Catenae</a> / <a href="/la/essentials/strings/string-length">Catena longitudo</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/la/essentials/strings/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/strings/escaping-special-characters/">Originalis Anglicus textus</a></p>
-
-  <p>Translationes huius paginae: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <a href="/es/essentials/strings/escaping-special-characters/">Español</a> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <a href="/lv/essentials/strings/escaping-special-characters/">Latviešu</a> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+</section>
+<h2 id="navigatio-cursus">Navigatio cursus</h2>
+<p>← <a href="/la/essentials/strings/code-interpolation">Codice
+interpolatio</a>   |   <a
+href="/la/essentials/strings/escaping-special-characters/quiz">Quiz:
+Inversus punctus in output</a> →</p>
+<p><br /> 💪 Vel recta ad <a
+href="/la/essentials/strings/exercises">exercitationes huius
+sectionis</a> i.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/strings/escaping-special-characters">English</a> • <a
+href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
+<a
+href="/eo/essentials/strings/escaping-special-characters">Esperanto</a>
+• <a
+href="/es/essentials/strings/escaping-special-characters">Español</a> •
+<a
+href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
+<strong>Latina</strong> • <a
+href="/lv/essentials/strings/escaping-special-characters">Latviešu</a> •
+<a
+href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+• <a
+href="/bg/essentials/strings/escaping-special-characters">Български</a>
+• <a
+href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
+<a
+href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
+<p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scripsit <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

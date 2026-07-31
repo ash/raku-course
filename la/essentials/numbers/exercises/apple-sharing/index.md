@@ -1,5 +1,5 @@
 ---
-title: Pomorum communicatio
+title: Pomum communicatio
 ---
 
 {% include menu.html %}

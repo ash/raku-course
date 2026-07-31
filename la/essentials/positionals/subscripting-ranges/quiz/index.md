@@ -1,5 +1,5 @@
 ---
-title: Quiz — operari cum intervallis
+title: Quiz — laborando cum intervallis
 ---
 
 {% include menu.html %}

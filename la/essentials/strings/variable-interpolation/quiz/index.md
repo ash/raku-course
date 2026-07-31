@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: String interpolation'
+title: 'Quiz: Catena interpolatio'
 ---
 
 {% include menu.html %}

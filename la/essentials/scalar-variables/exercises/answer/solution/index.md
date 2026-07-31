@@ -1,5 +1,5 @@
 ---
-title: Solutio 'Responsio ad vitam, Universum et omnia'
+title: 'Solutio: Responsio ad vitam, Universum et omnia'
 ---
 
 {% include menu.html %}
@@ -13,9 +13,9 @@ my $answer = 42;
 say $answer;
 ```
 
-🦋 Fontem codicem invenire potes in fasciculo [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Fontem codicem invenire potes in fasciculo [answer.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
-## Effectus
+## Exitus
 
 Currite programma et videte quid imprimat:
 

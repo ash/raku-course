@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Visum ante?'
+title: 'Solutio: Visus prius?'
 ---
 
 {% include menu.html %}
@@ -21,9 +21,9 @@ loop {
 }
 ```
 
-🦋 Inveni programma in archivo [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/seen-before.raku).
+🦋 Inveni codicem fontem in archivo [seen-before.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/seen-before.raku).
 
-## Output
+## Exitus
 
 ```console
 $ raku exercises/associatives/seen-before.raku
@@ -49,6 +49,6 @@ Verbum: ^C
 
 ## Commentarium
 
-Constructum `%seen{$word}++` non solum incrementat valorem sed etiam creat si nondum exstiterit. Processus creationis vocatur _autovivificatio_. Nota quod non fit cum tantum _legis_ valorem sicut in condicione: `si %seen{$word}`.
+Constructum `%seen{$word}++` non solum incrementat valorem sed etiam creat si nondum exstiterit. Processus creationis vocatur _autovivificatio_. Nota quod non fit cum tantum _legis_ valorem sicut in condicione: `if %seen{$word}`.
 
 {% include nav.html %}

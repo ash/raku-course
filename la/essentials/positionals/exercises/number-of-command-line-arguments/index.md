@@ -1,23 +1,25 @@
 ---
-title: Numerus argumentorum in linea mandati
+title: Numerus argumentorum lineae mandati
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Munus
+## Problema
 
-Scribe programmam quae numerum argumentorum ad programmam in linea mandati transmissorum imprimit.
+Scribe programma quod sententia plena nuntiat quot argumenta ex linea imperiorum acceperit. Cura ut grammatica recta sit: utere verbo `argument` cum exacte unum traditum est, et `arguments` in omnibus ceteris casibus.
 
 ## Exemplum
 
-Hoc modo programma respondere debet:
+Ita programma reagere debet:
 
 ```console
-$ raku numerus-argumentorum-in-linea-mandati.raku fac eos numerare nos nunc
-5
-```
+$ raku number-of-command-line-arguments.raku make them count us now
+You passed 5 arguments.
 
-Programma quinque verba in linea mandati accipit et `5` imprimit.
+$ raku number-of-command-line-arguments.raku solo
+You passed 1 argument.
+```
 
 ## Solutio
 

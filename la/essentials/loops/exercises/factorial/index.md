@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Factorialis'
+title: Factorial
 ---
 
 {% include menu.html %}

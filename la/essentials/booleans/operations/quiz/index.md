@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Operationes Boolean'
+title: 'Quiz: Booleana operationes'
 ---
 
 {% include menu.html %}

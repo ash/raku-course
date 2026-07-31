@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Codices Nationum'
+title: 'Solutio: Codices nationum'
 ---
 
 {% include menu.html %}
@@ -23,12 +23,12 @@ my %cc =
 
 my @codes = < FR IT DE EE LV US CN IN BR >;
 
-dic %cc{$_} pro @codes;
+say %cc{$_} for @codes;
 ```
 
-🦋 Inveni programmatum in archivo [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/country-codes.raku).
+🦋 Inveni codicem fontem in archivo [country-codes.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/country-codes.raku).
 
-## Output
+## Exitus
 
 Pro datis codicibus input, programma sequens indicem nationum imprimit:
 

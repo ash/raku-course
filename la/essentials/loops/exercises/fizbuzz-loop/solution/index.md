@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: FizzBuzz in circulo'
+title: 'Solutio: FizzBuzz in ansa'
 ---
 
 {% include menu.html %}
@@ -13,15 +13,15 @@ Hic est nova solutio:
 ```raku
 for 1..50 -> $n {
     my $fizzbuzz = '';
-    $fizzbuzz ~= 'Fizz' si $n %% 3;
-    $fizzbuzz ~= 'Buzz' si $n %% 5;
-    dic "$n: $fizzbuzz";
+    $fizzbuzz ~= 'Fizz' if $n %% 3;
+    $fizzbuzz ~= 'Buzz' if $n %% 5;
+    say "$n: $fizzbuzz";
 }
 ```
 
-🦋 Inveni programma in archivo [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fizbuzz-loop.raku).
+🦋 Inveni codicem fontem in archivo [fizbuzz-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fizbuzz-loop.raku).
 
-## Effectus
+## Exitus
 
 ```console
 $ raku exercises/loops/fizbuzz-loop.raku

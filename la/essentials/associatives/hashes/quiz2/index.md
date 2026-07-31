@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Elementa Hash
+title: Quiz 2 — Hash elementa
 
 ---
 

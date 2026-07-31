@@ -1,5 +1,5 @@
 ---
-title: Currens programmata
+title: Currendo programmata
 ---
 
 {% include menu.html %}

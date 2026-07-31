@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Impare vel Pare'
+title: Par vel impar
 ---
 
 {% include menu.html %}

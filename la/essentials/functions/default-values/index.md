@@ -1,5 +1,5 @@
 ---
-title: Valores praedefiniti
+title: Defaulte valores
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Exemplum valoris praedefiniti pro functione cum parametris positionis:
 
 ```raku
 sub saluta($nomen = 'Mundus') {
-    dic "Salve, $nomen!";
+    say "Salve, $nomen!";
 }
 
 saluta('Merinda');
@@ -34,7 +34,7 @@ Eadem syntaxi adhibetur ad valores praedefinitos pro parametris nominatis statue
 
 ```raku
 sub saluta(:$nomen = 'Mundus') {
-    dic "Salve, $nomen!";
+    say "Salve, $nomen!";
 }
 
 saluta(nomen => 'Merinda'); # Salve, Merinda!
@@ -45,7 +45,7 @@ Ordo parametron nominatorum non refert, ita quilibet eorum valores praedefinitos
 
 ```raku
 sub saluta(:$salutatio = 'Salve', :$nomen) {
-    dic "$salutatio, $nomen!";
+    say "$salutatio, $nomen!";
 }
 
 saluta(nomen => 'Alla'); # Salve, Alla!

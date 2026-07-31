@@ -1,5 +1,5 @@
 ---
-title: Reditus eventus
+title: Redonando resultatum
 ---
 
 {% include menu.html %}
@@ -41,8 +41,8 @@ Si opus est ex functione redire ante finem corporis eius, et functio nullum even
 
 ```raku
 sub test($x) {
-    return si $x <= 10;
-    dic "$x est supra limitem";
+    return if $x <= 10;
+    say "$x est supra limitem";
 }
 ```
 

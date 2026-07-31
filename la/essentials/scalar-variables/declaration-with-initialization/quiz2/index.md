@@ -1,5 +1,5 @@
 ---
-title: 'Quiz 2: Declaratio et initium vel declaratio cum initio'
+title: 'Quiz 2: Declaratio et initializatione vel declaratio cum initializatione'
 ---
 
 {% include menu.html %}

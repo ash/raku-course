@@ -1,5 +1,5 @@
 ---
-title: Variabilis argumenti
+title: Topic variabile
 ---
 
 {% include menu.html %}

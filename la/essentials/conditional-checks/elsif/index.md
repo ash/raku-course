@@ -1,30 +1,30 @@
 ---
-title: Usus eslif
+title: 'Utendo `elsif`'
 ---
 
 {% include menu.html %}
 
-Hactenus, didicimus `si` et `alioquin`. Quid si vis ordinare catenam testium? Sunt saltem duo modi ad hoc faciendum in Raku (revera, sunt etiam plures).
+Hactenus, didicimus `if` et `else`. Quid si vis ordinare catenam testium? Sunt saltem duo modi ad hoc faciendum in Raku (revera, sunt etiam plures).
 
-Una ex possibilitatibus est uti catena `si`, `elsif`, et `alioquin` clausulis. Nota orthographiam `elsif`. Neque `elseif` neque `else si` est.
+Una ex possibilitatibus est uti catena `if`, `elsif`, et `else` clausulis. Nota orthographiam `elsif`. Neque `elseif` neque `else if` est.
 
 ```raku
-meum $x = roga 'Intra numerum: ';
-si $x > 100 {
-    dic "$x maior est quam 100.";
+my $x = prompt 'Intra numerum: ';
+if $x > 100 {
+    say "$x maior est quam 100.";
 }
 elsif $x > 50 {
-    dic "$x maior est quam 50.";
+    say "$x maior est quam 50.";
 }
 elsif $x > 25 {
-    dic "$x maior est quam 25.";
+    say "$x maior est quam 25.";
 }
-alioquin {
-    dic "$x est 25 vel minor.";
+else {
+    say "$x est 25 vel minor.";
 }
 ```
 
-In hoc programmate, sunt tres rami et tres probationes una post alteram. Simul ac una ex condicionibus `Verum` est, correspondens codicis clausula curritur. Si nulla probatio `Verum` est, `alioquin` clausula curritur.
+In hoc programmate, sunt tres rami et tres probationes una post alteram. Simul ac una ex condicionibus `True` est, correspondens codicis clausula curritur. Si nulla probatio `True` est, `else` clausula curritur.
 
 Hic sunt paucae probationes currendi programmatis quae omnes clausulas excitant:
 

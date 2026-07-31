@@ -1,5 +1,5 @@
 ---
-title: Exercitia ad 'Variabiles Typatas'
+title: 'Exercitationes: Typis variabiles'
 ---
 
 {% include menu.html %}

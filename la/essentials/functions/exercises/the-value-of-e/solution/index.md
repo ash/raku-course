@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Valor e'
+title: 'Solutio: Valorem e'
 ---
 
 {% include menu.html %}
@@ -37,9 +37,9 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Inveni programmatum in archivo [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Inveni codicem fontem in archivo [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
-## Output
+## Exitus
 
 Cum 10 et 100 iterationibus, sequentes eventus accipimus. Insuper, tenta alios valores `$max`.
 

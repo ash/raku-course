@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Variabiles omnium generum notorum creare’
+title: 'Solutio: Creare variabiles omnium notorum generum'
 ---
 
 {% include menu.html %}
@@ -24,9 +24,9 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Invenies programmatum in archivo [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Inveni codicem fontem in archivo [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
-## Output
+## Exitus
 
 Hoc programma sequens output imprimit:
 

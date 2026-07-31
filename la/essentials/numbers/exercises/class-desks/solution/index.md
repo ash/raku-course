@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ‘Class desks’
+title: 'Solutio: Classis scrinia'
 ---
 
 {% include menu.html %}
@@ -16,9 +16,9 @@ my $desks = $students div 2 + $students % 2;
 say "$desks desks must be bought.";
 ```
 
-🦋 Codicem plenum invenire potes in archivo [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/class-desks.raku).
+🦋 Codicem plenum invenire potes in archivo [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/class-desks.raku).
 
-## Output
+## Exitus
 
 Programma bis saltem currere tenta cum numero discipulorum pari et impari. Exempli gratia, pro numeris input `23` et `24`, programma eundem eventum imprimit:
 

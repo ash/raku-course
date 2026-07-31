@@ -1,5 +1,5 @@
 ---
-title: Variabiles globales
+title: Globales variabiles
 ---
 
 {% include menu.html %}

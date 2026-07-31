@@ -1,5 +1,5 @@
 ---
-title: Exercitatio ’Salve, Concatentatio!‘
+title: 'Salve, Concatenatio!'
 ---
 
 {% include menu.html %}

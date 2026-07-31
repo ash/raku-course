@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Monitionem Imprimere'
+title: Print admonitionem
 ---
 
 {% include menu.html %}

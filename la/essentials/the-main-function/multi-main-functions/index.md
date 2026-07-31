@@ -1,5 +1,5 @@
 ---
-title: Multi MAIN functions
+title: 'Multiplicem `MAIN` functiones'
 ---
 
 {% include menu.html %}
@@ -8,11 +8,11 @@ Sicut quaelibet alia functio in Raku, functio `MAIN` potest habere suas variante
 
 ```raku
 multi sub MAIN($a) {
-    dic 2 * $a;
+    say 2 * $a;
 }
 
 multi sub MAIN($a, $b) {
-    dic $a + $b;
+    say $a + $b;
 }
 ```
 

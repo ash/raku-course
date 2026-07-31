@@ -27,8 +27,8 @@ my %capitals = Gallia => 'Lutetia', Italia => 'Roma';
 Subscripting elementorum simile est quod vidimus pro [paribus](../pairs). Utere par angulorum vel curvatorum uncis cum chorda:
 
 ```raku
-dic %capitals<Gallia>;
-dic %capitals{'Italia'};
+say %capitals<Gallia>;
+say %capitals{'Italia'};
 ```
 
 Hashes sunt mutabiles, ita potes et valores existentes mutare et novos addere:
@@ -42,8 +42,8 @@ Hashes sunt mutabiles, ita potes et valores existentes mutare et novos addere:
 Duae methodi inbuilt, `keys` et `values`, reddunt listas clavium et valorum hash:
 
 ```raku
-dic %capitals.keys;
-dic %capitals.values;
+say %capitals.keys;
+say %capitals.values;
 ```
 
 Hic est exemplum output huius programmatis:

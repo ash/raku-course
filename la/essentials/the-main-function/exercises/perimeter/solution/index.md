@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Perimeter of rectanguli'
+title: 'Solutio: Perimetri rectanguli'
 ---
 
 {% include menu.html %}
@@ -19,9 +19,9 @@ sub MAIN($a, $b = $a) {
 }
 ```
 
-🦋 Invenies programmatum in archivo [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Inveni codicem fontem in archivo [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
-## Output
+## Exitus
 
 Tenta diversos valores inputorum ad probandum tam quadrata quam rectangula.
 

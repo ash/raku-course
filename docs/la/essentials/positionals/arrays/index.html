@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="la">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Arrays</title>
-    <meta property="og:title" content="Arrays" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Array — Cursus Raku</title>
+    <meta property="og:title" content="Array — Cursus Raku" />
     <meta property="og:locale" content="la" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Arrays</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,99 +88,117 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/la/">Cursus Raku</a> / <a href="/la/essentials">Elementa</a> / <a href="/la/essentials/positionals">Positionalia data genera</a></p>
-
+          <p><a href="/la/">Cursus Raku</a> / <a
+href="/la/essentials">Elementa</a> / <a
+href="/la/essentials/more-about-types">Plura de generibus</a> / <a
+href="/la/essentials/positionals">Positionalia data genera</a></p>
 <h1 id="array">Array</h1>
+<p>Arrayes sunt aggregata genera datorum quae plus quam unam valorem
+continere possunt. Hoc arrays a <a
+href="/la/essentials/scalar-variables">scalaribus elementis</a>
+distinguit. Elementa array possunt indicari (vel <em>subscripti</em>).
+Aliis verbis, elementa eius positionem habent (quod explicat nomen
+generale huius generis datorum: positionalia).</p>
+<p>Variabiles array alium genus sigilli utuntur: <code>@</code>. Regulae
+pro nomine variabili sunt eadem ac <a
+href="/la/essentials/scalar-variables/identifiers/">pro
+scalaribus</a>.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;</pre></div>
 
-<p>Arrayes sunt aggregata genera datorum quae plus quam unam valorem continere possunt. Hoc arrays a <a href="/la/essentials/scalar-variables">scalaribus elementis</a> distinguit. Elementa array possunt indicari (vel <em>subscripti</em>). Aliis verbis, elementa eius positionem habent (quod explicat nomen generale huius generis datorum: positionalia).</p>
-
-<p>Variabiles array alium genus sigilli utuntur: <code class="language-plaintext highlighter-rouge">@</code>. Regulae pro nomine variabili sunt eadem ac <a href="/la/essentials/scalar-variables/identifiers/">pro scalaribus</a>.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span>;
-</pre></div>
-
-
-<p>Hactenus, array nomine <code class="language-plaintext highlighter-rouge">@cities</code> creatum est. Potes eam cum aliquibus valoribus implere:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">@cities</span> = <span class="s">&#39;Paris&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlin&#39;</span>;
-</pre></div>
-
+<p>Hactenus, array nomine <code>@cities</code> creatum est. Potes eam
+cum aliquibus valoribus implere:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">@cities</span> = <span class="s">'Paris'</span>, <span class="s">'Rome'</span>, <span class="s">'Berlin'</span>;</pre></div>
 
 <p>Aliter, possibile est valores statim initializare:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">&#39;Paris&#39;</span>, <span class="s">&#39;Rome&#39;</span>, <span class="s">&#39;Berlin&#39;</span>;
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@cities</span> = <span class="s">'Paris'</span>, <span class="s">'Rome'</span>, <span class="s">'Berlin'</span>;</pre></div>
 
 <h2 id="indexatio">Indexatio</h2>
+<p>Ad accessum singuli item array, utere paria bracketorum quae post
+nomen variabilis ponis:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];</pre></div>
 
-<p>Ad accessum singuli item array, utere paria bracketorum quae post nomen variabilis ponis:</p>
+<p>Nota quod sigillum semper idem manet. Cum elementa a zero numerentur,
+elementum <code>@cities[1]</code> est <code>'Rome'</code> in nostro
+exemplo.</p>
+<p>Arrayes sunt mutabiles, ita facile potes elementa eius mutare
+simpliciter assignando novum valorem eis:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">'Rome'</span>;
+<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">'Paris'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>[<span class="mi">1</span>];
-</pre></div>
-
-
-<p>Nota quod sigillum semper idem manet. Cum elementa a zero numerentur, elementum <code class="language-plaintext highlighter-rouge">@cities[1]</code> est <code class="language-plaintext highlighter-rouge">'Rome'</code> in nostro exemplo.</p>
-
-<p>Arrayes sunt mutabiles, ita facile potes elementa eius mutare simpliciter assignando novum valorem eis:</p>
-
-<div class="highlight"><pre><span></span><span class="nv">@cities</span>[<span class="mi">0</span>] = <span class="s">&#39;Rome&#39;</span>;
-<span class="nv">@cities</span>[<span class="mi">1</span>] = <span class="s">&#39;Paris&#39;</span>;
-</pre></div>
-
-
-<p>Post hoc, sententia <code class="language-plaintext highlighter-rouge">say @cities[1]</code> novum valorem <code class="language-plaintext highlighter-rouge">'Paris'</code> imprimet.</p>
-
+<p>Post hoc, sententia <code>say @cities[1]</code> novum valorem
+<code>'Paris'</code> imprimet.</p>
 <h2 id="magnitudo">Magnitudo</h2>
+<p>Ad longitudinem currentem array obtinendam, vel, aliis verbis,
+numerum elementorum eius, utere methodo <code>elems</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span></pre></div>
 
-<p>Ad longitudinem currentem array obtinendam, vel, aliis verbis, numerum elementorum eius, utere methodo <code class="language-plaintext highlighter-rouge">elems</code>:</p>
+<p>Si array apparet in contextu, ubi parameter expectatus est numerus,
+valor reditus est magnitudo array:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">@cities</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
-</pre></div>
-
-
-<p>Si array apparet in contextu, ubi parameter expectatus est numerus, valor reditus est magnitudo array:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> +<span class="nv">@cities</span>; <span class="c1"># 3</span>
-</pre></div>
-
-
-<p>Hic, <a href="/la/essentials/coercion/prefixes"><code class="language-plaintext highlighter-rouge">+</code> praefixus operator</a> numericum valorem ex argumento suo requirit, ita resultat <code class="language-plaintext highlighter-rouge">+@cities</code> est <code class="language-plaintext highlighter-rouge">3</code>.</p>
-
-<p><div class="practice"></p>
-<h2 id="praxis">Praxis</h2>
-
-<p>Perfice quaestionem quae argumenta huius thematis comprehendit.</p>
+<p>Hic, <a href="/la/essentials/coercion/prefixes"><code>+</code>
+praefixus operator</a> numericum valorem ex argumento suo requirit, ita
+resultat <code>+@cities</code> est <code>3</code>.</p>
+<section id="exercitatio" class="practice" data-markdown="1">
+<h2>Exercitatio</h2>
+<p>Sequuntur 1 quiz de contentis huius argumenti.</p>
 <ul>
-  <li><a href="/la/essentials/positionals/arrays/quiz">Quiz — Array</a></li>
+<li><a href="/la/essentials/positionals/arrays/quiz">Quiz —
+Array</a></li>
 </ul>
-
-<p></div></p>
-
-<h2 id="cursus-navigatio">Cursus navigatio</h2>
-
-<p>←
-        <a href="/la/essentials/positionals">Positionalia data genera</a>
-  |  
-        <a href="/la/essentials/positionals">Positionalia data genera</a> / <a href="/la/essentials/positionals/nested-arrays">Nidificata array</a>
+</section>
+<h2 id="navigatio-cursus">Navigatio cursus</h2>
+<p>← <a href="/la/essentials/positionals">Positionalia data genera</a>
+  |   <a href="/la/essentials/positionals/arrays/quiz">Quiz — Array</a>
 →</p>
-
-<p><br />
-💪 Or jump directly <a href="/la/essentials/positionals/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/positionals/arrays/">Originalis Anglicus textus</a></p>
-
-  <p>Translationes huius paginae: <a href="/essentials/positionals/arrays/">English</a> • <a href="/de/essentials/positionals/arrays/">Deutsch</a> • <a href="/es/essentials/positionals/arrays/">Español</a> • <a href="/it/essentials/positionals/arrays/">Italiano</a> • <a href="/lv/essentials/positionals/arrays/">Latviešu</a> • <a href="/nl/essentials/positionals/arrays/">Nederlands</a> • <a href="/bg/essentials/positionals/arrays/">Български</a> • <a href="/ru/essentials/positionals/arrays/">Русский</a> • <a href="/uk/essentials/positionals/arrays/">Українська</a></p>
+<p><br /> 💪 Vel recta ad <a
+href="/la/essentials/positionals/exercises">exercitationes huius
+sectionis</a> i.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/positionals/arrays">English</a> • <a
+href="/de/essentials/positionals/arrays">Deutsch</a> • <a
+href="/eo/essentials/positionals/arrays">Esperanto</a> • <a
+href="/es/essentials/positionals/arrays">Español</a> • <a
+href="/it/essentials/positionals/arrays">Italiano</a> •
+<strong>Latina</strong> • <a
+href="/lv/essentials/positionals/arrays">Latviešu</a> • <a
+href="/nl/essentials/positionals/arrays">Nederlands</a> • <a
+href="/bg/essentials/positionals/arrays">Български</a> • <a
+href="/ru/essentials/positionals/arrays">Русский</a> • <a
+href="/uk/essentials/positionals/arrays">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
+<p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scripsit <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

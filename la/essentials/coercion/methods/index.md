@@ -1,5 +1,5 @@
 ---
-title: Typorum conversiones utens methodis coercitionis typorum
+title: Convertendo generibus utendo coercitionis methodis
 ---
 
 {% include menu.html %}

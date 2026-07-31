@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="la">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Raku essentialia</title>
-    <meta property="og:title" content="Raku essentialia" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Elementa — Cursus Raku</title>
+    <meta property="og:title" content="Elementa — Cursus Raku" />
     <meta property="og:locale" content="la" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Raku essentialia</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,23 +88,478 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/la/">Cursus Raku</a></p>
-
-<h1 id="elementa-raku">Elementa Raku</h1>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/essentials/">Originalis Anglicus textus</a></p>
-
-  <p>Translationes huius paginae: <a href="/essentials/">English</a> • <a href="/de/essentials/">Deutsch</a> • <a href="/es/essentials/">Español</a> • <a href="/it/essentials/">Italiano</a> • <a href="/lv/essentials/">Latviešu</a> • <a href="/nl/essentials/">Nederlands</a> • <a href="/bg/essentials/">Български</a> • <a href="/ru/essentials/">Русский</a> • <a href="/uk/essentials/">Українська</a></p>
+          <p><a href="/la/">Cursus Raku</a></p>
+<h1 id="pars-1.-elementa-raku">Pars 1. Elementa Raku</h1>
+<p>Hic incipe. Compilatorem installa, deinde variabiles et genera
+datorum, ordinem exsecutionis et prima subprogrammata disce —
+fundamentum omnium sequentium.</p>
+<h4 id="prima-notitia-raku"><a href="/la/essentials/intro">Prima notitia
+Raku</a></h4>
+<ul>
+<li><a href="/la/essentials/what-is-raku">Quid est Raku</a></li>
+</ul>
+<h4 id="compilatores"><a
+href="/la/essentials/compilers">Compilatores</a></h4>
+<ul>
+<li><a href="/la/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+<li><a href="/la/essentials/the-rakudo-compiler">Compilator
+Rakudo</a></li>
+<li><a href="/la/essentials/how-to-install-rakudo">Quomodo Rakudo
+installare</a></li>
+<li><a href="/la/essentials/the-rakupp-compiler">Compilator Raku++
+🆕</a></li>
+<li><a href="/la/essentials/how-to-install-rakupp">Quomodo Raku++
+installare 🆕</a></li>
+</ul>
+<h4 id="programmata-scribere-et-exsequi"><a
+href="/la/essentials/getting-started">Programmata scribere et
+exsequi</a></h4>
+<ul>
+<li><a href="/la/essentials/editors-and-ides">Editores et IDEs</a></li>
+<li><a href="/la/essentials/conventional-file-extensions">Conventional
+file extensions</a></li>
+<li><a href="/la/essentials/hello-world">Salve, Mundi!</a></li>
+<li><a href="/la/essentials/on-unicode">Notae de usu Unicodi</a></li>
+<li><a href="/la/essentials/running-programs">Currendo programmata</a> —
+<span class="has-e"><a
+href="/la/essentials/running-programs/exercises">1
+exercitatio</a></span>
+<ul>
+<li><a href="/la/essentials/running-programs/from-command-line">Currendo
+ex linea mandati</a></li>
+<li><a href="/la/essentials/running-programs/from-repl">Currendo ex
+REPL</a></li>
+<li><a href="/la/essentials/running-programs/from-ide">Currendo ex
+IDE</a></li>
+<li><a href="/la/essentials/running-programs/using-docker">Utendo
+docker</a></li>
+<li><a
+href="/la/essentials/running-programs/using-online-services">Utendo
+online servitia</a></li>
+</ul></li>
+<li><a href="/la/essentials/simple-input-output">Simplex initus et
+output</a>
+<ul>
+<li><a href="/la/essentials/simple-input-output/say">Output cum
+<code>say</code></a></li>
+<li><a href="/la/essentials/simple-input-output/prompt">Initus cum
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/la/essentials/comments">Commentarii</a>
+<ul>
+<li><a href="/la/essentials/comments/single-line">Commentarii unius
+lineae</a> — <span class="has-q"><a
+href="/la/essentials/comments/single-line#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/comments/multi-line">Commentarii
+multi-lineae</a></li>
+<li><a href="/la/essentials/comments/embedded">Inscripti
+commentarii</a></li>
+</ul></li>
+</ul>
+<h4 id="fundamenta-variabilium-et-generum-datorum"><a
+href="/la/essentials/variables">Fundamenta variabilium et generum
+datorum</a></h4>
+<ul>
+<li><a href="/la/essentials/scalar-variables">Scalari variabiles</a> —
+<span class="has-e"><a
+href="/la/essentials/scalar-variables/exercises">4
+exercitationes</a></span>
+<ul>
+<li><a
+href="/la/essentials/scalar-variables/declaring-a-variable">Declarando
+variabilem</a> — <span class="has-q"><a
+href="/la/essentials/scalar-variables/declaring-a-variable#practice">2
+quiz</a></span></li>
+<li><a
+href="/la/essentials/scalar-variables/assigning-a-value">Assignando
+valorem</a> — <span class="has-q"><a
+href="/la/essentials/scalar-variables/assigning-a-value#practice">2
+quiz</a></span></li>
+<li><a
+href="/la/essentials/scalar-variables/declaration-with-initialization">Declaratio
+cum initializatione</a> — <span class="has-q"><a
+href="/la/essentials/scalar-variables/declaration-with-initialization#practice">2
+quiz</a></span></li>
+<li><a
+href="/la/essentials/scalar-variables/defined-or-operator">Definita-vel
+operator</a></li>
+<li><a href="/la/essentials/scalar-variables/identifiers">Nomina
+variabilium</a> — <span class="has-q"><a
+href="/la/essentials/scalar-variables/identifiers#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/strings">Catenae</a> — <span
+class="has-q"><a href="/la/essentials/strings#practice">1
+quiz</a></span> et <span class="has-e"><a
+href="/la/essentials/strings/exercises">4 exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/strings/string-concatenation">Catena
+concatenatio</a> — <span class="has-q"><a
+href="/la/essentials/strings/string-concatenation#practice">3
+quiz</a></span></li>
+<li><a href="/la/essentials/strings/variable-interpolation">Variabile
+interpolatio</a> — <span class="has-q"><a
+href="/la/essentials/strings/variable-interpolation#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/strings/code-interpolation">Codice
+interpolatio</a></li>
+<li><a
+href="/la/essentials/strings/escaping-special-characters">Escapatio
+specialium characterum</a> — <span class="has-q"><a
+href="/la/essentials/strings/escaping-special-characters#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/strings/string-length">Catena longitudo</a>
+— <span class="has-q"><a
+href="/la/essentials/strings/string-length#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/numbers">Numeri</a> — <span class="has-e"><a
+href="/la/essentials/numbers/exercises">7 exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/numbers/integers">Numeri integri</a> — <span
+class="has-q"><a href="/la/essentials/numbers/integers#practice">2
+quiz</a></span></li>
+<li><a href="/la/essentials/numbers/rats">Numeri rationales</a> — <span
+class="has-q"><a href="/la/essentials/numbers/rats#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/numbers/numeric">Numeri fluitantes</a></li>
+<li><a href="/la/essentials/numbers/operations">Operationes cum
+numeris</a></li>
+</ul></li>
+<li><a href="/la/essentials/booleans">Booleana typus</a> — <span
+class="has-q"><a href="/la/essentials/booleans#practice">1
+quiz</a></span> et <span class="has-e"><a
+href="/la/essentials/booleans/exercises">3 exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/booleans/operations">Booleana
+operationes</a> — <span class="has-q"><a
+href="/la/essentials/booleans/operations#practice">1
+quiz</a></span></li>
+<li><a
+href="/la/essentials/booleans/boolean-operations-other-types">Booleana
+operationes cum aliis typis</a> — <span class="has-q"><a
+href="/la/essentials/booleans/boolean-operations-other-types#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/ranges">Intervalla</a> — <span
+class="has-e"><a href="/la/essentials/ranges/exercises">1
+exercitatio</a></span>
+<ul>
+<li><a href="/la/essentials/ranges/excluding-endpoints">Exclusis
+extremitatibus</a> — <span class="has-q"><a
+href="/la/essentials/ranges/excluding-endpoints#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/ranges/matching-against-a-range">Compatatio
+contra intervallum</a> — <span class="has-q"><a
+href="/la/essentials/ranges/matching-against-a-range#practice">1
+quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="fundamenta-ordinis-exsecutionis"><a
+href="/la/essentials/control-flow">Fundamenta ordinis
+exsecutionis</a></h4>
+<ul>
+<li><a href="/la/essentials/code-blocks">Codicis sectiones</a>
+<ul>
+<li><a href="/la/essentials/code-blocks/lexical-scope">Lexicalis
+ambitus</a> — <span class="has-q"><a
+href="/la/essentials/code-blocks/lexical-scope#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/code-blocks/global-variables">Globales
+variabiles</a> — <span class="has-q"><a
+href="/la/essentials/code-blocks/global-variables#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/code-blocks/local-variables">Locales
+variabiles</a> — <span class="has-q"><a
+href="/la/essentials/code-blocks/local-variables#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/conditional-checks">Conditiones
+comprobationes</a> — <span class="has-e"><a
+href="/la/essentials/conditional-checks/exercises">4
+exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/conditional-checks/if"><code>if</code>
+sectiones</a> — <span class="has-q"><a
+href="/la/essentials/conditional-checks/if#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/conditional-checks/else"><code>else</code>
+sectiones</a></li>
+<li><a href="/la/essentials/conditional-checks/elsif">Utendo
+<code>elsif</code></a> — <span class="has-q"><a
+href="/la/essentials/conditional-checks/elsif#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/conditional-checks/unless">Utendo
+<code>unless</code></a></li>
+<li><a
+href="/la/essentials/conditional-checks/modifiers"><code>if</code> et
+<code>unless</code> ut statement modificatores</a></li>
+<li><a
+href="/la/essentials/conditional-checks/comparing-numbers">Comparando
+numeri</a> — <span class="has-q"><a
+href="/la/essentials/conditional-checks/comparing-numbers#practice">1
+quiz</a></span></li>
+<li><a
+href="/la/essentials/conditional-checks/comparing-strings">Comparando
+catenae</a> — <span class="has-q"><a
+href="/la/essentials/conditional-checks/comparing-strings#practice">2
+quiz</a></span></li>
+<li><a
+href="/la/essentials/conditional-checks/ternary-operator">Ternarius
+operator</a> — <span class="has-q"><a
+href="/la/essentials/conditional-checks/ternary-operator#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/loops">Ansae</a> — <span class="has-e"><a
+href="/la/essentials/loops/exercises">7 exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/loops/while">Utendo <code>while</code></a> —
+<span class="has-q"><a href="/la/essentials/loops/while#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/loops/until">Utendo <code>until</code></a> —
+<span class="has-q"><a href="/la/essentials/loops/until#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/loops/repeat">Utendo <code>repeat</code></a>
+— <span class="has-q"><a href="/la/essentials/loops/repeat#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/loops/modifiers"><code>while</code> et
+<code>until</code> ut statement modificatores</a></li>
+<li><a href="/la/essentials/loops/loop">Tribus partibus
+<code>loop</code></a></li>
+<li><a href="/la/essentials/loops/infinite-loops">Infinitas
+ansae</a></li>
+<li><a href="/la/essentials/loops/for"><code>for</code> ansae</a> —
+<span class="has-q"><a href="/la/essentials/loops/for#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/loops/topic">Topic variabile</a></li>
+<li><a href="/la/essentials/loops/postfix-for">Postfixa forma de
+<code>for</code></a> — <span class="has-q"><a
+href="/la/essentials/loops/postfix-for#practice">1 quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="plura-de-generibus"><a
+href="/la/essentials/more-about-types">Plura de generibus</a></h4>
+<ul>
+<li><a href="/la/essentials/coercion">Data typus conversio</a> — <span
+class="has-q"><a href="/la/essentials/coercion#practice">1
+quiz</a></span> et <span class="has-e"><a
+href="/la/essentials/coercion/exercises">3 exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/coercion/what">Introspectio cum
+<code>WHAT</code></a> — <span class="has-q"><a
+href="/la/essentials/coercion/what#practice">1 quiz</a></span></li>
+<li><a href="/la/essentials/coercion/methods">Convertendo generibus
+utendo coercitionis methodis</a></li>
+<li><a href="/la/essentials/coercion/new">Convertendo generibus utendo
+constructoris formis</a></li>
+<li><a href="/la/essentials/coercion/prefixes">Convertendo generibus cum
+prefixis operatoribus</a></li>
+</ul></li>
+<li><a href="/la/essentials/typed-variables">Typis variabiles</a> —
+<span class="has-e"><a href="/la/essentials/typed-variables/exercises">4
+exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/typed-variables/type-constraints">Typus
+limitationes</a> — <span class="has-q"><a
+href="/la/essentials/typed-variables/type-constraints#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/typed-variables/using-of">Utendo
+<code>of</code></a></li>
+<li><a href="/la/essentials/typed-variables/coercion">Typus conversio
+pro typis variabiles</a> — <span class="has-q"><a
+href="/la/essentials/typed-variables/coercion#practice">1
+quiz</a></span></li>
+<li><a
+href="/la/essentials/typed-variables/allomorphs">Allomorphes</a></li>
+</ul></li>
+<li><a href="/la/essentials/positionals">Positionalia data genera</a> —
+<span class="has-e"><a href="/la/essentials/positionals/exercises">9
+exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/positionals/arrays">Array</a> — <span
+class="has-q"><a href="/la/essentials/positionals/arrays#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/positionals/nested-arrays">Nidificata
+array</a> — <span class="has-q"><a
+href="/la/essentials/positionals/nested-arrays#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/positionals/args-array"><code>@*ARGS</code>
+array</a> — <span class="has-q"><a
+href="/la/essentials/positionals/args-array#practice">1
+quiz</a></span></li>
+<li><a
+href="/la/essentials/positionals/interpolating-arrays">Interpolando
+array</a> — <span class="has-q"><a
+href="/la/essentials/positionals/interpolating-arrays#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/positionals/lists">Listae</a> — <span
+class="has-q"><a href="/la/essentials/positionals/lists#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/positionals/quoting-string-arrays">Quoting
+catena array</a> — <span class="has-q"><a
+href="/la/essentials/positionals/quoting-string-arrays#practice">2
+quiz</a></span></li>
+<li><a
+href="/la/essentials/positionals/subscripting-ranges">Subscribendo
+intervalla</a> — <span class="has-q"><a
+href="/la/essentials/positionals/subscripting-ranges#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/associatives">Associativa data genera</a> —
+<span class="has-e"><a href="/la/essentials/associatives/exercises">6
+exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/associatives/pairs">Paria</a> — <span
+class="has-q"><a href="/la/essentials/associatives/pairs#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/associatives/hashes">Hashes</a> — <span
+class="has-q"><a href="/la/essentials/associatives/hashes#practice">2
+quiz</a></span></li>
+<li><a href="/la/essentials/associatives/nested-hashes">Nidificata
+hashes</a> — <span class="has-q"><a
+href="/la/essentials/associatives/nested-hashes#practice">1
+quiz</a></span></li>
+<li><a
+href="/la/essentials/associatives/interpolating-hashes">Interpolando
+hashes</a> — <span class="has-q"><a
+href="/la/essentials/associatives/interpolating-hashes#practice">1
+quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="fundamenta-functionum"><a
+href="/la/essentials/functions-essentials">Fundamenta
+functionum</a></h4>
+<ul>
+<li><a href="/la/essentials/functions">Creando et vocando functiones</a>
+— <span class="has-q"><a href="/la/essentials/functions#practice">1
+quiz</a></span> et <span class="has-e"><a
+href="/la/essentials/functions/exercises">6 exercitationes</a></span>
+<ul>
+<li><a href="/la/essentials/functions/identifiers">Nomina functionum</a>
+— <span class="has-q"><a
+href="/la/essentials/functions/identifiers#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/functions/function-parameters">Parametra
+functionum</a> — <span class="has-q"><a
+href="/la/essentials/functions/function-parameters#practice">2
+quiz</a></span></li>
+<li><a href="/la/essentials/functions/return-result">Redonando
+resultatum</a> — <span class="has-q"><a
+href="/la/essentials/functions/return-result#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/functions/positional-parameters">Positional
+parametra</a> — <span class="has-q"><a
+href="/la/essentials/functions/positional-parameters#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/functions/named-parameters">Nominate
+parametra</a> — <span class="has-q"><a
+href="/la/essentials/functions/named-parameters#practice">2
+quiz</a></span></li>
+<li><a href="/la/essentials/functions/default-values">Defaulte
+valores</a> — <span class="has-q"><a
+href="/la/essentials/functions/default-values#practice">2
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/more-on-functions">Plus de functionibus</a>
+— <span class="has-e"><a
+href="/la/essentials/more-on-functions/exercises">1
+exercitatio</a></span>
+<ul>
+<li><a href="/la/essentials/more-on-functions/mind-the-space">Cave
+spatium</a></li>
+<li><a href="/la/essentials/more-on-functions/typed-parameters">Typis
+parametra</a> — <span class="has-q"><a
+href="/la/essentials/more-on-functions/typed-parameters#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/more-on-functions/return-type">Redonare
+typus</a> — <span class="has-q"><a
+href="/la/essentials/more-on-functions/return-type#practice">1
+quiz</a></span></li>
+<li><a
+href="/la/essentials/more-on-functions/multi-functions">Multi-functiones</a>
+— <span class="has-q"><a
+href="/la/essentials/more-on-functions/multi-functions#practice">3
+quiz</a></span></li>
+</ul></li>
+<li><a href="/la/essentials/built-in-functions-for-printing">In
+aedificavit functiones ad print</a> — <span class="has-e"><a
+href="/la/essentials/built-in-functions-for-printing/exercises">2
+exercitationes</a></span>
+<ul>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/la/essentials/the-main-function"><code>MAIN</code>
+functio</a> — <span class="has-e"><a
+href="/la/essentials/the-main-function/exercises">3
+exercitationes</a></span>
+<ul>
+<li><a
+href="/la/essentials/the-main-function/reading-command-line-arguments">Legere
+linea mandati argumenta</a> — <span class="has-q"><a
+href="/la/essentials/the-main-function/reading-command-line-arguments#practice">2
+quiz</a></span></li>
+<li><a
+href="/la/essentials/the-main-function/multi-main-functions">Multiplicem
+<code>MAIN</code> functiones</a> — <span class="has-q"><a
+href="/la/essentials/the-main-function/multi-main-functions#practice">1
+quiz</a></span></li>
+<li><a href="/la/essentials/the-main-function/using-unit-sub">Utendo
+<code>unit sub</code></a> — <span class="has-q"><a
+href="/la/essentials/the-main-function/using-unit-sub#practice">1
+quiz</a></span></li>
+</ul></li>
+</ul>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials">English</a> • <a
+href="/de/essentials">Deutsch</a> • <a
+href="/eo/essentials">Esperanto</a> • <a
+href="/es/essentials">Español</a> • <a
+href="/it/essentials">Italiano</a> • <strong>Latina</strong> • <a
+href="/lv/essentials">Latviešu</a> • <a
+href="/nl/essentials">Nederlands</a> • <a
+href="/bg/essentials">Български</a> • <a
+href="/ru/essentials">Русский</a> • <a
+href="/uk/essentials">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
+<p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scripsit <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

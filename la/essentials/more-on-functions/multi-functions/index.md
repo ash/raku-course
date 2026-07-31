@@ -1,5 +1,5 @@
 ---
-title: Multi-functions
+title: Multi-functiones
 ---
 
 {% include menu.html %}

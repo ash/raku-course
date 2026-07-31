@@ -1,5 +1,5 @@
 ---
-title: Solutio 'Valorum Permutatio'
+title: 'Solutio: Commutatio valorum'
 ---
 
 {% include menu.html %}
@@ -14,9 +14,9 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 Codicem fontis invenire potes in fasciculo [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 Codicem fontis invenire potes in fasciculo [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
-## Effectus
+## Exitus
 
 Programma currite et confirmate valores in ordine diverso imprimi.
 

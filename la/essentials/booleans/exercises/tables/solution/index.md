@@ -1,5 +1,5 @@
 ---
-title: Solutio ad 'Tabulae Booleanae’
+title: 'Solutio: Booleana tabulae'
 ---
 
 {% include menu.html %}
@@ -9,25 +9,25 @@ Hic est programma possibile quod omnes eventus operationum Booleanarum imprimit.
 ## Codex
 
 ```raku
-dic 'Verum && Verum est ', Verum && Verum; 
-dic 'Verum && Falsum est ', Verum && Falsum;
-dic 'Falsum && Verum est ', Falsum && Verum;
-dic 'Falsum && Falsum est ', Falsum && Falsum;
+say 'Verum && Verum est ', True && True; 
+say 'Verum && Falsum est ', True && False;
+say 'Falsum && Verum est ', False && True;
+say 'Falsum && Falsum est ', False && False;
 
-dic 'Verum || Verum est ', Verum || Verum; 
-dic 'Verum || Falsum est ', Verum || Falsum;
-dic 'Falsum || Verum est ', Falsum || Verum;
-dic 'Falsum || Falsum est ', Falsum || Falsum;
+say 'Verum || Verum est ', True || True; 
+say 'Verum || Falsum est ', True || False;
+say 'Falsum || Verum est ', False || True;
+say 'Falsum || Falsum est ', False || False;
 
-dic 'Verum ^^ Verum est ', Verum ^^ Verum; 
-dic 'Verum ^^ Falsum est ', Verum ^^ Falsum;
-dic 'Falsum ^^ Verum est ', Falsum ^^ Verum;
-dic 'Falsum ^^ Falsum est ', Falsum ^^ Falsum;
+say 'Verum ^^ Verum est ', True ^^ True; 
+say 'Verum ^^ Falsum est ', True ^^ False;
+say 'Falsum ^^ Verum est ', False ^^ True;
+say 'Falsum ^^ Falsum est ', False ^^ False;
 ```
 
-🦋 Totum codicem invenire potes in archivo [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 Totum codicem invenire potes in archivo [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
-## Output
+## Exitus
 
 Programma exsequere, et haec tabula imprimitur.
 
@@ -52,7 +52,7 @@ Falsum ^^ Falsum est Falsum
 Nota quod propter maiorem praecedentiam operationum Booleanarum, non opus est eas in parenthesibus ponere. Hoc tamen non valet si concatenationem chordarum uteris:
 
 ```raku
-dic 'Verum && Verum est ' ~ (Verum && Verum);
+say 'Verum && Verum est ' ~ (True && True);
 ```
 
 Vel, uti potes [interpolatione codicis](/la/essentials/strings/code-interpolation).

@@ -1,5 +1,5 @@
 ---
-title: Currens ex linea mandati
+title: Currendo ex linea mandati
 ---
 
 {% include menu.html %}
@@ -22,7 +22,7 @@ Cum in systematibus Unix-fundatis laboras, potes shebang addere et fasciculum ex
 ```raku
 #!/usr/bin/env raku
 
-dic 'Hello, World!';
+say 'Hello, World!';
 ```
 
 Proximi gradus sunt sequentes:

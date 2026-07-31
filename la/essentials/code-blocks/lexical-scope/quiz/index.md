@@ -1,5 +1,5 @@
 ---
-title: Quiz — Lexical scope
+title: Quiz — Lexicalis ambitus
 ---
 
 {% include menu.html %}

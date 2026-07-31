@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Scalae digitales'
+title: Digital gradus
 ---
 
 {% include menu.html %}

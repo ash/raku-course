@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Numerum Scribere'
+title: Litterare numerum
 ---
 
 {% include menu.html %}

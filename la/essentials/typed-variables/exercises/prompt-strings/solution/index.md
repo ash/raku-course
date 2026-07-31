@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Examinandi exitum prompti — Chordae’
+title: 'Solutio: Explorare resultatum `prompt` — Catenae'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 Codicem fontis invenire potes in fasciculo [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 Codicem fontis invenire potes in fasciculo [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
 ## Probationes
 

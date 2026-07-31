@@ -1,5 +1,5 @@
 ---
-title: '"for" loop'
+title: '`for` ansae'
 ---
 
 {% include menu.html %}

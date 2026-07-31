@@ -1,5 +1,5 @@
 ---
-title: Exercitium 'Saluta personam'
+title: Salve personam
 ---
 
 {% include menu.html %}

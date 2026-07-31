@@ -1,5 +1,5 @@
 ---
-title: Nomina Functionum
+title: Nomina functionum
 ---
 
 {% include menu.html %}

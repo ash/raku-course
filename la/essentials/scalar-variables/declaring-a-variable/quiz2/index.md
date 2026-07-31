@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Scalar variables
+title: 'Quiz 2: Declarando plures variabiles'
 ---
 
 {% include menu.html %}

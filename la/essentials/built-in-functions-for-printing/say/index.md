@@ -1,47 +1,47 @@
 ---
-title: Dicere consuetudo
+title: '`say`'
 ---
 
 {% include menu.html %}
 
-Consuetudo `dicere` in-aedificata haec facit:
+Consuetudo `say` in-aedificata haec facit:
 
 1. Vocavit methodum `gist` in argumentis suis.
 1. Addit novam lineam characterem.
 1. Convertit eventum ad UTF-8.
 1. Mittit ad `STDOUT` rivum.
 
-Ex prospectu usoris, `dicere` simpliciter imprimit contenta variabilis ad terminalem et addit novam lineam.
+Ex prospectu usoris, `say` simpliciter imprimit contenta variabilis ad terminalem et addit novam lineam.
 
 Primus gradus aliquas explicationes requirit. Methodus `gist` est methodus quae definitur pro omni in-aedificato genere datae, ut integri vel chordae. Pro talibus generibus simplicibus, eventus reditus est valor humaniter legibilis qui item repraesentat.
 
 ```raku
-dicere 42; # 42
-dicere 'Raku'; # Raku
+say 42; # 42
+say 'Raku'; # Raku
 ```
 
 Pro data complexiora, ut ordines vel tabulae, methodus `gist` addit aliquam formam.
 
 ```raku
-meus @data = 'alpha', 'beta', 'gamma';
-dicere @data; # [alpha beta gamma]
+my @data = 'alpha', 'beta', 'gamma';
+say @data; # [alpha beta gamma]
 
-meus %data = alpha => 1, beta => 2, gamma => 3;
-dicere %data; # {alpha => 1, beta => 2, gamma => 3}
+my %data = alpha => 1, beta => 2, gamma => 3;
+say %data; # {alpha => 1, beta => 2, gamma => 3}
 ```
 
-Consuetudo `dicere` potest vocari tam ut functio quam ut methodus:
+Consuetudo `say` potest vocari tam ut functio quam ut methodus:
 
 ```raku
-dicere 42;
-dicere(42);
-42.dicere;
+say 42;
+say(42);
+42.say;
 ```
 
-Potes plus quam unum argumentum praebere ad `dicere`. Eventus partes iunguntur sine spatiis inter eas.
+Potes plus quam unum argumentum praebere ad `say`. Eventus partes iunguntur sine spatiis inter eas.
 
 ```raku
-dicere(100, 500); # 100500
+say(100, 500); # 100500
 ```
 
 {% include nav.html %}

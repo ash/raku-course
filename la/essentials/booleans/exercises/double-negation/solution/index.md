@@ -1,5 +1,5 @@
 ---
-title: Solutio ad 'Duplicem Negationem'
+title: 'Solutio: Duplex negatio'
 ---
 
 {% include menu.html %}
@@ -9,20 +9,20 @@ Extendamus programmatum ad solvendum secundam partem exercitationis et reusemus 
 ## Codex
 
 ```raku
-meum $valor = Falsum;
-dic !!$valor;
+my $valor = False;
+say !!$valor;
 
-$valor = Verum;
-dic !!$valor;
+$valor = True;
+say !!$valor;
 ```
 
-🦋 Plenum codicem invenire potes in archivo [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Plenum codicem invenire potes in archivo [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Commentarii
 
-Antequam programmatum currimus, cogitemus quid imprimet. Sunt duo operatoria negationis ante variabilem. Agunt ut duo operatoria negationis. In primo casu, valor vertitur a `Falsum` ad `Verum`, et deinde statim vertitur retro a `Verum` ad `Falsum`. In secundo casu, algorithmus idem est: post duas negationes, obtinemus initialem valorem Booleanum.
+Antequam programmatum currimus, cogitemus quid imprimet. Sunt duo operatoria negationis ante variabilem. Agunt ut duo operatoria negationis. In primo casu, valor vertitur a `False` ad `True`, et deinde statim vertitur retro a `True` ad `False`. In secundo casu, algorithmus idem est: post duas negationes, obtinemus initialem valorem Booleanum.
 
-## Output
+## Exitus
 
 Programma sequens output imprimit, quod confirmat considerationes supra:
 

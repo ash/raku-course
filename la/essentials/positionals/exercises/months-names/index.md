@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Nomina Mensium'
+title: Nomina mensium
 ---
 
 {% include menu.html %}

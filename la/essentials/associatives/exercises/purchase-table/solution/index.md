@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Tabula emptionis'
+title: 'Solutio: Tabula emptio'
 ---
 
 {% include menu.html %}
@@ -37,9 +37,9 @@ for @items -> $item {
 }
 ```
 
-🦋 Invenies programma in archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku).
+🦋 Invenies programma in archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/purchase-table.raku).
 
-## Output
+## Exitus
 
 ```console
 $ raku exercises/associatives/purchase-table.raku

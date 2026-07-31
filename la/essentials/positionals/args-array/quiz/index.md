@@ -1,5 +1,5 @@
 ---
-title: Quiz — The @*ARGS array
+title: 'Quiz — `@*ARGS` array'
 ---
 
 {% include menu.html %}
@@ -38,7 +38,7 @@ $ raku t.raku "hello world"
 What are the values printed?
 
 {:.quiz-select}
-1 | `say @*ARGS.elems;` prints&nbsp; (: 1, 2 :) | The quoted string is a single argument.
+1 | `say @*ARGS.elems;` prints&nbsp; (: 1, 2 :) | Chorda virgulis clausa unum argumentum est.
 hello world | `say @*ARGS[0];` prints&nbsp; (: hello, &quot;hello&quot;, world, &quot;world&quot;, hello world, &quot;hello world&quot; :)
 
 ## 3

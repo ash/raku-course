@@ -1,5 +1,5 @@
 ---
-title: Quiz — Vocans functionem
+title: Quiz — Vocando functionem
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ Selige rectas vocationes eius.
 {:.quiz}
 1 | dic x;
 1 | dic(x);
-1 | dic x(); | Parenthese circa argumenta `dic` omittuntur.
+1 | dic x(); | Parenthese circa argumenta `say` omittuntur.
 1 | dic(x());
 0 | meus $v = x (); | Spatium ante `()` facit `()` argumentum.
 1 | meus $w = x();

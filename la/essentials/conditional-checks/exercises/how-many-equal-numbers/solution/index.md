@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Quot numeri aequales sunt?'
+title: 'Solutio: Quot numeri sunt aequales?'
 ---
 
 {% include menu.html %}
@@ -30,9 +30,9 @@ else {
 }
 ```
 
-🦋 Invenire programmatum in archivo [quot-numeri-aequales-sunt.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Invenire programmatum in archivo [quot-numeri-aequales-sunt.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
-## Output
+## Exitus
 
 ```console
 $ raku exercises/conditional-checks/how-many-equal-numbers.raku 0 0 0

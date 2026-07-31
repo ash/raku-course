@@ -1,5 +1,5 @@
 ---
-title: Commentarii in Raku
+title: Commentarii
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Scalae digitales'
+title: 'Solutio: Digital gradus'
 ---
 
 {% include menu.html %}
@@ -19,9 +19,9 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Invenies programmatum in archivo [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Inveni codicem fontem in archivo [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
-## Effectus
+## Exitus
 
 Curre programmatum et magnitudinem structurae inserere:
 

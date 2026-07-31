@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Munus PRINCIPALE'
+title: 'Exercitationes: `MAIN` functio'
 ---
 
 {% include menu.html %}

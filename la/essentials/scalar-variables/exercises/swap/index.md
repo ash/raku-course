@@ -1,5 +1,5 @@
 ---
-title: Exercitium 'Valores Permutare'
+title: Commutatio valorum
 ---
 
 {% include menu.html %}

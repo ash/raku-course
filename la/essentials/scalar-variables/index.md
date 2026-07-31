@@ -1,5 +1,5 @@
 ---
-title: Variabiles scalaris
+title: Scalari variabiles
 ---
 
 {% include menu.html %}

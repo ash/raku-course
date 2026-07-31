@@ -1,5 +1,5 @@
 ---
-title: Operations with numbers
+title: Operationes cum numeris
 ---
 
 {% include menu.html %}
@@ -22,8 +22,8 @@ Cum Raku [Unicode](/la/essentials/on-unicode) optime sustineat, nonnulli ex his 
 Ut ordinem executionis mutare possis, parenthesibus utere:
 
 ```raku
-dic 3 * 4 + 5;   # 17
-dic 3 * (4 + 5); # 27
+say 3 * 4 + 5;   # 17
+say 3 * (4 + 5); # 27
 ```
 
 ## Modulo
@@ -40,7 +40,7 @@ Raku addit utilem operatorem ad probandum si numerus divisibilis est per alium n
 
 `%%` | Divisibilitas
 
-Hic est operator infixus qui duos operandos requirit: `10 %% 3`. Si primus operandus divisibilis est per secundum operandum, exitus est Booleanus `Verum`. Alioquin, `Falsum`.
+Hic est operator infixus qui duos operandos requirit: `10 %% 3`. Si primus operandus divisibilis est per secundum operandum, exitus est Booleanus `True`. Alioquin, `False`.
 
 ## Operationes Integrae
 
@@ -54,10 +54,10 @@ Operator `div` rotundat exitum deorsum, ita `10 div 3` est `3`, et `-10 div 3` e
 Utrumque `div` et `mod` operandos integros expectant. Ita, sequens programma non operabitur si lineas notatas `Error` uncommentaveris:
 
 ```raku
-dic 10.3 % 3;     # OK
+say 10.3 % 3;     # OK
 # dic 10.3 mod 3; # Error
 
-dic 10.3 / 3.3;     # OK
+say 10.3 / 3.3;     # OK
 # dic 10.3 div 3.3; # Error
 ```
 
@@ -66,26 +66,26 @@ dic 10.3 / 3.3;     # OK
 Sunt duo modi ad exitum _x_ ad potentiam _y_ obtinendum. Primum, potes uti operatore `**`:
 
 ```raku
-dic 3 ** 4; # 81
+say 3 ** 4; # 81
 ```
 
 Secundum, potes uti digitis superscriptis, exempli gratia:
 
 ```raku
-dic 3⁴; # 81
+say 3⁴; # 81
 ```
 
 Possibile est plures quam unum digitum superscriptum ponere ut valorem potentiae maiorem quam 9 obtineas. Exempli gratia:
 
 ```raku
-dic 2¹⁵; # 32768
+say 2¹⁵; # 32768
 ```
 
 Potentia negativa non est problema quoque:
 
 ```raku
-dic 2 ** (-2); ## 0.25
-dic 2⁻²; # 0.25
+say 2 ** (-2); ## 0.25
+say 2⁻²; # 0.25
 ```
 
 Nota quod exitus duarum ultimarum expressionum est numerus `Rat`.

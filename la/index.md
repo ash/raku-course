@@ -1,13 +1,26 @@
-# The Complete Course of the Raku programming language
+<div class="home-hero" markdown="1">
 
-* [De hoc cursu](/la/about-this-course)
+# Cursus plenus linguae programmandi Raku
 
-{% comment %}{% assign compact_menu = true %}{% endcomment %}
+<p class="tagline">A prima codicis linea ad grammaticas, simultaneitatem et servitia retialia: cursus practicus quinque partibus, cum centenis quaestionum et exercitationum quae singulos gradus firment.</p>
+
+<p class="cta-row">
+  <a class="btn-primary" href="/la/essentials/what-is-raku">Incipe discere →</a>
+  <a class="btn-ghost" href="/la/about-this-course">De cursu</a>
+</p>
+
+<p class="trust">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+
+</div>
+
+{% include stats.html %}
+
+<p class="section-label">Cursus per partes</p>
+
 {% include toc.html %}
 
-
-<center>•</center>
+<div class="home-foot" markdown="1">
 
 {% include translations.html %}
 
-© 2021–{{ site.time | date: '%Y' }} by <a href="https://andrewshitov.com/">Andrew Shitov</a>
+</div>

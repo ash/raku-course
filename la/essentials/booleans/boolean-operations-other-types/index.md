@@ -1,5 +1,5 @@
 ---
-title: Boolean operations with other types
+title: Booleana operationes cum aliis typis
 ---
 
 {% include menu.html %}

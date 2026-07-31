@@ -1,5 +1,5 @@
 ---
-title: Typographia
+title: '`print`'
 ---
 
 {% include menu.html %}

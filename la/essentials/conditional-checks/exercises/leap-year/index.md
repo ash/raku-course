@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Annus bisextilis'
+title: Annus bisextilis
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Positionalia'
+title: 'Exercitationes: Positionalia data genera'
 ---
 
 {% include menu.html %}

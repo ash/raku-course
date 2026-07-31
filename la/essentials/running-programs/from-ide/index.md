@@ -1,5 +1,5 @@
 ---
-title: Currens ex IDE
+title: Currendo ex IDE
 ---
 
 {% include menu.html %}

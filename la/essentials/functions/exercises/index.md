@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Creare et usus functionum in Raku'
+title: 'Exercitationes: Creando et vocando functiones'
 ---
 
 {% include menu.html %}

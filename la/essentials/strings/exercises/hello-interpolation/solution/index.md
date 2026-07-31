@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ’Salve, Interpolatio!‘
+title: 'Solutio: Salve, Interpolatio!'
 ---
 
 {% include menu.html %}
@@ -13,9 +13,9 @@ my $name = prompt 'Quod est nomen tuum? ';
 say "Salve, $name!";
 ```
 
-🦋 Invenire potes codicem fontis in archivo [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 Invenire potes codicem fontis in archivo [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
-## Output
+## Exitus
 
 Programma currite, et intrabit modum cum exspectat pro tuo input. Postquam nomen typis et premas Enter, programma continuat et imprimit salutationem:
 

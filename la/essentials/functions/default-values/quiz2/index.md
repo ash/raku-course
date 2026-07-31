@@ -1,5 +1,5 @@
 ---
-title: Quiz — Functiones cum valoribus defaltis
+title: Quiz — Functiones cum defaulte valores
 ---
 
 {% include menu.html %}

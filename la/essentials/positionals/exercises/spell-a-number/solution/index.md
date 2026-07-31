@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Numerum Scribere'
+title: 'Solutio: Litterare numerum'
 ---
 
 {% include menu.html %}
@@ -17,21 +17,21 @@ my @nomina = <
     triginta quadraginta quinquaginta sexaginta septuaginta octoginta nonaginta >;
 
 if $n < 20 {
-    dic @nomina[$n];
+    say @nomina[$n];
 }
 elsif $n % 10 { # Numeri duo-digiti non-rotundi, e.g., 34
-    dic @nomina[$n / 10 + 18] ~ '-' ~ @nomina[$n % 10];
+    say @nomina[$n / 10 + 18] ~ '-' ~ @nomina[$n % 10];
 }
 else { # Multipla 10, e.g., 50
-    dic @nomina[$n / 10 + 18];
+    say @nomina[$n / 10 + 18];
 }
 ```
 
-🦋 Invenies programmatum in archivo [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Inveni codicem fontem in archivo [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Exemplum
 
-Curre programmatum aliquoties ut omnes tres ramos constructionis `si`—`sin`—`aliter` inspicias.
+Curre programmatum aliquoties ut omnes tres ramos constructionis `if`—`sin`—`else` inspicias.
 
 ```console
 $ raku exercises/positionals/spell-a-number.raku 5

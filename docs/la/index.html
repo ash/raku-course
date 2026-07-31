@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="la">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>The Complete Course of the Raku programming language</title>
-    <meta property="og:title" content="The Complete Course of the Raku programming language" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Cursus plenus linguae programmandi Raku</title>
+    <meta property="og:title" content="Cursus plenus linguae programmandi Raku" />
     <meta property="og:locale" content="la" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>The Complete Course of the Raku programming language</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,216 +88,1208 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <h1 id="the-complete-course-of-the-raku-programming-language">The Complete Course of the Raku programming language</h1>
-
-<ul>
-  <li><a href="/la/about-this-course">De hoc cursu</a></li>
-</ul>
-
-<h2 id="pars-1-elementa-raku">Pars 1. Elementa Raku</h2>
-<h4 id="introductio-ad-raku-et-eius-compilatorem">Introductio ad Raku et eius compilatorem</h4>
-<ul>
-  <li><a href="/la/essentials/what-is-raku">Quid est Raku</a></li>
-  <li><a href="/la/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
-  <li><a href="/la/essentials/how-to-install-rakudo">Quomodo Rakudo installare</a></li>
-  <li><a href="/la/essentials/editors-and-ides">Editores et IDEs</a></li>
-  <li><a href="/la/essentials/conventional-file-extensions">Conventional file extensions</a></li>
-  <li><a href="/la/essentials/hello-world">Salve, Mundi!</a></li>
-  <li><a href="/la/essentials/on-unicode">Notae de usu Unicodi</a></li>
-  <li><a href="/la/essentials/running-programs">Currendo programmata</a>
-    <ul>
-      <li><a href="/la/essentials/running-programs/from-command-line">Currendo ex linea mandati</a></li>
-      <li><a href="/la/essentials/running-programs/from-repl">Currendo ex REPL</a></li>
-      <li><a href="/la/essentials/running-programs/from-ide">Currendo ex IDE</a></li>
-      <li><a href="/la/essentials/running-programs/using-docker">Utendo docker</a></li>
-      <li><a href="/la/essentials/running-programs/using-online-services">Utendo online servitia</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/simple-input-output">Simplex initus et output</a>
-    <ul>
-      <li><a href="/la/essentials/simple-input-output/say">Output cum <code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/la/essentials/simple-input-output/prompt">Initus cum <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/comments">Commentarii</a>
-    <ul>
-      <li><a href="/la/essentials/comments/single-line">Commentarii unius lineae</a></li>
-      <li><a href="/la/essentials/comments/multi-line">Commentarii multi-lineae</a></li>
-      <li><a href="/la/essentials/comments/embedded">Inscripti commentarii</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="variabiles-et-data-genera-elementa">Variabiles et data genera elementa</h4>
-<ul>
-  <li><a href="/la/essentials/scalar-variables">Scalari variabiles</a>
-    <ul>
-      <li><a href="/la/essentials/scalar-variables/declaring-a-variable">Declarando variabilem</a></li>
-      <li><a href="/la/essentials/scalar-variables/assigning-a-value">Assignando valorem</a></li>
-      <li><a href="/la/essentials/scalar-variables/declaration-with-initialization">Declaratio cum initializatione</a></li>
-      <li><a href="/la/essentials/scalar-variables/defined-or-operator">Definita-vel operator</a></li>
-      <li><a href="/la/essentials/scalar-variables/identifiers">Nomina variabilium</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/strings">Catenae</a>
-    <ul>
-      <li><a href="/la/essentials/strings/string-concatenation">Catena concatenatio</a></li>
-      <li><a href="/la/essentials/strings/variable-interpolation">Variabile interpolatio</a></li>
-      <li><a href="/la/essentials/strings/code-interpolation">Codice interpolatio</a></li>
-      <li><a href="/la/essentials/strings/escaping-special-characters">Escapatio specialium characterum</a></li>
-      <li><a href="/la/essentials/strings/string-length">Catena longitudo</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/numbers">Numeri</a>
-    <ul>
-      <li><a href="/la/essentials/numbers/integers">Numeri integri</a></li>
-      <li><a href="/la/essentials/numbers/rats">Numeri rationales</a></li>
-      <li><a href="/la/essentials/numbers/numeric">Numeri fluitantes</a></li>
-      <li><a href="/la/essentials/numbers/operations">Operationes cum numeris</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/booleans">Booleana typus</a>
-    <ul>
-      <li><a href="/la/essentials/booleans/operations">Booleana operationes</a></li>
-      <li><a href="/la/essentials/booleans/boolean-operations-other-types">Booleana operationes cum aliis typis</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/ranges">Intervalla</a>
-    <ul>
-      <li><a href="/la/essentials/ranges/excluding-endpoints">Exclusis extremitatibus</a></li>
-      <li><a href="/la/essentials/ranges/matching-against-a-range">Compatatio contra intervallum</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="elementa-fluxus-imperium">Elementa fluxus imperium</h4>
-<ul>
-  <li><a href="/la/essentials/code-blocks">Codicis sectiones</a>
-    <ul>
-      <li><a href="/la/essentials/code-blocks/lexical-scope">Lexicalis ambitus</a></li>
-      <li><a href="/la/essentials/code-blocks/global-variables">Globales variabiles</a></li>
-      <li><a href="/la/essentials/code-blocks/local-variables">Locales variabiles</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/conditional-checks">Conditiones comprobationes</a>
-    <ul>
-      <li><a href="/la/essentials/conditional-checks/if"><code class="language-plaintext highlighter-rouge">if</code> sectiones</a></li>
-      <li><a href="/la/essentials/conditional-checks/else"><code class="language-plaintext highlighter-rouge">else</code> sectiones</a></li>
-      <li><a href="/la/essentials/conditional-checks/elsif">Utendo <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
-      <li><a href="/la/essentials/conditional-checks/unless">Utendo <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-      <li><a href="/la/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> et <code class="language-plaintext highlighter-rouge">unless</code> ut statement modificatores</a></li>
-      <li><a href="/la/essentials/conditional-checks/comparing-numbers">Comparando numeri</a></li>
-      <li><a href="/la/essentials/conditional-checks/comparing-strings">Comparando catenae</a></li>
-      <li><a href="/la/essentials/conditional-checks/ternary-operator">Ternarius operator</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/loops">Ansae</a>
-    <ul>
-      <li><a href="/la/essentials/loops/while">Utendo <code class="language-plaintext highlighter-rouge">while</code></a></li>
-      <li><a href="/la/essentials/loops/until">Utendo <code class="language-plaintext highlighter-rouge">until</code></a></li>
-      <li><a href="/la/essentials/loops/repeat">Utendo <code class="language-plaintext highlighter-rouge">repeat</code></a></li>
-      <li><a href="/la/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> et <code class="language-plaintext highlighter-rouge">until</code> ut statement modificatores</a></li>
-      <li><a href="/la/essentials/loops/loop">Tribus partibus <code class="language-plaintext highlighter-rouge">loop</code></a></li>
-      <li><a href="/la/essentials/loops/infinite-loops">Infinitas ansae</a></li>
-      <li><a href="/la/essentials/loops/for"><code class="language-plaintext highlighter-rouge">for</code> ansae</a></li>
-      <li><a href="/la/essentials/loops/topic">Topic variabile</a></li>
-      <li><a href="/la/essentials/loops/postfix-for">Postfixa forma de <code class="language-plaintext highlighter-rouge">for</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="plus-de-generibus">Plus de generibus</h4>
-<ul>
-  <li><a href="/la/essentials/coercion">Data typus conversio</a>
-    <ul>
-      <li><a href="/la/essentials/coercion/what">Introspectio cum <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-      <li><a href="/la/essentials/coercion/methods">Convertendo generibus utendo coercitionis methodis</a></li>
-      <li><a href="/la/essentials/coercion/new">Convertendo generibus utendo constructoris formis</a></li>
-      <li><a href="/la/essentials/coercion/prefixes">Convertendo generibus cum prefixis operatoribus</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/typed-variables">Typis variabiles</a>
-    <ul>
-      <li><a href="/la/essentials/typed-variables/type-constraints">Typus limitationes</a></li>
-      <li><a href="/la/essentials/typed-variables/using-of">Utendo <code class="language-plaintext highlighter-rouge">of</code></a></li>
-      <li><a href="/la/essentials/typed-variables/coercion">Typus conversio pro typis variabiles</a></li>
-      <li><a href="/la/essentials/typed-variables/allomorphs">Allomorphes</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/positionals">Positionalia data genera</a>
-    <ul>
-      <li><a href="/la/essentials/positionals/arrays">Array</a></li>
-      <li><a href="/la/essentials/positionals/nested-arrays">Nidificata array</a></li>
-      <li><a href="/la/essentials/positionals/args-array"><code class="language-plaintext highlighter-rouge">@*ARGS</code> array</a></li>
-      <li><a href="/la/essentials/positionals/interpolating-arrays">Interpolando array</a></li>
-      <li><a href="/la/essentials/positionals/lists">Listae</a></li>
-      <li><a href="/la/essentials/positionals/quoting-string-arrays">Quoting catena array</a></li>
-      <li><a href="/la/essentials/positionals/subscripting-ranges">Subscribendo intervalla</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/associatives">Associativa data genera</a>
-    <ul>
-      <li><a href="/la/essentials/associatives/pairs">Paria</a></li>
-      <li><a href="/la/essentials/associatives/hashes">Hashes</a></li>
-      <li><a href="/la/essentials/associatives/nested-hashes">Nidificata hashes</a></li>
-      <li><a href="/la/essentials/associatives/interpolating-hashes">Interpolando hashes</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="elementa-functionum">Elementa functionum</h4>
-<ul>
-  <li><a href="/la/essentials/functions">Creando et vocando functiones</a>
-    <ul>
-      <li><a href="/la/essentials/functions/identifiers">Nomina functionum</a></li>
-      <li><a href="/la/essentials/functions/function-parameters">Parametra functionum</a></li>
-      <li><a href="/la/essentials/functions/return-result">Redonando resultatum</a></li>
-      <li><a href="/la/essentials/functions/positional-parameters">Positional parametra</a></li>
-      <li><a href="/la/essentials/functions/named-parameters">Nominate parametra</a></li>
-      <li><a href="/la/essentials/functions/default-values">Defaulte valores</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/more-on-functions">Plus de functionibus</a>
-    <ul>
-      <li><a href="/la/essentials/more-on-functions/mind-the-space">Cave spatium</a></li>
-      <li><a href="/la/essentials/more-on-functions/typed-parameters">Typis parametra</a></li>
-      <li><a href="/la/essentials/more-on-functions/return-type">Redonare typus</a></li>
-      <li><a href="/la/essentials/more-on-functions/multi-functions">Multi-functiones</a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/built-in-functions-for-printing">In aedificavit functiones ad print</a>
-    <ul>
-      <li><a href="/la/essentials/built-in-functions-for-printing/say"><code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/la/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a></li>
-      <li><a href="/la/essentials/built-in-functions-for-printing/put"><code class="language-plaintext highlighter-rouge">put</code></a></li>
-      <li><a href="/la/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/la/essentials/the-main-function"><code class="language-plaintext highlighter-rouge">MAIN</code> functio</a>
-    <ul>
-      <li><a href="/la/essentials/the-main-function/reading-command-line-arguments">Legere linea mandati argumenta</a></li>
-      <li><a href="/la/essentials/the-main-function/multi-main-functions">Multiplicem <code class="language-plaintext highlighter-rouge">MAIN</code> functiones</a></li>
-      <li><a href="/la/essentials/the-main-function/using-unit-sub">Utendo <code class="language-plaintext highlighter-rouge">unit sub</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<center>•</center>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Haec pagina automatice translata est per ChatGPT 4o. <a href="/">Originalis Anglicus textus</a></p>
-
-  <p>Translationes huius paginae: <a href="/">English</a> • <a href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <a href="/it/">Italiano</a> • <a href="/lv/">Latviešu</a> • <a href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a href="/ru/">Русский</a> • <a href="/uk/">Українська</a></p>
+          <section id="cursus-plenus-linguae-programmandi-raku" class="home-hero"
+data-markdown="1">
+<h1>Cursus plenus linguae programmandi Raku</h1>
+<p class="tagline">
+A prima codicis linea ad grammaticas, simultaneitatem et servitia
+retialia: cursus practicus quinque partibus, cum centenis quaestionum et
+exercitationum quae singulos gradus firment.
+</p>
+<p class="cta-row">
+<a class="btn-primary" href="/la/essentials/what-is-raku">Incipe discere
+→</a> <a class="btn-ghost" href="/la/about-this-course">De cursu</a>
+</p>
+<p class="trust">
+Liber et fontis aperti · Sustinet
+<a href="https://www.perlfoundation.org">The Perl &amp; Raku
+Foundation</a>
+</p>
+</section>
+<div class="home-stats">
+<div class="stat">
+<span class="num">6</span><span class="label">partes</span>
 </div>
-
-<p>© 2021–2024 by <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+<div class="stat">
+<span class="num">395</span><span class="label">argumenta</span>
+</div>
+<div class="stat">
+<span class="num">217</span><span class="label">quiz</span>
+</div>
+<div class="stat">
+<span class="num">396</span><span class="label">exercitia</span>
+</div>
+<div class="stat">
+<span class="num">1530</span><span class="label">paginae</span>
+</div>
+</div>
+<p class="section-label">
+Cursus per partes
+</p>
+<div class="course-map">
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">1</span>
+<a class="part-title" href="/la/essentials">Elementa Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Hic incipe. Compilatorem installa, deinde variabiles et genera
+datorum, ordinem exsecutionis et prima subprogrammata disce —
+fundamentum omnium sequentium.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/intro">Prima notitia Raku</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/what-is-raku">Quid est Raku</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/compilers">Compilatores</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+<li><a href="/la/essentials/the-rakudo-compiler">Compilator
+Rakudo</a></li>
+<li><a href="/la/essentials/how-to-install-rakudo">Quomodo Rakudo
+installare</a></li>
+<li><a href="/la/essentials/the-rakupp-compiler">Compilator Raku++
+🆕</a></li>
+<li><a href="/la/essentials/how-to-install-rakupp">Quomodo Raku++
+installare 🆕</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/getting-started">Programmata scribere et
+exsequi</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/editors-and-ides">Editores et IDEs</a></li>
+<li><a href="/la/essentials/conventional-file-extensions">Conventional
+file extensions</a></li>
+<li><a href="/la/essentials/hello-world">Salve, Mundi!</a></li>
+<li><a href="/la/essentials/on-unicode">Notae de usu Unicodi</a></li>
+<li><a href="/la/essentials/running-programs">Currendo programmata</a>
+<ul>
+<li><a href="/la/essentials/running-programs/from-command-line">Currendo
+ex linea mandati</a></li>
+<li><a href="/la/essentials/running-programs/from-repl">Currendo ex
+REPL</a></li>
+<li><a href="/la/essentials/running-programs/from-ide">Currendo ex
+IDE</a></li>
+<li><a href="/la/essentials/running-programs/using-docker">Utendo
+docker</a></li>
+<li><a
+href="/la/essentials/running-programs/using-online-services">Utendo
+online servitia</a></li>
+</ul></li>
+<li><a href="/la/essentials/simple-input-output">Simplex initus et
+output</a>
+<ul>
+<li><a href="/la/essentials/simple-input-output/say">Output cum
+<code>say</code></a></li>
+<li><a href="/la/essentials/simple-input-output/prompt">Initus cum
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/la/essentials/comments">Commentarii</a>
+<ul>
+<li><a href="/la/essentials/comments/single-line">Commentarii unius
+lineae</a></li>
+<li><a href="/la/essentials/comments/multi-line">Commentarii
+multi-lineae</a></li>
+<li><a href="/la/essentials/comments/embedded">Inscripti
+commentarii</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/variables">Fundamenta variabilium et generum
+datorum</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/scalar-variables">Scalari variabiles</a>
+<ul>
+<li><a
+href="/la/essentials/scalar-variables/declaring-a-variable">Declarando
+variabilem</a></li>
+<li><a
+href="/la/essentials/scalar-variables/assigning-a-value">Assignando
+valorem</a></li>
+<li><a
+href="/la/essentials/scalar-variables/declaration-with-initialization">Declaratio
+cum initializatione</a></li>
+<li><a
+href="/la/essentials/scalar-variables/defined-or-operator">Definita-vel
+operator</a></li>
+<li><a href="/la/essentials/scalar-variables/identifiers">Nomina
+variabilium</a></li>
+</ul></li>
+<li><a href="/la/essentials/strings">Catenae</a>
+<ul>
+<li><a href="/la/essentials/strings/string-concatenation">Catena
+concatenatio</a></li>
+<li><a href="/la/essentials/strings/variable-interpolation">Variabile
+interpolatio</a></li>
+<li><a href="/la/essentials/strings/code-interpolation">Codice
+interpolatio</a></li>
+<li><a
+href="/la/essentials/strings/escaping-special-characters">Escapatio
+specialium characterum</a></li>
+<li><a href="/la/essentials/strings/string-length">Catena
+longitudo</a></li>
+</ul></li>
+<li><a href="/la/essentials/numbers">Numeri</a>
+<ul>
+<li><a href="/la/essentials/numbers/integers">Numeri integri</a></li>
+<li><a href="/la/essentials/numbers/rats">Numeri rationales</a></li>
+<li><a href="/la/essentials/numbers/numeric">Numeri fluitantes</a></li>
+<li><a href="/la/essentials/numbers/operations">Operationes cum
+numeris</a></li>
+</ul></li>
+<li><a href="/la/essentials/booleans">Booleana typus</a>
+<ul>
+<li><a href="/la/essentials/booleans/operations">Booleana
+operationes</a></li>
+<li><a
+href="/la/essentials/booleans/boolean-operations-other-types">Booleana
+operationes cum aliis typis</a></li>
+</ul></li>
+<li><a href="/la/essentials/ranges">Intervalla</a>
+<ul>
+<li><a href="/la/essentials/ranges/excluding-endpoints">Exclusis
+extremitatibus</a></li>
+<li><a href="/la/essentials/ranges/matching-against-a-range">Compatatio
+contra intervallum</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/control-flow">Fundamenta ordinis
+exsecutionis</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/code-blocks">Codicis sectiones</a>
+<ul>
+<li><a href="/la/essentials/code-blocks/lexical-scope">Lexicalis
+ambitus</a></li>
+<li><a href="/la/essentials/code-blocks/global-variables">Globales
+variabiles</a></li>
+<li><a href="/la/essentials/code-blocks/local-variables">Locales
+variabiles</a></li>
+</ul></li>
+<li><a href="/la/essentials/conditional-checks">Conditiones
+comprobationes</a>
+<ul>
+<li><a href="/la/essentials/conditional-checks/if"><code>if</code>
+sectiones</a></li>
+<li><a href="/la/essentials/conditional-checks/else"><code>else</code>
+sectiones</a></li>
+<li><a href="/la/essentials/conditional-checks/elsif">Utendo
+<code>elsif</code></a></li>
+<li><a href="/la/essentials/conditional-checks/unless">Utendo
+<code>unless</code></a></li>
+<li><a
+href="/la/essentials/conditional-checks/modifiers"><code>if</code> et
+<code>unless</code> ut statement modificatores</a></li>
+<li><a
+href="/la/essentials/conditional-checks/comparing-numbers">Comparando
+numeri</a></li>
+<li><a
+href="/la/essentials/conditional-checks/comparing-strings">Comparando
+catenae</a></li>
+<li><a
+href="/la/essentials/conditional-checks/ternary-operator">Ternarius
+operator</a></li>
+</ul></li>
+<li><a href="/la/essentials/loops">Ansae</a>
+<ul>
+<li><a href="/la/essentials/loops/while">Utendo
+<code>while</code></a></li>
+<li><a href="/la/essentials/loops/until">Utendo
+<code>until</code></a></li>
+<li><a href="/la/essentials/loops/repeat">Utendo
+<code>repeat</code></a></li>
+<li><a href="/la/essentials/loops/modifiers"><code>while</code> et
+<code>until</code> ut statement modificatores</a></li>
+<li><a href="/la/essentials/loops/loop">Tribus partibus
+<code>loop</code></a></li>
+<li><a href="/la/essentials/loops/infinite-loops">Infinitas
+ansae</a></li>
+<li><a href="/la/essentials/loops/for"><code>for</code> ansae</a></li>
+<li><a href="/la/essentials/loops/topic">Topic variabile</a></li>
+<li><a href="/la/essentials/loops/postfix-for">Postfixa forma de
+<code>for</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/more-about-types">Plura de generibus</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/coercion">Data typus conversio</a>
+<ul>
+<li><a href="/la/essentials/coercion/what">Introspectio cum
+<code>WHAT</code></a></li>
+<li><a href="/la/essentials/coercion/methods">Convertendo generibus
+utendo coercitionis methodis</a></li>
+<li><a href="/la/essentials/coercion/new">Convertendo generibus utendo
+constructoris formis</a></li>
+<li><a href="/la/essentials/coercion/prefixes">Convertendo generibus cum
+prefixis operatoribus</a></li>
+</ul></li>
+<li><a href="/la/essentials/typed-variables">Typis variabiles</a>
+<ul>
+<li><a href="/la/essentials/typed-variables/type-constraints">Typus
+limitationes</a></li>
+<li><a href="/la/essentials/typed-variables/using-of">Utendo
+<code>of</code></a></li>
+<li><a href="/la/essentials/typed-variables/coercion">Typus conversio
+pro typis variabiles</a></li>
+<li><a
+href="/la/essentials/typed-variables/allomorphs">Allomorphes</a></li>
+</ul></li>
+<li><a href="/la/essentials/positionals">Positionalia data genera</a>
+<ul>
+<li><a href="/la/essentials/positionals/arrays">Array</a></li>
+<li><a href="/la/essentials/positionals/nested-arrays">Nidificata
+array</a></li>
+<li><a href="/la/essentials/positionals/args-array"><code>@*ARGS</code>
+array</a></li>
+<li><a
+href="/la/essentials/positionals/interpolating-arrays">Interpolando
+array</a></li>
+<li><a href="/la/essentials/positionals/lists">Listae</a></li>
+<li><a href="/la/essentials/positionals/quoting-string-arrays">Quoting
+catena array</a></li>
+<li><a
+href="/la/essentials/positionals/subscripting-ranges">Subscribendo
+intervalla</a></li>
+</ul></li>
+<li><a href="/la/essentials/associatives">Associativa data genera</a>
+<ul>
+<li><a href="/la/essentials/associatives/pairs">Paria</a></li>
+<li><a href="/la/essentials/associatives/hashes">Hashes</a></li>
+<li><a href="/la/essentials/associatives/nested-hashes">Nidificata
+hashes</a></li>
+<li><a
+href="/la/essentials/associatives/interpolating-hashes">Interpolando
+hashes</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/essentials/functions-essentials">Fundamenta functionum</a>
+</summary>
+<ul>
+<li><a href="/la/essentials/functions">Creando et vocando functiones</a>
+<ul>
+<li><a href="/la/essentials/functions/identifiers">Nomina
+functionum</a></li>
+<li><a href="/la/essentials/functions/function-parameters">Parametra
+functionum</a></li>
+<li><a href="/la/essentials/functions/return-result">Redonando
+resultatum</a></li>
+<li><a href="/la/essentials/functions/positional-parameters">Positional
+parametra</a></li>
+<li><a href="/la/essentials/functions/named-parameters">Nominate
+parametra</a></li>
+<li><a href="/la/essentials/functions/default-values">Defaulte
+valores</a></li>
+</ul></li>
+<li><a href="/la/essentials/more-on-functions">Plus de functionibus</a>
+<ul>
+<li><a href="/la/essentials/more-on-functions/mind-the-space">Cave
+spatium</a></li>
+<li><a href="/la/essentials/more-on-functions/typed-parameters">Typis
+parametra</a></li>
+<li><a href="/la/essentials/more-on-functions/return-type">Redonare
+typus</a></li>
+<li><a
+href="/la/essentials/more-on-functions/multi-functions">Multi-functiones</a></li>
+</ul></li>
+<li><a href="/la/essentials/built-in-functions-for-printing">In
+aedificavit functiones ad print</a>
+<ul>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/la/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/la/essentials/the-main-function"><code>MAIN</code>
+functio</a>
+<ul>
+<li><a
+href="/la/essentials/the-main-function/reading-command-line-arguments">Legere
+linea mandati argumenta</a></li>
+<li><a
+href="/la/essentials/the-main-function/multi-main-functions">Multiplicem
+<code>MAIN</code> functiones</a></li>
+<li><a href="/la/essentials/the-main-function/using-unit-sub">Utendo
+<code>unit sub</code></a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">2</span>
+<a class="part-title" href="/la/advanced">Provectae Raku materiae</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Profundius progredere: receptacula et contextus, plenum ambitum
+typorum et operatorum, uberiora subprogrammata, et codicem tuum in
+modulos cum probationibus et documentatione componere.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/debugging">Investigatio errorum</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/representations">Valores in textum
+convertere</a>
+<ul>
+<li><a href="/la/advanced/representations/gist">Methodus
+<code>.gist</code></a></li>
+<li><a href="/la/advanced/representations/str">Methodus
+<code>.Str</code></a></li>
+<li><a href="/la/advanced/representations/raku-method">Methodus
+<code>.raku</code></a></li>
+<li><a href="/la/advanced/representations/choosing">Rectam
+eligere</a></li>
+</ul></li>
+<li><a href="/la/advanced/dd">Debugging cum <code>dd</code></a>
+<ul>
+<li><a href="/la/advanced/dd/variables">Variabiles dumping</a></li>
+<li><a href="/la/advanced/dd/functions">Signaturas functionum
+dumping</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/containers-overview">Receptacula</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/containers">Intellectus receptaculorum
+Raku</a></li>
+<li><a href="/la/advanced/scalar-containers">Scalaria receptacula</a>
+<ul>
+<li><a href="/la/advanced/scalar-containers/types">Data genera et
+scalaria receptacula</a></li>
+<li><a href="/la/advanced/scalar-containers/type-constraints">Typus
+limitationes</a></li>
+<li><a href="/la/advanced/scalar-containers/default">Valores
+praedefiniti</a></li>
+<li><a href="/la/advanced/scalar-containers/proxying">Procuratio
+vocationum methodorum</a></li>
+</ul></li>
+<li><a href="/la/advanced/ordered-containers">Ordinata receptacula</a>
+<ul>
+<li><a href="/la/advanced/ordered-containers/arrays">Array</a></li>
+<li><a href="/la/advanced/ordered-containers/lists">Listae</a></li>
+<li><a href="/la/advanced/ordered-containers/binding">Ligatio cum
+<code>:=</code></a></li>
+<li><a href="/la/advanced/ordered-containers/flattening">Complanatio et
+itemisatio</a></li>
+</ul></li>
+<li><a href="/la/advanced/contexts">Contextus</a>
+<ul>
+<li><a href="/la/advanced/contexts/coercion-contexts">Numericus,
+catenarius, et Booleanus contextus</a></li>
+<li><a href="/la/advanced/contexts/item-and-list">Elementalis et listae
+contextus</a></li>
+</ul></li>
+<li><a href="/la/advanced/subscript-adverbs">Subscripti adverbia</a>
+<ul>
+<li><a href="/la/advanced/subscript-adverbs/exists-and-delete">Exists et
+delete</a></li>
+<li><a href="/la/advanced/subscript-adverbs/kv-and-pairs">Claves,
+valores, et paria</a></li>
+</ul></li>
+<li><a href="/la/advanced/special-variables">Speciales et dynamicae
+variabiles</a>
+<ul>
+<li><a href="/la/advanced/special-variables/twigils">Twigili</a></li>
+<li><a href="/la/advanced/special-variables/dynamic-variables">Dynamicae
+variabiles</a></li>
+<li><a href="/la/advanced/special-variables/built-in">Incorporatae
+speciales variabiles</a></li>
+</ul></li>
+<li><a href="/la/advanced/introspection">Introspectio receptaculorum</a>
+<ul>
+<li><a href="/la/advanced/introspection/what">Utendo
+<code>WHAT</code></a></li>
+<li><a href="/la/advanced/introspection/var">Utendo
+<code>VAR</code></a></li>
+<li><a href="/la/advanced/introspection/who-how"><code>WHO</code> et
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/built-in-types">Plura de generibus insitis</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/integers">Integri</a>
+<ul>
+<li><a href="/la/advanced/integers/number-bases">Bases
+numerorum</a></li>
+<li><a href="/la/advanced/integers/methods">Methodi integrorum</a></li>
+</ul></li>
+<li><a href="/la/advanced/native-types">Typi nativi</a>
+<ul>
+<li><a href="/la/advanced/native-types/machine-types">Typi
+machinae</a></li>
+<li><a href="/la/advanced/native-types/sized-types">Typi cum magnitudine
+et superfluentia</a></li>
+</ul></li>
+<li><a href="/la/advanced/strings">Catenae</a>
+<ul>
+<li><a href="/la/advanced/strings/searching">Quaerendo in
+catenis</a></li>
+<li><a href="/la/advanced/strings/splitting">Dividendo et
+coniungendo</a></li>
+</ul></li>
+<li><a href="/la/advanced/quoting">Constructiones quotationis</a>
+<ul>
+<li><a href="/la/advanced/quoting/q-qq-big-q">q, qq, et Q</a></li>
+<li><a href="/la/advanced/quoting/adverbs">Adverbia quotationis</a></li>
+<li><a href="/la/advanced/quoting/heredocs">Heredocs</a></li>
+</ul></li>
+<li><a href="/la/advanced/date-and-time">Dies et tempus</a>
+<ul>
+<li><a href="/la/advanced/date-and-time/arithmetic">Arithmetica
+dierum</a></li>
+<li><a href="/la/advanced/date-and-time/time">Laborando cum
+tempore</a></li>
+</ul></li>
+<li><a href="/la/advanced/sets-bags-mixes">Coniuncta, sacculi, et
+mixturae</a>
+<ul>
+<li><a href="/la/advanced/sets-bags-mixes/operations">Operationes
+coniunctorum</a></li>
+<li><a href="/la/advanced/sets-bags-mixes/bags">Sacculi et
+mixturae</a></li>
+</ul></li>
+<li><a href="/la/advanced/sequences">Series</a>
+<ul>
+<li><a href="/la/advanced/sequences/patterns">Exemplaria
+serierum</a></li>
+<li><a href="/la/advanced/sequences/lazy">Pigrae et infinitae
+series</a></li>
+</ul></li>
+<li><a href="/la/advanced/enumerations">Enumerationes</a>
+<ul>
+<li><a href="/la/advanced/enumerations/defining">Enumerationem
+definire</a></li>
+<li><a href="/la/advanced/enumerations/values-and-keys">Valores et
+claves</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/operators">Operatores</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/operator-types">Genera operatorum
+Raku</a></li>
+<li><a href="/la/advanced/operators-overview">Conspectus
+operatorum</a></li>
+<li><a href="/la/advanced/metaoperators">Meta-operatores</a>
+<ul>
+<li><a href="/la/advanced/metaoperators/reduction">Reductionis
+meta-operatores</a></li>
+<li><a href="/la/advanced/metaoperators/zip">Zip
+meta-operatores</a></li>
+<li><a href="/la/advanced/metaoperators/more">Crux, hyper, et
+negati</a></li>
+</ul></li>
+<li><a href="/la/advanced/user-defined-operators">Operatores ab usore
+definiti</a></li>
+<li><a href="/la/advanced/traits-pragmas">Proprietates et pragmata</a>
+<ul>
+<li><a href="/la/advanced/traits-pragmas/built-in-traits">Proprietates
+incorporatae</a></li>
+<li><a href="/la/advanced/traits-pragmas/writing-a-trait">Proprietatem
+scribere</a></li>
+<li><a href="/la/advanced/traits-pragmas/pragmas">Pragmata</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/control-flow">Ordo exsecutionis</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/phasers">Phaseres</a></li>
+<li><a href="/la/advanced/block-phasers">Phaseres blocorum</a></li>
+<li><a href="/la/advanced/given-when"><code>given</code> et
+<code>when</code></a>
+<ul>
+<li><a href="/la/advanced/given-when/matching">Concordatio
+intervallarum, typorum, et condicionum</a></li>
+</ul></li>
+<li><a href="/la/advanced/gather-take"><code>gather</code> et
+<code>take</code></a></li>
+<li><a href="/la/advanced/statement-prefixes">Praefixae sententiae</a>
+<ul>
+<li><a href="/la/advanced/statement-prefixes/do-prefix">do et valor
+bloci</a></li>
+<li><a href="/la/advanced/statement-prefixes/lazy-eager">Pigritia et
+alacri</a></li>
+<li><a href="/la/advanced/statement-prefixes/sink-quietly">sink et
+quietly</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/subroutines">Subprogrammata</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/signatures">Signaturae</a></li>
+<li><a href="/la/advanced/whatever">Stella Whatever</a></li>
+<li><a href="/la/advanced/colon-calls">Vocatio cum duplo puncto</a></li>
+<li><a href="/la/advanced/multiple-dispatch">Multiplex dispatch</a></li>
+<li><a href="/la/advanced/more-on-main">Plus de MAIN
+subprogrammatibus</a></li>
+<li><a href="/la/advanced/nested-subroutines">Subprogrammata
+nidificata</a></li>
+<li><a href="/la/advanced/anonymous-subroutines">Subprogrammata
+anonyma</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/modules">Moduli</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/modules-basics">Fundamenta modulorum</a>
+<ul>
+<li><a href="/la/advanced/modules-basics/creating-modules">Modulos
+creare</a></li>
+<li><a href="/la/advanced/modules-basics/using-modules">Modulos
+utendo</a></li>
+<li><a href="/la/advanced/modules-basics/importing">Importare</a></li>
+<li><a href="/la/advanced/modules-basics/export-tags">Export
+pittacia</a></li>
+</ul></li>
+<li><a href="/la/advanced/module-introspection">Introspectio
+modulorum</a></li>
+<li><a href="/la/advanced/installing-modules">Modulos ex interrete
+installare</a></li>
+<li><a href="/la/advanced/packages">Fasciculi et spatia nominum</a>
+<ul>
+<li><a href="/la/advanced/packages/packages-modules">Fasciculi et
+moduli</a></li>
+<li><a href="/la/advanced/packages/namespaces">Spatia nominum et
+our</a></li>
+</ul></li>
+<li><a href="/la/advanced/distributing">Modulos distribuere</a>
+<ul>
+<li><a href="/la/advanced/distributing/meta6">Fasciculus META6</a></li>
+<li><a href="/la/advanced/distributing/zef-ecosystem">zef et
+oecosystema</a></li>
+<li><a href="/la/advanced/distributing/fez">Publicare cum fez</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/advanced/testing-and-docs">Probatio et documentatio 🆕</a>
+</summary>
+<ul>
+<li><a href="/la/advanced/testing">Probatio</a>
+<ul>
+<li><a href="/la/advanced/testing/test-module">Modulus Test</a></li>
+<li><a href="/la/advanced/testing/comparisons">Comparationes et
+consilia</a></li>
+<li><a href="/la/advanced/testing/running-tests">Probationes
+currere</a></li>
+</ul></li>
+<li><a href="/la/advanced/pod">Codicem documentare</a>
+<ul>
+<li><a href="/la/advanced/pod/pod-basics">Fundamenta Pod</a></li>
+<li><a href="/la/advanced/pod/pod-formatting">Formatio et codex</a></li>
+<li><a href="/la/advanced/pod/rendering-pod">Pod reddere</a></li>
+<li><a href="/la/advanced/pod/accessing-pod">Pod accedere</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">3</span>
+<a class="part-title" href="/la/oop">Obiecta, introitus et exitus, et
+exceptiones</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Programmatio ad obiecta directa cum classibus et partibus, introitus
+et exitus legendi et scribendi et cum programmatibus externis
+colloquendi, atque errores per exceptiones tractandi.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/la/oop/classes-and-objects">Classes et obiecta</a>
+</summary>
+<ul>
+<li><a href="/la/oop/classes">Classes</a>
+<ul>
+<li><a href="/la/oop/classes/type-object">Obiecta generis et
+exempla</a></li>
+</ul></li>
+<li><a href="/la/oop/attributes">Attributa</a>
+<ul>
+<li><a href="/la/oop/attributes/read-write">Attributa legenda et
+scribenda</a></li>
+<li><a href="/la/oop/attributes/defaults">Valores praedefiniti</a></li>
+</ul></li>
+<li><a href="/la/oop/methods">Methodi</a>
+<ul>
+<li><a href="/la/oop/methods/private-attributes">Attributa
+privata</a></li>
+<li><a href="/la/oop/methods/parameters">Methodi cum parametris</a></li>
+<li><a href="/la/oop/methods/calling-methods">Methodi methodos
+vocantes</a></li>
+</ul></li>
+<li><a href="/la/oop/class-methods">Methodi classis</a></li>
+<li><a href="/la/oop/subs-vs-methods">Subprogrammata et methodi</a></li>
+<li><a href="/la/oop/inheritance">Hereditas</a>
+<ul>
+<li><a href="/la/oop/inheritance/overriding">Methodos
+superscribere</a></li>
+</ul></li>
+<li><a href="/la/oop/roles">Partes</a>
+<ul>
+<li><a href="/la/oop/roles/multiple-roles">Plures partes
+componere</a></li>
+<li><a href="/la/oop/roles/mixin">Partem obiecto addere</a></li>
+</ul></li>
+<li><a href="/la/oop/object-introspection">Obiecta introspicere</a>
+<ul>
+<li><a href="/la/oop/object-introspection/inheritance-chain">Catena
+hereditatis</a></li>
+</ul></li>
+<li><a href="/la/oop/mop">Protocollum metaobjectorum 🆕</a>
+<ul>
+<li><a href="/la/oop/mop/meta-methods">Metamethodi</a></li>
+<li><a href="/la/oop/mop/adding-methods">Methodos dum exsecutione
+addere</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/oop/input-and-output">Introitus et exitus</a>
+</summary>
+<ul>
+<li><a href="/la/oop/standard-streams">Fluxus normales</a></li>
+<li><a href="/la/oop/files">Cum plicis laborare</a>
+<ul>
+<li><a href="/la/oop/files/appending">Ad plicam addere</a></li>
+</ul></li>
+<li><a href="/la/oop/directories">Cum directoriis laborare</a>
+<ul>
+<li><a href="/la/oop/directories/listing">Directorium enumerare</a></li>
+</ul></li>
+<li><a href="/la/oop/deleting">Plicas et directoria delere</a></li>
+<li><a href="/la/oop/file-handles">Ansae plicarum</a></li>
+<li><a href="/la/oop/external-programs">Programmata externa exsequi
+🆕</a>
+<ul>
+<li><a href="/la/oop/external-programs/run-and-shell">run et
+shell</a></li>
+<li><a href="/la/oop/external-programs/capturing-output">Exitum
+capere</a></li>
+<li><a href="/la/oop/external-programs/the-proc-object">Obiectum
+Proc</a></li>
+<li><a href="/la/oop/external-programs/environment">Ambitus</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/oop/exceptions">Exceptiones</a>
+</summary>
+<ul>
+<li><a href="/la/oop/try">Exceptiones per <code>try</code> capere</a>
+<ul>
+<li><a href="/la/oop/try/deferred-errors">Non omnis error statim
+apparet</a></li>
+</ul></li>
+<li><a href="/la/oop/catch">Phasor <code>CATCH</code></a></li>
+<li><a href="/la/oop/exception-objects">Obiecta exceptionum</a></li>
+<li><a href="/la/oop/failures">Defectus molles</a></li>
+<li><a href="/la/oop/custom-exceptions">Exceptiones propriae</a></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">4</span>
+<a class="part-title" href="/la/regexes">Expressiones regulares et
+grammaticae</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Textum per expressiones regulares congrue, deinde ex eis grammaticas
+plenas cum classibus actionum cresce, quae introitum structum in data
+vertunt.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/la/regexes/regex-basics">Expressiones regulares</a>
+</summary>
+<ul>
+<li><a href="/la/regexes/literals">Litterales et classes litterarum</a>
+<ul>
+<li><a href="/la/regexes/literals/literal-text">Textum litteralem
+congruere</a></li>
+<li><a href="/la/regexes/literals/character-classes">Classes
+litterarum</a></li>
+<li><a href="/la/regexes/literals/predefined-classes">Classes litterarum
+praedefinitae</a></li>
+</ul></li>
+<li><a href="/la/regexes/matching">Catenas congruere</a>
+<ul>
+<li><a href="/la/regexes/matching/smartmatch">Operator congruentiae
+sagacis</a></li>
+<li><a href="/la/regexes/matching/match-object">Obiectum
+congruentiae</a></li>
+</ul></li>
+<li><a href="/la/regexes/quantifiers">Quantificatores</a>
+<ul>
+<li><a href="/la/regexes/quantifiers/star-plus-question">Stella, plus et
+signum interrogationis</a></li>
+<li><a href="/la/regexes/quantifiers/times-quantifier">Quantificator
+numeri</a></li>
+<li><a href="/la/regexes/quantifiers/greedy-frugal">Congruentia avida et
+frugalis</a></li>
+</ul></li>
+<li><a href="/la/regexes/captures">Capturae</a>
+<ul>
+<li><a href="/la/regexes/captures/positional">Capturae
+positionales</a></li>
+<li><a href="/la/regexes/captures/named">Capturae nominatae</a></li>
+<li><a href="/la/regexes/captures/non-capturing">Greges sine
+captura</a></li>
+</ul></li>
+<li><a href="/la/regexes/alternations">Alternativae</a>
+<ul>
+<li><a href="/la/regexes/alternations/alternation">Alternativa</a></li>
+<li><a href="/la/regexes/alternations/longest-token">Tessera longissima
+et prima congruentia</a></li>
+</ul></li>
+<li><a href="/la/regexes/anchors">Ancorae</a>
+<ul>
+<li><a href="/la/regexes/anchors/string-anchors">Initium et finis
+catenae</a></li>
+<li><a href="/la/regexes/anchors/word-boundaries">Fines
+verborum</a></li>
+</ul></li>
+<li><a href="/la/regexes/assertions">Assertiones circumspectus</a>
+<ul>
+<li><a href="/la/regexes/assertions/lookahead">Prospectus</a></li>
+<li><a href="/la/regexes/assertions/lookbehind">Respectus</a></li>
+</ul></li>
+<li><a href="/la/regexes/adverbs">Adverbia</a>
+<ul>
+<li><a href="/la/regexes/adverbs/ignorecase">Congruentia sine ratione
+litterarum maiorum</a></li>
+<li><a href="/la/regexes/adverbs/adverb-scope">Ambitus
+adverbiorum</a></li>
+<li><a href="/la/regexes/adverbs/global">Congruentia
+universalis</a></li>
+<li><a href="/la/regexes/adverbs/sigspace">Spatia significantia</a></li>
+</ul></li>
+<li><a href="/la/regexes/substitution">Substitutio et permutatio</a>
+<ul>
+<li><a href="/la/regexes/substitution/s-operator">Operator
+substitutionis</a></li>
+<li><a href="/la/regexes/substitution/captures-in-replacement">Capturae
+in permutatione</a></li>
+<li><a
+href="/la/regexes/substitution/transliteration">Transliteratio</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/regexes/grammars">Grammaticae</a>
+</summary>
+<ul>
+<li><a href="/la/regexes/what-is-a-grammar">Quid sit grammatica</a>
+<ul>
+<li><a href="/la/regexes/what-is-a-grammar/named-regexes">Expressiones
+regulares nominatae</a></li>
+<li><a href="/la/regexes/what-is-a-grammar/grammar-keyword">Verbum
+clavis grammar</a></li>
+</ul></li>
+<li><a href="/la/regexes/creating-grammars">Grammaticas creare</a>
+<ul>
+<li><a href="/la/regexes/creating-grammars/top-rule">Regula TOP</a></li>
+<li><a href="/la/regexes/creating-grammars/parse-method">Analysis per
+parse</a></li>
+</ul></li>
+<li><a href="/la/regexes/tokens-and-rules">Tesserae et regulae</a>
+<ul>
+<li><a href="/la/regexes/tokens-and-rules/three-kinds">regex, token et
+rule</a></li>
+<li><a href="/la/regexes/tokens-and-rules/rule-sigspace">Spatia
+significantia in regulis</a></li>
+</ul></li>
+<li><a href="/la/regexes/grammar-inheritance">Grammaticae, classes et
+hereditas</a>
+<ul>
+<li><a
+href="/la/regexes/grammar-inheritance/grammars-are-classes">Grammaticae
+sunt classes</a></li>
+<li><a href="/la/regexes/grammar-inheritance/proto-tokens">Tesserae
+proto et alternativae</a></li>
+</ul></li>
+<li><a href="/la/regexes/make-and-made">Arbor analysis, make et made</a>
+<ul>
+<li><a href="/la/regexes/make-and-made/match-tree">Arbor
+congruentiae</a></li>
+<li><a href="/la/regexes/make-and-made/make-made">make et made</a></li>
+</ul></li>
+<li><a href="/la/regexes/action-classes">Classes actionum</a>
+<ul>
+<li><a href="/la/regexes/action-classes/writing-actions">Classem
+actionum scribere</a></li>
+<li><a href="/la/regexes/action-classes/inline-vs-class">Actiones
+insertae et classes actionum</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">5</span>
+<a class="part-title" href="/la/paradigms">Programmatio functionalis,
+simultanea, reactiva et retialis</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Omnia coniuncta: programmatio functionalis, simultanea et reactiva,
+ad finem cum foraminibus, HTTP et servitiis retialibus construendis.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/la/paradigms/functional">Programmatio functionalis</a>
+</summary>
+<ul>
+<li><a href="/la/paradigms/recursion">Recursio</a>
+<ul>
+<li><a href="/la/paradigms/recursion/recursive-sub">Subprogramma
+recursivum</a></li>
+<li><a href="/la/paradigms/recursion/base-case">Casus
+fundamentalis</a></li>
+<li><a href="/la/paradigms/recursion/multi-recursion">Recursio cum
+subprogrammatibus multi</a></li>
+</ul></li>
+<li><a href="/la/paradigms/higher-order">Functiones ordinis
+superioris</a>
+<ul>
+<li><a href="/la/paradigms/higher-order/passing-subs">Subprogrammata
+tradere</a></li>
+<li><a href="/la/paradigms/higher-order/returning-subs">Subprogrammata
+reddere</a></li>
+</ul></li>
+<li><a href="/la/paradigms/closures">Lambdae et clausurae</a>
+<ul>
+<li><a href="/la/paradigms/closures/lambdas">Lambdae</a></li>
+<li><a href="/la/paradigms/closures/capturing-state">Clausurae</a></li>
+</ul></li>
+<li><a href="/la/paradigms/reduction">Reductio</a>
+<ul>
+<li><a href="/la/paradigms/reduction/reduction-metaop">Metaoperator
+reductionis</a></li>
+<li><a href="/la/paradigms/reduction/reduce-routine">Rutina
+reduce</a></li>
+</ul></li>
+<li><a href="/la/paradigms/feeds">Fluxus datorum</a>
+<ul>
+<li><a href="/la/paradigms/feeds/feed-operator">Operator fluxus</a></li>
+<li><a href="/la/paradigms/feeds/chaining-feeds">Fluxus
+concatenare</a></li>
+<li><a href="/la/paradigms/feeds/backward-feed">Fluxus
+retroversus</a></li>
+</ul></li>
+<li><a href="/la/paradigms/generators">Generatores</a>
+<ul>
+<li><a href="/la/paradigms/generators/gather-take">gather et
+take</a></li>
+<li><a href="/la/paradigms/generators/lazy-gather">gather piger</a></li>
+</ul></li>
+<li><a href="/la/paradigms/iterators">Iteratores</a>
+<ul>
+<li><a href="/la/paradigms/iterators/iterator-protocol">Protocollum
+iteratorum</a></li>
+<li><a href="/la/paradigms/iterators/writing-an-iterator">Iteratorem
+scribere</a></li>
+</ul></li>
+<li><a href="/la/paradigms/lazy">Sequentiae pigrae et infinitae</a>
+<ul>
+<li><a href="/la/paradigms/lazy/sequence-operator">Operator
+sequentiae</a></li>
+<li><a href="/la/paradigms/lazy/infinite-sequences">Sequentiae
+infinitae</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/paradigms/concurrent">Programmatio simultanea</a>
+</summary>
+<ul>
+<li><a href="/la/paradigms/junctions">Iuncturae</a>
+<ul>
+<li><a href="/la/paradigms/junctions/building-junctions">Iuncturas
+construere</a></li>
+<li><a href="/la/paradigms/junctions/autothreading">Filatio
+automatica</a></li>
+</ul></li>
+<li><a href="/la/paradigms/threads">Fila</a>
+<ul>
+<li><a href="/la/paradigms/threads/starting-a-thread">Filum
+incipere</a></li>
+<li><a href="/la/paradigms/threads/joining-threads">Fila
+coniungere</a></li>
+</ul></li>
+<li><a href="/la/paradigms/promises">Promissa</a>
+<ul>
+<li><a href="/la/paradigms/promises/start-and-await">start et
+await</a></li>
+<li><a href="/la/paradigms/promises/then-and-combinators">Concatenare et
+combinare</a></li>
+<li><a href="/la/paradigms/promises/making-a-promise">Promissum proprium
+🆕</a></li>
+<li><a href="/la/paradigms/promises/promise-status">Status promissi
+🆕</a></li>
+<li><a href="/la/paradigms/promises/vows">Vota (Vow) 🆕</a></li>
+</ul></li>
+<li><a href="/la/paradigms/channels">Canales</a>
+<ul>
+<li><a href="/la/paradigms/channels/send-and-receive">Mittere et
+accipere</a></li>
+<li><a href="/la/paradigms/channels/closing-a-channel">Canalem
+claudere</a></li>
+<li><a href="/la/paradigms/channels/receiving-past-the-end">Accipere
+post finem</a></li>
+</ul></li>
+<li><a href="/la/paradigms/hyper-race">hyper et race 🆕</a>
+<ul>
+<li><a href="/la/paradigms/hyper-race/hyper">map parallelum per
+hyper</a></li>
+<li><a href="/la/paradigms/hyper-race/race">Parallelismus inordinatus
+per race</a></li>
+<li><a href="/la/paradigms/hyper-race/batch-and-degree">Temperare per
+:batch et :degree</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/paradigms/reactive">Programmatio reactiva</a>
+</summary>
+<ul>
+<li><a href="/la/paradigms/supplies">Supply</a>
+<ul>
+<li><a href="/la/paradigms/supplies/tapping-a-supply">Ad supply se
+coniungere</a></li>
+<li><a href="/la/paradigms/supplies/transforming">Supply
+transformare</a></li>
+</ul></li>
+<li><a href="/la/paradigms/supply-kinds">Supply viva et ad
+petitionem</a>
+<ul>
+<li><a href="/la/paradigms/supply-kinds/on-demand-supplies">Supply ad
+petitionem</a></li>
+<li><a href="/la/paradigms/supply-kinds/live-supplies">Supply
+viva</a></li>
+<li><a href="/la/paradigms/supply-kinds/live-in-action">Supply viva in
+actione</a></li>
+</ul></li>
+<li><a href="/la/paradigms/react-whenever">react et whenever</a>
+<ul>
+<li><a href="/la/paradigms/react-whenever/the-react-block">Blocus
+react</a></li>
+<li><a href="/la/paradigms/react-whenever/whenever">whenever</a></li>
+<li><a href="/la/paradigms/react-whenever/named-supplies">Supply extra
+definita</a></li>
+<li><a href="/la/paradigms/react-whenever/whenever-vs-when">whenever et
+when</a></li>
+<li><a href="/la/paradigms/react-whenever/two-timers">Duo
+horologia</a></li>
+</ul></li>
+<li><a href="/la/paradigms/await">await</a>
+<ul>
+<li><a href="/la/paradigms/await/awaiting-promises">Promissum
+exspectare</a></li>
+<li><a href="/la/paradigms/await/waiting-for-completion">Finem
+exspectare</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/paradigms/web">Programmatio retialis</a>
+</summary>
+<ul>
+<li><a href="/la/paradigms/connections">Coniunctiones remotas facere</a>
+<ul>
+<li><a href="/la/paradigms/connections/opening-a-socket">Foramen
+aperire</a></li>
+<li><a href="/la/paradigms/connections/sending-receiving">Mittere et
+accipere</a></li>
+</ul></li>
+<li><a href="/la/paradigms/http-server">Servitor HTTP simplex</a>
+<ul>
+<li><a href="/la/paradigms/http-server/listening">Coniunctiones
+audire</a></li>
+<li><a href="/la/paradigms/http-server/responding">Petitioni
+respondere</a></li>
+<li><a href="/la/paradigms/http-server/serving-requests">Multis
+petitionibus servire</a></li>
+</ul></li>
+<li><a href="/la/paradigms/cro">Fundamenta Cro</a>
+<ul>
+<li><a href="/la/paradigms/cro/what-is-cro">Quid sit Cro</a></li>
+<li><a href="/la/paradigms/cro/a-cro-route">Via Cro</a></li>
+<li><a href="/la/paradigms/cro/route-with-parameter">Via cum
+parametro</a></li>
+<li><a href="/la/paradigms/cro/client-modules">Modulo clientis
+uti</a></li>
+<li><a href="/la/paradigms/cro/public-apis">Ab API publico
+petere</a></li>
+<li><a href="/la/paradigms/cro/websockets">WebSocket</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card part-pseudo">
+<h3 class="part-head">
+<span class="pnum pnum-star">★</span>
+<a class="part-title" href="/la/final-test">Probatio finalis</a>
+</h3>
+<p>Centum quaestiones ex partibus 1 ad 5, statim post responsum
+examinatae — finis qui ostendit quantum ex toto curriculo
+remanserit.</p>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">6</span>
+<a class="part-title" href="/la/addendum">Addendum: exercitationes
+amplae 🆕</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Collectio finalis exercitationum difficiliorum quae ex toto curriculo
+hauriunt. Unaquaeque plus quam unam ideam poscit, et multae instrumenta
+ex diversis partibus coniungunt. Omnes tantum facultatibus iam
+introductis utuntur — nihil novi discendum, sed multum exercendum.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/la/addendum/working-with-data">Cum datis laborare</a>
+</summary>
+<ul>
+<li><a href="/la/addendum/numbers-math">Numeri et mathematica</a></li>
+<li><a href="/la/addendum/text-strings">Textus et catenae</a></li>
+<li><a href="/la/addendum/collections">Indices, ordines et
+tabulae</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/addendum/flow-and-functions">Cursus et functiones</a>
+</summary>
+<ul>
+<li><a href="/la/addendum/control-logic">Ordo exsecutionis et
+logica</a></li>
+<li><a href="/la/addendum/subs-functional">Subprogrammata et stilus
+functionalis</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/addendum/types-and-text-machines">Genera et machinae
+textuales</a>
+</summary>
+<ul>
+<li><a href="/la/addendum/objects-classes">Obiecta et classes</a></li>
+<li><a href="/la/addendum/regex-grammars">Expressiones regulares et
+grammaticae</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/la/addendum/bringing-it-together">Omnia coniungere</a>
+</summary>
+<ul>
+<li><a href="/la/addendum/mini-projects">Incepta parva mixta</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="home-foot" data-markdown="1">
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/">English</a> • <a
+href="/de/">Deutsch</a> • <a href="/eo/">Esperanto</a> • <a
+href="/es/">Español</a> • <a href="/it/">Italiano</a> •
+<strong>Latina</strong> • <a href="/lv/">Latviešu</a> • <a
+href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a
+href="/ru/">Русский</a> • <a href="/uk/">Українська</a></p>
+</div>
+</div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>
+<p style="margin:.35em 0;"><a href="/la/about-this-course">De cursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Liber et fontis aperti · Sustinet <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scripsit <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

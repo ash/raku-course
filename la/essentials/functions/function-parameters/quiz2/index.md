@@ -1,5 +1,5 @@
 ---
-title: Quiz — Argumenta Transmittenda
+title: Transiens argumenta
 ---
 
 {% include menu.html %}

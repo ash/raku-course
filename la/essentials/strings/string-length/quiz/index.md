@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: Longitudo locutionis'
+title: 'Quiz: Longitudo sententiae'
 ---
 
 {% include menu.html %}

@@ -1,0 +1,8 @@
+---
+title: 'Exercitationes: Fluxus datorum'
+translations_gpt:
+---
+
+{% include menu.html %}
+
+{% include nav.html %}

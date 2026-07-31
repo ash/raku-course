@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Lite FizzBuzz'
+title: FizzBuzz
 ---
 
 {% include menu.html %}

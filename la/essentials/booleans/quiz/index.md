@@ -1,5 +1,5 @@
 ---
-title: Quiz — Typus Booleanus
+title: 'Quiz: Booleana valores'
 ---
 
 {% include menu.html %}

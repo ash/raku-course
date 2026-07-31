@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ‘Numerus denariorum’
+title: 'Solutio: Numerus denariorum'
 ---
 
 {% include menu.html %}
@@ -11,12 +11,12 @@ Hoc modo potes hanc quaestionem solvere.
 ```raku
 my $n = prompt 'Intra numerum integrum positivum: ';
 
-dic ($n % 100) div 10;
+say ($n % 100) div 10;
 ```
 
-🦋 Totum codicem invenire potes in fasciculo [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Totum codicem invenire potes in fasciculo [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
-## Output
+## Exitus
 
 Programma exsequi et pauca diversa casus probare:
 
@@ -40,7 +40,7 @@ In hac solutione, combinatio moduli `%` et divisionis integrae `div` iterum adhi
 Nota spatium ante parenthesin apertam. Illud ibi esse debet; aliter, errorem syntacticum accipies. Ad hunc aspectum [revertamur](/la/essentials/more-on-functions/mind-the-space) Raku in sectione de functionibus, sed nunc, codicem ut supra scriptum typa vel alterum par parenthesium ad argumentum functionis circumdandum adde — in hoc casu, nullum spatium necessarium est:
 
 ```raku
-    dic(($n % 100) div 10);
+    say(($n % 100) div 10);
 ```
 
 {% include nav.html %}

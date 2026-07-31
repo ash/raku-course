@@ -1,5 +1,5 @@
 ---
-title: Commentarii incorporati
+title: Inscripti commentarii
 ---
 
 {% include menu.html %}
@@ -9,7 +9,7 @@ Commentarii incorporati, vel commentarii in linea, eandem formam habent ac comme
 ```raku
 my $name;
 $name = #`[User input expected here] prompt 'Quod est nomen tuum? ';
-dic $name;
+say $name;
 ```
 
 Bonus syntax highlighter multum adiuvat ad commentarios visualizandos.

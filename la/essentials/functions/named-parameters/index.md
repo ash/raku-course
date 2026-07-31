@@ -1,5 +1,5 @@
 ---
-title: Parametri nominati
+title: Nominate parametra
 ---
 
 {% include menu.html %}

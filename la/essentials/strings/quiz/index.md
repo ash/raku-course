@@ -1,5 +1,5 @@
 ---
-title: Quiz — valid strings
+title: Quiz — validae catenae
 ---
 
 {% include menu.html %}

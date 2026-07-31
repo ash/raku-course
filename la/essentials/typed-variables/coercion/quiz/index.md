@@ -1,5 +1,5 @@
 ---
-title: Quiz — Type constraints
+title: Quiz — convertendo generibus
 ---
 
 {% include menu.html %}

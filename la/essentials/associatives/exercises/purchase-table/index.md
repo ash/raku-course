@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Tabula Emptionis'
+title: Tabula emptio
 ---
 
 {% include menu.html %}

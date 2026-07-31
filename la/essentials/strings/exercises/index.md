@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Chordae'
+title: 'Exercitationes: Catenae'
 ---
 
 {% include menu.html %}

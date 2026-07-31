@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Pluralis terminatio’
+title: 'Solutio: Pluralis terminatio'
 ---
 
 {% include menu.html %}
@@ -14,9 +14,9 @@ my $ending = $n == 1 ?? '' !! 's';
 say "$n file{$ending} efficti.";
 ```
 
-🦋 Invenire programmatum in fasciculo [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Invenire programmatum in fasciculo [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
-## Effectus
+## Exitus
 
 Programma bis saltem exsequi et experiri cum inputu `1` et cum alio numero positivo:
 

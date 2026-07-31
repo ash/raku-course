@@ -1,5 +1,5 @@
 ---
-title: The put routine
+title: '`put`'
 ---
 
 {% include menu.html %}
@@ -16,10 +16,10 @@ Pauca exempla:
 42.put;
 put 'Alpha', 'Beta';
 
-meus @array = 3, 4, 5;
+my @array = 3, 4, 5;
 put @array;
 
-meus %hash = a => 'b', c => 'd';
+my %hash = a => 'b', c => 'd';
 %hash.put;
 ```
 

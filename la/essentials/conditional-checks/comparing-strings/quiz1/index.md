@@ -1,10 +1,10 @@
 ---
-title: Quiz 1 — Compare strings
+title: Quiz 1 — Comparare catenae
 ---
 
 {% include menu.html %}
 
-Reprehendo illas expressiones quae `Verum` resultant.
+Reprehendo illas expressiones quae `True` resultant.
 
 {:.quiz}
 0 | &apos;abc&apos; aequale &apos;ABC&apos;

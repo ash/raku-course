@@ -1,5 +1,5 @@
 ---
-title: Convertens genera cum operatoribus praefixis
+title: Convertendo generibus cum prefixis operatoribus
 ---
 
 {% include menu.html %}
@@ -13,31 +13,31 @@ Alius modus transformandi genus obiecti est uti operatoribus praefixis. Hi sunt 
 Considera exemplum creandi valorem Booleanum ex integro:
 
 ```raku
-dic ?42; # Verum
+say ?42; # Verum
 ```
 
 Converto ad stringam simile est:
 
 ```raku
-meus $n = -30;
-meus $s = ~$n;
-dic $s.chars; # 3, ut "-30" habet 3 characteres
+my $n = -30;
+my $s = ~$n;
+say $s.chars; # 3, ut "-30" habet 3 characteres
 ```
 
 Nota quod cum conversione numerica, genus valoris conversi differt secundum numerum in quaestione. Compara conversiones sequentes ex stringis:
 
 ```raku
-dic (+'100').WHAT;   # (Int)
-dic (+'3.14').WHAT;  # (Rat)
-dic (+'27E-1').WHAT; # (Num)
+say (+'100').WHAT;   # (Int)
+say (+'3.14').WHAT;  # (Rat)
+say (+'27E-1').WHAT; # (Num)
 ```
 
 Ad conversiones Booleanas, est alia ratio quae vocatur `so`. Potes uti ea ut operator praefixus vel ut methodus:
 
 ```raku
-meus $valor = 42;
-dic so $valor; # Verum
-dic $valor.so; # Verum
+my $valor = 42;
+say so $valor; # Verum
+say $valor.so; # Verum
 ```
 
 {% include nav.html %}

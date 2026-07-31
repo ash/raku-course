@@ -1,5 +1,5 @@
 ---
-title: Currens ex REPL
+title: Currendo ex REPL
 ---
 
 {% include menu.html %}

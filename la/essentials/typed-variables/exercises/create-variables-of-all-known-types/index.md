@@ -1,10 +1,10 @@
 ---
-title: Variabiles omnium notarum creare
+title: Creare variabiles omnium notorum generum
 ---
 
 {% include menu.html %}
 
-## Munus
+## Problema
 
 Programma scribe quod paucas variabiles scalaris creat et eas cum valoribus sequentium notarum initializat: `Int`, `Rat`, `Num`, `Bool`, et `Str`. Programma tam valorem quam eius notam imprimere debet.
 

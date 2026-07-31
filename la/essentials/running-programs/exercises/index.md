@@ -1,5 +1,5 @@
 ---
-title: 'Exercitia: Programmatum Currendum'
+title: 'Exercitationes: Currendo programmata'
 ---
 
 {% include menu.html %}

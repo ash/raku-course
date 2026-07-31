@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Factorialis Recursivus'
+title: Recursive factorial
 ---
 
 {% include menu.html %}

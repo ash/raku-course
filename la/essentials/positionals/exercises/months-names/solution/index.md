@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Nomina Mensium'
+title: 'Solutio: Nomina mensium'
 ---
 
 {% include menu.html %}
@@ -20,9 +20,9 @@ my @months = <
 say @months[@*ARGS[0] - 1];
 ```
 
-🦋 Invenias programma in archivo [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/months-names.raku).
+🦋 Invenias programma in archivo [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/months-names.raku).
 
-## Output
+## Exitus
 
 Experire aliquot cursus programmatis ut diversa nomina mensium videas.
 

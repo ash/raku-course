@@ -1,10 +1,10 @@
 ---
-title: 'Solutio: Reponere cum antonymis'
+title: 'Solutio: Reponere cum antonyma'
 ---
 
 {% include menu.html %}
 
-Ad solvendum munus, contenta fasciculi [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) in solutionis fasciculum [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku) effinguntur. Postea, per argumenta inputis iteratur ut verbum in dictionario inveniat, et si potest, antonymum accipit. Si nullum tale verbum in dictionario est, verbum originale adhibetur.
+Ad solvendum munus, contenta fasciculi [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) in solutionis fasciculum [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku) effinguntur. Postea, per argumenta inputis iteratur ut verbum in dictionario inveniat, et si potest, antonymum accipit. Si nullum tale verbum in dictionario est, verbum originale adhibetur.
 
 ## Codex
 
@@ -25,9 +25,9 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Invenire programmatum in fasciculo [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Invenire programmatum in fasciculo [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
-## Output
+## Exitus
 
 ```console
 $ raku exercises/associatives/replace-with-antonyms.raku early morning

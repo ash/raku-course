@@ -1,5 +1,5 @@
 ---
-title: Exercitium 'Salve, Ego!'
+title: 'Salve, me!'
 ---
 
 {% include menu.html %}

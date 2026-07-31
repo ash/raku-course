@@ -1,5 +1,5 @@
 ---
-title: Reditus genus functionum
+title: Redonare typus
 ---
 
 {% include menu.html %}

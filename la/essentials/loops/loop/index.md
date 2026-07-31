@@ -1,10 +1,10 @@
 ---
-title: loop
+title: 'Tribus partibus `loop`'
 ---
 
 {% include menu.html %}
 
-`loop` enuntiatum est constructum in Raku quod multum commune habet cum traditionalibus loopis in C programmando lingua et eius cognatis. Accipit tres enuntiationes: initialiser, test, et enuntiatum ad variabilem loopis modificandam. Corpus loopis iterum atque iterum exequitur dum test manet `Verum`.
+`loop` enuntiatum est constructum in Raku quod multum commune habet cum traditionalibus loopis in C programmando lingua et eius cognatis. Accipit tres enuntiationes: initialiser, test, et enuntiatum ad variabilem loopis modificandam. Corpus loopis iterum atque iterum exequitur dum test manet `True`.
 
 ```raku
 loop (my $c = 0; $c < 5; $c++) {

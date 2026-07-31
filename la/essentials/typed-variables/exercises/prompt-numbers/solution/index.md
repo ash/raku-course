@@ -1,5 +1,5 @@
 ---
-title: Solutio ‘Examining the result of prompt — Numeri’
+title: 'Solutio: Explorare resultatum `prompt` — Numeri'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 Codicem fontis invenire potes in archivo [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
+🦋 Codicem fontis invenire potes in archivo [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-numbers.raku).
 
 ## Probationes
 

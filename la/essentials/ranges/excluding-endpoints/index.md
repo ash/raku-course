@@ -1,5 +1,5 @@
 ---
-title: Excludens terminos intervalli
+title: Exclusis extremitatibus
 ---
 
 {% include menu.html %}

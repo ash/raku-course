@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Annus bissextilis'
+title: 'Solutio: Annus bisextilis'
 ---
 
 {% include menu.html %}
@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Inveni programmam in archivo [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Inveni programmam in archivo [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Codex 2
 
@@ -52,9 +52,9 @@ my $year = prompt 'Annus: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Annus bissextilis' !! 'Annus communis';
 ```
 
-🦋 Inveni programmam in archivo [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Inveni programmam in archivo [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
-## Output
+## Exitus
 
 Experire utrumque programma cum casibus criticis, exempli gratia, 1900, 2000, 2020, 2021.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Salve Mundi!'
+title: 'Solutio: Salve, Mundi!'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ sub MAIN() {
 }
 ```
 
-🦋 Invenire programmatum in archivo [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world.raku).
+🦋 Invenire programmatum in archivo [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world.raku).
 
 ## Codex 2
 
@@ -23,7 +23,7 @@ unit sub MAIN;
 say 'Salve, Mundi!';
 ```
 
-🦋 Invenire programmatum in archivo [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world-unit.raku).
+🦋 Invenire programmatum in archivo [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world-unit.raku).
 
 ## Exemplum
 

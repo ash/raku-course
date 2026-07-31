@@ -1,5 +1,5 @@
 ---
-title: 'Quiz: A backslash in the output'
+title: 'Quiz: Inversus punctus in output'
 ---
 
 {% include menu.html %}

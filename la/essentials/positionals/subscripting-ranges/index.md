@@ -1,5 +1,5 @@
 ---
-title: Subscripting ranges
+title: Subscribendo intervalla
 ---
 
 {% include menu.html %}

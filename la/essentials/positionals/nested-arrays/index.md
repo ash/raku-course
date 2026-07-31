@@ -1,5 +1,5 @@
 ---
-title: Tabulae nidificatae
+title: Nidificata array
 ---
 
 {% include menu.html %}

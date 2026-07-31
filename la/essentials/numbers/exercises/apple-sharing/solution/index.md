@@ -1,5 +1,5 @@
 ---
-title: Solutio ad ‘Apple sharing’
+title: 'Solutio: Pomum communicatio'
 ---
 
 {% include menu.html %}
@@ -19,9 +19,9 @@ say "Quisque homo accipit $gets malum/mala.";
 say "Sunt $remains malum/mala remanentia.";
 ```
 
-🦋 Plenum codicem invenire potes in archivo [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Plenum codicem invenire potes in archivo [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
-## Output
+## Exitus
 
 Cum numeris input 3 et 11, programma sequens output imprimit:
 

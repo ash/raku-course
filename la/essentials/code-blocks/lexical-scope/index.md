@@ -1,5 +1,5 @@
 ---
-title: Lexical scope
+title: Lexicalis ambitus
 ---
 
 {% include menu.html %}

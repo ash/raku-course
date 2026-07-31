@@ -1,5 +1,5 @@
 ---
-title: 'Exercitium: Quadrata et cubi in circulo'
+title: Quadrata et cubica in ansa
 ---
 
 {% include menu.html %}

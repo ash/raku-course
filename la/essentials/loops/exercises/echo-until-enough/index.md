@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Echo usque satis'
+title: Echo usque satis
 ---
 
 {% include menu.html %}

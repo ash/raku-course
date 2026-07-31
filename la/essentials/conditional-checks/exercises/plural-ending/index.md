@@ -1,10 +1,10 @@
 ---
-title: 'Exercitatio: Pluralis terminatio'
+title: Pluralis terminatio
 ---
 
 {% include menu.html %}
 
-## Munus
+## Problema
 
 Scribe programma quod rogat usorem pro numero integro positivo et deinde imprimit sententiam `N files copied`, ubi `N` est numerus ingressus, et verbum `file` est in forma correcta: pluralis vel singularis.
 

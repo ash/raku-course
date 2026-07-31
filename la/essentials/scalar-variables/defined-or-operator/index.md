@@ -1,5 +1,5 @@
 ---
-title: Operator definitus-vel
+title: Definita-vel operator
 ---
 
 {% include menu.html %}

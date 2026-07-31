@@ -1,10 +1,10 @@
 ---
-title: Notatio Ritus
+title: '`note`'
 ---
 
 {% include menu.html %}
 
-Ritus `notatio` argumenta sua ad rivum errorum standard imprimet. In reliquis, similis est [`dicere`](../say).
+Ritus `note` argumenta sua ad rivum errorum standard imprimet. In reliquis, similis est [`say`](../say).
 
 1. Vocatur methodum `gist` in argumentis suis.
 1. Addit characterem novae lineae.
@@ -13,7 +13,7 @@ Ritus `notatio` argumenta sua ad rivum errorum standard imprimet. In reliquis, s
 
 ```raku
 my $x = 42;
-notatio "Valor currentis \$x est $x";
+note "Valor currentis \$x est $x";
 ```
 
 Confirma hunc programmatum nuntium ad `STDOUT` non mittere:
@@ -23,6 +23,6 @@ $ raku t.raku > /dev/null
 Valor currentis $x est 42
 ```
 
-Si nullum argumentum ad `notatio` traditur, imprimit `Notatum` ut nuntium defaltum.
+Si nullum argumentum ad `note` traditur, imprimit `Notatum` ut nuntium defaltum.
 
 {% include nav.html %}

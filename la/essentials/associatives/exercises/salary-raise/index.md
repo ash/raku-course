@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Salarium augere'
+title: Stipendium incrementum
 ---
 
 {% include menu.html %}

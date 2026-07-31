@@ -1,5 +1,5 @@
 ---
-title: 'Solutio: Lumina Traffica'
+title: 'Solutio: Luminum trafficum'
 ---
 
 {% include menu.html %}
@@ -19,14 +19,14 @@ Hic est solutio:
 ```raku
 my @lights = <flavum rubrum flavum viride>;
 
-dic @lights[51 % @lights];
-dic @lights[102 % @lights];
-dic @lights[305 % @lights];
+say @lights[51 % @lights];
+say @lights[102 % @lights];
+say @lights[305 % @lights];
 ```
 
-🦋 Inveni programmatum in archivo [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/traffic-lights.raku).
+🦋 Inveni codicem fontem in archivo [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/traffic-lights.raku).
 
-## Output
+## Exitus
 
 Curre programmatum. Praeterea, tenta alias valores in programmate.
 

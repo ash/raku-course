@@ -1,5 +1,5 @@
 ---
-title: Variabiles locales
+title: Locales variabiles
 ---
 
 {% include menu.html %}

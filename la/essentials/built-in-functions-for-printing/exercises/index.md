@@ -1,5 +1,5 @@
 ---
-title: 'Exercitationes: Munera aedificata ad imprimendum'
+title: 'Exercitationes: In aedificavit functiones ad print'
 ---
 
 {% include menu.html %}

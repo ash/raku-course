@@ -1,5 +1,5 @@
 ---
-title: 'Exercitatio: Factorialis cum multi-functionibus'
+title: Factorial cum multi-functiones
 ---
 
 {% include menu.html %}
