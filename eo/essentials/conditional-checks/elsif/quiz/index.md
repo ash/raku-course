@@ -1,5 +1,5 @@
 ---
-title: Kvizo — if, elsif, else
+title: 'Kvizo: `if`, `elsif`, kaj `else`'
 ---
 
 {% include menu.html %}

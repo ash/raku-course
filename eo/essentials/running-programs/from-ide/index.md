@@ -1,5 +1,5 @@
 ---
-title: Kuri de IDE
+title: Lanĉado de IDE
 ---
 
 {% include menu.html %}

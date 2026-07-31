@@ -1,5 +1,5 @@
 ---
-title: Poziciaj datumtipoj
+title: Poziciaj datentipoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Kalkuli kaj presi komando-linio argumentojn’
+title: 'Solvo: Kalkuli kaj presi komando-linio argumentojn'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Trovu la programon en la dosiero [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Eligo
 

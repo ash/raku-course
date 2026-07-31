@@ -1,5 +1,5 @@
 ---
-title: Esenciales de Raku
+title: Esenciales
 ---
 
 {% assign menu_for_part = "essentials" %}

@@ -1,5 +1,5 @@
 ---
-title: Legado de komando-liniaj argumentoj
+title: Legante komando-linio argumentojn
 ---
 
 {% include menu.html %}

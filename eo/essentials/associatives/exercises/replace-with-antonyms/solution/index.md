@@ -4,7 +4,7 @@ title: 'Solvo: Anstataŭigi per antonimoj'
 
 {% include menu.html %}
 
-Por solvi la taskon, la enhavo de la dosiero [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) estas kopiita al la solva dosiero [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku). Post tio, buklo super la eniraj argumentoj provas trovi la vorton en la vortaro, kaj se ĝi povas, ĝi prenas la antonimon. Se ne ekzistas tia vorto en la vortaro, la originala vorto estas uzata.
+Por solvi la taskon, la enhavo de la dosiero [dictionary.raku](https://github.com/ash/raku-course/blob/master/essentials/associatives/exercises/replace-with-antonyms/dictionary.raku) estas kopiita al la solva dosiero [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku). Post tio, buklo super la eniraj argumentoj provas trovi la vorton en la vortaro, kaj se ĝi povas, ĝi prenas la antonimon. Se ne ekzistas tia vorto en la vortaro, la originala vorto estas uzata.
 
 ## Kodo
 
@@ -25,7 +25,7 @@ for @*ARGS -> $word {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/replace-with-antonyms.raku).
+🦋 Trovu la programon en la dosiero [replace-with-antonyms.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/replace-with-antonyms.raku).
 
 ## Eligo
 

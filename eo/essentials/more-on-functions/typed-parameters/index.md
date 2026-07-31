@@ -1,5 +1,5 @@
 ---
-title: Tajpitaj parametroj de funkcioj
+title: Tipitaj parametroj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Kongruo kontraŭ intervalo
+title: Kvizo — Kongruado kontraŭ intervalo
 ---
 
 {% include menu.html %}

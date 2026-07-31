@@ -1,5 +1,5 @@
 ---
-title: Raciaj nombroj en Raku
+title: Raciaj nombroj
 ---
 
 {% include menu.html %}

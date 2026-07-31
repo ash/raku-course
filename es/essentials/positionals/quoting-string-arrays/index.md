@@ -1,5 +1,5 @@
 ---
-title: Citando arreglos de cadenas
+title: Citar arrays de cadenas
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Convertir tipos usando formas de constructor
+title: Conversión de tipos usando formas de constructor
 ---
 
 {% include menu.html %}

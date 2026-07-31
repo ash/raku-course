@@ -1,5 +1,5 @@
 ---
-title: Kvizo — validaj ĉenoj
+title: Kvizo — validaj stringoj
 ---
 
 {% include menu.html %}

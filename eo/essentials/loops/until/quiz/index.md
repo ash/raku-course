@@ -1,5 +1,5 @@
 ---
-title: Quiz — The until loop
+title: 'Kvizo — la `until` ripeto'
 ---
 
 {% include menu.html %}

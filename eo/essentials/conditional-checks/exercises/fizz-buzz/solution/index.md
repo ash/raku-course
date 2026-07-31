@@ -4,7 +4,7 @@ title: 'Solvo: FizzBuzz'
 
 {% include menu.html %}
 
-Ĉi tiu tasko estas klasika intervjuo-tasko kiu helpas kontroli ĉu vi konsideras la kazojn kiam ambaŭ kondiĉoj estas `Vera`. Se la nombro estas dividebla per kaj 3 kaj 5, la programo devus presi `FizzBuzz`.
+Ĉi tiu tasko estas klasika intervjuo-tasko kiu helpas kontroli ĉu vi konsideras la kazojn kiam ambaŭ kondiĉoj estas `True`. Se la nombro estas dividebla per kaj 3 kaj 5, la programo devus presi `FizzBuzz`.
 
 ## Kodo
 
@@ -13,12 +13,12 @@ Jen la solvo:
 ```raku
 my $n = prompt 'Enigu numeron: ';
 
-print 'Fizz' se $n %% 3;
-print 'Buzz' se $n %% 5;
+print 'Fizz' if $n %% 3;
+print 'Buzz' if $n %% 5;
 print "\n";
 ```
 
-🦋 Trovu la programon en la dosiero [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/exercises/conditional-checks/fizz-buzz.raku).
+🦋 Trovu la programon en la dosiero [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/fizz-buzz.raku).
 
 ## Ekzemplo
 

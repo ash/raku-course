@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Kvadratoj kaj kuboj en buklo'
+title: 'Solvo: Kvadratoj kaj kuboj en ripeto'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Trovu la programon en la dosiero [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Ekzemplo
 

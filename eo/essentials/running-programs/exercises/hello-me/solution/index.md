@@ -1,5 +1,5 @@
 ---
-title: Solvo de 'Hello, Me!'
+title: 'Solvo: Saluton, mi!'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ Jen la solvo al la problemo '[Hello, me!](../)'.
 say 'Hello, Andrew!';
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/running-programs/hello-me.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [hello-me.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/running-programs/hello-me.raku).
 
 ## Eligo
 

@@ -1,12 +1,12 @@
 ---
-title: ĝis
+title: 'Uzante `until`'
 ---
 
 {% include menu.html %}
 
-La konstruo `ĝis` estas la malo de `dum`. Ĝi ekzekutas la blokon de kodo ĝis la kondiĉo fariĝas `Vera` (aŭ, alie dirite, dum ĝi estas `Falsa`).
+La konstruo `until` estas la malo de `while`. Ĝi ekzekutas la blokon de kodo ĝis la kondiĉo fariĝas `True` (aŭ, alie dirite, dum ĝi estas `False`).
 
-Jen modifita [programo de la antaŭa paĝo](../while) kiu uzas `ĝis` kaj novan kondiĉon:
+Jen modifita [programo de la antaŭa paĝo](../while) kiu uzas `until` kaj novan kondiĉon:
 
 ```raku
 my $x = 0;
@@ -32,16 +32,16 @@ Vi enigis 20.
 20 estas pli granda ol 10.
 ```
 
-## `ĝis` vs. `dum`
+## `until` vs. `while`
 
-Komparu la ekvivalentajn programojn kun `dum` kaj `ĝis`:
+Komparu la ekvivalentajn programojn kun `while` kaj `until`:
 
 ```raku
-dum $x <= 10 { . . . }
+while $x <= 10 { . . . }
 
-ĝis $x > 10 { . . . }
+until $x > 10 { . . . }
 ```
 
-Kiel vi vidas, la kondiĉoj estas negitaj versioj unu de la alia. En ĉi tiu senco, `dum` kaj `ĝis` estas en la samaj rilatoj kiel `se` kaj `krom se`.
+Kiel vi vidas, la kondiĉoj estas negitaj versioj unu de la alia. En ĉi tiu senco, `while` kaj `until` estas en la samaj rilatoj kiel `if` kaj `unless`.
 
 {% include nav.html %}

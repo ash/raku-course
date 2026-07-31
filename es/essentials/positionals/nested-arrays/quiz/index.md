@@ -1,5 +1,5 @@
 ---
-title: Quiz — Arrays anidados
+title: Quiz — Arrays anidados
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ejercicio 'Negaciones dobles y triples’
+title: Doble negación
 ---
 
 {% include menu.html %}

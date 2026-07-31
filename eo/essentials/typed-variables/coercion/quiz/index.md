@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Tipaj limigoj
+title: Kvizo — konverti la tipojn
 ---
 
 {% include menu.html %}

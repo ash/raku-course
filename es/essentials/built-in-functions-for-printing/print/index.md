@@ -1,5 +1,5 @@
 ---
-title: La rutina de impresión
+title: '`print`'
 ---
 
 {% include menu.html %}

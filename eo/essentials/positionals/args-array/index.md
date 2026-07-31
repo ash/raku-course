@@ -1,5 +1,5 @@
 ---
-title: La @*ARGS tabelo
+title: 'La `@*ARGS` arrayo'
 ---
 
 {% include menu.html %}

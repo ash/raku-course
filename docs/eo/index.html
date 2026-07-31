@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="eo">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>La Kompleta Kurso de la Raku programlingvo</title>
-    <meta property="og:title" content="La Kompleta Kurso de la Raku programlingvo" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>La kompleta kurso de la programlingvo Raku</title>
+    <meta property="og:title" content="La kompleta kurso de la programlingvo Raku" />
     <meta property="og:locale" content="eo" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>La Kompleta Kurso de la Raku programlingvo</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,216 +88,1192 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <h1 id="la-kompleta-kurso-de-la-raku-programlingvo">La Kompleta Kurso de la Raku programlingvo</h1>
-
-<ul>
-  <li><a href="/eo/about-this-course">Pri ĉi tiu kurso</a></li>
-</ul>
-
-<h2 id="parto-1-raku-esencoj">Parto 1. Raku-esencoj</h2>
-<h4 id="baza-enkonduko-al-raku-kaj-ĝia-kompililo">Baza enkonduko al Raku kaj ĝia kompililo</h4>
-<ul>
-  <li><a href="/eo/essentials/what-is-raku">Kio estas Raku</a></li>
-  <li><a href="/eo/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
-  <li><a href="/eo/essentials/how-to-install-rakudo">Kiel instali Rakudo</a></li>
-  <li><a href="/eo/essentials/editors-and-ides">Redaktiloj kaj IDEj</a></li>
-  <li><a href="/eo/essentials/conventional-file-extensions">Konvenciaj dosierfinajhoj</a></li>
-  <li><a href="/eo/essentials/hello-world">Saluton, Mondo!</a></li>
-  <li><a href="/eo/essentials/on-unicode">Notoj pri uzado de Unikodo</a></li>
-  <li><a href="/eo/essentials/running-programs">Lanĉado de programoj</a>
-    <ul>
-      <li><a href="/eo/essentials/running-programs/from-command-line">Lanĉado de komanda linio</a></li>
-      <li><a href="/eo/essentials/running-programs/from-repl">Lanĉado de REPL</a></li>
-      <li><a href="/eo/essentials/running-programs/from-ide">Lanĉado de IDE</a></li>
-      <li><a href="/eo/essentials/running-programs/using-docker">Uzado de docker</a></li>
-      <li><a href="/eo/essentials/running-programs/using-online-services">Uzado de retaj servoj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/simple-input-output">Simpla enigo kaj eligo</a>
-    <ul>
-      <li><a href="/eo/essentials/simple-input-output/say">Eligo per <code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/eo/essentials/simple-input-output/prompt">Enigo per <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/comments">Komentoj</a>
-    <ul>
-      <li><a href="/eo/essentials/comments/single-line">Unuliniaj komentoj</a></li>
-      <li><a href="/eo/essentials/comments/multi-line">Plurliniaj komentoj</a></li>
-      <li><a href="/eo/essentials/comments/embedded">Enmetitaj komentoj</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="esencoj-de-variabloj-kaj-datentipoj">Esencoj de variabloj kaj datentipoj</h4>
-<ul>
-  <li><a href="/eo/essentials/scalar-variables">Skalaraj variabloj</a>
-    <ul>
-      <li><a href="/eo/essentials/scalar-variables/declaring-a-variable">Deklarado de variablo</a></li>
-      <li><a href="/eo/essentials/scalar-variables/assigning-a-value">Atribuado de valoro</a></li>
-      <li><a href="/eo/essentials/scalar-variables/declaration-with-initialization">Deklarado kun inicialigo</a></li>
-      <li><a href="/eo/essentials/scalar-variables/defined-or-operator">La difinita-aŭ operatoro</a></li>
-      <li><a href="/eo/essentials/scalar-variables/identifiers">Nomoj de la variabloj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/strings">Stringoj</a>
-    <ul>
-      <li><a href="/eo/essentials/strings/string-concatenation">Stringa concatenado</a></li>
-      <li><a href="/eo/essentials/strings/variable-interpolation">Variabla interpolado</a></li>
-      <li><a href="/eo/essentials/strings/code-interpolation">Koda interpolado</a></li>
-      <li><a href="/eo/essentials/strings/escaping-special-characters">Eskapado de specialaj karakteroj</a></li>
-      <li><a href="/eo/essentials/strings/string-length">Stringa longo</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/numbers">Nombroj</a>
-    <ul>
-      <li><a href="/eo/essentials/numbers/integers">Entjeraj nombroj</a></li>
-      <li><a href="/eo/essentials/numbers/rats">Raciaj nombroj</a></li>
-      <li><a href="/eo/essentials/numbers/numeric">Flosantaj nombroj</a></li>
-      <li><a href="/eo/essentials/numbers/operations">Operacioj kun nombroj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/booleans">Boolea tipo</a>
-    <ul>
-      <li><a href="/eo/essentials/booleans/operations">Booleaj operacioj</a></li>
-      <li><a href="/eo/essentials/booleans/boolean-operations-other-types">Booleaj operacioj kun aliaj tipoj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/ranges">Intervaloj</a>
-    <ul>
-      <li><a href="/eo/essentials/ranges/excluding-endpoints">Ekskludante finojn</a></li>
-      <li><a href="/eo/essentials/ranges/matching-against-a-range">Kongruado kontraŭ intervalo</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="esencoj-de-kontrolfluo">Esencoj de kontrolfluo</h4>
-<ul>
-  <li><a href="/eo/essentials/code-blocks">Kodoblokoj</a>
-    <ul>
-      <li><a href="/eo/essentials/code-blocks/lexical-scope">Leksika amplekso</a></li>
-      <li><a href="/eo/essentials/code-blocks/global-variables">Globalaj variabloj</a></li>
-      <li><a href="/eo/essentials/code-blocks/local-variables">Lokaj variabloj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/conditional-checks">Kondiĉaj kontroloj</a>
-    <ul>
-      <li><a href="/eo/essentials/conditional-checks/if"><code class="language-plaintext highlighter-rouge">if</code> blokoj</a></li>
-      <li><a href="/eo/essentials/conditional-checks/else"><code class="language-plaintext highlighter-rouge">else</code> blokoj</a></li>
-      <li><a href="/eo/essentials/conditional-checks/elsif">Uzante <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
-      <li><a href="/eo/essentials/conditional-checks/unless">Uzante <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-      <li><a href="/eo/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> kaj <code class="language-plaintext highlighter-rouge">unless</code> kiel modifiloj de deklaroj</a></li>
-      <li><a href="/eo/essentials/conditional-checks/comparing-numbers">Komparante nombrojn</a></li>
-      <li><a href="/eo/essentials/conditional-checks/comparing-strings">Komparante stringojn</a></li>
-      <li><a href="/eo/essentials/conditional-checks/ternary-operator">Ternara operatoro</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/loops">Ripetoj</a>
-    <ul>
-      <li><a href="/eo/essentials/loops/while">Uzante <code class="language-plaintext highlighter-rouge">while</code></a></li>
-      <li><a href="/eo/essentials/loops/until">Uzante <code class="language-plaintext highlighter-rouge">until</code></a></li>
-      <li><a href="/eo/essentials/loops/repeat">Uzante <code class="language-plaintext highlighter-rouge">repeat</code></a></li>
-      <li><a href="/eo/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> kaj <code class="language-plaintext highlighter-rouge">until</code> kiel modifiloj de deklaroj</a></li>
-      <li><a href="/eo/essentials/loops/loop">Trideklaro <code class="language-plaintext highlighter-rouge">loop</code></a></li>
-      <li><a href="/eo/essentials/loops/infinite-loops">Senfinaj ripetoj</a></li>
-      <li><a href="/eo/essentials/loops/for"><code class="language-plaintext highlighter-rouge">for</code> ripetoj</a></li>
-      <li><a href="/eo/essentials/loops/topic">Temvariablo</a></li>
-      <li><a href="/eo/essentials/loops/postfix-for">Postfixa formo de <code class="language-plaintext highlighter-rouge">for</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="pli-pri-tipoj">Pli pri tipoj</h4>
-<ul>
-  <li><a href="/eo/essentials/coercion">Datentipa konvertado</a>
-    <ul>
-      <li><a href="/eo/essentials/coercion/what">Introspekto kun <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-      <li><a href="/eo/essentials/coercion/methods">Konvertante tipojn uzante tipajn devigmetodojn</a></li>
-      <li><a href="/eo/essentials/coercion/new">Konvertante tipojn uzante konstruistajn formojn</a></li>
-      <li><a href="/eo/essentials/coercion/prefixes">Konvertante tipojn kun prefiksaj operatoroj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/typed-variables">Tipitaj variabloj</a>
-    <ul>
-      <li><a href="/eo/essentials/typed-variables/type-constraints">Tipaj limigoj</a></li>
-      <li><a href="/eo/essentials/typed-variables/using-of">Uzante <code class="language-plaintext highlighter-rouge">of</code></a></li>
-      <li><a href="/eo/essentials/typed-variables/coercion">Tipkonvertado por tipitaj variabloj</a></li>
-      <li><a href="/eo/essentials/typed-variables/allomorphs">Alomorfoj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/positionals">Poziciaj datentipoj</a>
-    <ul>
-      <li><a href="/eo/essentials/positionals/arrays">Arrayoj</a></li>
-      <li><a href="/eo/essentials/positionals/nested-arrays">Nestitaj arrayoj</a></li>
-      <li><a href="/eo/essentials/positionals/args-array">La <code class="language-plaintext highlighter-rouge">@*ARGS</code> arrayo</a></li>
-      <li><a href="/eo/essentials/positionals/interpolating-arrays">Interpolante arrayojn</a></li>
-      <li><a href="/eo/essentials/positionals/lists">Listoj</a></li>
-      <li><a href="/eo/essentials/positionals/quoting-string-arrays">Citante stringajn arrayojn</a></li>
-      <li><a href="/eo/essentials/positionals/subscripting-ranges">Subskribante intervalojn</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/associatives">Asociaj datentipoj</a>
-    <ul>
-      <li><a href="/eo/essentials/associatives/pairs">Paroj</a></li>
-      <li><a href="/eo/essentials/associatives/hashes">Haxoj</a></li>
-      <li><a href="/eo/essentials/associatives/nested-hashes">Nestitaj haxoj</a></li>
-      <li><a href="/eo/essentials/associatives/interpolating-hashes">Interpolante haxojn</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="esencoj-de-funkcioj">Esencoj de funkcioj</h4>
-<ul>
-  <li><a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a>
-    <ul>
-      <li><a href="/eo/essentials/functions/identifiers">Funkciaj nomoj</a></li>
-      <li><a href="/eo/essentials/functions/function-parameters">Funkciaj parametroj</a></li>
-      <li><a href="/eo/essentials/functions/return-result">Redonante la rezulton</a></li>
-      <li><a href="/eo/essentials/functions/positional-parameters">Poziciaj parametroj</a></li>
-      <li><a href="/eo/essentials/functions/named-parameters">Nomitaj parametroj</a></li>
-      <li><a href="/eo/essentials/functions/default-values">Defaŭltaj valoroj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a>
-    <ul>
-      <li><a href="/eo/essentials/more-on-functions/mind-the-space">Atentu la spacon</a></li>
-      <li><a href="/eo/essentials/more-on-functions/typed-parameters">Tipitaj parametroj</a></li>
-      <li><a href="/eo/essentials/more-on-functions/return-type">Redontipo</a></li>
-      <li><a href="/eo/essentials/more-on-functions/multi-functions">Multi-funkcioj</a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj funkcioj por presado</a>
-    <ul>
-      <li><a href="/eo/essentials/built-in-functions-for-printing/say"><code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/eo/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a></li>
-      <li><a href="/eo/essentials/built-in-functions-for-printing/put"><code class="language-plaintext highlighter-rouge">put</code></a></li>
-      <li><a href="/eo/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/eo/essentials/the-main-function">La <code class="language-plaintext highlighter-rouge">MAIN</code> funkcio</a>
-    <ul>
-      <li><a href="/eo/essentials/the-main-function/reading-command-line-arguments">Legante komando-linio argumentojn</a></li>
-      <li><a href="/eo/essentials/the-main-function/multi-main-functions">Multoblaj <code class="language-plaintext highlighter-rouge">MAIN</code> funkcioj</a></li>
-      <li><a href="/eo/essentials/the-main-function/using-unit-sub">Uzante <code class="language-plaintext highlighter-rouge">unit sub</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<center>•</center>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/">Originala angla teksto</a></p>
-
-  <p>Tradukoj de ĉi tiu paĝo: <a href="/">English</a> • <a href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <a href="/it/">Italiano</a> • <a href="/lv/">Latviešu</a> • <a href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a href="/ru/">Русский</a> • <a href="/uk/">Українська</a></p>
+          <section id="la-kompleta-kurso-de-la-programlingvo-raku"
+class="home-hero" data-markdown="1">
+<h1>La kompleta kurso de la programlingvo Raku</h1>
+<p class="tagline">
+De via tute unua kodlinio ĝis gramatikoj, samtempeco kaj retaj servoj —
+praktika kurso en kvin partoj, kun centoj da kvizoj kaj ekzercoj por
+ekzerci ĉiun paŝon survoje.
+</p>
+<p class="cta-row">
+<a class="btn-primary" href="/eo/essentials/what-is-raku">Eklernu →</a>
+<a class="btn-ghost" href="/eo/about-this-course">Pri la kurso</a>
+</p>
+<p class="trust">
+Libera kaj malfermitkoda · Subtenata de
+<a href="https://www.perlfoundation.org">The Perl &amp; Raku
+Foundation</a>
+</p>
+</section>
+<div class="home-stats">
+<div class="stat">
+<span class="num">6</span><span class="label">partoj</span>
 </div>
-
-<p>© 2021–2024 de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+<div class="stat">
+<span class="num">395</span><span class="label">temoj</span>
+</div>
+<div class="stat">
+<span class="num">217</span><span class="label">kvizoj</span>
+</div>
+<div class="stat">
+<span class="num">396</span><span class="label">ekzercoj</span>
+</div>
+<div class="stat">
+<span class="num">1530</span><span class="label">paĝoj</span>
+</div>
+</div>
+<p class="section-label">
+La kurso, parto post parto
+</p>
+<div class="course-map">
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">1</span>
+<a class="part-title" href="/eo/essentials">Raku-esencoj</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Komencu ĉi tie. Instalu la tradukilon kaj poste lernu variablojn kaj
+datumtipojn, regofluon kaj viajn unuajn subprogramojn — la fundamenton
+de ĉio posta.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/intro">Unua konatiĝo kun Raku</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/what-is-raku">Kio estas Raku</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/compilers">Tradukiloj</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+<li><a href="/eo/essentials/the-rakudo-compiler">La tradukilo
+Rakudo</a></li>
+<li><a href="/eo/essentials/how-to-install-rakudo">Kiel instali
+Rakudo</a></li>
+<li><a href="/eo/essentials/the-rakupp-compiler">La tradukilo Raku++
+🆕</a></li>
+<li><a href="/eo/essentials/how-to-install-rakupp">Kiel instali Raku++
+🆕</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/getting-started">Verki kaj ruli programojn</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/editors-and-ides">Redaktiloj kaj
+IDEj</a></li>
+<li><a href="/eo/essentials/conventional-file-extensions">Konvenciaj
+dosierfinajhoj</a></li>
+<li><a href="/eo/essentials/hello-world">Saluton, Mondo!</a></li>
+<li><a href="/eo/essentials/on-unicode">Notoj pri uzado de
+Unikodo</a></li>
+<li><a href="/eo/essentials/running-programs">Lanĉado de programoj</a>
+<ul>
+<li><a href="/eo/essentials/running-programs/from-command-line">Lanĉado
+de komanda linio</a></li>
+<li><a href="/eo/essentials/running-programs/from-repl">Lanĉado de
+REPL</a></li>
+<li><a href="/eo/essentials/running-programs/from-ide">Lanĉado de
+IDE</a></li>
+<li><a href="/eo/essentials/running-programs/using-docker">Uzado de
+docker</a></li>
+<li><a
+href="/eo/essentials/running-programs/using-online-services">Uzado de
+retaj servoj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/simple-input-output">Simpla enigo kaj
+eligo</a>
+<ul>
+<li><a href="/eo/essentials/simple-input-output/say">Eligo per
+<code>say</code></a></li>
+<li><a href="/eo/essentials/simple-input-output/prompt">Enigo per
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/eo/essentials/comments">Komentoj</a>
+<ul>
+<li><a href="/eo/essentials/comments/single-line">Unuliniaj
+komentoj</a></li>
+<li><a href="/eo/essentials/comments/multi-line">Plurliniaj
+komentoj</a></li>
+<li><a href="/eo/essentials/comments/embedded">Enmetitaj
+komentoj</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/variables">Bazoj de variabloj kaj datumtipoj</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/scalar-variables">Skalaraj variabloj</a>
+<ul>
+<li><a
+href="/eo/essentials/scalar-variables/declaring-a-variable">Deklarado de
+variablo</a></li>
+<li><a
+href="/eo/essentials/scalar-variables/assigning-a-value">Atribuado de
+valoro</a></li>
+<li><a
+href="/eo/essentials/scalar-variables/declaration-with-initialization">Deklarado
+kun inicialigo</a></li>
+<li><a href="/eo/essentials/scalar-variables/defined-or-operator">La
+difinita-aŭ operatoro</a></li>
+<li><a href="/eo/essentials/scalar-variables/identifiers">Nomoj de la
+variabloj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/strings">Stringoj</a>
+<ul>
+<li><a href="/eo/essentials/strings/string-concatenation">Stringa
+concatenado</a></li>
+<li><a href="/eo/essentials/strings/variable-interpolation">Variabla
+interpolado</a></li>
+<li><a href="/eo/essentials/strings/code-interpolation">Koda
+interpolado</a></li>
+<li><a
+href="/eo/essentials/strings/escaping-special-characters">Eskapado de
+specialaj karakteroj</a></li>
+<li><a href="/eo/essentials/strings/string-length">Stringa
+longo</a></li>
+</ul></li>
+<li><a href="/eo/essentials/numbers">Nombroj</a>
+<ul>
+<li><a href="/eo/essentials/numbers/integers">Entjeraj nombroj</a></li>
+<li><a href="/eo/essentials/numbers/rats">Raciaj nombroj</a></li>
+<li><a href="/eo/essentials/numbers/numeric">Flosantaj nombroj</a></li>
+<li><a href="/eo/essentials/numbers/operations">Operacioj kun
+nombroj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/booleans">Boolea tipo</a>
+<ul>
+<li><a href="/eo/essentials/booleans/operations">Booleaj
+operacioj</a></li>
+<li><a
+href="/eo/essentials/booleans/boolean-operations-other-types">Booleaj
+operacioj kun aliaj tipoj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/ranges">Intervaloj</a>
+<ul>
+<li><a href="/eo/essentials/ranges/excluding-endpoints">Ekskludante
+finojn</a></li>
+<li><a href="/eo/essentials/ranges/matching-against-a-range">Kongruado
+kontraŭ intervalo</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/control-flow">Bazoj de la regofluo</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/code-blocks">Kodoblokoj</a>
+<ul>
+<li><a href="/eo/essentials/code-blocks/lexical-scope">Leksika
+amplekso</a></li>
+<li><a href="/eo/essentials/code-blocks/global-variables">Globalaj
+variabloj</a></li>
+<li><a href="/eo/essentials/code-blocks/local-variables">Lokaj
+variabloj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/conditional-checks">Kondiĉaj kontroloj</a>
+<ul>
+<li><a href="/eo/essentials/conditional-checks/if"><code>if</code>
+blokoj</a></li>
+<li><a href="/eo/essentials/conditional-checks/else"><code>else</code>
+blokoj</a></li>
+<li><a href="/eo/essentials/conditional-checks/elsif">Uzante
+<code>elsif</code></a></li>
+<li><a href="/eo/essentials/conditional-checks/unless">Uzante
+<code>unless</code></a></li>
+<li><a
+href="/eo/essentials/conditional-checks/modifiers"><code>if</code> kaj
+<code>unless</code> kiel modifiloj de deklaroj</a></li>
+<li><a
+href="/eo/essentials/conditional-checks/comparing-numbers">Komparante
+nombrojn</a></li>
+<li><a
+href="/eo/essentials/conditional-checks/comparing-strings">Komparante
+stringojn</a></li>
+<li><a href="/eo/essentials/conditional-checks/ternary-operator">Ternara
+operatoro</a></li>
+</ul></li>
+<li><a href="/eo/essentials/loops">Ripetoj</a>
+<ul>
+<li><a href="/eo/essentials/loops/while">Uzante
+<code>while</code></a></li>
+<li><a href="/eo/essentials/loops/until">Uzante
+<code>until</code></a></li>
+<li><a href="/eo/essentials/loops/repeat">Uzante
+<code>repeat</code></a></li>
+<li><a href="/eo/essentials/loops/modifiers"><code>while</code> kaj
+<code>until</code> kiel modifiloj de deklaroj</a></li>
+<li><a href="/eo/essentials/loops/loop">Trideklaro
+<code>loop</code></a></li>
+<li><a href="/eo/essentials/loops/infinite-loops">Senfinaj
+ripetoj</a></li>
+<li><a href="/eo/essentials/loops/for"><code>for</code> ripetoj</a></li>
+<li><a href="/eo/essentials/loops/topic">Temvariablo</a></li>
+<li><a href="/eo/essentials/loops/postfix-for">Postfixa formo de
+<code>for</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/more-about-types">Pli pri tipoj</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/coercion">Datentipa konvertado</a>
+<ul>
+<li><a href="/eo/essentials/coercion/what">Introspekto kun
+<code>WHAT</code></a></li>
+<li><a href="/eo/essentials/coercion/methods">Konvertante tipojn uzante
+tipajn devigmetodojn</a></li>
+<li><a href="/eo/essentials/coercion/new">Konvertante tipojn uzante
+konstruistajn formojn</a></li>
+<li><a href="/eo/essentials/coercion/prefixes">Konvertante tipojn kun
+prefiksaj operatoroj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/typed-variables">Tipitaj variabloj</a>
+<ul>
+<li><a href="/eo/essentials/typed-variables/type-constraints">Tipaj
+limigoj</a></li>
+<li><a href="/eo/essentials/typed-variables/using-of">Uzante
+<code>of</code></a></li>
+<li><a href="/eo/essentials/typed-variables/coercion">Tipkonvertado por
+tipitaj variabloj</a></li>
+<li><a
+href="/eo/essentials/typed-variables/allomorphs">Alomorfoj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/positionals">Poziciaj datentipoj</a>
+<ul>
+<li><a href="/eo/essentials/positionals/arrays">Arrayoj</a></li>
+<li><a href="/eo/essentials/positionals/nested-arrays">Nestitaj
+arrayoj</a></li>
+<li><a href="/eo/essentials/positionals/args-array">La
+<code>@*ARGS</code> arrayo</a></li>
+<li><a
+href="/eo/essentials/positionals/interpolating-arrays">Interpolante
+arrayojn</a></li>
+<li><a href="/eo/essentials/positionals/lists">Listoj</a></li>
+<li><a href="/eo/essentials/positionals/quoting-string-arrays">Citante
+stringajn arrayojn</a></li>
+<li><a
+href="/eo/essentials/positionals/subscripting-ranges">Subskribante
+intervalojn</a></li>
+</ul></li>
+<li><a href="/eo/essentials/associatives">Asociaj datentipoj</a>
+<ul>
+<li><a href="/eo/essentials/associatives/pairs">Paroj</a></li>
+<li><a href="/eo/essentials/associatives/hashes">Haxoj</a></li>
+<li><a href="/eo/essentials/associatives/nested-hashes">Nestitaj
+haxoj</a></li>
+<li><a
+href="/eo/essentials/associatives/interpolating-hashes">Interpolante
+haxojn</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/essentials/functions-essentials">Bazoj de funkcioj</a>
+</summary>
+<ul>
+<li><a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a>
+<ul>
+<li><a href="/eo/essentials/functions/identifiers">Funkciaj
+nomoj</a></li>
+<li><a href="/eo/essentials/functions/function-parameters">Funkciaj
+parametroj</a></li>
+<li><a href="/eo/essentials/functions/return-result">Redonante la
+rezulton</a></li>
+<li><a href="/eo/essentials/functions/positional-parameters">Poziciaj
+parametroj</a></li>
+<li><a href="/eo/essentials/functions/named-parameters">Nomitaj
+parametroj</a></li>
+<li><a href="/eo/essentials/functions/default-values">Defaŭltaj
+valoroj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a>
+<ul>
+<li><a href="/eo/essentials/more-on-functions/mind-the-space">Atentu la
+spacon</a></li>
+<li><a href="/eo/essentials/more-on-functions/typed-parameters">Tipitaj
+parametroj</a></li>
+<li><a
+href="/eo/essentials/more-on-functions/return-type">Redontipo</a></li>
+<li><a
+href="/eo/essentials/more-on-functions/multi-functions">Multi-funkcioj</a></li>
+</ul></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj
+funkcioj por presado</a>
+<ul>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/eo/essentials/the-main-function">La <code>MAIN</code>
+funkcio</a>
+<ul>
+<li><a
+href="/eo/essentials/the-main-function/reading-command-line-arguments">Legante
+komando-linio argumentojn</a></li>
+<li><a
+href="/eo/essentials/the-main-function/multi-main-functions">Multoblaj
+<code>MAIN</code> funkcioj</a></li>
+<li><a href="/eo/essentials/the-main-function/using-unit-sub">Uzante
+<code>unit sub</code></a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">2</span>
+<a class="part-title" href="/eo/advanced">Progresintaj Raku-temoj</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Pli profunde: ujoj kaj kuntekstoj, la plena gamo de enkonstruitaj
+tipoj kaj operatoroj, pli riĉaj subrutinoj, kaj pakado de via kodo en
+modulojn kun testoj kaj dokumentado.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/debugging">Sencimigo</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/representations">Konverti valorojn al
+teksto</a>
+<ul>
+<li><a href="/eo/advanced/representations/gist">La metodo
+<code>.gist</code></a></li>
+<li><a href="/eo/advanced/representations/str">La metodo
+<code>.Str</code></a></li>
+<li><a href="/eo/advanced/representations/raku-method">La metodo
+<code>.raku</code></a></li>
+<li><a href="/eo/advanced/representations/choosing">Elekti la
+ĝustan</a></li>
+</ul></li>
+<li><a href="/eo/advanced/dd">Senararigado kun <code>dd</code></a>
+<ul>
+<li><a href="/eo/advanced/dd/variables">Dumpado de variabloj</a></li>
+<li><a href="/eo/advanced/dd/functions">Dumpado de funkciaj
+subskriboj</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/containers-overview">Ujoj</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/containers">Kompreno de Raku-ujoj</a></li>
+<li><a href="/eo/advanced/scalar-containers">Skalaraj ujoj</a>
+<ul>
+<li><a href="/eo/advanced/scalar-containers/types">Datentipoj kaj
+skalaraj ujoj</a></li>
+<li><a href="/eo/advanced/scalar-containers/type-constraints">Tipaj
+limigoj</a></li>
+<li><a href="/eo/advanced/scalar-containers/default">Defaŭltaj
+valoroj</a></li>
+<li><a href="/eo/advanced/scalar-containers/proxying">Prokuranto de
+metodvokoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/ordered-containers">Ordigitaj ujoj</a>
+<ul>
+<li><a href="/eo/advanced/ordered-containers/arrays">Tabeloj</a></li>
+<li><a href="/eo/advanced/ordered-containers/lists">Listoj</a></li>
+<li><a href="/eo/advanced/ordered-containers/binding">Ligado per
+<code>:=</code></a></li>
+<li><a href="/eo/advanced/ordered-containers/flattening">Platigo kaj
+ero-igo</a></li>
+</ul></li>
+<li><a href="/eo/advanced/contexts">Kuntekstoj</a>
+<ul>
+<li><a href="/eo/advanced/contexts/coercion-contexts">Nombra, ĉena kaj
+Boolea kunteksto</a></li>
+<li><a href="/eo/advanced/contexts/item-and-list">Era kaj lista
+kunteksto</a></li>
+</ul></li>
+<li><a href="/eo/advanced/subscript-adverbs">Subskribaj adverboj</a>
+<ul>
+<li><a href="/eo/advanced/subscript-adverbs/exists-and-delete">Ekzistas
+kaj forigi</a></li>
+<li><a href="/eo/advanced/subscript-adverbs/kv-and-pairs">Ŝlosiloj,
+valoroj kaj paroj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/special-variables">Specialaj kaj dinamikaj
+variabloj</a>
+<ul>
+<li><a href="/eo/advanced/special-variables/twigils">Duoblaj
+sigeloj</a></li>
+<li><a href="/eo/advanced/special-variables/dynamic-variables">Dinamikaj
+variabloj</a></li>
+<li><a href="/eo/advanced/special-variables/built-in">Enkonstruitaj
+specialaj variabloj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/introspection">Introspekto de ujoj</a>
+<ul>
+<li><a href="/eo/advanced/introspection/what">Uzante
+<code>WHAT</code></a></li>
+<li><a href="/eo/advanced/introspection/var">Uzante
+<code>VAR</code></a></li>
+<li><a href="/eo/advanced/introspection/who-how"><code>WHO</code> kaj
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/built-in-types">Pli pri la enkonstruitaj tipoj</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/integers">Entjeroj</a>
+<ul>
+<li><a href="/eo/advanced/integers/number-bases">Nombraj bazoj</a></li>
+<li><a href="/eo/advanced/integers/methods">Entjeraj metodoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/native-types">Denaskaj tipoj</a>
+<ul>
+<li><a href="/eo/advanced/native-types/machine-types">Maŝin-nivelaj
+tipoj</a></li>
+<li><a href="/eo/advanced/native-types/sized-types">Grandecaj tipoj kaj
+superfluo</a></li>
+</ul></li>
+<li><a href="/eo/advanced/strings">Ĉenoj</a>
+<ul>
+<li><a href="/eo/advanced/strings/searching">Serĉado en ĉenoj</a></li>
+<li><a href="/eo/advanced/strings/splitting">Disigo kaj kunigo</a></li>
+</ul></li>
+<li><a href="/eo/advanced/quoting">Citaj konstruoj</a>
+<ul>
+<li><a href="/eo/advanced/quoting/q-qq-big-q">q, qq, kaj Q</a></li>
+<li><a href="/eo/advanced/quoting/adverbs">Citaj adverboj</a></li>
+<li><a href="/eo/advanced/quoting/heredocs">Heredokoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/date-and-time">Dato kaj tempo</a>
+<ul>
+<li><a
+href="/eo/advanced/date-and-time/arithmetic">Datkalkulado</a></li>
+<li><a href="/eo/advanced/date-and-time/time">Laboro kun tempo</a></li>
+</ul></li>
+<li><a href="/eo/advanced/sets-bags-mixes">Aroj, sakoj kaj miksaĵoj</a>
+<ul>
+<li><a href="/eo/advanced/sets-bags-mixes/operations">Araj
+operacioj</a></li>
+<li><a href="/eo/advanced/sets-bags-mixes/bags">Sakoj kaj
+miksaĵoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/sequences">Sekvencoj</a>
+<ul>
+<li><a href="/eo/advanced/sequences/patterns">Sekvencaj
+ŝablonoj</a></li>
+<li><a href="/eo/advanced/sequences/lazy">Maldiligentaj kaj senlimaj
+sekvencoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/enumerations">Enumeracioj</a>
+<ul>
+<li><a href="/eo/advanced/enumerations/defining">Difini
+enumeracion</a></li>
+<li><a href="/eo/advanced/enumerations/values-and-keys">Valoroj kaj
+ŝlosiloj</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/operators">Operatoroj</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/operator-types">Tipoj de
+Raku-operatoroj</a></li>
+<li><a href="/eo/advanced/operators-overview">Revizio de operatora
+konduto</a></li>
+<li><a href="/eo/advanced/metaoperators">Metaoperatoroj</a>
+<ul>
+<li><a href="/eo/advanced/metaoperators/reduction">Reduktaj
+metaoperatoroj</a></li>
+<li><a href="/eo/advanced/metaoperators/zip">Zip-metaoperatoroj</a></li>
+<li><a href="/eo/advanced/metaoperators/more">Kruca, hiper kaj
+neita</a></li>
+</ul></li>
+<li><a href="/eo/advanced/user-defined-operators">Uzant-difinitaj
+operatoroj</a></li>
+<li><a href="/eo/advanced/traits-pragmas">Trajtoj kaj pragmoj</a>
+<ul>
+<li><a href="/eo/advanced/traits-pragmas/built-in-traits">Enkonstruitaj
+trajtoj</a></li>
+<li><a href="/eo/advanced/traits-pragmas/writing-a-trait">Skribi
+trajton</a></li>
+<li><a href="/eo/advanced/traits-pragmas/pragmas">Pragmoj</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/control-flow">Regofluo</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/phasers">Faziloj</a></li>
+<li><a href="/eo/advanced/block-phasers">Blok-rilataj faziloj</a></li>
+<li><a href="/eo/advanced/given-when"><code>given</code> kaj
+<code>when</code></a>
+<ul>
+<li><a href="/eo/advanced/given-when/matching">Kongruado de intervaloj,
+tipoj kaj kondiĉoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/gather-take"><code>gather</code> kaj
+<code>take</code></a></li>
+<li><a href="/eo/advanced/statement-prefixes">Deklaraj prefiksoj</a>
+<ul>
+<li><a href="/eo/advanced/statement-prefixes/do-prefix">do kaj la valoro
+de bloko</a></li>
+<li><a href="/eo/advanced/statement-prefixes/lazy-eager">Maldiligento
+kaj fervoro</a></li>
+<li><a href="/eo/advanced/statement-prefixes/sink-quietly">sink kaj
+quietly</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/subroutines">Subprogramoj</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/signatures">Subskriboj</a></li>
+<li><a href="/eo/advanced/whatever">La Whatever-stelo</a></li>
+<li><a href="/eo/advanced/colon-calls">Vokado per dupunkto</a></li>
+<li><a href="/eo/advanced/multiple-dispatch">Multobla dissendo</a></li>
+<li><a href="/eo/advanced/more-on-main">Pli pri MAIN-subrutino</a></li>
+<li><a href="/eo/advanced/nested-subroutines">Nestitaj
+subrutinaj</a></li>
+<li><a href="/eo/advanced/anonymous-subroutines">Anonimaj
+subrutinaj</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/modules">Moduloj</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/modules-basics">Bazaj konoj pri moduloj</a>
+<ul>
+<li><a href="/eo/advanced/modules-basics/creating-modules">Krei
+modulojn</a></li>
+<li><a href="/eo/advanced/modules-basics/using-modules">Uzi
+modulojn</a></li>
+<li><a href="/eo/advanced/modules-basics/importing">Importado</a></li>
+<li><a href="/eo/advanced/modules-basics/export-tags">Eksportaj
+etikedoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/module-introspection">Modula
+introspekto</a></li>
+<li><a href="/eo/advanced/installing-modules">Instali modulojn el la
+reto</a></li>
+<li><a href="/eo/advanced/packages">Pakoj kaj nomspacoj</a>
+<ul>
+<li><a href="/eo/advanced/packages/packages-modules">Pakoj kaj
+moduloj</a></li>
+<li><a href="/eo/advanced/packages/namespaces">Nomspacoj kaj
+our</a></li>
+</ul></li>
+<li><a href="/eo/advanced/distributing">Distribui modulojn</a>
+<ul>
+<li><a href="/eo/advanced/distributing/meta6">La dosiero META6</a></li>
+<li><a href="/eo/advanced/distributing/zef-ecosystem">zef kaj la
+ekosistemo</a></li>
+<li><a href="/eo/advanced/distributing/fez">Publikigi per fez</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/advanced/testing-and-docs">Testado kaj dokumentado 🆕</a>
+</summary>
+<ul>
+<li><a href="/eo/advanced/testing">Testado</a>
+<ul>
+<li><a href="/eo/advanced/testing/test-module">La modulo Test</a></li>
+<li><a href="/eo/advanced/testing/comparisons">Komparoj kaj
+planoj</a></li>
+<li><a href="/eo/advanced/testing/running-tests">Rulado de
+testoj</a></li>
+</ul></li>
+<li><a href="/eo/advanced/pod">Dokumentado de kodo</a>
+<ul>
+<li><a href="/eo/advanced/pod/pod-basics">Pod-bazaĵoj</a></li>
+<li><a href="/eo/advanced/pod/pod-formatting">Formatado kaj
+kodo</a></li>
+<li><a href="/eo/advanced/pod/rendering-pod">Bildigi Pod</a></li>
+<li><a href="/eo/advanced/pod/accessing-pod">Aliri la Pod</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">3</span>
+<a class="part-title" href="/eo/oop">Objektoj, en- kaj eligo kaj
+esceptoj</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Objektorientita programado per klasoj kaj roloj, legado kaj skribado
+de en- kaj eligo kaj komunikado kun eksteraj programoj, kaj traktado de
+eraroj per esceptoj.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/eo/oop/classes-and-objects">Klasoj kaj objektoj</a>
+</summary>
+<ul>
+<li><a href="/eo/oop/classes">Klasoj</a>
+<ul>
+<li><a href="/eo/oop/classes/type-object">Tipobjektoj kaj
+ekzempleroj</a></li>
+</ul></li>
+<li><a href="/eo/oop/attributes">Atributoj</a>
+<ul>
+<li><a href="/eo/oop/attributes/read-write">Leg- kaj skribeblaj
+atributoj</a></li>
+<li><a href="/eo/oop/attributes/defaults">Defaŭltaj valoroj</a></li>
+</ul></li>
+<li><a href="/eo/oop/methods">Metodoj</a>
+<ul>
+<li><a href="/eo/oop/methods/private-attributes">Privataj
+atributoj</a></li>
+<li><a href="/eo/oop/methods/parameters">Metodoj kun parametroj</a></li>
+<li><a href="/eo/oop/methods/calling-methods">Metodoj kiuj vokas
+metodojn</a></li>
+</ul></li>
+<li><a href="/eo/oop/class-methods">Klasmetodoj</a></li>
+<li><a href="/eo/oop/subs-vs-methods">Subprogramoj kaj metodoj</a></li>
+<li><a href="/eo/oop/inheritance">Heredo</a>
+<ul>
+<li><a href="/eo/oop/inheritance/overriding">Superregi metodojn</a></li>
+</ul></li>
+<li><a href="/eo/oop/roles">Roloj</a>
+<ul>
+<li><a href="/eo/oop/roles/multiple-roles">Kunmeti plurajn
+rolojn</a></li>
+<li><a href="/eo/oop/roles/mixin">Aldoni rolon al objekto</a></li>
+</ul></li>
+<li><a href="/eo/oop/object-introspection">Introspekti objektojn</a>
+<ul>
+<li><a href="/eo/oop/object-introspection/inheritance-chain">La hereda
+ĉeno</a></li>
+</ul></li>
+<li><a href="/eo/oop/mop">La metaobjekta protokolo 🆕</a>
+<ul>
+<li><a href="/eo/oop/mop/meta-methods">Metametodoj</a></li>
+<li><a href="/eo/oop/mop/adding-methods">Aldoni metodojn dum la
+rulado</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/oop/input-and-output">Enigo kaj eligo</a>
+</summary>
+<ul>
+<li><a href="/eo/oop/standard-streams">Normaj fluoj</a></li>
+<li><a href="/eo/oop/files">Labori kun dosieroj</a>
+<ul>
+<li><a href="/eo/oop/files/appending">Aldoni al dosiero</a></li>
+</ul></li>
+<li><a href="/eo/oop/directories">Labori kun dosierujoj</a>
+<ul>
+<li><a href="/eo/oop/directories/listing">Listigi dosierujon</a></li>
+</ul></li>
+<li><a href="/eo/oop/deleting">Forigi dosierojn kaj dosierujojn</a></li>
+<li><a href="/eo/oop/file-handles">Dosierteniloj</a></li>
+<li><a href="/eo/oop/external-programs">Ruli eksterajn programojn 🆕</a>
+<ul>
+<li><a href="/eo/oop/external-programs/run-and-shell">run kaj
+shell</a></li>
+<li><a href="/eo/oop/external-programs/capturing-output">Kapti la
+eligon</a></li>
+<li><a href="/eo/oop/external-programs/the-proc-object">La objekto
+Proc</a></li>
+<li><a href="/eo/oop/external-programs/environment">La medio</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/oop/exceptions">Esceptoj</a>
+</summary>
+<ul>
+<li><a href="/eo/oop/try">Kapti esceptojn per <code>try</code></a>
+<ul>
+<li><a href="/eo/oop/try/deferred-errors">Ne ĉiu eraro estas
+tuja</a></li>
+</ul></li>
+<li><a href="/eo/oop/catch">La fazero <code>CATCH</code></a></li>
+<li><a href="/eo/oop/exception-objects">Esceptobjektoj</a></li>
+<li><a href="/eo/oop/failures">Molaj misfunkcioj</a></li>
+<li><a href="/eo/oop/custom-exceptions">Propraj esceptoj</a></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">4</span>
+<a class="part-title" href="/eo/regexes">Regulesprimoj kaj
+gramatikoj</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Kongruigu tekston per regulesprimoj kaj kreskigu el ili plenajn
+gramatikojn kun agoklasoj kiuj transformas strukturitan enigon en
+datumojn.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/eo/regexes/regex-basics">Regulesprimoj</a>
+</summary>
+<ul>
+<li><a href="/eo/regexes/literals">Literaloj kaj signoklasoj</a>
+<ul>
+<li><a href="/eo/regexes/literals/literal-text">Kongruigi laŭliteran
+tekston</a></li>
+<li><a
+href="/eo/regexes/literals/character-classes">Signoklasoj</a></li>
+<li><a href="/eo/regexes/literals/predefined-classes">Antaŭdifinitaj
+signoklasoj</a></li>
+</ul></li>
+<li><a href="/eo/regexes/matching">Kongruigi ĉenojn</a>
+<ul>
+<li><a href="/eo/regexes/matching/smartmatch">La operatoro de sagaca
+kongruigo</a></li>
+<li><a href="/eo/regexes/matching/match-object">La kongrua
+objekto</a></li>
+</ul></li>
+<li><a href="/eo/regexes/quantifiers">Kvantoroj</a>
+<ul>
+<li><a href="/eo/regexes/quantifiers/star-plus-question">Steleto, plus
+kaj demandosigno</a></li>
+<li><a href="/eo/regexes/quantifiers/times-quantifier">La kvantoro de
+nombro</a></li>
+<li><a href="/eo/regexes/quantifiers/greedy-frugal">Avida kaj ŝparema
+kongruigo</a></li>
+</ul></li>
+<li><a href="/eo/regexes/captures">Kaptoj</a>
+<ul>
+<li><a href="/eo/regexes/captures/positional">Poziciaj kaptoj</a></li>
+<li><a href="/eo/regexes/captures/named">Nomitaj kaptoj</a></li>
+<li><a href="/eo/regexes/captures/non-capturing">Nekaptaj
+grupoj</a></li>
+</ul></li>
+<li><a href="/eo/regexes/alternations">Alternativoj</a>
+<ul>
+<li><a href="/eo/regexes/alternations/alternation">Alternativo</a></li>
+<li><a href="/eo/regexes/alternations/longest-token">Plej longa ĵetono
+kaj unua kongruo</a></li>
+</ul></li>
+<li><a href="/eo/regexes/anchors">Ankroj</a>
+<ul>
+<li><a href="/eo/regexes/anchors/string-anchors">Komenco kaj fino de la
+ĉeno</a></li>
+<li><a href="/eo/regexes/anchors/word-boundaries">Vortlimoj</a></li>
+</ul></li>
+<li><a href="/eo/regexes/assertions">Ĉirkaŭrigardaj asertoj</a>
+<ul>
+<li><a href="/eo/regexes/assertions/lookahead">Antaŭrigardo</a></li>
+<li><a href="/eo/regexes/assertions/lookbehind">Malantaŭrigardo</a></li>
+</ul></li>
+<li><a href="/eo/regexes/adverbs">Adverboj</a>
+<ul>
+<li><a href="/eo/regexes/adverbs/ignorecase">Kongruigo sen atento al
+uskleco</a></li>
+<li><a href="/eo/regexes/adverbs/adverb-scope">Amplekso de
+adverboj</a></li>
+<li><a href="/eo/regexes/adverbs/global">Ĝenerala kongruigo</a></li>
+<li><a href="/eo/regexes/adverbs/sigspace">Signifaj spacoj</a></li>
+</ul></li>
+<li><a href="/eo/regexes/substitution">Anstataŭigo kaj interŝanĝo</a>
+<ul>
+<li><a href="/eo/regexes/substitution/s-operator">La operatoro de
+anstataŭigo</a></li>
+<li><a href="/eo/regexes/substitution/captures-in-replacement">Kaptoj en
+la anstataŭaĵo</a></li>
+<li><a
+href="/eo/regexes/substitution/transliteration">Transliterumo</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/regexes/grammars">Gramatikoj</a>
+</summary>
+<ul>
+<li><a href="/eo/regexes/what-is-a-grammar">Kio estas gramatiko</a>
+<ul>
+<li><a href="/eo/regexes/what-is-a-grammar/named-regexes">Nomitaj
+regulesprimoj</a></li>
+<li><a href="/eo/regexes/what-is-a-grammar/grammar-keyword">La
+ŝlosilvorto grammar</a></li>
+</ul></li>
+<li><a href="/eo/regexes/creating-grammars">Krei gramatikojn</a>
+<ul>
+<li><a href="/eo/regexes/creating-grammars/top-rule">La regulo
+TOP</a></li>
+<li><a href="/eo/regexes/creating-grammars/parse-method">Analizi per
+parse</a></li>
+</ul></li>
+<li><a href="/eo/regexes/tokens-and-rules">Ĵetonoj kaj reguloj</a>
+<ul>
+<li><a href="/eo/regexes/tokens-and-rules/three-kinds">regex, token kaj
+rule</a></li>
+<li><a href="/eo/regexes/tokens-and-rules/rule-sigspace">Signifaj spacoj
+en reguloj</a></li>
+</ul></li>
+<li><a href="/eo/regexes/grammar-inheritance">Gramatikoj, klasoj kaj
+heredo</a>
+<ul>
+<li><a
+href="/eo/regexes/grammar-inheritance/grammars-are-classes">Gramatikoj
+estas klasoj</a></li>
+<li><a href="/eo/regexes/grammar-inheritance/proto-tokens">Proto-ĵetonoj
+kaj alternativoj</a></li>
+</ul></li>
+<li><a href="/eo/regexes/make-and-made">La analizarbo, make kaj made</a>
+<ul>
+<li><a href="/eo/regexes/make-and-made/match-tree">La
+kongruarbo</a></li>
+<li><a href="/eo/regexes/make-and-made/make-made">make kaj made</a></li>
+</ul></li>
+<li><a href="/eo/regexes/action-classes">Agoklasoj</a>
+<ul>
+<li><a href="/eo/regexes/action-classes/writing-actions">Verki
+agoklason</a></li>
+<li><a href="/eo/regexes/action-classes/inline-vs-class">Enliniaj agoj
+kaj agoklasoj</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">5</span>
+<a class="part-title" href="/eo/paradigms">Funkcia, samtempa, reaktiva
+kaj reta programado</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Ĉio kune: funkcia, samtempa kaj reaktiva programado, fine kun
+kontaktskatoloj, HTTP kaj konstruado de retservoj.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/eo/paradigms/functional">Funkcia programado</a>
+</summary>
+<ul>
+<li><a href="/eo/paradigms/recursion">Rekursio</a>
+<ul>
+<li><a href="/eo/paradigms/recursion/recursive-sub">Rekursia
+subprogramo</a></li>
+<li><a href="/eo/paradigms/recursion/base-case">La baza kazo</a></li>
+<li><a href="/eo/paradigms/recursion/multi-recursion">Rekursio per
+multi-subprogramoj</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/higher-order">Altordaj funkcioj</a>
+<ul>
+<li><a href="/eo/paradigms/higher-order/passing-subs">Transdoni
+subprogramojn</a></li>
+<li><a href="/eo/paradigms/higher-order/returning-subs">Redoni
+subprogramojn</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/closures">Lambdoj kaj fermaĵoj</a>
+<ul>
+<li><a href="/eo/paradigms/closures/lambdas">Lambdoj</a></li>
+<li><a href="/eo/paradigms/closures/capturing-state">Fermaĵoj</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/reduction">Redukto</a>
+<ul>
+<li><a href="/eo/paradigms/reduction/reduction-metaop">La metaoperatoro
+de redukto</a></li>
+<li><a href="/eo/paradigms/reduction/reduce-routine">La rutino
+reduce</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/feeds">Datumfluoj</a>
+<ul>
+<li><a href="/eo/paradigms/feeds/feed-operator">La flua
+operatoro</a></li>
+<li><a href="/eo/paradigms/feeds/chaining-feeds">Ĉenigi fluojn</a></li>
+<li><a href="/eo/paradigms/feeds/backward-feed">La retrodirekta
+fluo</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/generators">Generiloj</a>
+<ul>
+<li><a href="/eo/paradigms/generators/gather-take">gather kaj
+take</a></li>
+<li><a href="/eo/paradigms/generators/lazy-gather">Maldiligenta
+gather</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/iterators">Iterviloj</a>
+<ul>
+<li><a href="/eo/paradigms/iterators/iterator-protocol">La protokolo de
+iterviloj</a></li>
+<li><a href="/eo/paradigms/iterators/writing-an-iterator">Verki
+itervilon</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/lazy">Maldiligentaj kaj senfinaj
+sekvencoj</a>
+<ul>
+<li><a href="/eo/paradigms/lazy/sequence-operator">La sekvenca
+operatoro</a></li>
+<li><a href="/eo/paradigms/lazy/infinite-sequences">Senfinaj
+sekvencoj</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/paradigms/concurrent">Samtempa programado</a>
+</summary>
+<ul>
+<li><a href="/eo/paradigms/junctions">Kunligoj</a>
+<ul>
+<li><a href="/eo/paradigms/junctions/building-junctions">Konstrui
+kunligojn</a></li>
+<li><a href="/eo/paradigms/junctions/autothreading">Aŭtomata
+fadenigo</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/threads">Fadenoj</a>
+<ul>
+<li><a href="/eo/paradigms/threads/starting-a-thread">Starti
+fadenon</a></li>
+<li><a href="/eo/paradigms/threads/joining-threads">Kunigi
+fadenojn</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/promises">Promesoj</a>
+<ul>
+<li><a href="/eo/paradigms/promises/start-and-await">start kaj
+await</a></li>
+<li><a href="/eo/paradigms/promises/then-and-combinators">Ĉenigi kaj
+kombini</a></li>
+<li><a href="/eo/paradigms/promises/making-a-promise">Propra promeso
+🆕</a></li>
+<li><a href="/eo/paradigms/promises/promise-status">La stato de promeso
+🆕</a></li>
+<li><a href="/eo/paradigms/promises/vows">Ĵuroj (Vow) 🆕</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/channels">Kanaloj</a>
+<ul>
+<li><a href="/eo/paradigms/channels/send-and-receive">Sendi kaj
+ricevi</a></li>
+<li><a href="/eo/paradigms/channels/closing-a-channel">Fermi
+kanalon</a></li>
+<li><a href="/eo/paradigms/channels/receiving-past-the-end">Ricevi post
+la fino</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/hyper-race">hyper kaj race 🆕</a>
+<ul>
+<li><a href="/eo/paradigms/hyper-race/hyper">Paralela map per
+hyper</a></li>
+<li><a href="/eo/paradigms/hyper-race/race">Neordigita paraleleco per
+race</a></li>
+<li><a href="/eo/paradigms/hyper-race/batch-and-degree">Agordi per
+:batch kaj :degree</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/paradigms/reactive">Reaktiva programado</a>
+</summary>
+<ul>
+<li><a href="/eo/paradigms/supplies">Supply</a>
+<ul>
+<li><a href="/eo/paradigms/supplies/tapping-a-supply">Konektiĝi al
+supply</a></li>
+<li><a href="/eo/paradigms/supplies/transforming">Transformi
+supply</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/supply-kinds">Vivaj kaj laŭpetaj supply</a>
+<ul>
+<li><a href="/eo/paradigms/supply-kinds/on-demand-supplies">Laŭpetaj
+supply</a></li>
+<li><a href="/eo/paradigms/supply-kinds/live-supplies">Vivaj
+supply</a></li>
+<li><a href="/eo/paradigms/supply-kinds/live-in-action">Vivaj supply en
+ago</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/react-whenever">react kaj whenever</a>
+<ul>
+<li><a href="/eo/paradigms/react-whenever/the-react-block">La bloko
+react</a></li>
+<li><a href="/eo/paradigms/react-whenever/whenever">whenever</a></li>
+<li><a href="/eo/paradigms/react-whenever/named-supplies">Supply
+difinitaj ekstere</a></li>
+<li><a href="/eo/paradigms/react-whenever/whenever-vs-when">whenever kaj
+when</a></li>
+<li><a href="/eo/paradigms/react-whenever/two-timers">Du
+tempigiloj</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/await">await</a>
+<ul>
+<li><a href="/eo/paradigms/await/awaiting-promises">Atendi
+promeson</a></li>
+<li><a href="/eo/paradigms/await/waiting-for-completion">Atendi la
+finon</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/paradigms/web">Reta programado</a>
+</summary>
+<ul>
+<li><a href="/eo/paradigms/connections">Fari forajn konektojn</a>
+<ul>
+<li><a href="/eo/paradigms/connections/opening-a-socket">Malfermi
+kontaktskatolon</a></li>
+<li><a href="/eo/paradigms/connections/sending-receiving">Sendi kaj
+ricevi</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/http-server">Simpla HTTP-servilo</a>
+<ul>
+<li><a href="/eo/paradigms/http-server/listening">Aŭskulti
+konektojn</a></li>
+<li><a href="/eo/paradigms/http-server/responding">Respondi al
+peto</a></li>
+<li><a href="/eo/paradigms/http-server/serving-requests">Servi multajn
+petojn</a></li>
+</ul></li>
+<li><a href="/eo/paradigms/cro">Bazoj de Cro</a>
+<ul>
+<li><a href="/eo/paradigms/cro/what-is-cro">Kio estas Cro</a></li>
+<li><a href="/eo/paradigms/cro/a-cro-route">Cro-vojo</a></li>
+<li><a href="/eo/paradigms/cro/route-with-parameter">Vojo kun
+parametro</a></li>
+<li><a href="/eo/paradigms/cro/client-modules">Uzi klientan
+modulon</a></li>
+<li><a href="/eo/paradigms/cro/public-apis">Peti de publika API</a></li>
+<li><a href="/eo/paradigms/cro/websockets">WebSocket</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card part-pseudo">
+<h3 class="part-head">
+<span class="pnum pnum-star">★</span>
+<a class="part-title" href="/eo/final-test">La fina testo</a>
+</h3>
+<p>Cent demandoj el la partoj 1 ĝis 5, kontrolataj tuj post la respondo
+— fina rigardo al tio, kiom da la tuta kurso restis.</p>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">6</span>
+<a class="part-title" href="/eo/addendum">Aldono: ampleksaj ekzercoj
+🆕</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Fina kolekto de pli malfacilaj ekzercoj kiuj ĉerpas el la tuta kurso.
+Ĉiu bezonas pli ol unu ideon, kaj multaj kombinas ilojn el diversaj
+partoj. Ĉiuj uzas nur jam prezentitajn eblecojn — nenio nova por lerni,
+sed multe por ekzerci.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/eo/addendum/working-with-data">Labori kun datumoj</a>
+</summary>
+<ul>
+<li><a href="/eo/addendum/numbers-math">Nombroj kaj matematiko</a></li>
+<li><a href="/eo/addendum/text-strings">Teksto kaj ĉenoj</a></li>
+<li><a href="/eo/addendum/collections">Listoj, tabeloj kaj
+haketmapoj</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/addendum/flow-and-functions">Fluo kaj funkcioj</a>
+</summary>
+<ul>
+<li><a href="/eo/addendum/control-logic">Regofluo kaj logiko</a></li>
+<li><a href="/eo/addendum/subs-functional">Subprogramoj kaj funkcia
+stilo</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/addendum/types-and-text-machines">Tipoj kaj
+tekstmaŝinoj</a>
+</summary>
+<ul>
+<li><a href="/eo/addendum/objects-classes">Objektoj kaj klasoj</a></li>
+<li><a href="/eo/addendum/regex-grammars">Regulesprimoj kaj
+gramatikoj</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/eo/addendum/bringing-it-together">Ĉio kune</a>
+</summary>
+<ul>
+<li><a href="/eo/addendum/mini-projects">Miksitaj
+mini-projektoj</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="home-foot" data-markdown="1">
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/">English</a> • <a
+href="/de/">Deutsch</a> • <strong>Esperanto</strong> • <a
+href="/es/">Español</a> • <a href="/it/">Italiano</a> • <a
+href="/la/">Latina</a> • <a href="/lv/">Latviešu</a> • <a
+href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a
+href="/ru/">Русский</a> • <a href="/uk/">Українська</a></p>
+</div>
+</div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

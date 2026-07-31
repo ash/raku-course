@@ -1,5 +1,5 @@
 ---
-title: Ekskludi la limojn de intervalo
+title: Ekskludante finojn
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ejercicio 'Saludar a una persona'
+title: Saludar a una persona
 ---
 
 {% include menu.html %}

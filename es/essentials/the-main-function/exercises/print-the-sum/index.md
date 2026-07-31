@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Imprimir la suma'
+title: Imprimir la suma
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Funkciotabelo'
+title: Funkcia tabelo
 ---
 
 {% include menu.html %}

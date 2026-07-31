@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Kvadratoj kaj kuboj en buklo'
+title: Kvadratoj kaj kuboj en ripeto
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Aumento de salario'
+title: Aumento de salario
 ---
 
 {% include menu.html %}

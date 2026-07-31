@@ -1,5 +1,5 @@
 ---
-title: Examinando el resultado del prompt — Cadenas
+title: Examinar el resultado de `prompt` — Cadenas
 ---
 
 {% include menu.html %}

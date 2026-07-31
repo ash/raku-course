@@ -1,5 +1,5 @@
 ---
-title: Cadenas en Raku
+title: Cadenas
 ---
 
 {% include menu.html %}

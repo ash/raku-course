@@ -1,5 +1,5 @@
 ---
-title: Quiz — Pasando argumentos
+title: Pasar argumentos
 ---
 
 {% include menu.html %}

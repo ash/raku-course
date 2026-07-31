@@ -1,5 +1,5 @@
 ---
-title: Reparto de manzanas
+title: Compartir manzanas
 ---
 
 {% include menu.html %}

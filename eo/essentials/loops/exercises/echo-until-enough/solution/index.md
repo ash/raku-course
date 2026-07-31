@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Eĥo ĝis sufiĉe'
+title: 'Solvo: Eĥo ĝis sufiĉas'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ repeat {
 say 'OK, finita.';
 ```
 
-🦋 Trovu la programon en la dosiero [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/echo-until-enough.raku).
+🦋 Trovu la programon en la dosiero [echo-until-enough.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/echo-until-enough.raku).
 
 ## Eligo
 

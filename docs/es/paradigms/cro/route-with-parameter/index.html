@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Una ruta con parámetro — Curso de Raku</title>
+    <meta property="og:title" content="Una ruta con parámetro — Curso de Raku" />
+    <meta property="og:locale" content="es" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/es/">Curso de Raku</a> / <a
+href="/es/paradigms">Programación funcional, concurrente, reactiva y
+web</a> / <a href="/es/paradigms/web">Programación web</a> / <a
+href="/es/paradigms/cro">Cro 101</a></p>
+<h1 id="una-ruta-con-parámetro">Una ruta con parámetro</h1>
+<p>La ruta de la página anterior devolvía siempre el mismo texto. Los
+servicios reales varían su respuesta según lo que pida el cliente, y la
+manera más sencilla es leer parte de la <strong>URL</strong> como
+parámetro. En una ruta de Cro, un segmento posterior a la ruta fija se
+convierte en una variable de la firma:</p>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Router</span>;
+<span class="k">use</span> <span class="n">Cro::HTTP::Server</span>;
+
+<span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
+    <span class="n">get</span> -&gt; <span class="s">'hello'</span>, <span class="nv">$name</span> {
+        <span class="n">content</span> <span class="s">'text/plain'</span>, <span class="s">&quot;Hello, $name!&quot;</span>;
+    }
+}
+
+<span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
+    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>),
+    :<span class="n">port</span>(<span class="mi">8080</span>),
+    :<span class="n">application</span>(<span class="nv">$application</span>),
+);
+<span class="nv">$server</span>.<span class="nb">start</span>;
+
+<span class="nb">say</span> <span class="s">'Listening on http://127.0.0.1:8080 — press Ctrl-C to stop'</span>;
+
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nb">signal</span>(<span class="n">SIGINT</span>) {
+        <span class="nv">$server</span>.<span class="n">stop</span>;
+        <span class="n">done</span>;
+    }
+}</pre></div>
+
+<p>La parte interesante es la firma <code>-&gt; 'hello', $name</code>:
+coincide con una ruta de dos segmentos, el literal <code>hello</code> y
+después cualquier cosa, capturada en <code>$name</code>. El resto del
+programa es el mismo andamiaje de servidor de la página anterior. Una
+petición de <code>/hello/Anna</code> liga <code>$name</code> a
+<code>Anna</code> y devuelve <code>Hello, Anna!</code>;
+<code>/hello/Bob</code> devuelve <code>Hello, Bob!</code>. Una ruta, una
+respuesta distinta para cada nombre:</p>
+<div class="highlight"><pre>$ curl http://127.0.0.1:8080/hello/Anna
+Hello, Anna!</pre></div>
+<blockquote>
+<p>Este ejemplo necesita Cro instalado
+(<code>zef install cro</code>).</p>
+</blockquote>
+<p>Los parámetros son lo que permite a una ruta seguir siendo pequeña
+mientras atiende toda una familia de rutas. Una ruta puede tomar varios
+segmentos, coincidir solo con ciertas formas, leer cadenas de consulta y
+devolver JSON, pero todo se construye sobre esta única idea: nombra en
+la firma las partes variables de la URL y úsalas en la respuesta.</p>
+<p>Las rutas que no coinciden con ninguna ruta declarada no son problema
+tuyo: Cro las responde por su cuenta con <code>404 Not Found</code>. Y
+cuando una ruta <em>sí</em> coincide pero no puede entregar nada — el
+nombre no encuentra nada, pongamos —, llama a <code>not-found</code>
+dentro del manejador para enviar ese mismo 404 deliberadamente. El
+<strong>método</strong> se comprueba con tanto rigor como la ruta: este
+bloque solo declara <code>get</code>, así que una petición
+<code>HEAD</code> o <code>POST</code> a la misma ruta se responde con
+<code>405 Method Not Allowed</code>. Puedes verlo tú mismo con
+<code>curl -I</code>, que envía <code>HEAD</code> en lugar de
+<code>GET</code>.</p>
+<p>Un servicio es solo la mitad del cuadro, sin embargo: algo tiene que
+llamarlo. La página siguiente da la vuelta a Cro y usa su
+<strong>cliente</strong> para hablar con un servidor como los que acabas
+de construir.</p>
+<h2 id="navegación-del-curso">Navegación del curso</h2>
+<p>← <a href="/es/paradigms/cro/a-cro-route">Una ruta de Cro</a>   |  
+<a href="/es/paradigms/cro/client-modules">Usar un módulo cliente</a>
+→</p>
+<p><br /> 💪 O ve directamente <a href="/es/paradigms/cro/exercises">a
+los ejercicios de esta sección</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
+<p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Escrito por <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

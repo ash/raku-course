@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Imprimir la advertencia'
+title: Imprimir la advertencia
 ---
 
 {% include menu.html %}

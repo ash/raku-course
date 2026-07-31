@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Funkcio por kalkuli xʸ'
+title: Funkcio por kalkuli _xʸ_
 ---
 
 {% include menu.html %}

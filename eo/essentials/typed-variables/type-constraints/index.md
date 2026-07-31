@@ -1,5 +1,5 @@
 ---
-title: Type constraints
+title: Tipaj limigoj
 ---
 
 {% include menu.html %}

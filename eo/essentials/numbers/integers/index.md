@@ -1,5 +1,5 @@
 ---
-title: Entjeraj nombroj en Raku
+title: Entjeraj nombroj
 ---
 
 {% include menu.html %}

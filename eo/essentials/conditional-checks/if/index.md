@@ -1,5 +1,5 @@
 ---
-title: Kondiĉaj kontroloj kun if
+title: '`if` blokoj'
 ---
 
 {% include menu.html %}

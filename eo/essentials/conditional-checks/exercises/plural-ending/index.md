@@ -1,14 +1,14 @@
 ---
-title: 'Exercise: Plural ending'
+title: Pluralfinaĵo
 ---
 
 {% include menu.html %}
 
-## Task
+## Problemo
 
 Write a program that asks the user for a positive integer number and then prints the phrase `N files copied`, where `N` is the entered number, and the word `file` is in the correct form: plural or singular.
 
-## Example
+## Ekzemplo
 
 Here is an idea that the program must implement:
 
@@ -18,8 +18,8 @@ How many files to copy? 15
 15 files copied.
 ```
 
-## Solution
+## Solvo
 
-✅ [See the solution](solution)
+✅ [Vidu la solvon](solution)
 
 {% include nav.html %}

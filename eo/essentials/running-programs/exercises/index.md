@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Kuri programojn'
+title: 'Ekzercoj: Lanĉado de programoj'
 ---
 
 {% include menu.html %}

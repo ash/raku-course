@@ -1,5 +1,5 @@
 ---
-title: Kreado kaj voko de funkcioj en Raku
+title: Kreado kaj vokado de funkcioj
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ Por krei funkcion, uzu la ŝlosilvorton `sub` sekvatan de la nomo de la funkcio.
 
 ```raku
 sub saluton {
-    diru 'Saluton, Mondo!';
+    say 'Saluton, Mondo!';
 }
 ```
 
@@ -23,11 +23,11 @@ sub saluton {
 Por uzi la funkcion, simple metu ĝian nomon ĉe la loko kie vi bezonas voki ĝin. En Raku, difino de funkcio povas esti lokita antaŭ aŭ post la loko kie la funkcio estas uzata.
 
 ```raku
-diru 'Jen kion la unua programo kutime presas:';
+say 'Jen kion la unua programo kutime presas:';
 saluton;    
 
 sub saluton {
-    diru 'Saluton, Mondo!';
+    say 'Saluton, Mondo!';
 }
 ```
 

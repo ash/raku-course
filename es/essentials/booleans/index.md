@@ -1,5 +1,5 @@
 ---
-title: Tipo Booleano en Raku
+title: Tipo booleano
 ---
 
 {% include menu.html %}

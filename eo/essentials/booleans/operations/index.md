@@ -1,5 +1,5 @@
 ---
-title: Operacioj kun booleaj valoroj
+title: Booleaj operacioj
 ---
 
 {% include menu.html %}

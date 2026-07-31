@@ -1,5 +1,5 @@
 ---
-title: Ejercicio ‘Convertir la entrada del usuario a un número’
+title: Convertir la entrada del usuario a un número
 ---
 
 {% include menu.html %}

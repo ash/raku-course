@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="eo">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>La rutino "say"</title>
-    <meta property="og:title" content="La rutino "say"" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>say — Raku-kurso</title>
+    <meta property="og:title" content="say — Raku-kurso" />
     <meta property="og:locale" content="eo" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>La rutino "say"</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,78 +88,106 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj funkcioj por presado</a></p>
-
-<h1 id="say"><code class="language-plaintext highlighter-rouge">say</code></h1>
-
-<p>La enkonstruita rutino <code class="language-plaintext highlighter-rouge">say</code> faras la jenajn agojn:</p>
-
-<ol>
-  <li>Vokas la metodon <code class="language-plaintext highlighter-rouge">gist</code> sur siaj argumentoj.</li>
-  <li>Aldonas novlinian karakteron.</li>
-  <li>Konvertas la rezulton al UTF-8.</li>
-  <li>Sendas ĝin al la fluo <code class="language-plaintext highlighter-rouge">STDOUT</code>.</li>
+          <p><a href="/eo/">Kurso de Raku</a> / <a
+href="/eo/essentials">Esencoj</a> / <a
+href="/eo/essentials/functions-essentials">Bazoj de funkcioj</a> / <a
+href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj
+funkcioj por presado</a></p>
+<h1 id="say"><code>say</code></h1>
+<p>La enkonstruita rutino <code>say</code> faras la jenajn agojn:</p>
+<ol type="1">
+<li>Vokas la metodon <code>gist</code> sur siaj argumentoj.</li>
+<li>Aldonas novlinian karakteron.</li>
+<li>Konvertas la rezulton al UTF-8.</li>
+<li>Sendas ĝin al la fluo <code>STDOUT</code>.</li>
 </ol>
+<p>El la perspektivo de la uzanto, <code>say</code> simple presas la
+enhavon de variablo al la terminalo kaj aldonas la novlinion.</p>
+<p>La unua paŝo postulas iom da klarigo. La metodo <code>gist</code>
+estas metodo kiu estas difinita por ĉiu enkonstruita datentipo, kiel
+ekzemple entjeroj aŭ ĉenoj. Por tiaj simplaj tipoj, la revena rezulto
+estas homlegebla valoro kiu reprezentas la objekton.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
+<span class="nb">say</span> <span class="s">'Raku'</span>; <span class="c1"># Raku</span></pre></div>
 
-<p>El la perspektivo de la uzanto, <code class="language-plaintext highlighter-rouge">say</code> simple presas la enhavon de variablo al la terminalo kaj aldonas la novlinion.</p>
-
-<p>La unua paŝo postulas iom da klarigo. La metodo <code class="language-plaintext highlighter-rouge">gist</code> estas metodo kiu estas difinita por ĉiu enkonstruita datentipo, kiel ekzemple entjeroj aŭ ĉenoj. Por tiaj simplaj tipoj, la revena rezulto estas homlegebla valoro kiu reprezentas la objekton.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>; <span class="c1"># 42</span>
-<span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>; <span class="c1"># Raku</span>
-</pre></div>
-
-
-<p>Por pli kompleksaj datumoj, kiel ekzemple vektoroj aŭ asociaj tabeloj, la metodo <code class="language-plaintext highlighter-rouge">gist</code> aldonas iom da formatado.</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">&#39;alpha&#39;</span>, <span class="s">&#39;beta&#39;</span>, <span class="s">&#39;gamma&#39;</span>;
+<p>Por pli kompleksaj datumoj, kiel ekzemple vektoroj aŭ asociaj
+tabeloj, la metodo <code>gist</code> aldonas iom da formatado.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="s">'alpha'</span>, <span class="s">'beta'</span>, <span class="s">'gamma'</span>;
 <span class="nb">say</span> <span class="nv">@data</span>; <span class="c1"># [alpha beta gamma]</span>
 
 <span class="k">my</span> <span class="nv">%data</span> = <span class="n">alpha</span> =&gt; <span class="mi">1</span>, <span class="n">beta</span> =&gt; <span class="mi">2</span>, <span class="n">gamma</span> =&gt; <span class="mi">3</span>;
-<span class="nb">say</span> <span class="nv">%data</span>; <span class="c1"># {alpha =&gt; 1, beta =&gt; 2, gamma =&gt; 3}</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%data</span>; <span class="c1"># {alpha =&gt; 1, beta =&gt; 2, gamma =&gt; 3}</span></pre></div>
 
-
-<p>La rutino <code class="language-plaintext highlighter-rouge">say</code> povas esti vokita kiel funkcio aŭ metodo:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
+<p>La rutino <code>say</code> povas esti vokita kiel funkcio aŭ
+metodo:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>;
 <span class="nb">say</span>(<span class="mi">42</span>);
-<span class="mi">42</span>.<span class="nb">say</span>;
-</pre></div>
+<span class="mi">42</span>.<span class="nb">say</span>;</pre></div>
 
+<p>Vi povas pasi pli ol unu argumenton al <code>say</code>. La eliraj
+partoj estas kunigitaj sen spacoj inter ili.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span></pre></div>
 
-<p>Vi povas pasi pli ol unu argumenton al <code class="language-plaintext highlighter-rouge">say</code>. La eliraj partoj estas kunigitaj sen spacoj inter ili.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span>(<span class="mi">100</span>, <span class="mi">500</span>); <span class="c1"># 100500</span>
-</pre></div>
-
-
-<p></div></p>
-
-<h2 id="kurso-navigado">Kurso navigado</h2>
-
-<p>←
-        <a href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj funkcioj por presado</a>
-  |  
-        <a href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj funkcioj por presado</a> / <a href="/eo/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a>
+<h2 id="kursa-navigado">Kursa navigado</h2>
+<p>← <a
+href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj
+funkcioj por presado</a>   |   <a
+href="/eo/essentials/built-in-functions-for-printing/print"><code>print</code></a>
 →</p>
-
-<p><br />
-💪 Or jump directly <a href="/eo/essentials/built-in-functions-for-printing/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/built-in-functions-for-printing/say/">Originala angla teksto</a></p>
-
-  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/built-in-functions-for-printing/say/">English</a> • <a href="/de/essentials/built-in-functions-for-printing/say/">Deutsch</a> • <a href="/es/essentials/built-in-functions-for-printing/say/">Español</a> • <a href="/it/essentials/built-in-functions-for-printing/say/">Italiano</a> • <a href="/lv/essentials/built-in-functions-for-printing/say/">Latviešu</a> • <a href="/nl/essentials/built-in-functions-for-printing/say/">Nederlands</a> • <a href="/bg/essentials/built-in-functions-for-printing/say/">Български</a> • <a href="/ru/essentials/built-in-functions-for-printing/say/">Русский</a> • <a href="/uk/essentials/built-in-functions-for-printing/say/">Українська</a></p>
+<p><br /> 💪 Aŭ iru rekte al <a
+href="/eo/essentials/built-in-functions-for-printing/exercises">la
+ekzercoj de ĉi tiu sekcio</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/built-in-functions-for-printing/say">English</a> • <a
+href="/de/essentials/built-in-functions-for-printing/say">Deutsch</a> •
+<strong>Esperanto</strong> • <a
+href="/es/essentials/built-in-functions-for-printing/say">Español</a> •
+<a
+href="/it/essentials/built-in-functions-for-printing/say">Italiano</a> •
+<a href="/la/essentials/built-in-functions-for-printing/say">Latina</a>
+• <a
+href="/lv/essentials/built-in-functions-for-printing/say">Latviešu</a> •
+<a
+href="/nl/essentials/built-in-functions-for-printing/say">Nederlands</a>
+• <a
+href="/bg/essentials/built-in-functions-for-printing/say">Български</a>
+• <a
+href="/ru/essentials/built-in-functions-for-printing/say">Русский</a> •
+<a
+href="/uk/essentials/built-in-functions-for-printing/say">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

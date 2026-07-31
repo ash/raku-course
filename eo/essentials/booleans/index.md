@@ -1,5 +1,5 @@
 ---
-title: Boolea tipo en Raku
+title: Boolea tipo
 ---
 
 {% include menu.html %}

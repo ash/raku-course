@@ -1,5 +1,5 @@
 ---
-title: La ĉefa funkcio
+title: 'La `MAIN` funkcio'
 ---
 
 {% include menu.html %}

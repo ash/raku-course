@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Tutmondaj variabloj
+title: Kvizo — Globalaj variabloj
 ---
 
 {% include menu.html %}

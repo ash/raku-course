@@ -1,5 +1,5 @@
 ---
-title: Entrada con prompt
+title: Entrada con `prompt`
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ejercicio ‘Cadenas Verdaderas y Falsas
+title: Cadenas Verdaderas y Falsas
 ---
 
 {% include menu.html %}

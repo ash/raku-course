@@ -1,5 +1,5 @@
 ---
-title: Asociativaj datumtipoj
+title: Asociaj datentipoj
 ---
 
 {% include menu.html %}

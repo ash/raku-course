@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="eo">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Raku essentials</title>
-    <meta property="og:title" content="Raku essentials" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Esencoj — Raku-kurso</title>
+    <meta property="og:title" content="Esencoj — Raku-kurso" />
     <meta property="og:locale" content="eo" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Raku essentials</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,23 +88,471 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/eo/">Kurso de Raku</a></p>
-
-<h1 id="raku-esencoj">Raku-esencoj</h1>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/">Originala angla teksto</a></p>
-
-  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/">English</a> • <a href="/de/essentials/">Deutsch</a> • <a href="/es/essentials/">Español</a> • <a href="/it/essentials/">Italiano</a> • <a href="/lv/essentials/">Latviešu</a> • <a href="/nl/essentials/">Nederlands</a> • <a href="/bg/essentials/">Български</a> • <a href="/ru/essentials/">Русский</a> • <a href="/uk/essentials/">Українська</a></p>
+          <p><a href="/eo/">Kurso de Raku</a></p>
+<h1 id="parto-1.-raku-esencoj">Parto 1. Raku-esencoj</h1>
+<p>Komencu ĉi tie. Instalu la tradukilon kaj poste lernu variablojn kaj
+datumtipojn, regofluon kaj viajn unuajn subprogramojn — la fundamenton
+de ĉio posta.</p>
+<h4 id="unua-konatiĝo-kun-raku"><a href="/eo/essentials/intro">Unua
+konatiĝo kun Raku</a></h4>
+<ul>
+<li><a href="/eo/essentials/what-is-raku">Kio estas Raku</a></li>
+</ul>
+<h4 id="tradukiloj"><a
+href="/eo/essentials/compilers">Tradukiloj</a></h4>
+<ul>
+<li><a href="/eo/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+<li><a href="/eo/essentials/the-rakudo-compiler">La tradukilo
+Rakudo</a></li>
+<li><a href="/eo/essentials/how-to-install-rakudo">Kiel instali
+Rakudo</a></li>
+<li><a href="/eo/essentials/the-rakupp-compiler">La tradukilo Raku++
+🆕</a></li>
+<li><a href="/eo/essentials/how-to-install-rakupp">Kiel instali Raku++
+🆕</a></li>
+</ul>
+<h4 id="verki-kaj-ruli-programojn"><a
+href="/eo/essentials/getting-started">Verki kaj ruli programojn</a></h4>
+<ul>
+<li><a href="/eo/essentials/editors-and-ides">Redaktiloj kaj
+IDEj</a></li>
+<li><a href="/eo/essentials/conventional-file-extensions">Konvenciaj
+dosierfinajhoj</a></li>
+<li><a href="/eo/essentials/hello-world">Saluton, Mondo!</a></li>
+<li><a href="/eo/essentials/on-unicode">Notoj pri uzado de
+Unikodo</a></li>
+<li><a href="/eo/essentials/running-programs">Lanĉado de programoj</a> —
+<span class="has-e"><a
+href="/eo/essentials/running-programs/exercises">1 ekzerco</a></span>
+<ul>
+<li><a href="/eo/essentials/running-programs/from-command-line">Lanĉado
+de komanda linio</a></li>
+<li><a href="/eo/essentials/running-programs/from-repl">Lanĉado de
+REPL</a></li>
+<li><a href="/eo/essentials/running-programs/from-ide">Lanĉado de
+IDE</a></li>
+<li><a href="/eo/essentials/running-programs/using-docker">Uzado de
+docker</a></li>
+<li><a
+href="/eo/essentials/running-programs/using-online-services">Uzado de
+retaj servoj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/simple-input-output">Simpla enigo kaj
+eligo</a>
+<ul>
+<li><a href="/eo/essentials/simple-input-output/say">Eligo per
+<code>say</code></a></li>
+<li><a href="/eo/essentials/simple-input-output/prompt">Enigo per
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/eo/essentials/comments">Komentoj</a>
+<ul>
+<li><a href="/eo/essentials/comments/single-line">Unuliniaj komentoj</a>
+— <span class="has-q"><a
+href="/eo/essentials/comments/single-line#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/comments/multi-line">Plurliniaj
+komentoj</a></li>
+<li><a href="/eo/essentials/comments/embedded">Enmetitaj
+komentoj</a></li>
+</ul></li>
+</ul>
+<h4 id="bazoj-de-variabloj-kaj-datumtipoj"><a
+href="/eo/essentials/variables">Bazoj de variabloj kaj
+datumtipoj</a></h4>
+<ul>
+<li><a href="/eo/essentials/scalar-variables">Skalaraj variabloj</a> —
+<span class="has-e"><a
+href="/eo/essentials/scalar-variables/exercises">4 ekzercoj</a></span>
+<ul>
+<li><a
+href="/eo/essentials/scalar-variables/declaring-a-variable">Deklarado de
+variablo</a> — <span class="has-q"><a
+href="/eo/essentials/scalar-variables/declaring-a-variable#practice">2
+kvizoj</a></span></li>
+<li><a
+href="/eo/essentials/scalar-variables/assigning-a-value">Atribuado de
+valoro</a> — <span class="has-q"><a
+href="/eo/essentials/scalar-variables/assigning-a-value#practice">2
+kvizoj</a></span></li>
+<li><a
+href="/eo/essentials/scalar-variables/declaration-with-initialization">Deklarado
+kun inicialigo</a> — <span class="has-q"><a
+href="/eo/essentials/scalar-variables/declaration-with-initialization#practice">2
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/scalar-variables/defined-or-operator">La
+difinita-aŭ operatoro</a></li>
+<li><a href="/eo/essentials/scalar-variables/identifiers">Nomoj de la
+variabloj</a> — <span class="has-q"><a
+href="/eo/essentials/scalar-variables/identifiers#practice">1
+kvizo</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/strings">Stringoj</a> — <span
+class="has-q"><a href="/eo/essentials/strings#practice">1
+kvizo</a></span> kaj <span class="has-e"><a
+href="/eo/essentials/strings/exercises">4 ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/strings/string-concatenation">Stringa
+concatenado</a> — <span class="has-q"><a
+href="/eo/essentials/strings/string-concatenation#practice">3
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/strings/variable-interpolation">Variabla
+interpolado</a> — <span class="has-q"><a
+href="/eo/essentials/strings/variable-interpolation#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/strings/code-interpolation">Koda
+interpolado</a></li>
+<li><a
+href="/eo/essentials/strings/escaping-special-characters">Eskapado de
+specialaj karakteroj</a> — <span class="has-q"><a
+href="/eo/essentials/strings/escaping-special-characters#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/strings/string-length">Stringa longo</a> —
+<span class="has-q"><a
+href="/eo/essentials/strings/string-length#practice">1
+kvizo</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/numbers">Nombroj</a> — <span
+class="has-e"><a href="/eo/essentials/numbers/exercises">7
+ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/numbers/integers">Entjeraj nombroj</a> —
+<span class="has-q"><a href="/eo/essentials/numbers/integers#practice">2
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/numbers/rats">Raciaj nombroj</a> — <span
+class="has-q"><a href="/eo/essentials/numbers/rats#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/numbers/numeric">Flosantaj nombroj</a></li>
+<li><a href="/eo/essentials/numbers/operations">Operacioj kun
+nombroj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/booleans">Boolea tipo</a> — <span
+class="has-q"><a href="/eo/essentials/booleans#practice">1
+kvizo</a></span> kaj <span class="has-e"><a
+href="/eo/essentials/booleans/exercises">3 ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/booleans/operations">Booleaj operacioj</a> —
+<span class="has-q"><a
+href="/eo/essentials/booleans/operations#practice">1
+kvizo</a></span></li>
+<li><a
+href="/eo/essentials/booleans/boolean-operations-other-types">Booleaj
+operacioj kun aliaj tipoj</a> — <span class="has-q"><a
+href="/eo/essentials/booleans/boolean-operations-other-types#practice">1
+kvizo</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/ranges">Intervaloj</a> — <span
+class="has-e"><a href="/eo/essentials/ranges/exercises">1
+ekzerco</a></span>
+<ul>
+<li><a href="/eo/essentials/ranges/excluding-endpoints">Ekskludante
+finojn</a> — <span class="has-q"><a
+href="/eo/essentials/ranges/excluding-endpoints#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/ranges/matching-against-a-range">Kongruado
+kontraŭ intervalo</a> — <span class="has-q"><a
+href="/eo/essentials/ranges/matching-against-a-range#practice">1
+kvizo</a></span></li>
+</ul></li>
+</ul>
+<h4 id="bazoj-de-la-regofluo"><a
+href="/eo/essentials/control-flow">Bazoj de la regofluo</a></h4>
+<ul>
+<li><a href="/eo/essentials/code-blocks">Kodoblokoj</a>
+<ul>
+<li><a href="/eo/essentials/code-blocks/lexical-scope">Leksika
+amplekso</a> — <span class="has-q"><a
+href="/eo/essentials/code-blocks/lexical-scope#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/code-blocks/global-variables">Globalaj
+variabloj</a> — <span class="has-q"><a
+href="/eo/essentials/code-blocks/global-variables#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/code-blocks/local-variables">Lokaj
+variabloj</a> — <span class="has-q"><a
+href="/eo/essentials/code-blocks/local-variables#practice">1
+kvizo</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/conditional-checks">Kondiĉaj kontroloj</a> —
+<span class="has-e"><a
+href="/eo/essentials/conditional-checks/exercises">4 ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/conditional-checks/if"><code>if</code>
+blokoj</a> — <span class="has-q"><a
+href="/eo/essentials/conditional-checks/if#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/conditional-checks/else"><code>else</code>
+blokoj</a></li>
+<li><a href="/eo/essentials/conditional-checks/elsif">Uzante
+<code>elsif</code></a> — <span class="has-q"><a
+href="/eo/essentials/conditional-checks/elsif#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/conditional-checks/unless">Uzante
+<code>unless</code></a></li>
+<li><a
+href="/eo/essentials/conditional-checks/modifiers"><code>if</code> kaj
+<code>unless</code> kiel modifiloj de deklaroj</a></li>
+<li><a
+href="/eo/essentials/conditional-checks/comparing-numbers">Komparante
+nombrojn</a> — <span class="has-q"><a
+href="/eo/essentials/conditional-checks/comparing-numbers#practice">1
+kvizo</a></span></li>
+<li><a
+href="/eo/essentials/conditional-checks/comparing-strings">Komparante
+stringojn</a> — <span class="has-q"><a
+href="/eo/essentials/conditional-checks/comparing-strings#practice">2
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/conditional-checks/ternary-operator">Ternara
+operatoro</a> — <span class="has-q"><a
+href="/eo/essentials/conditional-checks/ternary-operator#practice">1
+kvizo</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/loops">Ripetoj</a> — <span class="has-e"><a
+href="/eo/essentials/loops/exercises">7 ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/loops/while">Uzante <code>while</code></a> —
+<span class="has-q"><a href="/eo/essentials/loops/while#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/loops/until">Uzante <code>until</code></a> —
+<span class="has-q"><a href="/eo/essentials/loops/until#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/loops/repeat">Uzante <code>repeat</code></a>
+— <span class="has-q"><a href="/eo/essentials/loops/repeat#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/loops/modifiers"><code>while</code> kaj
+<code>until</code> kiel modifiloj de deklaroj</a></li>
+<li><a href="/eo/essentials/loops/loop">Trideklaro
+<code>loop</code></a></li>
+<li><a href="/eo/essentials/loops/infinite-loops">Senfinaj
+ripetoj</a></li>
+<li><a href="/eo/essentials/loops/for"><code>for</code> ripetoj</a> —
+<span class="has-q"><a href="/eo/essentials/loops/for#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/loops/topic">Temvariablo</a></li>
+<li><a href="/eo/essentials/loops/postfix-for">Postfixa formo de
+<code>for</code></a> — <span class="has-q"><a
+href="/eo/essentials/loops/postfix-for#practice">1 kvizo</a></span></li>
+</ul></li>
+</ul>
+<h4 id="pli-pri-tipoj"><a href="/eo/essentials/more-about-types">Pli pri
+tipoj</a></h4>
+<ul>
+<li><a href="/eo/essentials/coercion">Datentipa konvertado</a> — <span
+class="has-q"><a href="/eo/essentials/coercion#practice">1
+kvizo</a></span> kaj <span class="has-e"><a
+href="/eo/essentials/coercion/exercises">3 ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/coercion/what">Introspekto kun
+<code>WHAT</code></a> — <span class="has-q"><a
+href="/eo/essentials/coercion/what#practice">1 kvizo</a></span></li>
+<li><a href="/eo/essentials/coercion/methods">Konvertante tipojn uzante
+tipajn devigmetodojn</a></li>
+<li><a href="/eo/essentials/coercion/new">Konvertante tipojn uzante
+konstruistajn formojn</a></li>
+<li><a href="/eo/essentials/coercion/prefixes">Konvertante tipojn kun
+prefiksaj operatoroj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/typed-variables">Tipitaj variabloj</a> —
+<span class="has-e"><a href="/eo/essentials/typed-variables/exercises">4
+ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/typed-variables/type-constraints">Tipaj
+limigoj</a> — <span class="has-q"><a
+href="/eo/essentials/typed-variables/type-constraints#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/typed-variables/using-of">Uzante
+<code>of</code></a></li>
+<li><a href="/eo/essentials/typed-variables/coercion">Tipkonvertado por
+tipitaj variabloj</a> — <span class="has-q"><a
+href="/eo/essentials/typed-variables/coercion#practice">1
+kvizo</a></span></li>
+<li><a
+href="/eo/essentials/typed-variables/allomorphs">Alomorfoj</a></li>
+</ul></li>
+<li><a href="/eo/essentials/positionals">Poziciaj datentipoj</a> — <span
+class="has-e"><a href="/eo/essentials/positionals/exercises">9
+ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/positionals/arrays">Arrayoj</a> — <span
+class="has-q"><a href="/eo/essentials/positionals/arrays#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/positionals/nested-arrays">Nestitaj
+arrayoj</a> — <span class="has-q"><a
+href="/eo/essentials/positionals/nested-arrays#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/positionals/args-array">La
+<code>@*ARGS</code> arrayo</a> — <span class="has-q"><a
+href="/eo/essentials/positionals/args-array#practice">1
+kvizo</a></span></li>
+<li><a
+href="/eo/essentials/positionals/interpolating-arrays">Interpolante
+arrayojn</a> — <span class="has-q"><a
+href="/eo/essentials/positionals/interpolating-arrays#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/positionals/lists">Listoj</a> — <span
+class="has-q"><a href="/eo/essentials/positionals/lists#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/positionals/quoting-string-arrays">Citante
+stringajn arrayojn</a> — <span class="has-q"><a
+href="/eo/essentials/positionals/quoting-string-arrays#practice">2
+kvizoj</a></span></li>
+<li><a
+href="/eo/essentials/positionals/subscripting-ranges">Subskribante
+intervalojn</a> — <span class="has-q"><a
+href="/eo/essentials/positionals/subscripting-ranges#practice">1
+kvizo</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/associatives">Asociaj datentipoj</a> — <span
+class="has-e"><a href="/eo/essentials/associatives/exercises">6
+ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/associatives/pairs">Paroj</a> — <span
+class="has-q"><a href="/eo/essentials/associatives/pairs#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/associatives/hashes">Haxoj</a> — <span
+class="has-q"><a href="/eo/essentials/associatives/hashes#practice">2
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/associatives/nested-hashes">Nestitaj
+haxoj</a> — <span class="has-q"><a
+href="/eo/essentials/associatives/nested-hashes#practice">1
+kvizo</a></span></li>
+<li><a
+href="/eo/essentials/associatives/interpolating-hashes">Interpolante
+haxojn</a> — <span class="has-q"><a
+href="/eo/essentials/associatives/interpolating-hashes#practice">1
+kvizo</a></span></li>
+</ul></li>
+</ul>
+<h4 id="bazoj-de-funkcioj"><a
+href="/eo/essentials/functions-essentials">Bazoj de funkcioj</a></h4>
+<ul>
+<li><a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a>
+— <span class="has-q"><a href="/eo/essentials/functions#practice">1
+kvizo</a></span> kaj <span class="has-e"><a
+href="/eo/essentials/functions/exercises">6 ekzercoj</a></span>
+<ul>
+<li><a href="/eo/essentials/functions/identifiers">Funkciaj nomoj</a> —
+<span class="has-q"><a
+href="/eo/essentials/functions/identifiers#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/functions/function-parameters">Funkciaj
+parametroj</a> — <span class="has-q"><a
+href="/eo/essentials/functions/function-parameters#practice">2
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/functions/return-result">Redonante la
+rezulton</a> — <span class="has-q"><a
+href="/eo/essentials/functions/return-result#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/functions/positional-parameters">Poziciaj
+parametroj</a> — <span class="has-q"><a
+href="/eo/essentials/functions/positional-parameters#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/functions/named-parameters">Nomitaj
+parametroj</a> — <span class="has-q"><a
+href="/eo/essentials/functions/named-parameters#practice">2
+kvizoj</a></span></li>
+<li><a href="/eo/essentials/functions/default-values">Defaŭltaj
+valoroj</a> — <span class="has-q"><a
+href="/eo/essentials/functions/default-values#practice">2
+kvizoj</a></span></li>
+</ul></li>
+<li><a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a> —
+<span class="has-e"><a
+href="/eo/essentials/more-on-functions/exercises">1 ekzerco</a></span>
+<ul>
+<li><a href="/eo/essentials/more-on-functions/mind-the-space">Atentu la
+spacon</a></li>
+<li><a href="/eo/essentials/more-on-functions/typed-parameters">Tipitaj
+parametroj</a> — <span class="has-q"><a
+href="/eo/essentials/more-on-functions/typed-parameters#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/more-on-functions/return-type">Redontipo</a>
+— <span class="has-q"><a
+href="/eo/essentials/more-on-functions/return-type#practice">1
+kvizo</a></span></li>
+<li><a
+href="/eo/essentials/more-on-functions/multi-functions">Multi-funkcioj</a>
+— <span class="has-q"><a
+href="/eo/essentials/more-on-functions/multi-functions#practice">3
+kvizoj</a></span></li>
+</ul></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing">Enkonstruataj
+funkcioj por presado</a> — <span class="has-e"><a
+href="/eo/essentials/built-in-functions-for-printing/exercises">2
+ekzercoj</a></span>
+<ul>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/eo/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/eo/essentials/the-main-function">La <code>MAIN</code>
+funkcio</a> — <span class="has-e"><a
+href="/eo/essentials/the-main-function/exercises">3 ekzercoj</a></span>
+<ul>
+<li><a
+href="/eo/essentials/the-main-function/reading-command-line-arguments">Legante
+komando-linio argumentojn</a> — <span class="has-q"><a
+href="/eo/essentials/the-main-function/reading-command-line-arguments#practice">2
+kvizoj</a></span></li>
+<li><a
+href="/eo/essentials/the-main-function/multi-main-functions">Multoblaj
+<code>MAIN</code> funkcioj</a> — <span class="has-q"><a
+href="/eo/essentials/the-main-function/multi-main-functions#practice">1
+kvizo</a></span></li>
+<li><a href="/eo/essentials/the-main-function/using-unit-sub">Uzante
+<code>unit sub</code></a> — <span class="has-q"><a
+href="/eo/essentials/the-main-function/using-unit-sub#practice">1
+kvizo</a></span></li>
+</ul></li>
+</ul>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/essentials">English</a> • <a
+href="/de/essentials">Deutsch</a> • <strong>Esperanto</strong> • <a
+href="/es/essentials">Español</a> • <a
+href="/it/essentials">Italiano</a> • <a href="/la/essentials">Latina</a>
+• <a href="/lv/essentials">Latviešu</a> • <a
+href="/nl/essentials">Nederlands</a> • <a
+href="/bg/essentials">Български</a> • <a
+href="/ru/essentials">Русский</a> • <a
+href="/uk/essentials">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

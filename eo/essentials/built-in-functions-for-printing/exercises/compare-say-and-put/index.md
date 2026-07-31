@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Komparu `say` kaj `put`'
+title: 'Kompari `say` kaj `put`'
 ---
 
 {% include menu.html %}

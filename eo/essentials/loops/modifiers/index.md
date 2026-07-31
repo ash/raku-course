@@ -1,5 +1,5 @@
 ---
-title: while kaj until kiel deklaraj modifiloj
+title: '`while` kaj `until` kiel modifiloj de deklaroj'
 ---
 
 {% include menu.html %}

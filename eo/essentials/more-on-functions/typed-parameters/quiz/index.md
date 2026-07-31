@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Tajpitaj parametroj
+title: Kvizo — Tipitaj parametroj
 ---
 
 {% include menu.html %}

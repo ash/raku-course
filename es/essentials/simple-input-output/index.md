@@ -1,5 +1,5 @@
 ---
-title: Entrada y salida simples en Raku
+title: Entrada y salida simple
 ---
 
 {% include menu.html %}

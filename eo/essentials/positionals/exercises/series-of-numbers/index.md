@@ -1,14 +1,14 @@
 ---
-title: Preskribi serion de nombroj
+title: Presi serion de nombroj
 ---
 
 {% include menu.html %}
 
-## Task
+## Problemo
 
 Kreu programon kiu petas enigi du entjerajn nombrojn _A_ kaj _B_ (kiel _A ≤ B_) kaj poste presas ĉiujn entjerajn nombrojn de _A_ ĝis _B_ inkluzive ambaŭ _A_ kaj _B_.
 
-## Example
+## Ekzemplo
 
 La programo devus funkcii tiel:
 
@@ -22,7 +22,7 @@ Fino: 17
 17
 ```
 
-## Solution
+## Solvo
 
 ✅ [Vidu la solvon](solution)
 

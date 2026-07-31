@@ -21,14 +21,14 @@ Jen la solvo:
 ```raku
 sub factorial($n) {
     my $f = 1;
-    $f *= $_ por 1..$n;
+    $f *= $_ for 1..$n;
 
     return $f;
 }
 
 sub e-approx($max = 100) {
     my $e = 1;
-    $e += 1 / factorial($_) por 1..$max;
+    $e += 1 / factorial($_) for 1..$max;
 
     return $e;
 }
@@ -37,7 +37,7 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Trovu la programon en la dosiero [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Trovu la programon en la dosiero [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
 ## Eligo
 

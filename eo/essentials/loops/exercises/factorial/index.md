@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Faktorio'
+title: Faktorialo
 ---
 
 {% include menu.html %}

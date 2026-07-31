@@ -1,10 +1,10 @@
 ---
-title: Solution of ‘Examining the output of prompt — Strings’
+title: 'Solvo: Ekzameni la rezulton de `prompt` — Stringoj'
 ---
 
 {% include menu.html %}
 
-## Code
+## Kodo
 
 Here is the complete program that does the job and prints both the entered string and its type.
 
@@ -14,9 +14,9 @@ say $name;
 say $name.WHAT;
 ```
 
-🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-strings.raku).
+🦋 You can find the source code in the file [prompt-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-strings.raku).
 
-## Test runs
+## Testaj kuradoj
 
 Run the program a couple of times and enter different names. The program echoes the input and also reports that the variable contains a string, in other words, an object of the `Str` type.
 

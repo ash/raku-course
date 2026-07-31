@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Valores predeterminados
+title: Quiz — Valores predeterminados
 ---
 
 {% include menu.html %}

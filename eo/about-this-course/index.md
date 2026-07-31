@@ -1,12 +1,9 @@
 ---
 title: Pri ĉi tiu kurso
+translations_gpt:
 ---
 
-{% assign course_title = site.data.toc["en"].title %}
-
-[{{course_title}}](/eo/)
-
-# Pri ĉi tiu kurso
+{% include menu.html %}
 
 Bonvenon al la kurso de la Raku-programlingvo!
 
@@ -92,7 +89,7 @@ La kurso estas verkita de [Andrew Shitov](https://andrewshitov.com), kiu sekvas 
 
 La kreado de la kurso estas subtenata de la subvencio de [La Perl Fondaĵo](https://www.perlfoundation.org). Vi povas uzi la kurson por memstudo aŭ kiel aron de pretaj materialoj por instrui aliajn. La komerca uzo en klasoj estas permesita sen permeso. Eldoni la kurson kiel apartan produkton devas esti unue negocita kun la aŭtoro.
 
-La fontdosieroj estas disponeblaj en GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Bonvolu sendi tirpeton por korekti la eblajn erarojn aŭ tajperarojn aŭ krei temon en GitHub se vi volas diskuti pli larĝan temon. Vi ankaŭ povas kontakti la aŭtoron per [retpoŝto](mailto:andy@shitov.ru).
+La fontdosieroj estas disponeblaj en GitHub: [github.com/ash/raku-course](https://github.com/ash/raku-course). Bonvolu sendi tirpeton por korekti la eblajn erarojn aŭ tajperarojn aŭ krei temon en GitHub se vi volas diskuti pli larĝan temon. Vi ankaŭ povas kontakti la aŭtoron per [retpoŝto](mailto:mail@andreyshitov.com).
 
 ## Kursa navigado
 

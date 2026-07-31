@@ -1,5 +1,5 @@
 ---
-title: Kvadratoj kaj kuboj
+title: Kvadrato kaj kubo
 ---
 
 {% include menu.html %}

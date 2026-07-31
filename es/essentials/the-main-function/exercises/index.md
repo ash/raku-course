@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: La función PRINCIPAL'
+title: 'Exercises: La función `MAIN`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Reveno de funkcio
+title: Kvizo — Redonu de funkcio
 ---
 
 {% include menu.html %}

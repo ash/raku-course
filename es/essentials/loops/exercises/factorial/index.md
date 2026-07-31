@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Factorial'
+title: Factorial
 ---
 
 {% include menu.html %}

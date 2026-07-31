@@ -1,5 +1,5 @@
 ---
-title: Kvizo — La @*ARGS array
+title: 'Kvizo — La `@*ARGS` arrayo'
 ---
 
 {% include menu.html %}

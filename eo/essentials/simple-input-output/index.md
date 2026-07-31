@@ -1,5 +1,5 @@
 ---
-title: Simpla enigo kaj eligo en Raku
+title: Simpla enigo kaj eligo
 ---
 
 {% include menu.html %}

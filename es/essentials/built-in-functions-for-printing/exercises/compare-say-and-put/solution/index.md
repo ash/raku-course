@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Comparar `say` y `put`'
+title: 'Solution: Comparar `say` y `put`'
 ---
 
 {% include menu.html %}
@@ -42,7 +42,7 @@ put %h;
 
 Para mayor confianza, también puedes imprimir el tipo de la variable, por ejemplo, como se muestra para arrays y listas, para asegurarte de que has creado una variable del tipo deseado.
 
-🦋 Encuentra el programa en el archivo [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Encuentra el programa en el archivo [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Salida
 

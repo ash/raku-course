@@ -1,5 +1,5 @@
 ---
-title: Uzante ‘of’
+title: 'Uzante `of`'
 ---
 
 {% include menu.html %}

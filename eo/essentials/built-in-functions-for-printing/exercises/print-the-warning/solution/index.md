@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Presu la averton'
+title: 'Solvo: Presi la averton'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Trovu la programon en la dosiero [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Eligo
 

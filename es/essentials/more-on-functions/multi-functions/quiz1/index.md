@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Funciones múltiples simples
+title: Quiz 1 — Multi-funciones simples
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo de 'Korektu la identigilojn'
+title: 'Solvo: Korekti la identigilojn'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $from-to = 'London to Paris';
 
 Ĉiuj identigiloj estas validaj, sed verŝajne estas pli bone eviti nomojn kun apostrofoj se vi `$don't` havas fortajn kialojn por uzi ilin.
 
-🦋 Vi povas trovi la fontkodon en la dosiero [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/identifiers.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [identifiers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/identifiers.raku).
 
 ## Eligo
 

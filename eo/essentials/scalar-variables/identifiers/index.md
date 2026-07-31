@@ -1,5 +1,5 @@
 ---
-title: Nomoj de variabloj
+title: Nomoj de la variabloj
 ---
 
 {% include menu.html %}

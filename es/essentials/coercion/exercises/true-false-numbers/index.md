@@ -1,5 +1,5 @@
 ---
-title: Ejercicio ‘Enteros Verdaderos y Falsos’
+title: Números Verdaderos y Falsos
 ---
 
 {% include menu.html %}

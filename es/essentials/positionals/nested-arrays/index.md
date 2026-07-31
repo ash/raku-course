@@ -1,5 +1,5 @@
 ---
-title: Arreglos anidados
+title: Arrays anidados
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Funciones integradas para imprimir'
+title: 'Exercises: Funciones integradas para imprimir'
 ---
 
 {% include menu.html %}

@@ -1,12 +1,13 @@
 ---
-title: La nombro de komandliniaj argumentoj
+title: La nombro de komando-linio argumentoj
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-## Tasko
+## Problemo
 
-Skribu programon kiu presas la nombron de argumentoj pasitaj al la programo en la komandlinio.
+Skribu programon kiu en kompleta frazo raportas, kiom da argumentoj ĝi ricevis el la komandlinio. Zorgu pri ĝusta gramatiko: uzu la vorton `argument`, kiam estis pasita ekzakte unu, kaj `arguments` en ĉiuj aliaj kazoj.
 
 ## Ekzemplo
 
@@ -14,10 +15,11 @@ Jen kiel la programo devas reagi:
 
 ```console
 $ raku number-of-command-line-arguments.raku make them count us now
-5
-```
+You passed 5 arguments.
 
-La programo ricevas kvin vortojn en la komandlinio kaj presas `5`.
+$ raku number-of-command-line-arguments.raku solo
+You passed 1 argument.
+```
 
 ## Solvo
 

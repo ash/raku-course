@@ -1,5 +1,5 @@
 ---
-title: Quiz — Postfix for
+title: 'Kvizo — Postfixa `for`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Subscripting ranges
+title: Subíndice de rangos
 ---
 
 {% include menu.html %}

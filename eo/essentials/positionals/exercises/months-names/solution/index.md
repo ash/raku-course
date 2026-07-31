@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Monatoj nomoj'
+title: 'Solvo: Monataj nomoj'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ my @months = <
 say @months[@*ARGS[0] - 1];
 ```
 
-🦋 Trovu la programon en la dosiero [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/months-names.raku).
+🦋 Trovu la programon en la dosiero [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/months-names.raku).
 
 ## Eligo
 

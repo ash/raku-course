@@ -1,5 +1,5 @@
 ---
-title: Nombres de variables
+title: Nombres de las variables
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Leer argumentos de línea de comandos en la función MAIN
+title: Quiz — Lectura de argumentos de línea de comandos
 ---
 
 {% include menu.html %}

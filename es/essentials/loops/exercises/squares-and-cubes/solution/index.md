@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Cuadrados y cubos en un bucle'
+title: 'Solution: Cuadrados y cubos en un bucle'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for -5 .. 5 -> $n {
 }
 ```
 
-🦋 Encuentra el programa en el archivo [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/squares-and-cubes-loop.raku).
+🦋 Encuentra el programa en el archivo [squares-and-cubes-loop.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/squares-and-cubes-loop.raku).
 
 ## Ejemplo
 

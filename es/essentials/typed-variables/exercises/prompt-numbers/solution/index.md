@@ -1,5 +1,5 @@
 ---
-title: Solución de ‘Examinando el resultado del prompt — Números’
+title: 'Solution: Examinar el resultado de `prompt` — Números'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 Puedes encontrar el código fuente en el archivo [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
+🦋 Puedes encontrar el código fuente en el archivo [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-numbers.raku).
 
 ## Ejecuciones de prueba
 

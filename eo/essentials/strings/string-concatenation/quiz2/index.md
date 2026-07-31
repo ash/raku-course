@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo 1: Kunigi ĉenojn kaj nombrojn'
+title: 'Kvizo 2: Concatenado de stringoj kaj nombroj'
 ---
 
 {% include menu.html %}

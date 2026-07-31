@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Nepara aŭ para'
+title: Para aŭ nepara
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Strings in Raku
+title: Stringoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo al ‘Sumo de nombroj’
+title: 'Solvo: Sumo de nombroj'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $a + $b + $c;
 say "La sumo de la nombroj estas $sum.";
 ```
 
-🦋 Vi povas trovi la tutan kodon en la dosiero [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum-of-numbers.raku).
+🦋 Vi povas trovi la tutan kodon en la dosiero [sum-of-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum-of-numbers.raku).
 
 ## Eligo
 

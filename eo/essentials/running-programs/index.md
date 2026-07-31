@@ -1,5 +1,5 @@
 ---
-title: Rulado de programoj
+title: Lanĉado de programoj
 ---
 
 {% include menu.html %}

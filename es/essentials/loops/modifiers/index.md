@@ -1,5 +1,5 @@
 ---
-title: while y until como modificadores de declaraciones
+title: '`while` y `until` como modificadores de sentencia'
 ---
 
 {% include menu.html %}

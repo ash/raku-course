@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo 2: Deklaracio kaj inicialigo aŭ deklaracio kun inicialigo'
+title: 'Kvizo 2: Deklarado kaj inicialigo aŭ deklarado kun inicialigo'
 ---
 
 {% include menu.html %}

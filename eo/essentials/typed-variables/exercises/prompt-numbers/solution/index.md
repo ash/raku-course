@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Ekzamenante la rezulton de prompto — Nombroj’
+title: 'Solvo: Ekzameni la rezulton de `prompt` — Nombroj'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ say $n;
 say $n.WHAT;
 ```
 
-🦋 Vi povas trovi la fontkodon en la dosiero [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/prompt-numbers.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [prompt-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/prompt-numbers.raku).
 
 ## Testaj kuradoj
 

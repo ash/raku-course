@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Deletrear un número'
+title: Escribir un número
 ---
 
 {% include menu.html %}

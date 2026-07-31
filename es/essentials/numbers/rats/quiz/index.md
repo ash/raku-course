@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario: Números racionales'
+title: 'Quiz: Números racionales en Raku'
 ---
 
 {% include menu.html %}

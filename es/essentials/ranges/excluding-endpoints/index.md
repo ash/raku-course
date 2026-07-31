@@ -1,5 +1,5 @@
 ---
-title: Excluyendo los extremos de un rango
+title: Excluir extremos
 ---
 
 {% include menu.html %}

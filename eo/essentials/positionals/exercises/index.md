@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Poziciaĵoj'
+title: 'Ekzercoj: Poziciaj datentipoj'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ejecutando programas
+title: Ejecución de programas
 ---
 
 {% include menu.html %}

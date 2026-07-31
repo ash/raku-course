@@ -1,5 +1,5 @@
 ---
-title: Kurante de REPL
+title: Lanĉado de REPL
 ---
 
 {% include menu.html %}

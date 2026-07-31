@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Malpeza FizzBuzz'
+title: FizzBuzz
 ---
 
 {% include menu.html %}

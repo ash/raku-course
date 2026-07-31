@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: bucles'
+title: 'Exercises: Bucles'
 ---
 
 {% include menu.html %}

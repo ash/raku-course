@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Índices impares'
+title: Índices impares
 ---
 
 {% include menu.html %}

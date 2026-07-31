@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Divido per subtraho'
+title: Divido per subtraho
 ---
 
 {% include menu.html %}

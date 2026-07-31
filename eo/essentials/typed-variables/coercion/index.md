@@ -1,5 +1,5 @@
 ---
-title: Tipo konvertiĝo por tipitaj variabloj
+title: Tipkonvertado por tipitaj variabloj
 ---
 
 {% include menu.html %}

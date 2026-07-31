@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Interŝanĝu la valorojn'
+title: Interŝanĝi valorojn
 ---
 
 {% include menu.html %}

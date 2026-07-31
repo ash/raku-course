@@ -1,5 +1,5 @@
 ---
-title: 'Komprenante la `for` buklon'
+title: 'Kompreni la `for` ripeton'
 ---
 
 {% include menu.html %}

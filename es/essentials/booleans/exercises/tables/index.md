@@ -1,5 +1,5 @@
 ---
-title: Ejercicio 'Tablas Booleanas’
+title: Tablas booleanas
 ---
 
 {% include menu.html %}

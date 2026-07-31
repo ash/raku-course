@@ -1,5 +1,5 @@
 ---
-title: Solución de ‘Imprimir argumentos de la línea de comandos’
+title: 'Solution: Imprimir argumentos de línea de comandos'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ El programa obtiene los argumentos de la línea de comandos en el array `@*ARGS`
 .say for @*ARGS;
 ```
 
-🦋 Encuentra el programa en el archivo [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Encuentra el programa en el archivo [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Salida
 

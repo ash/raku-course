@@ -1,5 +1,5 @@
 ---
-title: Verificaciones condicionales
+title: Controles condicionales
 ---
 
 {% include menu.html %}

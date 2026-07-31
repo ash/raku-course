@@ -1,5 +1,5 @@
 ---
-title: La rutina put
+title: '`put`'
 ---
 
 {% include menu.html %}

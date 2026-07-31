@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Print command line arguments’
+title: 'Solvo: Presi komando-linio argumentojn'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ La programo ricevas la argumentojn de la komanda linio en la tabelo `@*ARGS`. Do
 .say for @*ARGS;
 ```
 
-🦋 Trovu la programon en la dosiero [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/print-command-line-arguments.raku).
+🦋 Trovu la programon en la dosiero [number-of-command-line-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/print-command-line-arguments.raku).
 
 ## Eligo
 

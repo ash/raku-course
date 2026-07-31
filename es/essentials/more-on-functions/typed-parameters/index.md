@@ -1,5 +1,5 @@
 ---
-title: Parámetros tipados de funciones
+title: Parámetros tipados
 ---
 
 {% include menu.html %}

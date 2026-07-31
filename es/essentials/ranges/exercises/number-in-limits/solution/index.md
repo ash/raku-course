@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Si el número está dentro de los límites'
+title: 'Solution: Si el número está dentro de los límites'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ my $n = prompt '¿Cuál es el número? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Encuentra el programa en el archivo [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Encuentra el programa en el archivo [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
 ## Salida
 

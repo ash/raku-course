@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Konverti uzantan enigon al nombro’
+title: 'Solvo: Konverti uzantan enigon al nombro'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my Int $n = prompt 'Enigu numeron: ';
 say $n;
 ```
 
-🦋 Vi povas trovi la fontkodon en la dosiero [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/input-number.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [input-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/input-number.raku).
 
 ## Ekzemplo
 

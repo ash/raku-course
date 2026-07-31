@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario: Operaciones Booleanas'
+title: 'Quiz: Operaciones booleanas'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solución de ‘Crear variables de todos los tipos conocidos’
+title: 'Solution: Crear variables de todos los tipos conocidos'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Encuentra el programa en el archivo [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Encuentra el programa en el archivo [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
 ## Salida
 

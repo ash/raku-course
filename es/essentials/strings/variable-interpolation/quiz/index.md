@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario: Interpolación de cadenas'
+title: 'Quiz: Interpolación de cadenas'
 ---
 
 {% include menu.html %}

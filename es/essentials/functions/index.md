@@ -1,5 +1,5 @@
 ---
-title: Creación y llamada de funciones en Raku
+title: Crear y llamar funciones
 ---
 
 {% include menu.html %}

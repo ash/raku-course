@@ -1,5 +1,5 @@
 ---
-title: Ekzerco ’La respondo al la vivo, la Universo kaj ĉio‘
+title: La respondo al vivo, la Universo kaj ĉio
 ---
 
 {% include menu.html %}

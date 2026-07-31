@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Superjaro'
+title: Superjaro
 ---
 
 {% include menu.html %}

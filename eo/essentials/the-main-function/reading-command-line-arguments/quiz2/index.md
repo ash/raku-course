@@ -1,5 +1,5 @@
 ---
-title: Kvizo 2 — Defaŭltaj valoroj
+title: Kvizo — Defaŭltaj valoroj
 ---
 
 {% include menu.html %}

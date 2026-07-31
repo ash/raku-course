@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Solución a 'Tablas Booleanas’</title>
-    <meta property="og:title" content="Solución a 'Tablas Booleanas’" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Solución: Tablas booleanas — Curso de Raku</title>
+    <meta property="og:title" content="Solución: Tablas booleanas — Curso de Raku" />
     <meta property="og:locale" content="es" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Solución a 'Tablas Booleanas’</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,43 +88,55 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/booleans/">Tipo booleano</a> / <a href="/es/essentials/booleans/exercises/">Ejercicios</a> / <a href="/es/essentials/booleans/exercises/tables">Tablas booleanas</a></p>
-
+          <p><a href="/es/">Curso de Raku</a> / <a
+href="/es/essentials">Esenciales</a> / <a
+href="/es/essentials/variables">Fundamentos de variables y tipos de
+datos</a> / <a href="/es/essentials/booleans">Tipo booleano</a> / <a
+href="/es/essentials/booleans/exercises">Ejercicios</a> / <a
+href="/es/essentials/booleans/exercises/tables">Tablas booleanas</a></p>
 <h1 id="solución-tablas-booleanas">Solución: Tablas booleanas</h1>
-
-<p>Aquí tienes un posible programa que imprime todos los resultados de las operaciones booleanas.</p>
-
+<p>Aquí tienes un posible programa que imprime todos los resultados de
+las operaciones booleanas.</p>
 <h2 id="código">Código</h2>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'True &amp;&amp; True is '</span>, <span class="n">True</span> &amp;&amp; <span class="n">True</span>; 
+<span class="nb">say</span> <span class="s">'True &amp;&amp; False is '</span>, <span class="n">True</span> &amp;&amp; <span class="n">False</span>;
+<span class="nb">say</span> <span class="s">'False &amp;&amp; True is '</span>, <span class="n">False</span> &amp;&amp; <span class="n">True</span>;
+<span class="nb">say</span> <span class="s">'False &amp;&amp; False is '</span>, <span class="n">False</span> &amp;&amp; <span class="n">False</span>;
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;True &amp;&amp; True is &#39;</span>, <span class="nb">True</span> &amp;&amp; <span class="nb">True</span>; 
-<span class="nb">say</span> <span class="s">&#39;True &amp;&amp; False is &#39;</span>, <span class="nb">True</span> &amp;&amp; <span class="nb">False</span>;
-<span class="nb">say</span> <span class="s">&#39;False &amp;&amp; True is &#39;</span>, <span class="nb">False</span> &amp;&amp; <span class="nb">True</span>;
-<span class="nb">say</span> <span class="s">&#39;False &amp;&amp; False is &#39;</span>, <span class="nb">False</span> &amp;&amp; <span class="nb">False</span>;
+<span class="nb">say</span> <span class="s">'True || True is '</span>, <span class="n">True</span> || <span class="n">True</span>; 
+<span class="nb">say</span> <span class="s">'True || False is '</span>, <span class="n">True</span> || <span class="n">False</span>;
+<span class="nb">say</span> <span class="s">'False || True is '</span>, <span class="n">False</span> || <span class="n">True</span>;
+<span class="nb">say</span> <span class="s">'False || False is '</span>, <span class="n">False</span> || <span class="n">False</span>;
 
-<span class="nb">say</span> <span class="s">&#39;True || True is &#39;</span>, <span class="nb">True</span> || <span class="nb">True</span>; 
-<span class="nb">say</span> <span class="s">&#39;True || False is &#39;</span>, <span class="nb">True</span> || <span class="nb">False</span>;
-<span class="nb">say</span> <span class="s">&#39;False || True is &#39;</span>, <span class="nb">False</span> || <span class="nb">True</span>;
-<span class="nb">say</span> <span class="s">&#39;False || False is &#39;</span>, <span class="nb">False</span> || <span class="nb">False</span>;
+<span class="nb">say</span> <span class="s">'True ^^ True is '</span>, <span class="n">True</span> ^^ <span class="n">True</span>; 
+<span class="nb">say</span> <span class="s">'True ^^ False is '</span>, <span class="n">True</span> ^^ <span class="n">False</span>;
+<span class="nb">say</span> <span class="s">'False ^^ True is '</span>, <span class="n">False</span> ^^ <span class="n">True</span>;
+<span class="nb">say</span> <span class="s">'False ^^ False is '</span>, <span class="n">False</span> ^^ <span class="n">False</span>;</pre></div>
 
-<span class="nb">say</span> <span class="s">&#39;True ^^ True is &#39;</span>, <span class="nb">True</span> ^^ <span class="nb">True</span>; 
-<span class="nb">say</span> <span class="s">&#39;True ^^ False is &#39;</span>, <span class="nb">True</span> ^^ <span class="nb">False</span>;
-<span class="nb">say</span> <span class="s">&#39;False ^^ True is &#39;</span>, <span class="nb">False</span> ^^ <span class="nb">True</span>;
-<span class="nb">say</span> <span class="s">&#39;False ^^ False is &#39;</span>, <span class="nb">False</span> ^^ <span class="nb">False</span>;
-</pre></div>
-
-
-<p>🦋 Puedes encontrar el código completo en el archivo <a href="https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku">tables.raku</a>.</p>
-
+<p>🦋 Puedes encontrar el código completo en el archivo <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku">tables.raku</a>.</p>
 <h2 id="salida">Salida</h2>
-
 <p>Ejecuta el programa, y este imprimirá la siguiente tabla.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku tables.raku
-<span class="go">True &amp;&amp; True is True
+<div class="highlight"><pre>$ raku tables.raku
+True &amp;&amp; True is True
 True &amp;&amp; False is False
 False &amp;&amp; True is False
 False &amp;&amp; False is False
@@ -85,49 +147,52 @@ False || False is False
 True ^^ True is Nil
 True ^^ False is True
 False ^^ True is True
-False ^^ False is False
-</span></code></pre></div></div>
-
+False ^^ False is False</pre></div>
 <h2 id="comentarios">Comentarios</h2>
+<p>Nota que debido a la mayor precedencia de las operaciones booleanas,
+no necesitas ponerlas entre paréntesis. Esto, sin embargo, no es el caso
+si estás usando concatenación de cadenas:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'True &amp;&amp; True is '</span> ~ (<span class="n">True</span> &amp;&amp; <span class="n">True</span>);</pre></div>
 
-<p>Nota que debido a la mayor precedencia de las operaciones booleanas, no necesitas ponerlas entre paréntesis. Esto, sin embargo, no es el caso si estás usando concatenación de cadenas:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;True &amp;&amp; True is &#39;</span> ~ (<span class="nb">True</span> &amp;&amp; <span class="nb">True</span>);
-</pre></div>
-
-
-<p>Alternativamente, puedes usar <a href="/es/essentials/strings/code-interpolation">interpolación de código</a>.</p>
-
-<p><div class="exercises"></p>
-<h2 id="siguiente-ejercicio">Siguiente ejercicio</h2>
-
-<p>💪 <a href="/es/essentials/booleans/exercises/double-negation">Doble negación</a>
-</div></p>
-
+<p>Alternativamente, puedes usar <a
+href="/es/essentials/strings/code-interpolation">interpolación de
+código</a>.</p>
 <h2 id="navegación-del-curso">Navegación del curso</h2>
-
-<p>←
-    <a href="/es/essentials/numbers">Números</a>
-        / <a href="/es/essentials/numbers/operations">Operaciones con números</a>
-  |  
-    <a href="/es/essentials/ranges">Rangos</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/booleans/exercises/tables/solution/">Texto original en inglés.</a></p>
-
-  <p>Traducciones de esta página: <a href="/essentials/booleans/exercises/tables/solution/">English</a> • <a href="/de/essentials/booleans/exercises/tables/solution/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/booleans/exercises/tables/solution/">Italiano</a> • <a href="/lv/essentials/booleans/exercises/tables/solution/">Latviešu</a> • <a href="/nl/essentials/booleans/exercises/tables/solution/">Nederlands</a> • <a href="/bg/essentials/booleans/exercises/tables/solution/">Български</a> • <a href="/ru/essentials/booleans/exercises/tables/solution/">Русский</a> • <a href="/uk/essentials/booleans/exercises/tables/solution/">Українська</a></p>
+<p>← <a href="/es/essentials/booleans/exercises/tables">Tablas
+booleanas</a>   |   <a
+href="/es/essentials/booleans/exercises/double-negation">Doble
+negación</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/booleans/exercises/tables/solution">English</a> • <a
+href="/de/essentials/booleans/exercises/tables/solution">Deutsch</a> •
+<a
+href="/eo/essentials/booleans/exercises/tables/solution">Esperanto</a> •
+<strong>Español</strong> • <a
+href="/it/essentials/booleans/exercises/tables/solution">Italiano</a> •
+<a href="/la/essentials/booleans/exercises/tables/solution">Latina</a> •
+<a href="/lv/essentials/booleans/exercises/tables/solution">Latviešu</a>
+• <a
+href="/nl/essentials/booleans/exercises/tables/solution">Nederlands</a>
+• <a
+href="/bg/essentials/booleans/exercises/tables/solution">Български</a> •
+<a href="/ru/essentials/booleans/exercises/tables/solution">Русский</a>
+• <a
+href="/uk/essentials/booleans/exercises/tables/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
+<p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Escrito por <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Usando la definición de unidad con alcance
+title: Quiz* — Uso de la definición con alcance de unidad
 ---
 
 {% include menu.html %}
@@ -9,7 +9,7 @@ title: Quiz — Usando la definición de unidad con alcance
 Elige uno de los declaradores para hacer el programa correcto.
 
 {:.quiz-select}
-unit | (: mi, multi, unit :) `sub MAIN(Str $name);`
+unit | (: my, multi, unit :) `sub MAIN(Str $name);`
 . | `say "Hello, $name!";`
 
 ## 2

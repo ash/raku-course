@@ -1,5 +1,5 @@
 ---
-title: Ejercicio '¡Hola, Interpolación!'
+title: ¡Hola, Interpolación!
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Terminación en plural'
+title: Terminación plural
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo al 'Aĉeti tablon'
+title: 'Solvo: Aĉettabelo'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ say "Tables\t\$$table-price\t$tables\t\$$tables-total";
 
 La tri linioj generantaj la eliron presas la tri liniojn de la tabelo, inkluzive de ĝia kaplinio. Rimarku kiel la kolumnoj estas apartigitaj per la tabokarakteroj `\t`. En la datlinioj, ni ankaŭ vidas eskapitan dolarkarakteron: `\$` same kiel malsamajn variablojn, kiujn ni volas interpoligi.
 
-🦋 Vi povas trovi la fontkodon en la dosiero [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Eligo
 

@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Imprimir la advertencia'
+title: 'Solution: Imprimir la advertencia'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ else {
 }
 ```
 
-🦋 Encuentra el programa en el archivo [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/print-the-warning.raku).
+🦋 Encuentra el programa en el archivo [print-the-warning.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/print-the-warning.raku).
 
 ## Salida
 

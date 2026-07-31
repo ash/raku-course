@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: La valoro de e'
+title: La valoro de e
 ---
 
 {% include menu.html %}

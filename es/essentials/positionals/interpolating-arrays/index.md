@@ -1,5 +1,5 @@
 ---
-title: Interpolando arreglos
+title: Interpolar arrays
 ---
 
 {% include menu.html %}

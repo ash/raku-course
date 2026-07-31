@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Presu la sumon'
+title: Presi la sumon
 ---
 
 {% include menu.html %}

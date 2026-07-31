@@ -1,5 +1,5 @@
 ---
-title: loop
+title: 'Trideklaro `loop`'
 ---
 
 {% include menu.html %}

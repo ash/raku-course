@@ -1,5 +1,5 @@
 ---
-title: Salida con say
+title: Salida con `say`
 ---
 
 {% include menu.html %}

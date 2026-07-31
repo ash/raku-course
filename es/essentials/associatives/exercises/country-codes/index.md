@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Códigos de países'
+title: Códigos de países
 ---
 
 {% include menu.html %}

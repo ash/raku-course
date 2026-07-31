@@ -16,7 +16,7 @@ my $d = $n % 10;
 say "La lasta cifero de $n estas $d.";
 ```
 
-🦋 Trovu la programon en la dosiero [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/the-last-digit.raku).
+🦋 Trovu la programon en la dosiero [the-last-digit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/the-last-digit.raku).
 
 ## Eligo
 

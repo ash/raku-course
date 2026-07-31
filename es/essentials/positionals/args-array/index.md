@@ -1,5 +1,5 @@
 ---
-title: La matriz @*ARGS
+title: El array `@*ARGS`
 ---
 
 {% include menu.html %}

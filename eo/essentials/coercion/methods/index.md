@@ -1,5 +1,5 @@
 ---
-title: Konvertado de tipoj uzante metodojn de tipa devigo
+title: Konvertante tipojn uzante tipajn devigmetodojn
 ---
 
 {% include menu.html %}

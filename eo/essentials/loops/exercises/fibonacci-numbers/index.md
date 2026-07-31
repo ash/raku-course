@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Fibonaciaj nombroj'
+title: Fibonacci-nombroj
 ---
 
 {% include menu.html %}

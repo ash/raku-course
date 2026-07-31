@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Legado de komando-linio argumentoj en la ĉefa funkcio
+title: Kvizo — Legante komando-linio argumentojn
 ---
 
 {% include menu.html %}

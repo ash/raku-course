@@ -1,5 +1,5 @@
 ---
-title: Concatenación de cadenas en Raku
+title: Concatenación de cadenas
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ekzerco ‘Nomo longo‘
+title: Noma longo
 ---
 
 {% include menu.html %}

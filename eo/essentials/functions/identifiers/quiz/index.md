@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Funkciaj nomoj
+title: Kvizo — funkciaj nomoj
 ---
 
 {% include menu.html %}

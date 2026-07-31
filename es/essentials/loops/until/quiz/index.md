@@ -1,5 +1,5 @@
 ---
-title: Quiz — El bucle until
+title: Quiz — el bucle `until`
 ---
 
 {% include menu.html %}

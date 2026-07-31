@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Escaping special characters in Raku strings</title>
-    <meta property="og:title" content="Escaping special characters in Raku strings" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Escapar caracteres especiales — Curso de Raku</title>
+    <meta property="og:title" content="Escapar caracteres especiales — Curso de Raku" />
     <meta property="og:locale" content="es" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Escaping special characters in Raku strings</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,124 +88,131 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/strings">Cadenas</a></p>
+          <p><a href="/es/">Curso de Raku</a> / <a
+href="/es/essentials">Esenciales</a> / <a
+href="/es/essentials/variables">Fundamentos de variables y tipos de
+datos</a> / <a href="/es/essentials/strings">Cadenas</a></p>
+<h1 id="escapar-caracteres-especiales">Escapar caracteres
+especiales</h1>
+<p>Imagina que quieres imprimir una etiqueta de precio, y mantienes
+tanto el nombre del producto como su precio en variables escalares.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">'Electricity'</span>;
+<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;</pre></div>
 
-<h1 id="escapar-caracteres-especiales">Escapar caracteres especiales</h1>
+<p>¿Cómo imprimes la etiqueta si el precio está en dólares? El resultado
+esperado es: <code>Electricity costs $3.14</code>. Un signo de dólar en
+cadenas entre comillas dobles es un indicador de una variable a
+interpolar. Para imprimir el carácter <code>$</code> en sí, necesitas
+escaparlo:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;</pre></div>
 
-<p>Imagina que quieres imprimir una etiqueta de precio, y mantienes tanto el nombre del producto como su precio en variables escalares.</p>
+<p>Por supuesto, puedes usar concatenación de cadenas y evitar escapar
+<code>$</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">' costs $'</span> ~ <span class="nv">$price</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$product</span> = <span class="s">&#39;Electricity&#39;</span>;
-<span class="k">my</span> <span class="nv">$price</span> = <span class="mf">3.14</span>;
-</pre></div>
+<p>Esta variante imprime exactamente la misma cadena, pero la
+interpolación parece más natural y fácil de leer. Nota que el carácter
+<code>$</code> no fue ni interpolado ni escapado en una cadena entre
+comillas simples: <code>' costs $'</code>. Esa es la principal
+diferencia. Los caracteres especiales en comillas simples aparecen tal
+cual.</p>
+<p>Aquí hay algunos caracteres más que tienen un significado especial en
+cadenas entre comillas dobles:</p>
+<p><code>\$</code> | Signo de dólar <code>\n</code> | Nueva línea
+<code>\r</code> | Retorno de carro <code>\t</code> | Tabulación
+horizontal <code>\"</code> | Comilla doble <code>\\</code> | Barra
+invertida</p>
+<p>La forma en que citas la cadena define cómo Raku trata los caracteres
+especiales. Considera estos dos ejemplos:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'One\nTwo'</span>;
+<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;</pre></div>
 
-
-<p>¿Cómo imprimes la etiqueta si el precio está en dólares? El resultado esperado es: <code class="language-plaintext highlighter-rouge">Electricity costs $3.14</code>. Un signo de dólar en cadenas entre comillas dobles es un indicador de una variable a interpolar. Para imprimir el carácter <code class="language-plaintext highlighter-rouge">$</code> en sí, necesitas escaparlo:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&quot;$product costs \$$price&quot;</span>;
-</pre></div>
-
-
-<p>Por supuesto, puedes usar concatenación de cadenas y evitar escapar <code class="language-plaintext highlighter-rouge">$</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="nv">$product</span> ~ <span class="s">&#39; costs $&#39;</span> ~ <span class="nv">$price</span>;
-</pre></div>
-
-
-<p>Esta variante imprime exactamente la misma cadena, pero la interpolación parece más natural y fácil de leer. Nota que el carácter <code class="language-plaintext highlighter-rouge">$</code> no fue ni interpolado ni escapado en una cadena entre comillas simples: <code class="language-plaintext highlighter-rouge">' costs $'</code>. Esa es la principal diferencia. Los caracteres especiales en comillas simples aparecen tal cual.</p>
-
-<p>Aquí hay algunos caracteres más que tienen un significado especial en cadenas entre comillas dobles:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\$</code></td>
-      <td>Signo de dólar</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\n</code></td>
-      <td>Nueva línea</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\r</code></td>
-      <td>Retorno de carro</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\t</code></td>
-      <td>Tabulación horizontal</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\"</code></td>
-      <td>Comilla doble</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">\\</code></td>
-      <td>Barra invertida</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>La forma en que citas la cadena define cómo Raku trata los caracteres especiales. Considera estos dos ejemplos:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;One\nTwo&#39;</span>;
-<span class="nb">say</span> <span class="s">&quot;Three\nFour&quot;</span>;
-</pre></div>
-
-
-<p>Si ejecutas este programa, verás que la primera cadena aparece tal cual en una sola línea. La segunda cadena se dividió en dos partes:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>One\nTwo
+<p>Si ejecutas este programa, verás que la primera cadena aparece tal
+cual en una sola línea. La segunda cadena se dividió en dos partes:</p>
+<pre><code>One\nTwo
 Three
-Four
-</code></pre></div></div>
+Four</code></pre>
+<p>En comillas dobles, una secuencia especial <code>\n</code> se procesó
+como un carácter de nueva línea, mientras que en una cadena entre
+comillas simples era una secuencia regular de dos caracteres:
+<code>\</code> y <code>n</code>.</p>
+<p>Hay una excepción interesante para <code>'</code> y <code>\</code>.
+En comillas simples, puedes escapar una comilla simple anteponiéndola
+con otra <code>\</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'\''</span>; <span class="c1"># '</span></pre></div>
 
-<p>En comillas dobles, una secuencia especial <code class="language-plaintext highlighter-rouge">\n</code> se procesó como un carácter de nueva línea, mientras que en una cadena entre comillas simples era una secuencia regular de dos caracteres: <code class="language-plaintext highlighter-rouge">\</code> y <code class="language-plaintext highlighter-rouge">n</code>.</p>
+<p>Una barra invertida también tiene que ser escapada si una comilla
+simple la sigue:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a\b\c\\'</span>; <span class="c1"># a\b\c\</span></pre></div>
 
-<p>Hay una excepción interesante para <code class="language-plaintext highlighter-rouge">'</code> y <code class="language-plaintext highlighter-rouge">\</code>. En comillas simples, puedes escapar una comilla simple anteponiéndola con otra <code class="language-plaintext highlighter-rouge">\</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;\&#39;&#39;</span>; <span class="c1"># &#39;</span>
-</pre></div>
-
-
-<p>Una barra invertida también tiene que ser escapada si una comilla simple la sigue:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a\b\c\\&#39;</span>; <span class="c1"># a\b\c\</span>
-</pre></div>
-
-
-<p><div class="practice"></p>
-<h2 id="práctica">Práctica</h2>
-
-<p>Completa el cuestionario que cubre el contenido de este tema.</p>
+<section id="práctica" class="practice" data-markdown="1">
+<h2>Práctica</h2>
+<p>Resuelve 1 cuestionario sobre el contenido de este tema.</p>
 <ul>
-  <li><a href="/es/essentials/strings/escaping-special-characters/quiz">Quiz: Una barra invertida en la salida</a></li>
+<li><a
+href="/es/essentials/strings/escaping-special-characters/quiz">Quiz: Una
+barra invertida en la salida</a></li>
 </ul>
-
-<p></div></p>
-
+</section>
 <h2 id="navegación-del-curso">Navegación del curso</h2>
-
-<p>←
-        <a href="/es/essentials/strings">Cadenas</a> / <a href="/es/essentials/strings/code-interpolation">Interpolación de código</a>
-  |  
-        <a href="/es/essentials/strings">Cadenas</a> / <a href="/es/essentials/strings/string-length">Longitud de la cadena</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/es/essentials/strings/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/strings/escaping-special-characters/">Texto original en inglés.</a></p>
-
-  <p>Traducciones de esta página: <a href="/essentials/strings/escaping-special-characters/">English</a> • <a href="/de/essentials/strings/escaping-special-characters/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/strings/escaping-special-characters/">Italiano</a> • <a href="/lv/essentials/strings/escaping-special-characters/">Latviešu</a> • <a href="/nl/essentials/strings/escaping-special-characters/">Nederlands</a> • <a href="/bg/essentials/strings/escaping-special-characters/">Български</a> • <a href="/ru/essentials/strings/escaping-special-characters/">Русский</a> • <a href="/uk/essentials/strings/escaping-special-characters/">Українська</a></p>
+<p>← <a href="/es/essentials/strings/code-interpolation">Interpolación
+de código</a>   |   <a
+href="/es/essentials/strings/escaping-special-characters/quiz">Quiz: Una
+barra invertida en la salida</a> →</p>
+<p><br /> 💪 O ve directamente <a
+href="/es/essentials/strings/exercises">a los ejercicios de esta
+sección</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/strings/escaping-special-characters">English</a> • <a
+href="/de/essentials/strings/escaping-special-characters">Deutsch</a> •
+<a
+href="/eo/essentials/strings/escaping-special-characters">Esperanto</a>
+• <strong>Español</strong> • <a
+href="/it/essentials/strings/escaping-special-characters">Italiano</a> •
+<a href="/la/essentials/strings/escaping-special-characters">Latina</a>
+• <a
+href="/lv/essentials/strings/escaping-special-characters">Latviešu</a> •
+<a
+href="/nl/essentials/strings/escaping-special-characters">Nederlands</a>
+• <a
+href="/bg/essentials/strings/escaping-special-characters">Български</a>
+• <a
+href="/ru/essentials/strings/escaping-special-characters">Русский</a> •
+<a
+href="/uk/essentials/strings/escaping-special-characters">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
+<p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Escrito por <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

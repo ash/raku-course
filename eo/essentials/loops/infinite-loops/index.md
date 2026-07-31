@@ -1,5 +1,5 @@
 ---
-title: Senfinaj bukloj
+title: Senfinaj ripetoj
 ---
 
 {% include menu.html %}

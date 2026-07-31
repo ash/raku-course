@@ -1,5 +1,5 @@
 ---
-title: Quiz — La ripeta buklo
+title: 'Kvizo — la `repeat` ripeto'
 ---
 
 {% include menu.html %}

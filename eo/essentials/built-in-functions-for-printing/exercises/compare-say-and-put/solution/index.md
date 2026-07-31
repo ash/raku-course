@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Komparu `say` kaj `put`'
+title: 'Solvo: Kompari `say` kaj `put`'
 ---
 
 {% include menu.html %}
@@ -42,7 +42,7 @@ put %h;
 
 Por pli granda konfido, vi ankaŭ povas presi la tipon de la variablo, ekzemple, kiel montrite por tabeloj kaj listoj, por certigi ke vi kreis variablon de la dezirata tipo.
 
-🦋 Trovu la programon en la dosiero [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/built-in-functions-for-printing/compare-say-and-put.raku).
+🦋 Trovu la programon en la dosiero [compare-say-and-put.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/built-in-functions-for-printing/compare-say-and-put.raku).
 
 ## Eligo
 

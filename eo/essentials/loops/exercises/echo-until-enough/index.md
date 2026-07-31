@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Eĥo ĝis sufiĉe'
+title: Eĥo ĝis sufiĉas
 ---
 
 {% include menu.html %}

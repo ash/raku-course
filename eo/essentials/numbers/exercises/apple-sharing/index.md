@@ -1,5 +1,5 @@
 ---
-title: Disdono de pomoj
+title: Poma divido
 ---
 
 {% include menu.html %}

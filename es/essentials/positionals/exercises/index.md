@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Posicionales'
+title: 'Exercises: Tipos de datos posicionales'
 ---
 
 {% include menu.html %}

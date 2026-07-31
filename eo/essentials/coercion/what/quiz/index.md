@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo: Kion redonas WHAT?'
+title: 'Kvizo: Kion `WHAT` redonas?'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ Elektu la ĝustan rezulton de voko al la metodo `WHAT`.
 (Int) | `(+10).WHAT` redonas (: (Int), (Rat), (Num), (Str) :)
 (Rat) | `(-1/2).WHAT` redonas (: (Int), (Rat), (Num), (Str) :)
 (Int) | `('3' + '4').WHAT` redonas (: (Int), (Rat), (Num), (Str) :) | `'3' + '4'` faras nombra aldono, do la rezulto estas entjero.
-(Str) | `('3' ~ '4').WHAT` redonas (: (Int), (Rat), (Num), (Str) :) | Ĉenligo de kordoj donas kordon.
+(Str) | `('3' ~ '4').WHAT` redonas (: (Int), (Rat), (Num), (Str) :) | Ĉenligo de ĉenoj donas ĉenon.
 
 {% include quiz.html %}
 {% include nav.html %}

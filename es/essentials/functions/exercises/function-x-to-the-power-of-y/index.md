@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Función para calcular xʸ'
+title: Función para calcular _xʸ_
 ---
 
 {% include menu.html %}

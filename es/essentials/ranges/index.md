@@ -1,5 +1,5 @@
 ---
-title: Ranges
+title: Rangos
 ---
 
 {% include menu.html %}

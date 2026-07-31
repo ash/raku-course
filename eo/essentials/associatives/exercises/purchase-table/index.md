@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Aĉeta tabelo'
+title: Aĉettabelo
 ---
 
 {% include menu.html %}

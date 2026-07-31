@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Cadenas'
+title: 'Exercises: Cadenas'
 ---
 
 {% include menu.html %}

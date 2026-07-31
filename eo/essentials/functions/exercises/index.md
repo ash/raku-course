@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Krei kaj uzi funkciojn en Raku'
+title: 'Ekzercoj: Kreado kaj vokado de funkcioj'
 ---
 
 {% include menu.html %}

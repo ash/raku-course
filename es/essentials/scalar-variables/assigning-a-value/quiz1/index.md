@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Asignando un valor
+title: 'Quiz 1: Asignación de un valor'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: FizzBuzz en buklo'
+title: FizzBuzz en ripeto
 ---
 
 {% include menu.html %}

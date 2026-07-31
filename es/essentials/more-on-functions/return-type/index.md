@@ -1,5 +1,5 @@
 ---
-title: Tipo de retorno de funciones
+title: Tipo de retorno
 ---
 
 {% include menu.html %}

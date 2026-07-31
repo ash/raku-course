@@ -1,5 +1,5 @@
 ---
-title: Quiz — Nombres de funciones
+title: Quiz — nombres de funciones
 ---
 
 {% include menu.html %}

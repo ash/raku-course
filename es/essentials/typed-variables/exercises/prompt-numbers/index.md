@@ -1,5 +1,5 @@
 ---
-title: Examinando el resultado del prompt — Números
+title: Examinar el resultado de `prompt` — Números
 ---
 
 {% include menu.html %}

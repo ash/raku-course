@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Escaleras digitales'
+title: Escaleras digitales
 ---
 
 {% include menu.html %}

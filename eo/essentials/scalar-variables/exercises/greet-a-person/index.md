@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Salutu personon'
+title: Salutu personon
 ---
 
 {% include menu.html %}

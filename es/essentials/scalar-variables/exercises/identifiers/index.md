@@ -1,5 +1,5 @@
 ---
-title: Ejercicio 'Corrige los identificadores'
+title: Corregir los identificadores
 ---
 
 {% include menu.html %}

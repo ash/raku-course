@@ -1,5 +1,5 @@
 ---
-title: Variabla interpolado en Raku-ŝnuroj
+title: Variabla interpolado
 ---
 
 {% include menu.html %}

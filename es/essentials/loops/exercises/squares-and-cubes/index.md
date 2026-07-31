@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Cuadrados y cubos en un bucle'
+title: Cuadrados y cubos en un bucle
 ---
 
 {% include menu.html %}

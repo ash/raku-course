@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Eco hasta suficiente'
+title: Eco hasta suficiente
 ---
 
 {% include menu.html %}

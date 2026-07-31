@@ -1,5 +1,5 @@
 ---
-title: Comentarios embebidos
+title: Comentarios incrustados
 ---
 
 {% include menu.html %}

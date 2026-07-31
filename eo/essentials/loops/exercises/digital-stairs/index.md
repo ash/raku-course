@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Ciferecaj ŝtupoj'
+title: Digitalaj ŝtupoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario: La longitud de una frase'
+title: 'Quiz: La longitud de una frase'
 ---
 
 {% include menu.html %}

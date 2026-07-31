@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Ciferecaj ŝtupoj'
+title: 'Solvo: Digitalaj ŝtupoj'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ for 1..$size -> $n {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/digital-stairs.raku).
+🦋 Trovu la programon en la dosiero [digital-stairs.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/digital-stairs.raku).
 
 ## Eligo
 

@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Komparu nombrojn
+title: Kvizo — Kompari nombrojn
 ---
 
 {% include menu.html %}

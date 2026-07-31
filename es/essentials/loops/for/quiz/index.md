@@ -1,5 +1,5 @@
 ---
-title: 'Entendiendo el bucle `for`'
+title: Comprender el bucle `for`
 ---
 
 {% include menu.html %}

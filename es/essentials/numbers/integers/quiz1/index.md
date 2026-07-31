@@ -1,5 +1,5 @@
 ---
-title: Quiz — Números enteros
+title: 'Quiz: Números enteros'
 ---
 
 {% include menu.html %}

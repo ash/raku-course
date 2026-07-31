@@ -1,5 +1,5 @@
 ---
-title: Ejercicio 'Intercambiar los valores'
+title: Intercambiar valores
 ---
 
 {% include menu.html %}

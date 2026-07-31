@@ -1,5 +1,5 @@
 ---
-title: Solución a 'Tabla de compras'
+title: 'Solution: Tabla de compras'
 ---
 
 {% include menu.html %}
@@ -26,7 +26,7 @@ Todos los números están codificados y guardados en varias variables. También 
 
 Las tres líneas que generan la salida imprimen las tres líneas de la tabla, incluyendo su encabezado. Observa cómo las columnas están separadas por los caracteres de tabulación `\t`. En las filas de datos, también vemos un carácter de dólar escapado: `\$` así como diferentes variables que queremos interpolar.
 
-🦋 Puedes encontrar el código fuente en el archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/purchase-table.raku).
+🦋 Puedes encontrar el código fuente en el archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/purchase-table.raku).
 
 ## Salida
 

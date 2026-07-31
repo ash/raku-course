@@ -1,5 +1,5 @@
 ---
-title: Kvizo — La while-buklo
+title: 'Kvizo — la `while` ripeto'
 ---
 
 {% include menu.html %}

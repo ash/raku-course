@@ -1,5 +1,5 @@
 ---
-title: Interpolación de código en cadenas de Raku
+title: Interpolación de código
 ---
 
 {% include menu.html %}

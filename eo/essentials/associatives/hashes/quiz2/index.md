@@ -1,5 +1,5 @@
 ---
-title: Kvizo 1 — Hash elementoj
+title: Kvizo 2 — Haxaj elementoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Notación científica en Raku
+title: Números de punto flotante
 ---
 
 {% include menu.html %}

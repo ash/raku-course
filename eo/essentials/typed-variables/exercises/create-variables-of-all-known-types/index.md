@@ -1,10 +1,10 @@
 ---
-title: Kreu variablojn de ĉiuj konataj tipoj
+title: Krei variablojn de ĉiuj konataj tipoj
 ---
 
 {% include menu.html %}
 
-## Tasko
+## Problemo
 
 Skribu programon kiu kreas kelkajn skalajn variablojn kaj inicializas ilin kun valoroj de la sekvaj tipoj: `Int`, `Rat`, `Num`, `Bool`, kaj `Str`. La programo devus presi kaj la valoron kaj ĝian tipon.
 

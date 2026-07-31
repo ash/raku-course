@@ -1,5 +1,5 @@
 ---
-title: Solución a ‘Triple negation’
+title: 'Solution: Triple negación'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Puedes encontrar el código completo en el archivo [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Puedes encontrar el código completo en el archivo [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Salida
 
@@ -26,7 +26,7 @@ True
 
 ## Comentarios
 
-Fue un poco inesperado que el programa con tres signos de exclamación no se compilara:
+Fue un poco inesperado que el programa con tres signos de exclamación no se compilará:
 
 ```console
 $ raku triple-negation.raku

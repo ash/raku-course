@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Duoblaj kaj trioblaj neoj’
+title: Duobla neado
 ---
 
 {% include menu.html %}

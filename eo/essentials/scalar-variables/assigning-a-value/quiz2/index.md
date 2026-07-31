@@ -1,5 +1,5 @@
 ---
-title: Kvizo 2 — Asigni du valorojn
+title: 'Kvizo 2: Atribuado de du valoroj'
 ---
 
 {% include menu.html %}

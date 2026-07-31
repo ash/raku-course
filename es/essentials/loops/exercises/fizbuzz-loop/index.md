@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: FizzBuzz en un bucle'
+title: FizzBuzz en un bucle
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz — trabajando con rangos
+title: Quiz — trabajar con rangos
 ---
 
 {% include menu.html %}

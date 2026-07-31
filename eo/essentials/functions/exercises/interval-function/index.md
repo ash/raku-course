@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Intervala funkcio'
+title: Intervala funkcio
 ---
 
 {% include menu.html %}

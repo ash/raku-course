@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Se la nombro estas ene de la limoj'
+title: Se la nombro estas ene de la limoj
 ---
 
 {% include menu.html %}

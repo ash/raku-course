@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Reemplazar con antónimos'
+title: Reemplazar con antónimos
 ---
 
 {% include menu.html %}

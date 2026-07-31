@@ -1,5 +1,5 @@
 ---
-title: Uzante docker por funkciigi Raku
+title: Uzado de docker
 ---
 
 {% include menu.html %}

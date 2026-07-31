@@ -1,10 +1,10 @@
 ---
-title: Kalkuli kaj presi komando-liniajn argumentojn
+title: Kalkuli kaj presi komando-linio argumentojn
 ---
 
 {% include menu.html %}
 
-## Tasko
+## Problemo
 
 Verku programon kiu legas arbitran nombron da argumentoj el la komanda linio kaj presas ilin sur apartaj, numeritaj linioj.
 

@@ -1,5 +1,5 @@
 ---
-title: Koda interpolado en Raku-ŝnuroj
+title: Koda interpolado
 ---
 
 {% include menu.html %}

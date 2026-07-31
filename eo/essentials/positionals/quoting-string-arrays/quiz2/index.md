@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Rekonante listojn
+title: Kvizo 2 — Rekonante listojn
 ---
 
 {% include menu.html %}

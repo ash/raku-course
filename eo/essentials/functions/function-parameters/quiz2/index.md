@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Pasado de argumentoj
+title: Pasante argumentojn
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ennestigitaj haketoj
+title: Nestitaj haxoj
 ---
 
 {% include menu.html %}

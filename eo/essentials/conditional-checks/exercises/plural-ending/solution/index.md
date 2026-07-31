@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Plural ending’
+title: 'Solvo: Pluralfinaĵo'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $ending = $n == 1 ?? '' !! 'j';
 say "$n dosiero{$ending} kopiita.";
 ```
 
-🦋 Trovu la programon en la dosiero [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/plural-ending.raku).
+🦋 Trovu la programon en la dosiero [plural-ending.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/plural-ending.raku).
 
 ## Eligo
 

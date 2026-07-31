@@ -1,5 +1,5 @@
 ---
-title: 'Quiz 1: Concatenando cadenas'
+title: 'Quiz 1: Concatenar cadenas'
 ---
 
 {% include menu.html %}

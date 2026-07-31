@@ -1,5 +1,5 @@
 ---
-title: Kvizo 2 — Multi-funkcioj kun tajpitaj parametroj
+title: Kvizo 2 — Multi-funkcioj kun tipitaj parametroj
 ---
 
 {% include menu.html %}

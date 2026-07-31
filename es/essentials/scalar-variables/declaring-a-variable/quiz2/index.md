@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — Variables escalares
+title: 'Quiz 2: Declaración de más variables'
 ---
 
 {% include menu.html %}

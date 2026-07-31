@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Vojaĝa distanco'
+title: Vojaĝa distanco
 ---
 
 {% include menu.html %}

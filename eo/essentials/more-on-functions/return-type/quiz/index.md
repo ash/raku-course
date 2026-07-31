@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Funkcioj kun defaŭltaj valoroj
+title: Kvizo — Redontipo
 ---
 
 {% include menu.html %}

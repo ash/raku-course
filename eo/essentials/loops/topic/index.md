@@ -1,5 +1,5 @@
 ---
-title: Variablo de temo
+title: Temvariablo
 ---
 
 {% include menu.html %}

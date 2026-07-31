@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Boolea tipo
+title: 'Kvizo: Booleaj valoroj'
 ---
 
 {% include menu.html %}

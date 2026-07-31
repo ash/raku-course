@@ -1,5 +1,5 @@
 ---
-title: Arrays
+title: Arrayoj
 ---
 
 {% include menu.html %}
@@ -29,7 +29,7 @@ my @urboj = 'Parizo', 'Romo', 'Berlino';
 Por aliri unuopan elementon de array, uzu paron de krampoj, kiujn vi metas post la nomo de la variablo:
 
 ```raku
-diru @urboj[1];
+say @urboj[1];
 ```
 
 Notu, ke la sigelo ĉiam restas la sama. Ĉar elementoj estas nombritaj ekde nulo, la elemento `@urboj[1]` estas `'Romo'` en nia ekzemplo.
@@ -41,20 +41,20 @@ Arrays estas ŝanĝeblaj, do vi povas facile modifi iliajn elementojn simple asi
 @urboj[1] = 'Parizo';
 ```
 
-Post tio, la deklaro `diru @urboj[1]` presos la novan valoron `'Parizo'`.
+Post tio, la deklaro `say @urboj[1]` presos la novan valoron `'Parizo'`.
 
 ## Grandeco
 
 Por akiri la aktualan longecon de array, aŭ, alivorte, la nombron de ĝiaj elementoj, uzu la metodon `elems`:
 
 ```raku
-diru @urboj.elems; # 3
+say @urboj.elems; # 3
 ```
 
 Se la array aperas en kunteksto, kie la atendata parametro estas nombro, la revena valoro estas la grandeco de la array:
 
 ```raku
-diru +@urboj; # 3
+say +@urboj; # 3
 ```
 
 Ĉi tie, la [`+` prefiksa operaciilo](/eo/essentials/coercion/prefixes) postulas numeran valoron de sia argumento, do la rezulto de `+@urboj` estas `3`.

@@ -1,5 +1,5 @@
 ---
-title: Boolean operations with other types
+title: Booleaj operacioj kun aliaj tipoj
 ---
 
 {% include menu.html %}

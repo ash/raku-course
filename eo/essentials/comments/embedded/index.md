@@ -1,5 +1,5 @@
 ---
-title: Enigitaj komentoj
+title: Enmetitaj komentoj
 ---
 
 {% include menu.html %}

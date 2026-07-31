@@ -1,5 +1,5 @@
 ---
-title: Quiz — Multilevel hashes
+title: Quiz — Hashes multinivel
 ---
 
 {% include menu.html %}

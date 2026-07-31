@@ -1,5 +1,5 @@
 ---
-title: La solvo de 'Saluti personon'
+title: 'Solvo: Salutu personon'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'What is your name? ';
 say 'Hello, ', $name, '!';
 ```
 
-🦋 Vi povas trovi la fontkodon en la dosiero [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/greet-a-person.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [greet-a-person.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/greet-a-person.raku).
 
 ## Eligo
 

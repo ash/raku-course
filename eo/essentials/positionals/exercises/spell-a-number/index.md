@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Literumu numeron'
+title: Literumi numeron
 ---
 
 {% include menu.html %}

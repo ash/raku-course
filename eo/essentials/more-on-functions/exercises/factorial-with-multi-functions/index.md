@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Faktorio kun multi-funkcioj'
+title: Faktorialo kun multi-funkcioj
 ---
 
 {% include menu.html %}

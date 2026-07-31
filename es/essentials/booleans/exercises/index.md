@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Tipo Booleano'
+title: 'Exercises: Tipo booleano'
 ---
 
 {% include menu.html %}

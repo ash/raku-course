@@ -1,5 +1,5 @@
 ---
-title: Solvo al 'Saluton, Interpolado!'
+title: 'Solvo: Saluton, Interpolado!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Kio estas via nomo? ';
 say "Saluton, $name!";
 ```
 
-🦋 Vi povas trovi la fontkodon en la dosiero [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-interpolation.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [hello-interpolation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-interpolation.raku).
 
 ## Eligo
 

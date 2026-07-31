@@ -1,5 +1,5 @@
 ---
-title: Saluton, Mondo! en Raku
+title: 'Saluton, Mondo!'
 ---
 
 {% include menu.html %}

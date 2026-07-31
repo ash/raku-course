@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Impar o par'
+title: 'Solution: Impar o par'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ say f(0);
 say f(3);
 ```
 
-🦋 Encuentra el programa en el archivo [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/odd-or-even.raku).
+🦋 Encuentra el programa en el archivo [odd-or-even.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/odd-or-even.raku).
 
 ## Salida
 

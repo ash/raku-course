@@ -1,5 +1,5 @@
 ---
-title: Solvo de 'Fibonacci-nombroj'
+title: 'Solvo: Fibonacci-nombroj'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ for ^19 {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/fibonacci-numbers.raku).
+🦋 Trovu la programon en la dosiero [fibonacci-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/fibonacci-numbers.raku).
 
 ## Eligo
 

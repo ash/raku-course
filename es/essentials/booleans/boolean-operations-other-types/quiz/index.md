@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario: Operaciones booleanas con datos no booleanos'
+title: 'Quiz: Operaciones booleanas con datos no booleanos'
 ---
 
 {% include menu.html %}

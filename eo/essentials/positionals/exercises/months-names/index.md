@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Monatoj nomoj'
+title: Monataj nomoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Deletrear un número'
+title: 'Solution: Escribir un número'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Múltiplos de 10, por ejemplo, 50
 }
 ```
 
-🦋 Encuentra el programa en el archivo [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Encuentra el programa en el archivo [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Ejemplo
 

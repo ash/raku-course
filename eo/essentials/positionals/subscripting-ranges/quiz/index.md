@@ -1,5 +1,5 @@
 ---
-title: Kvizo — labori kun intervaloj
+title: Kvizo — laborante kun intervaloj
 ---
 
 {% include menu.html %}

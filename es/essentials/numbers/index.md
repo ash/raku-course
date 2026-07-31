@@ -1,5 +1,5 @@
 ---
-title: Números en Raku
+title: Números
 ---
 
 {% include menu.html %}

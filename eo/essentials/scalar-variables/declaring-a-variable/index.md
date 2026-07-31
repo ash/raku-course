@@ -1,5 +1,5 @@
 ---
-title: Skalaraj variabloj
+title: Deklarado de variablo
 ---
 
 {% include menu.html %}

@@ -40,7 +40,7 @@ else {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku).
+🦋 Trovu la programon en la dosiero [leap-year.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku).
 
 ## Kodo 2
 
@@ -52,7 +52,7 @@ my $year = prompt 'Year: ';
 say (($year %% 400) || (($year %% 4) && ($year % 100))) ?? 'Leap year' !! 'Common year';
 ```
 
-🦋 Trovu la programon en la dosiero [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku).
+🦋 Trovu la programon en la dosiero [leap-year-formula.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku).
 
 ## Eligo
 
@@ -84,11 +84,11 @@ Common year
 Notu, ke en Booleaj kuntekstoj, la operatoroj `%%` kaj `%` estas komplementaj. Vi povas uzi ĉi tiun fakton por elekti unu el la operatoroj por eviti eksplicitan komparon kun nulo.
 
 ```raku
-say ?(100 % 3);    # Vera
-say 100 % 3 != 0;  # Vera
+say ?(100 % 3);    # True
+say 100 % 3 != 0;  # True
 
-say ?(100 %% 3);   # Falsa
-say 100 %% 3 != 0; # Falsa
+say ?(100 %% 3);   # False
+say 100 %% 3 != 0; # False
 ```
 %%/tipblock
 

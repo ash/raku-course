@@ -1,5 +1,5 @@
 ---
-title: Komparado de nombroj
+title: Komparante nombrojn
 ---
 
 {% include menu.html %}

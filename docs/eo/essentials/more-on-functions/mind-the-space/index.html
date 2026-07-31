@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="eo">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Atentu la spacon</title>
-    <meta property="og:title" content="Atentu la spacon" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Atentu la spacon — Raku-kurso</title>
+    <meta property="og:title" content="Atentu la spacon — Raku-kurso" />
     <meta property="og:locale" content="eo" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Atentu la spacon</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,130 +88,146 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a></p>
-
+          <p><a href="/eo/">Kurso de Raku</a> / <a
+href="/eo/essentials">Esencoj</a> / <a
+href="/eo/essentials/functions-essentials">Bazoj de funkcioj</a> / <a
+href="/eo/essentials/more-on-functions">Pli pri funkcioj</a></p>
 <h1 id="atentu-la-spacon">Atentu la spacon</h1>
-
-<p>Uzi funkciojn en Raku estas plejparte intuicia kaj ne kaŭzas problemojn, sed vi devas esti avertita pri la sekva aspekto.</p>
-
+<p>Uzi funkciojn en Raku estas plejparte intuicia kaj ne kaŭzas
+problemojn, sed vi devas esti avertita pri la sekva aspekto.</p>
 <h2 id="tldr">TL;DR</h2>
-
-<p>Ne aldonu spacon inter la nomo de la funkcio kaj la parentezoj kun ĝiaj argumentoj. Sed uzu spacon post <code class="language-plaintext highlighter-rouge">for</code> kaj <code class="language-plaintext highlighter-rouge">if</code>.</p>
-
+<p>Ne aldonu spacon inter la nomo de la funkcio kaj la parentezoj kun
+ĝiaj argumentoj. Sed uzu spacon post <code>for</code> kaj
+<code>if</code>.</p>
 <h2 id="longa-rakonto">Longa rakonto</h2>
-
 <p>Prenu simplan funkcion:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
-
-<p>Unue, rimarku la mankon de spacoj inter la nomo de la funkcio kaj la malfermaj parentezoj kiuj enhavas la parametrojn. Iuj kodstiloj en aliaj lingvoj povas postuli spacon tie. Raku estas bone kun tio, sed ĉi tio ne estas praktiko por sekvi:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<p>Unue, rimarku la mankon de spacoj inter la nomo de la funkcio kaj la
+malfermaj parentezoj kiuj enhavas la parametrojn. Iuj kodstiloj en aliaj
+lingvoj povas postuli spacon tie. Raku estas bone kun tio, sed ĉi tio ne
+estas praktiko por sekvi:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
+<p>Sur la voka flanko, la manko de spaco estas grava. Se vi vokas la
+funkcion kaj preterlasas la parentezojn, tiam la spaco post la nomo de
+la funkcio estas neevitebla:</p>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
-<p>Sur la voka flanko, la manko de spaco estas grava. Se vi vokas la funkcion kaj preterlasas la parentezojn, tiam la spaco post la nomo de la funkcio estas neevitebla:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
-
-
-<p>Sed se vi aldonas parentezojn, vi ne povas havi spacon antaŭ ili. Ĉi tio estas ĝusta voko:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
-
+<p>Sed se vi aldonas parentezojn, vi ne povas havi spacon antaŭ ili. Ĉi
+tio estas ĝusta voko:</p>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Kaj ĉi tiu voko estas malĝusta:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Tia kodo kaŭzas escepton:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tro malmultaj poziciaj pasis; atendis 2 argumentojn sed ricevis 1
+<pre><code>Tro malmultaj poziciaj pasis; atendis 2 argumentojn sed ricevis 1
   sub f ĉe t.raku linio 1
-  en bloko &lt;unit&gt; ĉe t.raku linio 5
-</code></pre></div></div>
-
-<p>Raku vidas la vokon kun spaco <code class="language-plaintext highlighter-rouge">f (5, 6)</code> kiel provon pasi unuopan argumenton <code class="language-plaintext highlighter-rouge">(5, 6)</code> al la funkcio. Vi povas facile kontroli la tipon de ĉi tiu argumento se vi reskribas la funkcion por akcepti nur unu argumenton:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+  en bloko &lt;unit&gt; ĉe t.raku linio 5</code></pre>
+<p>Raku vidas la vokon kun spaco <code>f (5, 6)</code> kiel provon pasi
+unuopan argumenton <code>(5, 6)</code> al la funkcio. Vi povas facile
+kontroli la tipon de ĉi tiu argumento se vi reskribas la funkcion por
+akcepti nur unu argumenton:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
-
-<p>Do, voki <code class="language-plaintext highlighter-rouge">f (5, 6)</code> signifas ke ni pasas <a href="/eo/essentials/positionals/lists">liston</a> al la funkcio. La listo kiel ununura ento.</p>
-
+<p>Do, voki <code>f (5, 6)</code> signifas ke ni pasas <a
+href="/eo/essentials/positionals/lists">liston</a> al la funkcio. La
+listo kiel ununura ento.</p>
 <h2 id="kiam-spaco-estas-bezonata">Kiam spaco estas bezonata</h2>
-
-<p>En iuj kazoj, la spacokaraktero estas bezonata. Tio okazas kiam vi uzas parentezojn kun unu el la ŝlosilvortoj, kiel <code class="language-plaintext highlighter-rouge">if</code> aŭ <code class="language-plaintext highlighter-rouge">for</code> aŭ <code class="language-plaintext highlighter-rouge">loop</code>. La sekva kodo estas malĝusta:</p>
-
-<div class="highlight"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
-
+<p>En iuj kazoj, la spacokaraktero estas bezonata. Tio okazas kiam vi
+uzas parentezojn kun unu el la ŝlosilvortoj, kiel <code>if</code> aŭ
+<code>for</code> aŭ <code>loop</code>. La sekva kodo estas malĝusta:</p>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>La erarmesaĝo klarigas kio estas malĝusta:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>===PARDONU!===
-La vorto 'if' estas interpretita kiel 'if()' funkciovoko. Bonvolu uzi
+<pre><code>===PARDONU!===
+La vorto &#39;if&#39; estas interpretita kiel &#39;if()&#39; funkciovoko. Bonvolu uzi
 blankspacon anstataŭ parentezoj.
 ĉe /Users/ash/raku-course/t.raku:1
 ------&gt; if⏏(True != False) {
 Neatendita bloko en infiksa pozicio (du terminoj en vico)
 ĉe /Users/ash/raku-course/t.raku:1
-------&gt; if(True != False)⏏ {
-</code></pre></div></div>
+------&gt; if(True != False)⏏ {</code></pre>
+<p>Kun la kazo de <code>if</code>, parentezoj tute ne estas postulataj,
+do la problemo ne havas ŝancon aperi se vi ne uzas ilin. Sed en iuj
+kazoj, kiel ekzemple kun <code>loop</code>, vi bezonas ilin, kaj la
+spaco fariĝas deviga:</p>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
-<p>Kun la kazo de <code class="language-plaintext highlighter-rouge">if</code>, parentezoj tute ne estas postulataj, do la problemo ne havas ŝancon aperi se vi ne uzas ilin. Sed en iuj kazoj, kiel ekzemple kun <code class="language-plaintext highlighter-rouge">loop</code>, vi bezonas ilin, kaj la spaco fariĝas deviga:</p>
-
-<pre><code class="language-for">loop(my $c = 0; $c != 10; $c++) { say $c }
-</code></pre>
-
-<p>En ĉi tiu kodo, la sama afero okazas: <code class="language-plaintext highlighter-rouge">loop(...)</code> estas komprenata de la kompililo kiel funkciovoko. Aldonu spacon por solvi la problemon. Aŭ pli bone reskribu la fragmenton uzante <code class="language-plaintext highlighter-rouge">for</code>.</p>
-
+<p>En ĉi tiu kodo, la sama afero okazas: <code>loop(...)</code> estas
+komprenata de la kompililo kiel funkciovoko. Aldonu spacon por solvi la
+problemon. Aŭ pli bone reskribu la fragmenton uzante
+<code>for</code>.</p>
 <h2 id="konkludo">Konkludo</h2>
-
-<p>La esenco: por eviti tiajn problemojn, ne aldonu spacon inter la nomo de la funkcio kaj la parentezoj kun la argumentoj de la funkcio kaj provu eviti parentezojn se tio eblas kun aliaj lingvokonstruoj kiel kontrolfluo.</p>
-
-<p></div></p>
-
-<h2 id="kurso-navigado">Kurso navigado</h2>
-
-<p>←
-        <a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a>
-  |  
-        <a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a> / <a href="/eo/essentials/more-on-functions/typed-parameters">Tipitaj parametroj</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/eo/essentials/more-on-functions/exercises/factorial-with-multi-functions">to the exercise to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/more-on-functions/mind-the-space/">Originala angla teksto</a></p>
-
-  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/more-on-functions/mind-the-space/">English</a> • <a href="/de/essentials/more-on-functions/mind-the-space/">Deutsch</a> • <a href="/es/essentials/more-on-functions/mind-the-space/">Español</a> • <a href="/it/essentials/more-on-functions/mind-the-space/">Italiano</a> • <a href="/lv/essentials/more-on-functions/mind-the-space/">Latviešu</a> • <a href="/nl/essentials/more-on-functions/mind-the-space/">Nederlands</a> • <a href="/bg/essentials/more-on-functions/mind-the-space/">Български</a> • <a href="/ru/essentials/more-on-functions/mind-the-space/">Русский</a> • <a href="/uk/essentials/more-on-functions/mind-the-space/">Українська</a></p>
+<p>La esenco: por eviti tiajn problemojn, ne aldonu spacon inter la nomo
+de la funkcio kaj la parentezoj kun la argumentoj de la funkcio kaj
+provu eviti parentezojn se tio eblas kun aliaj lingvokonstruoj kiel
+kontrolfluo.</p>
+<h2 id="kursa-navigado">Kursa navigado</h2>
+<p>← <a href="/eo/essentials/more-on-functions">Pli pri funkcioj</a>
+  |   <a
+href="/eo/essentials/more-on-functions/typed-parameters">Tipitaj
+parametroj</a> →</p>
+<p><br /> 💪 Aŭ iru rekte al <a
+href="/eo/essentials/more-on-functions/exercises/factorial-with-multi-functions">la
+ekzerco de ĉi tiu sekcio</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/more-on-functions/mind-the-space">English</a> • <a
+href="/de/essentials/more-on-functions/mind-the-space">Deutsch</a> •
+<strong>Esperanto</strong> • <a
+href="/es/essentials/more-on-functions/mind-the-space">Español</a> • <a
+href="/it/essentials/more-on-functions/mind-the-space">Italiano</a> • <a
+href="/la/essentials/more-on-functions/mind-the-space">Latina</a> • <a
+href="/lv/essentials/more-on-functions/mind-the-space">Latviešu</a> • <a
+href="/nl/essentials/more-on-functions/mind-the-space">Nederlands</a> •
+<a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
+• <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
+• <a
+href="/uk/essentials/more-on-functions/mind-the-space">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

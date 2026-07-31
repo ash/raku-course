@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Entjeraj nombroj
+title: 'Kvizo: Entjeraj nombroj'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Asociaj datumtipoj'
+title: 'Ekzercoj: Asociaj datentipoj'
 ---
 
 {% include menu.html %}

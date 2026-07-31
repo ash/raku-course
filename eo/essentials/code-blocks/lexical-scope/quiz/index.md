@@ -1,5 +1,5 @@
 ---
-title: Kviz — Leksika amplekso
+title: Kvizo — Leksika amplekso
 ---
 
 {% include menu.html %}

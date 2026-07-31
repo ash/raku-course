@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Frakcia parto'
+title: Frakcia parto
 ---
 
 {% include menu.html %}

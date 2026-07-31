@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Kiom da nombroj estas egalaj?'
+title: Kiom da nombroj estas egalaj?
 ---
 
 {% include menu.html %}

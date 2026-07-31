@@ -1,5 +1,5 @@
 ---
-title: Konvertiĝo de datumtipo
+title: Datentipa konvertado
 ---
 
 {% include menu.html %}

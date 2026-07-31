@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Comparar cadenas
+title: Quiz 1 — Comparar cadenas
 ---
 
 {% include menu.html %}

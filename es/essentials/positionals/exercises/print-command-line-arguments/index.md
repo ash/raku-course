@@ -1,5 +1,5 @@
 ---
-title: Imprimir argumentos de la línea de comandos
+title: Imprimir argumentos de línea de comandos
 ---
 
 {% include menu.html %}

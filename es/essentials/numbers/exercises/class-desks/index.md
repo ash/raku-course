@@ -1,5 +1,5 @@
 ---
-title: Escritorios de clase
+title: Pupitres en clase
 ---
 
 {% include menu.html %}

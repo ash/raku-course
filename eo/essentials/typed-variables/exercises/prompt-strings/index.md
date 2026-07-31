@@ -1,10 +1,10 @@
 ---
-title: Ekzamenante la rezulton de prompto — Ŝnuroj
+title: 'Ekzameni la rezulton de `prompt` — Stringoj'
 ---
 
 {% include menu.html %}
 
-## Tasko
+## Problemo
 
 Kompletigu la sekvan programon por ripeti la enmetitan nomon kaj presi la tipon de la valoro en la variablo `$name`.
 

@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="eo">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Returning the result</title>
-    <meta property="og:title" content="Returning the result" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Redonante la rezulton — Raku-kurso</title>
+    <meta property="og:title" content="Redonante la rezulton — Raku-kurso" />
     <meta property="og:locale" content="eo" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Returning the result</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,86 +88,113 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a></p>
-
+          <p><a href="/eo/">Kurso de Raku</a> / <a
+href="/eo/essentials">Esencoj</a> / <a
+href="/eo/essentials/functions-essentials">Bazoj de funkcioj</a> / <a
+href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a></p>
 <h1 id="redonante-la-rezulton">Redonante la rezulton</h1>
-
-<p>Funkcioj ofte ne nur faras ion, sed ankaŭ redonas rezulton. Ekzemple, en funkcia programado, funkcioj ne devus produkti ajnajn flankajn efikojn kiel ekzemple presi al konzolo. Tamen, Raku ne limigas vin fari tion. Ni vidu kiel redoni valoron el funkcio kaj kiel ricevi ĝin en la vokanta kodo.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<p>Funkcioj ofte ne nur faras ion, sed ankaŭ redonas rezulton. Ekzemple,
+en funkcia programado, funkcioj ne devus produkti ajnajn flankajn
+efikojn kiel ekzemple presi al konzolo. Tamen, Raku ne limigas vin fari
+tion. Ni vidu kiel redoni valoron el funkcio kaj kiel ricevi ĝin en la
+vokanta kodo.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
 }
 
-<span class="k">my</span> <span class="nv">$sum</span> = <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>);
-<span class="nb">say</span> <span class="nv">$sum</span>; <span class="c1"># 30</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$sum</span> = <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>);
+<span class="nb">say</span> <span class="nv">$sum</span>; <span class="c1"># 30</span></pre></div>
 
-
-<p>Ĉi tie, la funkcio nomata <code class="language-plaintext highlighter-rouge">add</code> prenas du nombrojn kaj redonas ilian sumon. Estas uzata eksplicita <code class="language-plaintext highlighter-rouge">return</code>. En la vokanta flanko, la valoro kiun la funkcio redonas povas esti uzata kiel ajna alia valoro. En la supra programo, ĝi estas asignita al variablo.</p>
-
+<p>Ĉi tie, la funkcio nomata <code>add</code> prenas du nombrojn kaj
+redonas ilian sumon. Estas uzata eksplicita <code>return</code>. En la
+vokanta flanko, la valoro kiun la funkcio redonas povas esti uzata kiel
+ajna alia valoro. En la supra programo, ĝi estas asignita al
+variablo.</p>
 <h2 id="la-laste-taksita-valoro">La laste taksita valoro</h2>
-
-<p>En Raku, eksplicita <code class="language-plaintext highlighter-rouge">return</code> ne estas postulata se la rezulto kiun vi volas redoni el funkcio estas la laste komputita valoro en ĝia korpo. Nia funkcio <code class="language-plaintext highlighter-rouge">add</code> povas esti simpligita:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<p>En Raku, eksplicita <code>return</code> ne estas postulata se la
+rezulto kiun vi volas redoni el funkcio estas la laste komputita valoro
+en ĝia korpo. Nia funkcio <code>add</code> povas esti simpligita:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="nv">$x</span> + <span class="nv">$y</span>
-}
-</pre></div>
+}</pre></div>
 
-
-<p>Kiel vi eble rimarkis, ne estas punkto-komo ĉe la fino de la linio ĉar ĝi ne estas postulata kiam la linio finas la aktualan kodoblokon.</p>
-
-<p>Tiaj trivialaj kaj malgrandaj funkcioj ofte estas formatitaj en unu linio por pli kompakta kodo:</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="nb">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-</pre></div>
-
+<p>Kiel vi eble rimarkis, ne estas punkto-komo ĉe la fino de la linio
+ĉar ĝi ne estas postulata kiam la linio finas la aktualan
+kodoblokon.</p>
+<p>Tiaj trivialaj kaj malgrandaj funkcioj ofte estas formatitaj en unu
+linio por pli kompakta kodo:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">add</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }</pre></div>
 
 <h2 id="neniu-redona-datumoj">Neniu redona datumoj</h2>
-
-<p>Se vi bezonas redoni el funkcio antaŭ la fino de ĝia korpo, kaj la funkcio ne redonas ajnan rezulton, uzu nudan <code class="language-plaintext highlighter-rouge">return</code>.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">test</span>(<span class="nv">$x</span>) {
+<p>Se vi bezonas redoni el funkcio antaŭ la fino de ĝia korpo, kaj la
+funkcio ne redonas ajnan rezulton, uzu nudan <code>return</code>.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">test</span>(<span class="nv">$x</span>) {
     <span class="k">return</span> <span class="k">if</span> <span class="nv">$x</span> &lt;= <span class="mi">10</span>;
     <span class="nb">say</span> <span class="s">&quot;$x estas super la limo&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
-
-<p><div class="practice"></p>
-<h2 id="praktiko">Praktiko</h2>
-
-<p>Plenumu la kvizon, kiu kovras la enhavon de ĉi tiu temo.</p>
+<section id="praktiko" class="practice" data-markdown="1">
+<h2>Praktiko</h2>
+<p>Vin atendas 1 kvizo pri la enhavo de ĉi tiu temo.</p>
 <ul>
-  <li><a href="/eo/essentials/functions/return-result/quiz">Kvizo — Redonu de funkcio</a></li>
+<li><a href="/eo/essentials/functions/return-result/quiz">Kvizo — Redonu
+de funkcio</a></li>
 </ul>
-
-<p></div></p>
-
-<h2 id="kurso-navigado">Kurso navigado</h2>
-
-<p>←
-        <a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a> / <a href="/eo/essentials/functions/function-parameters">Funkciaj parametroj</a>
-  |  
-        <a href="/eo/essentials/functions">Kreado kaj vokado de funkcioj</a> / <a href="/eo/essentials/functions/positional-parameters">Poziciaj parametroj</a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/eo/essentials/functions/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/functions/return-result/">Originala angla teksto</a></p>
-
-  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/functions/return-result/">English</a> • <a href="/de/essentials/functions/return-result/">Deutsch</a> • <a href="/es/essentials/functions/return-result/">Español</a> • <a href="/it/essentials/functions/return-result/">Italiano</a> • <a href="/lv/essentials/functions/return-result/">Latviešu</a> • <a href="/nl/essentials/functions/return-result/">Nederlands</a> • <a href="/bg/essentials/functions/return-result/">Български</a> • <a href="/ru/essentials/functions/return-result/">Русский</a> • <a href="/uk/essentials/functions/return-result/">Українська</a></p>
+</section>
+<h2 id="kursa-navigado">Kursa navigado</h2>
+<p>← <a
+href="/eo/essentials/functions/function-parameters/quiz2">Pasante
+argumentojn</a>   |   <a
+href="/eo/essentials/functions/return-result/quiz">Kvizo — Redonu de
+funkcio</a> →</p>
+<p><br /> 💪 Aŭ iru rekte al <a
+href="/eo/essentials/functions/exercises">la ekzercoj de ĉi tiu
+sekcio</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/functions/return-result">English</a> • <a
+href="/de/essentials/functions/return-result">Deutsch</a> •
+<strong>Esperanto</strong> • <a
+href="/es/essentials/functions/return-result">Español</a> • <a
+href="/it/essentials/functions/return-result">Italiano</a> • <a
+href="/la/essentials/functions/return-result">Latina</a> • <a
+href="/lv/essentials/functions/return-result">Latviešu</a> • <a
+href="/nl/essentials/functions/return-result">Nederlands</a> • <a
+href="/bg/essentials/functions/return-result">Български</a> • <a
+href="/ru/essentials/functions/return-result">Русский</a> • <a
+href="/uk/essentials/functions/return-result">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: '"for" loop'
+title: Bucles `for`
 ---
 
 {% include menu.html %}

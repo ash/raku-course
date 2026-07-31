@@ -1,5 +1,5 @@
 ---
-title: Quiz — Interpolando arreglos
+title: Quiz — Interpolar arrays
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo al ‘Klasaj skribotabloj’
+title: 'Solvo: Klasaj skribotabloj'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ my $desks = $students div 2 + $students % 2;
 say "$desks desks must be bought.";
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/class-desks.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [class-desks.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/class-desks.raku).
 
 ## Eligo
 

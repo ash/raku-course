@@ -1,5 +1,5 @@
 ---
-title: Solvo al 'Duobla neado’
+title: 'Solvo: Duobla neado'
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ $value = True;
 say !!$value;
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/double-negation.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [double-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/double-negation.raku).
 
 ## Komentoj
 

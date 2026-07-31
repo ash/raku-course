@@ -1,5 +1,5 @@
 ---
-title: Mind the space
+title: Atención al espacio
 ---
 
 {% include menu.html %}

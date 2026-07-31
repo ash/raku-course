@@ -1,5 +1,5 @@
 ---
-title: Solución a ‘Compartir manzanas’
+title: 'Solution: Compartir manzanas'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Cada persona recibe $gets manzana(s).";
 say "Quedan $remains manzana(s).";
 ```
 
-🦋 Puedes encontrar el código completo en el archivo [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Puedes encontrar el código completo en el archivo [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Salida
 

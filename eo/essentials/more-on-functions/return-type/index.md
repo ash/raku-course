@@ -1,5 +1,5 @@
 ---
-title: Return type of functions
+title: Redontipo
 ---
 
 {% include menu.html %}

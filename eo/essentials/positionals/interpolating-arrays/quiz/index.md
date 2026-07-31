@@ -1,5 +1,5 @@
 ---
-title: Kviz — Interpolado de tabeloj
+title: Kvizo — Interpolante arrayojn
 ---
 
 {% include menu.html %}

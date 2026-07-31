@@ -1,5 +1,5 @@
 ---
-title: Scienca notacio en Raku
+title: Flosantaj nombroj
 ---
 
 {% include menu.html %}

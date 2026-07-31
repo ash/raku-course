@@ -1,5 +1,5 @@
 ---
-title: Coincidencia contra un rango
+title: Comparar con un rango
 ---
 
 {% include menu.html %}

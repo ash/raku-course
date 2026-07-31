@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Variablaj nomoj
+title: 'Kvizo: Validaj nomoj de la variabloj'
 ---
 
 {% include menu.html %}

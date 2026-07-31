@@ -1,5 +1,5 @@
 ---
-title: Exercise 'Boolean tables’
+title: Booleaj tabeloj
 ---
 
 {% include menu.html %}

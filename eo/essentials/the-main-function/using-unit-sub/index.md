@@ -1,5 +1,5 @@
 ---
-title: Uzante unit sub
+title: 'Uzante `unit sub`'
 ---
 
 {% include menu.html %}

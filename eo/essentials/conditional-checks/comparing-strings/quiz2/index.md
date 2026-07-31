@@ -1,5 +1,5 @@
 ---
-title: Quiz 2 — la kondiĉo en if
+title: 'Kvizo 2 — la kondiĉo en `if`'
 ---
 
 {% include menu.html %}

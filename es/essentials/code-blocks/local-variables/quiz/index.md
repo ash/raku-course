@@ -39,6 +39,23 @@ say $value;
 {:.quiz-select}
 100 | Respuesta: (: 1, 2, 100, 200 :) | Se modifica una variable local, pero se imprime la variable global.
 
+## 3
+
+Este programa es casi idéntico, pero dentro del bloque no hay `my`. ¿Qué imprime?
+
+```raku
+my $value = 100;
+
+{
+    $value *= 2;
+}
+
+say $value;
+```
+
+{:.quiz-select}
+200 | Respuesta: (: 1, 2, 100, 200 :) | Sin `my` el bloque no tiene una variable local y por eso modifica la misma variable global.
+
 {% include quiz.html %}
 
 {% include nav.html %}

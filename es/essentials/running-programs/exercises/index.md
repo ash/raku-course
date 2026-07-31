@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Ejecutando programas'
+title: 'Exercises: Ejecución de programas'
 ---
 
 {% include menu.html %}

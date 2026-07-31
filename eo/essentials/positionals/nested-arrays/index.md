@@ -1,5 +1,5 @@
 ---
-title: Enigitaj tabeloj
+title: Nestitaj arrayoj
 ---
 
 {% include menu.html %}

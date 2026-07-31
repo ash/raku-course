@@ -1,5 +1,5 @@
 ---
-title: 'Solución: El valor de e'
+title: 'Solution: El valor de e'
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ say e-approx(10);
 say e-approx();
 ```
 
-🦋 Encuentra el programa en el archivo [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/the-value-of-e.raku).
+🦋 Encuentra el programa en el archivo [the-value-of-e.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/the-value-of-e.raku).
 
 ## Salida
 

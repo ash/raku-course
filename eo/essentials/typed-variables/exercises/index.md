@@ -1,5 +1,5 @@
 ---
-title: Ekzercoj por ‘Tajpitaj variabloj’
+title: 'Ekzercoj: Tipitaj variabloj'
 ---
 
 {% include menu.html %}

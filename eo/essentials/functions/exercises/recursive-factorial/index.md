@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Rekursiva faktorialo'
+title: Rekursiva faktorialo
 ---
 
 {% include menu.html %}

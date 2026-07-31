@@ -1,5 +1,5 @@
 ---
-title: Quiz — Citando arreglos de cadenas
+title: Quiz 1 — Citar arrays de cadenas
 ---
 
 {% include menu.html %}

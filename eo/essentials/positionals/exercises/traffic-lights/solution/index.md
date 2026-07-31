@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Trafiklumoj'
+title: 'Solvo: Trafiklumo'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say @lights[102 % @lights];
 say @lights[305 % @lights];
 ```
 
-🦋 Trovu la programon en la dosiero [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/traffic-lights.raku).
+🦋 Trovu la programon en la dosiero [traffic-lights.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/traffic-lights.raku).
 
 ## Eligo
 

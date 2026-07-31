@@ -1,10 +1,10 @@
 ---
-title: Preskribu komandliniajn argumentojn
+title: Presi komando-linio argumentojn
 ---
 
 {% include menu.html %}
 
-## Tasko
+## Problemo
 
 Skribu programon kiu presas ĉiujn argumentojn kiujn ĝi ricevas de la komandlinio. Presu ilin unu post la alia.
 

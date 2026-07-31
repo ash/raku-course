@@ -1,5 +1,5 @@
 ---
-title: while
+title: 'Uzante `while`'
 ---
 
 {% include menu.html %}

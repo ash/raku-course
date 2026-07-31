@@ -1,5 +1,5 @@
 ---
-title: Hashes
+title: Haxoj
 ---
 
 {% include menu.html %}

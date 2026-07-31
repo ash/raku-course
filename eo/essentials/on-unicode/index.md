@@ -1,5 +1,5 @@
 ---
-title: Notes pri uzado de Unikodo
+title: Notoj pri uzado de Unikodo
 ---
 
 {% include menu.html %}

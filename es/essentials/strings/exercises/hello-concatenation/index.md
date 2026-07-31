@@ -1,5 +1,5 @@
 ---
-title: Ejercicio ‘¡Hola, Concatenación!’
+title: ¡Hola, Concatenación!
 ---
 
 {% include menu.html %}

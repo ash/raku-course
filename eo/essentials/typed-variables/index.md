@@ -1,5 +1,5 @@
 ---
-title: Tajpitaj variabloj
+title: Tipitaj variabloj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Literumu numeron'
+title: 'Solvo: Literumi numeron'
 ---
 
 {% include menu.html %}
@@ -27,7 +27,7 @@ else { # Multobloj de 10, ekz., 50
 }
 ```
 
-🦋 Trovu la programon en la dosiero [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/spell-a-number.raku).
+🦋 Trovu la programon en la dosiero [spell-a-number.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/spell-a-number.raku).
 
 ## Ekzemplo
 

@@ -1,5 +1,5 @@
 ---
-title: Solvo al ‘La valoro de π’
+title: 'Solvo: La valoro de π'
 ---
 
 {% include menu.html %}
@@ -12,7 +12,7 @@ La programo por presi la valoron de π estas sufiĉe simpla.
 say π;
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/pi.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [pi.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/pi.raku).
 
 ## Eligo
 

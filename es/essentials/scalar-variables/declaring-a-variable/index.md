@@ -1,5 +1,5 @@
 ---
-title: Variables escalares
+title: Declaración de una variable
 ---
 
 {% include menu.html %}

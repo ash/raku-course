@@ -1,5 +1,5 @@
 ---
-title: Ekzerco ‘Konverti uzantan enigon al nombro’
+title: Konverti uzantan enigon al nombro
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ejercicio 'Triple negaciones'
+title: Triple negación
 ---
 
 {% include menu.html %}

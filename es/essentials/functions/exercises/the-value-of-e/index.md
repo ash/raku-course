@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: El valor de e'
+title: El valor de e
 ---
 
 {% include menu.html %}

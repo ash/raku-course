@@ -1,5 +1,5 @@
 ---
-title: Kurante de komandlinio
+title: Lanĉado de komanda linio
 ---
 
 {% include menu.html %}

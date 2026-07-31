@@ -1,5 +1,5 @@
 ---
-title: String length in Raku
+title: Stringa longo
 ---
 
 {% include menu.html %}

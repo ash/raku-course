@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Salajra kresko'
+title: Salajra altiĝo
 ---
 
 {% include menu.html %}

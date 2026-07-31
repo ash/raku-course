@@ -1,5 +1,5 @@
 ---
-title: La solvo de 'La respondo al vivo, la Universo kaj ĉio'
+title: 'Solvo: La respondo al vivo, la Universo kaj ĉio'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $respondo = 42;
 say $respondo;
 ```
 
-🦋 Vi povas trovi la fontkodon en la dosiero [respondo.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/answer.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [respondo.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/answer.raku).
 
 ## Eligo
 

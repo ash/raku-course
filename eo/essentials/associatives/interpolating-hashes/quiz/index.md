@@ -1,5 +1,5 @@
 ---
-title: Quiz — Interpolating hashes
+title: Kvizo — Interpolante haxojn
 ---
 
 {% include menu.html %}

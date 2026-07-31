@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Difini defaŭltajn valorojn
+title: Kvizo — Difinante defaŭltajn valorojn
 ---
 
 {% include menu.html %}
@@ -16,7 +16,7 @@ Funkcioj kun poziciaj parametroj:
 0 | sub p4($a = 3, $b) {} | Ĉiuj defaŭltaj valoroj devas esti ĉe la fino de la listo de parametroj.
 1 | sub p3($a = 3, $b = 4) {}
 
-## 2 
+## 2
 
 Funkcioj kun nomitaj parametroj:
 

@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Anstataŭigu per antonimoj'
+title: Anstataŭigi per antonimoj
 ---
 
 {% include menu.html %}

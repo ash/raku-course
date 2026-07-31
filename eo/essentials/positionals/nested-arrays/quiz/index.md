@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Nestitaj tabeloj
+title: Kvizo — Nestitaj arrayoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Neparaj indeksoj'
+title: Malparaj indeksoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Quiz 1 — Assigning a value
+title: 'Kvizo 1: Atribuado de valoro'
 ---
 
 {% include menu.html %}

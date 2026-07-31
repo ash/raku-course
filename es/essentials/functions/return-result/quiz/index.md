@@ -1,5 +1,5 @@
 ---
-title: Quiz — Retorno de una función
+title: Quiz — Devolver desde una función
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Ŝnuroj'
+title: 'Ekzercoj: Stringoj'
 ---
 
 {% include menu.html %}

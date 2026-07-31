@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Krei variablojn de ĉiuj konataj tipoj’
+title: 'Solvo: Krei variablojn de ĉiuj konataj tipoj'
 ---
 
 {% include menu.html %}
@@ -24,7 +24,7 @@ say $d, ' ', $d.WHAT;
 say $e, ' ', $e.WHAT;
 ```
 
-🦋 Trovu la programon en la dosiero [types.raku](https://github.com/ash/raku-course/blob/master/exercises/typed-variables/types.raku).
+🦋 Trovu la programon en la dosiero [types.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/typed-variables/types.raku).
 
 ## Eligo
 

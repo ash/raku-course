@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Vidita antaŭe?'
+title: Vidita antaŭe?
 ---
 
 {% include menu.html %}
@@ -9,8 +9,8 @@ title: 'Ekzerco: Vidita antaŭe?'
 Kreu programon kiu komencas buklon kun la jenaj agoj:
 
 1. Petu enigi vorton.
-2. Se la vorto jam estis vidita unufoje, presu `Vidita!`.
-3. Se la vorto estis vidita pli ol unufoje, presu `Vidita 2 fojojn!`, ktp.
+2. Se la vorto jam estis vidita unufoje, presu `Seen!`.
+3. Se la vorto estis vidita pli ol unufoje, presu `Seen 2 times!`, ktp.
 3. Ripetu la buklon.
 
 ## Ekzemplo
@@ -18,23 +18,25 @@ Kreu programon kiu komencas buklon kun la jenaj agoj:
 Ekzemplo de interago kun la programo:
 
 ```console
-$ raku vidita-antauxe.raku
-Vorto: Mi
-Vorto: neniam
-Vorto: vidis
-Vorto: unu
-Vorto: vidis
-Vidita!
-Vorto: tion
-Vorto: vidis
-Vidita 2 fojojn!
-Vorto: kiel
-Vorto: tion
-Vidita!
-Vorto: vidis
-Vidita 3 fojojn!
-Vorto: segis
-Vorto: ^C
+$ raku seen-before.raku
+Word: I
+Word: never
+Word: saw
+Word: a
+Word: saw
+Seen!
+Word: that
+Word: saw
+Seen 2 times!
+True
+Word: as
+Word: that
+Seen!
+Word: saw
+Seen 3 times!
+True
+Word: sawed
+Word: ^C
 ```
 
 Por ĉesigi la programon, premu `Ctrl+C`.

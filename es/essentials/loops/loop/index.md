@@ -1,5 +1,5 @@
 ---
-title: loop
+title: Bucle de tres sentencias `loop`
 ---
 
 {% include menu.html %}

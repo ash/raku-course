@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Variabloj kiel nomitaj parametroj
+title: Kvizo 2 — Variabloj kiel nomitaj parametroj
 ---
 
 {% include menu.html %}

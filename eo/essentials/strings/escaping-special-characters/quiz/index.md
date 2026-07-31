@@ -1,10 +1,10 @@
 ---
-title: 'Kvizo: Unu malantaŭa oblikvo en la eligo'
+title: 'Kvizo: Inversiga streketo en la eligo'
 ---
 
 {% include menu.html %}
 
-El la subaj kordoj, kontrolu tiujn, kiuj havos precize unu malantaŭan oblikvon `\` en la eligo se vi presas ilin.
+El la subaj ĉenoj, kontrolu tiujn, kiuj havos precize unu malantaŭan oblikvon `\` en la eligo se vi presas ilin.
 
 {:.quiz}
 0 | &quot;Level\n\t2&quot;
@@ -14,7 +14,7 @@ El la subaj kordoj, kontrolu tiujn, kiuj havos precize unu malantaŭan oblikvon 
 0 | &quot;Using a tab\there&quot;
 1 | &quot;//\\\\&quot; | La eligo estas `//\`
 1 | &apos;//\\\\&apos; | Unu malantaŭa oblikvo eskapas la alian ĉi tie: `//\`.
-1 | &apos;\&quot;&apos; | Neniu eskapado ĉi tie, la kordo aperas kiel estas: `\"`.
+1 | &apos;\&quot;&apos; | Neniu eskapado ĉi tie, la ĉeno aperas kiel estas: `\"`.
 
 {% include quiz.html %}
 

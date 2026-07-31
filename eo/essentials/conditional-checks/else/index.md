@@ -1,5 +1,5 @@
 ---
-title: La else bloko
+title: '`else` blokoj'
 ---
 
 {% include menu.html %}

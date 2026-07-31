@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: La ĈEFA funkcio'
+title: 'Ekzercoj: La `MAIN` funkcio'
 ---
 
 {% include menu.html %}

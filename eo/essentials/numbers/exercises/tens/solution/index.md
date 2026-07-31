@@ -1,5 +1,5 @@
 ---
-title: Solvo al ‘Nombro de dekoj’
+title: 'Solvo: Nombro de dekoj'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my $n = prompt 'Enigu pozitivan entjeran nombron: ';
 say ($n % 100) div 10;
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/tens.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [tens.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/tens.raku).
 
 ## Eligo
 

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Semáforos'
+title: Semáforos
 ---
 
 {% include menu.html %}

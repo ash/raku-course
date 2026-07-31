@@ -1,5 +1,5 @@
 ---
-title: Enigo kun prompto
+title: 'Enigo per `prompt`'
 ---
 
 {% include menu.html %}

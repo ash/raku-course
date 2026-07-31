@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Faktorialo’
+title: 'Solvo: Faktorialo'
 ---
 
 {% include menu.html %}
@@ -12,12 +12,12 @@ Faktorialo de `N` estas produkto de entjeraj nombroj de 1 ĝis kaj inkluzive `N`
 my $n = 8;
 
 my $f = 1;
-$f *= $_ por 2..$n;
+$f *= $_ for 2..$n;
 
 say $f;
 ```
 
-🦋 Trovu la programon en la dosiero [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/loops/factorial.raku).
+🦋 Trovu la programon en la dosiero [factorial.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/loops/factorial.raku).
 
 ## Eligo
 
@@ -38,7 +38,7 @@ Vi povas uzi ‘plenan’ buklon anstataŭ postfiksa formo:
 my $n = 8;
 
 my $f = 1;
-por 2..$n -> $x {
+for 2..$n -> $x {
     $f *= $x;
 }
 

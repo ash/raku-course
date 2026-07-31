@@ -1,5 +1,5 @@
 ---
-title: Solvo al ‘Sumo de nombroj de 1 ĝis 100’
+title: 'Solvo: Sumo de nombroj de 1 ĝis 100'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ my $sum = $N * (1 + $N) / 2;
 say "La sumo de la nombroj de 1 ĝis $N estas $sum.";
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/sum1-100.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [sum1-100.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/sum1-100.raku).
 
 ## Eligo
 

@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Arrayoj
+title: Kvizo — Arrayoj
 ---
 
 {% include menu.html %}

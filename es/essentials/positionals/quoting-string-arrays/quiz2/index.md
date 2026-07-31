@@ -1,5 +1,5 @@
 ---
-title: Quiz — Reconociendo listas
+title: Quiz 2 — Reconocer listas
 ---
 
 {% include menu.html %}

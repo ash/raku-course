@@ -1,5 +1,5 @@
 ---
-title: Using online services to run Raku
+title: Uzado de retaj servoj
 ---
 
 {% include menu.html %}
@@ -15,7 +15,7 @@ Jen listo de kelkaj el la servoj kiuj subtenas Raku:
 * [glot.io](https://glot.io/new/raku)
 * [TIO](https://tio.run/#perl6)
 * [Repl.it](https://repl.it/new/raku) (postulas ensaluton unue)
-* [RakuPlay](https://rakudist.raku.org/play/) (uzas vicon)
+* [Raku Playground](https://fco.github.io/Raku-Playground/)
 
 Vi ankaŭ povas kontroli [la diskuton en Reddit](https://www.reddit.com/r/rakulang/comments/kj63dq/glotio_now_supports_raku/ggxow6n/) por pli da ligiloj kaj komentoj pri malsamaj retaj servoj.
 

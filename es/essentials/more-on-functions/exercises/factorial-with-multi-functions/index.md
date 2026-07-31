@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Factorial con múltiples funciones'
+title: Factorial con multi-funciones
 ---
 
 {% include menu.html %}

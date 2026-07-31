@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="eo">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Operacioj kun nombroj</title>
-    <meta property="og:title" content="Operacioj kun nombroj" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Operacioj kun nombroj — Raku-kurso</title>
+    <meta property="og:title" content="Operacioj kun nombroj — Raku-kurso" />
     <meta property="og:locale" content="eo" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Operacioj kun nombroj</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,188 +88,142 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/eo/">Kurso de Raku</a> / <a href="/eo/essentials">Esencoj</a> / <a href="/eo/essentials/numbers">Nombroj</a></p>
-
+          <p><a href="/eo/">Kurso de Raku</a> / <a
+href="/eo/essentials">Esencoj</a> / <a
+href="/eo/essentials/variables">Bazoj de variabloj kaj datumtipoj</a> /
+<a href="/eo/essentials/numbers">Nombroj</a></p>
 <h1 id="operacioj-kun-nombroj">Operacioj kun nombroj</h1>
-
-<p>Sendube vi jam konas kelkajn el la operacioj, kiujn vi povas fari kun Raku-nombroj. Nur por mencii, ke la simbolo de la <em>operacio</em> estas nomata <em>operaciilo</em>. La objektoj, sur kiuj ni faras operaciojn, estas nomataj <em>operandaj</em>.</p>
-
+<p>Sendube vi jam konas kelkajn el la operacioj, kiujn vi povas fari kun
+Raku-nombroj. Nur por mencii, ke la simbolo de la <em>operacio</em>
+estas nomata <em>operaciilo</em>. La objektoj, sur kiuj ni faras
+operaciojn, estas nomataj <em>operandaj</em>.</p>
 <h2 id="aritmetiko">Aritmetiko</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Operaciilo</strong></td>
-      <td><strong>Operacio</strong></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">+</code></td>
-      <td>Adicio</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">-</code></td>
-      <td>Subtraho</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">*</code></td>
-      <td>Multipliko</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">/</code></td>
-      <td>Divido</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Ĉar Raku <a href="/eo/essentials/on-unicode">subtenas Unikodon</a> tre bone, kelkaj el ĉi tiuj operaciiloj havas ne-ASCII-ekvivalentojn:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">×</code></td>
-      <td>Multipliko</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">÷</code></td>
-      <td>Divido</td>
-    </tr>
-  </tbody>
-</table>
-
+<p><strong>Operaciilo</strong> | <strong>Operacio</strong>
+<code>+</code> | Adicio <code>-</code> | Subtraho <code>*</code> |
+Multipliko <code>/</code> | Divido</p>
+<p>Ĉar Raku <a href="/eo/essentials/on-unicode">subtenas Unikodon</a>
+tre bone, kelkaj el ĉi tiuj operaciiloj havas
+ne-ASCII-ekvivalentojn:</p>
+<p><code>×</code> | Multipliko <code>÷</code> | Divido</p>
 <p>Por ŝanĝi la ordon de ekzekuto, uzu krampojn:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
-<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span>
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> * <span class="mi">4</span> + <span class="mi">5</span>;   <span class="c1"># 17</span>
+<span class="nb">say</span> <span class="mi">3</span> * (<span class="mi">4</span> + <span class="mi">5</span>); <span class="c1"># 27</span></pre></div>
 
 <h2 id="modulo">Modulo</h2>
-
-<p>La modulo-operaciilo estas <code class="language-plaintext highlighter-rouge">%</code> kiel en multaj aliaj lingvoj.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%</code></td>
-      <td>Modulo</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Ĝi redonas la reston de la entjera divido de du nombroj, do <code class="language-plaintext highlighter-rouge">10 % 3</code> estas <code class="language-plaintext highlighter-rouge">1</code>. Notu, ke <code class="language-plaintext highlighter-rouge">-10 % 3</code> estas <code class="language-plaintext highlighter-rouge">2</code>, ĉar la rezulto de la operacio estas difinita kiel la diferenco inter la unua nombro kaj la malsupren-rondigita divido multiplikita per la dua nombro. Do, <code class="language-plaintext highlighter-rouge">$a % $b</code> estas ekvivalenta al <code class="language-plaintext highlighter-rouge">$a - $b * floor($a / $b)</code>.</p>
-
+<p>La modulo-operaciilo estas <code>%</code> kiel en multaj aliaj
+lingvoj.</p>
+<p><code>%</code> | Modulo</p>
+<p>Ĝi redonas la reston de la entjera divido de du nombroj, do
+<code>10 % 3</code> estas <code>1</code>. Notu, ke <code>-10 % 3</code>
+estas <code>2</code>, ĉar la rezulto de la operacio estas difinita kiel
+la diferenco inter la unua nombro kaj la malsupren-rondigita divido
+multiplikita per la dua nombro. Do, <code>$a % $b</code> estas
+ekvivalenta al <code>$a - $b * floor($a / $b)</code>.</p>
 <h2 id="dividebleco">Dividebleco</h2>
-
-<p>Raku aldonas utilan operaciilon por testi ĉu la nombro estas dividebla per alia nombro.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">%%</code></td>
-      <td>Dividebleco</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Ĉi tio estas infiksa operaciilo, kiu bezonas du operandajn: <code class="language-plaintext highlighter-rouge">10 %% 3</code>. Se la unua operando estas dividebla per la dua operando, la rezulto estas Boolea <code class="language-plaintext highlighter-rouge">True</code>. Alie, <code class="language-plaintext highlighter-rouge">False</code>.</p>
-
+<p>Raku aldonas utilan operaciilon por testi ĉu la nombro estas
+dividebla per alia nombro.</p>
+<p><code>%%</code> | Dividebleco</p>
+<p>Ĉi tio estas infiksa operaciilo, kiu bezonas du operandajn:
+<code>10 %% 3</code>. Se la unua operando estas dividebla per la dua
+operando, la rezulto estas Boolea <code>True</code>. Alie,
+<code>False</code>.</p>
 <h2 id="entjeraj-operacioj">Entjeraj operacioj</h2>
-
-<p>Estas specialaj operacioj, kiuj redonas entjerajn rezultojn. Iliaj operaciiloj estas vortoj anstataŭ simboloj.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">div</code></td>
-      <td>Entjera divido</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mod</code></td>
-      <td>Entjera modulo</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>La <code class="language-plaintext highlighter-rouge">div</code> operaciilo rondigas malsupren la rezulton, do <code class="language-plaintext highlighter-rouge">10 div 3</code> estas <code class="language-plaintext highlighter-rouge">3</code>, kaj <code class="language-plaintext highlighter-rouge">-10 div 3</code> estas <code class="language-plaintext highlighter-rouge">-4</code>.</p>
-
-<p>Ambaŭ <code class="language-plaintext highlighter-rouge">div</code> kaj <code class="language-plaintext highlighter-rouge">mod</code> atendas entjerajn operandajn. Do, la sekva programo ne funkcios se vi malkomentas la liniojn markitajn kiel <code class="language-plaintext highlighter-rouge">Eraro</code>:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
+<p>Estas specialaj operacioj, kiuj redonas entjerajn rezultojn. Iliaj
+operaciiloj estas vortoj anstataŭ simboloj.</p>
+<p><code>div</code> | Entjera divido <code>mod</code> | Entjera
+modulo</p>
+<p>La <code>div</code> operaciilo rondigas malsupren la rezulton, do
+<code>10 div 3</code> estas <code>3</code>, kaj <code>-10 div 3</code>
+estas <code>-4</code>.</p>
+<p>Ambaŭ <code>div</code> kaj <code>mod</code> atendas entjerajn
+operandajn. Do, la sekva programo ne funkcios se vi malkomentas la
+liniojn markitajn kiel <code>Eraro</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mf">10.3</span> % <span class="mi">3</span>;     <span class="c1"># OK</span>
 <span class="c1"># say 10.3 mod 3; # Eraro</span>
 
 <span class="nb">say</span> <span class="mf">10.3</span> / <span class="mf">3.3</span>;     <span class="c1"># OK</span>
-<span class="c1"># say 10.3 div 3.3; # Eraro</span>
-</pre></div>
-
+<span class="c1"># say 10.3 div 3.3; # Eraro</span></pre></div>
 
 <h2 id="potenco">Potenco</h2>
-
-<p>Estas du manieroj por akiri la rezulton de <em>x</em> al la potenco de <em>y</em>. Unue, vi povas uzi la <code class="language-plaintext highlighter-rouge">**</code> operaciilon:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span>
-</pre></div>
-
+<p>Estas du manieroj por akiri la rezulton de <em>x</em> al la potenco
+de <em>y</em>. Unue, vi povas uzi la <code>**</code> operaciilon:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> ** <span class="mi">4</span>; <span class="c1"># 81</span></pre></div>
 
 <p>Due, vi povas uzi superskribitajn ciferojn, ekzemple:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span>⁴; <span class="c1"># 81</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">3</span><span class="n">⁴</span>; <span class="c1"># 81</span>
-</pre></div>
-
-
-<p>Eblas meti pli ol unu superskribitan ciferon por akiri la valoron de potenco pli granda ol 9. Ekzemple:</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span><span class="n">¹⁵</span>; <span class="c1"># 32768</span>
-</pre></div>
-
+<p>Eblas meti pli ol unu superskribitan ciferon por akiri la valoron de
+potenco pli granda ol 9. Ekzemple:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span>¹⁵; <span class="c1"># 32768</span></pre></div>
 
 <p>Negativa potenco ne estas problemo ankaŭ:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
+<span class="nb">say</span> <span class="mi">2</span>⁻²; <span class="c1"># 0.25</span></pre></div>
 
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="mi">2</span> ** (-<span class="mi">2</span>); <span class="c1">## 0.25</span>
-<span class="nb">say</span> <span class="mi">2</span>⁻<span class="n">²</span>; <span class="c1"># 0.25</span>
-</pre></div>
-
-
-<p>Notu, ke la rezulto de la lastaj du esprimoj estas <code class="language-plaintext highlighter-rouge">Rat</code> nombro.</p>
-
+<p>Notu, ke la rezulto de la lastaj du esprimoj estas <code>Rat</code>
+nombro.</p>
 <h2 id="operacioj-kun-asigno">Operacioj kun asigno</h2>
-
-<p>Ĉiuj operacioj subtenas la mallongigan sintakson kiam vi bezonas ĝisdatigi la variablon. Ni demonstru ĝin per la ekzemplo de <code class="language-plaintext highlighter-rouge">+</code>.</p>
-
+<p>Ĉiuj operacioj subtenas la mallongigan sintakson kiam vi bezonas
+ĝisdatigi la variablon. Ni demonstru ĝin per la ekzemplo de
+<code>+</code>.</p>
 <p>La plena formo</p>
-
-<div class="highlight"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;
-</pre></div>
-
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> = <span class="nv">$a</span> + <span class="nv">$b</span>;</pre></div>
 
 <p>estas ekvivalenta al:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="nv">$a</span> += <span class="nv">$b</span>;
-</pre></div>
-
-
-<p></div></p>
-
-<h2 id="kurso-navigado">Kurso navigado</h2>
-
-<p>←
-        <a href="/eo/essentials/numbers">Nombroj</a> / <a href="/eo/essentials/numbers/numeric">Flosantaj nombroj</a>
-  |  
-        💪 <a href="/eo/essentials/numbers/exercises">Ekzercoj: Nombroj</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Ĉi tiu paĝo estas aŭtomate tradukita per ChatGPT 4o. <a href="/essentials/numbers/operations/">Originala angla teksto</a></p>
-
-  <p>Tradukoj de ĉi tiu paĝo: <a href="/essentials/numbers/operations/">English</a> • <a href="/de/essentials/numbers/operations/">Deutsch</a> • <a href="/es/essentials/numbers/operations/">Español</a> • <a href="/it/essentials/numbers/operations/">Italiano</a> • <a href="/lv/essentials/numbers/operations/">Latviešu</a> • <a href="/nl/essentials/numbers/operations/">Nederlands</a> • <a href="/bg/essentials/numbers/operations/">Български</a> • <a href="/ru/essentials/numbers/operations/">Русский</a> • <a href="/uk/essentials/numbers/operations/">Українська</a></p>
+<h2 id="kursa-navigado">Kursa navigado</h2>
+<p>← <a href="/eo/essentials/numbers/numeric">Flosantaj nombroj</a>
+  |   <a href="/eo/essentials/numbers/exercises/apple-sharing">Poma
+divido</a> →</p>
+<p><br /> 💪 Aŭ iru rekte al <a
+href="/eo/essentials/numbers/exercises">la ekzercoj de ĉi tiu
+sekcio</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/numbers/operations">English</a> • <a
+href="/de/essentials/numbers/operations">Deutsch</a> •
+<strong>Esperanto</strong> • <a
+href="/es/essentials/numbers/operations">Español</a> • <a
+href="/it/essentials/numbers/operations">Italiano</a> • <a
+href="/la/essentials/numbers/operations">Latina</a> • <a
+href="/lv/essentials/numbers/operations">Latviešu</a> • <a
+href="/nl/essentials/numbers/operations">Nederlands</a> • <a
+href="/bg/essentials/numbers/operations">Български</a> • <a
+href="/ru/essentials/numbers/operations">Русский</a> • <a
+href="/uk/essentials/numbers/operations">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

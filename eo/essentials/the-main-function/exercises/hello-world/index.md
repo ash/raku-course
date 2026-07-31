@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Saluton, Mondo!'
+title: 'Saluton, Mondo!'
 ---
 
 {% include menu.html %}

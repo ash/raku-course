@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Saluton, Kunigo!'
+title: 'Saluton, Concatenado!'
 ---
 
 {% include menu.html %}

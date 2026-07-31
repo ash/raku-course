@@ -1,5 +1,5 @@
 ---
-title: Solvo al 'Saluton, Konkatenado!'
+title: 'Solvo: Saluton, Concatenado!'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $name = prompt 'Kio estas via nomo? ';
 say 'Saluton, ' ~ $name ~ '!';
 ```
 
-🦋 Vi povas trovi la fontkodon en la dosiero [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/strings/hello-concatenation.raku).
+🦋 Vi povas trovi la fontkodon en la dosiero [hello-concatenation.raku](https://github.com/ash/raku-course/blob/master/exercises/advanced/strings/hello-concatenation.raku).
 
 ## Eligo
 
@@ -27,12 +27,12 @@ Saluton, Johano!
 
 ## Komentoj
 
-Komparu la programon kun [la antaŭa varianto](../../../../scalar-variables/exercises/greet-a-person/solution) kie ni pasis tri kordojn al la rutino `say`:
+Komparu la programon kun [la antaŭa varianto](../../../../scalar-variables/exercises/greet-a-person/solution) kie ni pasis tri ĉenojn al la rutino `say`:
 
 ```raku
 say 'Saluton, ', $name, '!';
 ```
 
-Ĉi-foje, la tri partoj estas unue kunigitaj kaj poste pasitaj al `say` kiel unu sola kordo.
+Ĉi-foje, la tri partoj estas unue kunigitaj kaj poste pasitaj al `say` kiel unu sola ĉeno.
 
 {% include nav.html %}

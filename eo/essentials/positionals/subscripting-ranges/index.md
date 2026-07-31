@@ -1,5 +1,5 @@
 ---
-title: Subscripting ranges
+title: Subskribante intervalojn
 ---
 
 {% include menu.html %}

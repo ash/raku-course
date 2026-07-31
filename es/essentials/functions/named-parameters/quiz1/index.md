@@ -1,5 +1,5 @@
 ---
-title: Quiz — Parámetros nombrados
+title: Quiz 1 — Parámetros nombrados
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Kviz — Multi-MAIN
+title: 'Kvizo — Multi-`MAIN`'
 ---
 
 {% include menu.html %}

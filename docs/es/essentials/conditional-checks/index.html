@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Verificaciones condicionales</title>
-    <meta property="og:title" content="Verificaciones condicionales" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Controles condicionales — Curso de Raku</title>
+    <meta property="og:title" content="Controles condicionales — Curso de Raku" />
     <meta property="og:locale" content="es" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Verificaciones condicionales</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,66 +88,132 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a></p>
-
+          <p><a href="/es/">Curso de Raku</a> / <a
+href="/es/essentials">Esenciales</a> / <a
+href="/es/essentials/control-flow">Fundamentos del control de
+flujo</a></p>
 <h1 id="controles-condicionales">Controles condicionales</h1>
-
-<p>Tan pronto como desees que el programa se comporte de manera diferente en respuesta a diferentes circunstancias, puedes comenzar a usar <code class="language-plaintext highlighter-rouge">if</code> y su familia.</p>
-
-<p>Todas estas construcciones necesitan alguna condición, que es un valor <a href="/es/essentials/booleans">Booleano</a> o una expresión Booleana, o cualquier otra expresión que pueda ser <a href="/es/essentials/coercion">convertida</a> a un valor Booleano.</p>
-
-<p><div class="topics"></p>
-<h2 id="temas-en-esta-sección">Temas en esta sección</h2>
+<p>Tan pronto como desees que el programa se comporte de manera
+diferente en respuesta a diferentes circunstancias, puedes comenzar a
+usar <code>if</code> y su familia.</p>
+<p>Todas estas construcciones necesitan alguna condición, que es un
+valor <a href="/es/essentials/booleans">Booleano</a> o una expresión
+Booleana, o cualquier otra expresión que pueda ser <a
+href="/es/essentials/coercion">convertida</a> a un valor Booleano.</p>
+<section id="temas-de-esta-sección" class="topics" data-markdown="1">
+<h2>Temas de esta sección</h2>
 <ul>
-  <li><a href="/es/essentials/conditional-checks/if">Bloques <code class="language-plaintext highlighter-rouge">if</code></a></li>
-  <li><a href="/es/essentials/conditional-checks/else">Bloques <code class="language-plaintext highlighter-rouge">else</code></a></li>
-  <li><a href="/es/essentials/conditional-checks/elsif">Uso de <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
-  <li><a href="/es/essentials/conditional-checks/unless">Uso de <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-  <li><a href="/es/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> y <code class="language-plaintext highlighter-rouge">unless</code> como modificadores de sentencia</a></li>
-  <li><a href="/es/essentials/conditional-checks/comparing-numbers">Comparación de números</a></li>
-  <li><a href="/es/essentials/conditional-checks/comparing-strings">Comparación de cadenas</a></li>
-  <li><a href="/es/essentials/conditional-checks/ternary-operator">Operador ternario</a></li>
+<li><a href="/es/essentials/conditional-checks/if">Bloques
+<code>if</code></a></li>
+<li><a href="/es/essentials/conditional-checks/else">Bloques
+<code>else</code></a></li>
+<li><a href="/es/essentials/conditional-checks/elsif">Uso de
+<code>elsif</code></a></li>
+<li><a href="/es/essentials/conditional-checks/unless">Uso de
+<code>unless</code></a></li>
+<li><a
+href="/es/essentials/conditional-checks/modifiers"><code>if</code> y
+<code>unless</code> como modificadores de sentencia</a></li>
+<li><a
+href="/es/essentials/conditional-checks/comparing-numbers">Comparación
+de números</a></li>
+<li><a
+href="/es/essentials/conditional-checks/comparing-strings">Comparación
+de cadenas</a></li>
+<li><a
+href="/es/essentials/conditional-checks/ternary-operator">Operador
+ternario</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="ejercicios">Ejercicios</h2>
-
-<p>Esta sección contiene <a href="/es/essentials/conditional-checks/exercises">
-4 ejercicios</a>. Examine todos los temas de esta sección antes de ir a la práctica de codificación.</p>
-<ol>
-  <li><a href="/es/essentials/conditional-checks/exercises/plural-ending">Terminación plural</a></li>
-  <li><a href="/es/essentials/conditional-checks/exercises/fizz-buzz">FizzBuzz</a></li>
-  <li><a href="/es/essentials/conditional-checks/exercises/how-many-equal-numbers">¿Cuántos números son iguales?</a></li>
-  <li><a href="/es/essentials/conditional-checks/exercises/leap-year">Año bisiesto</a></li>
+</section>
+<section id="práctica" class="practice" data-markdown="1">
+<h2>Práctica</h2>
+<p>Resuelve 6 cuestionarios sobre el contenido de esta sección.</p>
+<ul>
+<li><a href="/es/essentials/conditional-checks/if/quiz">Quiz:
+<code>if</code></a></li>
+<li><a href="/es/essentials/conditional-checks/elsif/quiz">Quiz:
+<code>if</code>, <code>elsif</code> y <code>else</code></a></li>
+<li><a
+href="/es/essentials/conditional-checks/comparing-numbers/quiz">Quiz —
+Comparar números</a></li>
+<li><a
+href="/es/essentials/conditional-checks/comparing-strings/quiz1">Quiz 1
+— Comparar cadenas</a></li>
+<li><a
+href="/es/essentials/conditional-checks/comparing-strings/quiz2">Quiz 2
+— la condición en <code>if</code>*</a></li>
+<li><a
+href="/es/essentials/conditional-checks/ternary-operator/quiz">Quiz —
+Operador ternario</a></li>
+</ul>
+</section>
+<section id="ejercicios" class="exercises" data-markdown="1">
+<h2>Ejercicios</h2>
+<p>Esta sección contiene <a href="exercises">4 ejercicios</a>. Mira
+todos los temas de esta sección antes de empezar los ejercicios.</p>
+<ol type="1">
+<li><a
+href="/es/essentials/conditional-checks/exercises/plural-ending">Terminación
+plural</a></li>
+<li><a
+href="/es/essentials/conditional-checks/exercises/fizz-buzz">FizzBuzz</a></li>
+<li><a
+href="/es/essentials/conditional-checks/exercises/how-many-equal-numbers">¿Cuántos
+números son iguales?</a></li>
+<li><a href="/es/essentials/conditional-checks/exercises/leap-year">Año
+bisiesto</a></li>
 </ol>
-
-<p></div></p>
-
+</section>
 <h2 id="navegación-del-curso">Navegación del curso</h2>
-
-<p>←
-    <a href="/es/essentials/code-blocks">Bloques de código</a>
-        / <a href="/es/essentials/code-blocks/local-variables">Variables locales</a>
-  |  
-        <a href="/es/essentials/conditional-checks/if">Bloques <code class="language-plaintext highlighter-rouge">if</code></a>
+<p>← <a href="/es/essentials/code-blocks/local-variables/quiz">Quiz —
+Variables locales</a>   |   <a
+href="/es/essentials/conditional-checks/if">Bloques <code>if</code></a>
 →</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/conditional-checks/">Texto original en inglés.</a></p>
-
-  <p>Traducciones de esta página: <a href="/essentials/conditional-checks/">English</a> • <a href="/de/essentials/conditional-checks/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/conditional-checks/">Italiano</a> • <a href="/lv/essentials/conditional-checks/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/">Български</a> • <a href="/ru/essentials/conditional-checks/">Русский</a> • <a href="/uk/essentials/conditional-checks/">Українська</a></p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/conditional-checks">English</a> • <a
+href="/de/essentials/conditional-checks">Deutsch</a> • <a
+href="/eo/essentials/conditional-checks">Esperanto</a> •
+<strong>Español</strong> • <a
+href="/it/essentials/conditional-checks">Italiano</a> • <a
+href="/la/essentials/conditional-checks">Latina</a> • <a
+href="/lv/essentials/conditional-checks">Latviešu</a> • <a
+href="/nl/essentials/conditional-checks">Nederlands</a> • <a
+href="/bg/essentials/conditional-checks">Български</a> • <a
+href="/ru/essentials/conditional-checks">Русский</a> • <a
+href="/uk/essentials/conditional-checks">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
+<p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Escrito por <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

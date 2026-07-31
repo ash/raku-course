@@ -1,5 +1,5 @@
 ---
-title: Ejecutando desde la línea de comandos
+title: Ejecutar desde la línea de comandos
 ---
 
 {% include menu.html %}

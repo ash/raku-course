@@ -1,5 +1,5 @@
 ---
-title: Quiz — El bucle repeat
+title: Quiz — el bucle `repeat`
 ---
 
 {% include menu.html %}

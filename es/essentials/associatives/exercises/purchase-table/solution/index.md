@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Tabla de compras'
+title: 'Solution: Tabla de compras'
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ for @items -> $item {
 }
 ```
 
-🦋 Encuentra el programa en el archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku).
+🦋 Encuentra el programa en el archivo [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/purchase-table.raku).
 
 ## Salida
 

@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Aĉetotabelo'
+title: 'Solvo: Aĉettabelo'
 ---
 
 {% include menu.html %}
@@ -37,7 +37,7 @@ for @items -> $item {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/purchase-table.raku).
+🦋 Trovu la programon en la dosiero [purchase-table.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/purchase-table.raku).
 
 ## Eligo
 

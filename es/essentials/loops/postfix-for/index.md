@@ -1,5 +1,5 @@
 ---
-title: 'Forma postfija de "for"'
+title: Forma posfija de `for`
 ---
 
 {% include menu.html %}

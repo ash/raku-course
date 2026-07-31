@@ -1,5 +1,5 @@
 ---
-title: Kvizo 2 — Listo kaj skalaro vs. listo kaj aro
+title: Kvizo — Listo kaj skalara kontraŭ listo kaj arrayo
 ---
 
 {% include menu.html %}

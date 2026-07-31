@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Números'
+title: 'Exercises: Números'
 ---
 
 {% include menu.html %}

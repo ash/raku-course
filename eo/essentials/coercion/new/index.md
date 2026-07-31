@@ -1,5 +1,5 @@
 ---
-title: Konvertado de tipoj uzante konstruformojn
+title: Konvertante tipojn uzante konstruistajn formojn
 ---
 
 {% include menu.html %}

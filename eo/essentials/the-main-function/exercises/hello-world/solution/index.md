@@ -14,7 +14,7 @@ sub MAIN() {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world.raku).
+🦋 Trovu la programon en la dosiero [hello-world.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world.raku).
 
 ## Kodo 2
 
@@ -23,7 +23,7 @@ unit sub MAIN;
 say 'Saluton, Mondo!';
 ```
 
-🦋 Trovu la programon en la dosiero [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/hello-world-unit.raku).
+🦋 Trovu la programon en la dosiero [hello-world-unit.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/hello-world-unit.raku).
 
 ## Ekzemplo
 

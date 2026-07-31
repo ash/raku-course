@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Korektu la identigilojn'
+title: Korekti la identigilojn
 ---
 
 {% include menu.html %}

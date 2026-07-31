@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Trafiklumoj'
+title: Trafiklumo
 ---
 
 {% include menu.html %}

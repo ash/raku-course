@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Skalaj variabloj'
+title: 'Ekzercoj: Skalaraj variabloj'
 ---
 
 {% include menu.html %}

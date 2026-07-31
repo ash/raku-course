@@ -30,7 +30,7 @@ else {
 }
 ```
 
-🦋 Trovu la programon en la dosiero [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/how-many-equal-numbers.raku).
+🦋 Trovu la programon en la dosiero [how-many-equal-numbers.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/how-many-equal-numbers.raku).
 
 ## Eligo
 

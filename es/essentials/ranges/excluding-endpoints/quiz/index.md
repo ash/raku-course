@@ -1,5 +1,5 @@
 ---
-title: Quiz — Creando rangos
+title: Quiz — Crear rangos
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Tabla de funciones'
+title: Tabla de funciones
 ---
 
 {% include menu.html %}

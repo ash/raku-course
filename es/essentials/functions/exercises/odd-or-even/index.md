@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Impar o par'
+title: Impar o par
 ---
 
 {% include menu.html %}

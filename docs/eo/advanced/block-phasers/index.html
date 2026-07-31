@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="eo">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Blok-rilataj faziloj — Raku-kurso</title>
+    <meta property="og:title" content="Blok-rilataj faziloj — Raku-kurso" />
+    <meta property="og:locale" content="eo" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/eo/">Kurso de Raku</a> / <a
+href="/eo/advanced">Progresinta</a> / <a
+href="/eo/advanced/control-flow">Regofluo</a></p>
+<h1 id="blok-rilataj-faziloj">Blok-rilataj faziloj</h1>
+<p>Krom la programvasttaj faziloj, Raku havas fazilojn ligitajn al la
+vivo de unu bloko aŭ buklo.</p>
+<h2 id="eniro-kaj-eliro-de-bloko">Eniro kaj eliro de bloko</h2>
+<p>La fazilo <code>ENTER</code> ruliĝas ĉiufoje kiam ekzekuto eniras
+blokon, kaj la fazilo <code>LEAVE</code> ruliĝas ĉiufoje kiam ĝi eliras
+— sendepende de la linio, kie ili estas skribitaj:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'before block'</span>;
+{
+    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">'leaving'</span>;
+    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">'entering'</span>;
+    <span class="nb">say</span> <span class="s">'inside'</span>;
+}
+<span class="nb">say</span> <span class="s">'after block'</span>;</pre></div>
+
+<p>La eligo montras, ke <code>ENTER</code> ruliĝas unue kaj
+<code>LEAVE</code> ruliĝas laste, ĉirkaŭ la korpo de la bloko:</p>
+<div class="highlight"><pre>before block
+entering
+inside
+leaving
+after block</pre></div>
+<p><code>LEAVE</code> estas aparte utila, ĉar ĝi ruliĝas eĉ se la bloko
+estas forlasita frue, kio faras ĝin fidinda loko por liberigi
+rimedojn.</p>
+<p>Fazilo povas enhavi plenan <code>{ }</code> blokon anstataŭ unu sola
+deklaro, kaj vi povas difini plurajn. Kiam bloko havas pli ol unu
+<code>LEAVE</code>, ili ekfunkcias en inversa ordo — la laste registrita
+ruliĝas unue, do la bloko malvolviĝas kiel stako:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'open A'</span>;
+{
+    <span class="k">LEAVE</span> {
+        <span class="nb">say</span> <span class="s">'close A'</span>;
+    }
+    <span class="nb">say</span> <span class="s">'open B'</span>;
+    <span class="k">LEAVE</span> {
+        <span class="nb">say</span> <span class="s">'close B'</span>;
+    }
+    <span class="nb">say</span> <span class="s">'work'</span>;
+}
+<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
+
+<p>Rimedo <code>A</code> estas malfermita unue kaj fermita laste:</p>
+<div class="highlight"><pre>open A
+open B
+work
+close B
+close A
+done</pre></div>
+<p>Ĉi tiu laste-en-unue-el ordo estas ĝuste tio, kion vi bezonas por
+purigado: kio ajn estis preparita plej lastatempe, estas malmuntita
+unue. La programvasta fazilo <code>END</code> funkcias same — pluraj
+<code>END</code>-blokoj ankaŭ ruliĝas en inversa ordo kompare al tiu, en
+kiu ili estis skribitaj.</p>
+<h2 id="buklaj-faziloj">Buklaj faziloj</h2>
+<p>Ene de bukloj, tri pliaj faziloj markas la stadiojn de la iteracio:
+<code>FIRST</code> ruliĝas unufoje antaŭ la unua iteracio,
+<code>LAST</code> ruliĝas unufoje post la lasta, kaj <code>NEXT</code>
+ruliĝas ĉe la fino de ĉiu iteracio:</p>
+<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span> {
+    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">'-- first'</span>;
+    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">'-- last'</span>;
+    <span class="k">NEXT</span>  <span class="nb">say</span> <span class="s">&quot;-- next (was $_)&quot;</span>;
+    <span class="nb">say</span> <span class="s">&quot;body $_&quot;</span>;
+}</pre></div>
+
+<p>La buklo produktas:</p>
+<div class="highlight"><pre>-- first
+body 1
+-- next (was 1)
+body 2
+-- next (was 2)
+body 3
+-- next (was 3)
+-- last</pre></div>
+<p>Same kiel ĉe la aliaj faziloj, la pozicio de <code>FIRST</code>,
+<code>NEXT</code> kaj <code>LAST</code> en la fontkodo ne gravas — ĉiu
+ruliĝas en sia propra momento.</p>
+<section id="praktiko" class="practice" data-markdown="1">
+<h2>Praktiko</h2>
+<p>Vin atendas 1 kvizo pri la enhavo de ĉi tiu temo.</p>
+<ul>
+<li><a href="/eo/advanced/block-phasers/quiz">Kvizo —
+<code>LEAVE</code></a></li>
+</ul>
+</section>
+<section id="ekzercoj" class="exercises" data-markdown="1">
+<h2>Ekzercoj</h2>
+<p>En ĉi tiu sekcio estas <a href="exercises">3 ekzercoj</a>. Trarigardu
+ĉiujn temojn de ĉi tiu sekcio antaŭ ol komenci la ekzercojn.</p>
+<ol type="1">
+<li><a
+href="/eo/advanced/block-phasers/exercises/clean-up-on-leave">Purigi ĉe
+foriro</a></li>
+<li><a href="/eo/advanced/block-phasers/exercises/enter-a-block">Eniri
+blokon</a></li>
+<li><a href="/eo/advanced/block-phasers/exercises/next-phaser">Post ĉiu
+paŝo</a></li>
+</ol>
+</section>
+<h2 id="kursa-navigado">Kursa navigado</h2>
+<p>← <a href="/eo/advanced/phasers/quiz">Kvizo — Faziloj</a>   |   <a
+href="/eo/advanced/block-phasers/exercises/clean-up-on-leave">Purigi ĉe
+foriro</a> →</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/eo/">La kompleta kurso de la programlingvo Raku</a></p>
+<p style="margin:.35em 0;"><a href="/eo/about-this-course">Pri la kurso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Verkita de <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

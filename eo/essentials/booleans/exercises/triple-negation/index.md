@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Trioblaj neoj’
+title: Triobla neado
 ---
 
 {% include menu.html %}

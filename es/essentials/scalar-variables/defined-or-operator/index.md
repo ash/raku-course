@@ -1,5 +1,5 @@
 ---
-title: El operador definido-o
+title: El operador defined-or
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Faktorio kun multi-funkcioj'
+title: 'Solvo: Faktorialo kun multi-funkcioj'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ multi sub factorial($n) { $n * factorial($n - 1) }
 say factorial(@*ARGS[0].Int);
 ```
 
-🦋 Trovu la programon en la dosiero [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/more-on-functions/factorial-with-multi-functions.raku).
+🦋 Trovu la programon en la dosiero [factorial-with-multi-functions.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/more-on-functions/factorial-with-multi-functions.raku).
 
 ## Eligo
 

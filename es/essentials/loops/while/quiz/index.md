@@ -1,5 +1,5 @@
 ---
-title: Quiz — El bucle while
+title: Quiz — el bucle `while`
 ---
 
 {% include menu.html %}

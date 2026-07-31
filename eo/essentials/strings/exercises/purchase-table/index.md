@@ -1,5 +1,5 @@
 ---
-title: Ekzerco ‘Aĉeti tablon‘
+title: Aĉettabelo
 ---
 
 {% include menu.html %}

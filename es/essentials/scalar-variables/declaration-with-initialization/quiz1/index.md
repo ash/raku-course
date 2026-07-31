@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario 1: Declaración con inicialización'
+title: 'Quiz 1: Declaración con inicialización'
 ---
 
 {% include menu.html %}

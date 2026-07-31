@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Funkciaj parametroj
+title: Funkciaj parametroj
 ---
 
 {% include menu.html %}

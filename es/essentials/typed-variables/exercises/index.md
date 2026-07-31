@@ -1,5 +1,5 @@
 ---
-title: Ejercicios para ‘Variables tipadas’
+title: 'Exercises: Variables tipadas'
 ---
 
 {% include menu.html %}

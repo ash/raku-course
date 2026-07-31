@@ -1,5 +1,5 @@
 ---
-title: Multi MAIN functions
+title: 'Multoblaj `MAIN` funkcioj'
 ---
 
 {% include menu.html %}

@@ -1,12 +1,26 @@
-# La Kompleta Kurso de la Raku programlingvo
+<div class="home-hero" markdown="1">
 
-* [Pri ĉi tiu kurso](/eo/about-this-course)
+# La kompleta kurso de la programlingvo Raku
 
-{% comment %}{% assign compact_menu = true %}{% endcomment %}
+<p class="tagline">De via tute unua kodlinio ĝis gramatikoj, samtempeco kaj retaj servoj — praktika kurso en kvin partoj, kun centoj da kvizoj kaj ekzercoj por ekzerci ĉiun paŝon survoje.</p>
+
+<p class="cta-row">
+  <a class="btn-primary" href="/eo/essentials/what-is-raku">Eklernu →</a>
+  <a class="btn-ghost" href="/eo/about-this-course">Pri la kurso</a>
+</p>
+
+<p class="trust">Libera kaj malfermitkoda · Subtenata de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+
+</div>
+
+{% include stats.html %}
+
+<p class="section-label">La kurso, parto post parto</p>
+
 {% include toc.html %}
 
-<center>•</center>
+<div class="home-foot" markdown="1">
 
 {% include translations.html %}
 
-© 2021–{{ site.time | date: '%Y' }} de <a href="https://andrewshitov.com/">Andrew Shitov</a>
+</div>

@@ -1,5 +1,5 @@
 ---
-title: Quiz — Creating ranges
+title: Kvizo — Krei intervalojn
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solvo: Funkcio por kalkuli xʸ'
+title: 'Solvo: Funkcio por kalkuli _xʸ_'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Trovu la programon en la dosiero [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Trovu la programon en la dosiero [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
 ## Eligo
 

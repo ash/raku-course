@@ -1,5 +1,5 @@
 ---
-title: Longitud de cadena en Raku
+title: Longitud de la cadena
 ---
 
 {% include menu.html %}

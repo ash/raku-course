@@ -22,7 +22,7 @@ my $raise = 5; # en procentoj
 say "Nova salajro de %employee<full-name>: %employee<salary>";
 ```
 
-🦋 Trovu la programon en la dosiero [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/associatives/salary-raise.raku).
+🦋 Trovu la programon en la dosiero [salary-raise.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/associatives/salary-raise.raku).
 
 ## Eligo
 

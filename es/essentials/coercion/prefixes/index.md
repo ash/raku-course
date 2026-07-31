@@ -1,5 +1,5 @@
 ---
-title: Convertir tipos con operadores prefijos
+title: Conversión de tipos con operadores prefijo
 ---
 
 {% include menu.html %}

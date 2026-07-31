@@ -1,5 +1,5 @@
 ---
-title: Ekzerco 'Saluton, Interpolado!'
+title: 'Saluton, Interpolado!'
 ---
 
 {% include menu.html %}

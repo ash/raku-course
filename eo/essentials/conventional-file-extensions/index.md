@@ -1,5 +1,5 @@
 ---
-title: Konvenciaj dosieretendaĵoj en Raku
+title: Konvenciaj dosierfinajhoj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Nombres de los meses'
+title: 'Solution: Nombres de los meses'
 ---
 
 {% include menu.html %}
@@ -20,7 +20,7 @@ my @months = <
 say @months[@*ARGS[0] - 1];
 ```
 
-🦋 Encuentra el programa en el archivo [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/months-names.raku).
+🦋 Encuentra el programa en el archivo [months-names.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/months-names.raku).
 
 ## Salida
 

@@ -1,5 +1,5 @@
 ---
-title: Uzante ripeti
+title: 'Uzante `repeat`'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solución de ‘Contar e imprimir argumentos de línea de comandos’
+title: 'Solution: Contar e imprimir argumentos de línea de comandos'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ for ^@*ARGS -> $n {
 }
 ```
 
-🦋 Encuentra el programa en el archivo [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/positionals/count-and-print-arguments.raku).
+🦋 Encuentra el programa en el archivo [count-and-print-arguments.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/positionals/count-and-print-arguments.raku).
 
 ## Salida
 

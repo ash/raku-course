@@ -1,5 +1,5 @@
 ---
-title: Interpolación de variables en cadenas de Raku
+title: Interpolación de variables
 ---
 
 {% include menu.html %}

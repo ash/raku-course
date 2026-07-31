@@ -1,5 +1,5 @@
 ---
-title: Números enteros en Raku
+title: Números enteros
 ---
 
 {% include menu.html %}

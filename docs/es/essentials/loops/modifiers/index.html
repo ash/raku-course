@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>while y until como modificadores de declaraciones</title>
-    <meta property="og:title" content="while y until como modificadores de declaraciones" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>while y until como modificadores de sentencia — Curso de Raku</title>
+    <meta property="og:title" content="while y until como modificadores de sentencia — Curso de Raku" />
     <meta property="og:locale" content="es" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>while y until como modificadores de declaraciones</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,60 +88,89 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/es/">Curso de Raku</a> / <a href="/es/essentials">Esenciales</a> / <a href="/es/essentials/loops">Bucles</a></p>
-
-<h1 id="while-y-until-como-modificadores-de-sentencia"><code class="language-plaintext highlighter-rouge">while</code> y <code class="language-plaintext highlighter-rouge">until</code> como modificadores de sentencia</h1>
-
-<p>Tanto <code class="language-plaintext highlighter-rouge">while</code> como <code class="language-plaintext highlighter-rouge">until</code> pueden usarse en forma de modificadores de declaraciones (<a href="/es/essentials/conditional-checks/modifiers">de manera similar</a> a <code class="language-plaintext highlighter-rouge">if</code> y <code class="language-plaintext highlighter-rouge">unless</code>).</p>
-
+          <p><a href="/es/">Curso de Raku</a> / <a
+href="/es/essentials">Esenciales</a> / <a
+href="/es/essentials/control-flow">Fundamentos del control de flujo</a>
+/ <a href="/es/essentials/loops">Bucles</a></p>
+<h1
+id="while-y-until-como-modificadores-de-sentencia"><code>while</code> y
+<code>until</code> como modificadores de sentencia</h1>
+<p>Tanto <code>while</code> como <code>until</code> pueden usarse en
+forma de modificadores de declaraciones (<a
+href="/es/essentials/conditional-checks/modifiers">de manera similar</a>
+a <code>if</code> y <code>unless</code>).</p>
 <p>Considera un ejemplo que emula la división de módulo:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="nv">$x</span> -= <span class="mi">3</span> <span class="k">while</span> <span class="nv">$x</span> &gt; <span class="mi">2</span>;
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 1</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 1</span></pre></div>
 
-
-<p>Aquí, <code class="language-plaintext highlighter-rouge">-=</code> es el operador que combina tanto la resta como la asignación. En este caso, <code class="language-plaintext highlighter-rouge">$x -= 3</code> es equivalente a <code class="language-plaintext highlighter-rouge">$x = $x - 3</code>.</p>
-
-<p>El modificador <code class="language-plaintext highlighter-rouge">while</code> permite que la declaración <code class="language-plaintext highlighter-rouge">$x -= 3</code> se repita mientras la condición <code class="language-plaintext highlighter-rouge">$x &gt; 2</code> siga siendo <code class="language-plaintext highlighter-rouge">True</code>. Tan pronto como se vuelva <code class="language-plaintext highlighter-rouge">False</code>, el bucle se detiene.</p>
-
-<p>Observa que si la condición es <code class="language-plaintext highlighter-rouge">False</code> inicialmente, la declaración no se ejecuta en absoluto.</p>
-
-<p>El mismo programa se puede reescribir con <code class="language-plaintext highlighter-rouge">until</code>. Para esto, la condición debe invertirse:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
+<p>Aquí, <code>-=</code> es el operador que combina tanto la resta como
+la asignación. En este caso, <code>$x -= 3</code> es equivalente a
+<code>$x = $x - 3</code>.</p>
+<p>El modificador <code>while</code> permite que la declaración
+<code>$x -= 3</code> se repita mientras la condición
+<code>$x &gt; 2</code> siga siendo <code>True</code>. Tan pronto como se
+vuelva <code>False</code>, el bucle se detiene.</p>
+<p>Observa que si la condición es <code>False</code> inicialmente, la
+declaración no se ejecuta en absoluto.</p>
+<p>El mismo programa se puede reescribir con <code>until</code>. Para
+esto, la condición debe invertirse:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="nv">$x</span> -= <span class="mi">3</span> <span class="k">until</span> <span class="nv">$x</span> &lt;= <span class="mi">2</span>;
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 1</span>
-</pre></div>
-
-
-<p></div></p>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 1</span></pre></div>
 
 <h2 id="navegación-del-curso">Navegación del curso</h2>
-
-<p>←
-        <a href="/es/essentials/loops">Bucles</a> / <a href="/es/essentials/loops/repeat">Uso de <code class="language-plaintext highlighter-rouge">repeat</code></a>
-  |  
-        <a href="/es/essentials/loops">Bucles</a> / <a href="/es/essentials/loops/loop">Bucle de tres sentencias <code class="language-plaintext highlighter-rouge">loop</code></a>
-→</p>
-
-<p><br />
-💪 Or jump directly <a href="/es/essentials/loops/exercises">to the exercises to this section</a>.</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Esta página está traducida automáticamente con ChatGPT 4o. <a href="/essentials/loops/modifiers/">Texto original en inglés.</a></p>
-
-  <p>Traducciones de esta página: <a href="/essentials/loops/modifiers/">English</a> • <a href="/de/essentials/loops/modifiers/">Deutsch</a> • <strong>Español</strong> • <a href="/it/essentials/loops/modifiers/">Italiano</a> • <a href="/lv/essentials/loops/modifiers/">Latviešu</a> • <a href="/nl/essentials/loops/modifiers/">Nederlands</a> • <a href="/bg/essentials/loops/modifiers/">Български</a> • <a href="/ru/essentials/loops/modifiers/">Русский</a> • <a href="/uk/essentials/loops/modifiers/">Українська</a></p>
+<p>← <a href="/es/essentials/loops/repeat/quiz">Quiz — el bucle
+<code>repeat</code></a>   |   <a href="/es/essentials/loops/loop">Bucle
+de tres sentencias <code>loop</code></a> →</p>
+<p><br /> 💪 O ve directamente <a
+href="/es/essentials/loops/exercises">a los ejercicios de esta
+sección</a>.</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/loops/modifiers">English</a> • <a
+href="/de/essentials/loops/modifiers">Deutsch</a> • <a
+href="/eo/essentials/loops/modifiers">Esperanto</a> •
+<strong>Español</strong> • <a
+href="/it/essentials/loops/modifiers">Italiano</a> • <a
+href="/la/essentials/loops/modifiers">Latina</a> • <a
+href="/lv/essentials/loops/modifiers">Latviešu</a> • <a
+href="/nl/essentials/loops/modifiers">Nederlands</a> • <a
+href="/bg/essentials/loops/modifiers">Български</a> • <a
+href="/ru/essentials/loops/modifiers">Русский</a> • <a
+href="/uk/essentials/loops/modifiers">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/es/">El curso completo del lenguaje de programación Raku</a></p>
+<p style="margin:.35em 0;"><a href="/es/about-this-course">Sobre el curso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libre y de código abierto · Con el apoyo de <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Escrito por <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

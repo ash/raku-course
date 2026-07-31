@@ -15,11 +15,11 @@ sub MAIN($a, $b = $a) {
     my $perimetro = 2 * ($a + $b);
 
     my $figuro = $a == $b ?? 'kvadrato' !! 'rektangulo';
-    diru "La perimetro de $figuro estas $perimetro.";
+    say "La perimetro de $figuro estas $perimetro.";
 }
 ```
 
-🦋 Trovu la programon en la dosiero [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/the-main-function/perimeter.raku).
+🦋 Trovu la programon en la dosiero [perimeter.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/the-main-function/perimeter.raku).
 
 ## Eligo
 

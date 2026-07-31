@@ -1,5 +1,5 @@
 ---
-title: 'Solución: FizzBuzz'
+title: 'Solution: FizzBuzz'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ print 'Buzz' if $n %% 5;
 print "\n";
 ```
 
-🦋 Encuentra el programa en el archivo [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/exercises/conditional-checks/fizz-buzz.raku).
+🦋 Encuentra el programa en el archivo [fizz-buzz.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/fizz-buzz.raku).
 
 ## Ejemplo
 

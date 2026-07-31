@@ -1,5 +1,5 @@
 ---
-title: Solvo de 'Interŝanĝu la valorojn'
+title: 'Solvo: Interŝanĝi valorojn'
 ---
 
 {% include menu.html %}
@@ -14,7 +14,7 @@ my ($a, $b) = 10, 20;
 say "$a, $b";
 ```
 
-🦋 Vi povas trovi la fontokodon en la dosiero [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/scalar-variables/swap.raku).
+🦋 Vi povas trovi la fontokodon en la dosiero [swap.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/scalar-variables/swap.raku).
 
 ## Eligo
 

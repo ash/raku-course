@@ -1,10 +1,10 @@
 ---
-title: Komparado de kordoj
+title: Komparante stringojn
 ---
 
 {% include menu.html %}
 
-Komparado de kordoj uzas sian propran aron da operatoroj:
+Komparado de ĉenoj uzas sian propran aron da operatoroj:
 
 `eq` | Egala
 `ne` | Ne egala
@@ -15,12 +15,12 @@ Komparado de kordoj uzas sian propran aron da operatoroj:
 
 ## Ekzemploj
 
-Ekzamenante kelkajn ekzemplojn de komparado de du kordoj:
+Ekzamenante kelkajn ekzemplojn de komparado de du ĉenoj:
 
 ```raku
-say 'alpha' lt 'beta'; # Vera
-say 'word' ne 'Word';  # Vera
-say 'xyz' gt 'xvw';    # Vera
+say 'alpha' lt 'beta'; # True
+say 'word' ne 'Word';  # True
+say 'xyz' gt 'xvw';    # True
 ```
 
 {% include nav.html %}

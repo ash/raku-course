@@ -1,5 +1,5 @@
 ---
-title: Ejecutando desde REPL
+title: Ejecutar desde REPL
 ---
 
 {% include menu.html %}

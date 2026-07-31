@@ -1,5 +1,5 @@
 ---
-title: Tutmondaj variabloj
+title: Globalaj variabloj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Verificaciones condicionales'
+title: 'Exercises: Controles condicionales'
 ---
 
 {% include menu.html %}

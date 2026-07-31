@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: División mediante resta'
+title: División por resta
 ---
 
 {% include menu.html %}

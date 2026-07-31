@@ -1,5 +1,5 @@
 ---
-title: Solution to ‘Triple negation’
+title: 'Solvo: Triobla neado'
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ my $value = False;
 say ! !!$value;
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/triple-negation.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [triple-negation.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/triple-negation.raku).
 
 ## Eligo
 

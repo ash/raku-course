@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Año bisiesto'
+title: Año bisiesto
 ---
 
 {% include menu.html %}

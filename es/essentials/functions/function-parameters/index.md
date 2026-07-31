@@ -1,5 +1,5 @@
 ---
-title: Parámetros de función
+title: Parámetros de funciones
 ---
 
 {% include menu.html %}

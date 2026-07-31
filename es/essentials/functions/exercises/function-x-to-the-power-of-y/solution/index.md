@@ -1,5 +1,5 @@
 ---
-title: 'Solución: Función para calcular xʸ'
+title: 'Solution: Función para calcular _xʸ_'
 ---
 
 {% include menu.html %}
@@ -18,7 +18,7 @@ say f(2, 10);
 say f(-4, 5);
 ```
 
-🦋 Encuentra el programa en el archivo [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/functions/function-x-to-the-power-of-y.raku).
+🦋 Encuentra el programa en el archivo [function-x-to-the-power-of-y.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/functions/function-x-to-the-power-of-y.raku).
 
 ## Salida
 

@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Rangos'
+title: 'Exercises: Rangos'
 ---
 
 {% include menu.html %}

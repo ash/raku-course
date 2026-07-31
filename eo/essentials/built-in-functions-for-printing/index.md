@@ -1,5 +1,5 @@
 ---
-title: Enkonstruitaj funkcioj por presado
+title: Enkonstruataj funkcioj por presado
 ---
 
 {% include menu.html %}

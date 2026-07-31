@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicios: Tipos de datos asociativos'
+title: 'Exercises: Tipos de datos asociativos'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Kviz: Bulaj operacioj'
+title: 'Kvizo: Booleaj operacioj'
 ---
 
 {% include menu.html %}
@@ -21,7 +21,7 @@ Kion ĝi presas?
 0 | True
 1 | False
 
-## 2 
+## 2
 
 Kion presas la dua programo?
 

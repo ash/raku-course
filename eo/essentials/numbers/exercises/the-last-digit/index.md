@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: La lasta cifero'
+title: La lasta cifero
 ---
 
 {% include menu.html %}

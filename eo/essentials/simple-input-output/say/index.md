@@ -1,5 +1,5 @@
 ---
-title: Eligo kun say
+title: 'Eligo per `say`'
 ---
 
 {% include menu.html %}

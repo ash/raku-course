@@ -1,5 +1,5 @@
 ---
-title: Kvizo — Voki funkcion
+title: Kvizo — Vokante funkcion
 ---
 
 {% include menu.html %}

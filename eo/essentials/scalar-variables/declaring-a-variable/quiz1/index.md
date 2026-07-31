@@ -1,5 +1,5 @@
 ---
-title: Kvizo 1 — Skalaraj variabloj
+title: 'Kvizo 1: Deklarado de variablo'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: 'Cuestionario: Comentarios de una sola línea'
+title: 'Quiz: Comentarios de una línea'
 ---
 
 {% include menu.html %}

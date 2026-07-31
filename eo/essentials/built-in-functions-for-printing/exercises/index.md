@@ -1,5 +1,5 @@
 ---
-title: 'Ekzercoj: Enkonstruitaj funkcioj por presado'
+title: 'Ekzercoj: Enkonstruataj funkcioj por presado'
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Konverti tipojn kun prefiksaj operatoroj
+title: Konvertante tipojn kun prefiksaj operatoroj
 ---
 
 {% include menu.html %}
@@ -13,7 +13,7 @@ Alia maniero transformi la tipon de objekto estas uzi prefiksajn operatorojn. Ti
 Konsideru ekzemplon de kreado de Boolea valoro el entjero:
 
 ```raku
-say ?42; # Vera
+say ?42; # True
 ```
 
 Konverti al ŝnuro estas simila:
@@ -36,8 +36,8 @@ Por Booleaj konvertiĝoj, estas alia rutino nomata `so`. Vi povas uzi ĝin kiel 
 
 ```raku
 my $value = 42;
-say so $value; # Vera
-say $value.so; # Vera
+say so $value; # True
+say $value.so; # True
 ```
 
 {% include nav.html %}

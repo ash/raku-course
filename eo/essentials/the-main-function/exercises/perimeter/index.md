@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Perimetro de rektangulo'
+title: Perimetro de rektangulo
 ---
 
 {% include menu.html %}

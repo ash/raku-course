@@ -1,5 +1,5 @@
 ---
-title: Cuadrados y cubos
+title: Cuadrado y cubo
 ---
 
 {% include menu.html %}

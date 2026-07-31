@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Comparar `say` y `put`'
+title: Comparar `say` y `put`
 ---
 
 {% include menu.html %}

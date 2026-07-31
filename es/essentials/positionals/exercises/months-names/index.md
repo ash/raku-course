@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: Nombres de los meses'
+title: Nombres de los meses
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo al 'Buleaj tabeloj’
+title: 'Solvo: Booleaj tabeloj'
 ---
 
 {% include menu.html %}
@@ -25,7 +25,7 @@ say 'False ^^ True estas ', False ^^ True;
 say 'False ^^ False estas ', False ^^ False;
 ```
 
-🦋 Vi povas trovi la kompletan kodon en la dosiero [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/booleans/tables.raku).
+🦋 Vi povas trovi la kompletan kodon en la dosiero [tables.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/booleans/tables.raku).
 
 ## Eligo
 

@@ -1,5 +1,5 @@
 ---
-title: Redaktiloj kaj IDE-oj por Raku
+title: Redaktiloj kaj IDEj
 ---
 
 {% include menu.html %}

@@ -1,5 +1,5 @@
 ---
-title: Solvo al ‘Apple sharing’
+title: 'Solvo: Poma divido'
 ---
 
 {% include menu.html %}
@@ -19,7 +19,7 @@ say "Ĉiu persono ricevas $gets pomo(j)n.";
 say "Estas $remains pomo(j)n restantaj.";
 ```
 
-🦋 Vi povas trovi la plenan kodon en la dosiero [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/numbers/apple-sharing.raku).
+🦋 Vi povas trovi la plenan kodon en la dosiero [apple-sharing.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/numbers/apple-sharing.raku).
 
 ## Eligo
 

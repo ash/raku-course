@@ -1,5 +1,5 @@
 ---
-title: 'Kvizo: Raciaj nombroj'
+title: 'Kvizo: Raciaj nombroj en Raku'
 ---
 
 {% include menu.html %}

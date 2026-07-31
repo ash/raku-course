@@ -19,7 +19,7 @@ my $n = prompt 'Kio estas la nombro? ';
 say $n ~~ $begin ..^ $end;
 ```
 
-🦋 Trovu la programon en la dosiero [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/ranges/number-in-limits.raku).
+🦋 Trovu la programon en la dosiero [number-in-limits.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/ranges/number-in-limits.raku).
 
 ## Eligo
 
@@ -30,13 +30,13 @@ $ raku exercises/ranges/number-in-limits.raku
 De (inkluzive): 1
 Ĝis (ekskluzive): 2
 Kio estas la nombro? 1.5
-Vere
+True
 
 $ raku exercises/ranges/number-in-limits.raku
 De (inkluzive): 100
 Ĝis (ekskluzive): 200
 Kio estas la nombro? 100
-Vere
+True
 
 $ raku exercises/ranges/number-in-limits.raku
 De (inkluzive): -5

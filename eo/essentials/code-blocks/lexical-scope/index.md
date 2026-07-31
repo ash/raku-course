@@ -1,5 +1,5 @@
 ---
-title: Lexika skopo
+title: Leksika amplekso
 ---
 
 {% include menu.html %}

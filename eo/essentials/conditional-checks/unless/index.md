@@ -1,5 +1,5 @@
 ---
-title: Uzante unless
+title: 'Uzante `unless`'
 ---
 
 {% include menu.html %}
@@ -14,8 +14,8 @@ my $broken = False;
 # ...Io povas agordi $broken al True ĉi tie...
     
 unless $broken {
-    diru "Ne zorgu!";
-    diru "Estu feliĉa!";
+    say "Ne zorgu!";
+    say "Estu feliĉa!";
 }
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: Contar e imprimir argumentos de la línea de comandos
+title: Contar e imprimir argumentos de línea de comandos
 ---
 
 {% include menu.html %}

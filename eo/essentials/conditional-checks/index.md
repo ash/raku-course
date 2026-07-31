@@ -1,5 +1,5 @@
 ---
-title: Conditional checks
+title: Kondiĉaj kontroloj
 ---
 
 {% include menu.html %}

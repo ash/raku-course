@@ -1,5 +1,5 @@
 ---
-title: Deklaracio kun inicialigo
+title: Deklarado kun inicialigo
 ---
 
 {% include menu.html %}

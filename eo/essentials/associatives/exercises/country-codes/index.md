@@ -1,5 +1,5 @@
 ---
-title: 'Ekzerco: Landokodoj'
+title: Lando kodoj
 ---
 
 {% include menu.html %}

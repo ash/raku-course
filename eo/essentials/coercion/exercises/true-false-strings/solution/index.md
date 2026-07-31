@@ -1,5 +1,5 @@
 ---
-title: Solvo de ‘Veraj kaj Falsaj ŝnuroj’
+title: 'Solvo: Veraj kaj falsaj stringoj'
 ---
 
 {% include menu.html %}
@@ -20,6 +20,6 @@ say ?'0.0';
 
 El ĉiuj ĉi tiuj, nur la malplena ŝnuro estas interpretata kiel `False`. Ĉiuj aliaj ŝnuroj, eĉ tiuj kiuj enhavas nur spacojn aŭ eksplicitan karakteron `0`, fariĝas `True`.
 
-🦋 Vi povas trovi la plenan programon kun la supra ekzemplo en la dosiero [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/coercion/true-false-strings.raku).
+🦋 Vi povas trovi la plenan programon kun la supra ekzemplo en la dosiero [true-false-strings.raku](https://github.com/ash/raku-course/blob/master/exercises/essentials/coercion/true-false-strings.raku).
 
 {% include nav.html %}

@@ -1,5 +1,5 @@
 ---
-title: Ekzercoj pri ‘Datuma tipo konvertiĝo’
+title: 'Ekzercoj: Datentipa konvertado'
 ---
 
 {% include menu.html %}

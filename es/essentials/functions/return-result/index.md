@@ -1,5 +1,5 @@
 ---
-title: Devolviendo el resultado
+title: Devolver el resultado
 ---
 
 {% include menu.html %}

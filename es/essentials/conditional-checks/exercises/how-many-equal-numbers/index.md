@@ -1,5 +1,5 @@
 ---
-title: 'Ejercicio: ¿Cuántos números son iguales?'
+title: ¿Cuántos números son iguales?
 ---
 
 {% include menu.html %}

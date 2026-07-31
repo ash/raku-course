@@ -1,5 +1,5 @@
 ---
-title: Quiz — Restricciones de tipo
+title: Quiz — conversión de tipos
 ---
 
 {% include menu.html %}
