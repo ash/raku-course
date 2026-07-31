@@ -21,9 +21,9 @@ Raku++ се разпространява чрез хранилището си в
 
 ```console
 $ rakupp --version
-Raku++ (rakupp) 0.5.1 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
+Raku++ (rakupp) 1.5.2 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
 ```
 
-Редът ви казва изданието на самия Raku++ (`0.5.1`) и коя версия на езика Raku е целта му (`6.d`, с някои възможности от `6.e`). Сравнете това с надписа за версията на Rakudo на [страницата за инсталиране на Rakudo](/bg/essentials/how-to-install-rakudo), за да видите как се представят двата компилатора.
+Редът ви казва изданието на самия Raku++ (`1.5.2`) и коя версия на езика Raku е целта му (`6.d`, с някои възможности от `6.e`). Сравнете това с надписа за версията на Rakudo на [страницата за инсталиране на Rakudo](/bg/essentials/how-to-install-rakudo), за да видите как се представят двата компилатора.
 
 {% include nav.html %}

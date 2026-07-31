@@ -9,7 +9,7 @@ translations_gpt:
 
 Tas ir gan **interpretators**, gan **kompilators**: tas var izpildīt programmu tieši vai pārtulkot to mašīnkodā, lai iegūtu papildu ātrumu. Tā kā nav smagas izpildlaika vides, ko palaist, `rakupp` startē dažu milisekunžu laikā, kas to padara patīkamu īsiem skriptiem un ikdienas darbam komandrindā. Tā autors to raksturo kā ātrāko Raku kompilatoru.
 
-Raku++ implementē Raku 6.d (ar dažām 6.e iespējām). Versijā 0.5.1 tas jau iztur aptuveni 82 % Roast testu kopas — oficiālā Raku testu komplekta. Tas ir jauns, tāpēc vēl neaptver visu valodu, taču attīstās strauji.
+Raku++ implementē Raku 6.d (ar dažām 6.e iespējām). Versijā 1.5.2 tas jau iztur aptuveni 90 % Roast testu kopas — oficiālā Raku testu komplekta. Tas ir jauns, tāpēc vēl neaptver visu valodu, taču attīstās strauji.
 
 ## Interpretatora un kompilatora režīmi
 

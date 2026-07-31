@@ -21,9 +21,9 @@ Welche Version Sie haben, sehen Sie mit der Option `--version`:
 
 ```console
 $ rakupp --version
-Raku++ (rakupp) 0.5.1 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
+Raku++ (rakupp) 1.5.2 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
 ```
 
-Die Zeile nennt die Veröffentlichung von Raku++ selbst (`0.5.1`) und die Version der Sprache Raku, auf die er zielt (`6.d`, mit einigen Möglichkeiten aus `6.e`). Vergleichen Sie das mit dem Versionsbanner von Rakudo auf der [Seite zur Rakudo-Installation](/de/essentials/how-to-install-rakudo), um zu sehen, wie sich die beiden Compiler jeweils melden.
+Die Zeile nennt die Veröffentlichung von Raku++ selbst (`1.5.2`) und die Version der Sprache Raku, auf die er zielt (`6.d`, mit einigen Möglichkeiten aus `6.e`). Vergleichen Sie das mit dem Versionsbanner von Rakudo auf der [Seite zur Rakudo-Installation](/de/essentials/how-to-install-rakudo), um zu sehen, wie sich die beiden Compiler jeweils melden.
 
 {% include nav.html %}

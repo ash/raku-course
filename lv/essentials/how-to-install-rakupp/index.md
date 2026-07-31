@@ -21,9 +21,9 @@ Kāda versija jums ir, var pārbaudīt ar opciju `--version`:
 
 ```console
 $ rakupp --version
-Raku++ (rakupp) 0.5.1 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
+Raku++ (rakupp) 1.5.2 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
 ```
 
-Rinda pasaka, kurš ir paša Raku++ izlaidums (`0.5.1`) un uz kuru Raku valodas versiju tas tēmē (`6.d` ar dažām `6.e` iespējām). Salīdziniet to ar Rakudo versijas paziņojumu [Rakudo instalēšanas lappusē](/lv/essentials/how-to-install-rakudo), lai redzētu, kā abi kompilatori sevi pieteic.
+Rinda pasaka, kurš ir paša Raku++ izlaidums (`1.5.2`) un uz kuru Raku valodas versiju tas tēmē (`6.d` ar dažām `6.e` iespējām). Salīdziniet to ar Rakudo versijas paziņojumu [Rakudo instalēšanas lappusē](/lv/essentials/how-to-install-rakudo), lai redzētu, kā abi kompilatori sevi pieteic.
 
 {% include nav.html %}

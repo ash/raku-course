@@ -21,9 +21,9 @@ Je kunt met de optie `--version` controleren welke versie je hebt:
 
 ```console
 $ rakupp --version
-Raku++ (rakupp) 0.5.1 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
+Raku++ (rakupp) 1.5.2 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)
 ```
 
-De regel vertelt je welke uitgave van Raku++ zelf je hebt (`0.5.1`) en op welke versie van de taal Raku die mikt (`6.d`, met enkele mogelijkheden uit `6.e`). Vergelijk dit met de versieregel van Rakudo op de [installatiepagina van Rakudo](/nl/essentials/how-to-install-rakudo) om te zien hoe de twee compilers zichzelf melden.
+De regel vertelt je welke uitgave van Raku++ zelf je hebt (`1.5.2`) en op welke versie van de taal Raku die mikt (`6.d`, met enkele mogelijkheden uit `6.e`). Vergelijk dit met de versieregel van Rakudo op de [installatiepagina van Rakudo](/nl/essentials/how-to-install-rakudo) om te zien hoe de twee compilers zichzelf melden.
 
 {% include nav.html %}
