@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Firme — Corso di Raku</title>
+    <meta property="og:title" content="Firme — Corso di Raku" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/it/">Corso di Raku</a> / <a
+href="/it/advanced">Avanzato</a> / <a
+href="/it/advanced/subroutines">Subroutine</a></p>
+<h1 id="firme">Firme</h1>
+<p>Nella parte Essentials hai <a
+href="/it/essentials/functions">definito subroutine con parametri
+posizionali e nominati e hai assegnato loro valori predefiniti</a>. La
+lista dei parametri si chiama <em>signature</em>. Questa sezione
+aggiunge altre due cose che una signature può fare: contrassegnare un
+parametro come opzionale e raccogliere un numero qualsiasi di argomenti
+aggiuntivi.</p>
+<h2 id="parametri-opzionali">Parametri opzionali</h2>
+<p>Un parametro seguito da un punto interrogativo è <em>opzionale</em>:
+il chiamante può ometterlo. Quando viene omesso, il parametro è
+indefinito, quindi puoi fornire un valore di riserva con l’operatore
+defined-or <code>//</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span>, <span class="nv">$greeting</span>?) {
+    <span class="k">my</span> <span class="nv">$g</span> = <span class="nv">$greeting</span> // <span class="s">'Hello'</span>;
+    <span class="nb">say</span> <span class="s">&quot;$g, $name!&quot;</span>;
+}
+
+<span class="n">greet</span>(<span class="s">'Anna'</span>);           <span class="c1"># Hello, Anna!</span>
+<span class="n">greet</span>(<span class="s">'Anna'</span>, <span class="s">'Hi'</span>);     <span class="c1"># Hi, Anna!</span></pre></div>
+
+<p>Quando <code>greet</code> viene chiamata con un solo argomento,
+<code>$greeting</code> è indefinito, quindi <code>//</code> ricade su
+<code>'Hello'</code>.</p>
+<h2 id="parametri-slurpy">Parametri slurpy</h2>
+<p>Un parametro contrassegnato con <code>*</code> è <em>slurpy</em>:
+raccoglie tutti gli argomenti rimanenti. Un array slurpy, scritto
+<code>*@</code>, raccoglie qualsiasi numero di argomenti posizionali in
+un array:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">count-them</span>(*<span class="nv">@items</span>) {
+    <span class="nb">say</span> <span class="nv">@items</span>.<span class="nb">elems</span>;
+}
+
+<span class="n">count-them</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 4</span>
+<span class="n">count-them</span>(<span class="s">'a'</span>, <span class="s">'b'</span>);   <span class="c1"># 2</span></pre></div>
+
+<p>Puoi combinare parametri ordinari con uno slurpy. I parametri fissi
+vengono riempiti per primi e tutto ciò che rimane va nell’array
+slurpy:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">titles</span>(<span class="nv">$name</span>, *<span class="nv">@titles</span>) {
+    <span class="nb">say</span> <span class="s">&quot;$name has {@titles.elems} title(s)&quot;</span>;
+}
+
+<span class="n">titles</span>(<span class="s">'Anna'</span>, <span class="s">'Dr'</span>, <span class="s">'Prof'</span>); <span class="c1"># Anna has 2 title(s)</span></pre></div>
+
+<p>Allo stesso modo, un hash slurpy, scritto <code>*%</code>, raccoglie
+qualsiasi argomento nominato aggiuntivo in un hash:</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">register</span>(<span class="nv">$name</span>, *<span class="nv">%options</span>) {
+    <span class="nb">say</span> <span class="s">&quot;$name: {%options.elems} option(s)&quot;</span>;
+    <span class="nb">say</span> <span class="s">&quot;role is %options&lt;role&gt;&quot;</span>;
+}
+
+<span class="n">register</span>(<span class="s">'Anna'</span>, <span class="k">role</span> =&gt; <span class="s">'admin'</span>, <span class="n">active</span> =&gt; <span class="n">True</span>);</pre></div>
+
+<p>I due argomenti nominati finiscono come chiavi di
+<code>%options</code>, quindi il programma stampa:</p>
+<div class="highlight"><pre>Anna: 2 option(s)
+role is admin</pre></div>
+<section id="pratica" class="practice" data-markdown="1">
+<h2>Pratica</h2>
+<p>Risolvi 1 quiz sul contenuto di questo argomento.</p>
+<ul>
+<li><a href="/it/advanced/signatures/quiz">Quiz — Parametri
+slurpy</a></li>
+</ul>
+</section>
+<section id="esercizi" class="exercises" data-markdown="1">
+<h2>Esercizi</h2>
+<p>Questa sezione contiene <a href="exercises">3 esercizi</a>. Guarda
+tutti gli argomenti di questa sezione prima di iniziare gli
+esercizi.</p>
+<ol type="1">
+<li><a href="/it/advanced/signatures/exercises/sum-all-arguments">Somma
+di tutti gli argomenti</a></li>
+<li><a href="/it/advanced/signatures/exercises/optional-exponent">Un
+esponente opzionale</a></li>
+<li><a href="/it/advanced/signatures/exercises/slurpy-hash">Argomenti
+nominati slurpy</a></li>
+</ol>
+</section>
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+<p>← <a href="/it/advanced/subroutines">Subroutine</a>   |   <a
+href="/it/advanced/signatures/exercises/sum-all-arguments">Somma di
+tutti gli argomenti</a> →</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

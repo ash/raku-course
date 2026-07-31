@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="it">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Soluzione: Anno bisestile</title>
-    <meta property="og:title" content="Soluzione: Anno bisestile" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Soluzione: Anno bisestile — Corso di Raku</title>
+    <meta property="og:title" content="Soluzione: Anno bisestile — Corso di Raku" />
     <meta property="og:locale" content="it" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Soluzione: Anno bisestile</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,126 +88,137 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a> / <a href="/it/essentials/conditional-checks/">Controlli condizionali</a> / <a href="/it/essentials/conditional-checks/exercises/">Esercizi</a> / <a href="/it/essentials/conditional-checks/exercises/leap-year">Anno bisestile</a></p>
-
+          <p><a href="/it/">Corso di Raku</a> / <a
+href="/it/essentials">Fondamenti</a> / <a
+href="/it/essentials/control-flow">Fondamenti del controllo di
+flusso</a> / <a href="/it/essentials/conditional-checks">Controlli
+condizionali</a> / <a
+href="/it/essentials/conditional-checks/exercises">Esercizi</a> / <a
+href="/it/essentials/conditional-checks/exercises/leap-year">Anno
+bisestile</a></p>
 <h1 id="soluzione-anno-bisestile">Soluzione: Anno bisestile</h1>
-
 <h2 id="disclaimer">Disclaimer</h2>
-
-<p>La soluzione mostrata di seguito ha lo scopo di addestrarti all’uso dei controlli condizionali. Nella vita reale, puoi imparare i metodi della classe <code class="language-plaintext highlighter-rouge">Date</code> integrata. Lo impareremo nella seconda parte del corso.</p>
-
+<p>La soluzione mostrata di seguito ha lo scopo di addestrarti all’uso
+dei controlli condizionali. Nella vita reale, puoi imparare i metodi
+della classe <code>Date</code> integrata. Lo impareremo nella seconda
+parte del corso.</p>
 <h2 id="soluzione">Soluzione</h2>
-
 <p>L’algoritmo per la rilevazione se un anno è bisestile:</p>
-
-<ol>
-  <li>se l’anno non è divisibile per 4 =&gt; anno comune</li>
-  <li>se l’anno non è divisibile per 100 =&gt; anno bisestile</li>
-  <li>se l’anno non è divisibile per 400 =&gt; anno comune</li>
-  <li>altrimenti =&gt; anno bisestile</li>
+<ol type="1">
+<li>se l’anno non è divisibile per 4 =&gt; anno comune</li>
+<li>se l’anno non è divisibile per 100 =&gt; anno bisestile</li>
+<li>se l’anno non è divisibile per 400 =&gt; anno comune</li>
+<li>altrimenti =&gt; anno bisestile</li>
 </ol>
-
-<p>Nota che puoi usare i tipi integrati per lavorare con data e ora, quindi torneremo su questo compito nella seconda parte del corso.</p>
-
+<p>Nota che puoi usare i tipi integrati per lavorare con data e ora,
+quindi torneremo su questo compito nella seconda parte del corso.</p>
 <h2 id="codice-1">Codice 1</h2>
-
-<p>La prima soluzione riproduce letteralmente i passaggi sopra indicati:</p>
-
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Anno: &#39;</span>;
+<p>La prima soluzione riproduce letteralmente i passaggi sopra
+indicati:</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Anno: '</span>;
 
 <span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
-    <span class="nb">say</span> <span class="s">&#39;Anno comune&#39;</span>;
+    <span class="nb">say</span> <span class="s">'Anno comune'</span>;
 }
 <span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">100</span> {
-    <span class="nb">say</span> <span class="s">&#39;Anno bisestile&#39;</span>;
+    <span class="nb">say</span> <span class="s">'Anno bisestile'</span>;
 }
 <span class="k">elsif</span> <span class="nv">$year</span> % <span class="mi">400</span> {
-    <span class="nb">say</span> <span class="s">&#39;Anno comune&#39;</span>;
+    <span class="nb">say</span> <span class="s">'Anno comune'</span>;
 }
 <span class="k">else</span> {
-    <span class="nb">say</span> <span class="s">&#39;Anno bisestile&#39;</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">'Anno bisestile'</span>;
+}</pre></div>
 
-
-<p>🦋 Trova il programma nel file <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
-
+<p>🦋 Trova il programma nel file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year.raku">leap-year.raku</a>.</p>
 <h2 id="codice-2">Codice 2</h2>
+<p>Nella seconda soluzione, la logica è racchiusa in una singola
+espressione. Le parentesi non sono sempre necessarie ma sono aggiunte
+qui per chiarezza.</p>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Anno: '</span>;
 
-<p>Nella seconda soluzione, la logica è racchiusa in una singola espressione. Le parentesi non sono sempre necessarie ma sono aggiunte qui per chiarezza.</p>
+<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">'Anno bisestile'</span> !! <span class="s">'Anno comune'</span>;</pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">&#39;Anno: &#39;</span>;
-
-<span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">&#39;Anno bisestile&#39;</span> !! <span class="s">&#39;Anno comune&#39;</span>;
-</pre></div>
-
-
-<p>🦋 Trova il programma nel file <a href="https://github.com/ash/raku-course/blob/master/exercises/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
-
+<p>🦋 Trova il programma nel file <a
+href="https://github.com/ash/raku-course/blob/master/exercises/essentials/conditional-checks/leap-year-formula.raku">leap-year-formula.raku</a>.</p>
 <h2 id="output">Output</h2>
-
-<p>Prova entrambi i programmi con i casi più critici, ad esempio, 1900, 2000, 2020, 2021.</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
-<span class="go">Anno: 1900
+<p>Prova entrambi i programmi con i casi più critici, ad esempio, 1900,
+2000, 2020, 2021.</p>
+<div class="highlight"><pre>$ raku exercises/conditional-checks/leap-year.raku
+Anno: 1900
 Anno comune
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year.raku
-<span class="go">Anno: 2000
-Anno bisestile
-</span></code></pre></div></div>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
-<span class="go">Anno: 2020
+$ raku exercises/conditional-checks/leap-year.raku
+Anno: 2000
+Anno bisestile</pre></div>
+<div class="highlight"><pre>$ raku exercises/conditional-checks/leap-year-formula.raku
+Anno: 2020
 Anno bisestile
 
-</span><span class="gp">$</span><span class="w"> </span>raku exercises/conditional-checks/leap-year-formula.raku
-<span class="go">Anno: 2021
-Anno comune
-</span></code></pre></div></div>
-
-<p><div class="tip"></p>
-<h2 id="-vs-"><code class="language-plaintext highlighter-rouge">%%</code> vs <code class="language-plaintext highlighter-rouge">%</code></h2>
-
-<p>Nota che nei contesti booleani, gli operatori <code class="language-plaintext highlighter-rouge">%%</code> e <code class="language-plaintext highlighter-rouge">%</code> sono complementari. Puoi usare questo fatto per scegliere uno degli operatori per evitare il confronto esplicito con zero.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># True</span>
-<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># True</span>
-
-<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># False</span>
-<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># Falso</span>
-</pre></div>
-
-<p></div></p>
-
+$ raku exercises/conditional-checks/leap-year-formula.raku
+Anno: 2021
+Anno comune</pre></div>
+<p>%%tipblock ## <code>%%</code> vs <code>%</code></p>
+<p>Nota che nei contesti booleani, gli operatori <code>%%</code> e
+<code>%</code> sono complementari. Puoi usare questo fatto per scegliere
+uno degli operatori per evitare il confronto esplicito con zero.</p>
+<p>CodeBlockPlaceholder5 %%/tipblock</p>
 <h2 id="navigazione-del-corso">Navigazione del corso</h2>
-
-<p>←
-    <a href="/it/essentials/code-blocks">Blocchi di codice</a>
-        / <a href="/it/essentials/code-blocks/local-variables">Variabili locali</a>
-  |  
-    <a href="/it/essentials/loops">Cicli</a>
-→</p>
-
-<!-- <style>
-    body {
-        background-color: #f6fdff;
-    }
-</style> -->
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/conditional-checks/exercises/leap-year/solution/">Testo originale in inglese.</a></p>
-
-  <p>Traduzioni di questa pagina: <a href="/essentials/conditional-checks/exercises/leap-year/solution/">English</a> • <a href="/de/essentials/conditional-checks/exercises/leap-year/solution/">Deutsch</a> • <a href="/es/essentials/conditional-checks/exercises/leap-year/solution/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/conditional-checks/exercises/leap-year/solution/">Latviešu</a> • <a href="/nl/essentials/conditional-checks/exercises/leap-year/solution/">Nederlands</a> • <a href="/bg/essentials/conditional-checks/exercises/leap-year/solution/">Български</a> • <a href="/ru/essentials/conditional-checks/exercises/leap-year/solution/">Русский</a> • <a href="/uk/essentials/conditional-checks/exercises/leap-year/solution/">Українська</a></p>
+<p>← <a
+href="/it/essentials/conditional-checks/exercises/leap-year">Anno
+bisestile</a>   |   <a href="/it/essentials/loops">Cicli</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/conditional-checks/exercises/leap-year/solution">English</a>
+• <a
+href="/de/essentials/conditional-checks/exercises/leap-year/solution">Deutsch</a>
+• <a
+href="/es/essentials/conditional-checks/exercises/leap-year/solution">Español</a>
+• <strong>Italiano</strong> • <a
+href="/la/essentials/conditional-checks/exercises/leap-year/solution">Latina</a>
+• <a
+href="/lv/essentials/conditional-checks/exercises/leap-year/solution">Latviešu</a>
+• <a
+href="/nl/essentials/conditional-checks/exercises/leap-year/solution">Nederlands</a>
+• <a
+href="/bg/essentials/conditional-checks/exercises/leap-year/solution">Български</a>
+• <a
+href="/ru/essentials/conditional-checks/exercises/leap-year/solution">Русский</a>
+• <a
+href="/uk/essentials/conditional-checks/exercises/leap-year/solution">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

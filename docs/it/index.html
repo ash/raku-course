@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="it">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Il Corso Completo del linguaggio di programmazione Raku</title>
-    <meta property="og:title" content="Il Corso Completo del linguaggio di programmazione Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Il corso completo del linguaggio di programmazione Raku</title>
+    <meta property="og:title" content="Il corso completo del linguaggio di programmazione Raku" />
     <meta property="og:locale" content="it" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Il Corso Completo del linguaggio di programmazione Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,216 +88,1213 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <h1 id="il-corso-completo-del-linguaggio-di-programmazione-raku">Il Corso Completo del linguaggio di programmazione Raku</h1>
-
-<ul>
-  <li><a href="/it/about-this-course">Informazioni su questo corso</a></li>
-</ul>
-
-<h2 id="parte-1-fondamenti-di-raku">Parte 1. Fondamenti di Raku</h2>
-<h4 id="introduzione-di-base-a-raku-e-al-suo-compilatore">Introduzione di base a Raku e al suo compilatore</h4>
-<ul>
-  <li><a href="/it/essentials/what-is-raku">Cos’è Raku</a></li>
-  <li><a href="/it/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
-  <li><a href="/it/essentials/how-to-install-rakudo">Come installare Rakudo</a></li>
-  <li><a href="/it/essentials/editors-and-ides">Editor e IDE</a></li>
-  <li><a href="/it/essentials/conventional-file-extensions">Estensioni di file convenzionali</a></li>
-  <li><a href="/it/essentials/hello-world">Ciao, Mondo!</a></li>
-  <li><a href="/it/essentials/on-unicode">Note sull’uso di Unicode</a></li>
-  <li><a href="/it/essentials/running-programs">Esecuzione dei programmi</a>
-    <ul>
-      <li><a href="/it/essentials/running-programs/from-command-line">Esecuzione dalla riga di comando</a></li>
-      <li><a href="/it/essentials/running-programs/from-repl">Esecuzione da REPL</a></li>
-      <li><a href="/it/essentials/running-programs/from-ide">Esecuzione da IDE</a></li>
-      <li><a href="/it/essentials/running-programs/using-docker">Utilizzo di Docker</a></li>
-      <li><a href="/it/essentials/running-programs/using-online-services">Utilizzo dei servizi online</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/simple-input-output">Input e output semplici</a>
-    <ul>
-      <li><a href="/it/essentials/simple-input-output/say">Output con <code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/it/essentials/simple-input-output/prompt">Input con <code class="language-plaintext highlighter-rouge">prompt</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/comments">Commenti</a>
-    <ul>
-      <li><a href="/it/essentials/comments/single-line">Commenti su una sola linea</a></li>
-      <li><a href="/it/essentials/comments/multi-line">Commenti su più linee</a></li>
-      <li><a href="/it/essentials/comments/embedded">Commenti incorporati</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="fondamenti-di-variabili-e-tipi-di-dati">Fondamenti di variabili e tipi di dati</h4>
-<ul>
-  <li><a href="/it/essentials/scalar-variables">Variabili scalari</a>
-    <ul>
-      <li><a href="/it/essentials/scalar-variables/declaring-a-variable">Dichiarazione di una variabile</a></li>
-      <li><a href="/it/essentials/scalar-variables/assigning-a-value">Assegnazione di un valore</a></li>
-      <li><a href="/it/essentials/scalar-variables/declaration-with-initialization">Dichiarazione con inizializzazione</a></li>
-      <li><a href="/it/essentials/scalar-variables/defined-or-operator">Operatore defined-or</a></li>
-      <li><a href="/it/essentials/scalar-variables/identifiers">Nomi delle variabili</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/strings">Stringhe</a>
-    <ul>
-      <li><a href="/it/essentials/strings/string-concatenation">Concatenazione di stringhe</a></li>
-      <li><a href="/it/essentials/strings/variable-interpolation">Interpolazione delle variabili</a></li>
-      <li><a href="/it/essentials/strings/code-interpolation">Interpolazione del codice</a></li>
-      <li><a href="/it/essentials/strings/escaping-special-characters">Escape dei caratteri speciali</a></li>
-      <li><a href="/it/essentials/strings/string-length">Lunghezza della stringa</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/numbers">Numeri</a>
-    <ul>
-      <li><a href="/it/essentials/numbers/integers">Numeri interi</a></li>
-      <li><a href="/it/essentials/numbers/rats">Numeri razionali</a></li>
-      <li><a href="/it/essentials/numbers/numeric">Numeri a virgola mobile</a></li>
-      <li><a href="/it/essentials/numbers/operations">Operazioni con i numeri</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/booleans">Tipo booleano</a>
-    <ul>
-      <li><a href="/it/essentials/booleans/operations">Operazioni booleane</a></li>
-      <li><a href="/it/essentials/booleans/boolean-operations-other-types">Operazioni booleane con altri tipi</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/ranges">Intervalli</a>
-    <ul>
-      <li><a href="/it/essentials/ranges/excluding-endpoints">Escludere gli endpoint</a></li>
-      <li><a href="/it/essentials/ranges/matching-against-a-range">Confronto con un intervallo</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="fondamenti-del-flusso-di-controllo">Fondamenti del flusso di controllo</h4>
-<ul>
-  <li><a href="/it/essentials/code-blocks">Blocchi di codice</a>
-    <ul>
-      <li><a href="/it/essentials/code-blocks/lexical-scope">Ambito lessicale</a></li>
-      <li><a href="/it/essentials/code-blocks/global-variables">Variabili globali</a></li>
-      <li><a href="/it/essentials/code-blocks/local-variables">Variabili locali</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/conditional-checks">Controlli condizionali</a>
-    <ul>
-      <li><a href="/it/essentials/conditional-checks/if">Blocchi <code class="language-plaintext highlighter-rouge">if</code></a></li>
-      <li><a href="/it/essentials/conditional-checks/else">Blocchi <code class="language-plaintext highlighter-rouge">else</code></a></li>
-      <li><a href="/it/essentials/conditional-checks/elsif">Uso di <code class="language-plaintext highlighter-rouge">elsif</code></a></li>
-      <li><a href="/it/essentials/conditional-checks/unless">Uso di <code class="language-plaintext highlighter-rouge">unless</code></a></li>
-      <li><a href="/it/essentials/conditional-checks/modifiers"><code class="language-plaintext highlighter-rouge">if</code> e <code class="language-plaintext highlighter-rouge">unless</code> come modificatori di istruzioni</a></li>
-      <li><a href="/it/essentials/conditional-checks/comparing-numbers">Confronto dei numeri</a></li>
-      <li><a href="/it/essentials/conditional-checks/comparing-strings">Confronto delle stringhe</a></li>
-      <li><a href="/it/essentials/conditional-checks/ternary-operator">Operatore ternario</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/loops">Cicli</a>
-    <ul>
-      <li><a href="/it/essentials/loops/while">Uso di <code class="language-plaintext highlighter-rouge">while</code></a></li>
-      <li><a href="/it/essentials/loops/until">Uso di <code class="language-plaintext highlighter-rouge">until</code></a></li>
-      <li><a href="/it/essentials/loops/repeat">Uso di <code class="language-plaintext highlighter-rouge">repeat</code></a></li>
-      <li><a href="/it/essentials/loops/modifiers"><code class="language-plaintext highlighter-rouge">while</code> e <code class="language-plaintext highlighter-rouge">until</code> come modificatori di istruzioni</a></li>
-      <li><a href="/it/essentials/loops/loop">Ciclo <code class="language-plaintext highlighter-rouge">loop</code> a tre istruzioni</a></li>
-      <li><a href="/it/essentials/loops/infinite-loops">Cicli infiniti</a></li>
-      <li><a href="/it/essentials/loops/for">Cicli <code class="language-plaintext highlighter-rouge">for</code></a></li>
-      <li><a href="/it/essentials/loops/topic">Variabile di argomento</a></li>
-      <li><a href="/it/essentials/loops/postfix-for">Forma postfissa di <code class="language-plaintext highlighter-rouge">for</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="più-sui-tipi">Più sui tipi</h4>
-<ul>
-  <li><a href="/it/essentials/coercion">Conversione dei tipi di dati</a>
-    <ul>
-      <li><a href="/it/essentials/coercion/what">Introspezione con <code class="language-plaintext highlighter-rouge">WHAT</code></a></li>
-      <li><a href="/it/essentials/coercion/methods">Conversione dei tipi usando i metodi di coercizione del tipo</a></li>
-      <li><a href="/it/essentials/coercion/new">Conversione dei tipi usando le forme del costruttore</a></li>
-      <li><a href="/it/essentials/coercion/prefixes">Conversione dei tipi con operatori prefissi</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/typed-variables">Variabili tipizzate</a>
-    <ul>
-      <li><a href="/it/essentials/typed-variables/type-constraints">Vincoli di tipo</a></li>
-      <li><a href="/it/essentials/typed-variables/using-of">Uso di <code class="language-plaintext highlighter-rouge">of</code></a></li>
-      <li><a href="/it/essentials/typed-variables/coercion">Conversione dei tipi per variabili tipizzate</a></li>
-      <li><a href="/it/essentials/typed-variables/allomorphs">Allomorfi</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/positionals">Tipi di dati posizionali</a>
-    <ul>
-      <li><a href="/it/essentials/positionals/arrays">Array</a></li>
-      <li><a href="/it/essentials/positionals/nested-arrays">Array annidati</a></li>
-      <li><a href="/it/essentials/positionals/args-array">L’array <code class="language-plaintext highlighter-rouge">@*ARGS</code></a></li>
-      <li><a href="/it/essentials/positionals/interpolating-arrays">Interpolazione degli array</a></li>
-      <li><a href="/it/essentials/positionals/lists">Liste</a></li>
-      <li><a href="/it/essentials/positionals/quoting-string-arrays">Citazione di array di stringhe</a></li>
-      <li><a href="/it/essentials/positionals/subscripting-ranges">Sottoscrizione degli intervalli</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/associatives">Tipi di dati associativi</a>
-    <ul>
-      <li><a href="/it/essentials/associatives/pairs">Coppie</a></li>
-      <li><a href="/it/essentials/associatives/hashes">Hash</a></li>
-      <li><a href="/it/essentials/associatives/nested-hashes">Hash annidati</a></li>
-      <li><a href="/it/essentials/associatives/interpolating-hashes">Interpolazione di hash</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="fondamenti-delle-funzioni">Fondamenti delle funzioni</h4>
-<ul>
-  <li><a href="/it/essentials/functions">Creazione e chiamata di funzioni</a>
-    <ul>
-      <li><a href="/it/essentials/functions/identifiers">Nomi delle funzioni</a></li>
-      <li><a href="/it/essentials/functions/function-parameters">Parametri delle funzioni</a></li>
-      <li><a href="/it/essentials/functions/return-result">Restituzione del risultato</a></li>
-      <li><a href="/it/essentials/functions/positional-parameters">Parametri posizionali</a></li>
-      <li><a href="/it/essentials/functions/named-parameters">Parametri nominati</a></li>
-      <li><a href="/it/essentials/functions/default-values">Valori predefiniti</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/more-on-functions">Più sulle funzioni</a>
-    <ul>
-      <li><a href="/it/essentials/more-on-functions/mind-the-space">Attenzione agli spazi</a></li>
-      <li><a href="/it/essentials/more-on-functions/typed-parameters">Parametri tipizzati</a></li>
-      <li><a href="/it/essentials/more-on-functions/return-type">Tipo di ritorno</a></li>
-      <li><a href="/it/essentials/more-on-functions/multi-functions">Multi-funzioni</a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/built-in-functions-for-printing">Funzioni integrate per la stampa</a>
-    <ul>
-      <li><a href="/it/essentials/built-in-functions-for-printing/say"><code class="language-plaintext highlighter-rouge">say</code></a></li>
-      <li><a href="/it/essentials/built-in-functions-for-printing/print"><code class="language-plaintext highlighter-rouge">print</code></a></li>
-      <li><a href="/it/essentials/built-in-functions-for-printing/put"><code class="language-plaintext highlighter-rouge">put</code></a></li>
-      <li><a href="/it/essentials/built-in-functions-for-printing/note"><code class="language-plaintext highlighter-rouge">note</code></a></li>
-    </ul>
-  </li>
-  <li><a href="/it/essentials/the-main-function">La funzione <code class="language-plaintext highlighter-rouge">MAIN</code></a>
-    <ul>
-      <li><a href="/it/essentials/the-main-function/reading-command-line-arguments">Lettura degli argomenti della riga di comando</a></li>
-      <li><a href="/it/essentials/the-main-function/multi-main-functions">Più funzioni <code class="language-plaintext highlighter-rouge">MAIN</code></a></li>
-      <li><a href="/it/essentials/the-main-function/using-unit-sub">Uso di <code class="language-plaintext highlighter-rouge">unit sub</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<center>•</center>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/">Testo originale in inglese.</a></p>
-
-  <p>Traduzioni di questa pagina: <a href="/">English</a> • <a href="/de/">Deutsch</a> • <a href="/es/">Español</a> • <strong>Italiano</strong> • <a href="/lv/">Latviešu</a> • <a href="/nl/">Nederlands</a> • <a href="/bg/">Български</a> • <a href="/ru/">Русский</a> • <a href="/uk/">Українська</a></p>
+          <section id="il-corso-completo-del-linguaggio-di-programmazione-raku"
+class="home-hero" data-markdown="1">
+<h1>Il corso completo del linguaggio di programmazione Raku</h1>
+<p class="tagline">
+Dalla prima riga di codice fino alle grammatiche, alla concorrenza e ai
+servizi web — un corso pratico in cinque parti, con centinaia di quiz ed
+esercizi che consolidano ogni passo.
+</p>
+<p class="cta-row">
+<a class="btn-primary" href="/it/essentials/what-is-raku">Inizia a
+imparare →</a>
+<a class="btn-ghost" href="/it/about-this-course">Informazioni sul
+corso</a>
+</p>
+<p class="trust">
+Libero e open source · Sostenuto da
+<a href="https://www.perlfoundation.org">The Perl &amp; Raku
+Foundation</a>
+</p>
+</section>
+<div class="home-stats">
+<div class="stat">
+<span class="num">6</span><span class="label">Parti</span>
 </div>
-
-<p>© 2021–2024 di <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+<div class="stat">
+<span class="num">395</span><span class="label">Argomenti</span>
+</div>
+<div class="stat">
+<span class="num">217</span><span class="label">Quiz</span>
+</div>
+<div class="stat">
+<span class="num">396</span><span class="label">Esercizi</span>
+</div>
+<div class="stat">
+<span class="num">1530</span><span class="label">Pagine</span>
+</div>
+</div>
+<p class="section-label">
+Il corso, parte per parte
+</p>
+<div class="course-map">
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">1</span>
+<a class="part-title" href="/it/essentials">Fondamenti di Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Si comincia da qui. Installate il compilatore e imparate poi
+variabili e tipi di dati, controllo di flusso e le vostre prime
+subroutine: le fondamenta di tutto il resto.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/intro">Primo incontro con Raku</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/what-is-raku">Cos’è Raku</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/compilers">Compilatori</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/raku-vs-rakudo">Raku vs. Rakudo</a></li>
+<li><a href="/it/essentials/the-rakudo-compiler">Il compilatore
+Rakudo</a></li>
+<li><a href="/it/essentials/how-to-install-rakudo">Come installare
+Rakudo</a></li>
+<li><a href="/it/essentials/the-rakupp-compiler">Il compilatore Raku++
+🆕</a></li>
+<li><a href="/it/essentials/how-to-install-rakupp">Come installare
+Raku++ 🆕</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/getting-started">Scrivere ed eseguire
+programmi</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/editors-and-ides">Editor e IDE</a></li>
+<li><a href="/it/essentials/conventional-file-extensions">Estensioni di
+file convenzionali</a></li>
+<li><a href="/it/essentials/hello-world">Ciao, Mondo!</a></li>
+<li><a href="/it/essentials/on-unicode">Note sull’uso di
+Unicode</a></li>
+<li><a href="/it/essentials/running-programs">Esecuzione dei
+programmi</a>
+<ul>
+<li><a
+href="/it/essentials/running-programs/from-command-line">Esecuzione
+dalla riga di comando</a></li>
+<li><a href="/it/essentials/running-programs/from-repl">Esecuzione da
+REPL</a></li>
+<li><a href="/it/essentials/running-programs/from-ide">Esecuzione da
+IDE</a></li>
+<li><a href="/it/essentials/running-programs/using-docker">Utilizzo di
+Docker</a></li>
+<li><a
+href="/it/essentials/running-programs/using-online-services">Utilizzo
+dei servizi online</a></li>
+</ul></li>
+<li><a href="/it/essentials/simple-input-output">Input e output
+semplici</a>
+<ul>
+<li><a href="/it/essentials/simple-input-output/say">Output con
+<code>say</code></a></li>
+<li><a href="/it/essentials/simple-input-output/prompt">Input con
+<code>prompt</code></a></li>
+</ul></li>
+<li><a href="/it/essentials/comments">Commenti</a>
+<ul>
+<li><a href="/it/essentials/comments/single-line">Commenti su una sola
+linea</a></li>
+<li><a href="/it/essentials/comments/multi-line">Commenti su più
+linee</a></li>
+<li><a href="/it/essentials/comments/embedded">Commenti
+incorporati</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/variables">Fondamenti di variabili e tipi di
+dati</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/scalar-variables">Variabili scalari</a>
+<ul>
+<li><a
+href="/it/essentials/scalar-variables/declaring-a-variable">Dichiarazione
+di una variabile</a></li>
+<li><a
+href="/it/essentials/scalar-variables/assigning-a-value">Assegnazione di
+un valore</a></li>
+<li><a
+href="/it/essentials/scalar-variables/declaration-with-initialization">Dichiarazione
+con inizializzazione</a></li>
+<li><a
+href="/it/essentials/scalar-variables/defined-or-operator">Operatore
+defined-or</a></li>
+<li><a href="/it/essentials/scalar-variables/identifiers">Nomi delle
+variabili</a></li>
+</ul></li>
+<li><a href="/it/essentials/strings">Stringhe</a>
+<ul>
+<li><a href="/it/essentials/strings/string-concatenation">Concatenazione
+di stringhe</a></li>
+<li><a
+href="/it/essentials/strings/variable-interpolation">Interpolazione
+delle variabili</a></li>
+<li><a href="/it/essentials/strings/code-interpolation">Interpolazione
+del codice</a></li>
+<li><a href="/it/essentials/strings/escaping-special-characters">Escape
+dei caratteri speciali</a></li>
+<li><a href="/it/essentials/strings/string-length">Lunghezza della
+stringa</a></li>
+</ul></li>
+<li><a href="/it/essentials/numbers">Numeri</a>
+<ul>
+<li><a href="/it/essentials/numbers/integers">Numeri interi</a></li>
+<li><a href="/it/essentials/numbers/rats">Numeri razionali</a></li>
+<li><a href="/it/essentials/numbers/numeric">Numeri a virgola
+mobile</a></li>
+<li><a href="/it/essentials/numbers/operations">Operazioni con i
+numeri</a></li>
+</ul></li>
+<li><a href="/it/essentials/booleans">Tipo booleano</a>
+<ul>
+<li><a href="/it/essentials/booleans/operations">Operazioni
+booleane</a></li>
+<li><a
+href="/it/essentials/booleans/boolean-operations-other-types">Operazioni
+booleane con altri tipi</a></li>
+</ul></li>
+<li><a href="/it/essentials/ranges">Intervalli</a>
+<ul>
+<li><a href="/it/essentials/ranges/excluding-endpoints">Escludere gli
+endpoint</a></li>
+<li><a href="/it/essentials/ranges/matching-against-a-range">Confronto
+con un intervallo</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/control-flow">Fondamenti del controllo di
+flusso</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/code-blocks">Blocchi di codice</a>
+<ul>
+<li><a href="/it/essentials/code-blocks/lexical-scope">Ambito
+lessicale</a></li>
+<li><a href="/it/essentials/code-blocks/global-variables">Variabili
+globali</a></li>
+<li><a href="/it/essentials/code-blocks/local-variables">Variabili
+locali</a></li>
+</ul></li>
+<li><a href="/it/essentials/conditional-checks">Controlli
+condizionali</a>
+<ul>
+<li><a href="/it/essentials/conditional-checks/if">Blocchi
+<code>if</code></a></li>
+<li><a href="/it/essentials/conditional-checks/else">Blocchi
+<code>else</code></a></li>
+<li><a href="/it/essentials/conditional-checks/elsif">Uso di
+<code>elsif</code></a></li>
+<li><a href="/it/essentials/conditional-checks/unless">Uso di
+<code>unless</code></a></li>
+<li><a
+href="/it/essentials/conditional-checks/modifiers"><code>if</code> e
+<code>unless</code> come modificatori di istruzioni</a></li>
+<li><a
+href="/it/essentials/conditional-checks/comparing-numbers">Confronto dei
+numeri</a></li>
+<li><a
+href="/it/essentials/conditional-checks/comparing-strings">Confronto
+delle stringhe</a></li>
+<li><a
+href="/it/essentials/conditional-checks/ternary-operator">Operatore
+ternario</a></li>
+</ul></li>
+<li><a href="/it/essentials/loops">Cicli</a>
+<ul>
+<li><a href="/it/essentials/loops/while">Uso di
+<code>while</code></a></li>
+<li><a href="/it/essentials/loops/until">Uso di
+<code>until</code></a></li>
+<li><a href="/it/essentials/loops/repeat">Uso di
+<code>repeat</code></a></li>
+<li><a href="/it/essentials/loops/modifiers"><code>while</code> e
+<code>until</code> come modificatori di istruzioni</a></li>
+<li><a href="/it/essentials/loops/loop">Ciclo <code>loop</code> a tre
+istruzioni</a></li>
+<li><a href="/it/essentials/loops/infinite-loops">Cicli
+infiniti</a></li>
+<li><a href="/it/essentials/loops/for">Cicli <code>for</code></a></li>
+<li><a href="/it/essentials/loops/topic">Variabile di argomento</a></li>
+<li><a href="/it/essentials/loops/postfix-for">Forma postfissa di
+<code>for</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/more-about-types">Altro sui tipi</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/coercion">Conversione dei tipi di dati</a>
+<ul>
+<li><a href="/it/essentials/coercion/what">Introspezione con
+<code>WHAT</code></a></li>
+<li><a href="/it/essentials/coercion/methods">Conversione dei tipi
+usando i metodi di coercizione del tipo</a></li>
+<li><a href="/it/essentials/coercion/new">Conversione dei tipi usando le
+forme del costruttore</a></li>
+<li><a href="/it/essentials/coercion/prefixes">Conversione dei tipi con
+operatori prefissi</a></li>
+</ul></li>
+<li><a href="/it/essentials/typed-variables">Variabili tipizzate</a>
+<ul>
+<li><a href="/it/essentials/typed-variables/type-constraints">Vincoli di
+tipo</a></li>
+<li><a href="/it/essentials/typed-variables/using-of">Uso di
+<code>of</code></a></li>
+<li><a href="/it/essentials/typed-variables/coercion">Conversione dei
+tipi per variabili tipizzate</a></li>
+<li><a
+href="/it/essentials/typed-variables/allomorphs">Allomorfi</a></li>
+</ul></li>
+<li><a href="/it/essentials/positionals">Tipi di dati posizionali</a>
+<ul>
+<li><a href="/it/essentials/positionals/arrays">Array</a></li>
+<li><a href="/it/essentials/positionals/nested-arrays">Array
+annidati</a></li>
+<li><a href="/it/essentials/positionals/args-array">L’array
+<code>@*ARGS</code></a></li>
+<li><a
+href="/it/essentials/positionals/interpolating-arrays">Interpolazione
+degli array</a></li>
+<li><a href="/it/essentials/positionals/lists">Liste</a></li>
+<li><a href="/it/essentials/positionals/quoting-string-arrays">Citazione
+di array di stringhe</a></li>
+<li><a
+href="/it/essentials/positionals/subscripting-ranges">Sottoscrizione
+degli intervalli</a></li>
+</ul></li>
+<li><a href="/it/essentials/associatives">Tipi di dati associativi</a>
+<ul>
+<li><a href="/it/essentials/associatives/pairs">Coppie</a></li>
+<li><a href="/it/essentials/associatives/hashes">Hash</a></li>
+<li><a href="/it/essentials/associatives/nested-hashes">Hash
+annidati</a></li>
+<li><a
+href="/it/essentials/associatives/interpolating-hashes">Interpolazione
+di hash</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/essentials/functions-essentials">Fondamenti delle
+funzioni</a>
+</summary>
+<ul>
+<li><a href="/it/essentials/functions">Creazione e chiamata di
+funzioni</a>
+<ul>
+<li><a href="/it/essentials/functions/identifiers">Nomi delle
+funzioni</a></li>
+<li><a href="/it/essentials/functions/function-parameters">Parametri
+delle funzioni</a></li>
+<li><a href="/it/essentials/functions/return-result">Restituzione del
+risultato</a></li>
+<li><a href="/it/essentials/functions/positional-parameters">Parametri
+posizionali</a></li>
+<li><a href="/it/essentials/functions/named-parameters">Parametri
+nominati</a></li>
+<li><a href="/it/essentials/functions/default-values">Valori
+predefiniti</a></li>
+</ul></li>
+<li><a href="/it/essentials/more-on-functions">Più sulle funzioni</a>
+<ul>
+<li><a href="/it/essentials/more-on-functions/mind-the-space">Attenzione
+agli spazi</a></li>
+<li><a
+href="/it/essentials/more-on-functions/typed-parameters">Parametri
+tipizzati</a></li>
+<li><a href="/it/essentials/more-on-functions/return-type">Tipo di
+ritorno</a></li>
+<li><a
+href="/it/essentials/more-on-functions/multi-functions">Multi-funzioni</a></li>
+</ul></li>
+<li><a href="/it/essentials/built-in-functions-for-printing">Funzioni
+integrate per la stampa</a>
+<ul>
+<li><a
+href="/it/essentials/built-in-functions-for-printing/say"><code>say</code></a></li>
+<li><a
+href="/it/essentials/built-in-functions-for-printing/print"><code>print</code></a></li>
+<li><a
+href="/it/essentials/built-in-functions-for-printing/put"><code>put</code></a></li>
+<li><a
+href="/it/essentials/built-in-functions-for-printing/note"><code>note</code></a></li>
+</ul></li>
+<li><a href="/it/essentials/the-main-function">La funzione
+<code>MAIN</code></a>
+<ul>
+<li><a
+href="/it/essentials/the-main-function/reading-command-line-arguments">Lettura
+degli argomenti della riga di comando</a></li>
+<li><a href="/it/essentials/the-main-function/multi-main-functions">Più
+funzioni <code>MAIN</code></a></li>
+<li><a href="/it/essentials/the-main-function/using-unit-sub">Uso di
+<code>unit sub</code></a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">2</span>
+<a class="part-title" href="/it/advanced">Argomenti avanzati di Raku</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Approfondisci: contenitori e contesti, la gamma completa di tipi e
+operatori integrati, subroutine più ricche e come impacchettare il tuo
+codice in moduli con test e documentazione.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/debugging">Debug</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/representations">Trasformare valori in
+testo</a>
+<ul>
+<li><a href="/it/advanced/representations/gist">Il metodo
+<code>.gist</code></a></li>
+<li><a href="/it/advanced/representations/str">Il metodo
+<code>.Str</code></a></li>
+<li><a href="/it/advanced/representations/raku-method">Il metodo
+<code>.raku</code></a></li>
+<li><a href="/it/advanced/representations/choosing">Scegliere quello
+giusto</a></li>
+</ul></li>
+<li><a href="/it/advanced/dd">Debugging con <code>dd</code></a>
+<ul>
+<li><a href="/it/advanced/dd/variables">Dump delle variabili</a></li>
+<li><a href="/it/advanced/dd/functions">Dump delle firme di
+funzione</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/containers-overview">Contenitori</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/containers">Comprendere i contenitori di
+Raku</a></li>
+<li><a href="/it/advanced/scalar-containers">Contenitori scalari</a>
+<ul>
+<li><a href="/it/advanced/scalar-containers/types">Tipi di dati e
+contenitori scalari</a></li>
+<li><a href="/it/advanced/scalar-containers/type-constraints">Vincoli di
+tipo</a></li>
+<li><a href="/it/advanced/scalar-containers/default">Valori
+predefiniti</a></li>
+<li><a href="/it/advanced/scalar-containers/proxying">Proxying delle
+chiamate di metodo</a></li>
+</ul></li>
+<li><a href="/it/advanced/ordered-containers">Contenitori ordinati</a>
+<ul>
+<li><a href="/it/advanced/ordered-containers/arrays">Array</a></li>
+<li><a href="/it/advanced/ordered-containers/lists">Liste</a></li>
+<li><a href="/it/advanced/ordered-containers/binding">Binding con
+<code>:=</code></a></li>
+<li><a href="/it/advanced/ordered-containers/flattening">Appiattimento e
+itemizzazione</a></li>
+</ul></li>
+<li><a href="/it/advanced/contexts">Contesti</a>
+<ul>
+<li><a href="/it/advanced/contexts/coercion-contexts">Contesto numerico,
+stringa e booleano</a></li>
+<li><a href="/it/advanced/contexts/item-and-list">Contesto elemento e
+lista</a></li>
+</ul></li>
+<li><a href="/it/advanced/subscript-adverbs">Avverbi di subscript</a>
+<ul>
+<li><a href="/it/advanced/subscript-adverbs/exists-and-delete">Exists e
+delete</a></li>
+<li><a href="/it/advanced/subscript-adverbs/kv-and-pairs">Chiavi, valori
+e coppie</a></li>
+</ul></li>
+<li><a href="/it/advanced/special-variables">Variabili speciali e
+dinamiche</a>
+<ul>
+<li><a href="/it/advanced/special-variables/twigils">Twigil</a></li>
+<li><a href="/it/advanced/special-variables/dynamic-variables">Variabili
+dinamiche</a></li>
+<li><a href="/it/advanced/special-variables/built-in">Variabili speciali
+integrate</a></li>
+</ul></li>
+<li><a href="/it/advanced/introspection">Introspezione dei
+contenitori</a>
+<ul>
+<li><a href="/it/advanced/introspection/what">Usare
+<code>WHAT</code></a></li>
+<li><a href="/it/advanced/introspection/var">Usare
+<code>VAR</code></a></li>
+<li><a href="/it/advanced/introspection/who-how"><code>WHO</code> e
+<code>HOW</code></a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/built-in-types">Altro sui tipi predefiniti</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/integers">Interi</a>
+<ul>
+<li><a href="/it/advanced/integers/number-bases">Basi numeriche</a></li>
+<li><a href="/it/advanced/integers/methods">Metodi degli interi</a></li>
+</ul></li>
+<li><a href="/it/advanced/native-types">Tipi nativi</a>
+<ul>
+<li><a href="/it/advanced/native-types/machine-types">Tipi a livello
+macchina</a></li>
+<li><a href="/it/advanced/native-types/sized-types">Tipi dimensionati e
+overflow</a></li>
+</ul></li>
+<li><a href="/it/advanced/strings">Stringhe</a>
+<ul>
+<li><a href="/it/advanced/strings/searching">Ricerca nelle
+stringhe</a></li>
+<li><a href="/it/advanced/strings/splitting">Dividere e unire</a></li>
+</ul></li>
+<li><a href="/it/advanced/quoting">Costrutti di quoting</a>
+<ul>
+<li><a href="/it/advanced/quoting/q-qq-big-q">q, qq e Q</a></li>
+<li><a href="/it/advanced/quoting/adverbs">Avverbi di quoting</a></li>
+<li><a href="/it/advanced/quoting/heredocs">Heredoc</a></li>
+</ul></li>
+<li><a href="/it/advanced/date-and-time">Data e ora</a>
+<ul>
+<li><a href="/it/advanced/date-and-time/arithmetic">Aritmetica delle
+date</a></li>
+<li><a href="/it/advanced/date-and-time/time">Lavorare con
+l’ora</a></li>
+</ul></li>
+<li><a href="/it/advanced/sets-bags-mixes">Set, bag e mix</a>
+<ul>
+<li><a href="/it/advanced/sets-bags-mixes/operations">Operazioni sui
+set</a></li>
+<li><a href="/it/advanced/sets-bags-mixes/bags">Bag e mix</a></li>
+</ul></li>
+<li><a href="/it/advanced/sequences">Sequenze</a>
+<ul>
+<li><a href="/it/advanced/sequences/patterns">Pattern di
+sequenza</a></li>
+<li><a href="/it/advanced/sequences/lazy">Sequenze lazy e
+infinite</a></li>
+</ul></li>
+<li><a href="/it/advanced/enumerations">Enumerazioni</a>
+<ul>
+<li><a href="/it/advanced/enumerations/defining">Definire un
+enum</a></li>
+<li><a href="/it/advanced/enumerations/values-and-keys">Valori e
+chiavi</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/operators">Operatori</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/operator-types">Tipi di operatori
+Raku</a></li>
+<li><a href="/it/advanced/operators-overview">Panoramica del
+comportamento degli operatori</a></li>
+<li><a href="/it/advanced/metaoperators">Meta-operatori</a>
+<ul>
+<li><a href="/it/advanced/metaoperators/reduction">Meta-operatori di
+riduzione</a></li>
+<li><a href="/it/advanced/metaoperators/zip">Meta-operatori zip</a></li>
+<li><a href="/it/advanced/metaoperators/more">Cross, hyper e
+negati</a></li>
+</ul></li>
+<li><a href="/it/advanced/user-defined-operators">Operatori definiti
+dall’utente</a></li>
+<li><a href="/it/advanced/traits-pragmas">Trait e pragma</a>
+<ul>
+<li><a href="/it/advanced/traits-pragmas/built-in-traits">Trait
+integrati</a></li>
+<li><a href="/it/advanced/traits-pragmas/writing-a-trait">Scrivere un
+trait</a></li>
+<li><a href="/it/advanced/traits-pragmas/pragmas">Pragma</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/control-flow">Controllo di flusso</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/phasers">Phaser</a></li>
+<li><a href="/it/advanced/block-phasers">Phaser di blocco</a></li>
+<li><a href="/it/advanced/given-when"><code>given</code> e
+<code>when</code></a>
+<ul>
+<li><a href="/it/advanced/given-when/matching">Matching di intervalli,
+tipi e condizioni</a></li>
+</ul></li>
+<li><a href="/it/advanced/gather-take"><code>gather</code> e
+<code>take</code></a></li>
+<li><a href="/it/advanced/statement-prefixes">Prefissi di istruzione</a>
+<ul>
+<li><a href="/it/advanced/statement-prefixes/do-prefix">do e il valore
+di un blocco</a></li>
+<li><a href="/it/advanced/statement-prefixes/lazy-eager">Laziness e
+eagerness</a></li>
+<li><a href="/it/advanced/statement-prefixes/sink-quietly">sink e
+quietly</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/subroutines">Subroutine</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/signatures">Firme</a></li>
+<li><a href="/it/advanced/whatever">La stella Whatever</a></li>
+<li><a href="/it/advanced/colon-calls">Chiamate con i due punti</a></li>
+<li><a href="/it/advanced/multiple-dispatch">Dispatch multiplo</a></li>
+<li><a href="/it/advanced/more-on-main">Approfondimento sulle subroutine
+MAIN</a></li>
+<li><a href="/it/advanced/nested-subroutines">Subroutine
+annidate</a></li>
+<li><a href="/it/advanced/anonymous-subroutines">Subroutine
+anonime</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/modules">Moduli</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/modules-basics">Basi dei moduli</a>
+<ul>
+<li><a href="/it/advanced/modules-basics/creating-modules">Creare
+moduli</a></li>
+<li><a href="/it/advanced/modules-basics/using-modules">Usare
+moduli</a></li>
+<li><a
+href="/it/advanced/modules-basics/importing">Importazione</a></li>
+<li><a href="/it/advanced/modules-basics/export-tags">Tag di
+esportazione</a></li>
+</ul></li>
+<li><a href="/it/advanced/module-introspection">Introspezione dei
+moduli</a></li>
+<li><a href="/it/advanced/installing-modules">Installare moduli dal
+web</a></li>
+<li><a href="/it/advanced/packages">Pacchetti e namespace</a>
+<ul>
+<li><a href="/it/advanced/packages/packages-modules">Pacchetti e
+moduli</a></li>
+<li><a href="/it/advanced/packages/namespaces">Namespace e our</a></li>
+</ul></li>
+<li><a href="/it/advanced/distributing">Distribuzione di moduli</a>
+<ul>
+<li><a href="/it/advanced/distributing/meta6">Il file META6</a></li>
+<li><a href="/it/advanced/distributing/zef-ecosystem">zef e
+l’ecosistema</a></li>
+<li><a href="/it/advanced/distributing/fez">Pubblicare con fez</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/advanced/testing-and-docs">Test e documentazione 🆕</a>
+</summary>
+<ul>
+<li><a href="/it/advanced/testing">Test</a>
+<ul>
+<li><a href="/it/advanced/testing/test-module">Il modulo Test</a></li>
+<li><a href="/it/advanced/testing/comparisons">Confronti e
+piani</a></li>
+<li><a href="/it/advanced/testing/running-tests">Eseguire i
+test</a></li>
+</ul></li>
+<li><a href="/it/advanced/pod">Documentare il codice</a>
+<ul>
+<li><a href="/it/advanced/pod/pod-basics">Basi di Pod</a></li>
+<li><a href="/it/advanced/pod/pod-formatting">Formattazione e
+codice</a></li>
+<li><a href="/it/advanced/pod/rendering-pod">Rendering di Pod</a></li>
+<li><a href="/it/advanced/pod/accessing-pod">Accedere al Pod</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">3</span>
+<a class="part-title" href="/it/oop">Oggetti, input/output ed
+eccezioni</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Programmazione a oggetti con classi e ruoli, lettura e scrittura di
+input e output e dialogo con programmi esterni, e gestione degli errori
+con le eccezioni.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/it/oop/classes-and-objects">Classi e oggetti</a>
+</summary>
+<ul>
+<li><a href="/it/oop/classes">Classi</a>
+<ul>
+<li><a href="/it/oop/classes/type-object">Oggetti di tipo e
+istanze</a></li>
+</ul></li>
+<li><a href="/it/oop/attributes">Attributi</a>
+<ul>
+<li><a href="/it/oop/attributes/read-write">Attributi in lettura e
+scrittura</a></li>
+<li><a href="/it/oop/attributes/defaults">Valori predefiniti</a></li>
+</ul></li>
+<li><a href="/it/oop/methods">Metodi</a>
+<ul>
+<li><a href="/it/oop/methods/private-attributes">Attributi
+privati</a></li>
+<li><a href="/it/oop/methods/parameters">Metodi con parametri</a></li>
+<li><a href="/it/oop/methods/calling-methods">Metodi che chiamano
+metodi</a></li>
+</ul></li>
+<li><a href="/it/oop/class-methods">Metodi di classe</a></li>
+<li><a href="/it/oop/subs-vs-methods">Subroutine e metodi</a></li>
+<li><a href="/it/oop/inheritance">Ereditarietà</a>
+<ul>
+<li><a href="/it/oop/inheritance/overriding">Sovrascrivere i
+metodi</a></li>
+</ul></li>
+<li><a href="/it/oop/roles">Ruoli</a>
+<ul>
+<li><a href="/it/oop/roles/multiple-roles">Comporre più ruoli</a></li>
+<li><a href="/it/oop/roles/mixin">Aggiungere un ruolo a un
+oggetto</a></li>
+</ul></li>
+<li><a href="/it/oop/object-introspection">Introspezione degli
+oggetti</a>
+<ul>
+<li><a href="/it/oop/object-introspection/inheritance-chain">La catena
+di ereditarietà</a></li>
+</ul></li>
+<li><a href="/it/oop/mop">Il protocollo dei metaoggetti 🆕</a>
+<ul>
+<li><a href="/it/oop/mop/meta-methods">Metametodi</a></li>
+<li><a href="/it/oop/mop/adding-methods">Aggiungere metodi a
+runtime</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/oop/input-and-output">Input e output</a>
+</summary>
+<ul>
+<li><a href="/it/oop/standard-streams">Flussi standard</a></li>
+<li><a href="/it/oop/files">Lavorare con i file</a>
+<ul>
+<li><a href="/it/oop/files/appending">Aggiungere a un file</a></li>
+</ul></li>
+<li><a href="/it/oop/directories">Lavorare con le directory</a>
+<ul>
+<li><a href="/it/oop/directories/listing">Elencare una
+directory</a></li>
+</ul></li>
+<li><a href="/it/oop/deleting">Cancellare file e directory</a></li>
+<li><a href="/it/oop/file-handles">Handle di file</a></li>
+<li><a href="/it/oop/external-programs">Eseguire programmi esterni
+🆕</a>
+<ul>
+<li><a href="/it/oop/external-programs/run-and-shell">run e
+shell</a></li>
+<li><a href="/it/oop/external-programs/capturing-output">Catturare
+l’output</a></li>
+<li><a href="/it/oop/external-programs/the-proc-object">L’oggetto
+Proc</a></li>
+<li><a href="/it/oop/external-programs/environment">L’ambiente</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/oop/exceptions">Eccezioni</a>
+</summary>
+<ul>
+<li><a href="/it/oop/try">Intercettare le eccezioni con
+<code>try</code></a>
+<ul>
+<li><a href="/it/oop/try/deferred-errors">Non ogni errore è
+immediato</a></li>
+</ul></li>
+<li><a href="/it/oop/catch">Il phaser <code>CATCH</code></a></li>
+<li><a href="/it/oop/exception-objects">Oggetti eccezione</a></li>
+<li><a href="/it/oop/failures">Guasti morbidi</a></li>
+<li><a href="/it/oop/custom-exceptions">Eccezioni
+personalizzate</a></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">4</span>
+<a class="part-title" href="/it/regexes">Espressioni regolari e
+grammatiche</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Riconoscete il testo con le espressioni regolari e fatele crescere in
+grammatiche complete, con classi di azione che trasformano l’input
+strutturato in dati.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/it/regexes/regex-basics">Espressioni regolari</a>
+</summary>
+<ul>
+<li><a href="/it/regexes/literals">Letterali e classi di caratteri</a>
+<ul>
+<li><a href="/it/regexes/literals/literal-text">Riconoscere testo
+letterale</a></li>
+<li><a href="/it/regexes/literals/character-classes">Classi di
+caratteri</a></li>
+<li><a href="/it/regexes/literals/predefined-classes">Classi di
+caratteri predefinite</a></li>
+</ul></li>
+<li><a href="/it/regexes/matching">Riconoscere le stringhe</a>
+<ul>
+<li><a href="/it/regexes/matching/smartmatch">L’operatore
+smartmatch</a></li>
+<li><a href="/it/regexes/matching/match-object">L’oggetto match</a></li>
+</ul></li>
+<li><a href="/it/regexes/quantifiers">Quantificatori</a>
+<ul>
+<li><a href="/it/regexes/quantifiers/star-plus-question">Asterisco, più
+e punto interrogativo</a></li>
+<li><a href="/it/regexes/quantifiers/times-quantifier">Il quantificatore
+di ripetizioni</a></li>
+<li><a href="/it/regexes/quantifiers/greedy-frugal">Matching goloso e
+frugale</a></li>
+</ul></li>
+<li><a href="/it/regexes/captures">Catture</a>
+<ul>
+<li><a href="/it/regexes/captures/positional">Catture
+posizionali</a></li>
+<li><a href="/it/regexes/captures/named">Catture con nome</a></li>
+<li><a href="/it/regexes/captures/non-capturing">Gruppi senza
+cattura</a></li>
+</ul></li>
+<li><a href="/it/regexes/alternations">Alternative</a>
+<ul>
+<li><a href="/it/regexes/alternations/alternation">Alternativa</a></li>
+<li><a href="/it/regexes/alternations/longest-token">Token più lungo e
+prima corrispondenza</a></li>
+</ul></li>
+<li><a href="/it/regexes/anchors">Ancore</a>
+<ul>
+<li><a href="/it/regexes/anchors/string-anchors">Inizio e fine della
+stringa</a></li>
+<li><a href="/it/regexes/anchors/word-boundaries">Confini di
+parola</a></li>
+</ul></li>
+<li><a href="/it/regexes/assertions">Asserzioni di contesto</a>
+<ul>
+<li><a href="/it/regexes/assertions/lookahead">Lookahead</a></li>
+<li><a href="/it/regexes/assertions/lookbehind">Lookbehind</a></li>
+</ul></li>
+<li><a href="/it/regexes/adverbs">Avverbi</a>
+<ul>
+<li><a href="/it/regexes/adverbs/ignorecase">Matching senza distinzione
+fra maiuscole e minuscole</a></li>
+<li><a href="/it/regexes/adverbs/adverb-scope">Ambito degli
+avverbi</a></li>
+<li><a href="/it/regexes/adverbs/global">Matching globale</a></li>
+<li><a href="/it/regexes/adverbs/sigspace">Spazi significativi</a></li>
+</ul></li>
+<li><a href="/it/regexes/substitution">Sostituzione e rimpiazzo</a>
+<ul>
+<li><a href="/it/regexes/substitution/s-operator">L’operatore di
+sostituzione</a></li>
+<li><a href="/it/regexes/substitution/captures-in-replacement">Catture
+nel rimpiazzo</a></li>
+<li><a
+href="/it/regexes/substitution/transliteration">Traslitterazione</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/regexes/grammars">Grammatiche</a>
+</summary>
+<ul>
+<li><a href="/it/regexes/what-is-a-grammar">Che cos’è una grammatica</a>
+<ul>
+<li><a href="/it/regexes/what-is-a-grammar/named-regexes">Espressioni
+regolari con nome</a></li>
+<li><a href="/it/regexes/what-is-a-grammar/grammar-keyword">La parola
+chiave grammar</a></li>
+</ul></li>
+<li><a href="/it/regexes/creating-grammars">Creare grammatiche</a>
+<ul>
+<li><a href="/it/regexes/creating-grammars/top-rule">La regola
+TOP</a></li>
+<li><a href="/it/regexes/creating-grammars/parse-method">Analizzare con
+parse</a></li>
+</ul></li>
+<li><a href="/it/regexes/tokens-and-rules">Token e regole</a>
+<ul>
+<li><a href="/it/regexes/tokens-and-rules/three-kinds">regex, token e
+rule</a></li>
+<li><a href="/it/regexes/tokens-and-rules/rule-sigspace">Spazi
+significativi nelle regole</a></li>
+</ul></li>
+<li><a href="/it/regexes/grammar-inheritance">Grammatiche, classi ed
+ereditarietà</a>
+<ul>
+<li><a href="/it/regexes/grammar-inheritance/grammars-are-classes">Le
+grammatiche sono classi</a></li>
+<li><a href="/it/regexes/grammar-inheritance/proto-tokens">Token proto e
+alternative</a></li>
+</ul></li>
+<li><a href="/it/regexes/make-and-made">L’albero di analisi, make e
+made</a>
+<ul>
+<li><a href="/it/regexes/make-and-made/match-tree">L’albero delle
+corrispondenze</a></li>
+<li><a href="/it/regexes/make-and-made/make-made">make e made</a></li>
+</ul></li>
+<li><a href="/it/regexes/action-classes">Classi di azione</a>
+<ul>
+<li><a href="/it/regexes/action-classes/writing-actions">Scrivere una
+classe di azione</a></li>
+<li><a href="/it/regexes/action-classes/inline-vs-class">Azioni in linea
+e classi di azione</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">5</span>
+<a class="part-title" href="/it/paradigms">Programmazione funzionale,
+concorrente, reattiva e web</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Tutto insieme: programmazione funzionale, concorrente e reattiva, per
+finire con socket, HTTP e la creazione di servizi web.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/it/paradigms/functional">Programmazione funzionale</a>
+</summary>
+<ul>
+<li><a href="/it/paradigms/recursion">Ricorsione</a>
+<ul>
+<li><a href="/it/paradigms/recursion/recursive-sub">Una subroutine
+ricorsiva</a></li>
+<li><a href="/it/paradigms/recursion/base-case">Il caso base</a></li>
+<li><a href="/it/paradigms/recursion/multi-recursion">Ricorsione con
+subroutine multi</a></li>
+</ul></li>
+<li><a href="/it/paradigms/higher-order">Funzioni di ordine
+superiore</a>
+<ul>
+<li><a href="/it/paradigms/higher-order/passing-subs">Passare
+subroutine</a></li>
+<li><a href="/it/paradigms/higher-order/returning-subs">Restituire
+subroutine</a></li>
+</ul></li>
+<li><a href="/it/paradigms/closures">Lambda e chiusure</a>
+<ul>
+<li><a href="/it/paradigms/closures/lambdas">Lambda</a></li>
+<li><a href="/it/paradigms/closures/capturing-state">Chiusure</a></li>
+</ul></li>
+<li><a href="/it/paradigms/reduction">Riduzione</a>
+<ul>
+<li><a href="/it/paradigms/reduction/reduction-metaop">Il metaoperatore
+di riduzione</a></li>
+<li><a href="/it/paradigms/reduction/reduce-routine">La routine
+reduce</a></li>
+</ul></li>
+<li><a href="/it/paradigms/feeds">Feed di dati</a>
+<ul>
+<li><a href="/it/paradigms/feeds/feed-operator">L’operatore
+feed</a></li>
+<li><a href="/it/paradigms/feeds/chaining-feeds">Concatenare i
+feed</a></li>
+<li><a href="/it/paradigms/feeds/backward-feed">Il feed
+all’indietro</a></li>
+</ul></li>
+<li><a href="/it/paradigms/generators">Generatori</a>
+<ul>
+<li><a href="/it/paradigms/generators/gather-take">gather e
+take</a></li>
+<li><a href="/it/paradigms/generators/lazy-gather">gather pigro</a></li>
+</ul></li>
+<li><a href="/it/paradigms/iterators">Iteratori</a>
+<ul>
+<li><a href="/it/paradigms/iterators/iterator-protocol">Il protocollo
+degli iteratori</a></li>
+<li><a href="/it/paradigms/iterators/writing-an-iterator">Scrivere un
+iteratore</a></li>
+</ul></li>
+<li><a href="/it/paradigms/lazy">Sequenze pigre e infinite</a>
+<ul>
+<li><a href="/it/paradigms/lazy/sequence-operator">L’operatore di
+sequenza</a></li>
+<li><a href="/it/paradigms/lazy/infinite-sequences">Sequenze
+infinite</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/paradigms/concurrent">Programmazione concorrente</a>
+</summary>
+<ul>
+<li><a href="/it/paradigms/junctions">Junction</a>
+<ul>
+<li><a href="/it/paradigms/junctions/building-junctions">Costruire
+junction</a></li>
+<li><a
+href="/it/paradigms/junctions/autothreading">Autothreading</a></li>
+</ul></li>
+<li><a href="/it/paradigms/threads">Thread</a>
+<ul>
+<li><a href="/it/paradigms/threads/starting-a-thread">Avviare un
+thread</a></li>
+<li><a href="/it/paradigms/threads/joining-threads">Unire i
+thread</a></li>
+</ul></li>
+<li><a href="/it/paradigms/promises">Promise</a>
+<ul>
+<li><a href="/it/paradigms/promises/start-and-await">start e
+await</a></li>
+<li><a href="/it/paradigms/promises/then-and-combinators">Concatenare e
+combinare</a></li>
+<li><a href="/it/paradigms/promises/making-a-promise">Una promise tutta
+vostra 🆕</a></li>
+<li><a href="/it/paradigms/promises/promise-status">Lo stato di una
+promise 🆕</a></li>
+<li><a href="/it/paradigms/promises/vows">Vow 🆕</a></li>
+</ul></li>
+<li><a href="/it/paradigms/channels">Channel</a>
+<ul>
+<li><a href="/it/paradigms/channels/send-and-receive">Inviare e
+ricevere</a></li>
+<li><a href="/it/paradigms/channels/closing-a-channel">Chiudere un
+channel</a></li>
+<li><a href="/it/paradigms/channels/receiving-past-the-end">Ricevere
+oltre la fine</a></li>
+</ul></li>
+<li><a href="/it/paradigms/hyper-race">hyper e race 🆕</a>
+<ul>
+<li><a href="/it/paradigms/hyper-race/hyper">map in parallelo con
+hyper</a></li>
+<li><a href="/it/paradigms/hyper-race/race">Parallelismo senza ordine
+con race</a></li>
+<li><a href="/it/paradigms/hyper-race/batch-and-degree">Regolare con
+:batch e :degree</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/paradigms/reactive">Programmazione reattiva</a>
+</summary>
+<ul>
+<li><a href="/it/paradigms/supplies">Supply</a>
+<ul>
+<li><a href="/it/paradigms/supplies/tapping-a-supply">Collegarsi a un
+supply</a></li>
+<li><a href="/it/paradigms/supplies/transforming">Trasformare un
+supply</a></li>
+</ul></li>
+<li><a href="/it/paradigms/supply-kinds">Supply live e su richiesta</a>
+<ul>
+<li><a href="/it/paradigms/supply-kinds/on-demand-supplies">Supply su
+richiesta</a></li>
+<li><a href="/it/paradigms/supply-kinds/live-supplies">Supply
+live</a></li>
+<li><a href="/it/paradigms/supply-kinds/live-in-action">Supply live in
+azione</a></li>
+</ul></li>
+<li><a href="/it/paradigms/react-whenever">react e whenever</a>
+<ul>
+<li><a href="/it/paradigms/react-whenever/the-react-block">Il blocco
+react</a></li>
+<li><a href="/it/paradigms/react-whenever/whenever">whenever</a></li>
+<li><a href="/it/paradigms/react-whenever/named-supplies">Supply
+definiti all’esterno</a></li>
+<li><a href="/it/paradigms/react-whenever/whenever-vs-when">whenever e
+when</a></li>
+<li><a href="/it/paradigms/react-whenever/two-timers">Due timer</a></li>
+</ul></li>
+<li><a href="/it/paradigms/await">await</a>
+<ul>
+<li><a href="/it/paradigms/await/awaiting-promises">Attendere una
+promise</a></li>
+<li><a href="/it/paradigms/await/waiting-for-completion">Attendere il
+completamento</a></li>
+</ul></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/paradigms/web">Programmazione web</a>
+</summary>
+<ul>
+<li><a href="/it/paradigms/connections">Stabilire connessioni remote</a>
+<ul>
+<li><a href="/it/paradigms/connections/opening-a-socket">Aprire un
+socket</a></li>
+<li><a href="/it/paradigms/connections/sending-receiving">Inviare e
+ricevere</a></li>
+</ul></li>
+<li><a href="/it/paradigms/http-server">Un semplice server HTTP</a>
+<ul>
+<li><a href="/it/paradigms/http-server/listening">Restare in ascolto di
+connessioni</a></li>
+<li><a href="/it/paradigms/http-server/responding">Rispondere a una
+richiesta</a></li>
+<li><a href="/it/paradigms/http-server/serving-requests">Servire molte
+richieste</a></li>
+</ul></li>
+<li><a href="/it/paradigms/cro">Cro 101</a>
+<ul>
+<li><a href="/it/paradigms/cro/what-is-cro">Che cos’è Cro</a></li>
+<li><a href="/it/paradigms/cro/a-cro-route">Una rotta Cro</a></li>
+<li><a href="/it/paradigms/cro/route-with-parameter">Una rotta con un
+parametro</a></li>
+<li><a href="/it/paradigms/cro/client-modules">Usare un modulo
+client</a></li>
+<li><a href="/it/paradigms/cro/public-apis">Interrogare un’API
+pubblica</a></li>
+<li><a href="/it/paradigms/cro/websockets">WebSocket</a></li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+<div class="part-card part-pseudo">
+<h3 class="part-head">
+<span class="pnum pnum-star">★</span>
+<a class="part-title" href="/it/final-test">La prova finale</a>
+</h3>
+<p>Cento domande sulle parti da 1 a 5, corrette nel momento in cui
+rispondete: una chiusura per vedere quanto dell’intero corso è
+rimasto.</p>
+</div>
+<div class="part-card">
+<h3 class="part-head">
+<span class="pnum">6</span>
+<a class="part-title" href="/it/addendum">Appendice: esercizi completi
+🆕</a>
+<button class="part-expand" type="button" aria-expanded="false" title="Expand all sections" aria-label="Expand all sections"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5 6.5 8 3.5l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5 8 12.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</h3>
+<p>Una raccolta finale di esercizi più impegnativi che attingono a tutto
+il corso. Ognuno richiede più di un’idea e molti combinano strumenti di
+parti diverse. Tutti usano solo funzionalità già introdotte: niente di
+nuovo da imparare, ma molto da esercitare.</p>
+<div class="subparts">
+<details class="toc-subpart">
+<summary>
+<a href="/it/addendum/working-with-data">Lavorare con i dati</a>
+</summary>
+<ul>
+<li><a href="/it/addendum/numbers-math">Numeri e matematica</a></li>
+<li><a href="/it/addendum/text-strings">Testo e stringhe</a></li>
+<li><a href="/it/addendum/collections">Liste, array e hash</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/addendum/flow-and-functions">Flusso e funzioni</a>
+</summary>
+<ul>
+<li><a href="/it/addendum/control-logic">Controllo di flusso e
+logica</a></li>
+<li><a href="/it/addendum/subs-functional">Subroutine e stile
+funzionale</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/addendum/types-and-text-machines">Tipi e macchine per il
+testo</a>
+</summary>
+<ul>
+<li><a href="/it/addendum/objects-classes">Oggetti e classi</a></li>
+<li><a href="/it/addendum/regex-grammars">Espressioni regolari e
+grammatiche</a></li>
+</ul>
+</details>
+<details class="toc-subpart">
+<summary>
+<a href="/it/addendum/bringing-it-together">Mettere tutto insieme</a>
+</summary>
+<ul>
+<li><a href="/it/addendum/mini-projects">Mini-progetti misti</a></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="home-foot" data-markdown="1">
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a href="/">English</a> • <a
+href="/de/">Deutsch</a> • <a href="/es/">Español</a> •
+<strong>Italiano</strong> • <a href="/la/">Latina</a> • <a
+href="/lv/">Latviešu</a> • <a href="/nl/">Nederlands</a> • <a
+href="/bg/">Български</a> • <a href="/ru/">Русский</a> • <a
+href="/uk/">Українська</a></p>
+</div>
+</div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

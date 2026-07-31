@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Ricorsione con subroutine multi — Corso di Raku</title>
+    <meta property="og:title" content="Ricorsione con subroutine multi — Corso di Raku" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/it/">Corso di Raku</a> / <a
+href="/it/paradigms">Programmazione funzionale, concorrente, reattiva e
+web</a> / <a href="/it/paradigms/functional">Programmazione
+funzionale</a> / <a href="/it/paradigms/recursion">Ricorsione</a></p>
+<h1 id="ricorsione-con-subroutine-multi">Ricorsione con subroutine
+multi</h1>
+<p>Finora il caso base è stato una riga <em>dentro</em> la subroutine:
+un ternario o un <code>return</code> anticipato che controlla
+l’argomento. Raku offre un modo più espressivo di scrivere la stessa
+cosa. Poiché una subroutine può avere più candidati <code>multi</code>,
+puoi dare al caso base e al passo ricorsivo <strong>subroutine separate
+proprie</strong> e lasciare che la distribuzione multipla scelga quella
+giusta per ogni chiamata.</p>
+<p>Ricorda il fattoriale. Con <code>multi</code>, i suoi due casi
+diventano due subroutine:</p>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
+
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
+
+<p>Il primo candidato corrisponde solo quando l’argomento è esattamente
+<code>0</code>: quel letterale nella firma <em>è</em> il caso base. Ogni
+altra chiamata va al secondo candidato, che moltiplica e ricorre. Quando
+<code>fact($n - 1)</code> raggiunge finalmente <code>0</code>, la
+distribuzione passa al primo candidato e la catena di chiamate si
+srotola. Il caso base non è più un ramo sepolto nel corpo; è una
+subroutine che esiste per un unico valore.</p>
+<p>Perché <code>0</code> e non <code>1</code>? Perché ogni passo sottrae
+uno, qualunque numero di partenza atterra prima o poi esattamente su
+<code>0</code>, e <code>0!</code> è definito come <code>1</code> —
+quindi <code>0</code> è dove la discesa finisce davvero. Un candidato
+letterale corrisponde a un unico valore <em>esatto</em>, quindi una base
+<code>multi fact(1)</code> calcolerebbe correttamente
+<code>fact(1)</code> ma lascerebbe <code>fact(0)</code> cadere in
+<code>multi fact($n)</code> e ricorrere oltre lo zero per sempre.
+Fermarsi a <code>0</code> tiene corretta la subroutine per ogni numero
+intero non negativo, <code>fact(0)</code> compreso.</p>
+<p>Questo si legge particolarmente bene quando i casi base sono più di
+uno. Fibonacci ne ha bisogno di due:</p>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fib</span>(<span class="mi">0</span>) { <span class="mi">0</span> }
+<span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
+
+<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span></pre></div>
+
+<p>Ogni caso base è un candidato di una riga a sé, e il candidato
+ricorsivo si occupa di tutto il resto — nessuna condizione annidata.</p>
+<p>Un letterale come <code>0</code> corrisponde solo a quel valore
+esatto. Quando il caso base copre un <em>intervallo</em> —
+«<code>$n</code> è <code>1</code> o meno» — usa invece un vincolo
+<code>where</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
+
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
+
+<p>Il candidato vincolato è più specifico, quindi Raku lo prova per
+primo; il candidato semplice <code>$n</code> raccoglie tutto il
+resto.</p>
+<p>Vale ancora la stessa disciplina di prima: ogni percorso ricorsivo
+deve raggiungere un candidato di caso base. Il fattoriale con il
+letterale <code>0</code>, per esempio, è sicuro solo per i numeri interi
+non negativi — <code>fact(-1)</code> scavalcherebbe <code>0</code> e
+ricorrerebbe per sempre, perché nessun candidato corrisponderebbe mai.
+Dividere i casi fra subroutine <code>multi</code> non toglie il bisogno
+di un caso base; gli dà soltanto un nome e una casa propria.</p>
+<section id="pratica" class="practice" data-markdown="1">
+<h2>Pratica</h2>
+<p>Risolvi 1 quiz sul contenuto di questo argomento.</p>
+<ul>
+<li><a href="/it/paradigms/recursion/multi-recursion/quiz">Quiz —
+Ricorsione con subroutine multi</a></li>
+</ul>
+</section>
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+<p>← <a href="/it/paradigms/recursion/base-case/quiz">Quiz — Il caso
+base</a>   |   <a
+href="/it/paradigms/recursion/multi-recursion/quiz">Quiz — Ricorsione
+con subroutine multi</a> →</p>
+<p><br /> 💪 Oppure vai direttamente <a
+href="/it/paradigms/recursion/exercises">agli esercizi di questa
+sezione</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

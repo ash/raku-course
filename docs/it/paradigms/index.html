@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Programmazione funzionale, concorrente, reattiva e web — Corso di Raku</title>
+    <meta property="og:title" content="Programmazione funzionale, concorrente, reattiva e web — Corso di Raku" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/it/">Corso di Raku</a></p>
+<h1
+id="parte-5.-programmazione-funzionale-concorrente-reattiva-e-web">Parte
+5. Programmazione funzionale, concorrente, reattiva e web</h1>
+<p>Tutto insieme: programmazione funzionale, concorrente e reattiva, per
+finire con socket, HTTP e la creazione di servizi web.</p>
+<h4 id="programmazione-funzionale"><a
+href="/it/paradigms/functional">Programmazione funzionale</a></h4>
+<ul>
+<li><a href="/it/paradigms/recursion">Ricorsione</a> — <span
+class="has-e"><a href="/it/paradigms/recursion/exercises">4
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/recursion/recursive-sub">Una subroutine
+ricorsiva</a> — <span class="has-q"><a
+href="/it/paradigms/recursion/recursive-sub#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/recursion/base-case">Il caso base</a> — <span
+class="has-q"><a href="/it/paradigms/recursion/base-case#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/recursion/multi-recursion">Ricorsione con
+subroutine multi</a> — <span class="has-q"><a
+href="/it/paradigms/recursion/multi-recursion#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/higher-order">Funzioni di ordine
+superiore</a> — <span class="has-e"><a
+href="/it/paradigms/higher-order/exercises">3 esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/higher-order/passing-subs">Passare
+subroutine</a> — <span class="has-q"><a
+href="/it/paradigms/higher-order/passing-subs#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/higher-order/returning-subs">Restituire
+subroutine</a> — <span class="has-q"><a
+href="/it/paradigms/higher-order/returning-subs#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/closures">Lambda e chiusure</a> — <span
+class="has-e"><a href="/it/paradigms/closures/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/closures/lambdas">Lambda</a> — <span
+class="has-q"><a href="/it/paradigms/closures/lambdas#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/closures/capturing-state">Chiusure</a> —
+<span class="has-q"><a
+href="/it/paradigms/closures/capturing-state#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/reduction">Riduzione</a> — <span
+class="has-e"><a href="/it/paradigms/reduction/exercises">5
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/reduction/reduction-metaop">Il metaoperatore
+di riduzione</a> — <span class="has-q"><a
+href="/it/paradigms/reduction/reduction-metaop#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/reduction/reduce-routine">La routine
+reduce</a> — <span class="has-q"><a
+href="/it/paradigms/reduction/reduce-routine#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/feeds">Feed di dati</a> — <span
+class="has-e"><a href="/it/paradigms/feeds/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/feeds/feed-operator">L’operatore feed</a> —
+<span class="has-q"><a
+href="/it/paradigms/feeds/feed-operator#practice">1 quiz</a></span></li>
+<li><a href="/it/paradigms/feeds/chaining-feeds">Concatenare i feed</a>
+— <span class="has-q"><a
+href="/it/paradigms/feeds/chaining-feeds#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/feeds/backward-feed">Il feed all’indietro</a>
+— <span class="has-q"><a
+href="/it/paradigms/feeds/backward-feed#practice">1 quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/generators">Generatori</a> — <span
+class="has-e"><a href="/it/paradigms/generators/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/generators/gather-take">gather e take</a> —
+<span class="has-q"><a
+href="/it/paradigms/generators/gather-take#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/generators/lazy-gather">gather pigro</a></li>
+</ul></li>
+<li><a href="/it/paradigms/iterators">Iteratori</a> — <span
+class="has-e"><a href="/it/paradigms/iterators/exercises">1
+esercizio</a></span>
+<ul>
+<li><a href="/it/paradigms/iterators/iterator-protocol">Il protocollo
+degli iteratori</a> — <span class="has-q"><a
+href="/it/paradigms/iterators/iterator-protocol#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/iterators/writing-an-iterator">Scrivere un
+iteratore</a></li>
+</ul></li>
+<li><a href="/it/paradigms/lazy">Sequenze pigre e infinite</a> — <span
+class="has-e"><a href="/it/paradigms/lazy/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/lazy/sequence-operator">L’operatore di
+sequenza</a> — <span class="has-q"><a
+href="/it/paradigms/lazy/sequence-operator#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/lazy/infinite-sequences">Sequenze
+infinite</a> — <span class="has-q"><a
+href="/it/paradigms/lazy/infinite-sequences#practice">1
+quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="programmazione-concorrente"><a
+href="/it/paradigms/concurrent">Programmazione concorrente</a></h4>
+<ul>
+<li><a href="/it/paradigms/junctions">Junction</a> — <span
+class="has-e"><a href="/it/paradigms/junctions/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/junctions/building-junctions">Costruire
+junction</a> — <span class="has-q"><a
+href="/it/paradigms/junctions/building-junctions#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/junctions/autothreading">Autothreading</a> —
+<span class="has-q"><a
+href="/it/paradigms/junctions/autothreading#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/threads">Thread</a> — <span class="has-e"><a
+href="/it/paradigms/threads/exercises">3 esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/threads/starting-a-thread">Avviare un
+thread</a> — <span class="has-q"><a
+href="/it/paradigms/threads/starting-a-thread#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/threads/joining-threads">Unire i
+thread</a></li>
+</ul></li>
+<li><a href="/it/paradigms/promises">Promise</a> — <span
+class="has-e"><a href="/it/paradigms/promises/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/promises/start-and-await">start e await</a> —
+<span class="has-q"><a
+href="/it/paradigms/promises/start-and-await#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/promises/then-and-combinators">Concatenare e
+combinare</a> — <span class="has-q"><a
+href="/it/paradigms/promises/then-and-combinators#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/promises/making-a-promise">Una promise tutta
+vostra 🆕</a></li>
+<li><a href="/it/paradigms/promises/promise-status">Lo stato di una
+promise 🆕</a></li>
+<li><a href="/it/paradigms/promises/vows">Vow 🆕</a></li>
+</ul></li>
+<li><a href="/it/paradigms/channels">Channel</a> — <span
+class="has-e"><a href="/it/paradigms/channels/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/channels/send-and-receive">Inviare e
+ricevere</a> — <span class="has-q"><a
+href="/it/paradigms/channels/send-and-receive#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/channels/closing-a-channel">Chiudere un
+channel</a> — <span class="has-q"><a
+href="/it/paradigms/channels/closing-a-channel#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/channels/receiving-past-the-end">Ricevere
+oltre la fine</a> — <span class="has-q"><a
+href="/it/paradigms/channels/receiving-past-the-end#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/hyper-race">hyper e race 🆕</a> — <span
+class="has-e"><a href="/it/paradigms/hyper-race/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/hyper-race/hyper">map in parallelo con
+hyper</a> — <span class="has-q"><a
+href="/it/paradigms/hyper-race/hyper#practice">1 quiz</a></span></li>
+<li><a href="/it/paradigms/hyper-race/race">Parallelismo senza ordine
+con race</a></li>
+<li><a href="/it/paradigms/hyper-race/batch-and-degree">Regolare con
+:batch e :degree</a> — <span class="has-q"><a
+href="/it/paradigms/hyper-race/batch-and-degree#practice">1
+quiz</a></span></li>
+</ul></li>
+</ul>
+<h4 id="programmazione-reattiva"><a
+href="/it/paradigms/reactive">Programmazione reattiva</a></h4>
+<ul>
+<li><a href="/it/paradigms/supplies">Supply</a> — <span class="has-e"><a
+href="/it/paradigms/supplies/exercises">3 esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/supplies/tapping-a-supply">Collegarsi a un
+supply</a> — <span class="has-q"><a
+href="/it/paradigms/supplies/tapping-a-supply#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/supplies/transforming">Trasformare un
+supply</a> — <span class="has-q"><a
+href="/it/paradigms/supplies/transforming#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/supply-kinds">Supply live e su richiesta</a>
+— <span class="has-e"><a href="/it/paradigms/supply-kinds/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/supply-kinds/on-demand-supplies">Supply su
+richiesta</a> — <span class="has-q"><a
+href="/it/paradigms/supply-kinds/on-demand-supplies#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/supply-kinds/live-supplies">Supply
+live</a></li>
+<li><a href="/it/paradigms/supply-kinds/live-in-action">Supply live in
+azione</a></li>
+</ul></li>
+<li><a href="/it/paradigms/react-whenever">react e whenever</a> — <span
+class="has-e"><a href="/it/paradigms/react-whenever/exercises">3
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/react-whenever/the-react-block">Il blocco
+react</a> — <span class="has-q"><a
+href="/it/paradigms/react-whenever/the-react-block#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/react-whenever/whenever">whenever</a> — <span
+class="has-q"><a href="/it/paradigms/react-whenever/whenever#practice">2
+quiz</a></span></li>
+<li><a href="/it/paradigms/react-whenever/named-supplies">Supply
+definiti all’esterno</a></li>
+<li><a href="/it/paradigms/react-whenever/whenever-vs-when">whenever e
+when</a></li>
+<li><a href="/it/paradigms/react-whenever/two-timers">Due timer</a></li>
+</ul></li>
+<li><a href="/it/paradigms/await">await</a> — <span class="has-e"><a
+href="/it/paradigms/await/exercises">3 esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/await/awaiting-promises">Attendere una
+promise</a> — <span class="has-q"><a
+href="/it/paradigms/await/awaiting-promises#practice">2
+quiz</a></span></li>
+<li><a href="/it/paradigms/await/waiting-for-completion">Attendere il
+completamento</a></li>
+</ul></li>
+</ul>
+<h4 id="programmazione-web"><a href="/it/paradigms/web">Programmazione
+web</a></h4>
+<ul>
+<li><a href="/it/paradigms/connections">Stabilire connessioni remote</a>
+— <span class="has-e"><a href="/it/paradigms/connections/exercises">2
+esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/connections/opening-a-socket">Aprire un
+socket</a> — <span class="has-q"><a
+href="/it/paradigms/connections/opening-a-socket#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/connections/sending-receiving">Inviare e
+ricevere</a> — <span class="has-q"><a
+href="/it/paradigms/connections/sending-receiving#practice">1
+quiz</a></span></li>
+</ul></li>
+<li><a href="/it/paradigms/http-server">Un semplice server HTTP</a> —
+<span class="has-e"><a href="/it/paradigms/http-server/exercises">1
+esercizio</a></span>
+<ul>
+<li><a href="/it/paradigms/http-server/listening">Restare in ascolto di
+connessioni</a> — <span class="has-q"><a
+href="/it/paradigms/http-server/listening#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/http-server/responding">Rispondere a una
+richiesta</a></li>
+<li><a href="/it/paradigms/http-server/serving-requests">Servire molte
+richieste</a></li>
+</ul></li>
+<li><a href="/it/paradigms/cro">Cro 101</a> — <span class="has-e"><a
+href="/it/paradigms/cro/exercises">2 esercizi</a></span>
+<ul>
+<li><a href="/it/paradigms/cro/what-is-cro">Che cos’è Cro</a> — <span
+class="has-q"><a href="/it/paradigms/cro/what-is-cro#practice">1
+quiz</a></span></li>
+<li><a href="/it/paradigms/cro/a-cro-route">Una rotta Cro</a></li>
+<li><a href="/it/paradigms/cro/route-with-parameter">Una rotta con un
+parametro</a></li>
+<li><a href="/it/paradigms/cro/client-modules">Usare un modulo
+client</a></li>
+<li><a href="/it/paradigms/cro/public-apis">Interrogare un’API
+pubblica</a></li>
+<li><a href="/it/paradigms/cro/websockets">WebSocket</a></li>
+</ul></li>
+</ul>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

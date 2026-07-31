@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-
-
-
-
 <html lang="it">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Creare e chiamare funzioni in Raku</title>
-    <meta property="og:title" content="Creare e chiamare funzioni in Raku" />
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Creazione e chiamata di funzioni — Corso di Raku</title>
+    <meta property="og:title" content="Creazione e chiamata di funzioni — Corso di Raku" />
     <meta property="og:locale" content="it" />
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?t=5">
-    <title>Creare e chiamare funzioni in Raku</title>
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -38,108 +88,162 @@
 </head>
   
   <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
     <div class="container-lg px-3 my-5 markdown-body">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          
-<p><a href="/it/">Corso di Raku</a> / <a href="/it/essentials">Fondamenti</a></p>
-
-<h1 id="creazione-e-chiamata-di-funzioni">Creazione e chiamata di funzioni</h1>
-
-<p>Hai raggiunto l’ultima sezione della prima parte del corso. Completandola, avrai tutte le conoscenze necessarie per creare praticamente <em>qualsiasi</em> programma in Raku. Il soggetto di questa sezione sono le <em>funzioni</em>, o <em>subroutine</em>, o anche semplicemente <em>routine</em>.</p>
-
-<p>Una funzione è una parte riutilizzabile del codice con un proprio nome. Puoi <em>chiamare</em> le funzioni da diversi punti del programma.</p>
-
+          <p><a href="/it/">Corso di Raku</a> / <a
+href="/it/essentials">Fondamenti</a> / <a
+href="/it/essentials/functions-essentials">Fondamenti delle
+funzioni</a></p>
+<h1 id="creazione-e-chiamata-di-funzioni">Creazione e chiamata di
+funzioni</h1>
+<p>Hai raggiunto l’ultima sezione della prima parte del corso.
+Completandola, avrai tutte le conoscenze necessarie per creare
+praticamente <em>qualsiasi</em> programma in Raku. Il soggetto di questa
+sezione sono le <em>funzioni</em>, o <em>subroutine</em>, o anche
+semplicemente <em>routine</em>.</p>
+<p>Una funzione è una parte riutilizzabile del codice con un proprio
+nome. Puoi <em>chiamare</em> le funzioni da diversi punti del
+programma.</p>
 <h2 id="creare-una-funzione">Creare una funzione</h2>
-
-<p>Per creare una funzione, usa la parola chiave <code class="language-plaintext highlighter-rouge">sub</code> seguita dal nome della funzione. Il corpo della funzione è racchiuso in una coppia di parentesi graffe.</p>
-
-<div class="highlight"><pre><span></span><span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="s">&#39;Hello, World!&#39;</span>;
-}
-</pre></div>
-
+<p>Per creare una funzione, usa la parola chiave <code>sub</code>
+seguita dal nome della funzione. Il corpo della funzione è racchiuso in
+una coppia di parentesi graffe.</p>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span> {
+    <span class="nb">say</span> <span class="s">'Hello, World!'</span>;
+}</pre></div>
 
 <h2 id="usare-una-funzione">Usare una funzione</h2>
-
-<p>Per usare la funzione, basta mettere il suo nome nel punto in cui hai bisogno di chiamarla. In Raku, la definizione di una funzione può essere posizionata prima o dopo il punto in cui la funzione viene utilizzata.</p>
-
-<div class="highlight"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Questo è ciò che di solito stampa il primo programma:&#39;</span>;
+<p>Per usare la funzione, basta mettere il suo nome nel punto in cui hai
+bisogno di chiamarla. In Raku, la definizione di una funzione può essere
+posizionata prima o dopo il punto in cui la funzione viene
+utilizzata.</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Questo è ciò che di solito stampa il primo programma:'</span>;
 <span class="n">greet</span>;    
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="s">&#39;Hello, World!&#39;</span>;
-}
-</pre></div>
-
+    <span class="nb">say</span> <span class="s">'Hello, World!'</span>;
+}</pre></div>
 
 <p>Il programma stampa entrambi i messaggi:</p>
-
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>raku t.raku
-<span class="go">Questo è ciò che di solito stampa il primo programma:
-Hello, World!
-</span></code></pre></div></div>
-
-<p>Ora, diamo un’occhiata ad altri dettagli sulla creazione e l’uso delle funzioni.</p>
-
-<p><div class="topics"></p>
-<h2 id="argomenti-in-questa-sezione">Argomenti in questa sezione</h2>
+<div class="highlight"><pre>$ raku t.raku
+Questo è ciò che di solito stampa il primo programma:
+Hello, World!</pre></div>
+<p>Ora, diamo un’occhiata ad altri dettagli sulla creazione e l’uso
+delle funzioni.</p>
+<section id="argomenti-di-questa-sezione" class="topics"
+data-markdown="1">
+<h2>Argomenti di questa sezione</h2>
 <ul>
-  <li><a href="/it/essentials/functions/identifiers">Nomi delle funzioni</a></li>
-  <li><a href="/it/essentials/functions/function-parameters">Parametri delle funzioni</a></li>
-  <li><a href="/it/essentials/functions/return-result">Restituzione del risultato</a></li>
-  <li><a href="/it/essentials/functions/positional-parameters">Parametri posizionali</a></li>
-  <li><a href="/it/essentials/functions/named-parameters">Parametri nominati</a></li>
-  <li><a href="/it/essentials/functions/default-values">Valori predefiniti</a></li>
+<li><a href="/it/essentials/functions/identifiers">Nomi delle
+funzioni</a></li>
+<li><a href="/it/essentials/functions/function-parameters">Parametri
+delle funzioni</a></li>
+<li><a href="/it/essentials/functions/return-result">Restituzione del
+risultato</a></li>
+<li><a href="/it/essentials/functions/positional-parameters">Parametri
+posizionali</a></li>
+<li><a href="/it/essentials/functions/named-parameters">Parametri
+nominati</a></li>
+<li><a href="/it/essentials/functions/default-values">Valori
+predefiniti</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="practice"></p>
-<h2 id="pratica">Pratica</h2>
-
-<p>Completa il quiz che copre i contenuti di questo argomento.</p>
+</section>
+<section id="pratica" class="practice" data-markdown="1">
+<h2>Pratica</h2>
+<p>Risolvi 10 quiz sul contenuto di questa sezione.</p>
 <ul>
-  <li><a href="/it/essentials/functions/quiz">Quiz — Creazione di una funzione</a></li>
+<li><a href="/it/essentials/functions/quiz">Quiz — Creazione di una
+funzione</a></li>
+<li><a href="/it/essentials/functions/identifiers/quiz">Quiz — nomi
+delle funzioni</a></li>
+<li><a
+href="/it/essentials/functions/function-parameters/quiz1">Parametri
+delle funzioni</a></li>
+<li><a
+href="/it/essentials/functions/function-parameters/quiz2">Passaggio
+degli argomenti</a></li>
+<li><a href="/it/essentials/functions/return-result/quiz">Quiz
+— Restituzione da una funzione</a></li>
+<li><a href="/it/essentials/functions/positional-parameters/quiz">Quiz
+— Chiamata di una funzione</a></li>
+<li><a href="/it/essentials/functions/named-parameters/quiz1">Quiz 1 —
+Parametri nominati</a></li>
+<li><a href="/it/essentials/functions/named-parameters/quiz2">Quiz 2 —
+Variabili come parametri nominati</a></li>
+<li><a href="/it/essentials/functions/default-values/quiz1">Quiz
+— Definizione di valori predefiniti</a></li>
+<li><a href="/it/essentials/functions/default-values/quiz2">Quiz
+— Funzioni con valori predefiniti</a></li>
 </ul>
-
-<p></div></p>
-
-<p><div class="exercises"></p>
-
-<h2 id="esercizi">Esercizi</h2>
-
-<p>Haec sectio continet <a href="/it/essentials/functions/exercises">
-6 esercizi</a>. Esamina tutti gli argomenti di questa sezione prima di passare alla pratica di codifica.</p>
-<ol>
-  <li><a href="/it/essentials/functions/exercises/function-x-to-the-power-of-y">Funzione per calcolare <em>xʸ</em></a></li>
-  <li><a href="/it/essentials/functions/exercises/odd-or-even">Pari o dispari</a></li>
-  <li><a href="/it/essentials/functions/exercises/recursive-factorial">Fattoriale ricorsivo</a></li>
-  <li><a href="/it/essentials/functions/exercises/interval-function">Funzione di intervallo</a></li>
-  <li><a href="/it/essentials/functions/exercises/function-table">Tabella delle funzioni</a></li>
-  <li><a href="/it/essentials/functions/exercises/the-value-of-e">Il valore di e</a></li>
+</section>
+<section id="esercizi" class="exercises" data-markdown="1">
+<h2>Esercizi</h2>
+<p>Questa sezione contiene <a href="exercises">6 esercizi</a>. Guarda
+tutti gli argomenti di questa sezione prima di iniziare gli
+esercizi.</p>
+<ol type="1">
+<li><a
+href="/it/essentials/functions/exercises/function-x-to-the-power-of-y">Funzione
+per calcolare <em>xʸ</em></a></li>
+<li><a href="/it/essentials/functions/exercises/odd-or-even">Pari o
+dispari</a></li>
+<li><a
+href="/it/essentials/functions/exercises/recursive-factorial">Fattoriale
+ricorsivo</a></li>
+<li><a
+href="/it/essentials/functions/exercises/interval-function">Funzione di
+intervallo</a></li>
+<li><a href="/it/essentials/functions/exercises/function-table">Tabella
+delle funzioni</a></li>
+<li><a href="/it/essentials/functions/exercises/the-value-of-e">Il
+valore di e</a></li>
 </ol>
-
-<p></div></p>
-
+</section>
 <h2 id="navigazione-del-corso">Navigazione del corso</h2>
-
-<p>←
-    <a href="/it/essentials/associatives">Tipi di dati associativi</a>
-        / <a href="/it/essentials/associatives/interpolating-hashes">Interpolazione di hash</a>
-  |  
-        <a href="/it/essentials/functions/identifiers">Nomi delle funzioni</a>
-→</p>
-
-<div style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
-
-  <p>Questa pagina è tradotta automaticamente con ChatGPT 4o. <a href="/essentials/functions/">Testo originale in inglese.</a></p>
-
-  <p>Traduzioni di questa pagina: <a href="/essentials/functions/">English</a> • <a href="/de/essentials/functions/">Deutsch</a> • <a href="/es/essentials/functions/">Español</a> • <strong>Italiano</strong> • <a href="/lv/essentials/functions/">Latviešu</a> • <a href="/nl/essentials/functions/">Nederlands</a> • <a href="/bg/essentials/functions/">Български</a> • <a href="/ru/essentials/functions/">Русский</a> • <a href="/uk/essentials/functions/">Українська</a></p>
+<p>← <a href="/it/essentials/functions-essentials">Fondamenti delle
+funzioni</a>   |   <a href="/it/essentials/functions/identifiers">Nomi
+delle funzioni</a> →</p>
+<div data-markdown="1"
+style="margin-top: 2em; border-top: 1px solid lightgray; padding-top: 2em; font-size: 80%;">
+<p>Translations of this page: <a
+href="/essentials/functions">English</a> • <a
+href="/de/essentials/functions">Deutsch</a> • <a
+href="/es/essentials/functions">Español</a> • <strong>Italiano</strong>
+• <a href="/la/essentials/functions">Latina</a> • <a
+href="/lv/essentials/functions">Latviešu</a> • <a
+href="/nl/essentials/functions">Nederlands</a> • <a
+href="/bg/essentials/functions">Български</a> • <a
+href="/ru/essentials/functions">Русский</a> • <a
+href="/uk/essentials/functions">Українська</a></p>
 </div>
 
         </div>
       </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
     </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
   </body>
 </html>

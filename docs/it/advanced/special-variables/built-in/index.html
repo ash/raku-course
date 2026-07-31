@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Variabili speciali integrate — Corso di Raku</title>
+    <meta property="og:title" content="Variabili speciali integrate — Corso di Raku" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/it/">Corso di Raku</a> / <a
+href="/it/advanced">Avanzato</a> / <a
+href="/it/advanced/containers-overview">Contenitori</a> / <a
+href="/it/advanced/special-variables">Variabili speciali e
+dinamiche</a></p>
+<h1 id="variabili-speciali-integrate">Variabili speciali integrate</h1>
+<p>Raku predefinisce un insieme di variabili per te. La maggior parte di
+esse sono <em>dinamiche</em> (il twigil <code>*</code>), quindi — come
+hai visto con le <a
+href="/it/advanced/special-variables/dynamic-variables">variabili
+dinamiche</a> — puoi leggerle ovunque e persino sovrascriverle per un
+determinato scope. Ecco quelle che userai piu’ spesso.</p>
+<h2 id="stream-standard">Stream standard</h2>
+<p>L’input e l’output passano attraverso tre variabili dinamiche:
+<code>$*OUT</code> (standard output), <code>$*ERR</code> (standard
+error) e <code>$*IN</code> (standard input). <code>say</code> e
+<code>print</code> scrivono su <code>$*OUT</code>; per inviare testo
+allo standard error, chiama il metodo su <code>$*ERR</code>:</p>
+<div class="highlight raku"><pre><span></span><span class="nv">$*OUT</span>.<span class="nb">say</span>(<span class="s">'normal output'</span>); <span class="c1"># goes to standard output</span>
+<span class="nv">$*ERR</span>.<span class="nb">say</span>(<span class="s">'a diagnostic'</span>);  <span class="c1"># goes to standard error</span></pre></div>
+
+<p>Poiche’ queste sono dinamiche, reindirizzare <code>$*OUT</code> in un
+blocco invia l’output di tutto cio’ che viene chiamato all’interno di
+quel blocco alla nuova destinazione — senza modificare nessuna parte di
+quel codice.</p>
+<h2 id="il-programma-e-il-suo-processo">Il programma e il suo
+processo</h2>
+<p>Alcune variabili descrivono il programma in esecuzione:</p>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$*PROGRAM-NAME</span>; <span class="c1"># the path of the script being run</span>
+<span class="nb">say</span> <span class="nv">$*PID</span>;          <span class="c1"># the process id of this program</span>
+<span class="nb">say</span> <span class="nv">$*CWD</span>;          <span class="c1"># the current working directory</span></pre></div>
+
+<p>I loro valori cambiano ad ogni esecuzione, quindi qui non viene
+mostrato un output fisso.</p>
+<h2 id="riga-di-comando-e-ambiente">Riga di comando e ambiente</h2>
+<p>Gli argomenti e l’ambiente arrivano in due contenitori gia’
+pronti:</p>
+<ul>
+<li><code>@*ARGS</code> — la lista degli argomenti da riga di comando
+(gli stessi che riceve una subroutine <code>MAIN</code>)</li>
+<li><code>%*ENV</code> — le variabili d’ambiente, come hash</li>
+</ul>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@*ARGS</span>.<span class="nb">elems</span>; <span class="c1"># how many arguments were passed</span>
+<span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;HOME&gt;</span>;  <span class="c1"># the value of the HOME environment variable</span></pre></div>
+
+<p>Queste variabili predefinite ti evitano di configurare manualmente le
+stesse informazioni. E poiche’ sono dinamiche, cercate attraverso lo
+stack delle chiamate, qualsiasi variabile predefinita <code>$*</code>
+puo’ essere sovrascritta per uno scope esattamente come una variabile
+<code>$*</code> creata da te.</p>
+<p>Oltre a queste variabili dinamiche, Raku ha anche le variabili
+predefinite di compilazione con il twigil <code>?</code> —
+<code>$?FILE</code> e <code>$?LINE</code> — che hai gia’ incontrato
+nella pagina sui <a
+href="/it/advanced/special-variables/twigils">twigil</a>.</p>
+<section id="pratica" class="practice" data-markdown="1">
+<h2>Pratica</h2>
+<p>Risolvi 1 quiz sul contenuto di questo argomento.</p>
+<ul>
+<li><a href="/it/advanced/special-variables/built-in/quiz">Quiz —
+Variabili speciali</a></li>
+</ul>
+</section>
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+<p>← <a
+href="/it/advanced/special-variables/dynamic-variables/quiz">Quiz —
+Variabili dinamiche</a>   |   <a
+href="/it/advanced/special-variables/built-in/quiz">Quiz — Variabili
+speciali</a> →</p>
+<p><br /> 💪 Oppure vai direttamente <a
+href="/it/advanced/special-variables/exercises">agli esercizi di questa
+sezione</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

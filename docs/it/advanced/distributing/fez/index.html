@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Pubblicare con fez — Corso di Raku</title>
+    <meta property="og:title" content="Pubblicare con fez — Corso di Raku" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=24">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/it/">Corso di Raku</a> / <a
+href="/it/advanced">Avanzato</a> / <a
+href="/it/advanced/modules">Moduli</a> / <a
+href="/it/advanced/distributing">Distribuzione di moduli</a></p>
+<h1 id="pubblicare-con-fez">Pubblicare con fez</h1>
+<p>L’argomento precedente ha introdotto <code>fez</code> come mezzo per
+caricare una distribuzione nell’ecosistema Raku. Non sei obbligato a
+usare <code>fez</code> — non è l’unico modo per pubblicare — ma è la
+scelta più comune, e fa molto di più che caricare: può anche configurare
+una nuova distribuzione e gestire il tuo account autore. Installalo con
+<code>zef</code>:</p>
+<div class="highlight"><pre>zef install fez</pre></div>
+<h2 id="creare-una-distribuzione">Creare una distribuzione</h2>
+<p>Invece di assemblare manualmente un <code>META6.json</code> e le
+directory <code>lib/</code> e <code>t/</code>, puoi lasciare che
+<code>fez</code> li generi automaticamente:</p>
+<div class="highlight"><pre>fez init My::Greeting</pre></div>
+<p><code>fez init</code> inizializza una nuova distribuzione su cui
+lavorare — una directory di progetto con un <code>META6.json</code> già
+pronto e la struttura standard già predisposta — così puoi passare
+direttamente a scrivere codice sotto <code>lib/</code> e test sotto
+<code>t/</code> invece di preparare il file dei metadati a mano.</p>
+<h2 id="registrazione-e-accesso">Registrazione e accesso</h2>
+<p>Per pubblicare è necessario un account nell’ecosistema. Lo crei una
+sola volta con <code>fez register</code> (che chiede nome utente, email
+e password) e accedi con <code>fez login</code>, che memorizza la tua
+chiave in modo che i comandi successivi siano autenticati:</p>
+<div class="highlight"><pre>fez register
+fez login</pre></div>
+<p>Il tuo nome utente è importante: il <code>META6.json</code> di una
+distribuzione deve contenere un campo <code>auth</code> impostato su
+<code>zef:&lt;nomeutente&gt;</code>, che è il modo in cui l’ecosistema
+sa che il caricamento è davvero tuo.</p>
+<h2 id="caricamento">Caricamento</h2>
+<p>Con l’account attivo e la distribuzione pronta,
+<code>fez upload</code> confeziona la directory corrente e la invia:</p>
+<div class="highlight"><pre>fez upload</pre></div>
+<p>Dopodiché, chiunque può installarla per nome con
+<code>zef install My::Greeting</code>. Ogni versione può essere caricata
+una sola volta, quindi ricordati di incrementare la <code>version</code>
+nel <code>META6.json</code> prima di pubblicare un aggiornamento.</p>
+<h2 id="altri-comandi-utili">Altri comandi utili</h2>
+<p>Ecco alcuni altri comandi <code>fez</code> che ti torneranno
+utili:</p>
+<ul>
+<li><code>fez review</code> — controlla una distribuzione per eventuali
+problemi prima del caricamento;</li>
+<li><code>fez list</code> — mostra le distribuzioni che hai già
+pubblicato;</li>
+<li><code>fez refresh</code> — ricostruisce il <code>META6.json</code> a
+partire dai file attualmente presenti su disco.</li>
+</ul>
+<blockquote>
+<p>Tutti questi comandi richiedono <code>fez</code> installato e
+l’accesso alla rete, e tutto ciò che va oltre <code>init</code> richiede
+un account nell’ecosistema.</p>
+</blockquote>
+<h2 id="navigazione-del-corso">Navigazione del corso</h2>
+<p>← <a href="/it/advanced/distributing/zef-ecosystem">zef e
+l’ecosistema</a>   |   <a
+href="/it/advanced/distributing/exercises/a-meta6-file">Un file
+META6</a> →</p>
+<p><br /> 💪 Oppure vai direttamente <a
+href="/it/advanced/distributing/exercises">agli esercizi di questa
+sezione</a>.</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<p style="margin:.35em 0;"><a href="/it/">Il corso completo del linguaggio di programmazione Raku</a></p>
+<p style="margin:.35em 0;"><a href="/it/about-this-course">Informazioni sul corso</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Libero e open source · Sostenuto da <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Scritto da <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>
