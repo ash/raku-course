@@ -119,24 +119,21 @@ corpo di un token puoi incorporare un <em>blocco di codice</em> — un
 il riconoscimento lo raggiunge. Dentro quel blocco, la funzione
 <code>make</code> conserva un valore sulla corrispondenza corrente:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">OneNum</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
-    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-}
-</pre></div>
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> } }
+    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+}</pre></div>
 
 <p>Quando <code>TOP</code> corrisponde, il blocco interno
 <code>{ make $&lt;number&gt;.Int }</code> gira — le graffe esterne sono
 solo il corpo del token — e conserva l’intero sulla corrispondenza. Lo
 rileggi dopo con <code>made</code> (o con il suo alias
 <code>.ast</code>):</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Poiché abbiamo conservato <code>$&lt;number&gt;.Int</code>, il valore
 restituito da <code>made</code> è un vero <code>Int</code> — il numero
 in sé, non l’oggetto match:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span></pre></div>
 
 <p>Nota che questo particolare <code>+ 1</code> darebbe <code>43</code>
 anche senza il <code>.Int</code>, dato che una corrispondenza si
@@ -150,13 +147,12 @@ stringa, un array, un oggetto. Un token può anche combinare i valori
 prodotti dai suoi sottotoken. Per esempio, sommando due numeri
 catturati:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>).<span class="k">made</span>; <span class="c1"># 5</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
 
 <p><code>make</code> e <code>made</code> sono il ponte fra «ha
 corrisposto» ed «ecco il significato». Mettere i blocchi in linea

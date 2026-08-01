@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,18 +114,16 @@
 подписа на функцията. Това позволява създаването на функции, които
 споделят името, но имат различни типове входни данни. Използвайте
 деклараторът <code>multi</code> за всяка от вариантите на функцията.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(Не е проблем да пропуснете <code>sub</code> след
 <code>multi</code>.)</p>
 <p>Ако имате два варианта на една и съща функция, компилаторът извършва
 многократно разпределение в зависимост от това какви аргументи вижда в
 извикването на функцията. Сравнете следните две извиквания:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>Първото извикване задейства функцията с параметри от тип integer,
 докато второто извикване изпълнява втория вариант на функцията, който
@@ -134,16 +132,14 @@
 <p>Интересен случай за многофункции е да имате варианти, които имат
 литерални стойности като параметри. Разгледайте следните два
 варианта:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Това е отговорът&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x не е отговорът&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Това е отговорът'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x не е отговорът&quot;</span>}</pre></div>
 
 <p>Първият вариант се изпълнява само когато извикате функцията с точната
 стойност 42. В други случаи се използва вторият вариант. Редът, в който
 тези функции са дефинирани, няма значение.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 не е отговорът</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Това е отговорът</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 не е отговорът</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Това е отговорът</span></pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -185,7 +181,7 @@ href="/bg/essentials/more-on-functions/exercises/factorial-with-multi-functions"
 <span class="lang-current">Български</span>
 <a href="/ru/essentials/more-on-functions/multi-functions">Русский</a>
 <a href="/uk/essentials/more-on-functions/multi-functions">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

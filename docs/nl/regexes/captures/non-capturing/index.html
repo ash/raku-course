@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,33 +120,29 @@ capturenummer aan te besteden. Gebruik daarvoor vierkante haken
 <p>Groeperen doet ertoe zodra je er een kwantor aan hangt. Een kwantor
 bindt alleen aan het atoom er direct voor, dus het onderstaande patroon
 herhaalt slechts de laatste letter:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abccc&#39;</span> ~~<span class="sr"> / abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Alleen de <code>c</code> werd drie keer herhaald. Wikkel het hele
 stuk in <code>[ ]</code> om het geheel te herhalen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abcabcabc&#39;</span> ~~<span class="sr"> / [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Nu is <code>[ abc ]</code> één eenheid, en <code>** 3</code> hoort
 bij de groep.</p>
 <p>Omdat <code>[ ]</code> geen captureplek inneemt, blijven de nummers
 gereserveerd voor de delen waar het je werkelijk om gaat. Vergelijk een
 gewone match van sleutel en waarde:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;foo=42&#39;</span> ~~<span class="sr"> / (\w+) &#39;=&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Stel dat de sleutel voorafgegaan kan worden door een woord dat je
 wilt overslaan. Groepeer dat voorvoegsel met <code>[ ]</code> zodat het
 de nummering niet verstoort:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;the foo=42&#39;</span> ~~<span class="sr"> / [ \w+ \s ]? (\w+) &#39;=&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>De optionele <code>[ \w+ \s ]?</code> matchte <code>the</code> maar
 eiste geen capture op, dus is <code>$0</code> nog steeds de sleutel en
@@ -183,7 +179,7 @@ de oefeningen in deze sectie</a>.</p>
 <a href="/bg/regexes/captures/non-capturing">Български</a>
 <a href="/ru/regexes/captures/non-capturing">Русский</a>
 <a href="/uk/regexes/captures/non-capturing">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

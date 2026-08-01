@@ -118,14 +118,13 @@ ist, in dem sie deklariert wurde, wird eine dynamische Variable
 gefunden, indem <strong>nach außen durch den Aufrufstapel</strong>
 geschaut wird — durch denjenigen, der den aktuellen Code aufgerufen hat,
 unabhängig davon, wo dieser Code definiert ist.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*greeting</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*greeting</span> = <span class="s">'Hello'</span>;
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="vg">$*greeting</span>;
+    <span class="nb">say</span> <span class="nv">$*greeting</span>;
 }
 
-<span class="n">greet</span>(); <span class="c1"># Hello</span>
-</pre></div>
+<span class="n">greet</span>(); <span class="c1"># Hello</span></pre></div>
 
 <p>Die Subroutine <code>greet</code> deklariert <code>$*greeting</code>
 nicht und empfängt es nicht als Argument, kann es aber trotzdem sehen,
@@ -137,19 +136,18 @@ dynamischer Variablen zeigt sich im nächsten Beispiel.</p>
 <p>Da die Auflösung dem Aufrufstapel folgt,
 <strong>überschreibt</strong> eine nähere Deklaration eine weiter
 entfernte für die Dauer ihres Blocks:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;outer&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'outer'</span>;
 
 <span class="k">sub</span> <span class="n">show</span> {
-    <span class="nb">say</span> <span class="vg">$*level</span>;
+    <span class="nb">say</span> <span class="nv">$*level</span>;
 }
 
 <span class="n">show</span>(); <span class="c1"># outer</span>
 
 {
-    <span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;inner&#39;</span>;
+    <span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'inner'</span>;
     <span class="n">show</span>(); <span class="c1"># inner</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Dieselbe <code>show</code>-Funktion gibt beim ersten Mal
 <code>outer</code> aus und <code>inner</code>, wenn sie aus dem Block

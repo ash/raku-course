@@ -121,33 +121,29 @@ gruppieren.</p>
 <p>Das Gruppieren wird wichtig, sobald Sie einen Quantor anhängen. Ein
 Quantor bindet nur an das Atom unmittelbar davor, das folgende Muster
 wiederholt also nur den letzten Buchstaben:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abccc&#39;</span> ~~<span class="sr"> / abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Nur das <code>c</code> wurde dreimal wiederholt. Hüllen Sie das ganze
 Stück in <code>[ ]</code>, um alles zu wiederholen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abcabcabc&#39;</span> ~~<span class="sr"> / [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Nun ist <code>[ abc ]</code> eine Einheit, und <code>** 3</code>
 bezieht sich auf die Gruppe.</p>
 <p>Weil <code>[ ]</code> keinen Capture-Platz belegt, bleiben die
 Nummern für die Teile reserviert, auf die es Ihnen wirklich ankommt.
 Vergleichen Sie einen schlichten Treffer aus Schlüssel und Wert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;foo=42&#39;</span> ~~<span class="sr"> / (\w+) &#39;=&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Nehmen wir an, dem Schlüssel darf ein Wort vorangehen, das Sie
 überspringen möchten. Gruppieren Sie dieses Präfix mit <code>[ ]</code>,
 damit es die Nummerierung nicht stört:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;the foo=42&#39;</span> ~~<span class="sr"> / [ \w+ \s ]? (\w+) &#39;=&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Das optionale <code>[ \w+ \s ]?</code> hat <code>the</code>
 getroffen, aber kein Capture beansprucht, <code>$0</code> ist also

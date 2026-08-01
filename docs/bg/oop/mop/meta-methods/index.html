@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,21 +117,19 @@ href="/bg/oop/mop">Протоколът на метаобектите 🆕</a></
 <strong>метаобекта</strong> на обекта — той пита за типа, вместо да
 действа като типа.</p>
 <p>Запознахте се с <code>.^name</code>, който връща името на типа:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="nb">name</span>; <span class="c1"># Int</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="n">name</span>; <span class="c1"># Int</span></pre></div>
 
 <p>Други метаметоди разглеждат устройството на типа.
 <code>.^attributes</code> изброява атрибутите му, а
 <code>.^find_method</code> ви казва дали даден метод съществува:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Animal</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
-    <span class="k">method</span> <span class="n">speak</span> { <span class="s">&#39;generic&#39;</span> }
+    <span class="k">method</span> <span class="n">speak</span> { <span class="s">'generic'</span> }
 }
 
-<span class="nb">say</span> <span class="n">Animal</span>.^<span class="nb">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;speak&#39;</span>);   <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;fly&#39;</span>);     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Animal</span>.^<span class="n">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'speak'</span>);   <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'fly'</span>);     <span class="c1"># False</span></pre></div>
 
 <p><code>.^mro</code> връща <em>реда на разрешаване на методите</em> —
 веригата от типове, която Raku претърсва по ред, когато търси метод.
@@ -139,8 +137,7 @@ href="/bg/oop/mop">Протоколът на метаобектите 🆕</a></
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">A</span> {}
 <span class="k">class</span> <span class="n">B</span> <span class="k">is</span> <span class="n">A</span> {}
 
-<span class="nb">say</span> <span class="n">B</span>.^<span class="nb">mro</span>.<span class="n">map</span>(*.^<span class="nb">name</span>); <span class="c1"># (B A Any Mu)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">B</span>.^<span class="n">mro</span>.<span class="nb">map</span>(*.^<span class="n">name</span>); <span class="c1"># (B A Any Mu)</span></pre></div>
 
 <p><code>B</code> наследява <code>A</code>, а всеки тип в крайна сметка
 — <code>Any</code> и <code>Mu</code>, така че извикването на метод върху
@@ -178,7 +175,7 @@ href="/bg/oop/mop/meta-methods/quiz">Тест — Протоколът на
 <span class="lang-current">Български</span>
 <a href="/ru/oop/mop/meta-methods">Русский</a>
 <a href="/uk/oop/mop/meta-methods">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

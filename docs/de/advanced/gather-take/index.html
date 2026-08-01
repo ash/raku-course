@@ -116,13 +116,12 @@ Möglichkeit, eine Liste aufzubauen. Du umschließt Code mit einem
 <code>take</code> aufruft, wird der Wert zur Liste hinzugefügt, die
 <code>gather</code> erzeugt.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@result</span> = <span class="k">gather</span> {
-    <span class="nb">take</span> <span class="mi">1</span>;
-    <span class="nb">take</span> <span class="mi">2</span>;
-    <span class="nb">take</span> <span class="mi">3</span>;
+    <span class="k">take</span> <span class="mi">1</span>;
+    <span class="k">take</span> <span class="mi">2</span>;
+    <span class="k">take</span> <span class="mi">3</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span></pre></div>
 
 <p>Die drei <code>take</code>-Aufrufe liefern drei Werte, und
 <code>gather</code> sammelt sie in der Liste, die in
@@ -131,12 +130,11 @@ Möglichkeit, eine Liste aufzubauen. Du umschließt Code mit einem
 <code>take</code>-Aufrufe über gewöhnlichen Kontrollfluss verteilt sind,
 wie zum Beispiel eine Schleife mit einer Bedingung. Die Liste enthält
 dann nur die Werte, die du bewusst genommen hast:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">10</span> {
-    <span class="nb">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.10</span> {
+    <span class="k">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span></pre></div>
 
 <p>Hier läuft die Schleife über die Zahlen von 1 bis 10, aber nur die
 geraden werden genommen, sodass <code>@evens</code> am Ende

@@ -123,13 +123,12 @@ excepción.</li>
 Leer <code>.status</code> no espera: te dice dónde está la promesa
 <em>ahora mismo</em>, así que puedes comprobarlo antes de que la promesa
 se resuelva y de nuevo después:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — read at once, while the block is still running</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — read at once, while the block is still running</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># now wait for it to finish</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
 
 <p><code>.result</code> da el valor cumplido. A diferencia de
 <code>.status</code>, sí <em>espera</em> hasta que la promesa esté
@@ -138,11 +137,10 @@ exactamente igual que <code>await</code>. Y si la promesa quedó rota,
 <code>.result</code> relanza la excepción.</p>
 <p>Cuando quieres examinar un fallo sin relanzarlo, usa
 <code>.cause</code>, el objeto de excepción de una promesa rota:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># let it settle (and swallow the re-thrown error)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
 
 <p>Así que <code>.status</code> y <code>.cause</code> inspeccionan una
 promesa sin perturbarla, mientras que <code>await</code> y

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,18 +115,16 @@ href="/uk/paradigms/iterators">Ітератори</a></p>
 може вручити вам <em>ітератор</em> через метод <code>.iterator</code>.
 Ітератор має один суттєвий метод, <code>pull-one</code>, що щоразу
 повертає наступне значення:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="nb">iterator</span>;
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 10</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 30</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="n">iterator</span>;
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 10</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 20</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Коли значення вичерпуються, <code>pull-one</code> повертає замість
 справжнього елемента особливий вартовий об’єкт,
 <code>IterationEnd</code>. Запит іще одного значення в того самого
 <code>$it</code> це показує:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>Оператор <code>=:=</code> перевіряє, чи це <strong>той самий
 об’єкт</strong>, і саме так розпізнають вартового. Ця деталь важлива
@@ -136,13 +134,12 @@ href="/uk/paradigms/iterators">Ітератори</a></p>
 дивитиметься на контейнер, а не на <code>IterationEnd</code>. Ліки —
 <strong>зв’язати</strong> через <code>:=</code>, щоб змінна просто
 <em>була</em> тим, що повернув <code>pull-one</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="nb">iterator</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="n">iterator</span>;
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="nb">pull-one</span>;      <span class="c1"># зв&#39;язування, а не присвоєння</span>
-    <span class="nb">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
+    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="n">pull-one</span>;      <span class="c1"># зв'язування, а не присвоєння</span>
+    <span class="k">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
     <span class="nb">say</span> <span class="nv">$v</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Цикл друкує <code>a</code>, <code>b</code>, <code>c</code> і
 зупиняється. Саме це під капотом робить за вас цикл <code>for</code>:
@@ -183,7 +180,7 @@ href="/uk/paradigms/iterators/exercises/sum-with-pull-one">до вправи
 <a href="/bg/paradigms/iterators/iterator-protocol">Български</a>
 <a href="/ru/paradigms/iterators/iterator-protocol">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

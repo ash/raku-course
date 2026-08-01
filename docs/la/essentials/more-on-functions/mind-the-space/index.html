@@ -119,34 +119,29 @@ argumentis eius. Sed utere spatio post <code>for</code> et
 <code>if</code>.</p>
 <h2 id="longa-fabula">Longa fabula</h2>
 <p>Simplicem functionem accipiamus:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Primum omnium, nota absentiam spatii inter nomen functionis et
 parenthesin apertam quae parametros continet. Aliquae styli codicis in
 aliis linguis spatium ibi requirere possunt. Raku hoc admittit, sed non
 est praxis sequenda:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>In parte vocandi, absentia spatii est momenti. Si functionem vocas et
 parenthesin omittis, tunc spatium post nomen functionis inevitabile
 est:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>Sed si parenthesin addis, non potes habere spatium ante eas. Haec est
 vocatio correcta:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Et haec vocatio est falsa:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Talis codex exceptionem causat:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -156,12 +151,11 @@ vocatio correcta:</p>
 tradendi unum argumentum <code>(5, 6)</code> functioni. Facile potes
 typum huius argumenti explorare si functionem rescribas ut solum unum
 argumentum accipiat:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>Itaque, vocatio <code>f (5, 6)</code> significat nos tradere <a
 href="/la/essentials/positionals/lists">indicem</a> functioni. Index ut
@@ -171,10 +165,9 @@ est</h2>
 <p>In aliquibus casibus, character spatii necessarius est. Id fit cum
 uteris parenthesin cum uno ex verbis clavibus, ut <code>if</code> vel
 <code>for</code> vel <code>loop</code>. Sequens codex est falsus:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>Nuntius erroris explicat quid sit falsum:</p>
 <pre><code>===SORRY!===
@@ -189,8 +182,7 @@ at /Users/ash/raku-course/t.raku:1
 problema nullas occasiones habet apparendi si non uteris eis. Sed in
 aliquibus casibus, ut, exempli gratia, cum <code>loop</code>, necesse
 est eas habere, et spatium fit mandatorius:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>In hoc codice, idem fit: <code>loop(...)</code> a compilatore
 intellegitur ut vocatio functionis. Addere spatium ad solvendum

@@ -116,8 +116,7 @@ benannten Operator reduzieren möchten, nehmen Sie die Routine
 <code>reduce</code>. Sie nimmt einen Block mit zwei Argumenten auf und
 wendet ihn über die Liste an, wobei sie das laufende Ergebnis
 mitführt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span></pre></div>
 
 <p>Der Block <code>* + *</code> hat zwei <a
 href="/de/advanced/whatever">Whatever</a>-Sterne: Der erste ist das
@@ -130,13 +129,12 @@ Namen und geben Sie jeden Schritt aus. Ein Pointy Block liefert seinen
 letzten Ausdruck zurück, <code>$x + $y</code> ist also zugleich das,
 worüber der Block berichtet, und der Wert, den er <code>reduce</code>
 zurückgibt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(
     -&gt; <span class="nv">$x</span>, <span class="nv">$y</span> {
         <span class="nb">say</span> <span class="s">&quot;$x + $y&quot;</span>;
         <span class="nv">$x</span> + <span class="nv">$y</span>;
     }
-);
-</pre></div>
+);</pre></div>
 
 <p>Das gibt aus:</p>
 <div class="highlight"><pre>1 + 2
@@ -156,8 +154,7 @@ wird zum <code>$x</code> des folgenden Aufrufs, und die Endsumme,
 <code>say</code> in der letzten Zeile ausgibt.</p>
 <p>Da der Block alles sein kann, ist <code>reduce</code> allgemeiner.
 Bauen Sie etwa einen Wert Schritt für Schritt auf:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span></pre></div>
 
 <p>Jeder Schritt multipliziert den Akkumulator mit zehn und addiert die
 nächste Ziffer, wodurch aus den einzelnen Ziffern
@@ -166,8 +163,7 @@ nächste Ziffer, wodurch aus den einzelnen Ziffern
 <code>reduce</code> gut in der Form mit <a
 href="/de/advanced/colon-calls">Doppelpunkt</a>, die die Klammern um den
 Block weglässt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">reduce:</span> * + *; <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>: * + *; <span class="c1"># 15</span></pre></div>
 
 <p>Kurz: <code>[op]</code> ist die schnelle Form für einen benannten
 Operator, und <code>reduce</code> die bewegliche Form für einen

@@ -115,9 +115,8 @@ web</a> / <a href="/es/paradigms/reactive">Programación reactiva</a> /
 una lista. Métodos como <code>map</code> y <code>grep</code> producen un
 supply <strong>nuevo</strong> cuyos valores son los transformados:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="n">map</span>(* * <span class="mi">10</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="nb">map</span>(* * <span class="mi">10</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span></pre></div>
 
 <p>El <code>map(* * 10)</code> construye un supply nuevo que emite diez
 veces cada valor original, y el enganche los recoge en
@@ -125,16 +124,14 @@ veces cada valor original, y el enganche los recoge en
 <p><code>grep</code> filtra un supply, dejando pasar solo los valores
 para los que su bloque es verdadero:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span></pre></div>
 
 <p>Como cada transformación devuelve otro supply, puedes encadenarlas,
 construyendo una pequeña tubería que reacciona al flujo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span></pre></div>
 
 <p>Este es el mismo vocabulario de map y grep que conoces de las listas,
 aplicado a valores que llegan a lo largo del tiempo. El supply hace el

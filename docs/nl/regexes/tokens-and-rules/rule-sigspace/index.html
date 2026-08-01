@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -124,29 +124,26 @@ patroon <strong>genegeerd</strong>, dus vraagt
 ertussen. Omdat <code>\w+</code> bij de spatie stopt, matcht een invoer
 met spatie niet:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithToken</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
-    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
+    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">WithToken</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">WithToken</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Je <em>kunt</em> de spatie in een <code>token</code> accepteren — je
 moet hem alleen zelf matchen, bijvoorbeeld met <code>\s+</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;first&gt; \s+ &lt;second&gt; </span>}      <span class="c1"># now &#39;foo bar&#39; parses</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;first&gt;</span> \<span class="n">s</span>+ <span class="s">&lt;second&gt;</span> }      <span class="c1"># now 'foo bar' parses</span></pre></div>
 
 <p>Een <code>rule</code> voegt dat witruimtematchen voor je in, dus is
 eenvoudig een spatie tussen de delen schrijven al genoeg:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithRule</span> {
-    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
-    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
+    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
+    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">WithRule</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">WithRule</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># True</span></pre></div>
 
 <p>Een gebruikelijk patroon is <code>rule</code> gebruiken voor de
 structuur op hoger niveau — waar de delen door spaties gescheiden zijn —
@@ -186,7 +183,7 @@ sectie</a>.</p>
 <a href="/bg/regexes/tokens-and-rules/rule-sigspace">Български</a>
 <a href="/ru/regexes/tokens-and-rules/rule-sigspace">Русский</a>
 <a href="/uk/regexes/tokens-and-rules/rule-sigspace">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,9 @@ href="/ru/paradigms/promises">Промисы</a></p>
 <p>Промисы становятся ещё мощнее, когда их объединяют. Чаще всего нужно
 дождаться <strong>нескольких</strong> сразу. <code>await</code>
 принимает список промисов и возвращает их результаты по порядку:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Три задания выполняются одновременно; <code>await @jobs</code>
 дожидается их всех и отдаёт <code>(1, 2, 3)</code>. Поскольку результаты
@@ -127,10 +126,9 @@ href="/ru/paradigms/promises">Промисы</a></p>
 <p>Работу можно и надстроить над промисом методом <code>.then</code>,
 который выполняет последующий блок, когда промис завершится. Внутри него
 <code>.result</code> — это значение исходного промиса:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> — новый промис, удваивающий результат
 <code>$p</code>. Ожидание его даёт <code>20</code>.</p>
@@ -138,8 +136,7 @@ href="/ru/paradigms/promises">Промисы</a></p>
 промис в переменной темы <code>$_</code> — вот почему работает голое
 <code>.result</code>: на самом деле это <code>$_.result</code>. Если вам
 хочется дать этому промису имя, возьмите стрелочный блок:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Ведёт себя это в точности так же: <code>$prev</code> — исходный
 промис <code>$p</code>, а <code>$prev.result</code> — его значение.</p>
@@ -180,7 +177,7 @@ href="/ru/paradigms/promises/exercises">к упражнениям этого
 <a href="/bg/paradigms/promises/then-and-combinators">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

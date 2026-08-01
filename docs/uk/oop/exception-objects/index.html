@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,16 +116,15 @@ href="/uk/oop/exceptions">Винятки</a></p>
 <p>Усередині <code>CATCH</code> цей об’єкт можна дослідити. Його тип дає
 <code>.^name</code>, а текст — <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Знання типу дозволяє по-різному поводитися з різними помилками.
 Вбудовані винятки Raku мають власні типи, імена яких починаються з
@@ -133,18 +132,17 @@ href="/uk/oop/exceptions">Винятки</a></p>
 так само, як ви зіставлялися зі значеннями в блоці
 <code>given</code>/<code>when</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
-            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
+        <span class="k">when</span> <span class="n">X::AdHoc</span> {
+            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
+            <span class="nb">say</span> <span class="s">'some other error'</span>;
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Це виводить <code>an ad-hoc error: something failed</code>, бо
 виняток збігся з типом <code>X::AdHoc</code>. Зіставлення за типом є
@@ -193,7 +191,7 @@ href="/uk/oop/exception-objects/exercises/name-the-error">Назвіть
 <a href="/bg/oop/exception-objects">Български</a>
 <a href="/ru/oop/exception-objects">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

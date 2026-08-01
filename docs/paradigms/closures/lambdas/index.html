@@ -116,23 +116,20 @@ two ways to write one. The first is the <strong><a
 href="/advanced/anonymous-subroutines">pointy block</a></strong>, which
 lists its parameters after the arrow <code>-&gt;</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = -&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="nv">$x</span> };
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>The second is the <strong><a
 href="/advanced/whatever">Whatever</a></strong> form, where a
 <code>*</code> stands in for the argument and the expression around it
 becomes a one-argument function:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = * ** <span class="mi">2</span>;
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>Both create the same kind of thing: a piece of code you can store,
 pass, and call. Lambdas shine as arguments to higher-order functions,
 where naming them would only get in the way:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>The pointy form is clearer when the body is longer or takes several
 parameters; the Whatever form is wonderfully short for simple

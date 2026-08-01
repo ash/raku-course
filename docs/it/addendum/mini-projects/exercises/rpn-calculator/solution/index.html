@@ -117,27 +117,26 @@ id="soluzione-una-calcolatrice-in-notazione-polacca-inversa">Soluzione:
 Una calcolatrice in notazione polacca inversa</h1>
 <p>Ecco una possibile soluzione del compito.</p>
 <h2 id="codice">Codice</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$expression</span> = <span class="s">&#39;3 4 + 5 *&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$expression</span> = <span class="s">'3 4 + 5 *'</span>;
 <span class="k">my</span> <span class="nv">@stack</span>;
 
 <span class="k">for</span> <span class="nv">$expression</span>.<span class="nb">words</span> -&gt; <span class="nv">$token</span> {
-    <span class="k">if</span> <span class="nv">$token</span> ~~<span class="sr"> / ^ \d+ $ /</span> {
+    <span class="k">if</span> <span class="nv">$token</span> ~~ <span class="sr">/ ^ \d+ $ /</span> {
         <span class="nv">@stack</span>.<span class="nb">push</span>(<span class="nv">$token</span>.<span class="nb">Int</span>);
     }
     <span class="k">else</span> {
         <span class="k">my</span> <span class="nv">$b</span> = <span class="nv">@stack</span>.<span class="nb">pop</span>;
         <span class="k">my</span> <span class="nv">$a</span> = <span class="nv">@stack</span>.<span class="nb">pop</span>;
-        <span class="nv">@stack</span>.<span class="nb">push</span>( <span class="nb">do</span> <span class="k">given</span> <span class="nv">$token</span> {
-            <span class="k">when</span> <span class="s">&#39;+&#39;</span> { <span class="nv">$a</span> + <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">&#39;-&#39;</span> { <span class="nv">$a</span> - <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">&#39;*&#39;</span> { <span class="nv">$a</span> * <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">&#39;/&#39;</span> { <span class="nv">$a</span> / <span class="nv">$b</span> }
+        <span class="nv">@stack</span>.<span class="nb">push</span>( <span class="k">do</span> <span class="k">given</span> <span class="nv">$token</span> {
+            <span class="k">when</span> <span class="s">'+'</span> { <span class="nv">$a</span> + <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">'-'</span> { <span class="nv">$a</span> - <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">'*'</span> { <span class="nv">$a</span> * <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">'/'</span> { <span class="nv">$a</span> / <span class="nv">$b</span> }
         });
     }
 }
 
-<span class="nb">say</span> <span class="nv">@stack</span>[<span class="mi">0</span>];
-</pre></div>
+<span class="nb">say</span> <span class="nv">@stack</span>[<span class="mi">0</span>];</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/rpn-calculator.raku">rpn-calculator.raku</a>.</p>

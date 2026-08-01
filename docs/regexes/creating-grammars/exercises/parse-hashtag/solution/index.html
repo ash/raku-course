@@ -116,12 +116,11 @@ hashtag</a></p>
 <p>Here is a possible solution to the task.</p>
 <h2 id="code">Code</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &#39;#&#39; &lt;tag&gt; </span>}
-    <span class="k">token</span><span class="n"> tag</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">'#'</span> <span class="s">&lt;tag&gt;</span> }
+    <span class="k">token</span> <span class="n">tag</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span>;</pre></div>
 
 <p>🦋 You can find the source code in the file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/regexes/creating-grammars/parse-hashtag.raku">parse-hashtag.raku</a>.</p>
@@ -139,13 +138,12 @@ tag is then available as the <code>&lt;tag&gt;</code> capture.</p></li>
 <code>#</code> together with the word — and reach the word through a
 nested <code>word</code> rule:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span><span class="n"> TOP</span>  {<span class="sr"> &lt;tag&gt; </span>}
-    <span class="k">token</span><span class="n"> tag</span>  {<span class="sr"> &#39;#&#39; &lt;word&gt; </span>}
-    <span class="k">token</span><span class="n"> word</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>  { <span class="s">&lt;tag&gt;</span> }
+    <span class="k">token</span> <span class="n">tag</span>  { <span class="s">'#'</span> <span class="s">&lt;word&gt;</span> }
+    <span class="k">token</span> <span class="n">word</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;&lt;word&gt;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span><span class="s">&lt;word&gt;</span>;</pre></div>
 
 <p>This prints the same <code>｢raku｣</code>. Now
 <code>&lt;tag&gt;</code> captures the entire <code>#raku</code>, while

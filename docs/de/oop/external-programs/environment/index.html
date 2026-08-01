@@ -115,26 +115,23 @@ ausführen 🆕</a></p>
 gestartet — benannten Werten wie <code>HOME</code>, <code>PATH</code>
 oder <code>USER</code>, die das Betriebssystem bereitstellt. In Raku
 stehen sie in der dynamischen Hash <code>%*ENV</code> zur Verfügung:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">%*ENV&lt;HOME&gt;</span>; <span class="c1"># the home directory, e.g. /home/anna</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;HOME&gt;</span>; <span class="c1"># the home directory, e.g. /home/anna</span></pre></div>
 
 <p>Sie lesen eine Umgebungsvariable, indem Sie <code>%*ENV</code> mit
 ihrem Namen indizieren. Da es eine gewöhnliche Hash ist, können Sie auch
 prüfen, ob eine Variable gesetzt ist, oder sie für Programme ändern, die
 Sie starten:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="vg">%*ENV&lt;GREETING&gt;</span>; <span class="c1"># Hello</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span>; <span class="c1"># Hello</span></pre></div>
 
 <p>Einen Schlüssel in <code>%*ENV</code> zu setzen fügt ihn der Umgebung
 hinzu, die jedes danach mit <code>run</code> oder <code>shell</code>
 gestartete Programm erbt — so reichen Sie Konfiguration an ein
 Kindprogramm weiter:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
 
-<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo $GREETING&#39;</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># Hello</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo $GREETING'</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># Hello</span></pre></div>
 
 <p>Die Variable wird in der Umgebung Ihres Programms gesetzt,
 <em>bevor</em> das Kind gestartet wird, die von <code>run</code>

@@ -116,17 +116,15 @@ nome</h1>
 Puoi anche dare a uno schema un <strong>nome</strong> e riusarlo,
 proprio come una subroutine. Ne dichiari uno con <code>my regex</code>
 (o con <code>my token</code>, che incontrerai per bene fra poco):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
 
 <p>Per usare un regex con nome dentro un altro schema, scrivi il suo
 nome fra parentesi angolari, <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;42 cats&#39;</span> ~~<span class="sr"> / &lt;number&gt; /</span> {
+<span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Chiamare <code>&lt;number&gt;</code> riconosce lo schema
 <strong>e</strong> lo cattura sotto quel nome, quindi il testo
@@ -135,13 +133,12 @@ cattura con nome che ti arriva gratis.</p>
 <p>Un regex con nome si può usare più volte in uno stesso schema. Quando
 compare più di una volta, le catture diventano un elenco, raggiungibile
 per indice:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> num</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;3-4&#39;</span> ~~<span class="sr"> / &lt;num&gt; &#39;-&#39; &lt;num&gt; /</span> {
+<span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">1</span>]; <span class="c1"># ｢4｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>I regex con nome tengono leggibili gli schemi e ti permettono di
 costruirne di più grandi a partire da parti più piccole e ben nominate.

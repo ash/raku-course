@@ -118,16 +118,14 @@ three statements <code>use</code>, <code>need</code>, and
 <p>You have already met <code>use</code>. It loads the module at compile
 time and imports its exported names, so they can be called directly:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
-<span class="nb">say</span> <span class="n">hello</span>(<span class="s">&#39;Anna&#39;</span>); <span class="c1"># Hello, Anna!</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">hello</span>(<span class="s">'Anna'</span>); <span class="c1"># Hello, Anna!</span></pre></div>
 
 <h2 id="need"><code>need</code></h2>
 <p><code>need</code> also loads the module at compile time, but it does
 <em>not</em> import the exported names. You still reach the module’s
 <code>our</code> variables through the module’s name:</p>
 <div class="highlight raku"><pre><span></span><span class="k">need</span> <span class="n">Greeting</span>;
-<span class="nb">say</span> <span class="nv">$Greeting::version</span>; <span class="c1"># 1.0</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$Greeting::version</span>; <span class="c1"># 1.0</span></pre></div>
 
 <p>After <code>need Greeting</code>, a bare <code>hello(...)</code>
 would not be recognised, because nothing was imported — only the
@@ -141,9 +139,8 @@ is decided by user input.</p>
 <p>Because the loading happens at run time, nothing is imported
 automatically. Listing the symbols you want in angle brackets after the
 name pulls them in, so they can be called directly:</p>
-<div class="highlight raku"><pre><span></span><span class="k">require</span> <span class="n">Greeting</span> <span class="s">&lt;&amp;hello&gt;</span>;
-<span class="nb">say</span> <span class="n">hello</span>(<span class="s">&#39;Anna&#39;</span>); <span class="c1"># Hello, Anna!</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">require</span> <span class="n">Greeting</span> &lt;<span class="nv">&amp;hello</span>&gt;;
+<span class="nb">say</span> <span class="n">hello</span>(<span class="s">'Anna'</span>); <span class="c1"># Hello, Anna!</span></pre></div>
 
 <p>For everyday use, <code>use</code> is what you want;
 <code>need</code> and <code>require</code> are there for the less common

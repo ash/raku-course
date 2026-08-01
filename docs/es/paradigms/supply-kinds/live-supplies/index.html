@@ -116,17 +116,16 @@ demanda</a></p>
 enganches que estén escuchando <strong>en ese momento</strong>. Creas
 uno con un <code>Supplier</code>: el supplier es el extremo emisor, y su
 <code>.Supply</code> es el extremo receptor que otros enganchan.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$supply</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
 <span class="k">my</span> <span class="nv">@got</span>;
-<span class="nv">$supply</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@got</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nv">$supply</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@got</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
 
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="mi">1</span>);
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="mi">2</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="mi">1</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="mi">2</span>);
 
-<span class="nb">say</span> <span class="nv">@got</span>; <span class="c1"># [1 2]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@got</span>; <span class="c1"># [1 2]</span></pre></div>
 
 <p>Aquí <code>.emit</code> empuja un valor al supply en vivo, y todos
 los enganches actuales lo reciben. El enganche estaba puesto antes de

@@ -114,10 +114,9 @@ href="/paradigms/threads">Threads</a></p>
 <p>To wait for a thread to complete, call <code>.finish</code> on it
 (also spelled <code>.join</code>). The main program pauses there until
 the thread is done:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">&#39;in the thread&#39;</span> });
-<span class="nv">$t</span>.<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
+<span class="nv">$t</span>.<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
 
 <p>This prints:</p>
 <div class="highlight"><pre>in the thread
@@ -130,10 +129,9 @@ might even end before the thread had a chance to print.</p>
 have all completed:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
-<span class="nv">$a</span>.<span class="nb">finish</span>;
-<span class="nv">$b</span>.<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
-</pre></div>
+<span class="nv">$a</span>.<span class="n">finish</span>;
+<span class="nv">$b</span>.<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
 
 <p>The two threads run concurrently, and joining both before the final
 <code>say</code> guarantees that <code>both finished</code> is printed
@@ -146,9 +144,8 @@ single expression. Combine them with the <code>all</code> operator
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
-(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
-</pre></div>
+(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
 
 <p>Calling <code>.finish</code> on <code>$a &amp; $b</code> runs it on
 both threads, so the program waits until neither is still running — the

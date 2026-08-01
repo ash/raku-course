@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,15 +118,13 @@ href="/ru/advanced/metaoperators">Метаоператоры</a></p>
 <p>Перекрёстный метаоператор <code>X</code> сочетает
 <strong>каждый</strong> элемент одного списка с <strong>каждым</strong>
 элементом другого — это декартово произведение:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
 
 <p>Как и zip, он может обернуть оператор, чтобы подействовать на каждую
 пару. <code>X~</code> соединяет каждую пару в строку, а <code>X*</code>
 перемножает:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
 
 <p>Если zip проходит по двум спискам в ногу, то перекрёстный оператор
 сочетает их всеми возможными способами.</p>
@@ -137,8 +135,7 @@ ASCII-запись <code>&gt;&gt;…&lt;&lt;</code>). С двумя списка
 работает поэлементно, как zip; а если с одной стороны стоит одно
 значение, оно растягивается на весь список:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
 
 <p>Стрелки не обязаны смотреть в одну сторону, и их направление решает,
 что произойдёт, если длины списков не совпадают: остриё, направленное
@@ -156,13 +153,11 @@ ASCII-запись <code>&gt;&gt;…&lt;&lt;</code>). С двумя списка
 <li><code>&lt;&lt;op&gt;&gt;</code> — <strong>более короткий</strong>
 список повторяется, подгоняясь под более длинный.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 повторяется как 10, 20, 10, 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 повторяется как 10, 20, 10, 20</span></pre></div>
 
 <p>Есть и унарная форма, которая вызывает метод у каждого элемента.
 <code>&gt;&gt;.uc</code> переводит каждую строку в верхний регистр:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
 
 <p>Гипероперации к тому же означают, что работа <em>может</em>
 выполняться параллельно — со связанным методом <code>.hyper</code> вы
@@ -175,9 +170,8 @@ ASCII-запись <code>&gt;&gt;…&lt;&lt;</code>). С двумя списка
 точно так же он работает с другими логическими операторами, например
 <code>eq</code> и <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — не равны как строки</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не делится на 2</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — не равны как строки</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не делится на 2</span></pre></div>
 
 <p>Коротко говоря, <code>$a !op $b</code> — это просто более аккуратная
 запись для <code>!($a op $b)</code>.</p>
@@ -186,8 +180,7 @@ ASCII-запись <code>&gt;&gt;…&lt;&lt;</code>). С двумя списка
 мысль, Raku охотно предлагает несколько — поэтому отрицающий
 <code>!eq</code> соседствует с отдельным оператором <code>ne</code>, и
 означают они ровно одно и то же:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — та же проверка, что и &#39;a&#39; !eq &#39;b&#39;</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — та же проверка, что и 'a' !eq 'b'</span></pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -221,7 +214,7 @@ href="/ru/advanced/metaoperators/exercises">к упражнениям этого
 <a href="/bg/advanced/metaoperators/more">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/advanced/metaoperators/more">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

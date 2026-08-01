@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,13 +114,12 @@
 Замість роздільників навколо тексту ви вказуєте слово-термінатор через
 <code>:to</code>, і рядок триває з наступного рядка до рядка, що містить
 лише це слово:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/;</span>
-<span class="s">Hello,</span>
-<span class="s">World!</span>
-<span class="s">END</span>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/</span>;
+<span class="n">Hello</span>,
+<span class="n">World</span>!
+<span class="k">END</span>
 
-<span class="nb">print</span> <span class="nv">$text</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$text</span>;</pre></div>
 
 <p>Програма виводить:</p>
 <div class="highlight"><pre>Hello,
@@ -132,29 +131,27 @@ World!</pre></div>
 другий і залишило б наприкінці порожній рядок. Оскільки heredoc
 починається з <code>q:to</code>, текст не інтерполюється; щоб
 інтерполювати змінні, використовуйте <code>qq:to</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
 
-<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/;</span>
-<span class="s">Dear $name,</span>
-<span class="s">Welcome!</span>
-<span class="s">EOF</span>
+<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/</span>;
+<span class="n">Dear</span> <span class="nv">$name</span>,
+<span class="n">Welcome</span>!
+<span class="n">EOF</span>
 
-<span class="nb">print</span> <span class="nv">$greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$greeting</span>;</pre></div>
 
 <p>Корисна деталь: <strong>відступ закривального термінатора</strong>
 прибирається з кожного рядка тексту. Це дозволяє зробити heredoc з
 відступом під навколишній код так, щоб цей відступ не потрапив у
 рядок:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greeting</span> {
-    <span class="k">return</span> <span class="s">q:to/END/;</span>
-<span class="s">        Hello,</span>
-<span class="s">        World!</span>
-<span class="s">        END</span>
+    <span class="k">return</span> <span class="s">q:to/END/</span>;
+        <span class="n">Hello</span>,
+        <span class="n">World</span>!
+        <span class="k">END</span>
 }
 
-<span class="nb">print</span> <span class="n">greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="n">greeting</span>;</pre></div>
 
 <p>Це виводить ті самі <code>Hello,</code> та <code>World!</code>, що й
 перший приклад. Тут закривальне <code>END</code> має відступ у вісім
@@ -191,7 +188,7 @@ href="/uk/advanced/quoting/exercises">до вправ цього розділу<
 <a href="/bg/advanced/quoting/heredocs">Български</a>
 <a href="/ru/advanced/quoting/heredocs">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

@@ -120,11 +120,10 @@ fehlschlagen könnte, ohne abzustürzen.</p>
 darin eine Ausnahme geworfen, endet der Block dort, das Programm läuft
 aber weiter:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> {
-    <span class="nb">die</span> <span class="s">&#39;Boom!&#39;</span>;
+    <span class="nb">die</span> <span class="s">'Boom!'</span>;
 };
 
-<span class="nb">say</span> <span class="s">&quot;Still works&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">&quot;Still works&quot;</span>;</pre></div>
 
 <p>Das <code>die</code> wird vom <code>try</code> gefangen, das Programm
 stürzt also nicht ab — es geht direkt zur nächsten Anweisung über und
@@ -132,13 +131,11 @@ gibt aus:</p>
 <div class="highlight"><pre>Still works</pre></div>
 <p>Wenn der Block auf diese Weise fehlschlägt, ergibt er einen
 undefinierten Wert, <code>$result</code> ist also undefiniert:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$result</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$result</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Die gefangene Ausnahme wird in der besonderen Variablen
 <code>$!</code> abgelegt. Dort können Sie ihre Meldung lesen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">$!</span>.<span class="nb">message</span>; <span class="c1"># Boom!</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$!</span>.<span class="n">message</span>; <span class="c1"># Boom!</span></pre></div>
 
 <p><code>try</code> macht aus einem fatalen Fehler also etwas, das Ihr
 Programm untersuchen und worauf es reagieren kann. Läuft der Block ohne

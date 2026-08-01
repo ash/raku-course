@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,8 @@ href="/lv/advanced/introspection">Konteineru introspekcija</a></p>
 tipam. To var izmantot līdzīgi kā <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span> = <span class="mi">42</span>;
 
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;</pre></div>
 
 <p>Abi izdrukā tipu ar nelielu atšķirību noformējumā:
 <code>.^name</code> dod tīru nosaukumu, savukārt <code>WHAT</code>
@@ -128,24 +127,22 @@ parāda tipa objektu, ierakstītu iekavās:</p>
 Tiklīdz piešķirat vērtību, gan <code>^name</code>, gan <code>WHAT</code>
 seko saglabātās vērtības tipam:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Any)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Any</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Any)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <p>Ar tipa ierobežojumu tips ir zināms uzreiz, pat pirms kaut kas ir
 piešķirts:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="tipa-objektu-salīdzināšana">Tipa objektu salīdzināšana</h2>
 <p>Tā kā <code>WHAT</code> atgriež pašu tipa objektu, divus no tiem var
@@ -156,10 +153,9 @@ vai divām vērtībām ir vienāds tips:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">42</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">100</span>;
 
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nv">$b</span>.<span class="nb">WHAT</span>; <span class="c1"># True  — abi ir Int</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nv">$b</span>.<span class="n">WHAT</span>; <span class="c1"># True  — abi ir Int</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span></pre></div>
 
 <p>Atšķirībā no <code>==</code>, kas salīdzina skaitļus,
 <code>===</code> salīdzina identitāti, tāpēc tas darbojas tieši ar tipa
@@ -196,7 +192,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/advanced/introspection/what">Български</a>
 <a href="/ru/advanced/introspection/what">Русский</a>
 <a href="/uk/advanced/introspection/what">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

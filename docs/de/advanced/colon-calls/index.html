@@ -115,16 +115,14 @@ Argumente normalerweise in Klammern: <code>@a.grep(* &gt; 5)</code>.
 Raku bietet eine zweite Form an — setze einen
 <strong>Doppelpunkt</strong> nach dem Namen, und alles nach dem
 Doppelpunkt wird zur Argumentliste, ganz ohne Klammern:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Der Doppelpunkt in <code>grep:</code> erfüllt dieselbe Aufgabe wie
 die Klammern: <code>(1..10).grep: * %% 2</code> bedeutet genau dasselbe
 wie <code>(1..10).grep(* %% 2)</code>. Beide Formen sind
 austauschbar:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>Die Doppelpunkt-Form ist besonders angenehm bei Methoden, die einen
 <strong>Block</strong> oder einen <a
@@ -133,8 +131,7 @@ sie eine Verschachtelungsebene entfernt. Vergleiche:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># Klammern um den Block</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># Doppelpunkt — keine schließende Klammer nötig</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># Doppelpunkt — keine schließende Klammer nötig</span></pre></div>
 
 <p>Beide geben <code>(3 2 1)</code> aus, aber die Doppelpunkt-Variante
 liest sich sauberer, besonders wenn der Block lang ist.</p>
@@ -149,8 +146,7 @@ funktioniert <code>('a' .. 'z')».uc».ord.grep: 60 &lt; * &lt; 70</code>:
 danach verkettet werden könnte. Wenn du weitere Methoden aufrufen musst,
 verwende stattdessen die Form mit Klammern oder gruppiere die Teile des
 gesamten Ausdrucks, um ihn klar zu machen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>Eine Sache, auf die man achten muss: Kombiniere den Doppelpunkt
 <strong>nicht</strong> mit Klammern wie <code>.grep:( … )</code>. Diese

@@ -118,14 +118,13 @@ bereitstellt. Diese Methode liefert den nächsten Wert oder
 Abwärtszähler-Iterator, der eine Zahl liefert und auf null
 zuschreitet:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
 
-    <span class="k">method</span> <span class="nb">pull-one</span> {
+    <span class="k">method</span> <span class="n">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n--</span>;
+        <span class="k">return</span> <span class="nv">$!n</span>--;
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Jeder Aufruf von <code>pull-one</code> prüft zuerst, ob die Zählung
 aufgebraucht ist; wenn nicht, liefert er die aktuelle Zahl und
@@ -134,11 +133,10 @@ verringert sie. Das nachgestellte <code>$!n--</code> liefert den Wert
 <code>3, 2, 1</code> heraus. Ihn von Hand anzutreiben sieht aus wie bei
 jedem anderen Iterator:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>Ein Iterator für sich ist nichts, was eine <code>for</code>-Schleife
 unmittelbar aufnehmen kann — eine Schleife erwartet etwas
@@ -146,8 +144,7 @@ unmittelbar aufnehmen kann — eine Schleife erwartet etwas
 und er wird schleifenfähig:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Das gibt <code>3</code>, <code>2</code>, <code>1</code> aus. Im
 Alltag würden Sie stattdessen zu <code>gather</code> / <code>take</code>

@@ -116,9 +116,8 @@ eine Liste. Methoden wie <code>map</code> und <code>grep</code> erzeugen
 ein <strong>neues</strong> Supply, dessen Werte die umgeformten
 sind:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="n">map</span>(* * <span class="mi">10</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="nb">map</span>(* * <span class="mi">10</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span></pre></div>
 
 <p>Das <code>map(* * 10)</code> baut ein neues Supply, das das Zehnfache
 jedes ursprünglichen Wertes aussendet, und die Zapfstelle sammelt diese
@@ -126,17 +125,15 @@ in <code>@out</code>.</p>
 <p><code>grep</code> filtert ein Supply und gibt nur die Werte weiter,
 für die sein Block wahr ist:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span></pre></div>
 
 <p>Da jede Umformung wieder ein Supply liefert, können Sie sie
 aneinanderreihen und so eine kleine Pipeline bauen, die auf den Strom
 reagiert:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span></pre></div>
 
 <p>Das ist derselbe Wortschatz aus map und grep, den Sie von Listen
 kennen, angewandt auf Werte, die im Lauf der Zeit eintreffen. Das Supply

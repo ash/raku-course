@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,28 +116,26 @@
 <p><strong>Вградените действия</strong> слагат блок
 <code>{ make … }</code> направо вътре в токена:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
-}
-</pre></div>
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+}</pre></div>
 
 <p>Пишат се бързо и са напълно достатъчни за мъничка граматика или
 еднократен скрипт. Цената е, че шаблонът и логиката се преплитат.</p>
 <p><strong>Класът за действия</strong> ги държи разделени — граматиката
 описва формата, класът за действия описва значението:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-}
-</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+}</pre></div>
 
 <p>Това разделяне има истински предимства, когато граматиката порасне:
 шаблонът остава четим и можете да съчетаете <strong>една граматика с
@@ -180,7 +178,7 @@ href="/bg/regexes/action-classes/exercises">към упражненията в �
 <span class="lang-current">Български</span>
 <a href="/ru/regexes/action-classes/inline-vs-class">Русский</a>
 <a href="/uk/regexes/action-classes/inline-vs-class">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

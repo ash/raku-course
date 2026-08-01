@@ -124,18 +124,16 @@ mantén la secuencia en un escalar (donde sigue siendo una
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$naturals</span> = <span class="k">gather</span> {
     <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>;
     <span class="k">loop</span> {
-        <span class="nb">take</span> <span class="nv">$n</span>++;
+        <span class="k">take</span> <span class="nv">$n</span>++;
     }
 }
 
-<span class="nb">say</span> <span class="nv">$naturals</span>[^<span class="mi">5</span>]; <span class="c1"># (1 2 3 4 5)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$naturals</span>[^<span class="mi">5</span>]; <span class="c1"># (1 2 3 4 5)</span></pre></div>
 
 <p>El <code>loop</code> no termina nunca, pero solo se producen cinco
 valores, porque es todo lo que pedimos con <code>[^5]</code>. También
 puedes extraer desde el principio con <code>.head</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="k">gather</span> { <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>; <span class="k">loop</span> { <span class="nb">take</span> <span class="nv">$n</span>++ } }).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="k">gather</span> { <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>; <span class="k">loop</span> { <span class="k">take</span> <span class="nv">$n</span>++ } }).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)</span></pre></div>
 
 <p>La pereza es lo que permite a <code>gather</code> modelar flujos
 infinitos sin peligro: no se calcula nada hasta que hace falta, y tomas

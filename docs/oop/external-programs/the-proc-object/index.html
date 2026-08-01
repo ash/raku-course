@@ -119,40 +119,35 @@ tells whoever launched it whether it succeeded with a small integer:
 <code>0</code> means success, and any other number is a failure code of
 the program’s own choosing. <code>.exitcode</code> gives you that
 number:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
 
 <p>For the usual yes/no question — did it work? — a <code>Proc</code> is
 simply true when the exit code is <code>0</code> and false otherwise, so
 you can test it directly:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
 
 <p>A <code>Proc</code> also remembers the command it launched, in
 <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
 
 <p>One thing to watch for: if a command fails and you simply
 <strong>ignore</strong> the returned <code>Proc</code>, Raku raises an
 exception rather than letting the failure pass unnoticed:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
-<span class="c1"># dies: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
+<span class="c1"># dies: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
 
 <p>Because a non-zero exit usually means something went wrong, a failing
 <code>Proc</code> that is thrown away throws when it goes out of scope.
 The trigger is <em>discarding</em> the result, not ignoring the exit
 code: simply storing the <code>Proc</code> in a variable is enough to
 avoid the exception, even if you never look at it again.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># no error, even though it failed</span>
-<span class="c1"># …and $proc is never used again</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># no error, even though it failed</span>
+<span class="c1"># …and $proc is never used again</span></pre></div>
 
 <p>So if you <em>expect</em> a command might fail, keep its
 <code>Proc</code> and then look at <code>.exitcode</code> (or test it as

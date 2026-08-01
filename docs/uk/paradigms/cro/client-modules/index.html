@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,19 +123,18 @@ HTTP-<strong>клієнт</strong> для надсилання запитів. �
 
 <span class="c1"># крихітний сервіс із попередньої сторінки</span>
 <span class="k">my</span> <span class="nv">$application</span> = <span class="n">route</span> {
-    <span class="nb">get</span> -&gt; <span class="s">&#39;hello&#39;</span> { <span class="n">content</span> <span class="s">&#39;text/plain&#39;</span>, <span class="s">&#39;Hello from Cro!&#39;</span>; }
+    <span class="n">get</span> -&gt; <span class="s">'hello'</span> { <span class="n">content</span> <span class="s">'text/plain'</span>, <span class="s">'Hello from Cro!'</span>; }
 }
 <span class="k">my</span> <span class="nv">$server</span> = <span class="n">Cro::HTTP::Server</span>.<span class="nb">new</span>(
-    :<span class="n">host</span>(<span class="s">&#39;127.0.0.1&#39;</span>), :<span class="n">port</span>(<span class="mi">8080</span>), :<span class="n">application</span>(<span class="nv">$application</span>),
+    :<span class="n">host</span>(<span class="s">'127.0.0.1'</span>), :<span class="n">port</span>(<span class="mi">8080</span>), :<span class="n">application</span>(<span class="nv">$application</span>),
 );
 <span class="nv">$server</span>.<span class="nb">start</span>;
 
 <span class="c1"># а тепер побудьмо клієнтом і викличмо його</span>
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="nb">get</span>(<span class="s">&#39;http://127.0.0.1:8080/hello&#39;</span>);
+<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(<span class="s">'http://127.0.0.1:8080/hello'</span>);
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>; <span class="c1"># Hello from Cro!</span>
 
-<span class="nv">$server</span>.<span class="n">stop</span>;
-</pre></div>
+<span class="nv">$server</span>.<span class="n">stop</span>;</pre></div>
 
 <p><code>Cro::HTTP::Client.get</code> повертає обіцянку — і це доречно,
 бо мережевий запит завершується пізніше, — тож ви робите
@@ -158,14 +157,13 @@ HTTP-<strong>клієнт</strong> для надсилання запитів. �
 вискакує на <code>await</code>, точно як ви бачили зі <a
 href="/uk/paradigms/await/awaiting-promises">зламаними обіцянками</a>, —
 тож обробляєте ви її звичними засобами для винятків:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$response</span> = <span class="k">try</span> <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="nb">get</span>(<span class="s">&#39;http://127.0.0.1:8080/goodbye&#39;</span>);
-<span class="k">if</span> <span class="vg">$!</span> {
-    <span class="nb">say</span> <span class="s">&#39;Request failed with status &#39;</span>, <span class="vg">$!</span>.<span class="n">response</span>.<span class="nb">status</span>; <span class="c1"># 404</span>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$response</span> = <span class="k">try</span> <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(<span class="s">'http://127.0.0.1:8080/goodbye'</span>);
+<span class="k">if</span> <span class="nv">$!</span> {
+    <span class="nb">say</span> <span class="s">'Request failed with status '</span>, <span class="nv">$!</span>.<span class="n">response</span>.<span class="n">status</span>; <span class="c1"># 404</span>
 }
 <span class="k">else</span> {
     <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Наш сервіс має маршрут <code>hello</code>, але не має
 <code>goodbye</code>, тож це друкує
@@ -199,7 +197,7 @@ href="/uk/paradigms/cro/exercises">до вправ цього розділу</a>
 <a href="/bg/paradigms/cro/client-modules">Български</a>
 <a href="/ru/paradigms/cro/client-modules">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

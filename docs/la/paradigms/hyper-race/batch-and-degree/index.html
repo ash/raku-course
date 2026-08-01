@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,8 +119,7 @@ manum porrigis cum ad celeritatem temperas.</p>
 <h2 id="degree-quot-operarii"><code>:degree</code> — quot operarii</h2>
 <p><code>:degree</code> statuit quot fila operaria eodem tempore
 currant:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>Ex more gradus prope numerum nucleorum CPU est quos machina habet —
 in machina octo nucleorum <code>7</code> est, unum nucleum programmati
@@ -131,8 +130,7 @@ superflua res etiam tardare potest.</p>
 simul</h2>
 <p><code>:batch</code> statuit quot elementa unusquisque operarius uno
 impetu capiat antequam plura petitum redeat:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">hyper</span>(:<span class="n">batch</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25 36)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">hyper</span>(:<span class="nb">batch</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25 36)</span></pre></div>
 
 <p>Fasciculus ex more <code>64</code> est, et magnitudo permutatio
 est:</p>
@@ -147,17 +145,15 @@ coordinationis.</li>
 </ul>
 <p>Utrumque simul statuere potes, in <code>.race</code> sicut in
 <code>.hyper</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="n">batch</span>(<span class="mi">3</span>)).<span class="n">map</span>(*<span class="n">²</span>).<span class="nb">sum</span>; <span class="c1"># 91</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="nb">batch</span>(<span class="mi">3</span>)).<span class="nb">map</span>(*²).<span class="nb">sum</span>; <span class="c1"># 91</span></pre></div>
 
 <div style="font-size: 85%; opacity: .8;">
 <p>Si curiosus es quae valores ex more revera sint, in eos per interna
 Rakudo prospicere potes. Nota hoc attributum <em>privatum</em> legere —
 non est API stabilis, et numeri ex machina tua pendent:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>;
-<span class="nb">say</span> <span class="nv">$h</span>.^<span class="nb">attributes</span>.<span class="nb">first</span>(*.<span class="nb">name</span>.<span class="nb">contains</span>(<span class="s">&#39;config&#39;</span>)).<span class="nb">get_value</span>(<span class="nv">$h</span>).<span class="n">raku</span>;
-<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>;
+<span class="nb">say</span> <span class="nv">$h</span>.^<span class="n">attributes</span>.<span class="nb">first</span>(*.<span class="n">name</span>.<span class="n">contains</span>(<span class="s">'config'</span>)).<span class="n">get_value</span>(<span class="nv">$h</span>).<span class="nb">raku</span>;
+<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span></pre></div>
 
 <p>Hic <code>batch</code> valor fixus ex more <code>64</code> est, dum
 <code>degree</code> <code>7</code> est — uno minus quam octo nuclea
@@ -202,7 +198,7 @@ sectionis</a> i.</p>
 <a href="/bg/paradigms/hyper-race/batch-and-degree">Български</a>
 <a href="/ru/paradigms/hyper-race/batch-and-degree">Русский</a>
 <a href="/uk/paradigms/hyper-race/batch-and-degree">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

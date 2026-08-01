@@ -116,9 +116,8 @@ eines Wertes gibt. Du kannst sie auf ähnliche Weise wie
 <code>.^name</code> verwenden:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span> = <span class="mi">42</span>;
 
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;</pre></div>
 
 <p>Beide geben den Typ aus, mit einem kleinen Unterschied in der
 Darstellung: <code>.^name</code> liefert den reinen Namen, während
@@ -131,24 +130,22 @@ wird:</p>
 <code>^name</code> als auch <code>WHAT</code> dem Typ des gespeicherten
 Wertes:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Any)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Any</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Any)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <p>Mit einem Typ-Constraint ist der Typ sofort bekannt, noch bevor etwas
 zugewiesen wird:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="typ-objekte-vergleichen">Typ-Objekte vergleichen</h2>
 <p>Da <code>WHAT</code> das Typ-Objekt selbst zurückgibt, kannst du zwei
@@ -159,10 +156,9 @@ Methode, um zu testen, ob zwei Werte denselben Typ haben:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">42</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">100</span>;
 
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nv">$b</span>.<span class="nb">WHAT</span>; <span class="c1"># True  — both are Int</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nv">$b</span>.<span class="n">WHAT</span>; <span class="c1"># True  — both are Int</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span></pre></div>
 
 <p>Im Gegensatz zu <code>==</code>, das Zahlen vergleicht, vergleicht
 <code>===</code> die Identität, sodass es direkt mit Typ-Objekten (und

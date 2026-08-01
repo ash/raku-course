@@ -117,35 +117,31 @@ not finished yet — and settle it yourself when the result (or the news)
 is ready. <code>.keep</code> fulfils it with a value:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># a fresh, unsettled promise</span>
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">42</span>);           <span class="c1"># fulfil it with a value</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># fulfil it with a value</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
 
 <p><code>.break</code> is the failure case. Awaiting a broken promise
 re-throws the error, just as it does for a <code>start</code> block that
 <a href="/paradigms/await/awaiting-promises">died</a> — and if nothing
 catches it, that exception stops the program:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># dies here with &#39;disk full&#39;</span>
-<span class="nb">say</span> <span class="s">&#39;never reached&#39;</span>;      <span class="c1"># this line does not run</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># dies here with 'disk full'</span>
+<span class="nb">say</span> <span class="s">'never reached'</span>;      <span class="c1"># this line does not run</span></pre></div>
 
 <p>To keep going, catch the failure with <code>try</code>, exactly as
 you would around any code that might die:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span></pre></div>
 
 <p>If the outcome is already known, two shortcuts make a promise that
 starts out settled: <code>Promise.kept($value)</code> and
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="nb">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Why make a promise by hand? Because not every result comes from a
 <code>start</code> block. An event that fires later, a message that

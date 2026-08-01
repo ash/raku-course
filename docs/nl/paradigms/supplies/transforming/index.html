@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,9 +116,8 @@ een lijst. Methoden als <code>map</code> en <code>grep</code> leveren
 een <strong>nieuwe</strong> supply op waarvan de waarden de omgevormde
 zijn:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="n">map</span>(* * <span class="mi">10</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="nb">map</span>(* * <span class="mi">10</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [10 20 30]</span></pre></div>
 
 <p>De <code>map(* * 10)</code> bouwt een nieuwe supply die tien keer
 elke oorspronkelijke waarde uitzendt, en de tap verzamelt die in
@@ -126,17 +125,15 @@ elke oorspronkelijke waarde uitzendt, en de tap verzamelt die in
 <p><code>grep</code> filtert een supply en laat alleen de waarden door
 waarvoor zijn blok waar is:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>, <span class="mi">5</span>, <span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [2 4 6]</span></pre></div>
 
 <p>Omdat elke omvorming weer een supply teruggeeft, kun je ze
 aaneenrijgen en zo een kleine pijplijn bouwen die op de stroom
 reageert:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@out</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">grep</span>(* %% <span class="mi">2</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@out</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nb">say</span> <span class="nv">@out</span>; <span class="c1"># [4 16 36]</span></pre></div>
 
 <p>Dit is dezelfde woordenschat van map en grep die je van lijsten kent,
 toegepast op waarden die in de loop van de tijd binnenkomen. De supply
@@ -174,7 +171,7 @@ sectie</a>.</p>
 <a href="/bg/paradigms/supplies/transforming">Български</a>
 <a href="/ru/paradigms/supplies/transforming">Русский</a>
 <a href="/uk/paradigms/supplies/transforming">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

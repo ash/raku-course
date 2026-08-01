@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,27 +117,26 @@ href="/ru/addendum/mini-projects/exercises/rpn-calculator">Калькулято�
 Калькулятор обратной польской записи</h1>
 <p>Вот один из возможных вариантов решения задачи.</p>
 <h2 id="код">Код</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$expression</span> = <span class="s">&#39;3 4 + 5 *&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$expression</span> = <span class="s">'3 4 + 5 *'</span>;
 <span class="k">my</span> <span class="nv">@stack</span>;
 
 <span class="k">for</span> <span class="nv">$expression</span>.<span class="nb">words</span> -&gt; <span class="nv">$token</span> {
-    <span class="k">if</span> <span class="nv">$token</span> ~~<span class="sr"> / ^ \d+ $ /</span> {
+    <span class="k">if</span> <span class="nv">$token</span> ~~ <span class="sr">/ ^ \d+ $ /</span> {
         <span class="nv">@stack</span>.<span class="nb">push</span>(<span class="nv">$token</span>.<span class="nb">Int</span>);
     }
     <span class="k">else</span> {
         <span class="k">my</span> <span class="nv">$b</span> = <span class="nv">@stack</span>.<span class="nb">pop</span>;
         <span class="k">my</span> <span class="nv">$a</span> = <span class="nv">@stack</span>.<span class="nb">pop</span>;
-        <span class="nv">@stack</span>.<span class="nb">push</span>( <span class="nb">do</span> <span class="k">given</span> <span class="nv">$token</span> {
-            <span class="k">when</span> <span class="s">&#39;+&#39;</span> { <span class="nv">$a</span> + <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">&#39;-&#39;</span> { <span class="nv">$a</span> - <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">&#39;*&#39;</span> { <span class="nv">$a</span> * <span class="nv">$b</span> }
-            <span class="k">when</span> <span class="s">&#39;/&#39;</span> { <span class="nv">$a</span> / <span class="nv">$b</span> }
+        <span class="nv">@stack</span>.<span class="nb">push</span>( <span class="k">do</span> <span class="k">given</span> <span class="nv">$token</span> {
+            <span class="k">when</span> <span class="s">'+'</span> { <span class="nv">$a</span> + <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">'-'</span> { <span class="nv">$a</span> - <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">'*'</span> { <span class="nv">$a</span> * <span class="nv">$b</span> }
+            <span class="k">when</span> <span class="s">'/'</span> { <span class="nv">$a</span> / <span class="nv">$b</span> }
         });
     }
 }
 
-<span class="nb">say</span> <span class="nv">@stack</span>[<span class="mi">0</span>];
-</pre></div>
+<span class="nb">say</span> <span class="nv">@stack</span>[<span class="mi">0</span>];</pre></div>
 
 <p>🦋 Исходный код можно найти в файле <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/rpn-calculator.raku">rpn-calculator.raku</a>.</p>
@@ -176,7 +175,7 @@ href="/ru/addendum/mini-projects/exercises/histogram">Текстовая
 <a href="/bg/addendum/mini-projects/exercises/rpn-calculator/solution">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/addendum/mini-projects/exercises/rpn-calculator/solution">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

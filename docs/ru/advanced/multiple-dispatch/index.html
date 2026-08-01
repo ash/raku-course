@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,14 +120,13 @@ href="/ru/essentials/more-on-functions/multi-functions"><em>мульти-фун�
 также по <em>значению</em>. Она записывается после параметра и содержит
 условие, которому должен удовлетворять аргумент, чтобы был выбран данный
 кандидат:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
 
 <span class="n">info</span>(-<span class="mi">5</span>);
 <span class="n">info</span>(<span class="mi">0</span>);
-<span class="n">info</span>(<span class="mi">7</span>);
-</pre></div>
+<span class="n">info</span>(<span class="mi">7</span>);</pre></div>
 
 <p>Каждый вызов направляется к тому кандидату, чьё условие истинно для
 данного значения:</p>
@@ -141,11 +140,10 @@ href="/ru/essentials/more-on-functions/multi-functions"><em>мульти-фун�
 <p>Частое применение <code>where</code> — определение точки остановки
 рекурсии в виде отдельного кандидата. Вот факториал, разделённый на два
 мульти-подпрограммы:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span>)               { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
 
 <p>Первый кандидат обрабатывает базовый случай (<code>$n</code> равно
 <code>1</code> или меньше) и просто возвращает <code>1</code>. Все
@@ -199,7 +197,7 @@ href="/ru/advanced/multiple-dispatch/exercises/bulk-pricing">Оптовая
 <a href="/bg/advanced/multiple-dispatch">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/advanced/multiple-dispatch">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

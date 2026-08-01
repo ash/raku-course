@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,11 +117,10 @@ href="/ru/regexes/action-classes">Классы действий</a></p>
 <p><strong>Встроенные действия</strong> помещают блок
 <code>{ make … }</code> прямо внутрь токена:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
-}
-</pre></div>
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+}</pre></div>
 
 <p>Их быстро писать, и для крошечной грамматики или одноразового скрипта
 они вполне годятся. Плата за это — шаблон и логика оказываются
@@ -129,17 +128,16 @@ href="/ru/regexes/action-classes">Классы действий</a></p>
 <p><strong>Класс действий</strong> держит их порознь: грамматика
 описывает форму, а класс действий — смысл:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-}
-</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+}</pre></div>
 
 <p>По мере роста грамматики у этого разделения появляются настоящие
 преимущества: шаблон остаётся удобочитаемым, а <strong>одну грамматику
@@ -182,7 +180,7 @@ href="/ru/regexes/action-classes/exercises">к упражнениям этого
 <a href="/bg/regexes/action-classes/inline-vs-class">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/action-classes/inline-vs-class">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

@@ -119,34 +119,29 @@ problemojn, sed vi devas esti avertita pri la sekva aspekto.</p>
 <code>if</code>.</p>
 <h2 id="longa-rakonto">Longa rakonto</h2>
 <p>Prenu simplan funkcion:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Unue, rimarku la mankon de spacoj inter la nomo de la funkcio kaj la
 malfermaj parentezoj kiuj enhavas la parametrojn. Iuj kodstiloj en aliaj
 lingvoj povas postuli spacon tie. Raku estas bone kun tio, sed ĉi tio ne
 estas praktiko por sekvi:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Sur la voka flanko, la manko de spaco estas grava. Se vi vokas la
 funkcion kaj preterlasas la parentezojn, tiam la spaco post la nomo de
 la funkcio estas neevitebla:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>Sed se vi aldonas parentezojn, vi ne povas havi spacon antaŭ ili. Ĉi
 tio estas ĝusta voko:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Kaj ĉi tiu voko estas malĝusta:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Tia kodo kaŭzas escepton:</p>
 <pre><code>Tro malmultaj poziciaj pasis; atendis 2 argumentojn sed ricevis 1
@@ -156,12 +151,11 @@ tio estas ĝusta voko:</p>
 unuopan argumenton <code>(5, 6)</code> al la funkcio. Vi povas facile
 kontroli la tipon de ĉi tiu argumento se vi reskribas la funkcion por
 akcepti nur unu argumenton:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>Do, voki <code>f (5, 6)</code> signifas ke ni pasas <a
 href="/eo/essentials/positionals/lists">liston</a> al la funkcio. La
@@ -170,10 +164,9 @@ listo kiel ununura ento.</p>
 <p>En iuj kazoj, la spacokaraktero estas bezonata. Tio okazas kiam vi
 uzas parentezojn kun unu el la ŝlosilvortoj, kiel <code>if</code> aŭ
 <code>for</code> aŭ <code>loop</code>. La sekva kodo estas malĝusta:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>La erarmesaĝo klarigas kio estas malĝusta:</p>
 <pre><code>===PARDONU!===
@@ -188,8 +181,7 @@ Neatendita bloko en infiksa pozicio (du terminoj en vico)
 do la problemo ne havas ŝancon aperi se vi ne uzas ilin. Sed en iuj
 kazoj, kiel ekzemple kun <code>loop</code>, vi bezonas ilin, kaj la
 spaco fariĝas deviga:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>En ĉi tiu kodo, la sama afero okazas: <code>loop(...)</code> estas
 komprenata de la kompililo kiel funkciovoko. Aldonu spacon por solvi la

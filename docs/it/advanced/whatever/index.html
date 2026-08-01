@@ -124,9 +124,8 @@ l’intera espressione in una funzione — un <code>WhateverCode</code> — in
 cui la stella rappresenta l’argomento:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">$double</span>.^<span class="nb">name</span>; <span class="c1"># WhateverCode</span>
-<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
 
 <p><code>* * 2</code> e una funzione che moltiplica il suo unico
 argomento per due. Ecco perche <code>(1..5).map(* * 2)</code> funziona:
@@ -139,8 +138,7 @@ che potresti anche scrivere come blocco. Queste tre forme sono
 equivalenti:</p>
 <div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
 { <span class="nv">$_</span> * <span class="mi">2</span> }
--&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }
-</pre></div>
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
 
 <p>La forma Whatever non nomina alcun parametro; la forma a blocco usa
 la variabile topic <code>$_</code>; la forma pointy nomina
@@ -151,10 +149,9 @@ sufficiente leggerla come un terzo modo di scrivere la stessa funzione a
 un argomento. Per un’espressione semplice, la stella e la forma piu
 compatta, ed e per questo che e cosi comune con <code>map</code>,
 <code>grep</code> e <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Usa un <strong>blocco</strong> quando la logica richiede piu di
 un’espressione, o quando un parametro con nome esplicito aiuta la
@@ -166,8 +163,7 @@ ordine. Quindi due stelle creano una funzione a <strong>due</strong>
 argomenti:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
-<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Qui <code>* + *</code> e una funzione a due argomenti che somma i
 suoi argomenti — ad esempio un totale parziale e l’elemento
@@ -176,10 +172,9 @@ successivo.</p>
 <p>Da sola, <code>*</code> significa “qualsiasi cosa” — tutto quello che
 c’e, o nessun limite. Due usi comuni:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
-<span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * è la lunghezza dell&#39;array, quindi *-1 è l&#39;ultimo indice</span>
+<span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * è la lunghezza dell'array, quindi *-1 è l'ultimo indice</span>
 
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* è un intervallo aperto</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* è un intervallo aperto</span></pre></div>
 
 <p>In <code>@a[*-1]</code> la stella rappresenta il numero di elementi,
 e in <code>1..*</code> rappresenta “nessun limite superiore”. Che

@@ -116,13 +116,12 @@ flessibile per costruire una lista. Si racchiude del codice in un blocco
 <code>take</code>, il valore viene aggiunto alla lista che
 <code>gather</code> produce.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@result</span> = <span class="k">gather</span> {
-    <span class="nb">take</span> <span class="mi">1</span>;
-    <span class="nb">take</span> <span class="mi">2</span>;
-    <span class="nb">take</span> <span class="mi">3</span>;
+    <span class="k">take</span> <span class="mi">1</span>;
+    <span class="k">take</span> <span class="mi">2</span>;
+    <span class="k">take</span> <span class="mi">3</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span></pre></div>
 
 <p>Le tre chiamate a <code>take</code> contribuiscono tre valori, e
 <code>gather</code> li raccoglie nella lista memorizzata in
@@ -131,12 +130,11 @@ flessibile per costruire una lista. Si racchiude del codice in un blocco
 <code>take</code> sono distribuite nel normale flusso di controllo, come
 un ciclo con una condizione. La lista contiene allora solo i valori che
 si e scelto di prendere:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">10</span> {
-    <span class="nb">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.10</span> {
+    <span class="k">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span></pre></div>
 
 <p>Qui il ciclo itera sui numeri da 1 a 10, ma solo quelli pari vengono
 presi, quindi <code>@evens</code> finisce per contenere

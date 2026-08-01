@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,25 +113,23 @@ href="/ru/regexes/creating-grammars">Создание грамматик</a></p>
 <h1 id="разбор-с-помощью-parse">Разбор с помощью parse</h1>
 <p>Чтобы применить грамматику, вызовите её метод <code>.parse</code>,
 передав строку для анализа:</p>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Pair</span> {
-    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;key&gt; &#39;=&#39; &lt;value&gt; </span>}
-    <span class="k">token</span><span class="n"> key</span>   {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> value</span> {<span class="sr"> \w+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Pair</span> {
+    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;key&gt;</span> <span class="s">'='</span> <span class="s">&lt;value&gt;</span> }
+    <span class="k">token</span> <span class="n">key</span>   { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">value</span> { \<span class="n">w</span>+ }
 }
 
-<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>);
-<span class="nb">say</span> <span class="nv">$m&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
-<span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>; <span class="c1"># ｢5｣</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>);
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>; <span class="c1"># ｢5｣</span></pre></div>
 
 <p><code>.parse</code> возвращает объект совпадения, когда грамматика
 сопоставляется со <strong>всей</strong> строкой, и <code>Nil</code>,
 когда нет. Поскольку весь ввод обязан совпасть, якоря <code>^</code> и
 <code>$</code> не нужны — <code>.parse</code> добавляет это требование
 за вас:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=&#39;</span>).<span class="nb">defined</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x='</span>).<span class="nb">defined</span>;  <span class="c1"># False</span></pre></div>
 
 <p><a href="/ru/regexes/matching/match-object">Объект совпадения</a>
 работает точно так же, как те, с которыми вы встречались раньше. Каждый
@@ -172,7 +170,7 @@ href="/ru/regexes/creating-grammars/exercises">к упражнениям это�
 <a href="/bg/regexes/creating-grammars/parse-method">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/creating-grammars/parse-method">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

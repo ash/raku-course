@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -122,13 +122,12 @@ href="/lv/paradigms/promises">Solījumi</a></p>
 <code>.status</code> nolasīšana negaida — tā pasaka, kur solījums ir
 <em>tieši tagad</em>, tāpēc to var pārbaudīt gan pirms solījuma
 nokārtošanās, gan atkal pēc tās:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — nolasīts uzreiz, kamēr bloks vēl darbojas</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — nolasīts uzreiz, kamēr bloks vēl darbojas</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># tagad sagaidām tā beigas</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
 
 <p><code>.result</code> dod turēto vērtību. Atšķirībā no
 <code>.status</code> tā <em>gaida</em>, līdz solījums ir nokārtots,
@@ -136,11 +135,10 @@ tāpēc nepabeigtam solījumam tā bloķē tieši tāpat kā <code>await</code>.
 Un, ja solījums ir lauzts, <code>.result</code> pārmet izņēmumu.</p>
 <p>Kad vēlaties apskatīt kļūmi, to nepārmetot, izmantojiet
 <code>.cause</code> — lauzta solījuma izņēmuma objektu:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># ļaujam tam nokārtoties (un norijam pārmesto kļūdu)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
 
 <p>Tātad <code>.status</code> un <code>.cause</code> solījumu apskata,
 to netraucējot, kamēr <code>await</code> un <code>.result</code> savāc
@@ -169,7 +167,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/paradigms/promises/promise-status">Български</a>
 <a href="/ru/paradigms/promises/promise-status">Русский</a>
 <a href="/uk/paradigms/promises/promise-status">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

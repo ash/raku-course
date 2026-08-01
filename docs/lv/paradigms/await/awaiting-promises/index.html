@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,19 +113,17 @@ href="/lv/paradigms/await">await</a></p>
 <h1 id="solījuma-gaidīšana">Solījuma gaidīšana</h1>
 <p><code>await</code> ņem solījumu, nogaida tā pabeigšanu un atgriež tā
 rezultātu:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Programma pie <code>await</code> apstājas tikai tik ilgi, cik
 vajadzīgs, un tad turpina ar vērtību, ko solījums radījis.</p>
 <p>Ja dots vairāki solījumi, <code>await</code> nogaida
 <strong>visus</strong> un atgriež to rezultātus tādā pašā secībā, kādā
 solījumi ir sarakstā:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Darbi izpildās vienlaikus, bet <code>await @jobs</code> neatgriežas,
 kamēr nav pabeigts katrs no tiem. Katrs rezultāts tad atrodas tajā pašā
@@ -136,11 +134,10 @@ izņēmumu —, <code>await</code> šo izņēmumu pārmet pašā
 <code>await</code> vietā. Tas nozīmē, ka fona darba kļūdas parādās tur,
 kur to gaidāt, tāpēc tās var apstrādāt ar ierasto <code>try</code> /
 <code>CATCH</code> no daļas par izņēmumiem:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
 
 <p>Tas izdrukā:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>
@@ -185,7 +182,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/paradigms/await/awaiting-promises">Български</a>
 <a href="/ru/paradigms/await/awaiting-promises">Русский</a>
 <a href="/uk/paradigms/await/awaiting-promises">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

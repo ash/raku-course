@@ -113,19 +113,17 @@ web</a> / <a href="/it/paradigms/reactive">Programmazione reattiva</a> /
 <h1 id="attendere-una-promise">Attendere una promise</h1>
 <p><code>await</code> prende una promise, aspetta che si completi e ne
 restituisce il risultato:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Il programma si mette in pausa all’<code>await</code> solo per il
 tempo necessario, poi prosegue con il valore prodotto dalla promise.</p>
 <p>Date parecchie promise, <code>await</code> le aspetta
 <strong>tutte</strong> e restituisce i loro risultati nello stesso
 ordine delle promise nell’elenco:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
 <p>I lavori girano in modo concorrente, ma <code>await @jobs</code> non
 ritorna finché ognuno non è finito. Ogni risultato sta poi nella stessa
@@ -137,11 +135,10 @@ punto dell’<code>await</code>. Questo significa che gli errori del
 lavoro in secondo piano emergono là dove lo aspetti, così puoi gestirli
 con i soliti <code>try</code> / <code>CATCH</code> della parte sulle
 eccezioni:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
 
 <p>Questo stampa:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>

@@ -117,18 +117,16 @@ iteratori</h1>
 <code>.iterator</code>. Un iteratore ha un metodo essenziale,
 <code>pull-one</code>, che a ogni chiamata restituisce il valore
 successivo:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="nb">iterator</span>;
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 10</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 30</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="n">iterator</span>;
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 10</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 20</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Quando i valori finiscono, <code>pull-one</code> restituisce una
 sentinella speciale, <code>IterationEnd</code>, invece di un elemento
 vero. Chiedere allo stesso <code>$it</code> un altro valore lo
 mostra:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>L’operatore <code>=:=</code> mette alla prova l’identità dello
 <strong>stesso oggetto</strong>, ed è così che si riconosce la
@@ -139,13 +137,12 @@ contenitore e il confronto finisce per guardare il contenitore invece di
 <code>IterationEnd</code>. Il rimedio è <strong>legarlo</strong> con
 <code>:=</code>, così che la variabile semplicemente <em>sia</em> ciò
 che <code>pull-one</code> ha restituito:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="nb">iterator</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="n">iterator</span>;
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="nb">pull-one</span>;      <span class="c1"># bind, not assign</span>
-    <span class="nb">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
+    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="n">pull-one</span>;      <span class="c1"># bind, not assign</span>
+    <span class="k">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
     <span class="nb">say</span> <span class="nv">$v</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Il ciclo stampa <code>a</code>, <code>b</code>, <code>c</code> e poi
 si ferma. È esattamente ciò che un ciclo <code>for</code> fa per te

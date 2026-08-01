@@ -113,19 +113,17 @@ href="/eo/paradigms/await">await</a></p>
 <h1 id="atendi-promeson">Atendi promeson</h1>
 <p><code>await</code> prenas promeson, atendas ĝian kompletiĝon kaj
 redonas ĝian rezulton:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>La programo paŭzas ĉe <code>await</code> nur tiom longe, kiom
 necesas, poste daŭrigas per la valoro, kiun la promeso produktis.</p>
 <p>Donite plurajn promesojn, <code>await</code> atendas
 <strong>ĉiujn</strong> el ili kaj redonas iliajn rezultojn en la sama
 ordo kiel la promesoj en la listo:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
 <p>La taskoj kuras samtempe, sed <code>await @jobs</code> ne revenas
 antaŭ ol ĉiu el ili estas finita. Ĉiu rezulto poste sidas sur la sama
@@ -136,11 +134,10 @@ escepton — <code>await</code> reĵetas tiun escepton ĉe la punkto de la
 <code>await</code>. Tio signifas, ke eraroj en fona laboro aperas tie,
 kie vi atendas ĝin, do vi povas trakti ilin per la kutimaj
 <code>try</code> / <code>CATCH</code> el la parto pri esceptoj:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
 
 <p>Ĉi tio presas:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>

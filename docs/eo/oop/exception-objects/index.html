@@ -117,16 +117,15 @@ esceptobjekton de la tipo <code>X::AdHoc</code>.</p>
 venas de <code>.^name</code>, kaj ĝia teksto de
 <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Koni la tipon permesas al vi trakti malsamajn erarojn malsame. La
 enkonstruitaj esceptoj de Raku havas specifajn tipojn, kies nomoj
@@ -134,18 +133,17 @@ komenciĝas per <code>X::</code>, kaj vi povas kongrui kun ili per
 <code>when</code>, ĝuste kiel vi kongruis valorojn en bloko
 <code>given</code>/<code>when</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
-            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
+        <span class="k">when</span> <span class="n">X::AdHoc</span> {
+            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
+            <span class="nb">say</span> <span class="s">'some other error'</span>;
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Ĉi tio presas <code>an ad-hoc error: something failed</code>, ĉar la
 escepto kongruis kun la tipo <code>X::AdHoc</code>. Kongrui laŭ la tipo

@@ -120,22 +120,20 @@ Asignarle algo es un error:</p>
     <span class="k">has</span> <span class="nv">$.name</span>;
 }
 
-<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Rex&#39;</span>);
-<span class="nv">$rex</span>.<span class="nb">name</span> = <span class="s">&#39;Max&#39;</span>;
-</pre></div>
+<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Rex'</span>);
+<span class="nv">$rex</span>.<span class="n">name</span> = <span class="s">'Max'</span>;</pre></div>
 
 <p>El programa se detiene con:</p>
 <div class="highlight"><pre>Cannot modify an immutable Str (Rex)</pre></div>
 <p>Para permitir que el valor cambie a través del accesor, marca el
 atributo con el rasgo <code>is rw</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Dog</span> {
-    <span class="k">has</span> <span class="nv">$.name</span> <span class="k">is</span> <span class="k">rw</span>;
+    <span class="k">has</span> <span class="nv">$.name</span> <span class="k">is</span> <span class="n">rw</span>;
 }
 
-<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Rex&#39;</span>);
-<span class="nv">$rex</span>.<span class="nb">name</span> = <span class="s">&#39;Max&#39;</span>;
-<span class="nb">say</span> <span class="nv">$rex</span>.<span class="nb">name</span>; <span class="c1"># Max</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Rex'</span>);
+<span class="nv">$rex</span>.<span class="n">name</span> = <span class="s">'Max'</span>;
+<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">name</span>; <span class="c1"># Max</span></pre></div>
 
 <p>Ahora el accesor devuelve un contenedor escribible, así que la
 asignación funciona y el <code>name</code> del objeto pasa a ser

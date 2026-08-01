@@ -116,19 +116,18 @@ momento, pluraj aŭskultantoj povas sekvi la saman fluon samtempe — kaj
 ĉiu rajtas aliĝi aŭ foriri, kiam ĝi volas. Ĉi tie du aŭskultantoj
 rigardas fluon da eventoj: <code>log</code>, kiu registras ĉion, kaj
 <code>alert</code>, kiu aliĝas pli malfrue kaj foriras pli frue.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$events</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
-<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># la unua aŭskultanto aliĝas</span>
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;start&#39;</span>);
+<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># la unua aŭskultanto aliĝas</span>
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'start'</span>);
 
-<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># dua aŭskultanto aliĝas</span>
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;warning&#39;</span>);
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;all clear&#39;</span>);
+<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># dua aŭskultanto aliĝas</span>
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'warning'</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'all clear'</span>);
 
 <span class="nv">$log</span>.<span class="nb">close</span>;                                          <span class="c1"># la unua aŭskultanto foriras</span>
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;stop&#39;</span>);
-</pre></div>
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'stop'</span>);</pre></div>
 
 <p>Ĉi tio presas:</p>
 <div class="highlight"><pre>log:   start

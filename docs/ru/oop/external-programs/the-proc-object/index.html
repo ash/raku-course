@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,32 +121,28 @@ href="/ru/oop/external-programs">Запуск внешних программ �
 <code>0</code> означает успех, а любое другое число — код неудачи,
 выбранный самой программой. <code>.exitcode</code> даёт вам это
 число:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
 
 <p>Для обычного вопроса «да или нет» — сработало ли? — <code>Proc</code>
 просто истинен, когда код возврата равен <code>0</code>, и ложен в
 остальных случаях, поэтому его можно проверять напрямую:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
 
 <p><code>Proc</code> помнит и саму запущенную команду — в
 <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
 
 <p>За одним стоит следить: если команда завершилась неудачей, а
 возвращённый <code>Proc</code> вы просто
 <strong>проигнорируете</strong>, Raku возбудит исключение, а не даст
 сбою пройти незамеченным:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
-<span class="c1"># умирает: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
+<span class="c1"># умирает: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
 
 <p>Поскольку ненулевой код возврата обычно означает, что что-то пошло не
 так, неудачный <code>Proc</code>, который выбросили, бросает исключение
@@ -154,9 +150,8 @@ href="/ru/oop/external-programs">Запуск внешних программ �
 <em>отбрасывание</em> результата, а не игнорирование кода возврата:
 достаточно просто сохранить <code>Proc</code> в переменную, чтобы
 исключения не было, даже если вы больше никогда в неё не заглянете.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># ошибки нет, хотя команда и не удалась</span>
-<span class="c1"># …и $proc больше нигде не используется</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># ошибки нет, хотя команда и не удалась</span>
+<span class="c1"># …и $proc больше нигде не используется</span></pre></div>
 
 <p>Поэтому, если вы <em>ожидаете</em>, что команда может не удаться,
 сохраните её <code>Proc</code> и затем смотрите на
@@ -195,7 +190,7 @@ href="/ru/oop/external-programs/exercises">к упражнениям этого
 <a href="/bg/oop/external-programs/the-proc-object">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/oop/external-programs/the-proc-object">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

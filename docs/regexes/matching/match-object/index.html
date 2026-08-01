@@ -117,28 +117,25 @@ The same object is also stored automatically in the special variable
 it is the text that matched — either with the <code>.Str</code> method
 or with the prefix <code>~</code>, which is the string-coercion operator
 and does exactly the same thing:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;concatenate&#39;</span> ~~<span class="sr"> /cat/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'concatenate'</span> ~~ <span class="sr">/cat/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>; <span class="c1"># cat</span>
-<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span>
-</pre></div>
+<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span></pre></div>
 
 <p>It also knows <strong>where</strong> in the string the match was
 found. The <code>.from</code> method gives the position where it starts,
 and <code>.to</code> gives the position just after it ends:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;room 7 left&#39;</span> ~~<span class="sr"> /\d/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'room 7 left'</span> ~~ <span class="sr">/\d/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>;  <span class="c1"># 7</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">from</span>; <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">to</span>;   <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">from</span>; <span class="c1"># 5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">to</span>;   <span class="c1"># 6</span></pre></div>
 
 <p>Positions are counted from zero, so the digit <code>7</code> sits at
 index <code>5</code>.</p>
 <p>When the regex does <strong>not</strong> match, the result is not a
 match object at all — it is the special value <code>Nil</code>.
 Assigning <code>Nil</code> to a scalar leaves it undefined:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;abc&#39;</span> ~~<span class="sr"> /z/</span>;
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'abc'</span> ~~ <span class="sr">/z/</span>;
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>So you can always check <code>.defined</code> (or just use the value
 in a Boolean context) before reading the matched text.</p>

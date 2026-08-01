@@ -116,11 +116,10 @@ um ihn zu <em>capturen</em>. Nach einem erfolgreichen Treffer steht
 jedes gecapturte Stück als <code>$0</code>, <code>$1</code> und so
 weiter zur Verfügung, ab null in der Reihenfolge nummeriert, in der die
 Klammern öffnen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Das erste Klammerpaar hat das Jahr in <code>$0</code> gecapturt, das
 zweite den Monat in <code>$1</code>. Der Text dazwischen — das wörtliche
@@ -129,10 +128,9 @@ zweite den Monat in <code>$1</code>. Der Text dazwischen — das wörtliche
 nach seinem <code>.Str</code>, seiner Position und so weiter fragen. In
 einer Zeichenkette mit doppelten Anführungszeichen wird ein Capture als
 sein getroffener Text interpoliert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Hier werden die beiden gecapturten Wörter in umgekehrter Reihenfolge
 ausgegeben, was sie vertauscht.</p>
@@ -140,12 +138,11 @@ ausgegeben, was sie vertauscht.</p>
 und <code>$0</code> ist in Wahrheit eine Kurzform für
 <code>$/[0]</code>. Sie können unmittelbar über <code>$/</code>
 arbeiten:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}</pre></div>
 
 <p><code>$/</code> ist das ganze Match-Objekt, das Indizieren erreicht
 die positionalen Captures, und <code>.elems</code> sagt Ihnen, wie viele

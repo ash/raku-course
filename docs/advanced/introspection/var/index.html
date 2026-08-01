@@ -117,14 +117,13 @@ returns the <code>Scalar</code> container behind it.</p>
 <p>Once you have the container, you can ask for the name of its class
 with <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
-<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">&#39;42&#39;</span>;
+<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">'42'</span>;
 
-<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="nb">name</span>;     <span class="c1"># Int</span>
-<span class="nb">say</span> <span class="nv">$var1</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="n">name</span>;     <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span>
 
-<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="nb">name</span>;     <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var2</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="n">name</span>;     <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var2</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span></pre></div>
 
 <p><code>.^name</code> on the variable returns the type of the
 <em>value</em> (<code>Int</code> or <code>Str</code>), while
@@ -134,28 +133,24 @@ which is <code>Scalar</code> in both cases.</p>
 <p>The <code>default</code> method returns the default value of the
 container — what you get when the container holds nothing of its own.
 With the <code>is default</code> trait you set it explicitly:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">'Raku'</span>);
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># Raku</span></pre></div>
 
 <p>Without an explicit default, the default value is the container’s
 type. For an untyped container that is <code>Any</code>, regardless of
 what value it currently holds:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Any)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">'Raku'</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Any)</span></pre></div>
 
 <p>For a typed container it is the constraint type:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="name-1"><code>name</code></h2>
 <p>The <code>name</code> method returns the name of the container,
 including the sigil:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="nb">name</span>; <span class="c1"># $language</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">name</span>; <span class="c1"># $language</span></pre></div>
 
 <p>Take care not to mix up <code>^name</code> (the type) and
 <code>name</code> (the variable’s own name).</p>

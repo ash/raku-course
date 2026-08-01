@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -124,13 +124,12 @@ href="/ru/paradigms/promises">Промисы</a></p>
 <code>.status</code> не ждёт — оно сообщает, где промис находится
 <em>прямо сейчас</em>, поэтому проверить его можно и до того, как промис
 уладился, и после:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — читаем сразу, пока блок ещё работает</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — читаем сразу, пока блок ещё работает</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># теперь дожидаемся завершения</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
 
 <p><code>.result</code> даёт исполненное значение. В отличие от
 <code>.status</code>, он <em>ждёт</em>, пока промис не уладится, поэтому
@@ -139,11 +138,10 @@ href="/ru/paradigms/promises">Промисы</a></p>
 заново бросает исключение.</p>
 <p>Когда хочется взглянуть на неудачу, не бросая её заново, используйте
 <code>.cause</code> — объект исключения сломанного промиса:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># даём ему уладиться (и проглатываем заново брошенную ошибку)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
 
 <p>Итак, <code>.status</code> и <code>.cause</code> исследуют промис, не
 тревожа его, а <code>await</code> и <code>.result</code> забирают его
@@ -172,7 +170,7 @@ href="/ru/paradigms/promises/exercises">к упражнениям этого
 <a href="/bg/paradigms/promises/promise-status">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/promises/promise-status">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

@@ -118,23 +118,20 @@ clase <em>sabe hacer</em>.</p>
 una clase, y se le da a una clase con el rasgo <code>does</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">role</span> <span class="n">Greet</span> {
     <span class="k">method</span> <span class="n">hello</span> {
-        <span class="s">&#39;Hello from &#39;</span> ~ <span class="nb">self</span>.<span class="nb">name</span>;
+        <span class="s">'Hello from '</span> ~ <span class="nb">self</span>.<span class="n">name</span>;
     }
 }
 
 <span class="k">class</span> <span class="n">Person</span> <span class="k">does</span> <span class="n">Greet</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>La clase <code>Person</code> tiene ahora el método <code>hello</code>
 del rol, como si estuviera escrito en la propia clase:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Person</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Anna&#39;</span>).<span class="n">hello</span>; <span class="c1"># Hello from Anna</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Person</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Anna'</span>).<span class="n">hello</span>; <span class="c1"># Hello from Anna</span></pre></div>
 
 <p>Una clase que asume un rol se reconoce como portadora de ese rol:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Person</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Anna&#39;</span>) ~~ <span class="n">Greet</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Person</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Anna'</span>) ~~ <span class="n">Greet</span>; <span class="c1"># True</span></pre></div>
 
 <p>Fíjate en que el método <code>hello</code> del rol usa
 <code>self.name</code>, aunque el rol mismo no tiene ningún atributo

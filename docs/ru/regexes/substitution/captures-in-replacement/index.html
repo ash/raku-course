@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,10 +117,9 @@ href="/ru/regexes/substitution">Подстановка и замена</a></p>
 <p>Например, превратим дату, записанную как <code>год-месяц</code>, в
 <code>месяц/год</code>, захватив оба числа и подставив их в обратном
 порядке:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">&#39;2025-06&#39;</span>;
-<span class="nv">$d</span> ~~ <span class="nb">s</span>/ (\<span class="nb">d</span>+) <span class="s">&#39;-&#39;</span> (\<span class="nb">d</span>+) /<span class="nv">$1</span>\/<span class="nv">$0</span>/;
-<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">'2025-06'</span>;
+<span class="nv">$d</span> ~~ <span class="sr">s/ (\d+) '-' (\d+) /$1\/$0/</span>;
+<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span></pre></div>
 
 <p>Шаблон захватывает год в <code>$0</code>, а месяц в <code>$1</code>.
 В замене <code>$1</code> и <code>$0</code> записаны в обратном порядке,
@@ -131,10 +130,9 @@ href="/ru/regexes/substitution">Подстановка и замена</a></p>
 вокруг.</p>
 <p>Именованные захваты работают так же. Благодаря им подстановка
 читается ясно даже тогда, когда частей несколько:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Doe, Jane&#39;</span>;
-<span class="nv">$name</span> ~~ <span class="nb">s</span>/ <span class="nv">$&lt;last&gt;</span>=(\<span class="nb">w</span>+) <span class="s">&#39;, &#39;</span> <span class="nv">$&lt;first&gt;</span>=(\<span class="nb">w</span>+) /<span class="nv">$&lt;first&gt;</span> <span class="nv">$&lt;last&gt;</span>/;
-<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Doe, Jane'</span>;
+<span class="nv">$name</span> ~~ <span class="sr">s/ $&lt;last&gt;=(\w+) ', ' $&lt;first&gt;=(\w+) /$&lt;first&gt; $&lt;last&gt;/</span>;
+<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span></pre></div>
 
 <h2 id="навигация-по-курсу">Навигация по курсу</h2>
 <p>← <a href="/ru/regexes/substitution/s-operator/quiz">Тест — Оператор
@@ -160,7 +158,7 @@ href="/ru/regexes/substitution/exercises">к упражнениям этого
 <a href="/bg/regexes/substitution/captures-in-replacement">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/substitution/captures-in-replacement">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

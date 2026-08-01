@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -122,29 +122,27 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 се смята за достъпно само за четене: то се урежда през обета. Обичайната
 форма е производител, който държи обета частен и връща само
 обещанието:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">after</span>(<span class="nv">$seconds</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">after</span>(<span class="nv">$seconds</span>) {
     <span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;                       <span class="c1"># взимаме правото да уреждаме</span>
-    <span class="nb">start</span> {
+    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;                       <span class="c1"># взимаме правото да уреждаме</span>
+    <span class="k">start</span> {
         <span class="nb">sleep</span> <span class="nv">$seconds</span>;
-        <span class="nv">$v</span>.<span class="nb">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># уреждаме го през обета</span>
+        <span class="nv">$v</span>.<span class="n">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># уреждаме го през обета</span>
     }
     <span class="k">return</span> <span class="nv">$p</span>;                            <span class="c1"># извикващите получават само страната за четене</span>
 }
 
-<span class="k">my</span> <span class="nv">$job</span> = <span class="nb">after</span>(<span class="mf">0.2</span>);
-<span class="nb">say</span> <span class="nv">$job</span>.<span class="nb">status</span>;   <span class="c1"># Planned</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$job</span> = <span class="n">after</span>(<span class="mf">0.2</span>);
+<span class="nb">say</span> <span class="nv">$job</span>.<span class="n">status</span>;   <span class="c1"># Planned</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span></pre></div>
 
 <p>Взимането на обета прави обещанието наистина достъпно само за четене:
 от този миг <code>$p.keep</code> и <code>$p.break</code> се отказват,
 защото обетът вече притежава изключителното право да го урежда.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;
+<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">1</span>); <span class="c1"># умира: Access denied to keep/break this Promise; already vowed</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">1</span>); <span class="c1"># умира: Access denied to keep/break this Promise; already vowed</span></pre></div>
 
 <p>Така извикващият може да <code>await</code>-и обещанието, да свърже
 <code>.then</code> с него или да провери неговия <code>.status</code>,
@@ -183,7 +181,7 @@ href="/bg/paradigms/promises/exercises">към упражненията в то�
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/promises/vows">Русский</a>
 <a href="/uk/paradigms/promises/vows">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

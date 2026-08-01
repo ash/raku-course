@@ -117,13 +117,13 @@ puedes dárselo a un objeto que ya existe, usando el operador
 ejecución y devuelve un objeto nuevo que asume el rol:</p>
 <div class="highlight raku"><pre><span></span><span class="k">role</span> <span class="n">Loud</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="nb">callsame</span>().<span class="nb">uc</span>;
+        <span class="n">callsame</span>().<span class="nb">uc</span>;
     }
 }
 
 <span class="k">class</span> <span class="n">Greeter</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="s">&#39;Hello&#39;</span>;
+        <span class="s">'Hello'</span>;
     }
 }
 
@@ -131,8 +131,7 @@ ejecución y devuelve un objeto nuevo que asume el rol:</p>
 <span class="k">my</span> <span class="nv">$loud</span>  = <span class="n">Greeter</span>.<span class="nb">new</span> <span class="k">but</span> <span class="n">Loud</span>;
 
 <span class="nb">say</span> <span class="nv">$quiet</span>.<span class="n">greet</span>; <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span></pre></div>
 
 <p>Solo <code>$loud</code> ha adquirido el rol. La clase
 <code>Greeter</code> y todos los demás objetos <code>Greeter</code>
@@ -144,16 +143,14 @@ a la que ha sobrescrito — aquí el <code>greet</code> original de
 <p>Un objeto en el que se ha mezclado un rol se reconoce como portador
 de ese rol:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$quiet</span> ~~ <span class="n">Loud</span>; <span class="c1"># False</span>
-<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>but</code> deja el objeto original tal cual y te entrega uno
 nuevo. Si prefieres cambiar un objeto existente en el sitio, usa el
 operador <code>does</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$speaker</span> = <span class="n">Greeter</span>.<span class="nb">new</span>;
 <span class="nv">$speaker</span> <span class="k">does</span> <span class="n">Loud</span>;
-<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span></pre></div>
 
 <p>Mezclar roles en objetos concretos te permite decidir, objeto a
 objeto, qué comportamiento extra debe asumir, sin definir una clase

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,17 +117,16 @@ grammaticatoken. Elke methode ontvangt de match voor dat token als
 hangen — precies wat het inline blok deed, maar apart van het patroon
 gehouden:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-}
-</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+}</pre></div>
 
 <p>De grammatica bevat nu alleen het patroon; alle betekenis leeft in
 <code>SumActions</code>. Merk op hoe de methoden samenwerken:
@@ -137,8 +136,7 @@ getal, en <code>TOP</code> leest die met <code>$&lt;a&gt;.made</code> en
 <p>Om de actieklasse te gebruiken, geef je met het benoemde argument
 <code>actions</code> een instantie aan <code>.parse</code> mee en lees
 je daarna het bovenste resultaat met <code>.made</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="k">made</span>; <span class="c1"># 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
 
 <p>Terwijl de grammatica ontleedt, draait de methode van elk token
 automatisch en wordt de waarde van onderaf opgebouwd. Het resultaat op
@@ -176,7 +174,7 @@ sectie</a>.</p>
 <a href="/bg/regexes/action-classes/writing-actions">Български</a>
 <a href="/ru/regexes/action-classes/writing-actions">Русский</a>
 <a href="/uk/regexes/action-classes/writing-actions">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

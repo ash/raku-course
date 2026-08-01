@@ -115,23 +115,20 @@ web</a> / <a href="/es/paradigms/functional">Programación funcional</a>
 vuelve <strong>infinita</strong>: no tiene último elemento. Como la
 lista es perezosa, esto es perfectamente seguro: no se calcula nada
 hasta que lo tomas.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">4</span> ... *).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 4 8 16)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">4</span> ... *).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 4 8 16)</span></pre></div>
 
 <p>La serie de potencias de dos sigue para siempre, pero
 <code>.head(5)</code> extrae solo las cinco primeras. El rango
 <code>1..*</code> es la secuencia infinita más sencilla: todos los
 enteros a partir de uno.</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>);          <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">head</span>(<span class="mi">4</span>); <span class="c1"># (1 4 9 16)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="nb">head</span>(<span class="mi">4</span>); <span class="c1"># (1 4 9 16)</span></pre></div>
 
 <p>Incluso puedes definir una secuencia en términos de sus propios
 elementos anteriores. La sucesión de Fibonacci, en la que cada número es
 la suma de los dos anteriores, es célebremente una sola línea:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@fib</span> = <span class="mi">1</span>, <span class="mi">1</span>, * + * ... *;
-<span class="nb">say</span> <span class="nv">@fib</span>[^<span class="mi">10</span>]; <span class="c1"># (1 1 2 3 5 8 13 21 34 55)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@fib</span>[^<span class="mi">10</span>]; <span class="c1"># (1 1 2 3 5 8 13 21 34 55)</span></pre></div>
 
 <p>La clausura <code>* + *</code> toma los dos elementos anteriores y
 los suma. Guardar la secuencia en <code>@fib</code> no da problema aquí

@@ -116,11 +116,11 @@ da righe CSV</a></p>
 CSV</h1>
 <p>Ecco una possibile soluzione del compito.</p>
 <h2 id="codice">Codice</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">&#39;Anna,90&#39;</span>, <span class="s">&#39;Bob,72&#39;</span>, <span class="s">&#39;Cara,84&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">'Anna,90'</span>, <span class="s">'Bob,72'</span>, <span class="s">'Cara,84'</span>;
 <span class="k">my</span> <span class="nv">%score</span>;
 
 <span class="k">for</span> <span class="nv">@lines</span> -&gt; <span class="nv">$line</span> {
-    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>);
+    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">','</span>);
     <span class="nv">%score</span>{<span class="nv">$name</span>} = <span class="nv">$mark</span>.<span class="nb">Int</span>;
 }
 
@@ -129,9 +129,8 @@ CSV</h1>
 
 <span class="nb">say</span> <span class="s">&quot;above average:&quot;</span>;
 <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span> -&gt; <span class="nv">$pair</span> {
-    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="nb">value</span> &gt; <span class="nv">$average</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="n">value</span> &gt; <span class="nv">$average</span>;
+}</pre></div>
 
 <p>🦋 Trova il programma nel file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/csv-averages.raku">csv-averages.raku</a>.</p>
@@ -154,8 +153,7 @@ supera viene elencato. Qui la media risulta un intero
 sopra la media e <code>map</code> riduce ogni coppia sopravvissuta al
 proprio nome — così il corpo del ciclo non porta alcuna logica, solo la
 stampa:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="nb">value</span> &gt; <span class="nv">$average</span>).<span class="n">map</span>(*.<span class="nb">key</span>);
-</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="n">value</span> &gt; <span class="nv">$average</span>).<span class="nb">map</span>(*.<span class="n">key</span>);</pre></div>
 
 <p>Letta da sinistra a destra, dice esattamente ciò che fa: ordina,
 conserva quelli sopra la media, prendine i nomi. Ogni stadio è un passo

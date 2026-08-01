@@ -114,11 +114,10 @@ href="/paradigms/channels">Channels</a></p>
 <p>Create a channel with <code>Channel.new</code>. Put values in with
 <code>.send</code>, and take them out with <code>.receive</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
-</pre></div>
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span></pre></div>
 
 <p>A channel is a <strong>queue</strong>: values come out in the same
 order they went in — first in, first out. So the first
@@ -128,12 +127,11 @@ from <strong>different threads</strong> at the same time. A producer can
 keep sending while a consumer keeps receiving, and Raku makes sure no
 value is lost or duplicated:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span></pre></div>
 
 <p>Here a background task sends <code>1, 2, 3</code>; the main program
 receives. <code>.receive</code> waits if the channel is momentarily

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,15 +113,13 @@
 дужки: <code>@a.grep(* &gt; 5)</code>. Raku пропонує другу форму —
 поставте після імені <strong>двокрапку</strong>, і все, що йде після
 неї, стає списком аргументів, зовсім без дужок:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Двокрапка в <code>grep:</code> виконує ту саму роботу, що й дужки:
 <code>(1..10).grep: * %% 2</code> означає точно те саме, що
 <code>(1..10).grep(* %% 2)</code>. Ці дві форми взаємозамінні:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>Форма з двокрапкою найприємніша з методами, які приймають
 <strong>блок</strong> або вираз <a
@@ -130,8 +128,7 @@ href="/uk/advanced/whatever">Whatever</a>, бо вона прибирає оди
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># дужки навколо блоку</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># двокрапка — закривальну дужку шукати не треба</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># двокрапка — закривальну дужку шукати не треба</span></pre></div>
 
 <p>Обидва варіанти виводять <code>(3 2 1)</code>, але версія з
 двокрапкою читається чистіше, надто коли блок довгий.</p>
@@ -145,8 +142,7 @@ href="/uk/advanced/whatever">Whatever</a>, бо вона прибирає оди
 <code>grep</code> — останній виклик, і чіплятися далі нема до чого. Якщо
 потрібно викликати ще методи, скористайтеся формою з дужками або
 згрупуйте частини виразу, щоб було зрозуміло:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>На що варто зважати: не поєднуйте двокрапку <strong>й</strong> дужки
 як <code>.grep:( … )</code>. Такий запис конфліктує із синтаксисом
@@ -195,7 +191,7 @@ href="/uk/advanced/whatever">Whatever</a>, бо вона прибирає оди
 <a href="/bg/advanced/colon-calls">Български</a>
 <a href="/ru/advanced/colon-calls">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

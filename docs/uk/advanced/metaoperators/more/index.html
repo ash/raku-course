@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,15 +117,13 @@ href="/uk/advanced/metaoperators">Метаоператори</a></p>
 <p>Перехресний метаоператор <code>X</code> парує <strong>кожен</strong>
 елемент одного списку з <strong>кожним</strong> елементом іншого — це
 декартів добуток:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
 
 <p>Як і zip, він може огортати оператор, щоб діяти на кожну пару.
 <code>X~</code> з’єднує кожну пару в рядок, а <code>X*</code>
 перемножує:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
 
 <p>Якщо zip іде двома списками в ногу, то перехресний оператор поєднує
 їх усіма можливими способами.</p>
@@ -136,8 +134,7 @@ href="/uk/advanced/metaoperators">Метаоператори</a></p>
 двома списками він працює поелементно, як zip; з одним значенням з
 одного боку він розтягує це значення на весь список:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
 
 <p>Дві стрілки не мусять дивитися в один бік, і їхній напрямок вирішує,
 що станеться, коли списки різної довжини: вістря, спрямоване
@@ -155,13 +152,11 @@ href="/uk/advanced/metaoperators">Метаоператори</a></p>
 <li><code>&lt;&lt;op&gt;&gt;</code> — <strong>коротший</strong> список
 повторюється, щоб зрівнятися з довшим.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 повторюється як 10, 20, 10, 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 повторюється як 10, 20, 10, 20</span></pre></div>
 
 <p>Є й унарна форма, яка викликає метод для кожного елемента.
 <code>&gt;&gt;.uc</code> переводить кожен рядок у верхній регістр:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
 
 <p>Гіпероперації також сигналізують, що роботу <em>можна</em> виконати
 паралельно — зі спорідненим методом <code>.hyper</code> ви познайомитеся
@@ -173,9 +168,8 @@ href="/uk/advanced/metaoperators">Метаоператори</a></p>
 метаоператор, застосований до <code>==</code>, і так само працює для
 інших булевих операторів, як-от <code>eq</code> та <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — не рівні як рядки</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не ділиться на 2</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — не рівні як рядки</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 не ділиться на 2</span></pre></div>
 
 <p>Коротко кажучи, <code>$a !op $b</code> — це просто охайніший спосіб
 записати <code>!($a op $b)</code>.</p>
@@ -184,8 +178,7 @@ href="/uk/advanced/metaoperators">Метаоператори</a></p>
 Raku радо дає вам кілька, — тож заперечний <code>!eq</code> живе поруч
 зі спеціальним оператором <code>ne</code>, і обидва означають точно те
 саме:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — та сама перевірка, що й &#39;a&#39; !eq &#39;b&#39;</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — та сама перевірка, що й 'a' !eq 'b'</span></pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -219,7 +212,7 @@ href="/uk/advanced/metaoperators/exercises">до вправ цього
 <a href="/bg/advanced/metaoperators/more">Български</a>
 <a href="/ru/advanced/metaoperators/more">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

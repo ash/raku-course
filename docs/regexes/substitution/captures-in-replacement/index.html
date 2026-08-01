@@ -116,10 +116,9 @@ than just throwing it away.</p>
 <p>For example, turn a date written as <code>year-month</code> into
 <code>month/year</code> by capturing both numbers and putting them back
 in the other order:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">&#39;2025-06&#39;</span>;
-<span class="nv">$d</span> ~~ <span class="nb">s</span>/ (\<span class="nb">d</span>+) <span class="s">&#39;-&#39;</span> (\<span class="nb">d</span>+) /<span class="nv">$1</span>\/<span class="nv">$0</span>/;
-<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">'2025-06'</span>;
+<span class="nv">$d</span> ~~ <span class="sr">s/ (\d+) '-' (\d+) /$1\/$0/</span>;
+<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span></pre></div>
 
 <p>The pattern captures the year into <code>$0</code> and the month into
 <code>$1</code>. In the replacement, <code>$1</code> and <code>$0</code>
@@ -131,10 +130,9 @@ substitution.) Note that spaces are insignificant on the
 spaces around it.</p>
 <p>Named captures work the same way. This makes a substitution read
 clearly even when there are several pieces:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Doe, Jane&#39;</span>;
-<span class="nv">$name</span> ~~ <span class="nb">s</span>/ <span class="nv">$&lt;last&gt;</span>=(\<span class="nb">w</span>+) <span class="s">&#39;, &#39;</span> <span class="nv">$&lt;first&gt;</span>=(\<span class="nb">w</span>+) /<span class="nv">$&lt;first&gt;</span> <span class="nv">$&lt;last&gt;</span>/;
-<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Doe, Jane'</span>;
+<span class="nv">$name</span> ~~ <span class="sr">s/ $&lt;last&gt;=(\w+) ', ' $&lt;first&gt;=(\w+) /$&lt;first&gt; $&lt;last&gt;/</span>;
+<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span></pre></div>
 
 <h2 id="course-navigation">Course navigation</h2>
 <p>← <a href="/regexes/substitution/s-operator/quiz">Quiz — The s///

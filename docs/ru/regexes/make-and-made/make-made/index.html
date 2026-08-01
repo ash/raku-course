@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,24 +118,21 @@ href="/ru/regexes/make-and-made">Дерево разбора, make и made</a></
 только сопоставление до него доходит. Внутри такого блока функция
 <code>make</code> сохраняет значение на текущем совпадении:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">OneNum</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
-    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-}
-</pre></div>
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> } }
+    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+}</pre></div>
 
 <p>Когда <code>TOP</code> совпадает, выполняется внутренний блок
 <code>{ make $&lt;number&gt;.Int }</code> — внешние фигурные скобки
 здесь просто тело токена — и сохраняет на совпадении целое число.
 Прочитать его обратно можно потом через <code>made</code> (или его
 синоним <code>.ast</code>):</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Поскольку мы сохранили <code>$&lt;number&gt;.Int</code>, значение,
 которое возвращает <code>made</code>, — это настоящий <code>Int</code>,
 само число, а не объект совпадения:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="nb">parse</span>(<span class="s">&#39;42&#39;</span>).<span class="k">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">OneNum</span>.<span class="n">parse</span>(<span class="s">'42'</span>).<span class="n">made</span> + <span class="mi">1</span>; <span class="c1"># 43</span></pre></div>
 
 <p>Заметьте, что именно это <code>+ 1</code> дало бы <code>43</code> и
 без <code>.Int</code>, ведь в арифметике совпадение приводится к числу
@@ -147,13 +144,12 @@ href="/ru/regexes/make-and-made">Дерево разбора, make и made</a></
 может и объединить значения, которые сделали его подтокены. Например,
 сложить два захваченных числа:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>{ <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> }<span class="sr"> </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>).<span class="k">made</span>; <span class="c1"># 5</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
 
 <p><code>make</code> и <code>made</code> — это мост от «совпало» к «вот
 его смысл». Встроенные блоки работают, но смешивают шаблон с логикой;
@@ -192,7 +188,7 @@ href="/ru/regexes/make-and-made/exercises">к упражнениям этого
 <a href="/bg/regexes/make-and-made/make-made">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/make-and-made/make-made">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

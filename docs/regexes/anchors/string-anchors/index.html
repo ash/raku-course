@@ -117,24 +117,21 @@ string</li>
 <li><code>$</code> matches at the very <strong>end</strong></li>
 </ul>
 <p>Use <code>^</code> to require that the match begins at the start:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;http://example&#39;</span> ~~<span class="sr"> /^ http /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;see http://x&#39;</span>   ~~<span class="sr"> /^ http /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
 
 <p>The second string contains <code>http</code>, but not at the
 beginning, so the anchored pattern fails.</p>
 <p>Putting <code>^</code> and <code>$</code> around a pattern forces it
 to match the <strong>whole</strong> string, with nothing left over on
 either side:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello&#39;</span>       ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> /^ hello $/</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
 
 <p>This is a very common idiom for validation — “is this string exactly
 a number?”, for instance:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;2025&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;20a5&#39;</span> ~~<span class="sr"> /^ \d+ $/</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
 
 <h2 id="line-anchors">Line anchors</h2>
 <p>When a string has several lines, the partners <code>^^</code> and
@@ -143,9 +140,8 @@ rather than the whole string. The difference from <code>^</code> and
 <code>$</code> shows up as soon as the text you want is not on the first
 line: the single anchors see only the whole string and fail, while the
 doubled ones match on any line.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^  dog  $/</span>;  <span class="c1"># False</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~<span class="sr"> /^^ dog $$/</span>;  <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
 
 <p>Here <code>\n</code> starts a second line. The <code>^^</code>
 requires <code>dog</code> to sit at the start of a line and

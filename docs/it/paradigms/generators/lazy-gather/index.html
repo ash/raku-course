@@ -124,18 +124,16 @@ estraine una fetta:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$naturals</span> = <span class="k">gather</span> {
     <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>;
     <span class="k">loop</span> {
-        <span class="nb">take</span> <span class="nv">$n</span>++;
+        <span class="k">take</span> <span class="nv">$n</span>++;
     }
 }
 
-<span class="nb">say</span> <span class="nv">$naturals</span>[^<span class="mi">5</span>]; <span class="c1"># (1 2 3 4 5)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$naturals</span>[^<span class="mi">5</span>]; <span class="c1"># (1 2 3 4 5)</span></pre></div>
 
 <p>Il <code>loop</code> non finisce mai, ma vengono prodotti solo cinque
 valori, perché è tutto ciò che abbiamo chiesto con <code>[^5]</code>.
 Puoi anche estrarre dalla testa con <code>.head</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="k">gather</span> { <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>; <span class="k">loop</span> { <span class="nb">take</span> <span class="nv">$n</span>++ } }).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="k">gather</span> { <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>; <span class="k">loop</span> { <span class="k">take</span> <span class="nv">$n</span>++ } }).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)</span></pre></div>
 
 <p>È la pigrizia a permettere a <code>gather</code> di modellare flussi
 infiniti in sicurezza: nulla viene calcolato finché non serve, e ne

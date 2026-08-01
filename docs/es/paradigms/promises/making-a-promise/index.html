@@ -118,36 +118,32 @@ resultado (o la noticia) esté listo. <code>.keep</code> la cumple con un
 valor:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># a fresh, unsettled promise</span>
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">42</span>);           <span class="c1"># fulfil it with a value</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># fulfil it with a value</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
 
 <p><code>.break</code> es el caso de fallo. Esperar una promesa rota
 relanza el error, igual que ocurre con un bloque <code>start</code> que
 <a href="/es/paradigms/await/awaiting-promises">murió</a>, y si nadie la
 captura, esa excepción detiene el programa:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># dies here with &#39;disk full&#39;</span>
-<span class="nb">say</span> <span class="s">&#39;never reached&#39;</span>;      <span class="c1"># this line does not run</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># dies here with 'disk full'</span>
+<span class="nb">say</span> <span class="s">'never reached'</span>;      <span class="c1"># this line does not run</span></pre></div>
 
 <p>Para seguir adelante, captura el fallo con <code>try</code>,
 exactamente como harías alrededor de cualquier código que pueda
 morir:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span></pre></div>
 
 <p>Si el desenlace ya se conoce, dos atajos crean una promesa que nace
 ya resuelta: <code>Promise.kept($value)</code> y
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="nb">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
 
 <p>¿Por qué crear una promesa a mano? Porque no todos los resultados
 vienen de un bloque <code>start</code>. Un evento que se dispara más

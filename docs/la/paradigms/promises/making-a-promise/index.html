@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,35 +117,31 @@ nondum finivit — idque ipse componere cum effectus (vel nuntius) paratus
 est. <code>.keep</code> illud valore implet:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># promissum novum, nondum compositum</span>
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">42</span>);           <span class="c1"># imple illud valore</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># imple illud valore</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
 
 <p><code>.break</code> casus defectus est. Promissum fractum exspectare
 errorem rursus iacit, sicut pro bloco <code>start</code> qui <a
 href="/la/paradigms/await/awaiting-promises">mortuus est</a> — et si
 nihil illud capit, exceptio programma sistit:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># hic moritur cum &#39;disk full&#39;</span>
-<span class="nb">say</span> <span class="s">&#39;never reached&#39;</span>;      <span class="c1"># haec linea non curritur</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># hic moritur cum 'disk full'</span>
+<span class="nb">say</span> <span class="s">'never reached'</span>;      <span class="c1"># haec linea non curritur</span></pre></div>
 
 <p>Ut pergas, cape defectum per <code>try</code>, prorsus ut circa
 quemlibet codicem qui mori potest facias:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span></pre></div>
 
 <p>Si exitus iam notus est, duo compendia promissum faciunt quod iam
 compositum incipit: <code>Promise.kept($value)</code> et
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="nb">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Cur promissum manu facere? Quia non omnis effectus ex bloco
 <code>start</code> venit. Eventus qui postea accidit, nuntius qui
@@ -177,7 +173,7 @@ sectionis</a> i.</p>
 <a href="/bg/paradigms/promises/making-a-promise">Български</a>
 <a href="/ru/paradigms/promises/making-a-promise">Русский</a>
 <a href="/uk/paradigms/promises/making-a-promise">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

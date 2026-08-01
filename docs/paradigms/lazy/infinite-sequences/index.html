@@ -114,23 +114,20 @@ href="/paradigms/lazy">Lazy and infinite sequences</a></p>
 <p>Replace the end value with a <code>*</code> and the sequence becomes
 <strong>infinite</strong> — it has no last element. Because the list is
 lazy, this is perfectly safe: nothing is computed until you take it.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">4</span> ... *).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 4 8 16)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">4</span> ... *).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 4 8 16)</span></pre></div>
 
 <p>The series of powers of two goes on forever, but
 <code>.head(5)</code> pulls only the first five. The range
 <code>1..*</code> is the simplest infinite sequence — all the integers
 from one:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>);          <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">head</span>(<span class="mi">4</span>); <span class="c1"># (1 4 9 16)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="nb">head</span>(<span class="mi">4</span>); <span class="c1"># (1 4 9 16)</span></pre></div>
 
 <p>You can even define a sequence in terms of its own earlier elements.
 The Fibonacci sequence, where each number is the sum of the previous
 two, is famously a one-liner:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@fib</span> = <span class="mi">1</span>, <span class="mi">1</span>, * + * ... *;
-<span class="nb">say</span> <span class="nv">@fib</span>[^<span class="mi">10</span>]; <span class="c1"># (1 1 2 3 5 8 13 21 34 55)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@fib</span>[^<span class="mi">10</span>]; <span class="c1"># (1 1 2 3 5 8 13 21 34 55)</span></pre></div>
 
 <p>The closure <code>* + *</code> takes the two previous elements and
 adds them. Storing the sequence in <code>@fib</code> is fine here

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,29 +123,26 @@
 между тях. Понеже <code>\w+</code> спира на интервала, вход с интервал
 не дава съвпадение:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithToken</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
-    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
+    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">WithToken</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">WithToken</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p><em>Можете</em> да приемете интервала и в <code>token</code> — просто
 трябва да го съпоставите сами, например с <code>\s+</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;first&gt; \s+ &lt;second&gt; </span>}      <span class="c1"># сега &#39;foo bar&#39; се разбира</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;first&gt;</span> \<span class="n">s</span>+ <span class="s">&lt;second&gt;</span> }      <span class="c1"># сега 'foo bar' се разбира</span></pre></div>
 
 <p><code>rule</code> вмъква това съпоставяне на празни знаци вместо вас,
 така че е достатъчно просто да напишете интервал между частите:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithRule</span> {
-    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
-    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
+    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
+    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">WithRule</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">WithRule</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># True</span></pre></div>
 
 <p>Често срещан подход е <code>rule</code> да се използва за структурата
 от по-високо ниво — където частите са разделени с интервали — и
@@ -185,7 +182,7 @@ href="/bg/regexes/tokens-and-rules/exercises">към упражненията в
 <span class="lang-current">Български</span>
 <a href="/ru/regexes/tokens-and-rules/rule-sigspace">Русский</a>
 <a href="/uk/regexes/tokens-and-rules/rule-sigspace">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

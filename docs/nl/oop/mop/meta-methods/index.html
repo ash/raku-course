@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,21 +118,19 @@ op het <strong>metaobject</strong> van het object — hij vraagt iets óver
 het type in plaats van als het type op te treden.</p>
 <p>Je bent <code>.^name</code> tegengekomen, die de naam van het type
 teruggeeft:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="nb">name</span>; <span class="c1"># Int</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="n">name</span>; <span class="c1"># Int</span></pre></div>
 
 <p>Andere metamethoden inspecteren de structuur van een type.
 <code>.^attributes</code> somt de attributen op, en
 <code>.^find_method</code> vertelt je of een methode bestaat:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Animal</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
-    <span class="k">method</span> <span class="n">speak</span> { <span class="s">&#39;generic&#39;</span> }
+    <span class="k">method</span> <span class="n">speak</span> { <span class="s">'generic'</span> }
 }
 
-<span class="nb">say</span> <span class="n">Animal</span>.^<span class="nb">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;speak&#39;</span>);   <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;fly&#39;</span>);     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Animal</span>.^<span class="n">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'speak'</span>);   <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'fly'</span>);     <span class="c1"># False</span></pre></div>
 
 <p><code>.^mro</code> geeft de <em>method resolution order</em> terug —
 de keten van typen die Raku in volgorde doorzoekt bij het opzoeken van
@@ -140,8 +138,7 @@ een methode. Het is de overervingslijn van een klasse:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">A</span> {}
 <span class="k">class</span> <span class="n">B</span> <span class="k">is</span> <span class="n">A</span> {}
 
-<span class="nb">say</span> <span class="n">B</span>.^<span class="nb">mro</span>.<span class="n">map</span>(*.^<span class="nb">name</span>); <span class="c1"># (B A Any Mu)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">B</span>.^<span class="n">mro</span>.<span class="nb">map</span>(*.^<span class="n">name</span>); <span class="c1"># (B A Any Mu)</span></pre></div>
 
 <p><code>B</code> erft van <code>A</code>, en elk type uiteindelijk van
 <code>Any</code> en <code>Mu</code>, dus een methodeaanroep op een
@@ -177,7 +174,7 @@ oefeningen in deze sectie</a>.</p>
 <a href="/bg/oop/mop/meta-methods">Български</a>
 <a href="/ru/oop/mop/meta-methods">Русский</a>
 <a href="/uk/oop/mop/meta-methods">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

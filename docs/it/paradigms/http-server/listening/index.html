@@ -115,12 +115,11 @@ connessioni</h1>
 <p>Per fare da server, crea un socket in modalità di
 <strong>ascolto</strong> con l’argomento <code>:listen</code>, indicando
 l’indirizzo e la porta su cui ascoltare:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(
     :<span class="n">listen</span>,
-    :<span class="n">localhost</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
+    :<span class="n">localhost</span>(<span class="s">'127.0.0.1'</span>),
     :<span class="n">localport</span>(<span class="mi">8080</span>),
-);
-</pre></div>
+);</pre></div>
 
 <p><code>:localhost('127.0.0.1')</code> ascolta sulla tua macchina, e
 <code>:localport(8080)</code> è la porta a cui i client devono
@@ -130,9 +129,8 @@ arrivato.</p>
 <code>.accept</code>. <strong>Blocca</strong> finché un client non si
 connette, poi restituisce un socket fresco che rappresenta quella
 singola conversazione:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="nb">accept</span>;
-<span class="nb">say</span> <span class="s">&#39;a client connected&#39;</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="n">accept</span>;
+<span class="nb">say</span> <span class="s">'a client connected'</span>;</pre></div>
 
 <p>Il <code>$listener</code> continua ad ascoltare altri client, mentre
 <code>$conn</code> è il tuo canale per parlare con questo in

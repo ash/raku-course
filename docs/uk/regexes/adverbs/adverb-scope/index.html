@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,9 +117,8 @@
 <code>:i</code> є <em>позиційним</em> — він діє лише від того місця, де
 з’явився, і далі. Це дозволяє послабити правило регістру лише для
 частини шаблону:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;RAKU&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
-<span class="nb">say</span> <span class="s">&#39;raku&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'RAKU'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
+<span class="nb">say</span> <span class="s">'raku'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># Nil</span></pre></div>
 
 <p>Тут початкове <code>R</code> усе ще зіставляється з урахуванням
 регістру — тож <code>raku</code> з малої літери не підходить, — тоді як
@@ -131,17 +130,15 @@
 <p>Дія внутрішнього прислівника обмежена також групою, що його охоплює.
 У <code>/[:i abc]def/</code> регістр ігнорує лише <code>abc</code>;
 <code>def</code> після групи зіставляється строго:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># Nil</span></pre></div>
 
 <h2 id="вимкнення-прислівника">Вимкнення прислівника</h2>
 <p>Щоб вимкнути прислівник назад посеред шаблону, заперечте його за
 допомогою <code>!</code>. Тож <code>:!i</code> відновлює чутливість до
 регістру від цього місця й далі:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># Nil</span></pre></div>
 
 <p><code>:i</code> послаблює правило регістру для <code>abc</code>, а
 потім <code>:!i</code> повертає його на місце, тож <code>def</code> має
@@ -172,7 +169,7 @@ href="/uk/regexes/adverbs/exercises">до вправ цього розділу</
 <a href="/bg/regexes/adverbs/adverb-scope">Български</a>
 <a href="/ru/regexes/adverbs/adverb-scope">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

@@ -120,33 +120,29 @@ che raggruppano <strong>senza</strong> catturare.</p>
 <p>Il raggruppamento conta non appena attacchi un quantificatore. Un
 quantificatore si lega solo all’atomo che lo precede immediatamente,
 quindi lo schema qui sotto ripete solo l’ultima lettera:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abccc&#39;</span> ~~<span class="sr"> / abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Solo la <code>c</code> è stata ripetuta tre volte. Avvolgi tutto il
 pezzo in <code>[ ]</code> per ripeterlo per intero:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abcabcabc&#39;</span> ~~<span class="sr"> / [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Ora <code>[ abc ]</code> è un’unica unità, e <code>** 3</code> si
 applica al gruppo.</p>
 <p>Poiché <code>[ ]</code> non occupa alcun posto di cattura, i numeri
 restano riservati alle parti che ti interessano davvero. Confronta una
 semplice corrispondenza chiave-valore:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;foo=42&#39;</span> ~~<span class="sr"> / (\w+) &#39;=&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Supponi che la chiave possa essere preceduta da una parola che vuoi
 saltare. Raggruppa quel prefisso con <code>[ ]</code> così che non
 disturbi la numerazione:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;the foo=42&#39;</span> ~~<span class="sr"> / [ \w+ \s ]? (\w+) &#39;=&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>L’opzionale <code>[ \w+ \s ]?</code> ha riconosciuto <code>the</code>
 ma non ha richiesto alcuna cattura, quindi <code>$0</code> è ancora la

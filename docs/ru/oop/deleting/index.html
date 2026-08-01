@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,12 +113,11 @@ href="/ru/oop/input-and-output">Ввод и вывод</a></p>
 <p>Подобно тому как <code>spurt</code> и <code>mkdir</code> создают
 что-то на диске, две процедуры это удаляют.</p>
 <p>Процедура <code>unlink</code> удаляет файл:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">&#39;temp.txt&#39;</span>, <span class="s">&#39;scratch data&#39;</span>;
-<span class="nb">say</span> <span class="s">&#39;temp.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># True</span>
+<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">'temp.txt'</span>, <span class="s">'scratch data'</span>;
+<span class="nb">say</span> <span class="s">'temp.txt'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># True</span>
 
-<span class="nb">unlink</span> <span class="s">&#39;temp.txt&#39;</span>;
-<span class="nb">say</span> <span class="s">&#39;temp.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">unlink</span> <span class="s">'temp.txt'</span>;
+<span class="nb">say</span> <span class="s">'temp.txt'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># False</span></pre></div>
 
 <p><code>unlink</code> удаляет названный файл. Как и другие процедуры
 для файловой системы, она имеет и форму метода у объекта пути —
@@ -131,22 +130,20 @@ href="/ru/oop/input-and-output">Ввод и вывод</a></p>
 нет.</p>
 <p>Процедура <code>rmdir</code> удаляет каталог, но только
 <strong>пустой</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">&#39;reports&#39;</span>;
-<span class="nb">rmdir</span> <span class="s">&#39;reports&#39;</span>;
-<span class="nb">say</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">'reports'</span>;
+<span class="n">rmdir</span> <span class="s">'reports'</span>;
+<span class="nb">say</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># False</span></pre></div>
 
 <p>Если в каталоге ещё что-то есть, <code>rmdir</code> ничего не удаляет
 и оставляет его на месте. Поэтому, чтобы удалить каталог с файлами, его
 сначала опустошают, а потом удаляют:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">&#39;reports&#39;</span>;
-<span class="nb">spurt</span> <span class="s">&#39;reports/jan.txt&#39;</span>, <span class="s">&#39;January&#39;</span>;
-<span class="nb">spurt</span> <span class="s">&#39;reports/feb.txt&#39;</span>, <span class="s">&#39;February&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">'reports'</span>;
+<span class="nb">spurt</span> <span class="s">'reports/jan.txt'</span>, <span class="s">'January'</span>;
+<span class="nb">spurt</span> <span class="s">'reports/feb.txt'</span>, <span class="s">'February'</span>;
 
-.<span class="nb">unlink</span> <span class="k">for</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">dir</span>;   <span class="c1"># удаляем все записи</span>
-<span class="nb">rmdir</span> <span class="s">&#39;reports&#39;</span>;                <span class="c1"># теперь каталог пуст</span>
-<span class="nb">say</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>;             <span class="c1"># False</span>
-</pre></div>
+.<span class="nb">unlink</span> <span class="k">for</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">dir</span>;   <span class="c1"># удаляем все записи</span>
+<span class="n">rmdir</span> <span class="s">'reports'</span>;                <span class="c1"># теперь каталог пуст</span>
+<span class="nb">say</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">e</span>;             <span class="c1"># False</span></pre></div>
 
 <p><code>'reports'.IO.dir</code> перечисляет записи каталога (об этом
 была предыдущая тема), а вызов <code>.unlink</code> у каждой из них их
@@ -194,7 +191,7 @@ href="/ru/oop/deleting/exercises/delete-a-file">Удалите файл</a> →<
 <a href="/bg/oop/deleting">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/oop/deleting">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

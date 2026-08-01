@@ -117,35 +117,31 @@ finiĝis — kaj decidi ĝin mem, kiam la rezulto (aŭ la novaĵo) estas
 preta. <code>.keep</code> plenumas ĝin per valoro:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># freŝa, ankoraŭ nedecidita promeso</span>
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">42</span>);           <span class="c1"># plenumu ĝin per valoro</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># plenumu ĝin per valoro</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
 
 <p><code>.break</code> estas la malsukcesa kazo. Atendi rompitan
 promeson reĵetas la eraron, ĝuste kiel ĉe bloko <code>start</code>, kiu
 <a href="/eo/paradigms/await/awaiting-promises">mortis</a> — kaj se
 nenio kaptas ĝin, tiu escepto haltigas la programon:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># mortas ĉi tie kun &#39;disk full&#39;</span>
-<span class="nb">say</span> <span class="s">&#39;never reached&#39;</span>;      <span class="c1"># ĉi tiu linio ne plenumiĝas</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># mortas ĉi tie kun 'disk full'</span>
+<span class="nb">say</span> <span class="s">'never reached'</span>;      <span class="c1"># ĉi tiu linio ne plenumiĝas</span></pre></div>
 
 <p>Por daŭrigi, kaptu la malsukceson per <code>try</code>, precize kiel
 vi farus ĉirkaŭ ajna kodo, kiu povus morti:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span></pre></div>
 
 <p>Se la rezulto jam estas konata, du mallongigoj faras promeson, kiu
 ekestas jam decidita: <code>Promise.kept($value)</code> kaj
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="nb">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Kial fari promeson mane? Ĉar ne ĉiu rezulto venas de bloko
 <code>start</code>. Evento, kiu okazas poste, mesaĝo, kiu alvenas,

@@ -116,9 +116,8 @@ benötigt werden — sie sind <em>lazy</em>. Die Präfixe <code>lazy</code>
 und <code>eager</code> ermöglichen es dir, dies explizit zu steuern.</p>
 <p>Das <code>eager</code>-Präfix erzwingt, dass eine Liste <strong>auf
 einmal</strong> und sofort erzeugt wird:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="nb">eager</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="n">eager</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span></pre></div>
 
 <p>Ohne <code>eager</code> würde das <code>map</code> die Werte trotzdem
 erzeugen, aber <code>eager</code> garantiert, dass alle sofort berechnet
@@ -127,9 +126,8 @@ werden und nicht erst bei Bedarf.</p>
 Liste als lazy, sodass ihre Elemente erst erzeugt werden, wenn sie
 abgerufen werden. Dadurch kann eine Liste konzeptionell unendlich
 sein:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$numbers</span> = <span class="nb">lazy</span> (<span class="mi">1</span> .. <span class="n">Inf</span>);
-<span class="nb">say</span> <span class="nv">$numbers</span>.<span class="nb">is-lazy</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$numbers</span> = <span class="n">lazy</span> (<span class="mi">1</span> .. <span class="n">Inf</span>);
+<span class="nb">say</span> <span class="nv">$numbers</span>.<span class="n">is-lazy</span>; <span class="c1"># True</span></pre></div>
 
 <p>Die Methode <code>.is-lazy</code> bestätigt, dass die Liste nicht
 versuchen wird, alle ihre (endlosen) Elemente im Voraus zu

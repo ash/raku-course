@@ -115,13 +115,12 @@ href="/es/advanced/built-in-types">Más sobre los tipos integrados</a> /
 multilínea. En lugar de delimitadores alrededor del texto, se indica una
 palabra terminadora con <code>:to</code>, y la cadena se extiende desde
 la siguiente línea hasta una línea que contenga solo esa palabra:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/;</span>
-<span class="s">Hello,</span>
-<span class="s">World!</span>
-<span class="s">END</span>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/</span>;
+<span class="n">Hello</span>,
+<span class="n">World</span>!
+<span class="k">END</span>
 
-<span class="nb">print</span> <span class="nv">$text</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$text</span>;</pre></div>
 
 <p>Esto imprime:</p>
 <div class="highlight"><pre>Hello,
@@ -133,29 +132,27 @@ termina con un salto de línea — usar <code>say</code> añadiría un
 segundo y dejaría una línea en blanco al final. Como el heredoc comienza
 con <code>q:to</code>, el texto no se interpola; usa <code>qq:to</code>
 para interpolar variables:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
 
-<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/;</span>
-<span class="s">Dear $name,</span>
-<span class="s">Welcome!</span>
-<span class="s">EOF</span>
+<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/</span>;
+<span class="n">Dear</span> <span class="nv">$name</span>,
+<span class="n">Welcome</span>!
+<span class="n">EOF</span>
 
-<span class="nb">print</span> <span class="nv">$greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$greeting</span>;</pre></div>
 
 <p>Un detalle útil: la <strong>indentación del terminador de
 cierre</strong> se elimina de cada línea del texto. Esto te permite
 indentar un heredoc para que coincida con el código circundante sin que
 esa indentación termine en la cadena:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greeting</span> {
-    <span class="k">return</span> <span class="s">q:to/END/;</span>
-<span class="s">        Hello,</span>
-<span class="s">        World!</span>
-<span class="s">        END</span>
+    <span class="k">return</span> <span class="s">q:to/END/</span>;
+        <span class="n">Hello</span>,
+        <span class="n">World</span>!
+        <span class="k">END</span>
 }
 
-<span class="nb">print</span> <span class="n">greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="n">greeting</span>;</pre></div>
 
 <p>Esto imprime lo mismo que el primer ejemplo: <code>Hello,</code> y
 <code>World!</code>. Aquí el <code>END</code> de cierre está indentado

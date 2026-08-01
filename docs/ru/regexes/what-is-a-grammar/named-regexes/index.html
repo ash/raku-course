@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,18 +117,16 @@ href="/ru/regexes/what-is-a-grammar">Что такое грамматика</a><
 совсем как подпрограмму. Объявляют его через <code>my regex</code> (или
 <code>my token</code>, с которым вы как следует познакомитесь чуть
 позже):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
 
 <p>Чтобы воспользоваться именованным регулярным выражением внутри
 другого шаблона, напишите его имя в угловых скобках —
 <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;42 cats&#39;</span> ~~<span class="sr"> / &lt;number&gt; /</span> {
+<span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Вызов <code>&lt;number&gt;</code> и сопоставляет шаблон,
 <strong>и</strong> захватывает его под этим именем, поэтому совпавший
@@ -137,13 +135,12 @@ href="/ru/regexes/what-is-a-grammar">Что такое грамматика</a><
 <p>Именованное регулярное выражение можно использовать в одном шаблоне
 несколько раз. Когда оно встречается больше одного раза, захваты
 становятся списком, доступным по индексу:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> num</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;3-4&#39;</span> ~~<span class="sr"> / &lt;num&gt; &#39;-&#39; &lt;num&gt; /</span> {
+<span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">1</span>]; <span class="c1"># ｢4｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Именованные регулярные выражения сохраняют шаблоны удобочитаемыми и
 позволяют собирать большие шаблоны из меньших, хорошо названных частей.
@@ -180,7 +177,7 @@ href="/ru/regexes/what-is-a-grammar/exercises">к упражнениям это�
 <a href="/bg/regexes/what-is-a-grammar/named-regexes">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/what-is-a-grammar/named-regexes">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

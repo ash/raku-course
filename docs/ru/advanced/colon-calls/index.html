@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,15 +115,13 @@ href="/ru/advanced/subroutines">Подпрограммы</a></p>
 вторую форму — поставьте <strong>двоеточие</strong> после имени, и всё,
 что следует за двоеточием, становится списком аргументов, без каких-либо
 скобок:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Двоеточие в <code>grep:</code> выполняет ту же роль, что и скобки:
 <code>(1..10).grep: * %% 2</code> означает то же самое, что и
 <code>(1..10).grep(* %% 2)</code>. Обе формы взаимозаменяемы:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>Форма с двоеточием особенно удобна при вызове методов, принимающих
 <strong>блок</strong> или выражение <a
@@ -132,8 +130,7 @@ href="/ru/advanced/whatever">Whatever</a>, поскольку она убира�
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># скобки вокруг блока</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># двоеточие -- нет закрывающей скобки</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># двоеточие -- нет закрывающей скобки</span></pre></div>
 
 <p>Оба варианта выводят <code>(3 2 1)</code>, но версия с двоеточием
 читается чище, особенно когда блок длинный.</p>
@@ -149,8 +146,7 @@ href="/ru/advanced/whatever">Whatever</a>, поскольку она убира�
 вызывать. Если вам нужно продолжить цепочку методов, используйте форму
 со скобками или сгруппируйте части выражения, чтобы сделать его
 понятным:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>Обратите внимание: не совмещайте двоеточие <strong>и</strong> скобки
 в виде <code>.grep:( … )</code>. Такая запись конфликтует с синтаксисом
@@ -199,7 +195,7 @@ href="/ru/advanced/whatever">Whatever</a>, поскольку она убира�
 <a href="/bg/advanced/colon-calls">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/advanced/colon-calls">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

@@ -114,10 +114,9 @@ exceptions</a> / <a href="/oop/input-and-output">Input and output</a> /
 the screen, pass <code>:out</code> when launching it. The returned
 <code>Proc</code> then has an <code>.out</code> handle you can read
 from:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hello&#39;</span>, :<span class="n">out</span>;
-<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$output</span>.<span class="nb">chomp</span>; <span class="c1"># hello</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hello'</span>, :<span class="n">out</span>;
+<span class="k">my</span> <span class="nv">$output</span> = <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$output</span>.<span class="n">chomp</span>; <span class="c1"># hello</span></pre></div>
 
 <p><code>:out</code> redirects the program’s standard output into the
 <code>Proc</code>. The <code>.out</code> handle works like the file
@@ -129,19 +128,17 @@ nothing is left open. Finally, <code>.chomp</code> removes the trailing
 newline that <code>echo</code> adds.</p>
 <p>The same works with <code>shell</code>, which is handy for capturing
 the result of a pipeline:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">&#39;echo hello | tr a-z A-Z&#39;</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># HELLO</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">shell</span> <span class="s">'echo hello | tr a-z A-Z'</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># HELLO</span></pre></div>
 
 <p>You can capture the error stream too, with <code>:err</code> and the
 matching <code>.err</code> handle. Passing both <code>:out</code> and
 <code>:err</code> keeps the two streams apart, each in its own handle,
 so you can read them separately:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo out-line; echo err-line &gt;&amp;2&#39;</span>, :<span class="n">out</span>, :<span class="n">err</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo out-line; echo err-line &gt;&amp;2'</span>, :<span class="n">out</span>, :<span class="n">err</span>;
 
-<span class="nb">say</span> <span class="s">&#39;stdout: &#39;</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stdout: out-line</span>
-<span class="nb">say</span> <span class="s">&#39;stderr: &#39;</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># stderr: err-line</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">'stdout: '</span>, <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stdout: out-line</span>
+<span class="nb">say</span> <span class="s">'stderr: '</span>, <span class="nv">$proc</span>.<span class="n">err</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># stderr: err-line</span></pre></div>
 
 <p>Here, the shell command prints one line to standard output and one to
 standard error (<code>&gt;&amp;2</code> redirects to it). Because we

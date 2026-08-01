@@ -1,22 +1,24 @@
 ---
-title: Raku vs. Rakudo
+title: Raku, Rakudo und Raku++
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-**Raku** ist der Name der Programmiersprache, während **Rakudo** der Name des Compilers ist.
+**Raku** ist der Name der Programmiersprache, während ein **Compiler** das Programm ist, das Ihren Code liest und ausführt. Raku ist nicht an einen einzigen Compiler gebunden: Dieser Kurs verwendet **Rakudo**, den etablierten und vollständigsten, und daneben gibt es einen neueren Compiler namens **Raku++**.
 
-Rakudo ist der Compiler, den wir in diesem Kurs verwenden werden. Er verwendet eine virtuelle Maschine namens MoarVM. Diese wird automatisch mit installiert, wenn man Rakudo installiert. Es ist auch möglich, Rakudo auf anderen virtuellen Maschinen aufzubauen, aber in diesem Kurs werden wir nicht auf diese Unterschiede eingehen.
+## Mehr als ein Compiler
 
-## Andere Compiler
+Der Entwurf von Raku schreibt nicht vor, welchen Compiler man verwenden soll. Zu den Entwurfsdokumenten gehört eine Sammlung von Testfällen namens Roast; jeder kann einen Compiler schreiben, und wenn er diese Tests besteht, ist er ein Raku-Compiler.
 
-Das Design von Raku schreibt nicht vor, welchen Compiler man verwenden soll. Die Designdokumente enthalten eine Reihe von Testfällen namens Roast. Man kann seinen eigenen Compiler implementieren, und wenn er die Tests besteht, kann man ihn einen Raku-Compiler nennen. Rakudo ist derzeit das fortschrittlichste und produktionsreifste Werkzeug.
+Lange Zeit war Rakudo die einzige ausgereifte Implementierung, doch das ist nicht mehr so. Im Juli 2026 erschien ein zweiter Compiler — **Raku++** (sein ausführbares Programm heißt `rakupp`), geschrieben in C++. Er ist jung und deckt die Sprache noch nicht vollständig ab, besteht aber bereits einen großen Teil der Roast-Sammlung und startet bemerkenswert schnell. Dieser Kurs verwendet Rakudo für seine Beispiele, doch was Sie lernen, ist die Sprache Raku selbst, und vieles davon läuft unverändert auch auf Raku++. Die folgenden Seiten betrachten die beiden Compiler — Rakudo und Raku++ — nacheinander und zeigen, wie man sie installiert.
 
 ## Externe Links
 
 * [raku.org](https://raku.org)
 * [rakudo.org](https://rakudo.org)
 * [moarvm.org](https://moarvm.org)
+* [Raku++ auf GitHub](https://github.com/ash/rakupp)
 * [Roast](https://github.com/Raku/roast)
 
 {% include nav.html %}

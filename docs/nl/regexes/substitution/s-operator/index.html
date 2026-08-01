@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,10 +114,9 @@ href="/nl/regexes/substitution">Substitutie en vervanging</a></p>
 <p>De substitutieoperator is <code>s///</code>. Hij ziet eruit als een
 match met een tweede vak: het patroon komt tussen de eerste twee schuine
 strepen en de vervangende tekst tussen de laatste twee:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
 <p>Substitutie verandert de variabele <strong>ter plaatse</strong>, dus
 <code>$s</code> zelf wordt bijgewerkt. De tekst in het vervangingsdeel
@@ -125,10 +124,9 @@ is letterlijk — je zet hem niet tussen aanhalingstekens.</p>
 <p>Net als bij matchen raakt substitutie standaard alleen het
 <strong>eerste</strong> voorkomen. Voeg het bijwoord <code>:g</code> toe
 om elk voorkomen te vervangen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
 <p>Als je het origineel wilt behouden en in plaats van ter plaatse te
 wijzigen een veranderde <strong>kopie</strong> wilt maken, gebruik je de
@@ -137,20 +135,18 @@ voert de substitutie uit en geeft de veranderde string terug, waarbij
 het origineel ongemoeid blijft. Omdat hij geen variabele ter plaatse
 bijwerkt, richt je hem met <code>given</code> op een variabele in plaats
 van met <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
 <p>(<code>$orig ~~ S///</code> schrijven waarschuwt je om in plaats
 daarvan <code>given</code> te gebruiken — bij <code>S///</code> valt er
 niets ter plaatse te wijzigen.)</p>
 <p>Hetzelfde niet-destructieve gedrag is ook als methode beschikbaar,
 <code>.subst</code>, die een nieuwe string teruggeeft:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
@@ -184,7 +180,7 @@ sectie</a>.</p>
 <a href="/bg/regexes/substitution/s-operator">Български</a>
 <a href="/ru/regexes/substitution/s-operator">Русский</a>
 <a href="/uk/regexes/substitution/s-operator">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

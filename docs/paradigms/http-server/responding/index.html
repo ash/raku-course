@@ -114,19 +114,18 @@ href="/paradigms/http-server">A simple HTTP server</a></p>
 <p>Once a client has connected, you read its request and send a
 response. For a web browser, the response must be valid HTTP: a status
 line, optional headers, a blank line, and then the body.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(
     :<span class="n">listen</span>,
-    :<span class="n">localhost</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
+    :<span class="n">localhost</span>(<span class="s">'127.0.0.1'</span>),
     :<span class="n">localport</span>(<span class="mi">8080</span>),
 );
 
-<span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="nb">accept</span>;
-<span class="k">my</span> <span class="nv">$request</span> = <span class="nv">$conn</span>.<span class="nb">recv</span>;
+<span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="n">accept</span>;
+<span class="k">my</span> <span class="nv">$request</span> = <span class="nv">$conn</span>.<span class="n">recv</span>;
 
 <span class="nv">$conn</span>.<span class="nb">print</span>(<span class="s">&quot;HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\n\r\nHello, web!\n&quot;</span>);
 <span class="nv">$conn</span>.<span class="nb">close</span>;
-<span class="nv">$listener</span>.<span class="nb">close</span>;
-</pre></div>
+<span class="nv">$listener</span>.<span class="nb">close</span>;</pre></div>
 
 <p>The response mirrors the request format you saw on the client side.
 <code>HTTP/1.0 200 OK</code> is the status line,

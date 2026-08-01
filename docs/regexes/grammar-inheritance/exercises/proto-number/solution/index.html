@@ -117,15 +117,14 @@ proto</a></p>
 <p>Here is a possible solution to the task.</p>
 <h2 id="code">Code</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Number</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;number&gt; </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;number&gt;</span> }
 
-    <span class="k">proto</span> <span class="k">token</span><span class="n"> number</span> {<span class="sr">*</span>}
-    <span class="k">token</span><span class="n"> number:sym&lt;dec&gt;</span> {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> number:sym&lt;hex&gt;</span> {<span class="sr"> &#39;0x&#39; &lt;[0..9a..f]&gt;+ </span>}
+    <span class="k">proto</span> <span class="k">token</span> <span class="n">number</span> {*}
+    <span class="k">token</span> <span class="n">number</span>:<span class="n">sym</span><span class="s">&lt;dec&gt;</span> { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">number</span>:<span class="n">sym</span><span class="s">&lt;hex&gt;</span> { <span class="s">'0x'</span> &lt;[<span class="mi">0</span>.<span class="mf">.9</span><span class="n">a</span>..<span class="n">f</span>]&gt;+ }
 }
 
-<span class="nb">say</span> <span class="n">Number</span>.<span class="nb">parse</span>(<span class="s">&#39;0xff&#39;</span>).<span class="nb">defined</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Number</span>.<span class="n">parse</span>(<span class="s">'0xff'</span>).<span class="nb">defined</span>;</pre></div>
 
 <p>🦋 You can find the source code in the file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/regexes/grammar-inheritance/proto-number.raku">proto-number.raku</a>.</p>

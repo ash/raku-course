@@ -117,12 +117,10 @@ Parametern</a> werden <em>benannte</em> Parameter durch ihre Namen
 referenziert.</p>
 <p>Die folgende Funktion nimmt zwei Parameter namens <code>$from</code>
 und <code>$to</code> entgegen.</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }</pre></div>
 
 <p>Um die Funktion aufzurufen, müssen Sie die Argumente benennen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Es ist ein Fehler, die Argumente so zu übergeben, als wären sie
 positionsbasiert. Zum Beispiel erzeugt ein Aufruf
@@ -133,10 +131,9 @@ positionsbasiert. Zum Beispiel erzeugt ein Aufruf
 <p>Der Vorteil ist, dass benannte Argumente in beliebiger Reihenfolge
 aufgelistet werden können. Die folgenden beiden Aufrufe sind völlig
 gleichwertig:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(<span class="n">to</span> =&gt; <span class="mi">10</span>, <span class="n">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span></pre></div>
 
 <h2 id="variablen-übergeben">Variablen übergeben</h2>
 <p>Wenn der Wert, den Sie an eine Funktion übergeben möchten, in einer
@@ -145,28 +142,24 @@ Variablen gespeichert ist, deren Name mit dem Namen des Parameters
 Tippen reduziert:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
 <span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Dies ist ähnlich wie ein ausführlicher Aufruf:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$from</span>, <span class="n">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Auch hier ist die Reihenfolge nicht streng:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Wenn der Name der Variablen vom Namen des Parameters abweicht,
 verwenden Sie eine der Möglichkeiten, ein Paar zu übergeben:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
+<span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$a</span>, <span class="n">to</span> =&gt; <span class="nv">$b</span>);
 
 <span class="c1"># oder:</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
-</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));</pre></div>
 
 <section id="praxis" class="practice" data-markdown="1">
 <h2>Praxis</h2>

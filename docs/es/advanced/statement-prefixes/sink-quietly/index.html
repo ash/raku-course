@@ -117,9 +117,8 @@ lugar de por su valor.</p>
 (de hundimiento), puramente por sus efectos secundarios, descartando el
 resultado. Es útil con una operación perezosa que quieres forzar a
 ejecutarse:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">sink</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
-<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">sink</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
+<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span></pre></div>
 
 <p>El <code>map</code> aquí se ejecuta solo por la impresión que
 realiza; <code>sink</code> se asegura de que realmente se ejecute y
@@ -130,10 +129,9 @@ cuyo resultado nunca se usa podría no ejecutarse en absoluto.</p>
 imprimiría una advertencia en el flujo de error permanece en
 silencio:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
-<span class="n">quietly</span> {
+<span class="k">quietly</span> {
     <span class="nb">say</span> <span class="nv">$value</span> + <span class="mi">1</span>; <span class="c1"># 1, with no &quot;uninitialized value&quot; warning</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Sumar <code>1</code> a un <code>$value</code> indefinido normalmente
 advierte sobre el uso de un valor no inicializado, pero dentro de

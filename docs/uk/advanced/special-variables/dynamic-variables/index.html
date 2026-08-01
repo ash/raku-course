@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,14 +116,13 @@ href="/uk/advanced/special-variables">Спеціальні та динамічн
 змінну знаходять, дивлячись <strong>назовні по стеку викликів</strong> —
 через того, хто викликав поточний код, хоч би де цей код був
 визначений.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*greeting</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*greeting</span> = <span class="s">'Hello'</span>;
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="vg">$*greeting</span>;
+    <span class="nb">say</span> <span class="nv">$*greeting</span>;
 }
 
-<span class="n">greet</span>(); <span class="c1"># Hello</span>
-</pre></div>
+<span class="n">greet</span>(); <span class="c1"># Hello</span></pre></div>
 
 <p>Підпрограма <code>greet</code> не оголошує <code>$*greeting</code> і
 не отримує її аргументом, а проте бачить її, бо змінна є динамічною, а
@@ -134,19 +133,18 @@ href="/uk/advanced/special-variables">Спеціальні та динамічн
 наступному прикладі.</p>
 <p>Оскільки пошук іде за стеком викликів, ближче оголошення
 <strong>перекриває</strong> дальше на час свого блоку:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;outer&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'outer'</span>;
 
 <span class="k">sub</span> <span class="n">show</span> {
-    <span class="nb">say</span> <span class="vg">$*level</span>;
+    <span class="nb">say</span> <span class="nv">$*level</span>;
 }
 
 <span class="n">show</span>(); <span class="c1"># outer</span>
 
 {
-    <span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;inner&#39;</span>;
+    <span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'inner'</span>;
     <span class="n">show</span>(); <span class="c1"># inner</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Той самий <code>show</code> виводить <code>outer</code> першого разу
 й <code>inner</code>, коли його викликано зсередини блоку, який
@@ -190,7 +188,7 @@ href="/uk/advanced/special-variables/exercises">до вправ цього
 <a href="/bg/advanced/special-variables/dynamic-variables">Български</a>
 <a href="/ru/advanced/special-variables/dynamic-variables">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

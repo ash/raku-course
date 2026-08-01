@@ -113,15 +113,13 @@ href="/paradigms/promises">Promises</a></p>
 <h1 id="start-and-await">start and await</h1>
 <p>The <code>start</code> keyword runs a block in the background and
 immediately returns a <code>Promise</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };</pre></div>
 
 <p>The work happens on Raku’s thread pool while your program carries on.
 To get the result, use <code>await</code>, which waits for the promise
 to finish and gives you its value:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 4</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 4</span></pre></div>
 
 <p><code>await</code> blocks just long enough for the promise to
 complete, then returns whatever the block produced — here,

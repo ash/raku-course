@@ -115,11 +115,10 @@ href="/paradigms/generators">Generators</a></p>
 including in loops and subroutines it calls — a <code>take</code> adds a
 value to the list that <code>gather</code> produces:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="k">gather</span> {
-    <span class="nb">take</span> <span class="nv">$_</span> ** <span class="mi">2</span> <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+    <span class="k">take</span> <span class="nv">$_</span> ** <span class="mi">2</span> <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
 }
 
-<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span></pre></div>
 
 <p>The <code>take</code> runs once for each number <code>1, 2, 3</code>,
 contributing <code>1</code>, <code>4</code>, and <code>9</code>. The
@@ -128,13 +127,12 @@ taken.</p>
 <p><code>take</code> can appear under any control flow, which makes
 <code>gather</code> ideal for building a list with conditions:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> {
-    <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">10</span> {
-        <span class="nb">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
+    <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.10</span> {
+        <span class="k">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
     }
 }
 
-<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span></pre></div>
 
 <p>Here a value is taken only when the <code>if</code> succeeds, so only
 the even numbers end up in the list. This is often clearer than building

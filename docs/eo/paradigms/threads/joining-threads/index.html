@@ -114,10 +114,9 @@ href="/eo/paradigms/threads">Fadenoj</a></p>
 <p>Por atendi, ke fadeno finiĝu, voku <code>.finish</code> sur ĝi
 (skribeblan ankaŭ kiel <code>.join</code>). La ĉefa programo paŭzas tie
 ĝis la fadeno estas preta:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">&#39;in the thread&#39;</span> });
-<span class="nv">$t</span>.<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
+<span class="nv">$t</span>.<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
 
 <p>Ĉi tio presas:</p>
 <div class="highlight"><pre>in the thread
@@ -130,10 +129,9 @@ neantaŭvidebla, kaj la programo eble eĉ finiĝus antaŭ ol la fadeno havus
 ke ili ĉiuj finiĝis:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
-<span class="nv">$a</span>.<span class="nb">finish</span>;
-<span class="nv">$b</span>.<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
-</pre></div>
+<span class="nv">$a</span>.<span class="n">finish</span>;
+<span class="nv">$b</span>.<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
 
 <p>La du fadenoj kuras samtempe, kaj kunigi ambaŭ antaŭ la fina
 <code>say</code> garantias, ke <code>both finished</code> estas presata
@@ -147,9 +145,8 @@ fadenojn per unu sola esprimo. Kombinu ilin per la
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
-(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
-</pre></div>
+(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
 
 <p>Voki <code>.finish</code> sur <code>$a &amp; $b</code> plenumas ĝin
 sur ambaŭ fadenoj, do la programo atendas ĝis neniu el ili plu kuras —

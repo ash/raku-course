@@ -118,21 +118,18 @@ ein, wodurch die gesamte Liste auf einen einzelnen Wert reduziert
 wird.</p>
 <p>Zum Beispiel addiert <code>[+]</code> alle Elemente einer Liste:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="mi">3</span>, <span class="mi">5</span>, <span class="mi">7</span>, <span class="mi">9</span>, <span class="mi">11</span>;
-<span class="nb">say</span> [+] <span class="nv">@data</span>; <span class="c1"># 35</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nv">@data</span>; <span class="c1"># 35</span></pre></div>
 
 <p>Das Konstrukt <code>[+] @data</code> entspricht dem manuellen
 Ausschreiben des Operators:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> + <span class="mi">5</span> + <span class="mi">7</span> + <span class="mi">9</span> + <span class="mi">11</span>; <span class="c1"># 35</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> + <span class="mi">5</span> + <span class="mi">7</span> + <span class="mi">9</span> + <span class="mi">11</span>; <span class="c1"># 35</span></pre></div>
 
 <p>Jeder geeignete Infix-Operator funktioniert auf die gleiche Weise.
 Mit <code>[*]</code> erhalten Sie das Produkt der Liste, sodass die
 Anwendung auf den Bereich <code>1..$n</code> eine praktische Methode
 ist, eine Fakultät zu berechnen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">5</span>;
-<span class="nb">say</span> [*] <span class="mi">1</span>..<span class="nv">$n</span>; <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> [*] <span class="mi">1</span>..<span class="nv">$n</span>; <span class="c1"># 120</span></pre></div>
 
 <p>Hier erzeugt der Bereich <code>1..$n</code> die Zahlen von 1 bis 5,
 und <code>[*]</code> multipliziert sie: <code>1 * 2 * 3 * 4 * 5</code>,
@@ -141,21 +138,18 @@ das ist <em>5!</em>.</p>
 <code>[~]</code>-Reduktion verbindet eine Liste von Zeichenketten zu
 einer einzigen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@strings</span> = <span class="s">&lt;neun hundert fünf und zwanzig&gt;</span>;
-<span class="nb">say</span> [~] <span class="nv">@strings</span>; <span class="c1"># neunhundertfünfundzwanzig</span>
-</pre></div>
+<span class="nb">say</span> [~] <span class="nv">@strings</span>; <span class="c1"># neunhundertfünfundzwanzig</span></pre></div>
 
 <p>Sogar Vergleichsoperatoren können reduziert werden.
 <code>[&lt;]</code> prüft, ob die Werte in streng aufsteigender
 Reihenfolge stehen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> [&lt;] <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> [&lt;] <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>; <span class="c1"># True</span></pre></div>
 
 <h2 id="dreieckige-reduktion">Dreieckige Reduktion</h2>
 <p>Wenn Sie einen Backslash in die Klammern setzen, erhalten Sie eine
 <em>dreieckige</em> Reduktion, die alle Zwischenergebnisse behält,
 anstatt nur das endgültige:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> [\+] <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>; <span class="c1"># (1 3 6 10 15)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> [\+] <span class="mi">1</span>.<span class="mf">.5</span>; <span class="c1"># (1 3 6 10 15)</span></pre></div>
 
 <p>Jedes Element des Ergebnisses ist eine Teilsumme: <code>1</code>,
 dann <code>1+2</code>, dann <code>1+2+3</code>, und so weiter bis zur

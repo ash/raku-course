@@ -115,8 +115,7 @@ href="/paradigms/hyper-race">Hyper and race 🆕</a></p>
 <code>grep</code>, and the work is spread across multiple worker threads
 — while the results still come back in the <strong>original
 order</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>.<span class="n">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>.<span class="nb">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>This looks exactly like an ordinary <code>map</code>, and the result
 is identical; the only difference is that the doublings may have been
@@ -124,8 +123,7 @@ computed on different cores at the same time.</p>
 <p><code>.hyper</code> works with <code>grep</code> in just the same way
 — each element is tested in parallel, and the ones that pass still come
 back in their original order:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Because <code>.hyper</code> preserves order, it is a drop-in
 replacement for a slow <code>map</code> or <code>grep</code>: nothing
@@ -146,8 +144,7 @@ for a speed-up, not a guarantee of one.</p>
 <p>Because the order is kept, operations that <em>depend</em> on it
 still come out right. Here each word is upper-cased in parallel, yet the
 pieces join back into the phrase in their original sequence:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku is fun&gt;</span>.<span class="nb">hyper</span>.<span class="n">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">&#39; &#39;</span>); <span class="c1"># RAKU IS FUN</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="k">is</span> <span class="n">fun</span>&gt;.<span class="nb">hyper</span>.<span class="nb">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">' '</span>); <span class="c1"># RAKU IS FUN</span></pre></div>
 
 <section id="practice" class="practice" data-markdown="1">
 <h2>Practice</h2>

@@ -120,14 +120,13 @@ Eratosthenes</h1>
 <span class="k">my</span> <span class="nv">%composite</span>;
 
 <span class="k">for</span> <span class="mi">2</span> .. <span class="nv">$limit</span> -&gt; <span class="nv">$i</span> {
-    <span class="nb">next</span> <span class="k">if</span> <span class="nv">%composite</span>{<span class="nv">$i</span>};
-    <span class="k">for</span> (<span class="nv">$i²</span>, <span class="nv">$i²</span> + <span class="nv">$i</span> ... <span class="nv">$limit</span>) -&gt; <span class="nv">$multiple</span> {
-        <span class="nv">%composite</span>{<span class="nv">$multiple</span>} = <span class="nb">True</span>;
+    <span class="k">next</span> <span class="k">if</span> <span class="nv">%composite</span>{<span class="nv">$i</span>};
+    <span class="k">for</span> (<span class="nv">$i</span>², <span class="nv">$i</span>² + <span class="nv">$i</span> ... <span class="nv">$limit</span>) -&gt; <span class="nv">$multiple</span> {
+        <span class="nv">%composite</span>{<span class="nv">$multiple</span>} = <span class="n">True</span>;
     }
 }
 
-<span class="nb">say</span> (<span class="mi">2</span>..<span class="nv">$limit</span>).<span class="nb">grep</span>({ !<span class="nv">%composite</span>{<span class="nv">$_</span>} });
-</pre></div>
+<span class="nb">say</span> (<span class="mi">2</span>..<span class="nv">$limit</span>).<span class="nb">grep</span>({ !<span class="nv">%composite</span>{<span class="nv">$_</span>} });</pre></div>
 
 <p>🦋 You can find the source code in the file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/sieve.raku">sieve.raku</a>.</p>
@@ -150,8 +149,7 @@ limit. For <code>$i</code> = <code>3</code> that means starting at
 <code>9</code>, then <code>12</code>, so the step is <code>3</code>, and
 the loop walks the whole list:</p>
 <div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$i</span> = <span class="mi">3</span>;
-<span class="nb">say</span> (<span class="nv">$i²</span>, <span class="nv">$i²</span> + <span class="nv">$i</span> ... <span class="mi">30</span>); <span class="c1"># (9 12 15 18 21 24 27 30)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="nv">$i</span>², <span class="nv">$i</span>² + <span class="nv">$i</span> ... <span class="mi">30</span>); <span class="c1"># (9 12 15 18 21 24 27 30)</span></pre></div>
 
 <p>So <code>for</code> receives one list to iterate over —
 <code>9, 12, 15, …</code> — rather than three separate clauses.</p></li>

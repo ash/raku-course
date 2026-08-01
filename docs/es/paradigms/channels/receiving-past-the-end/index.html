@@ -118,16 +118,15 @@ hay valores que tomar? La respuesta depende de si el canal se ha
 segundo plano envía tres valores y cierra el canal. ¿Y si el consumidor
 pide un cuarto?</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># one receive too many</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># one receive too many</span></pre></div>
 
 <h2 id="en-un-canal-cerrado-un-receive-de-más-lanza-una-excepción">En un
 canal cerrado, un receive de más lanza una excepción</h2>
@@ -149,10 +148,9 @@ abierto, un receive de más se bloquea</h2>
 manera de saber si aún viene otro valor, así que simplemente
 <strong>espera</strong>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># waits here — the channel is open but empty</span>
-</pre></div>
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># waits here — the channel is open but empty</span></pre></div>
 
 <p>El programa se queda colgado en el segundo <code>.receive</code>,
 porque <em>podría</em> enviarse todavía un valor. Este es el peligro del

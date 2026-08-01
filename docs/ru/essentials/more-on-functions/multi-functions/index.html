@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,17 +115,15 @@ href="/ru/essentials/more-on-functions">Больше о функциях</a></p>
 сигнатуры функции. Это позволяет создавать функции, которые имеют одно и
 то же имя, но принимают разные типы входных данных. Используйте
 декларатив <code>multi</code> для каждой из вариантов функции.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(Можно опустить <code>sub</code> после <code>multi</code>.)</p>
 <p>Если у вас есть два варианта одной и той же функции, компилятор
 выполняет множественную диспетчеризацию в зависимости от того, какие
 аргументы он видит в вызове функции. Сравните следующие два вызова:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>Первый вызов запускает функцию с целочисленными параметрами, в то
 время как второй вызов запускает второй вариант функции, который ожидает
@@ -134,16 +132,14 @@ href="/ru/essentials/more-on-functions">Больше о функциях</a></p>
 <p>Интересный случай для многофункций — это наличие вариантов, которые
 имеют литеральные значения в качестве параметров. Рассмотрим следующие
 два варианта:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Это ответ&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x не является ответом&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Это ответ'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x не является ответом&quot;</span>}</pre></div>
 
 <p>Первый вариант выполняется только тогда, когда вы вызываете функцию с
 точным значением 42. В других случаях используется второй вариант.
 Порядок, в котором эти функции определены, не имеет значения.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 не является ответом</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Это ответ</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 не является ответом</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Это ответ</span></pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -185,7 +181,7 @@ href="/ru/essentials/more-on-functions/exercises/factorial-with-multi-functions"
 <a href="/bg/essentials/more-on-functions/multi-functions">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/essentials/more-on-functions/multi-functions">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

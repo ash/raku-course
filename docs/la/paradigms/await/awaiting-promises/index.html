@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,19 +113,17 @@ href="/la/paradigms/await">await</a></p>
 <h1 id="promissum-exspectare">Promissum exspectare</h1>
 <p><code>await</code> promissum accipit, illud perficere exspectat, et
 effectum eius reddit:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Programma ad <code>await</code> tantum quantum opus est consistit,
 deinde cum valore quem promissum produxit pergit.</p>
 <p>Datis pluribus promissis, <code>await</code> <strong>omnia</strong>
 exspectat et effectus eorum eodem ordine ac promissa in indice
 reddit:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Negotia simul currunt, sed <code>await @jobs</code> non redit donec
 unumquodque perfectum sit. Unusquisque effectus deinde eodem loco sedet
@@ -137,11 +135,10 @@ exceptionem iecit — <code>await</code> illam exceptionem in loco ipsius
 ibi emergere ubi illud exspectas, ita ut eos per usitata
 <code>try</code> / <code>CATCH</code> ex parte de exceptionibus tractare
 possis:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
 
 <p>Hoc imprimit:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>
@@ -185,7 +182,7 @@ i.</p>
 <a href="/bg/paradigms/await/awaiting-promises">Български</a>
 <a href="/ru/paradigms/await/awaiting-promises">Русский</a>
 <a href="/uk/paradigms/await/awaiting-promises">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

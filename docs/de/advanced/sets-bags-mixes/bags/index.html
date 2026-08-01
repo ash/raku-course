@@ -117,24 +117,21 @@ es den <code>Bag</code>: Er speichert einen Zähler für jeden Wert.</p>
 <p>Du erstellst einen Bag mit der <code>bag</code>-Routine. Wiederholte
 Werte werden nicht zusammengefasst — sie werden gezählt:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$b</span> = <span class="n">bag</span>(<span class="s">&lt;a b a c a&gt;</span>);
-<span class="nb">say</span> <span class="nv">$b&lt;a&gt;</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$b&lt;b&gt;</span>; <span class="c1"># 1</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$b</span><span class="s">&lt;a&gt;</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$b</span><span class="s">&lt;b&gt;</span>; <span class="c1"># 1</span></pre></div>
 
 <p>Wenn du den Bag mit dem <code>&lt; &gt;</code>-Subscript nach einem
 Wert fragst, erhältst du zurück, wie oft dieser Wert eingefügt wurde.
 Die Methode <code>total</code> gibt die Summe aller Zähler zurück:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">bag</span>(<span class="s">&lt;a b a c a&gt;</span>).<span class="nb">total</span>; <span class="c1"># 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">bag</span>(<span class="s">&lt;a b a c a&gt;</span>).<span class="n">total</span>; <span class="c1"># 5</span></pre></div>
 
 <p>Ein <code>Mix</code> ist dieselbe Idee wie ein Bag, nur dass die
 Zähler (genannt <em>Gewichte</em>) auch Bruchzahlen sein können. Um
 explizite Gewichte zuzuweisen, ordne jedem Wert sein Gewicht als Paar zu
 und wandle die Liste mit <code>.Mix</code> um:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = (<span class="n">flour</span> =&gt; <span class="mf">2.5</span>, <span class="n">sugar</span> =&gt; <span class="mf">0.75</span>).<span class="nb">Mix</span>;
-<span class="nb">say</span> <span class="nv">$m&lt;flour&gt;</span>; <span class="c1"># 2.5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">total</span>;  <span class="c1"># 3.25</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;flour&gt;</span>; <span class="c1"># 2.5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">total</span>;  <span class="c1"># 3.25</span></pre></div>
 
 <p>Das Nachschlagen eines Gewichts mit <code>&lt; &gt;</code> und das
 Summieren mit <code>total</code> funktionieren genau wie bei einem Bag —

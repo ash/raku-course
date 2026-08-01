@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,23 +117,22 @@ burtiem</a></p>
 burtiem</h1>
 <p>Šeit ir iespējams risinājums uzdevumam.</p>
 <h2 id="kods">Kods</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(
     :<span class="n">listen</span>,
-    :<span class="n">localhost</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
+    :<span class="n">localhost</span>(<span class="s">'127.0.0.1'</span>),
     :<span class="n">localport</span>(<span class="mi">8080</span>),
 );
 
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="nb">accept</span>;
-    <span class="k">my</span> <span class="nv">$request</span> = <span class="nv">$conn</span>.<span class="nb">recv</span>;
+    <span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="n">accept</span>;
+    <span class="k">my</span> <span class="nv">$request</span> = <span class="nv">$conn</span>.<span class="n">recv</span>;
 
-    <span class="c1"># &quot;GET /hello HTTP/1.0&quot; — ceļš ir otrais vārds; atmetam sākuma &#39;/&#39;</span>
+    <span class="c1"># &quot;GET /hello HTTP/1.0&quot; — ceļš ir otrais vārds; atmetam sākuma '/'</span>
     <span class="k">my</span> <span class="nv">$reply</span> = <span class="nv">$request</span>.<span class="nb">lines</span>.<span class="nb">first</span>.<span class="nb">words</span>[<span class="mi">1</span>].<span class="nb">substr</span>(<span class="mi">1</span>).<span class="nb">uc</span>;
 
     <span class="nv">$conn</span>.<span class="nb">print</span>(<span class="s">&quot;HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\n\r\n$reply\n&quot;</span>);
     <span class="nv">$conn</span>.<span class="nb">close</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>🦋 Atrodiet programmu failā <a
 href="https://github.com/ash/raku-course/blob/master/exercises/paradigms/http-server/text-response.raku">text-response.raku</a>.</p>
@@ -174,7 +173,7 @@ lielajiem burtiem</a>   |   <a href="/lv/paradigms/cro">Cro pamati</a>
 <a href="/bg/paradigms/http-server/exercises/text-response/solution">Български</a>
 <a href="/ru/paradigms/http-server/exercises/text-response/solution">Русский</a>
 <a href="/uk/paradigms/http-server/exercises/text-response/solution">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

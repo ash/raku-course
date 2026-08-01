@@ -115,17 +115,15 @@ web</a> / <a href="/es/paradigms/functional">Programación funcional</a>
 — puede darte un <em>iterador</em> con el método <code>.iterator</code>.
 Un iterador tiene un método esencial, <code>pull-one</code>, que
 devuelve el valor siguiente cada vez que lo llamas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="nb">iterator</span>;
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 10</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 30</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="n">iterator</span>;
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 10</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 20</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Cuando los valores se agotan, <code>pull-one</code> devuelve un
 centinela especial, <code>IterationEnd</code>, en lugar de un elemento
 real. Pedir un valor más al mismo <code>$it</code> lo muestra:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>El operador <code>=:=</code> comprueba si se trata del <strong>mismo
 objeto</strong>, que es como se reconoce el centinela. Ese detalle
@@ -136,13 +134,12 @@ acaba mirando el contenedor en lugar de <code>IterationEnd</code>. El
 remedio es <strong>ligarlo</strong> con <code>:=</code>, de modo que la
 variable simplemente <em>sea</em> lo que devolvió
 <code>pull-one</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="nb">iterator</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="n">iterator</span>;
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="nb">pull-one</span>;      <span class="c1"># bind, not assign</span>
-    <span class="nb">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
+    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="n">pull-one</span>;      <span class="c1"># bind, not assign</span>
+    <span class="k">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
     <span class="nb">say</span> <span class="nv">$v</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>El bucle imprime <code>a</code>, <code>b</code>, <code>c</code> y
 después se detiene. Esto es exactamente lo que hace por ti un bucle

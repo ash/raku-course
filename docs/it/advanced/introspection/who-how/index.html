@@ -119,17 +119,15 @@ oggetto che sa come funziona il tipo del valore. <code>HOW</code>
 (abbreviazione di <em>Higher Order Workings</em>) restituisce quel
 metaoggetto:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
-<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.^<span class="nb">name</span>; <span class="c1"># Perl6::Metamodel::ClassHOW</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.^<span class="n">name</span>; <span class="c1"># Perl6::Metamodel::ClassHOW</span></pre></div>
 
 <p>Hai utilizzato il metaoggetto sin dall’inizio, forse senza rendertene
 conto. Il <code>.^</code> in <code>.^name</code> e una chiamata di
 metodo instradata attraverso <code>HOW</code>. Queste due righe sono
 equivalenti:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
-<span class="nb">say</span> <span class="nv">$x</span>.^<span class="nb">name</span>;        <span class="c1"># Int</span>
-<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.<span class="nb">name</span>(<span class="nv">$x</span>); <span class="c1"># Int</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>.^<span class="n">name</span>;        <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.<span class="n">name</span>(<span class="nv">$x</span>); <span class="c1"># Int</span></pre></div>
 
 <p>Quindi <code>$x.^name</code> e semplicemente un modo piu breve di
 scrivere <code>$x.HOW.name($x)</code>. Nota che l’oggetto viene passato
@@ -146,8 +144,7 @@ risponde.</p>
 <p><code>WHO</code> restituisce il <em>package</em> a cui un nome
 appartiene, ovvero la tabella dei simboli definiti in quel
 namespace:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Int</span>.<span class="nb">WHO</span>.^<span class="nb">name</span>; <span class="c1"># Stash</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Int</span>.<span class="n">WHO</span>.^<span class="n">name</span>; <span class="c1"># Stash</span></pre></div>
 
 <p>Uno <code>Stash</code> (un hash della tabella dei simboli) diventa
 utile quando si lavora con i moduli, dove permette di cercare i nomi

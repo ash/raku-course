@@ -1,36 +1,31 @@
 ---
 title: Kiel instali Rakudo
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Por ekzekuti programon en Raku, vi devas havi kompililon instalitan. Vizitu [la retejon de Rakudo](https://rakudo.org) por elŝuti la version taŭgan por via operaciumo.
-
-Estas du ĉefaj opcioj. Vi povas instali la kompililon mem aŭ instali Rakudo Star suito (ankaŭ literumita kiel Rakudo *). Rakudo Star inkluzivas pakaĵadministrilon kaj kelkajn utilajn modulojn.
+Por ruli programon en Raku, vi bezonas instalitan kompililon. Ĉi tiu kurso uzas Rakudo; la alia kompililo, [Raku++](/eo/essentials/the-rakupp-compiler), estas instalata [aparte](/eo/essentials/how-to-install-rakupp). Vizitu [la retejon de Rakudo](https://rakudo.org) por elŝuti la version taŭgan por via mastruma sistemo.
 
 ## Fontoj
 
-Vi povas elŝuti instalilon por via sistemo ĉe [rakudo.org/downloads](https://rakudo.org/downloads). Estas versioj por ĉiuj ĉefaj operaciumoj: Vindozo, Mac OS, kaj Linukso. Estas ankaŭ fontkodoj, kiujn vi povas kompili mem.
+Vi povas elŝuti instalilon por via sistemo ĉe [rakudo.org/downloads](https://rakudo.org/downloads). Ekzistas versioj por ĉiuj ĉefaj mastrumaj sistemoj: Windows, Mac OS kaj Linux. Ekzistas ankaŭ la fontkodoj, kiujn vi povas mem kompili.
 
-## Rakudo Star
+## Docker-bildoj
 
-Eblas ankaŭ instali la pakaĵon, Rakudo Star, per rulado de la instalilo, kiun vi ricevas ĉe [rakudo.org/star](https://rakudo.org/star). Kontrolu la versian numeron antaŭ ol instali ĝin. Vi ankaŭ povas kontroli la paĝon nomitan ‘[3rd-Party Rakudo Star Bundle Packages](https://rakudo.org/star/third-party)’ por vidi pli da opcioj.
+Rakudo disponeblas ankaŭ kiel docker-bildo. Vi povas uzi ĝin kaj por ruli programojn kaj por elprovi malgrandajn skriptojn en ŝelo REPL. Ĉiujn instrukciojn vi trovos ĉe [github.com/Raku/docker](https://github.com/Raku/docker).
 
-## Docker bildoj
+## Versinumeroj
 
-Rakudo Star estas disponebla kiel docker bildo. Vi povas uzi ĝin por ambaŭ rulado de programoj kaj por testado de malgrandaj skriptoj en REPL ŝelo. Trovu ĉiujn instrukciojn ĉe [github.com/Raku/docker](https://github.com/Raku/docker).
-
-## Versiaj numeroj
-
-La Rakudo versia numeriga sistemo formas la versian numeron kiel du-partan numeron: la jaro kaj la monato de la eldondato. Vi povas facile vidi kiel freŝa estas via kompililo. Rulu la jenan komandlinion por vidi ĝian versian numeron:
+La sistemo de versinumerado de Rakudo formas la versinumeron el du partoj: la jaro kaj la monato de la eldondato. Tiel vi facile vidas, kiom freŝa estas via kompililo. Plenumu la jenan komandlinion por vidi ĝian versinumeron:
 
 ```console
 $ raku -v
-Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2026.06.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
+Built on MoarVM version 2026.06.
 ```
 
-Vi povas vidi tri versiajn numerojn ĉi tie. La unua estas la versio de Rakudo mem: `v2020.10`. Poste venas la versio de la Raku lingvo: `v6.d`. La ĝisdatigoj nuntempe ricevos la sekvan literon kiel minoran versian parton, ekz., `v6.e`, ktp. Fine, ni vidas la nomon de la virtuala maŝino uzata en ĉi tiu kompililo: MoarVM versio `2020.10`.
+Ĉi tie vi vidas tri versinumerojn. La unua estas la versio de Rakudo mem: `v2026.06`. Poste venas la versio de la lingvo Raku: `v6.d`. La ĝisdatigoj nuntempe ricevas la sekvan literon kiel malĉefan parton de la versio, ekzemple `v6.e` kaj tiel plu. Fine ni vidas la nomon de la virtuala maŝino uzata de ĉi tiu kompililo: MoarVM versio `2026.06`.
 
 {% include nav.html %}

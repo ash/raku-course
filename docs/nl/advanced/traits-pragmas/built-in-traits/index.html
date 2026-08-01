@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,34 +120,31 @@ hangt. Raku levert er veel mee; een paar heb je al gebruikt.</p>
 toekennen. De trait <code>is copy</code> geeft je een eigen, wijzigbare
 kopie van het argument, die je kunt veranderen zonder de aanroeper te
 raken:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — de variabele van de aanroeper blijft ongemoeid</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — de variabele van de aanroeper blijft ongemoeid</span></pre></div>
 
 <p>De trait <code>is rw</code> gaat verder: hij bindt de parameter aan
 de variabele van de aanroeper, zodat een wijziging binnen de routine ook
 buiten zichtbaar is:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
 
 <p>Zonder een van deze traits zou <code>$n++</code> een compilatiefout
 zijn, omdat de parameter alleen-lezen zou zijn.</p>
 <p>Een andere veelgebruikte trait stelt een standaardwaarde in:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
 
 <p>Hier geeft <code>is default</code> de variabele een waarde om op
 terug te vallen. Elke ingebouwde trait — <code>is rw</code>,
@@ -188,7 +185,7 @@ sectie</a>.</p>
 <a href="/bg/advanced/traits-pragmas/built-in-traits">Български</a>
 <a href="/ru/advanced/traits-pragmas/built-in-traits">Русский</a>
 <a href="/uk/advanced/traits-pragmas/built-in-traits">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

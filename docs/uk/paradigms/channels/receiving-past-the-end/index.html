@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,16 +118,15 @@ href="/uk/paradigms/channels">Канали</a></p>
 надсилає три значення й закриває канал. А що, як споживач попросить
 четверте?</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># на одне отримання забагато</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># на одне отримання забагато</span></pre></div>
 
 <h2 id="на-закритому-каналі-зайве-отримання-кидає-виняток">На закритому
 каналі зайве отримання кидає виняток</h2>
@@ -149,10 +148,9 @@ href="/uk/paradigms/channels">Канали</a></p>
 способу дізнатися, чи надійде ще значення, тож він просто
 <strong>чекає</strong>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># чекає тут — канал відкритий, але порожній</span>
-</pre></div>
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># чекає тут — канал відкритий, але порожній</span></pre></div>
 
 <p>Програма зависає на другому <code>.receive</code>, бо значення
 <em>може</em> ще бути надіслане. Це та сама небезпека, про яку
@@ -199,7 +197,7 @@ href="/uk/paradigms/channels/exercises">до вправ цього розділ�
 <a href="/bg/paradigms/channels/receiving-past-the-end">Български</a>
 <a href="/ru/paradigms/channels/receiving-past-the-end">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

@@ -116,18 +116,16 @@ geschrieben. Sie können einem Muster auch einen <strong>Namen</strong>
 geben und es wiederverwenden, genau wie eine Subroutine. Deklarieren Sie
 eines mit <code>my regex</code> (oder <code>my token</code>, das Sie
 gleich richtig kennenlernen):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
 
 <p>Um einen benannten Regex in einem anderen Muster zu verwenden,
 schreiben Sie seinen Namen in spitzen Klammern,
 <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;42 cats&#39;</span> ~~<span class="sr"> / &lt;number&gt; /</span> {
+<span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p><code>&lt;number&gt;</code> aufzurufen trifft das Muster
 <strong>und</strong> capturt es unter diesem Namen, der getroffene Text
@@ -136,13 +134,12 @@ benanntes Capture, das Sie umsonst bekommen.</p>
 <p>Ein benannter Regex lässt sich in einem Muster mehrfach verwenden.
 Kommt er mehr als einmal vor, werden die Captures zu einer Liste, die
 Sie über einen Index erreichen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> num</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;3-4&#39;</span> ~~<span class="sr"> / &lt;num&gt; &#39;-&#39; &lt;num&gt; /</span> {
+<span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">1</span>]; <span class="c1"># ｢4｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Benannte Regexes halten Muster lesbar und erlauben es Ihnen, größere
 aus kleineren, gut benannten Teilen zu bauen. Genau das tut eine

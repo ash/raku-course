@@ -119,18 +119,16 @@ riunisce i risultati in una junction. Questo si chiama
 <p>Per esempio, sommare a una junction somma a ciascuno dei suoi
 valori:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$j</span> = <span class="mi">1</span> | <span class="mi">2</span> | <span class="mi">3</span>;
-<span class="nb">say</span> <span class="nv">$j</span> + <span class="mi">10</span>; <span class="c1"># any(11, 12, 13)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$j</span> + <span class="mi">10</span>; <span class="c1"># any(11, 12, 13)</span></pre></div>
 
 <p>Il <code>+ 10</code> è stato applicato a <code>1</code>,
 <code>2</code> e <code>3</code> separatamente, dando una nuova junction
 <em>any</em> <code>any(11, 12, 13)</code>.</p>
 <p>Con un confronto, il risultato riunito collassa in un unico valore di
 verità secondo il genere della junction:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="nb">all</span>(<span class="mi">3</span>, <span class="mi">7</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>;  <span class="c1"># True  — every value is positive</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="nb">all</span>(<span class="mi">3</span>, -<span class="mi">1</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>; <span class="c1"># False — not all are positive</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="nb">none</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) == <span class="mi">5</span>; <span class="c1"># True — none of them is 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="n">all</span>(<span class="mi">3</span>, <span class="mi">7</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>;  <span class="c1"># True  — every value is positive</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">all</span>(<span class="mi">3</span>, -<span class="mi">1</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>; <span class="c1"># False — not all are positive</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">none</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) == <span class="mi">5</span>; <span class="c1"># True — none of them is 5</span></pre></div>
 
 <p>L’autothreading è ciò che rende le junction così concise: un unico
 confronto controlla molti valori. Concettualmente i controlli sono

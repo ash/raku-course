@@ -115,17 +115,16 @@ href="/paradigms/supply-kinds">Live and on-demand supplies</a></p>
 taps are listening <strong>at that moment</strong>. You create one with
 a <code>Supplier</code>: the supplier is the sending end, and its
 <code>.Supply</code> is the receiving end that others tap.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$supply</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
 <span class="k">my</span> <span class="nv">@got</span>;
-<span class="nv">$supply</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@got</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nv">$supply</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@got</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
 
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="mi">1</span>);
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="mi">2</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="mi">1</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="mi">2</span>);
 
-<span class="nb">say</span> <span class="nv">@got</span>; <span class="c1"># [1 2]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@got</span>; <span class="c1"># [1 2]</span></pre></div>
 
 <p>Here <code>.emit</code> pushes a value into the live supply, and
 every current tap receives it. The tap was in place before the

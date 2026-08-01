@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,10 +117,9 @@
 <p>Например, превърнете дата, записана като <code>година-месец</code>, в
 <code>месец/година</code>, като прихванете двете числа и ги върнете в
 обратен ред:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">&#39;2025-06&#39;</span>;
-<span class="nv">$d</span> ~~ <span class="nb">s</span>/ (\<span class="nb">d</span>+) <span class="s">&#39;-&#39;</span> (\<span class="nb">d</span>+) /<span class="nv">$1</span>\/<span class="nv">$0</span>/;
-<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">'2025-06'</span>;
+<span class="nv">$d</span> ~~ <span class="sr">s/ (\d+) '-' (\d+) /$1\/$0/</span>;
+<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span></pre></div>
 
 <p>Шаблонът прихваща годината в <code>$0</code>, а месеца в
 <code>$1</code>. В замяната <code>$1</code> и <code>$0</code> са
@@ -132,10 +131,9 @@
 около нея.</p>
 <p>Именуваните прихващания работят по същия начин. Благодарение на това
 заместването се чете ясно дори когато частите са няколко:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Doe, Jane&#39;</span>;
-<span class="nv">$name</span> ~~ <span class="nb">s</span>/ <span class="nv">$&lt;last&gt;</span>=(\<span class="nb">w</span>+) <span class="s">&#39;, &#39;</span> <span class="nv">$&lt;first&gt;</span>=(\<span class="nb">w</span>+) /<span class="nv">$&lt;first&gt;</span> <span class="nv">$&lt;last&gt;</span>/;
-<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Doe, Jane'</span>;
+<span class="nv">$name</span> ~~ <span class="sr">s/ $&lt;last&gt;=(\w+) ', ' $&lt;first&gt;=(\w+) /$&lt;first&gt; $&lt;last&gt;/</span>;
+<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span></pre></div>
 
 <h2 id="навигация-в-курса">Навигация в курса</h2>
 <p>← <a href="/bg/regexes/substitution/s-operator/quiz">Тест —
@@ -161,7 +159,7 @@ href="/bg/regexes/substitution/exercises">към упражненията в т�
 <span class="lang-current">Български</span>
 <a href="/ru/regexes/substitution/captures-in-replacement">Русский</a>
 <a href="/uk/regexes/substitution/captures-in-replacement">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

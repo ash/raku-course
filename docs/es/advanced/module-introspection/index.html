@@ -121,19 +121,17 @@ construido en los temas anteriores — una subrutina exportada y una
 variable compartida <code>our</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">our</span> <span class="nv">$version</span> = <span class="s">&#39;1.0&#39;</span>;
+<span class="k">our</span> <span class="nv">$version</span> = <span class="s">'1.0'</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span> {
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span> {
     <span class="k">return</span> <span class="s">&quot;Hello, $name!&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>El paquete de un módulo se escribe con <code>::</code> al final.
 Agregar <code>.keys</code> lista los nombres que contiene:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># ($version EXPORT)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># ($version EXPORT)</span></pre></div>
 
 <p>El módulo <code>Greeting</code> de los temas anteriores define una
 variable <code>our</code>, <code>$version</code>, así que su paquete
@@ -150,8 +148,7 @@ Esto accede al mismo valor que el calificado
 <code>$Greeting::version</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::</span>{<span class="s">&#39;$version&#39;</span>}; <span class="c1"># 1.0</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::</span>{<span class="s">'$version'</span>}; <span class="c1"># 1.0</span></pre></div>
 
 <h2 id="listar-lo-que-exporta-un-módulo">Listar lo que exporta un
 módulo</h2>
@@ -164,8 +161,7 @@ exportación</a>), y sus <code>.keys</code> son las rutinas
 exportadas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::EXPORT::DEFAULT::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># (&amp;hello)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::EXPORT::DEFAULT::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># (&amp;hello)</span></pre></div>
 
 <p>Cada clave es un nombre exportado con su sigilo — aquí la única
 subrutina <code>&amp;hello</code>, mostrada con el <code>&amp;</code>

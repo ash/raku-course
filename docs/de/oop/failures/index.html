@@ -120,13 +120,12 @@ sofort. Stattdessen liefert sie dem Aufrufer ein besonderes
 <code>Failure</code>-Objekt. Ein <code>Failure</code> ist undefiniert,
 der Aufrufer kann also in aller Ruhe darauf prüfen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">divide</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">fail</span> <span class="s">&#39;cannot divide by zero&#39;</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
+    <span class="nb">fail</span> <span class="s">'cannot divide by zero'</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
     <span class="k">return</span> <span class="nv">$a</span> / <span class="nv">$b</span>;
 }
 
 <span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">2</span>);         <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Der erfolgreiche Aufruf liefert <code>5</code>. Der fehlschlagende
 Aufruf liefert ein <code>Failure</code>, das für <code>defined</code>
@@ -146,15 +145,13 @@ Idee zweimal begegnet.</p>
 <p>Eine <strong>Division durch null</strong> erzeugt still einen Wert
 und wirft erst, wenn Sie ihn tatsächlich verwenden:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span> / <span class="mi">0</span>;   <span class="c1"># no error yet</span>
-<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span></pre></div>
 
 <p>Ein <strong>fehlschlagendes externes Programm</strong> liefert ein
 <code>Proc</code>, das nur wirft, wenn Sie es unbehandelt verwerfen —
 bewahren Sie es auf und sehen Sie es sich an, bleibt es ein stiller
 Wert:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span></pre></div>
 
 <p>In jedem Fall hält ein Problem das Programm nicht in dem Moment an,
 in dem es auftritt: Es wird zu einem Wert, den Sie prüfen können, und

@@ -1,5 +1,5 @@
 ---
-title: La tradukilo Raku++ 🆕
+title: La kompililo Raku++ 🆕
 translations_gpt:
 ---
 

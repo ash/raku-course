@@ -116,12 +116,10 @@ posicionales</a>, <em>nominati</em> parametri nominibus suis
 referuntur.</p>
 <p>Sequens functio duos parametros vocatos <code>$from</code> et
 <code>$to</code> accipit.</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>) { <span class="nv">$from</span> - <span class="nv">$to</span> }</pre></div>
 
 <p>Nunc, ut functionem vocare, debes argumenta nominare:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Error est argumenta quasi posicionalia transmittere. Exempli gratia,
 vocatio <code>distance(30, 10)</code> errorem generat:</p>
@@ -130,10 +128,9 @@ vocatio <code>distance(30, 10)</code> errorem generat:</p>
     in block &lt;unit&gt; ad t.raku linea 2</code></pre>
 <p>Bona pars est quod argumenta nominata in quolibet ordine enumerari
 possunt. Sequentes duae vocationes omnino aequivalentes sunt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="mi">30</span>, <span class="nb">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="mi">30</span>, <span class="n">to</span> =&gt; <span class="mi">10</span>); <span class="c1"># 20</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">to</span> =&gt; <span class="mi">10</span>, <span class="nb">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(<span class="n">to</span> =&gt; <span class="mi">10</span>, <span class="n">from</span> =&gt; <span class="mi">30</span>); <span class="c1"># 20</span></pre></div>
 
 <h2 id="variabiles-transmittentes">Variabiles transmittentes</h2>
 <p>Cum valor quem vis transmittere ad functionem in variabili servatur,
@@ -141,28 +138,24 @@ cuius nomen cum nomine parametri coincidit, frui potes speciali syntaxi
 quae scribendi laborem minuit:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$from</span> = <span class="mi">30</span>;
 <span class="k">my</span> <span class="nv">$to</span> = <span class="mi">10</span>;
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$from</span>, :<span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Hoc simile est vocatio verbosae:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$from</span>, <span class="nb">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$from</span>, <span class="n">to</span> =&gt; <span class="nv">$to</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Iterum, ordo hic non est strictus:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">distance</span>(:<span class="nv">$to</span>, :<span class="nv">$from</span>); <span class="c1"># 20</span></pre></div>
 
 <p>Si nomen variabilis differt a nomine parametri, utere uno modorum ad
 par transmittendum:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">20</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">10</span>;
 
-<span class="nb">say</span> <span class="n">distance</span>(<span class="nb">from</span> =&gt; <span class="nv">$a</span>, <span class="nb">to</span> =&gt; <span class="nv">$b</span>);
+<span class="nb">say</span> <span class="n">distance</span>(<span class="n">from</span> =&gt; <span class="nv">$a</span>, <span class="n">to</span> =&gt; <span class="nv">$b</span>);
 
 <span class="c1"># vel:</span>
 
-<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));
-</pre></div>
+<span class="nb">say</span> <span class="n">distance</span>(:<span class="n">from</span>(<span class="nv">$a</span>), :<span class="n">to</span>(<span class="nv">$b</span>));</pre></div>
 
 <section id="exercitatio" class="practice" data-markdown="1">
 <h2>Exercitatio</h2>

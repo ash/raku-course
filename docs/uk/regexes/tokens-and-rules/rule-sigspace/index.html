@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -122,30 +122,27 @@ href="/uk/regexes/tokens-and-rules">Токени та правила</a></p>
 стояли без нічого між ними. Оскільки <code>\w+</code> зупиняється на
 пробілі, вхід із пробілом не дає збігу:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithToken</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
-    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
+    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">WithToken</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">WithToken</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Прийняти пробіл у <code>token</code> <em>можна</em> — просто вам
 доведеться зіставитися з ним самотужки, наприклад за допомогою
 <code>\s+</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;first&gt; \s+ &lt;second&gt; </span>}      <span class="c1"># тепер &#39;foo bar&#39; розбирається</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;first&gt;</span> \<span class="n">s</span>+ <span class="s">&lt;second&gt;</span> }      <span class="c1"># тепер 'foo bar' розбирається</span></pre></div>
 
 <p><code>rule</code> вставляє це зіставлення з пробілами за вас, тож
 достатньо просто написати пробіл між частинами:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithRule</span> {
-    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
-    <span class="k">token</span><span class="n"> first</span>  {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> second</span> {<span class="sr"> \w+ </span>}
+    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
+    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">WithRule</span>.<span class="nb">parse</span>(<span class="s">&#39;foo bar&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">WithRule</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># True</span></pre></div>
 
 <p>Поширений підхід — використовувати <code>rule</code> для структури
 вищого рівня, де частини розділені пробілами, і <code>token</code> для
@@ -184,7 +181,7 @@ href="/uk/regexes/tokens-and-rules/exercises">до вправ цього
 <a href="/bg/regexes/tokens-and-rules/rule-sigspace">Български</a>
 <a href="/ru/regexes/tokens-and-rules/rule-sigspace">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

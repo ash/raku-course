@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,33 +117,32 @@ href="/bg/paradigms/http-server">Прост HTTP сървър</a></p>
 и понеже цикълът споделя променливите, декларирани около него, можете да
 пазите състояние между заявките. Тук сървърът брои клиентите си и казва
 на всеки неговия номер:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(
     :<span class="n">listen</span>,
-    :<span class="n">localhost</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
+    :<span class="n">localhost</span>(<span class="s">'127.0.0.1'</span>),
     :<span class="n">localport</span>(<span class="mi">8080</span>),
 );
 
 <span class="k">my</span> <span class="nv">$customer</span> = <span class="mi">0</span>;
 
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="nb">accept</span>;
-    <span class="nv">$conn</span>.<span class="nb">recv</span>;
+    <span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="n">accept</span>;
+    <span class="nv">$conn</span>.<span class="n">recv</span>;
     <span class="nv">$customer</span>++;
 
     <span class="c1"># heredoc чрез qq:to дава спретнат шаблон — променливата се интерполира направо вътре</span>
-    <span class="k">my</span> <span class="nv">$body</span> = <span class="s">qq:to/END/;</span>
-<span class="s">        Hello!</span>
-<span class="s">        You are customer number $customer.</span>
-<span class="s">        Thanks for visiting.</span>
-<span class="s">        END</span>
+    <span class="k">my</span> <span class="nv">$body</span> = <span class="s">qq:to/END/</span>;
+        <span class="n">Hello</span>!
+        <span class="n">You</span> <span class="n">are</span> <span class="n">customer</span> <span class="n">number</span> <span class="nv">$customer</span>.
+        <span class="n">Thanks</span> <span class="k">for</span> <span class="n">visiting</span>.
+        <span class="n">END</span>
 
     <span class="c1"># първо изпращаме заглавката, после тялото — с два отделни записа</span>
     <span class="nv">$conn</span>.<span class="nb">print</span>(<span class="s">&quot;HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\n\r\n&quot;</span>);
     <span class="nv">$conn</span>.<span class="nb">print</span>(<span class="nv">$body</span>);
 
     <span class="nv">$conn</span>.<span class="nb">close</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p><code>.accept</code> <strong>блокира</strong>, докато не се свърже
 клиент, а после връща нов сокет за точно този разговор. Понеже
@@ -207,7 +206,7 @@ href="/bg/paradigms/http-server/exercises/text-response">към
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/http-server/serving-requests">Русский</a>
 <a href="/uk/paradigms/http-server/serving-requests">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

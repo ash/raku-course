@@ -119,13 +119,12 @@ away. Instead it returns a special <code>Failure</code> object to the
 caller. A <code>Failure</code> is undefined, so the caller can quietly
 check for it:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">divide</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">fail</span> <span class="s">&#39;cannot divide by zero&#39;</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
+    <span class="nb">fail</span> <span class="s">'cannot divide by zero'</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
     <span class="k">return</span> <span class="nv">$a</span> / <span class="nv">$b</span>;
 }
 
 <span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">2</span>);         <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>The successful call returns <code>5</code>. The failing call returns
 a <code>Failure</code>, which reports <code>False</code> for
@@ -142,14 +141,12 @@ Earlier in this part you met the same idea twice.</p>
 <p>A <strong>division by zero</strong> produces a value quietly and only
 throws when you actually use it:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span> / <span class="mi">0</span>;   <span class="c1"># no error yet</span>
-<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span></pre></div>
 
 <p>A <strong>failing external program</strong> returns a
 <code>Proc</code> that throws only if you discard it unhandled — save it
 and inspect it, and it stays a quiet value:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span></pre></div>
 
 <p>In each case a problem does not stop the program the moment it
 happens: it becomes a value you can check, and it escalates to a thrown

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,9 +114,8 @@
 текст</h1>
 <p>Най-простият шаблон е поредица от букви и цифри. Такъв шаблон
 съпоставя точно тези знаци, в този ред, където и да е в низа:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Съвпадението не е длъжно да започва в началото на низа — машината за
 регулярни изрази търси шаблона на всяка позиция, докато го намери.</p>
@@ -127,25 +126,22 @@
 го няма, съпоставянето се проваля: интелигентното съпоставяне произвежда
 <code>Nil</code> — недефинирана стойност, която в булева проверка минава
 за лъжа:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Вътре в регулярния израз интервалите по подразбиране
 <strong>не</strong> са значещи — те са там само за да направят шаблона
 четим. Затова <code>/ ell /</code> съпоставя точно каквото би съпоставил
 <code>/ell/</code>; заобикалящите интервали просто се пренебрегват:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Понеже интервалът в шаблона се пренебрегва, съпоставянето на
 <em>действителен</em> интервал изисква <strong>кавички</strong>: всичко,
 което сложите в кавички, се съпоставя буквално. Същото ограждане в
 кавички е и начинът да съпоставите пунктуационен знак, който иначе би
 имал специално значение в регулярния израз:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(За празни знаци можете да използвате и класа <code>\s</code>, с
 който ще се запознаете скоро.)</p>
@@ -173,7 +169,7 @@ href="/bg/regexes/literals/exercises">към упражненията в тоз�
 <span class="lang-current">Български</span>
 <a href="/ru/regexes/literals/literal-text">Русский</a>
 <a href="/uk/regexes/literals/literal-text">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

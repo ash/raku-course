@@ -114,10 +114,9 @@ href="/eo/regexes/substitution">Anstataŭigo kaj interŝanĝo</a></p>
 <p>La operatoro de anstataŭigo estas <code>s///</code>. Ĝi aspektas kiel
 kongruo kun dua fako: la ŝablono iras inter la unuaj du oblikvoj kaj la
 anstataŭa teksto inter la lastaj du:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
 <p>Anstataŭigo ŝanĝas la variablon <strong>surloke</strong>, do
 <code>$s</code> mem estas ĝisdatigita. La teksto en la anstataŭa parto
@@ -125,10 +124,9 @@ estas laŭlitera — vi ne metas ĝin en citilojn.</p>
 <p>Kiel kongruigo, anstataŭigo tuŝas nur la <strong>unuan</strong>
 aperon defaŭlte. Aldonu la adverbon <code>:g</code> por anstataŭigi ĉiun
 aperon:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
 <p>Se vi volas konservi la originalon kaj produkti ŝanĝitan
 <strong>kopion</strong> anstataŭ modifi surloke, uzu la
@@ -136,19 +134,17 @@ aperon:</p>
 anstataŭigon kaj redonas la ŝanĝitan ĉenon, lasante la originalon
 netuŝita. Ĉar ĝi ne ĝisdatigas variablon surloke, direktu ĝin al unu per
 <code>given</code> anstataŭ <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
 <p>(Skribi <code>$orig ~~ S///</code> avertas vin uzi <code>given</code>
 anstataŭe — ĉe <code>S///</code> estas nenio por modifi surloke.)</p>
 <p>La sama nedetrua konduto ankaŭ disponeblas kiel metodo,
 <code>.subst</code>, kiu redonas novan ĉenon:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
 <section id="praktiko" class="practice" data-markdown="1">
 <h2>Praktiko</h2>

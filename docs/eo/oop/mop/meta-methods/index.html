@@ -118,21 +118,19 @@ objekto; la <code>.^method</code> vokas metodon sur la
 anstataŭ agi kiel la tipo.</p>
 <p>Vi renkontis <code>.^name</code>, kiu redonas la nomon de la
 tipo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="nb">name</span>; <span class="c1"># Int</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="n">name</span>; <span class="c1"># Int</span></pre></div>
 
 <p>Aliaj metametodoj inspektas la strukturon de tipo.
 <code>.^attributes</code> listigas ĝiajn atributojn, kaj
 <code>.^find_method</code> diras al vi, ĉu metodo ekzistas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Animal</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
-    <span class="k">method</span> <span class="n">speak</span> { <span class="s">&#39;generic&#39;</span> }
+    <span class="k">method</span> <span class="n">speak</span> { <span class="s">'generic'</span> }
 }
 
-<span class="nb">say</span> <span class="n">Animal</span>.^<span class="nb">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;speak&#39;</span>);   <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;fly&#39;</span>);     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Animal</span>.^<span class="n">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'speak'</span>);   <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'fly'</span>);     <span class="c1"># False</span></pre></div>
 
 <p><code>.^mro</code> redonas la <em>ordon de metodserĉado</em> — la
 ĉenon de tipoj, kiujn Raku traserĉas, laŭvice, kiam ĝi serĉas metodon.
@@ -140,8 +138,7 @@ tipo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">A</span> {}
 <span class="k">class</span> <span class="n">B</span> <span class="k">is</span> <span class="n">A</span> {}
 
-<span class="nb">say</span> <span class="n">B</span>.^<span class="nb">mro</span>.<span class="n">map</span>(*.^<span class="nb">name</span>); <span class="c1"># (B A Any Mu)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">B</span>.^<span class="n">mro</span>.<span class="nb">map</span>(*.^<span class="n">name</span>); <span class="c1"># (B A Any Mu)</span></pre></div>
 
 <p><code>B</code> heredas de <code>A</code>, kaj ĉiu tipo finfine de
 <code>Any</code> kaj <code>Mu</code>, do metodvoko sur <code>B</code>

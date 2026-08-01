@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,9 +116,8 @@ type van een waarde. Je kunt het op vrijwel dezelfde manier gebruiken
 als <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span> = <span class="mi">42</span>;
 
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;</pre></div>
 
 <p>De twee drukken het type af met een klein verschil in weergave:
 <code>.^name</code> geeft de kale naam, terwijl <code>WHAT</code> het
@@ -130,24 +129,22 @@ type object toont, geschreven tussen haakjes:</p>
 <code>^name</code> als <code>WHAT</code> het type van de opgeslagen
 waarde:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Any</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Any)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Any</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Any)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <p>Met een typebeperking is het type direct bekend, zelfs voordat er
 iets is toegewezen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$var</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span>
 
-<span class="nv">$var</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="nv">$var</span>.^<span class="nb">name</span>; <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var</span>.<span class="nb">WHAT</span>;  <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nv">$var</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">$var</span>.^<span class="n">name</span>; <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var</span>.<span class="n">WHAT</span>;  <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="type-objects-vergelijken">Type objects vergelijken</h2>
 <p>Omdat <code>WHAT</code> het type object zelf teruggeeft, kun je er
@@ -158,10 +155,9 @@ om te testen of twee waarden hetzelfde type delen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="mi">42</span>;
 <span class="k">my</span> <span class="nv">$b</span> = <span class="mi">100</span>;
 
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nv">$b</span>.<span class="nb">WHAT</span>; <span class="c1"># True  — both are Int</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">$a</span>.<span class="nb">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nv">$b</span>.<span class="n">WHAT</span>; <span class="c1"># True  — both are Int</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Int</span>;     <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">$a</span>.<span class="n">WHAT</span> === <span class="nb">Str</span>;     <span class="c1"># False</span></pre></div>
 
 <p>Anders dan <code>==</code>, dat getallen vergelijkt, vergelijkt
 <code>===</code> identiteit, dus het werkt direct voor type objects (en
@@ -198,7 +194,7 @@ sectie</a>.</p>
 <a href="/bg/advanced/introspection/what">Български</a>
 <a href="/ru/advanced/introspection/what">Русский</a>
 <a href="/uk/advanced/introspection/what">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

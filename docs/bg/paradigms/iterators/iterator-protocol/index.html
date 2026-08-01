@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,17 +116,15 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 <code>.iterator</code>. Итераторът има един съществен метод —
 <code>pull-one</code>, — който връща следващата стойност всеки път,
 когато го извикате:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="nb">iterator</span>;
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 10</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span>; <span class="c1"># 30</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>).<span class="n">iterator</span>;
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 10</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 20</span>
+<span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Когато стойностите свършат, <code>pull-one</code> връща специален
 страж — <code>IterationEnd</code>, — вместо истински елемент. Заявката
 за още една стойност от същия <code>$it</code> го показва:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$it</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>Операторът <code>=:=</code> проверява за <strong>същия обект</strong>
 и точно така разпознавате стража. Тази подробност има значение вътре в
@@ -136,13 +134,12 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 <code>IterationEnd</code>. Лекарството е да <strong>свържете</strong> с
 <code>:=</code>, така че променливата просто <em>да бъде</em> онова,
 което <code>pull-one</code> е върнал:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="nb">iterator</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$it</span> = <span class="s">&lt;a b c&gt;</span>.<span class="n">iterator</span>;
 <span class="k">loop</span> {
-    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="nb">pull-one</span>;      <span class="c1"># свързване, а не присвояване</span>
-    <span class="nb">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
+    <span class="k">my</span> <span class="nv">$v</span> := <span class="nv">$it</span>.<span class="n">pull-one</span>;      <span class="c1"># свързване, а не присвояване</span>
+    <span class="k">last</span> <span class="k">if</span> <span class="nv">$v</span> =:= <span class="n">IterationEnd</span>;
     <span class="nb">say</span> <span class="nv">$v</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Цикълът отпечатва <code>a</code>, <code>b</code>, <code>c</code> и
 спира. Точно това прави цикълът <code>for</code> за вас под капака: той
@@ -183,7 +180,7 @@ href="/bg/paradigms/iterators/exercises/sum-with-pull-one">към
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/iterators/iterator-protocol">Русский</a>
 <a href="/uk/paradigms/iterators/iterator-protocol">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

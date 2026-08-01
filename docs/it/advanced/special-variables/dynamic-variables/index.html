@@ -118,14 +118,13 @@ in cui e’ dichiarata, una variabile dinamica viene trovata cercando
 <strong>verso l’esterno attraverso lo stack delle chiamate</strong> —
 attraverso chi ha chiamato il codice corrente, indipendentemente da dove
 quel codice e’ definito.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*greeting</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*greeting</span> = <span class="s">'Hello'</span>;
 
 <span class="k">sub</span> <span class="n">greet</span> {
-    <span class="nb">say</span> <span class="vg">$*greeting</span>;
+    <span class="nb">say</span> <span class="nv">$*greeting</span>;
 }
 
-<span class="n">greet</span>(); <span class="c1"># Hello</span>
-</pre></div>
+<span class="n">greet</span>(); <span class="c1"># Hello</span></pre></div>
 
 <p>La subroutine <code>greet</code> non dichiara <code>$*greeting</code>
 e non la riceve come argomento, eppure puo’ vederla, perche’ la
@@ -137,19 +136,18 @@ si vedra’ nel prossimo esempio.</p>
 <p>Poiche’ la ricerca segue lo stack delle chiamate, una dichiarazione
 piu’ vicina <strong>sovrascrive</strong> una piu’ lontana per la durata
 del suo blocco:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;outer&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'outer'</span>;
 
 <span class="k">sub</span> <span class="n">show</span> {
-    <span class="nb">say</span> <span class="vg">$*level</span>;
+    <span class="nb">say</span> <span class="nv">$*level</span>;
 }
 
 <span class="n">show</span>(); <span class="c1"># outer</span>
 
 {
-    <span class="k">my</span> <span class="vg">$*level</span> = <span class="s">&#39;inner&#39;</span>;
+    <span class="k">my</span> <span class="nv">$*level</span> = <span class="s">'inner'</span>;
     <span class="n">show</span>(); <span class="c1"># inner</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>La stessa <code>show</code> stampa <code>outer</code> la prima volta
 e <code>inner</code> quando viene chiamata dall’interno del blocco che

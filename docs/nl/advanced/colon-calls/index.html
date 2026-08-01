@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,16 +116,14 @@ argumenten meestal tussen haakjes: <code>@a.grep(* &gt; 5)</code>. Raku
 biedt een tweede vorm — zet een <strong>dubbele punt</strong> na de
 naam, en alles na de dubbele punt wordt de argumentenlijst, helemaal
 zonder haakjes:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>De dubbele punt in <code>grep:</code> doet hetzelfde als haakjes
 zouden doen: <code>(1..10).grep: * %% 2</code> betekent precies
 <code>(1..10).grep(* %% 2)</code>. De twee vormen zijn onderling
 verwisselbaar:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>De dubbele-puntvorm is het prettigst bij methoden die een
 <strong>blok</strong> of een <a
@@ -134,8 +132,7 @@ het een laag nesting wegneemt. Vergelijk:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># haakjes om het blok</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dubbele punt — geen sluithaakje nodig</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dubbele punt — geen sluithaakje nodig</span></pre></div>
 
 <p>Beide printen <code>(3 2 1)</code>, maar de versie met de dubbele
 punt leest overzichtelijker, vooral wanneer het blok lang is.</p>
@@ -150,8 +147,7 @@ instructie</strong> als argumenten consumeert, dus hij moet aan het
 ketenen. Als je meer methoden wilt aanroepen, gebruik dan de vorm met
 haakjes of groepeer de delen van de hele expressie om het duidelijk te
 maken:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>Let op: combineer de dubbele punt <strong>niet</strong> met haakjes
 als <code>.grep:( ... )</code>. Die schrijfwijze botst met de
@@ -200,7 +196,7 @@ dubbele-punt-map</a> →</p>
 <a href="/bg/advanced/colon-calls">Български</a>
 <a href="/ru/advanced/colon-calls">Русский</a>
 <a href="/uk/advanced/colon-calls">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

@@ -118,9 +118,8 @@ runs the other way round: the target sits on the <strong>left</strong>,
 and the data is pulled in from the source on the
 <strong>right</strong>.</p>
 <p>Here is the even-numbers pipeline from before, written backward:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> &lt;== <span class="nb">grep</span>(* %% <span class="mi">2</span>) &lt;== (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>);
-<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> &lt;== <span class="nb">grep</span>(* %% <span class="mi">2</span>) &lt;== (<span class="mi">1</span>.<span class="mf">.10</span>);
+<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span></pre></div>
 
 <p>Read it right to left: take <code>1..10</code>, keep the even
 numbers, and collect them into <code>@evens</code>. The result is
@@ -128,9 +127,8 @@ exactly the same as
 <code>(1..10) ==&gt; grep(* %% 2) ==&gt; my @evens</code> — only the
 direction in which you write the stages has changed.</p>
 <p>Backward feeds chain in the same way, and again the target leads:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@result</span> &lt;== <span class="n">map</span>(* ** <span class="mi">2</span>) &lt;== <span class="nb">grep</span>(* %% <span class="mi">2</span>) &lt;== (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>);
-<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [4 16 36 64 100]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@result</span> &lt;== <span class="nb">map</span>(* ** <span class="mi">2</span>) &lt;== <span class="nb">grep</span>(* %% <span class="mi">2</span>) &lt;== (<span class="mi">1</span>.<span class="mf">.10</span>);
+<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [4 16 36 64 100]</span></pre></div>
 
 <p>The work still happens source-first — start with <code>1..10</code>,
 keep the evens, square them — but on the page the stages are listed from

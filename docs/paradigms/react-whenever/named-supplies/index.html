@@ -119,18 +119,17 @@ somewhere else — returned by a function, produced by a
 <code>Supplier</code>, or handed to you by a socket or a timer — and
 arrives as a plain variable. A <code>whenever</code> is just as happy to
 watch a named supply:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$sensors</span>  = <span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">18</span>, <span class="mi">21</span>, <span class="mi">19</span>);
-<span class="k">my</span> <span class="nv">$messages</span> = <span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="s">&#39;hi&#39;</span>, <span class="s">&#39;bye&#39;</span>);
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$sensors</span>  = <span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">18</span>, <span class="mi">21</span>, <span class="mi">19</span>);
+<span class="k">my</span> <span class="nv">$messages</span> = <span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="s">'hi'</span>, <span class="s">'bye'</span>);
 
-<span class="n">react</span> {
-    <span class="n">whenever</span> <span class="nv">$sensors</span> {
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nv">$sensors</span> {
         <span class="nb">say</span> <span class="s">&quot;temperature: $_&quot;</span>;
     }
-    <span class="n">whenever</span> <span class="nv">$messages</span> {
+    <span class="k">whenever</span> <span class="nv">$messages</span> {
         <span class="nb">say</span> <span class="s">&quot;message: $_&quot;</span>;
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>This prints:</p>
 <div class="highlight"><pre>temperature: 18

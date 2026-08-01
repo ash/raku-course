@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,12 +117,11 @@ identifikatorus</a></p>
 identifikatorus</h1>
 <p>Šeit ir iespējams risinājums uzdevumam.</p>
 <h2 id="kods">Kods</h2>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
+}</pre></div>
 
 <p>🦋 Atrodiet programmu failā <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/validate-identifier.raku">validate-identifier.raku</a>.</p>
@@ -142,8 +141,7 @@ atkārtota ar <code>*</code>, papildus pieļauj ciparus, — tieši
 klasiskais identifikatora likums.</p></li>
 <li><p>Otro klasi var uzrakstīt arī kā <code>\w</code>, iebūvēto
 saīsinājumu vārda rakstzīmei (burtam, ciparam vai pasvītrojumam):</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;
-</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;</pre></div>
 
 <p>Viena atšķirība, ko vērts zināt: <code>\w</code> Raku valodā prot
 Unikodu, tāpēc tādu vārdu kā <code>café</code> arī izlaiž cauri — un tas
@@ -156,12 +154,11 @@ apostrofu, kā vārdā <code>isn't</code>), ja vien tai seko burts, — un
 tieši tāpēc apakšprogrammas, piemēram, <code>is-prime</code>, lasās tik
 dabiski. Lai pārbaudītu <em>Raku</em> identifikatorus, pieļaujiet šādas
 grupas pēc klasiskās daļas:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* [ &#39;-&#39; &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
+<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* [ '-' &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
+}</pre></div>
 
 <p>Katra iekavotā grupa <code>[ '-' &lt;[A..Za..z]&gt; \w* ]</code>
 defisi pieņem tikai tad, kad tai seko burts, tāpēc <code>my-var</code>
@@ -191,7 +188,7 @@ pilniem vārdiem</a> →</p>
 <a href="/bg/addendum/regex-grammars/exercises/validate-identifier/solution">Български</a>
 <a href="/ru/addendum/regex-grammars/exercises/validate-identifier/solution">Русский</a>
 <a href="/uk/addendum/regex-grammars/exercises/validate-identifier/solution">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

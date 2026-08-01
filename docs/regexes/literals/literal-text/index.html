@@ -113,9 +113,8 @@ href="/regexes/literals">Literals and character classes</a></p>
 <p>The simplest pattern is a sequence of letters and digits. Such a
 pattern matches exactly those characters, in that order, anywhere in the
 string:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>The match does not have to start at the beginning of the string — the
 regex engine looks for the pattern at every position until it finds
@@ -127,25 +126,22 @@ text it matched, wrapped in the corner brackets <code>｢ ｣</code>. If the
 pattern is not present, the match fails instead: the smartmatch produces
 <code>Nil</code>, an undefined value that counts as false in a boolean
 test:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Inside a regex, spaces are <strong>not</strong> significant by
 default — they are there only to make the pattern readable. So
 <code>/ ell /</code> matches exactly what <code>/ell/</code> would; the
 surrounding spaces are simply ignored:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Because a space in the pattern is ignored, matching an
 <em>actual</em> space takes <strong>quotes</strong>: anything you put in
 quotes is matched literally. That same quoting is how you match a
 punctuation character that would otherwise have a special meaning in a
 regex:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(For whitespace you can also use the <code>\s</code> class, which you
 will meet shortly.)</p>

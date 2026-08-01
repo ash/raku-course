@@ -114,9 +114,8 @@ href="/it/regexes/literals">Letterali e classi di caratteri</a></p>
 <p>Lo schema più semplice è una sequenza di lettere e cifre. Uno schema
 simile riconosce esattamente quei caratteri, in quell’ordine, in
 qualunque punto della stringa:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>La corrispondenza non deve per forza cominciare all’inizio della
 stringa: il motore dei regex cerca lo schema in ogni posizione finché
@@ -128,26 +127,23 @@ simile ha quando viene stampato: <code>say</code> mostra un
 parentesi angolari <code>｢ ｣</code>. Se lo schema non è presente, la
 corrispondenza fallisce: lo smartmatch produce <code>Nil</code>, un
 valore non definito che vale come falso in una prova booleana:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Dentro un regex gli spazi <strong>non</strong> sono significativi per
 impostazione predefinita: sono lì solo per rendere leggibile lo schema.
 Quindi <code>/ ell /</code> riconosce esattamente ciò che riconoscerebbe
 <code>/ell/</code>; gli spazi attorno vengono semplicemente
 ignorati:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Poiché uno spazio nello schema viene ignorato, riconoscere uno spazio
 <em>vero</em> richiede le <strong>virgolette</strong>: tutto ciò che
 metti fra virgolette viene riconosciuto alla lettera. Quelle stesse
 virgolette servono anche a riconoscere un segno di punteggiatura che
 altrimenti avrebbe un significato speciale in un regex:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(Per gli spazi bianchi puoi anche usare la classe <code>\s</code>,
 che incontrerai fra poco.)</p>

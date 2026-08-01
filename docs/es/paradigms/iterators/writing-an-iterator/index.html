@@ -117,14 +117,13 @@ método devuelve el valor siguiente, o <code>IterationEnd</code> cuando
 no queda nada. Aquí tienes un iterador de cuenta atrás que entrega un
 número y avanza hacia cero:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
 
-    <span class="k">method</span> <span class="nb">pull-one</span> {
+    <span class="k">method</span> <span class="n">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n--</span>;
+        <span class="k">return</span> <span class="nv">$!n</span>--;
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Cada llamada a <code>pull-one</code> comprueba primero si la cuenta
 se ha agotado; si no, devuelve el número actual y lo decrementa. El
@@ -132,19 +131,17 @@ post-decremento <code>$!n--</code> devuelve el valor <em>anterior</em> a
 la resta, así que los números salen <code>3, 2, 1</code>. Manejarlo a
 mano se parece a cualquier otro iterador:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>Un iterador por sí solo no es algo que un bucle <code>for</code>
 pueda tomar directamente: un bucle espera un <em>iterable</em>. Envuelve
 el iterador en una <code>Seq</code> y se vuelve recorrible:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Eso imprime <code>3</code>, <code>2</code>, <code>1</code>. En el
 código de todos los días recurrirías más bien a <code>gather</code> /

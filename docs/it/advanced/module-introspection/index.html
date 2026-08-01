@@ -121,20 +121,18 @@ costruito nei capitoli precedenti — una subroutine esportata e una
 variabile <code>our</code> condivisa:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">our</span> <span class="nv">$version</span> = <span class="s">&#39;1.0&#39;</span>;
+<span class="k">our</span> <span class="nv">$version</span> = <span class="s">'1.0'</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span> {
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span> {
     <span class="k">return</span> <span class="s">&quot;Hello, $name!&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Il package di un modulo si scrive con <code>::</code> finale.
 Aggiungendo <code>.keys</code> si ottiene l’elenco dei nomi che
 contiene:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># ($version EXPORT)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># ($version EXPORT)</span></pre></div>
 
 <p>Il modulo <code>Greeting</code> dei capitoli precedenti definisce una
 variabile <code>our</code>, <code>$version</code>, quindi il suo package
@@ -152,8 +150,7 @@ raggiunge lo stesso valore del qualificato
 <code>$Greeting::version</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::</span>{<span class="s">&#39;$version&#39;</span>}; <span class="c1"># 1.0</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::</span>{<span class="s">'$version'</span>}; <span class="c1"># 1.0</span></pre></div>
 
 <h2 id="elencare-ciò-che-un-modulo-esporta">Elencare ciò che un modulo
 esporta</h2>
@@ -165,8 +162,7 @@ href="/it/advanced/modules-basics/export-tags">Tag di esportazione</a>),
 e le sue <code>.keys</code> sono le routine esportate:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::EXPORT::DEFAULT::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># (&amp;hello)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::EXPORT::DEFAULT::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># (&amp;hello)</span></pre></div>
 
 <p>Ogni chiave è un nome esportato con il suo sigillo — qui l’unica
 subroutine <code>&amp;hello</code>, mostrata con il <code>&amp;</code>

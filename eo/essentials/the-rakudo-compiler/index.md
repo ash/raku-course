@@ -1,5 +1,5 @@
 ---
-title: La tradukilo Rakudo
+title: La kompililo Rakudo
 translations_gpt:
 ---
 

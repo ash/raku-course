@@ -115,17 +115,15 @@ href="/eo/regexes/what-is-a-grammar">Kio estas gramatiko</a></p>
 ankaŭ povas doni al ŝablono <strong>nomon</strong> kaj reuzi ĝin, same
 kiel subrutinon. Deklaru unu per <code>my regex</code> (aŭ
 <code>my token</code>, kiun vi ĝuste renkontos baldaŭ):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
 
 <p>Por uzi nomitan regulesprimon ene de alia ŝablono, skribu ĝian nomon
 en angulaj krampoj, <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;42 cats&#39;</span> ~~<span class="sr"> / &lt;number&gt; /</span> {
+<span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Voki <code>&lt;number&gt;</code> kaj kongruas kun la ŝablono
 <strong>kaj</strong> kaptas ĝin sub tiu nomo, do la kongruinta teksto
@@ -134,13 +132,12 @@ ricevas senpage.</p>
 <p>Nomita regulesprimo povas esti uzata plurfoje en unu ŝablono. Kiam ĝi
 aperas pli ol unufoje, la kaptoj fariĝas listo, atingata laŭ
 indekso:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> num</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;3-4&#39;</span> ~~<span class="sr"> / &lt;num&gt; &#39;-&#39; &lt;num&gt; /</span> {
+<span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">1</span>]; <span class="c1"># ｢4｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Nomitaj regulesprimoj tenas ŝablonojn legeblaj kaj permesas al vi
 konstrui pli grandajn el pli malgrandaj, bone nomitaj partoj. Ĝuste tion

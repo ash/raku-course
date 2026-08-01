@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,35 +118,31 @@ href="/ru/paradigms/promises">Промисы</a></p>
 известие) готов. <code>.keep</code> исполняет его со значением:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># свежий, ещё не улаженный промис</span>
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">42</span>);           <span class="c1"># исполняем его со значением</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># исполняем его со значением</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
 
 <p><code>.break</code> — это случай неудачи. Ожидание сломанного промиса
 заново бросает ошибку — ровно так же, как для блока <code>start</code>,
 который <a href="/ru/paradigms/await/awaiting-promises">умер</a>, — и,
 если её никто не перехватит, это исключение остановит программу:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># здесь умирает с &#39;disk full&#39;</span>
-<span class="nb">say</span> <span class="s">&#39;never reached&#39;</span>;      <span class="c1"># эта строка не выполняется</span>
-</pre></div>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;             <span class="c1"># здесь умирает с 'disk full'</span>
+<span class="nb">say</span> <span class="s">'never reached'</span>;      <span class="c1"># эта строка не выполняется</span></pre></div>
 
 <p>Чтобы продолжить работу, перехватите неудачу через <code>try</code> —
 точно так же, как вокруг любого кода, который может умереть:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="nv">$p</span>.<span class="nb">break</span>(<span class="s">&#39;disk full&#39;</span>);
+<span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>; <span class="c1"># the job failed: disk full</span></pre></div>
 
 <p>Если исход уже известен, два сокращения создают промис, изначально
 улаженный: <code>Promise.kept($value)</code> и
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="nb">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Зачем создавать промис вручную? Затем, что не всякий результат
 приходит из блока <code>start</code>. Событие, которое сработает позже,
@@ -178,7 +174,7 @@ href="/ru/paradigms/promises/exercises">к упражнениям этого
 <a href="/bg/paradigms/promises/making-a-promise">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/promises/making-a-promise">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

@@ -114,17 +114,15 @@ href="/regexes/adverbs">Adverbs</a></p>
 <code>:g</code> adverb (short for <code>:global</code>) finds
 <strong>every</strong> match in the string. It is written on the
 <code>m///</code> operator:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@all</span> = <span class="s">&#39;a1b2c3&#39;</span> ~~ <span class="sr">m:g/\d/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@all</span> = <span class="s">'a1b2c3'</span> ~~ <span class="sr">m:g/\d/</span>;
 <span class="nb">say</span> <span class="nv">@all</span>;       <span class="c1"># [｢1｣ ｢2｣ ｢3｣]</span>
-<span class="nb">say</span> <span class="nv">@all</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@all</span>.<span class="nb">elems</span>; <span class="c1"># 3</span></pre></div>
 
 <p>With <code>:g</code>, the result behaves like a list of match objects
 — one for each place the pattern was found. You can count them, loop
 over them, or turn each into a string:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@numbers</span> = <span class="s">&#39;a12 b3 c456&#39;</span> ~~ <span class="sr">m:g/\d+/</span>;
-<span class="nb">say</span> <span class="nv">@numbers</span>.<span class="n">map</span>(*.<span class="nb">Str</span>).<span class="nb">join</span>(<span class="s">&#39;, &#39;</span>); <span class="c1"># 12, 3, 456</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@numbers</span> = <span class="s">'a12 b3 c456'</span> ~~ <span class="sr">m:g/\d+/</span>;
+<span class="nb">say</span> <span class="nv">@numbers</span>.<span class="nb">map</span>(*.<span class="nb">Str</span>).<span class="nb">join</span>(<span class="s">', '</span>); <span class="c1"># 12, 3, 456</span></pre></div>
 
 <p>Here <code>\d+</code> matched three separate runs of digits, and
 <code>:g</code> collected all of them.</p>

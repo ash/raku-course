@@ -120,34 +120,31 @@ associato. Raku ne fornisce molti; ne hai già usati alcuni.</p>
 valore all’interno della routine. Il trait <code>is copy</code> fornisce
 una copia privata e modificabile dell’argomento, che puoi cambiare senza
 influire sul chiamante:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller&#39;s own variable is untouched</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller's own variable is untouched</span></pre></div>
 
 <p>Il trait <code>is rw</code> va oltre: lega il parametro alla
 variabile del chiamante, quindi una modifica effettuata all’interno
 della routine è visibile all’esterno:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
 
 <p>Senza uno di questi trait, <code>$n++</code> causerebbe un errore di
 compilazione, perché il parametro sarebbe in sola lettura.</p>
 <p>Un altro trait comune imposta un valore predefinito:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
 
 <p>Qui <code>is default</code> assegna alla variabile un valore di
 fallback. Ogni trait integrato — <code>is rw</code>,

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,26 +115,23 @@
 — именувани стойности като <code>HOME</code>, <code>PATH</code> или
 <code>USER</code>, които операционната система предоставя. В Raku те са
 достъпни в динамичния хеш <code>%*ENV</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">%*ENV&lt;HOME&gt;</span>; <span class="c1"># домашната директория, например /home/anna</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;HOME&gt;</span>; <span class="c1"># домашната директория, например /home/anna</span></pre></div>
 
 <p>Четете променлива на средата, като индексирате <code>%*ENV</code> с
 името ѝ. Понеже това е обикновен хеш, можете също да проверите дали
 дадена променлива е зададена, или да я промените за програмите, които
 стартирате:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="vg">%*ENV&lt;GREETING&gt;</span>; <span class="c1"># Hello</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span>; <span class="c1"># Hello</span></pre></div>
 
 <p>Задаването на ключ в <code>%*ENV</code> го добавя към средата, която
 всяка програма, стартирана след това с <code>run</code> или
 <code>shell</code>, ще наследи — така подавате настройки надолу към
 дъщерна програма:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
 
-<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo $GREETING&#39;</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># Hello</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo $GREETING'</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># Hello</span></pre></div>
 
 <p>Променливата се задава в средата на вашата програма <em>преди</em>
 стартирането на детето, така че обвивката, която <code>run</code> пуска,
@@ -181,7 +178,7 @@ href="/bg/oop/external-programs/exercises">към упражненията в т
 <span class="lang-current">Български</span>
 <a href="/ru/oop/external-programs/environment">Русский</a>
 <a href="/uk/oop/external-programs/environment">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

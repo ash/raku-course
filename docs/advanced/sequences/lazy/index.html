@@ -117,8 +117,7 @@ no end at all.</p>
 <p>To write an infinite sequence, use <code>Inf</code> as the endpoint.
 Wrap the sequence in parentheses, because <code>...</code> binds more
 loosely than <code>=</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$naturals</span> = (<span class="mi">1</span> ... <span class="n">Inf</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$naturals</span> = (<span class="mi">1</span> ... <span class="n">Inf</span>);</pre></div>
 
 <p>Without the parentheses, <code>my $naturals = 1 ... Inf</code> would
 assign just <code>1</code> to the variable and then build the sequence
@@ -126,16 +125,14 @@ on its own — and evaluating an endless sequence for no result would hang
 the program.</p>
 <p>Nothing is computed yet. The sequence will hand out values only as
 you ask for them. The <code>head</code> method takes the first few:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span> ... <span class="n">Inf</span>).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 3 4 5)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span> ... <span class="n">Inf</span>).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 3 4 5)</span></pre></div>
 
 <p>Even though the sequence is infinite, only the first five numbers are
 generated. Without laziness, a program that tried to build all of an
 endless sequence would never finish.</p>
 <p>For a finite sequence, the <code>tail</code> method takes values from
 the end instead:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span> ... <span class="mi">100</span>).<span class="nb">tail</span>(<span class="mi">3</span>); <span class="c1"># (98 99 100)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span> ... <span class="mi">100</span>).<span class="nb">tail</span>(<span class="mi">3</span>); <span class="c1"># (98 99 100)</span></pre></div>
 
 <p>Laziness is what lets you separate the <em>description</em> of a
 sequence from the decision of how much of it to use.</p>

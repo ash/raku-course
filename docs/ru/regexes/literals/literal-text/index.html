@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,9 +115,8 @@ href="/ru/regexes/literals">Литералы и классы символов</a
 <p>Простейший шаблон — это последовательность букв и цифр. Такой шаблон
 соответствует именно этим символам, идущим в этом порядке, в любом месте
 строки:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Совпадение не обязано начинаться с начала строки — движок регулярных
 выражений ищет шаблон в каждой позиции, пока не найдёт.</p>
@@ -128,25 +127,22 @@ href="/ru/regexes/literals">Литералы и классы символов</a
 строке нет, сопоставление не удаётся: умное сопоставление даёт
 <code>Nil</code> — неопределённое значение, которое в логической
 проверке считается ложным:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Внутри регулярного выражения пробелы по умолчанию <strong>не</strong>
 значимы — они нужны лишь для удобочитаемости шаблона. Поэтому
 <code>/ ell /</code> соответствует ровно тому же, что и
 <code>/ell/</code>; окружающие пробелы просто игнорируются:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>А раз пробел в шаблоне игнорируется, для сопоставления
 <em>настоящего</em> пробела нужны <strong>кавычки</strong>: всё, что вы
 поместите в кавычки, сопоставляется буквально. Так же поступают и со
 знаком препинания, который иначе имел бы в регулярном выражении особое
 значение:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(Для пробельных символов можно также использовать класс
 <code>\s</code>, с которым вы вскоре встретитесь.)</p>
@@ -174,7 +170,7 @@ href="/ru/regexes/literals/exercises">к упражнениям этого
 <a href="/bg/regexes/literals/literal-text">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/literals/literal-text">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

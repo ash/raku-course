@@ -119,9 +119,8 @@ schreibungsunabhängig. Innerhalb des Regex geschrieben ist
 <code>:i</code> <em>positionsgebunden</em> — es gilt nur ab der Stelle,
 an der es steht. Damit können Sie die Schreibungsregel für nur einen
 Teil eines Musters lockern:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;RAKU&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
-<span class="nb">say</span> <span class="s">&#39;raku&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'RAKU'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
+<span class="nb">say</span> <span class="s">'raku'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># Nil</span></pre></div>
 
 <p>Hier wird das vorangehende <code>R</code> weiterhin
 schreibungsabhängig getroffen — kleingeschriebenes <code>raku</code>
@@ -134,17 +133,15 @@ sowohl <code>RAKU</code> als auch <code>raku</code>.</p>
 Gruppe beschränkt. In <code>/[:i abc]def/</code> übergeht nur
 <code>abc</code> die Schreibung; das <code>def</code> hinter der Gruppe
 wird streng getroffen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># Nil</span></pre></div>
 
 <h2 id="ein-adverb-abschalten">Ein Adverb abschalten</h2>
 <p>Um ein Adverb mitten im Muster wieder abzuschalten, verneinen Sie es
 mit einem <code>!</code>. <code>:!i</code> stellt also ab dieser Stelle
 die Schreibungsabhängigkeit wieder her:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># Nil</span></pre></div>
 
 <p><code>:i</code> lockert die Schreibungsregel für <code>abc</code>,
 dann setzt <code>:!i</code> sie wieder in Kraft, sodass <code>def</code>

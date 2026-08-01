@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,16 +118,15 @@ href="/bg/addendum/regex-grammars/exercises/grammar-sum">Граматика,
 <p>Ето едно възможно решение на задачата.</p>
 <h2 id="код">Код</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt;+ % &#39;+&#39; </span>}
-    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span>+ % <span class="s">'+'</span> }
+    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> [+] <span class="nv">$&lt;number&gt;</span>.<span class="n">map</span>(*.<span class="nb">Int</span>) }
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> [+] <span class="nv">$&lt;number&gt;</span>.<span class="nb">map</span>(*.<span class="nb">Int</span>) }
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;3+4+5&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>).<span class="k">made</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'3+4+5'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>).<span class="n">made</span>;</pre></div>
 
 <p>🦋 Намерете програмата във файла <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/grammar-sum.raku">grammar-sum.raku</a>.</p>
@@ -149,10 +148,9 @@ href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-gr
 <code>TOP</code> правило <code>rule</code> — и отделете квантификатора
 от атома му:</p>
 <div class="highlight raku no-run"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;number&gt; + % &#39;+&#39; </span>}
-    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-}
-</pre></div>
+    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;number&gt;</span> + % <span class="s">'+'</span> }
+    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+}</pre></div>
 
 <p>В <code>rule</code> интервалите в шаблона означават неявно извикване
 на <code>&lt;.ws&gt;</code>. Записано като
@@ -186,7 +184,7 @@ href="/bg/addendum/bringing-it-together">Всичко наедно</a> →</p>
 <span class="lang-current">Български</span>
 <a href="/ru/addendum/regex-grammars/exercises/grammar-sum/solution">Русский</a>
 <a href="/uk/addendum/regex-grammars/exercises/grammar-sum/solution">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

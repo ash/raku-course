@@ -115,8 +115,7 @@ web</a> / <a href="/es/paradigms/functional">Programación funcional</a>
 único operador con nombre, usa la rutina <code>reduce</code>. Recibe un
 bloque de dos argumentos y lo aplica a lo largo de la lista, arrastrando
 el resultado acumulado:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span></pre></div>
 
 <p>El bloque <code>* + *</code> tiene dos estrellas <a
 href="/es/advanced/whatever">Whatever</a>: la primera es el resultado
@@ -128,13 +127,12 @@ bloque.</p>
 paso. Un bloque con flecha devuelve su última expresión, así que
 <code>$x + $y</code> es a la vez lo que el bloque imprime y el valor que
 devuelve a <code>reduce</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(
     -&gt; <span class="nv">$x</span>, <span class="nv">$y</span> {
         <span class="nb">say</span> <span class="s">&quot;$x + $y&quot;</span>;
         <span class="nv">$x</span> + <span class="nv">$y</span>;
     }
-);
-</pre></div>
+);</pre></div>
 
 <p>Esto imprime:</p>
 <div class="highlight"><pre>1 + 2
@@ -155,8 +153,7 @@ devuelve <code>reduce</code> y lo que <code>say</code> imprime en la
 última línea.</p>
 <p>Como el bloque puede ser cualquier cosa, <code>reduce</code> es más
 general. Por ejemplo, construye un valor paso a paso:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span></pre></div>
 
 <p>Cada paso multiplica el acumulador por diez y añade el dígito
 siguiente, convirtiendo los dígitos sueltos <code>1, 2, 3, 4</code> en
@@ -165,8 +162,7 @@ el número <code>1234</code>.</p>
 lee bien con la forma de <a href="/es/advanced/colon-calls">llamada con
 dos puntos</a>, que prescinde de los paréntesis alrededor del
 bloque:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">reduce:</span> * + *; <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>: * + *; <span class="c1"># 15</span></pre></div>
 
 <p>En resumen, <code>[op]</code> es la forma rápida para un operador con
 nombre, y <code>reduce</code> es la forma flexible para un bloque

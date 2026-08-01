@@ -118,13 +118,13 @@ darlo anche a un oggetto che esiste già, usando l’operatore
 e restituisce un nuovo oggetto che assume il ruolo:</p>
 <div class="highlight raku"><pre><span></span><span class="k">role</span> <span class="n">Loud</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="nb">callsame</span>().<span class="nb">uc</span>;
+        <span class="n">callsame</span>().<span class="nb">uc</span>;
     }
 }
 
 <span class="k">class</span> <span class="n">Greeter</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="s">&#39;Hello&#39;</span>;
+        <span class="s">'Hello'</span>;
     }
 }
 
@@ -132,8 +132,7 @@ e restituisce un nuovo oggetto che assume il ruolo:</p>
 <span class="k">my</span> <span class="nv">$loud</span>  = <span class="n">Greeter</span>.<span class="nb">new</span> <span class="k">but</span> <span class="n">Loud</span>;
 
 <span class="nb">say</span> <span class="nv">$quiet</span>.<span class="n">greet</span>; <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span></pre></div>
 
 <p>Solo <code>$loud</code> ha acquisito il ruolo. La classe
 <code>Greeter</code> e ogni altro oggetto <code>Greeter</code> restano
@@ -145,16 +144,14 @@ che è stata sovrascritta — qui il <code>greet</code> originale di
 <p>Un oggetto in cui è stato mescolato un ruolo viene riconosciuto come
 portatore di quel ruolo:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$quiet</span> ~~ <span class="n">Loud</span>; <span class="c1"># False</span>
-<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>but</code> lascia l’oggetto originale com’era e te ne consegna
 uno nuovo. Se preferisci cambiare sul posto un oggetto esistente, usa
 invece l’operatore <code>does</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$speaker</span> = <span class="n">Greeter</span>.<span class="nb">new</span>;
 <span class="nv">$speaker</span> <span class="k">does</span> <span class="n">Loud</span>;
-<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span></pre></div>
 
 <p>Mescolare ruoli in singoli oggetti ti permette di decidere, un
 oggetto alla volta, quale comportamento aggiuntivo debba assumere —

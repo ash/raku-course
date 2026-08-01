@@ -113,12 +113,11 @@ e output</a></p>
 <p>Proprio come <code>spurt</code> e <code>mkdir</code> creano cose su
 disco, due routine le rimuovono.</p>
 <p>La routine <code>unlink</code> cancella un file:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">&#39;temp.txt&#39;</span>, <span class="s">&#39;scratch data&#39;</span>;
-<span class="nb">say</span> <span class="s">&#39;temp.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># True</span>
+<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">'temp.txt'</span>, <span class="s">'scratch data'</span>;
+<span class="nb">say</span> <span class="s">'temp.txt'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># True</span>
 
-<span class="nb">unlink</span> <span class="s">&#39;temp.txt&#39;</span>;
-<span class="nb">say</span> <span class="s">&#39;temp.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">unlink</span> <span class="s">'temp.txt'</span>;
+<span class="nb">say</span> <span class="s">'temp.txt'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># False</span></pre></div>
 
 <p><code>unlink</code> cancella il file indicato. Come le altre routine
 del file system, ha anche una forma a metodo su un oggetto percorso —
@@ -130,22 +129,20 @@ test di tipo <code>.f</code> e <code>.d</code> sollevano un’eccezione
 quando il percorso non c’è.</p>
 <p>La routine <code>rmdir</code> rimuove una directory, ma solo se
 <strong>vuota</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">&#39;reports&#39;</span>;
-<span class="nb">rmdir</span> <span class="s">&#39;reports&#39;</span>;
-<span class="nb">say</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">'reports'</span>;
+<span class="n">rmdir</span> <span class="s">'reports'</span>;
+<span class="nb">say</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">e</span>; <span class="c1"># False</span></pre></div>
 
 <p>Se la directory contiene ancora qualcosa, <code>rmdir</code> non
 rimuove nulla e la lascia al suo posto. Quindi, per cancellare una
 directory che contiene file, prima la svuoti e poi la rimuovi:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">&#39;reports&#39;</span>;
-<span class="nb">spurt</span> <span class="s">&#39;reports/jan.txt&#39;</span>, <span class="s">&#39;January&#39;</span>;
-<span class="nb">spurt</span> <span class="s">&#39;reports/feb.txt&#39;</span>, <span class="s">&#39;February&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">mkdir</span> <span class="s">'reports'</span>;
+<span class="nb">spurt</span> <span class="s">'reports/jan.txt'</span>, <span class="s">'January'</span>;
+<span class="nb">spurt</span> <span class="s">'reports/feb.txt'</span>, <span class="s">'February'</span>;
 
-.<span class="nb">unlink</span> <span class="k">for</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">dir</span>;   <span class="c1"># delete every entry</span>
-<span class="nb">rmdir</span> <span class="s">&#39;reports&#39;</span>;                <span class="c1"># now the directory is empty</span>
-<span class="nb">say</span> <span class="s">&#39;reports&#39;</span>.<span class="nb">IO</span>.<span class="nb">e</span>;             <span class="c1"># False</span>
-</pre></div>
+.<span class="nb">unlink</span> <span class="k">for</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">dir</span>;   <span class="c1"># delete every entry</span>
+<span class="n">rmdir</span> <span class="s">'reports'</span>;                <span class="c1"># now the directory is empty</span>
+<span class="nb">say</span> <span class="s">'reports'</span>.<span class="nb">IO</span>.<span class="n">e</span>;             <span class="c1"># False</span></pre></div>
 
 <p><code>'reports'.IO.dir</code> elenca le voci della directory
 (l’argomento precedente lo ha trattato), e chiamare <code>.unlink</code>

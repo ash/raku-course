@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,34 +120,31 @@ href="/bg/advanced/traits-pragmas">Трейтове и прагми 🆕</a></p>
 подпрограмата. Трейтът <code>is copy</code> ви дава частно,
 модифицируемо копие на аргумента, което можете да променяте, без да
 засягате извикващия:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller&#39;s own variable is untouched</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller's own variable is untouched</span></pre></div>
 
 <p>Трейтът <code>is rw</code> отива по-далеч: той свързва параметъра с
 променливата на извикващия, така че промяна, направена вътре в
 подпрограмата, е видима навън:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
 
 <p>Без един от тези трейтове <code>$n++</code> би предизвикало грешка по
 време на компилация, защото параметърът би бил само за четене.</p>
 <p>Друг често срещан трейт задава стойност по подразбиране:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
 
 <p>Тук <code>is default</code> задава на променливата стойност, към
 която да се върне. Всеки вграден трейт — <code>is rw</code>,
@@ -188,7 +185,7 @@ href="/bg/advanced/traits-pragmas/exercises">към упражненията в 
 <span class="lang-current">Български</span>
 <a href="/ru/advanced/traits-pragmas/built-in-traits">Русский</a>
 <a href="/uk/advanced/traits-pragmas/built-in-traits">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

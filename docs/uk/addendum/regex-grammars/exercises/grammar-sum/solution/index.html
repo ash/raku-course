@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,7 +110,7 @@
 / <a href="/uk/addendum/types-and-text-machines">Типи та текстові
 машини</a> / <a href="/uk/addendum/regex-grammars">Регулярні вирази та
 граматики</a> / <a
-href="/uk/addendum/regex-grammars/exercises">Exercises</a> / <a
+href="/uk/addendum/regex-grammars/exercises">Вправи</a> / <a
 href="/uk/addendum/regex-grammars/exercises/grammar-sum">Граматика, що
 додає</a></p>
 <h1 id="розвязання-граматика-що-додає">Розв’язання: Граматика, що
@@ -118,16 +118,15 @@ href="/uk/addendum/regex-grammars/exercises/grammar-sum">Граматика, щ�
 <p>Ось одне з можливих розв’язань задачі.</p>
 <h2 id="код">Код</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span>    {<span class="sr"> &lt;number&gt;+ % &#39;+&#39; </span>}
-    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span>+ % <span class="s">'+'</span> }
+    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> [+] <span class="nv">$&lt;number&gt;</span>.<span class="n">map</span>(*.<span class="nb">Int</span>) }
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> [+] <span class="nv">$&lt;number&gt;</span>.<span class="nb">map</span>(*.<span class="nb">Int</span>) }
 }
 
-<span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;3+4+5&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>).<span class="k">made</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'3+4+5'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>).<span class="n">made</span>;</pre></div>
 
 <p>🦋 Знайдіть програму у файлі <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/grammar-sum.raku">grammar-sum.raku</a>.</p>
@@ -148,10 +147,9 @@ href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-gr
 <code>TOP</code> правилом <code>rule</code> — і відокремте квантифікатор
 від його атома:</p>
 <div class="highlight raku no-run"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">rule</span><span class="n"> TOP</span>     {<span class="sr"> &lt;number&gt; + % &#39;+&#39; </span>}
-    <span class="k">token</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-}
-</pre></div>
+    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;number&gt;</span> + % <span class="s">'+'</span> }
+    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+}</pre></div>
 
 <p>У <code>rule</code> пробіли в шаблоні означають неявний виклик
 <code>&lt;.ws&gt;</code>. Записане як
@@ -185,7 +183,7 @@ href="/uk/addendum/regex-grammars/exercises/grammar-sum">Граматика, щ�
 <a href="/bg/addendum/regex-grammars/exercises/grammar-sum/solution">Български</a>
 <a href="/ru/addendum/regex-grammars/exercises/grammar-sum/solution">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

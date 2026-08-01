@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,11 +115,10 @@ href="/nl/regexes/captures">Captures</a></p>
 het te <em>capturen</em>. Na een geslaagde match is elk gecapturd stuk
 beschikbaar als <code>$0</code>, <code>$1</code>, enzovoort, genummerd
 vanaf nul in de volgorde waarin de haken openen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Het eerste haakjespaar captureerde het jaar in <code>$0</code>, het
 tweede captureerde de maand in <code>$1</code>. De tekst ertussen — de
@@ -128,22 +127,20 @@ letterlijke <code>-</code> — wordt gematcht maar niet gecapturd.</p>
 <code>.Str</code>, zijn positie enzovoort vragen. In een string met
 dubbele aanhalingstekens interpoleert een capture als zijn gematchte
 tekst:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Hier worden de twee gecapturde woorden in omgekeerde volgorde
 afgedrukt, wat ze verwisselt.</p>
 <p>De captures worden ook in de matchvariabele <code>$/</code> bewaard,
 en <code>$0</code> is eigenlijk een korte manier om <code>$/[0]</code>
 te schrijven. Je kunt rechtstreeks via <code>$/</code> werken:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}</pre></div>
 
 <p><code>$/</code> is het hele matchobject, het indexeren bereikt de
 positionele captures, en <code>.elems</code> vertelt je hoeveel er
@@ -179,7 +176,7 @@ de oefeningen in deze sectie</a>.</p>
 <a href="/bg/regexes/captures/positional">Български</a>
 <a href="/ru/regexes/captures/positional">Русский</a>
 <a href="/uk/regexes/captures/positional">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

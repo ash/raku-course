@@ -115,16 +115,14 @@ argumentos entre paréntesis: <code>@a.grep(* &gt; 5)</code>. Raku ofrece
 una segunda forma: pon <strong>dos puntos</strong> después del nombre, y
 todo lo que sigue se convierte en la lista de argumentos, sin
 paréntesis:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Los dos puntos en <code>grep:</code> hacen el mismo trabajo que los
 paréntesis: <code>(1..10).grep: * %% 2</code> significa exactamente
 <code>(1..10).grep(* %% 2)</code>. Las dos formas son
 intercambiables:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>La forma con dos puntos es más agradable con métodos que reciben un
 <strong>bloque</strong> o una expresión <a
@@ -133,8 +131,7 @@ anidamiento. Compara:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># parentesis alrededor del bloque</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dos puntos — sin parentesis de cierre que emparejar</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># dos puntos — sin parentesis de cierre que emparejar</span></pre></div>
 
 <p>Ambas imprimen <code>(3 2 1)</code>, pero la versión con dos puntos
 se lee más limpiamente, especialmente cuando el bloque es largo.</p>
@@ -150,8 +147,7 @@ funciona: <code>grep</code> es la última llamada, y no hay nada más que
 encadenar después. Si necesitas seguir llamando más métodos, usa la
 forma con paréntesis o agrupa las partes de la expresión completa para
 que quede claro:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>Algo a tener en cuenta: no combines los dos puntos <strong>y</strong>
 paréntesis como <code>.grep:( ... )</code>. Esa forma colisiona con la

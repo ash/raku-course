@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,8 +116,7 @@ href="/ru/paradigms/reduction">Свёртка</a></p>
 оператором, используйте процедуру <code>reduce</code>. Она принимает
 блок от двух аргументов и применяет его вдоль списка, перенося
 накопленный результат дальше:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span></pre></div>
 
 <p>В блоке <code>* + *</code> две звезды <a
 href="/ru/advanced/whatever">Whatever</a>: первая — это результат,
@@ -129,13 +128,12 @@ href="/ru/advanced/whatever">Whatever</a>: первая — это резуль�
 каждый шаг. Стрелочный блок возвращает своё последнее выражение, поэтому
 <code>$x + $y</code> — это и то, о чём блок печатает, и то значение,
 которое он возвращает в <code>reduce</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(
     -&gt; <span class="nv">$x</span>, <span class="nv">$y</span> {
         <span class="nb">say</span> <span class="s">&quot;$x + $y&quot;</span>;
         <span class="nv">$x</span> + <span class="nv">$y</span>;
     }
-);
-</pre></div>
+);</pre></div>
 
 <p>Программа печатает:</p>
 <div class="highlight"><pre>1 + 2
@@ -155,8 +153,7 @@ href="/ru/advanced/whatever">Whatever</a>: первая — это резуль�
 печатает последней строкой.</p>
 <p>Поскольку блок может быть каким угодно, <code>reduce</code> более
 универсален. Например, можно строить значение шаг за шагом:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span></pre></div>
 
 <p>Каждый шаг умножает накопитель на десять и прибавляет очередную
 цифру, превращая отдельные цифры <code>1, 2, 3, 4</code> в число
@@ -164,8 +161,7 @@ href="/ru/advanced/whatever">Whatever</a>: первая — это резуль�
 <p>Как и другие принимающие блок методы, <code>reduce</code> хорошо
 читается в форме <a href="/ru/advanced/colon-calls">вызова с
 двоеточием</a>, где скобки вокруг блока опускаются:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">reduce:</span> * + *; <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>: * + *; <span class="c1"># 15</span></pre></div>
 
 <p>Коротко говоря, <code>[op]</code> — быстрая форма для именованного
 оператора, а <code>reduce</code> — гибкая форма для произвольного
@@ -203,7 +199,7 @@ href="/ru/paradigms/reduction/exercises">к упражнениям этого
 <a href="/bg/paradigms/reduction/reduce-routine">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/reduction/reduce-routine">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

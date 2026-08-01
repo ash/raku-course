@@ -121,8 +121,7 @@ velocidad.</p>
 trabajadores</h2>
 <p><code>:degree</code> fija cuántos hilos trabajadores corren al mismo
 tiempo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>Por omisión, el grado se acerca al número de núcleos de CPU que tiene
 la máquina: en una máquina de ocho núcleos es <code>7</code>, dejando un
@@ -133,8 +132,7 @@ coordinación extra puede incluso frenar las cosas.</p>
 cuántos elementos de una vez</h2>
 <p><code>:batch</code> fija cuántos elementos toma cada trabajador de
 una tacada antes de volver a por más:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">hyper</span>(:<span class="n">batch</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25 36)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">hyper</span>(:<span class="nb">batch</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25 36)</span></pre></div>
 
 <p>El lote por omisión es <code>64</code>, y el tamaño es un
 compromiso:</p>
@@ -149,18 +147,16 @@ coordinación.</li>
 </ul>
 <p>Puedes fijar ambos a la vez, en <code>.race</code> igual que en
 <code>.hyper</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="n">batch</span>(<span class="mi">3</span>)).<span class="n">map</span>(*<span class="n">²</span>).<span class="nb">sum</span>; <span class="c1"># 91</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="nb">batch</span>(<span class="mi">3</span>)).<span class="nb">map</span>(*²).<span class="nb">sum</span>; <span class="c1"># 91</span></pre></div>
 
 <div style="font-size: 85%; opacity: .8;">
 <p>Si sientes curiosidad por saber cuáles son en realidad los valores
 por omisión, puedes atisbarlos a través de las tripas de Rakudo. Ten en
 cuenta que esto lee un atributo <em>privado</em>: no es una API estable,
 y los números dependen de tu máquina.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>;
-<span class="nb">say</span> <span class="nv">$h</span>.^<span class="nb">attributes</span>.<span class="nb">first</span>(*.<span class="nb">name</span>.<span class="nb">contains</span>(<span class="s">&#39;config&#39;</span>)).<span class="nb">get_value</span>(<span class="nv">$h</span>).<span class="n">raku</span>;
-<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>;
+<span class="nb">say</span> <span class="nv">$h</span>.^<span class="n">attributes</span>.<span class="nb">first</span>(*.<span class="n">name</span>.<span class="n">contains</span>(<span class="s">'config'</span>)).<span class="n">get_value</span>(<span class="nv">$h</span>).<span class="nb">raku</span>;
+<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span></pre></div>
 
 <p>Aquí <code>batch</code> es el valor fijo por omisión <code>64</code>,
 mientras que <code>degree</code> es <code>7</code>: uno menos que los

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,34 +119,31 @@ dažas jūs jau esat izmantojuši.</p>
 lasāmi</strong> — jūs nevarat tiem piešķirt vērtību apakšprogrammas
 iekšienē. Īpašība <code>is copy</code> dod jums privātu, modificējamu
 argumenta kopiju, kuru varat mainīt, neietekmējot izsaucēju:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller&#39;s own variable is untouched</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — the caller's own variable is untouched</span></pre></div>
 
 <p>Īpašība <code>is rw</code> iet tālāk: tā sasaista parametru ar
 izsaucēja mainīgo, tāpēc izmaiņas apakšprogrammas iekšienē ir redzamas
 ārpusē:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
 
 <p>Bez kādas no šīm īpašībām <code>$n++</code> radītu kompilēšanas laika
 kļūdu, jo parametrs būtu tikai lasāms.</p>
 <p>Vēl viena izplatīta īpašība nosaka noklusējuma vērtību:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
 
 <p>Šeit <code>is default</code> piešķir mainīgajam vērtību, uz kuru
 atgriezties. Katra iebūvētā īpašība — <code>is rw</code>,
@@ -188,7 +185,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/advanced/traits-pragmas/built-in-traits">Български</a>
 <a href="/ru/advanced/traits-pragmas/built-in-traits">Русский</a>
 <a href="/uk/advanced/traits-pragmas/built-in-traits">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

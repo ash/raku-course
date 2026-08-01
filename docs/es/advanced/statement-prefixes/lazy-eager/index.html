@@ -117,9 +117,8 @@ necesarios: son <em>perezosas</em> (lazy). Los prefijos
 explícitamente.</p>
 <p>El prefijo <code>eager</code> fuerza a que una lista se produzca
 <strong>toda de una vez</strong>, inmediatamente:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="nb">eager</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="n">eager</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span></pre></div>
 
 <p>Sin <code>eager</code>, el <code>map</code> aún produciría los
 valores, pero <code>eager</code> garantiza que todos se calculen en ese
@@ -128,9 +127,8 @@ momento y no bajo demanda.</p>
 perezosa, de modo que sus elementos se producen solo cuando se
 solicitan. Esto es lo que permite que una lista sea conceptualmente
 infinita:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$numbers</span> = <span class="nb">lazy</span> (<span class="mi">1</span> .. <span class="n">Inf</span>);
-<span class="nb">say</span> <span class="nv">$numbers</span>.<span class="nb">is-lazy</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$numbers</span> = <span class="n">lazy</span> (<span class="mi">1</span> .. <span class="n">Inf</span>);
+<span class="nb">say</span> <span class="nv">$numbers</span>.<span class="n">is-lazy</span>; <span class="c1"># True</span></pre></div>
 
 <p>El método <code>.is-lazy</code> confirma que la lista no intentará
 calcular todos sus (interminables) elementos de antemano.</p>

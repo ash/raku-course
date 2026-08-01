@@ -120,11 +120,10 @@ fallire senza far crollare tutto.</p>
 interno viene sollevata un’eccezione, il blocco si ferma lì, ma il
 programma continua:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> {
-    <span class="nb">die</span> <span class="s">&#39;Boom!&#39;</span>;
+    <span class="nb">die</span> <span class="s">'Boom!'</span>;
 };
 
-<span class="nb">say</span> <span class="s">&quot;Still works&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">&quot;Still works&quot;</span>;</pre></div>
 
 <p>Il <code>die</code> viene intercettato dal <code>try</code>, quindi
 il programma non crolla: prosegue dritto all’istruzione successiva e
@@ -132,13 +131,11 @@ stampa:</p>
 <div class="highlight"><pre>Still works</pre></div>
 <p>Quando il blocco fallisce così, esso vale un valore non definito,
 quindi <code>$result</code> non è definito:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$result</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$result</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>L’eccezione intercettata è conservata nella variabile speciale
 <code>$!</code>. Da lì puoi leggerne il messaggio:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">$!</span>.<span class="nb">message</span>; <span class="c1"># Boom!</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$!</span>.<span class="n">message</span>; <span class="c1"># Boom!</span></pre></div>
 
 <p>Così <code>try</code> trasforma un errore fatale in qualcosa che il
 tuo programma può ispezionare e a cui può reagire. Se il blocco gira

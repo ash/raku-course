@@ -9,7 +9,7 @@ translations_gpt:
 
 Se iu loko ŝajnas malklara, komparu ĝin kun la [angla originalo](/) — ĝi ĉiam restas la fonto de vero.
 
-Kodo neniam estas tradukata. La ŝlosilvortoj de Raku, la nomoj de tipoj, metodoj kaj subprogramoj, kaj la eligo de la programoj (`True`, `False`, `Nil` kaj simile) restas kiaj ili estas — ĝuste kiel la tradukilo vidas ilin.
+Kodo neniam estas tradukata. La ŝlosilvortoj de Raku, la nomoj de tipoj, metodoj kaj subprogramoj, kaj la eligo de la programoj (`True`, `False`, `Nil` kaj simile) restas kiaj ili estas — ĝuste kiel la kompililo vidas ilin.
 
 Ĉu vi trovis eraron aŭ malfeliĉan tradukon? Raportu ĝin [ĉe GitHub](https://github.com/ash/raku-course) — jen la plej bona maniero plibonigi la tekston.
 

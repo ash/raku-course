@@ -115,9 +115,8 @@ web</a> / <a href="/it/paradigms/reactive">Programmazione reattiva</a> /
 <code>.tap</code> un blocco, e quel blocco gira per ogni valore che il
 supply emette. Il supply più semplice con cui sperimentare è
 <code>Supply.from-list</code>, che emette i valori di un elenco:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>);
-<span class="nv">$s</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="nv">$v</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>);
+<span class="nv">$s</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="nv">$v</span> });</pre></div>
 
 <p>Questo stampa:</p>
 <div class="highlight"><pre>1
@@ -129,9 +128,8 @@ volte, una per valore.</p>
 <p>La presa può fare qualunque cosa con il valore, compreso accumulare
 un risultato:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$total</span> = <span class="mi">0</span>;
-<span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">$total</span> += <span class="nv">$v</span> });
-<span class="nb">say</span> <span class="nv">$total</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>).<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">$total</span> += <span class="nv">$v</span> });
+<span class="nb">say</span> <span class="nv">$total</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Qui ogni valore emesso viene aggiunto a <code>$total</code>, che
 finisce a <code>6</code>. Attingere è l’atto di base della

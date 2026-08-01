@@ -114,11 +114,10 @@ href="/es/regexes/captures">Capturas</a></p>
 <p>Las capturas numeradas son cómodas, pero cuando un patrón crece los
 nombres resultan más claros que los números. Para dar nombre a una
 captura, escribe <code>$&lt;nombre&gt;=( … )</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;Anna:30&#39;</span> ~~<span class="sr"> / $&lt;name&gt;=(\w+) &#39;:&#39; $&lt;age&gt;=(\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'Anna:30'</span> ~~ <span class="sr">/ $&lt;name&gt;=(\w+) ':' $&lt;age&gt;=(\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;name&gt;</span>; <span class="c1"># ｢Anna｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;age&gt;</span>;  <span class="c1"># ｢30｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>A las piezas capturadas se llega ahora por nombre con
 <code>$&lt;name&gt;</code> y <code>$&lt;age&gt;</code> en lugar de con
@@ -127,10 +126,9 @@ captura, escribe <code>$&lt;nombre&gt;=( … )</code>:</p>
 variable de coincidencia <code>$/</code>.</p>
 <p>Las capturas con nombre hacen que un patrón se lea casi como una
 descripción de los datos:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;x=5&#39;</span> ~~<span class="sr"> / $&lt;key&gt;=(\w+) &#39;=&#39; $&lt;value&gt;=(\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'x=5'</span> ~~ <span class="sr">/ $&lt;key&gt;=(\w+) '=' $&lt;value&gt;=(\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;key is $&lt;key&gt;, value is $&lt;value&gt;&quot;</span>; <span class="c1"># key is x, value is 5</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Igual que con las capturas posicionales, cada captura con nombre es
 un objeto de coincidencia, así que <code>$&lt;age&gt;.Str</code> da el

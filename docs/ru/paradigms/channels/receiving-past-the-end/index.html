@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,16 +119,15 @@ href="/ru/paradigms/channels">Каналы</a></p>
 задача отправляет три значения и закрывает канал. А что, если
 потребитель попросит четвёртое?</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># одним получением больше, чем нужно</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># одним получением больше, чем нужно</span></pre></div>
 
 <h2 id="на-закрытом-канале-лишнее-получение-бросает-исключение">На
 закрытом канале лишнее получение бросает исключение</h2>
@@ -151,10 +150,9 @@ href="/ru/paradigms/channels">Каналы</a></p>
 может знать, придёт ли ещё значение, и попросту
 <strong>ждёт</strong>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># здесь ждёт — канал открыт, но пуст</span>
-</pre></div>
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># здесь ждёт — канал открыт, но пуст</span></pre></div>
 
 <p>Программа зависает на втором <code>.receive</code>, потому что
 значение <em>может</em> ещё быть отправлено. Об этой опасности и
@@ -202,7 +200,7 @@ href="/ru/paradigms/channels/exercises">к упражнениям этого
 <a href="/bg/paradigms/channels/receiving-past-the-end">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/channels/receiving-past-the-end">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

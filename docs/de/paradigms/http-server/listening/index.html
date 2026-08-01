@@ -114,12 +114,11 @@ href="/de/paradigms/http-server">Ein einfacher HTTP-Server</a></p>
 <p>Um als Server aufzutreten, erzeugen Sie einen Socket im
 <strong>Lauschmodus</strong> mit dem Argument <code>:listen</code> und
 geben Adresse und Port an, auf denen gelauscht werden soll:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(
     :<span class="n">listen</span>,
-    :<span class="n">localhost</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
+    :<span class="n">localhost</span>(<span class="s">'127.0.0.1'</span>),
     :<span class="n">localport</span>(<span class="mi">8080</span>),
-);
-</pre></div>
+);</pre></div>
 
 <p><code>:localhost('127.0.0.1')</code> lauscht auf Ihrer eigenen
 Maschine, und <code>:localport(8080)</code> ist der Port, mit dem sich
@@ -129,9 +128,8 @@ Client eingetroffen.</p>
 <code>.accept</code> auf. Es <strong>blockiert</strong>, bis sich ein
 Client verbindet, und liefert dann einen frischen Socket, der dieses
 eine Gespräch darstellt:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="nb">accept</span>;
-<span class="nb">say</span> <span class="s">&#39;a client connected&#39;</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="n">accept</span>;
+<span class="nb">say</span> <span class="s">'a client connected'</span>;</pre></div>
 
 <p>Der <code>$listener</code> lauscht weiter auf weitere Clients,
 während <code>$conn</code> Ihr Kanal ist, um mit diesem bestimmten zu

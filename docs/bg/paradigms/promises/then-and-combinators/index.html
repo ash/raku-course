@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,9 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 нужда е да изчакате <strong>няколко</strong> наведнъж.
 <code>await</code> приема списък от обещания и връща резултатите им по
 ред:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Трите задачи вървят паралелно; <code>await @jobs</code> изчаква
 всички и връща <code>(1, 2, 3)</code>. Понеже резултатите се връщат в
@@ -126,10 +125,9 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 <p>Можете и да свържете работа с обещание чрез <code>.then</code>, който
 изпълнява следващ блок, щом обещанието приключи. Вътре в него
 <code>.result</code> е стойността на първоначалното обещание:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> е ново обещание, което удвоява резултата на
 <code>$p</code>. Изчакването му дава <code>20</code>.</p>
@@ -137,8 +135,7 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 като променливата тема <code>$_</code> — затова голото
 <code>.result</code> работи: всъщност това е <code>$_.result</code>. Ако
 предпочитате да дадете име на това обещание, използвайте остър блок:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Това се държи по абсолютно същия начин; <code>$prev</code> е
 първоначалното обещание <code>$p</code>, а <code>$prev.result</code> е
@@ -180,7 +177,7 @@ href="/bg/paradigms/promises/exercises">към упражненията в то�
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
 <a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

@@ -116,13 +116,12 @@ de construir una lista. Envuelves algo de código en un bloque
 <code>take</code>, el valor se agrega a la lista que <code>gather</code>
 produce.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@result</span> = <span class="k">gather</span> {
-    <span class="nb">take</span> <span class="mi">1</span>;
-    <span class="nb">take</span> <span class="mi">2</span>;
-    <span class="nb">take</span> <span class="mi">3</span>;
+    <span class="k">take</span> <span class="mi">1</span>;
+    <span class="k">take</span> <span class="mi">2</span>;
+    <span class="k">take</span> <span class="mi">3</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span></pre></div>
 
 <p>Las tres llamadas a <code>take</code> aportan tres valores, y
 <code>gather</code> los recopila en la lista almacenada en
@@ -131,12 +130,11 @@ produce.</p>
 <code>take</code> se distribuyen a través del flujo de control
 ordinario, como un bucle con una condición. La lista entonces contiene
 solo los valores que elegiste tomar:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">10</span> {
-    <span class="nb">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.10</span> {
+    <span class="k">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span></pre></div>
 
 <p>Aquí el bucle recorre los números del 1 al 10, pero solo se toman los
 pares, así que <code>@evens</code> termina conteniendo

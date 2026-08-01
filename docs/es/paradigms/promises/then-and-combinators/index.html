@@ -115,10 +115,9 @@ concurrente</a> / <a href="/es/paradigms/promises">Promesas</a></p>
 necesidad más común es esperar <strong>varias</strong> a la vez.
 <code>await</code> acepta una lista de promesas y devuelve sus
 resultados en orden:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Los tres trabajos corren de forma concurrente;
 <code>await @jobs</code> los espera a todos y devuelve
@@ -128,10 +127,9 @@ que las promesas, puedes reducirlos como de costumbre.</p>
 <code>.then</code>, que ejecuta un bloque de seguimiento en cuanto la
 promesa está lista. Dentro de él, <code>.result</code> es el valor de la
 promesa original:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> es una promesa nueva que duplica el resultado de
 <code>$p</code>. Esperarla da <code>20</code>.</p>
@@ -140,8 +138,7 @@ terminada como la variable de tema <code>$_</code>, y por eso funciona
 un <code>.result</code> a secas: en realidad es <code>$_.result</code>.
 Si prefieres darle un nombre a esa promesa, usa un bloque con
 flecha:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Esto se comporta exactamente igual; <code>$prev</code> es la promesa
 original <code>$p</code>, y <code>$prev.result</code> es su valor.</p>

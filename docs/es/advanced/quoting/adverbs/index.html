@@ -129,8 +129,7 @@ escape con barra invertida como <code>\n</code></li>
 <p>Añade uno a <code>q</code> para habilitar una sola característica.
 Por ejemplo, permitir código incrustado pero nada más:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">q/result: {3 * 4}/</span>;   <span class="c1"># result: {3 * 4}  — plain q leaves the block untouched</span>
-<span class="nb">say</span> <span class="s">q:c/result: {3 * 4}/</span>; <span class="c1"># result: 12        — :c runs the block</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">q:c/result: {3 * 4}/</span>; <span class="c1"># result: 12        — :c runs the block</span></pre></div>
 
 <p>Con <code>q</code> simple, <code>{ 3 * 4 }</code> se imprime tal
 cual; solo <code>:c</code> hace que el bloque se ejecute e inserta su
@@ -143,16 +142,14 @@ closure, así que <code>:c</code> lo dejaría literal. Cuando el texto
 contiene un bloque <code>{ … }</code>, elige un delimitador distinto de
 <code>{…}</code> para que el closure realmente se ejecute. Puedes añadir
 interpolación escalar al <code>Q</code>, que por defecto es literal:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
-<span class="nb">say</span> <span class="s">Q:s{Hi, $name}</span>; <span class="c1"># Hi, Anna</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
+<span class="nb">say</span> <span class="s">Q:s{Hi, $name}</span>; <span class="c1"># Hi, Anna</span></pre></div>
 
 <p>Los adverbios también <strong>desactivan</strong> características con
 un <code>!</code>. Para usar <code>qq</code> pero mantener
 <code>$</code> literal:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$price</span> = <span class="mi">5</span>;
-<span class="nb">say</span> <span class="n">qq:</span>!<span class="nb">s</span>{<span class="n">costs</span> <span class="nv">$price</span> <span class="n">dollars</span>}; <span class="c1"># costs $price dollars</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">qq:!s{costs $price dollars}; # costs $price dollars</span></pre></div>
 
 <p><code>qq</code> equivale a <code>Q</code> con todos los adverbios de
 interpolación activados, y <code>q</code> equivale a <code>Q</code> con

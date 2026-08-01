@@ -120,13 +120,12 @@ subito. Restituisce invece al chiamante un oggetto speciale
 <code>Failure</code>. Un <code>Failure</code> non è definito, quindi il
 chiamante può controllarlo con discrezione:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">divide</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">fail</span> <span class="s">&#39;cannot divide by zero&#39;</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
+    <span class="nb">fail</span> <span class="s">'cannot divide by zero'</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
     <span class="k">return</span> <span class="nv">$a</span> / <span class="nv">$b</span>;
 }
 
 <span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">2</span>);         <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>La chiamata riuscita restituisce <code>5</code>. La chiamata fallita
 restituisce un <code>Failure</code>, che riferisce <code>False</code>
@@ -145,14 +144,12 @@ due volte.</p>
 <p>Una <strong>divisione per zero</strong> produce un valore in silenzio
 e solleva un’eccezione solo quando lo usi davvero:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span> / <span class="mi">0</span>;   <span class="c1"># no error yet</span>
-<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># throws only here, when the value is used</span></pre></div>
 
 <p>Un <strong>programma esterno che fallisce</strong> restituisce un
 <code>Proc</code> che solleva un’eccezione solo se lo scarti senza
 gestirlo — conservalo e ispezionalo, e resterà un valore silenzioso:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;   <span class="c1"># the failing Proc is discarded, so this throws</span></pre></div>
 
 <p>In ciascun caso un problema non ferma il programma nel momento in cui
 accade: diventa un valore che puoi controllare, e sale al rango di

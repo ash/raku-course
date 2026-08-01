@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,18 +116,16 @@ functiesignatuur. Het stelt je in staat om functies te creëren die
 dezelfde naam delen maar verschillende soorten invoergegevens hebben.
 Gebruik de <code>multi</code> declarator voor elk van de varianten van
 de functie.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(Het is prima om <code>sub</code> weg te laten na
 <code>multi</code>.)</p>
 <p>Als je twee varianten van dezelfde functie hebt, voert de compiler
 meervoudige dispatch uit afhankelijk van welke argumenten hij ziet in de
 functieaanroep. Vergelijk de volgende twee aanroepen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>De eerste aanroep activeert de functie met integer parameters,
 terwijl de tweede aanroep de tweede variant van de functie uitvoert die
@@ -136,17 +134,15 @@ twee strings verwacht.</p>
 <p>Een interessant geval voor multi-functies is om varianten te hebben
 die letterlijke waarden als parameters hebben. Overweeg de volgende twee
 varianten:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Dit is het antwoord&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x is niet het antwoord&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Dit is het antwoord'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x is niet het antwoord&quot;</span>}</pre></div>
 
 <p>De eerste variant wordt alleen uitgevoerd wanneer je de functie
 aanroept met de exacte waarde van 42. In andere gevallen wordt de tweede
 variant gebruikt. De volgorde waarin deze functies zijn gedefinieerd
 maakt niet uit.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 is niet het antwoord</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Dit is het antwoord</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 is niet het antwoord</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Dit is het antwoord</span></pre></div>
 
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
@@ -188,7 +184,7 @@ de oefening bij deze sectie</a>.</p>
 <a href="/bg/essentials/more-on-functions/multi-functions">Български</a>
 <a href="/ru/essentials/more-on-functions/multi-functions">Русский</a>
 <a href="/uk/essentials/more-on-functions/multi-functions">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

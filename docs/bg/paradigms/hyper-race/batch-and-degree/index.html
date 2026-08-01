@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,8 +120,7 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 работници</h2>
 <p><code>:degree</code> задава колко работни нишки вървят
 едновременно:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>(:<span class="n">degree</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>По подразбиране степента е близо до броя процесорни ядра на машината
 — на осемядрена машина тя е <code>7</code>, оставяйки едно ядро за
@@ -132,8 +131,7 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 елемента наведнъж</h2>
 <p><code>:batch</code> задава по колко елемента взема всеки работник
 наведнъж, преди да се върне за още:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">hyper</span>(:<span class="n">batch</span>(<span class="mi">2</span>)).<span class="n">map</span>(*<span class="n">²</span>); <span class="c1"># (1 4 9 16 25 36)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">hyper</span>(:<span class="nb">batch</span>(<span class="mi">2</span>)).<span class="nb">map</span>(*²); <span class="c1"># (1 4 9 16 25 36)</span></pre></div>
 
 <p>Партидата по подразбиране е <code>64</code>, а размерът е
 компромис:</p>
@@ -147,18 +145,16 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 </ul>
 <p>Можете да зададете и двете наведнъж, и то при <code>.race</code> също
 както при <code>.hyper</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="n">batch</span>(<span class="mi">3</span>)).<span class="n">map</span>(*<span class="n">²</span>).<span class="nb">sum</span>; <span class="c1"># 91</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.6</span>).<span class="nb">race</span>(:<span class="n">degree</span>(<span class="mi">2</span>), :<span class="nb">batch</span>(<span class="mi">3</span>)).<span class="nb">map</span>(*²).<span class="nb">sum</span>; <span class="c1"># 91</span></pre></div>
 
 <div style="font-size: 85%; opacity: .8;">
 <p>Ако ви е любопитно какви всъщност са стойностите по подразбиране,
 можете да надникнете в тях през вътрешностите на Rakudo. Забележете, че
 това чете <em>частен</em> атрибут — не е стабилен API, а числата зависят
 от вашата машина:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>;
-<span class="nb">say</span> <span class="nv">$h</span>.^<span class="nb">attributes</span>.<span class="nb">first</span>(*.<span class="nb">name</span>.<span class="nb">contains</span>(<span class="s">&#39;config&#39;</span>)).<span class="nb">get_value</span>(<span class="nv">$h</span>).<span class="n">raku</span>;
-<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$h</span> := (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>;
+<span class="nb">say</span> <span class="nv">$h</span>.^<span class="n">attributes</span>.<span class="nb">first</span>(*.<span class="n">name</span>.<span class="n">contains</span>(<span class="s">'config'</span>)).<span class="n">get_value</span>(<span class="nv">$h</span>).<span class="nb">raku</span>;
+<span class="c1"># HyperConfiguration.new(batch =&gt; 64, degree =&gt; 7)</span></pre></div>
 
 <p>Тук <code>batch</code> е фиксираната стойност по подразбиране
 <code>64</code>, а <code>degree</code> е <code>7</code> — с едно
@@ -205,7 +201,7 @@ href="/bg/paradigms/hyper-race/exercises">към упражненията в т�
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/hyper-race/batch-and-degree">Русский</a>
 <a href="/uk/paradigms/hyper-race/batch-and-degree">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

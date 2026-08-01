@@ -117,17 +117,16 @@ of <a href="/oop/inheritance">inheritance</a> from the part on objects
 applies. So one grammar can extend another with <code>is</code>, just
 like a subclass:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Base</span> {
-    <span class="k">token</span><span class="n"> TOP</span>      {<span class="sr"> &lt;greeting&gt; </span>}
-    <span class="k">token</span><span class="n"> greeting</span> {<span class="sr"> &#39;hi&#39; </span>}
+    <span class="k">token</span> <span class="n">TOP</span>      { <span class="s">&lt;greeting&gt;</span> }
+    <span class="k">token</span> <span class="n">greeting</span> { <span class="s">'hi'</span> }
 }
 
 <span class="k">grammar</span> <span class="n">Loud</span> <span class="k">is</span> <span class="n">Base</span> {
-    <span class="k">token</span><span class="n"> greeting</span> {<span class="sr"> &#39;HI&#39; </span>}
+    <span class="k">token</span> <span class="n">greeting</span> { <span class="s">'HI'</span> }
 }
 
-<span class="nb">say</span> <span class="n">Loud</span>.<span class="nb">parse</span>(<span class="s">&#39;HI&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="n">Base</span>.<span class="nb">parse</span>(<span class="s">&#39;hi&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Loud</span>.<span class="n">parse</span>(<span class="s">'HI'</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="n">Base</span>.<span class="n">parse</span>(<span class="s">'hi'</span>).<span class="nb">defined</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>Loud</code> inherits <code>TOP</code> from <code>Base</code>
 but provides its own <code>greeting</code>. When <code>Loud</code>

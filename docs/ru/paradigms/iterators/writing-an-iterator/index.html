@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,14 +118,13 @@ href="/ru/paradigms/iterators">Итераторы</a></p>
 ничего не осталось. Вот итератор обратного отсчёта, выдающий число и
 шагающий к нулю:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
 
-    <span class="k">method</span> <span class="nb">pull-one</span> {
+    <span class="k">method</span> <span class="n">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n--</span>;
+        <span class="k">return</span> <span class="nv">$!n</span>--;
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Каждый вызов <code>pull-one</code> сначала проверяет, не кончился ли
 счёт; если нет — возвращает текущее число и уменьшает его. Постфиксное
@@ -133,19 +132,17 @@ href="/ru/paradigms/iterators">Итераторы</a></p>
 поэтому числа выходят как <code>3, 2, 1</code>. Управление им вручную
 выглядит как и у любого другого итератора:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>Сам по себе итератор — не то, что цикл <code>for</code> может взять
 напрямую: циклу нужен <em>итерируемый</em> объект. Заверните итератор в
 <code>Seq</code>, и по нему станет можно проходить циклом:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Это напечатает <code>3</code>, <code>2</code>, <code>1</code>. В
 повседневном коде вы взяли бы <code>gather</code> / <code>take</code> —
@@ -180,7 +177,7 @@ href="/ru/paradigms/iterators/exercises/sum-with-pull-one">к упражнени
 <a href="/bg/paradigms/iterators/writing-an-iterator">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/iterators/writing-an-iterator">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

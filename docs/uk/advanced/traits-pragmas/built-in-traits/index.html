@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,34 +118,31 @@ href="/uk/advanced/traits-pragmas">Трейти та прагми 🆕</a></p>
 читання</strong> — присвоїти їм щось усередині підпрограми не можна.
 Трейт <code>is copy</code> дає вам приватну змінювану копію аргументу,
 яку можна змінювати, не зачіпаючи того, хто викликав:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="nb">copy</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greet</span>(<span class="nv">$name</span> <span class="k">is</span> <span class="n">copy</span>) {
     <span class="nv">$name</span> = <span class="s">&quot;dear $name&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;Hello, $name!&quot;</span>;
 }
 
-<span class="k">my</span> <span class="nv">$who</span> = <span class="s">&#39;Anna&#39;</span>;
+<span class="k">my</span> <span class="nv">$who</span> = <span class="s">'Anna'</span>;
 <span class="n">greet</span>(<span class="nv">$who</span>); <span class="c1"># Hello, dear Anna!</span>
-<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — власна змінна викликача недоторкана</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$who</span>;    <span class="c1"># Anna — власна змінна викликача недоторкана</span></pre></div>
 
 <p>Трейт <code>is rw</code> іде далі: він зв’язує параметр із змінною
 викликача, тож зміна, зроблена всередині підпрограми, видима
 назовні:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="k">rw</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">bump</span>(<span class="nv">$n</span> <span class="k">is</span> <span class="n">rw</span>) {
     <span class="nv">$n</span>++;
 }
 
 <span class="k">my</span> <span class="nv">$x</span> = <span class="mi">10</span>;
 <span class="n">bump</span>(<span class="nv">$x</span>);
-<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>; <span class="c1"># 11</span></pre></div>
 
 <p>Без одного з цих трейтів <code>$n++</code> був би помилкою під час
 компіляції, бо параметр був би доступний лише для читання.</p>
 <p>Ще один поширений трейт задає типове значення:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$port</span> <span class="k">is</span> <span class="k">default</span>(<span class="mi">8080</span>);
-<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$port</span>; <span class="c1"># 8080</span></pre></div>
 
 <p>Тут <code>is default</code> дає змінній значення, до якого можна
 вдатися. Кожен вбудований трейт — <code>is rw</code>,
@@ -186,7 +183,7 @@ href="/uk/advanced/traits-pragmas/exercises">до вправ цього
 <a href="/bg/advanced/traits-pragmas/built-in-traits">Български</a>
 <a href="/ru/advanced/traits-pragmas/built-in-traits">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

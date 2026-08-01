@@ -117,16 +117,15 @@ Meldung in ein Ausnahmeobjekt vom Typ <code>X::AdHoc</code>.</p>
 untersuchen. Seinen Typ liefert <code>.^name</code>, seinen Text
 <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Den Typ zu kennen erlaubt es, verschiedene Fehler verschieden zu
 behandeln. Rakus eingebaute Ausnahmen haben eigene Typen, deren Namen
@@ -134,18 +133,17 @@ mit <code>X::</code> beginnen, und Sie können mit <code>when</code>
 darauf prüfen, genau wie Sie Werte in einem
 <code>given</code>/<code>when</code>-Block geprüft haben:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
-            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
+        <span class="k">when</span> <span class="n">X::AdHoc</span> {
+            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
+            <span class="nb">say</span> <span class="s">'some other error'</span>;
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Das gibt <code>an ad-hoc error: something failed</code> aus, weil die
 Ausnahme auf den Typ <code>X::AdHoc</code> passte. Auf den Typ zu prüfen

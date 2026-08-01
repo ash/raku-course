@@ -121,35 +121,30 @@ Klammern mit ihren Argumenten hinzu. Verwenden Sie jedoch einen Abstand
 nach <code>for</code> und <code>if</code>.</p>
 <h2 id="lange-geschichte">Lange Geschichte</h2>
 <p>Nehmen wir eine einfache Funktion:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Beachten Sie zunächst das Fehlen von Leerzeichen zwischen dem Namen
 der Funktion und den öffnenden Klammern, die die Parameter enthalten.
 Einige Codierungsstile in anderen Sprachen erfordern dort möglicherweise
 ein Leerzeichen. Raku ist damit einverstanden, aber dies ist keine
 Praxis, der man folgen sollte:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Auf der Aufrufseite ist das Fehlen von Leerzeichen wichtig. Wenn Sie
 die Funktion aufrufen und die Klammern weglassen, ist das Leerzeichen
 nach dem Namen der Funktion unvermeidlich:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>Aber wenn Sie Klammern hinzufügen, dürfen Sie kein Leerzeichen davor
 haben. Dies ist ein korrekter Aufruf:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Und dieser Aufruf ist falsch:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Solcher Code verursacht eine Ausnahme:</p>
 <pre><code>Zu wenige Positionsparameter übergeben; erwartet wurden 2 Argumente, aber es wurde 1 übergeben
@@ -160,12 +155,11 @@ Versuch, ein einzelnes Argument <code>(5, 6)</code> an die Funktion zu
 übergeben. Sie können den Typ dieses Arguments leicht überprüfen, wenn
 Sie die Funktion so umschreiben, dass sie nur ein Argument
 akzeptiert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>Das Aufrufen von <code>f (5, 6)</code> bedeutet also, dass wir eine
 <a href="/de/essentials/positionals/lists">Liste</a> an die Funktion
@@ -176,10 +170,9 @@ benötigt wird</h2>
 wenn Sie Klammern mit einem der Schlüsselwörter wie <code>if</code> oder
 <code>for</code> oder <code>loop</code> verwenden. Der folgende Code ist
 falsch:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>Die Fehlermeldung erklärt, was falsch ist:</p>
 <pre><code>===SORRY!===
@@ -195,8 +188,7 @@ erforderlich, sodass das Problem nicht auftreten kann, wenn Sie sie
 nicht verwenden. Aber in einigen Fällen, wie zum Beispiel bei
 <code>loop</code>, müssen Sie sie haben, und das Leerzeichen wird
 obligatorisch:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>In diesem Code passiert dasselbe: <code>loop(...)</code> wird vom
 Compiler als Funktionsaufruf verstanden. Fügen Sie ein Leerzeichen

@@ -117,17 +117,16 @@ Grammatiktoken. Jede Methode erhält den Treffer für dieses Token als
 — genau das, was der inline stehende Block getan hat, nur getrennt vom
 Muster gehalten:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &lt;a&gt; &#39;+&#39; &lt;b&gt; </span>}
-    <span class="k">token</span><span class="n"> a</span>   {<span class="sr"> \d+ </span>}
-    <span class="k">token</span><span class="n"> b</span>   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
+    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="k">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="k">made</span> }
-    <span class="k">method</span> <span class="n">a</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">b</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-}
-</pre></div>
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>) { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="n">made</span> + <span class="nv">$&lt;b&gt;</span>.<span class="n">made</span> }
+    <span class="k">method</span> <span class="n">a</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">b</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+}</pre></div>
 
 <p>Die Grammatik enthält nun nur noch das Muster; alle Bedeutung lebt in
 <code>SumActions</code>. Beachten Sie, wie die Methoden zusammenspielen:
@@ -137,8 +136,7 @@ und <code>$&lt;b&gt;.made</code> und macht ihre Summe.</p>
 <p>Um die Aktionsklasse zu verwenden, übergeben Sie <code>.parse</code>
 mit dem benannten Argument <code>actions</code> eine Instanz und lesen
 danach das oberste Ergebnis mit <code>.made</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="nb">parse</span>(<span class="s">&#39;2+3&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="k">made</span>; <span class="c1"># 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>, <span class="n">actions</span> =&gt; <span class="n">SumActions</span>.<span class="nb">new</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>
 
 <p>Während die Grammatik zerlegt, läuft die Methode jedes Tokens
 selbsttätig und baut den Wert von unten nach oben auf. Das Ergebnis am

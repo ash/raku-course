@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,25 +113,23 @@ href="/nl/regexes/creating-grammars">Grammatica’s maken</a></p>
 <h1 id="parsen-met-parse">Parsen met parse</h1>
 <p>Om een grammatica te draaien, roep je haar methode
 <code>.parse</code> aan met de te analyseren string:</p>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Pair</span> {
-    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;key&gt; &#39;=&#39; &lt;value&gt; </span>}
-    <span class="k">token</span><span class="n"> key</span>   {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> value</span> {<span class="sr"> \w+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Pair</span> {
+    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;key&gt;</span> <span class="s">'='</span> <span class="s">&lt;value&gt;</span> }
+    <span class="k">token</span> <span class="n">key</span>   { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">value</span> { \<span class="n">w</span>+ }
 }
 
-<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>);
-<span class="nb">say</span> <span class="nv">$m&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
-<span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>; <span class="c1"># ｢5｣</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>);
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>; <span class="c1"># ｢5｣</span></pre></div>
 
 <p><code>.parse</code> geeft een matchobject terug wanneer de grammatica
 de <strong>hele</strong> string matcht, en <code>Nil</code> wanneer dat
 niet zo is. Omdat de hele invoer moet matchen, zijn de ankers
 <code>^</code> en <code>$</code> niet nodig — <code>.parse</code> voegt
 die eis voor je toe:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=&#39;</span>).<span class="nb">defined</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x='</span>).<span class="nb">defined</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Het <a href="/nl/regexes/matching/match-object">matchobject</a> werkt
 precies als degene die je eerder tegenkwam. Elk token dat in de
@@ -171,7 +169,7 @@ deze sectie</a>.</p>
 <a href="/bg/regexes/creating-grammars/parse-method">Български</a>
 <a href="/ru/regexes/creating-grammars/parse-method">Русский</a>
 <a href="/uk/regexes/creating-grammars/parse-method">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

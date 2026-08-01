@@ -115,9 +115,8 @@ they are <em>lazy</em>. The <code>lazy</code> and <code>eager</code>
 prefixes let you control this explicitly.</p>
 <p>The <code>eager</code> prefix forces a list to be produced
 <strong>all at once</strong>, immediately:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="nb">eager</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@squares</span> = <span class="n">eager</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">@squares</span>; <span class="c1"># [1 4 9]</span></pre></div>
 
 <p>Without <code>eager</code> the <code>map</code> would still produce
 the values, but <code>eager</code> guarantees they are all computed
@@ -125,9 +124,8 @@ there and then rather than on demand.</p>
 <p>The <code>lazy</code> prefix does the opposite: it marks a list as
 lazy, so its elements are produced only when pulled. This is what lets a
 list be conceptually infinite:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$numbers</span> = <span class="nb">lazy</span> (<span class="mi">1</span> .. <span class="n">Inf</span>);
-<span class="nb">say</span> <span class="nv">$numbers</span>.<span class="nb">is-lazy</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$numbers</span> = <span class="n">lazy</span> (<span class="mi">1</span> .. <span class="n">Inf</span>);
+<span class="nb">say</span> <span class="nv">$numbers</span>.<span class="n">is-lazy</span>; <span class="c1"># True</span></pre></div>
 
 <p>The <code>.is-lazy</code> method confirms the list will not try to
 compute all of its (endless) elements up front.</p>

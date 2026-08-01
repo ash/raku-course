@@ -1,36 +1,31 @@
 ---
 title: Kā instalēt Rakudo
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Lai izpildītu programmu Raku valodā, jums ir jābūt instalētam kompilatoram. Apmeklējiet [Rakudo mājaslapu](https://rakudo.org), lai lejupielādētu versiju, kas ir piemērota jūsu operētājsistēmai.
-
-Ir divas galvenās iespējas. Jūs varat instalēt tikai kompilatoru vai instalēt Rakudo Star komplektu (arī rakstīts kā Rakudo *). Rakudo Star ietver pakotņu pārvaldnieku un dažus noderīgus moduļus.
+Lai izpildītu programmu Raku valodā, jums jābūt uzstādītam kompilatoram. Šajā kursā tiek lietots Rakudo; otrs kompilators, [Raku++](/lv/essentials/the-rakupp-compiler), tiek uzstādīts [atsevišķi](/lv/essentials/how-to-install-rakupp). Apmeklējiet [Rakudo tīmekļa vietni](https://rakudo.org), lai lejupielādētu jūsu operētājsistēmai piemēroto versiju.
 
 ## Avoti
 
-Jūs varat lejupielādēt instalētāju jūsu sistēmai [rakudo.org/downloads](https://rakudo.org/downloads). Ir pieejamas versijas visām galvenajām operētājsistēmām: Windows, Mac OS un Linux. Ir pieejami arī pirmkodi, kurus varat kompilēt pats.
-
-## Rakudo Star
-
-Ir iespējams arī instalēt komplektu, Rakudo Star, palaidot instalētāju, kuru iegūstat [rakudo.org/star](https://rakudo.org/star). Pirms instalēšanas pārbaudiet versijas numuru. Jūs varat arī apskatīt lapu ar nosaukumu ‘[3rd-Party Rakudo Star Bundle Packages](https://rakudo.org/star/third-party)’, lai redzētu vairāk iespēju.
+Uzstādītāju savai sistēmai varat lejupielādēt vietnē [rakudo.org/downloads](https://rakudo.org/downloads). Pastāv versijas visām lielākajām operētājsistēmām: Windows, Mac OS un Linux. Ir arī pirmkodi, kurus varat kompilēt pats.
 
 ## Docker attēli
 
-Rakudo Star ir pieejams kā docker attēls. Jūs varat to izmantot gan programmu izpildei, gan mazu skriptu testēšanai REPL čaulā. Visas instrukcijas atradīsiet [github.com/Raku/docker](https://github.com/Raku/docker).
+Rakudo ir pieejams arī kā docker attēls. To varat lietot gan programmu izpildei, gan nelielu skriptu izmēģināšanai REPL čaulā. Visas norādes atradīsiet vietnē [github.com/Raku/docker](https://github.com/Raku/docker).
 
 ## Versiju numuri
 
-Rakudo versiju numurēšanas sistēma veido versijas numuru kā divdaļīgu numuru: gads un mēnesis izlaišanas datumā. Jūs viegli varat redzēt, cik svaigs ir jūsu kompilators. Izpildiet šādu komandrindu, lai redzētu tā versijas numuru:
+Rakudo versiju numerācijas sistēma veido versijas numuru no divām daļām: izlaiduma gada un mēneša. Tā uzreiz redzat, cik svaigs ir jūsu kompilators. Izpildiet šādu komandrindu, lai redzētu tā versijas numuru:
 
 ```console
 $ raku -v
-Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2026.06.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
+Built on MoarVM version 2026.06.
 ```
 
-Šeit jūs varat redzēt trīs versiju numurus. Pirmais ir pašas Rakudo versija: `v2020.10`. Tad nāk Raku valodas versija: `v6.d`. Atjauninājumi pašlaik iegūs nākamo burtu kā mazāko versijas daļu, piemēram, `v6.e` utt. Visbeidzot, mēs redzam virtuālās mašīnas nosaukumu, kas tiek izmantota šajā kompilatorā: MoarVM versija `2020.10`.
+Šeit redzami trīs versiju numuri. Pirmais ir paša Rakudo versija: `v2026.06`. Tad nāk Raku valodas versija: `v6.d`. Atjauninājumi pagaidām saņem nākamo burtu kā mazāko versijas daļu, piemēram, `v6.e` un tā tālāk. Visbeidzot redzam virtuālās mašīnas nosaukumu, ko lieto šis kompilators: MoarVM versija `2026.06`.
 
 {% include nav.html %}

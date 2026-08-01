@@ -119,28 +119,25 @@ variabile di match».</p>
 il testo che ha corrisposto — o con il metodo <code>.Str</code> o con il
 prefisso <code>~</code>, che è l’operatore di conversione a stringa e fa
 esattamente la stessa cosa:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;concatenate&#39;</span> ~~<span class="sr"> /cat/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'concatenate'</span> ~~ <span class="sr">/cat/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>; <span class="c1"># cat</span>
-<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span>
-</pre></div>
+<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span></pre></div>
 
 <p>Sa anche <strong>dove</strong> nella stringa la corrispondenza è
 stata trovata. Il metodo <code>.from</code> dà la posizione in cui
 comincia e <code>.to</code> la posizione subito dopo la sua fine:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;room 7 left&#39;</span> ~~<span class="sr"> /\d/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'room 7 left'</span> ~~ <span class="sr">/\d/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>;  <span class="c1"># 7</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">from</span>; <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">to</span>;   <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">from</span>; <span class="c1"># 5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">to</span>;   <span class="c1"># 6</span></pre></div>
 
 <p>Le posizioni si contano da zero, quindi la cifra <code>7</code> sta
 all’indice <code>5</code>.</p>
 <p>Quando il regex <strong>non</strong> corrisponde, il risultato non è
 affatto un oggetto match: è il valore speciale <code>Nil</code>.
 Assegnare <code>Nil</code> a uno scalare lo lascia non definito:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;abc&#39;</span> ~~<span class="sr"> /z/</span>;
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'abc'</span> ~~ <span class="sr">/z/</span>;
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Quindi puoi sempre controllare <code>.defined</code> (o semplicemente
 usare il valore in contesto booleano) prima di leggere il testo

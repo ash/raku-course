@@ -116,24 +116,21 @@ you also want to know <em>how many times</em> it occurs. That is what a
 <p>You create a bag with the <code>bag</code> routine. Repeated values
 are not collapsed — they are counted:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$b</span> = <span class="n">bag</span>(<span class="s">&lt;a b a c a&gt;</span>);
-<span class="nb">say</span> <span class="nv">$b&lt;a&gt;</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$b&lt;b&gt;</span>; <span class="c1"># 1</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$b</span><span class="s">&lt;a&gt;</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$b</span><span class="s">&lt;b&gt;</span>; <span class="c1"># 1</span></pre></div>
 
 <p>Asking the bag for a value with the <code>&lt; &gt;</code> subscript
 returns how many times that value was put in. The <code>total</code>
 method gives the sum of all the counts:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">bag</span>(<span class="s">&lt;a b a c a&gt;</span>).<span class="nb">total</span>; <span class="c1"># 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">bag</span>(<span class="s">&lt;a b a c a&gt;</span>).<span class="n">total</span>; <span class="c1"># 5</span></pre></div>
 
 <p>A <code>Mix</code> is the same idea as a bag, except that the counts
 (called <em>weights</em>) may be fractional rather than whole numbers.
 To assign explicit weights, pair each value with its weight and coerce
 the list with <code>.Mix</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = (<span class="n">flour</span> =&gt; <span class="mf">2.5</span>, <span class="n">sugar</span> =&gt; <span class="mf">0.75</span>).<span class="nb">Mix</span>;
-<span class="nb">say</span> <span class="nv">$m&lt;flour&gt;</span>; <span class="c1"># 2.5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">total</span>;  <span class="c1"># 3.25</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;flour&gt;</span>; <span class="c1"># 2.5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">total</span>;  <span class="c1"># 3.25</span></pre></div>
 
 <p>Looking up a weight with <code>&lt; &gt;</code> and summing them with
 <code>total</code> work exactly as for a bag — only the numbers need not

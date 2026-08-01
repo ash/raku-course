@@ -114,9 +114,8 @@ href="/es/regexes/literals">Literales y clases de caracteres</a></p>
 <p>El patrón más sencillo es una secuencia de letras y dígitos. Un
 patrón así empareja exactamente esos caracteres, en ese orden, en
 cualquier punto de la cadena:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>La coincidencia no tiene por qué empezar al principio de la cadena:
 el motor de regex busca el patrón en cada posición hasta
@@ -128,26 +127,23 @@ el texto que emparejó, envuelto en las esquinas <code>｢ ｣</code>. Si el
 patrón no está presente, la coincidencia falla: el emparejamiento
 inteligente produce <code>Nil</code>, un valor no definido que cuenta
 como falso en una prueba booleana:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Dentro de un regex, los espacios <strong>no</strong> son
 significativos por omisión: están ahí solo para hacer legible el patrón.
 Así que <code>/ ell /</code> empareja exactamente lo mismo que
 <code>/ell/</code>; los espacios de alrededor simplemente se
 ignoran:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Como un espacio del patrón se ignora, emparejar un espacio <em>de
 verdad</em> requiere <strong>comillas</strong>: todo lo que pongas entre
 comillas se empareja literalmente. Esas mismas comillas son también la
 forma de emparejar un signo de puntuación que de otro modo tendría un
 significado especial en un regex:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(Para los espacios en blanco también puedes usar la clase
 <code>\s</code>, que conocerás enseguida.)</p>

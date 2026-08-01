@@ -131,8 +131,7 @@ escape con backslash come <code>\n</code></li>
 funzionalità. Per esempio, permetti il codice incorporato ma
 nient’altro:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">q/result: {3 * 4}/</span>;   <span class="c1"># result: {3 * 4}  — plain q leaves the block untouched</span>
-<span class="nb">say</span> <span class="s">q:c/result: {3 * 4}/</span>; <span class="c1"># result: 12        — :c runs the block</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">q:c/result: {3 * 4}/</span>; <span class="c1"># result: 12        — :c runs the block</span></pre></div>
 
 <p>Con il semplice <code>q</code> il blocco <code>{ 3 * 4 }</code> viene
 stampato letteralmente; solo <code>:c</code> fa eseguire il blocco e ne
@@ -147,16 +146,14 @@ lascerebbe letterale. Quando il testo contiene un blocco
 affinché la closure venga effettivamente eseguita. Puoi aggiungere
 l’interpolazione scalare alla forma altrimenti letterale
 <code>Q</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
-<span class="nb">say</span> <span class="s">Q:s{Hi, $name}</span>; <span class="c1"># Hi, Anna</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
+<span class="nb">say</span> <span class="s">Q:s{Hi, $name}</span>; <span class="c1"># Hi, Anna</span></pre></div>
 
 <p>Gli avverbi possono anche <strong>disattivare</strong> funzionalità
 con un <code>!</code>. Per usare <code>qq</code> ma mantenere
 <code>$</code> letterale:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$price</span> = <span class="mi">5</span>;
-<span class="nb">say</span> <span class="n">qq:</span>!<span class="nb">s</span>{<span class="n">costs</span> <span class="nv">$price</span> <span class="n">dollars</span>}; <span class="c1"># costs $price dollars</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">qq:!s{costs $price dollars}; # costs $price dollars</span></pre></div>
 
 <p><code>qq</code> è equivalente a <code>Q</code> con tutti gli avverbi
 di interpolazione attivati, e <code>q</code> è equivalente a

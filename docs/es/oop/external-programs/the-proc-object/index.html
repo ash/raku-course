@@ -121,32 +121,28 @@ programa le dice a quien lo lanzó si tuvo éxito mediante un entero
 pequeño: <code>0</code> significa éxito y cualquier otro número es un
 código de fallo elegido por el propio programa. <code>.exitcode</code>
 te da ese número:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
 
 <p>Para la pregunta habitual de sí o no — ¿funcionó? — un
 <code>Proc</code> es simplemente verdadero cuando el código de salida es
 <code>0</code> y falso en caso contrario, así que puedes evaluarlo
 directamente:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
 
 <p>Un <code>Proc</code> también recuerda la orden que lanzó, en
 <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
 
 <p>Hay algo a lo que estar atento: si una orden falla y tú simplemente
 <strong>ignoras</strong> el <code>Proc</code> devuelto, Raku lanza una
 excepción en lugar de dejar pasar el fallo sin más:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
-<span class="c1"># dies: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
+<span class="c1"># dies: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
 
 <p>Como una salida distinta de cero suele significar que algo salió mal,
 un <code>Proc</code> fallido que se tira lanza una excepción cuando sale
@@ -154,9 +150,8 @@ de ámbito. Lo que lo dispara es <em>descartar</em> el resultado, no
 ignorar su código de salida: basta con guardar el <code>Proc</code> en
 una variable para evitar la excepción, aunque no vuelvas a mirarlo
 nunca.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># no error, even though it failed</span>
-<span class="c1"># …and $proc is never used again</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># no error, even though it failed</span>
+<span class="c1"># …and $proc is never used again</span></pre></div>
 
 <p>Así que, si <em>esperas</em> que una orden pueda fallar, guarda su
 <code>Proc</code> y mira después <code>.exitcode</code> (o evalúalo como

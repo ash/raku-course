@@ -116,16 +116,15 @@ exception object of the type <code>X::AdHoc</code>.</p>
 comes from <code>.^name</code>, and its text from
 <code>.message</code>:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
         <span class="k">default</span> {
-            <span class="nb">say</span> .^<span class="nb">name</span>;   <span class="c1"># X::AdHoc</span>
-            <span class="nb">say</span> .<span class="nb">message</span>; <span class="c1"># something failed</span>
+            <span class="nb">say</span> .^<span class="n">name</span>;   <span class="c1"># X::AdHoc</span>
+            <span class="nb">say</span> .<span class="n">message</span>; <span class="c1"># something failed</span>
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Knowing the type lets you treat different errors differently. Raku’s
 built-in exceptions have specific types, whose names start with
@@ -133,18 +132,17 @@ built-in exceptions have specific types, whose names start with
 as you matched values in a <code>given</code>/<code>when</code>
 block:</p>
 <div class="highlight raku"><pre><span></span>{
-    <span class="nb">die</span> <span class="s">&#39;something failed&#39;</span>;
+    <span class="nb">die</span> <span class="s">'something failed'</span>;
 
     <span class="k">CATCH</span> {
-        <span class="k">when</span> <span class="o">X</span>::<span class="n">AdHoc</span> {
-            <span class="nb">say</span> <span class="s">&#39;an ad-hoc error: &#39;</span> ~ .<span class="nb">message</span>;
+        <span class="k">when</span> <span class="n">X::AdHoc</span> {
+            <span class="nb">say</span> <span class="s">'an ad-hoc error: '</span> ~ .<span class="n">message</span>;
         }
         <span class="k">default</span> {
-            <span class="nb">say</span> <span class="s">&#39;some other error&#39;</span>;
+            <span class="nb">say</span> <span class="s">'some other error'</span>;
         }
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>This prints <code>an ad-hoc error: something failed</code>, because
 the exception matched the <code>X::AdHoc</code> type. Matching on the

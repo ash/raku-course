@@ -114,10 +114,9 @@ href="/it/regexes/substitution">Sostituzione e rimpiazzo</a></p>
 <p>L’operatore di sostituzione è <code>s///</code>. Sembra una
 corrispondenza con un secondo scomparto: lo schema va fra le prime due
 barre e il testo di rimpiazzo fra le ultime due:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
 <p>La sostituzione cambia la variabile <strong>sul posto</strong>,
 quindi <code>$s</code> stesso viene aggiornato. Il testo nella parte di
@@ -125,10 +124,9 @@ rimpiazzo è letterale: non lo metti fra virgolette.</p>
 <p>Come il riconoscimento, la sostituzione tocca per impostazione
 predefinita solo la <strong>prima</strong> occorrenza. Aggiungi
 l’avverbio <code>:g</code> per rimpiazzare ogni occorrenza:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
 <p>Se vuoi conservare l’originale e produrre una <strong>copia</strong>
 modificata invece di cambiare sul posto, usa l’operatore
@@ -136,20 +134,18 @@ modificata invece di cambiare sul posto, usa l’operatore
 restituisce la stringa cambiata, lasciando intatto l’originale. Poiché
 non aggiorna una variabile sul posto, puntalo su una con
 <code>given</code> invece che con <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
 <p>(Scrivere <code>$orig ~~ S///</code> ti avvisa di usare invece
 <code>given</code>: con <code>S///</code> non c’è nulla da modificare
 sul posto.)</p>
 <p>Lo stesso comportamento non distruttivo è disponibile anche come
 metodo, <code>.subst</code>, che restituisce una nuova stringa:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
 <section id="pratica" class="practice" data-markdown="1">
 <h2>Pratica</h2>

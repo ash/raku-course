@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,21 +117,19 @@ href="/ru/oop/mop">Протокол метаобъектов 🆕</a></p>
 объекта — он спрашивает о типе, а не действует как тип.</p>
 <p>Вы уже встречали <code>.^name</code>, который возвращает имя
 типа:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="nb">name</span>; <span class="c1"># Int</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">42</span>.^<span class="n">name</span>; <span class="c1"># Int</span></pre></div>
 
 <p>Другие метаметоды исследуют устройство типа.
 <code>.^attributes</code> перечисляет его атрибуты, а
 <code>.^find_method</code> сообщает, существует ли метод:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Animal</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
-    <span class="k">method</span> <span class="n">speak</span> { <span class="s">&#39;generic&#39;</span> }
+    <span class="k">method</span> <span class="n">speak</span> { <span class="s">'generic'</span> }
 }
 
-<span class="nb">say</span> <span class="n">Animal</span>.^<span class="nb">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;speak&#39;</span>);   <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="n">Animal</span>.^<span class="nb">find_method</span>(<span class="s">&#39;fly&#39;</span>);     <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Animal</span>.^<span class="n">attributes</span>.<span class="nb">elems</span>;          <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'speak'</span>);   <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">Animal</span>.^<span class="n">find_method</span>(<span class="s">'fly'</span>);     <span class="c1"># False</span></pre></div>
 
 <p><code>.^mro</code> возвращает <em>порядок разрешения методов</em> —
 цепочку типов, которые Raku по очереди просматривает при поиске метода.
@@ -139,8 +137,7 @@ href="/ru/oop/mop">Протокол метаобъектов 🆕</a></p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">A</span> {}
 <span class="k">class</span> <span class="n">B</span> <span class="k">is</span> <span class="n">A</span> {}
 
-<span class="nb">say</span> <span class="n">B</span>.^<span class="nb">mro</span>.<span class="n">map</span>(*.^<span class="nb">name</span>); <span class="c1"># (B A Any Mu)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">B</span>.^<span class="n">mro</span>.<span class="nb">map</span>(*.^<span class="n">name</span>); <span class="c1"># (B A Any Mu)</span></pre></div>
 
 <p><code>B</code> наследует от <code>A</code>, а всякий тип в конечном
 счёте — от <code>Any</code> и <code>Mu</code>, поэтому вызов метода у
@@ -178,7 +175,7 @@ href="/ru/oop/mop/meta-methods/quiz">Тест — Протокол метаоб�
 <a href="/bg/oop/mop/meta-methods">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/oop/mop/meta-methods">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

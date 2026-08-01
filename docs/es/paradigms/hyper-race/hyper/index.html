@@ -116,8 +116,7 @@ concurrente</a> / <a href="/es/paradigms/hyper-race">hyper y race
 <code>map</code> o un <code>grep</code> y el trabajo se reparte entre
 varios hilos trabajadores, mientras que los resultados siguen volviendo
 en el <strong>orden original</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">hyper</span>.<span class="n">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>.<span class="nb">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Esto se parece exactamente a un <code>map</code> corriente, y el
 resultado es idéntico; la única diferencia es que las duplicaciones
@@ -125,8 +124,7 @@ pueden haberse calculado en núcleos distintos al mismo tiempo.</p>
 <p><code>.hyper</code> funciona con <code>grep</code> exactamente igual:
 cada elemento se comprueba en paralelo, y los que pasan siguen volviendo
 en su orden original:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Como <code>.hyper</code> preserva el orden, es un sustituto directo
 de un <code>map</code> o un <code>grep</code> lento: no hay que cambiar
@@ -149,8 +147,7 @@ como una oportunidad de acelerar, no como una garantía de ello.</p>
 él siguen saliendo bien. Aquí cada palabra se pasa a mayúsculas en
 paralelo y, aun así, las piezas se vuelven a unir en la frase en su
 secuencia original:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku is fun&gt;</span>.<span class="nb">hyper</span>.<span class="n">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">&#39; &#39;</span>); <span class="c1"># RAKU IS FUN</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="k">is</span> <span class="n">fun</span>&gt;.<span class="nb">hyper</span>.<span class="nb">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">' '</span>); <span class="c1"># RAKU IS FUN</span></pre></div>
 
 <section id="práctica" class="practice" data-markdown="1">
 <h2>Práctica</h2>

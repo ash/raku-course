@@ -121,40 +121,35 @@ diras al tiu, kiu lanĉis ĝin, ĉu ĝi sukcesis, per malgranda entjero:
 <code>0</code> signifas sukceson, kaj ĉiu alia nombro estas malsukcesa
 kodo laŭ la propra elekto de la programo. <code>.exitcode</code> donas
 al vi tiun nombron:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 3&#39;</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">exitcode</span>; <span class="c1"># 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 3'</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">exitcode</span>; <span class="c1"># 3</span></pre></div>
 
 <p>Por la kutima jes/ne demando — ĉu ĝi funkciis? — <code>Proc</code>
 estas simple vera, kiam la elirkodo estas <code>0</code>, kaj malvera
 alie, do vi povas testi ĝin rekte:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;ls&#39;</span>, <span class="s">&#39;/&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">&#39;ok&#39;</span> !! <span class="s">&#39;failed&#39;</span>; <span class="c1"># ok</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'ls'</span>, <span class="s">'/'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span> ?? <span class="s">'ok'</span> !! <span class="s">'failed'</span>; <span class="c1"># ok</span></pre></div>
 
 <p><code>Proc</code> ankaŭ memoras la komandon, kiun ĝi lanĉis, en
 <code>.command</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;echo&#39;</span>, <span class="s">&#39;hi&#39;</span>, :<span class="n">out</span>;
-<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>);
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="nb">command</span>; <span class="c1"># (echo hi)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'echo'</span>, <span class="s">'hi'</span>, :<span class="n">out</span>;
+<span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>);
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">command</span>; <span class="c1"># (echo hi)</span></pre></div>
 
 <p>Unu afero por atenti: se komando malsukcesas kaj vi simple
 <strong>ignoras</strong> la redonitan <code>Proc</code>, Raku levas
 escepton anstataŭ lasi la malsukceson pasi nerimarkita:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;
-<span class="c1"># mortas: The spawned command &#39;sh&#39; exited unsuccessfully (exit code: 1, signal: 0)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;
+<span class="c1"># mortas: The spawned command 'sh' exited unsuccessfully (exit code: 1, signal: 0)</span></pre></div>
 
 <p>Ĉar ne-nula eliro kutime signifas, ke io misiris, malsukcesa
 <code>Proc</code>, kiu estas forĵetita, ĵetas, kiam ĝi eliras el
 amplekso. La ekigilo estas <em>forĵeti</em> la rezulton, ne ignori la
 elirkodon: simple konservi la <code>Proc</code> en variablo sufiĉas por
 eviti la escepton, eĉ se vi neniam rigardas ĝin denove.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>; <span class="c1"># neniu eraro, kvankam ĝi malsukcesis</span>
-<span class="c1"># …kaj $proc neniam estas uzata denove</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>; <span class="c1"># neniu eraro, kvankam ĝi malsukcesis</span>
+<span class="c1"># …kaj $proc neniam estas uzata denove</span></pre></div>
 
 <p>Do se vi <em>atendas</em>, ke komando eble malsukcesos, tenu ĝian
 <code>Proc</code> kaj poste rigardu <code>.exitcode</code> (aŭ testu ĝin

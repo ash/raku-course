@@ -119,19 +119,17 @@ the earlier topics — an exported subroutine and a shared
 <code>our</code> variable:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">our</span> <span class="nv">$version</span> = <span class="s">&#39;1.0&#39;</span>;
+<span class="k">our</span> <span class="nv">$version</span> = <span class="s">'1.0'</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span> {
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span> {
     <span class="k">return</span> <span class="s">&quot;Hello, $name!&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>The package of a module is written with a trailing <code>::</code>.
 Adding <code>.keys</code> lists the names it contains:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># ($version EXPORT)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># ($version EXPORT)</span></pre></div>
 
 <p>The <code>Greeting</code> module from the earlier topics defines an
 <code>our</code> variable, <code>$version</code>, so its package
@@ -148,8 +146,7 @@ reaches the same value as the qualified
 <code>$Greeting::version</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::</span>{<span class="s">&#39;$version&#39;</span>}; <span class="c1"># 1.0</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::</span>{<span class="s">'$version'</span>}; <span class="c1"># 1.0</span></pre></div>
 
 <h2 id="listing-what-a-module-exports">Listing what a module
 exports</h2>
@@ -160,8 +157,7 @@ href="/advanced/modules-basics/export-tags">Export tags</a>), and its
 <code>.keys</code> are the exported routines:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;
 
-<span class="nb">say</span> <span class="n">Greeting::EXPORT::DEFAULT::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># (&amp;hello)</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Greeting::EXPORT::DEFAULT::</span>.<span class="nb">keys</span>.<span class="nb">sort</span>; <span class="c1"># (&amp;hello)</span></pre></div>
 
 <p>Each key is an exported name with its sigil — here the single
 subroutine <code>&amp;hello</code>, shown with the <code>&amp;</code>

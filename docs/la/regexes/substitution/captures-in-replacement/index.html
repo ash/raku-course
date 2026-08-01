@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,10 +117,9 @@ reordinare potius quam eum simpliciter abicere.</p>
 <p>Exempli gratia, verte diem ut <code>annus-mensis</code> scriptum in
 <code>mensis/annus</code> utrumque numerum capiens et eos ordine altero
 reponens:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">&#39;2025-06&#39;</span>;
-<span class="nv">$d</span> ~~ <span class="nb">s</span>/ (\<span class="nb">d</span>+) <span class="s">&#39;-&#39;</span> (\<span class="nb">d</span>+) /<span class="nv">$1</span>\/<span class="nv">$0</span>/;
-<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">'2025-06'</span>;
+<span class="nv">$d</span> ~~ <span class="sr">s/ (\d+) '-' (\d+) /$1\/$0/</span>;
+<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span></pre></div>
 
 <p>Exemplar annum in <code>$0</code> et mensem in <code>$1</code> capit.
 In permutatione <code>$1</code> et <code>$0</code> ordine inverso
@@ -131,10 +130,9 @@ parte <strong>permutationis</strong> litteralia, itaque permutatio sine
 spatiis circumstantibus scribitur.</p>
 <p>Capturae nominatae eodem modo operantur. Hoc substitutionem clare
 legendam reddit etiam cum plures partes sunt:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Doe, Jane&#39;</span>;
-<span class="nv">$name</span> ~~ <span class="nb">s</span>/ <span class="nv">$&lt;last&gt;</span>=(\<span class="nb">w</span>+) <span class="s">&#39;, &#39;</span> <span class="nv">$&lt;first&gt;</span>=(\<span class="nb">w</span>+) /<span class="nv">$&lt;first&gt;</span> <span class="nv">$&lt;last&gt;</span>/;
-<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Doe, Jane'</span>;
+<span class="nv">$name</span> ~~ <span class="sr">s/ $&lt;last&gt;=(\w+) ', ' $&lt;first&gt;=(\w+) /$&lt;first&gt; $&lt;last&gt;/</span>;
+<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span></pre></div>
 
 <h2 id="navigatio-cursus">Navigatio cursus</h2>
 <p>← <a href="/la/regexes/substitution/s-operator/quiz">Quiz — Operator
@@ -160,7 +158,7 @@ sectionis</a> i.</p>
 <a href="/bg/regexes/substitution/captures-in-replacement">Български</a>
 <a href="/ru/regexes/substitution/captures-in-replacement">Русский</a>
 <a href="/uk/regexes/substitution/captures-in-replacement">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

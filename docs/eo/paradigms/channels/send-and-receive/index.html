@@ -114,11 +114,10 @@ href="/eo/paradigms/channels">Kanaloj</a></p>
 <p>Kreu kanalon per <code>Channel.new</code>. Enmetu valorojn per
 <code>.send</code> kaj elprenu ilin per <code>.receive</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
-</pre></div>
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span></pre></div>
 
 <p>Kanalo estas <strong>vico</strong>: valoroj eliras en la sama ordo,
 en kiu ili eniris — unue enen, unue eksteren. Do la unua
@@ -129,12 +128,11 @@ unue.</p>
 sendi dum konsumanto daŭre ricevas, kaj Raku certigas, ke neniu valoro
 perdiĝas aŭ duobliĝas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span></pre></div>
 
 <p>Ĉi tie fona tasko sendas <code>1, 2, 3</code>; la ĉefa programo
 ricevas. <code>.receive</code> atendas, se la kanalo estas momente

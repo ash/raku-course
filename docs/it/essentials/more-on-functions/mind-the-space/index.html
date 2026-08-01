@@ -119,34 +119,29 @@ con i suoi argomenti. Ma usa uno spazio dopo <code>for</code> e
 <code>if</code>.</p>
 <h2 id="storia-lunga">Storia lunga</h2>
 <p>Prendiamo una semplice funzione:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Prima di tutto, nota l’assenza di spazi tra il nome della funzione e
 la parentesi aperta che contiene i parametri. Alcuni stili di codifica
 in altre lingue possono richiedere uno spazio lì. Raku va bene con
 questo, ma non è una pratica da seguire:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Dal lato della chiamata, l’assenza di spazio è importante. Se chiami
 la funzione e ometti le parentesi, allora lo spazio dopo il nome della
 funzione è inevitabile:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>Ma se aggiungi le parentesi, non puoi avere uno spazio prima di esse.
 Questa è una chiamata corretta:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>E questa chiamata è sbagliata:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Tale codice causa un’eccezione:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -156,12 +151,11 @@ Questa è una chiamata corretta:</p>
 tentativo di passare un singolo argomento <code>(5, 6)</code> alla
 funzione. Puoi facilmente controllare il tipo di questo argomento se
 riscrivi la funzione per accettare solo un argomento:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>Quindi, chiamare <code>f (5, 6)</code> significa che stiamo passando
 una <a href="/it/essentials/positionals/lists">lista</a> alla funzione.
@@ -172,10 +166,9 @@ spazio</h2>
 quando usi le parentesi con una delle parole chiave, come
 <code>if</code> o <code>for</code> o <code>loop</code>. Il seguente
 codice è sbagliato:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>Il messaggio di errore spiega cosa c’è di sbagliato:</p>
 <pre><code>===SORRY!===
@@ -190,8 +183,7 @@ at /Users/ash/raku-course/t.raku:1
 necessarie, quindi il problema non ha possibilità di apparire se non le
 usi. Ma in alcuni casi, come, ad esempio, con <code>loop</code>, devi
 averle, e lo spazio diventa obbligatorio:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>In questo codice, accade la stessa cosa: <code>loop(...)</code> è
 interpretato dal compilatore come una chiamata di funzione. Aggiungi uno

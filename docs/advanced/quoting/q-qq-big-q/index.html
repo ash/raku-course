@@ -123,11 +123,10 @@ is processed</li>
 <p>Each takes the text between a pair of delimiters. The familiar
 <code>'…'</code> is a shorthand for <code>q</code>, and <code>"…"</code>
 is a shorthand for <code>qq</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
 
 <span class="nb">say</span> <span class="s">q{Hello $name}</span>;  <span class="c1"># Hello $name</span>
-<span class="nb">say</span> <span class="s">qq{Hello $name}</span>; <span class="c1"># Hello Anna</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">qq{Hello $name}</span>; <span class="c1"># Hello Anna</span></pre></div>
 
 <p><code>q</code> leaves <code>$name</code> untouched; <code>qq</code>
 interpolates it. Backslash escapes such as <code>\n</code> behave the
@@ -137,8 +136,7 @@ same way: only <code>qq</code> (and <code>"…"</code>) turns
 <code>n</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">qq{line\nbreak}</span>; <span class="c1"># line&lt;newline&gt;break</span>
 <span class="nb">say</span> <span class="s">q{line\nbreak}</span>;  <span class="c1"># line\nbreak</span>
-<span class="nb">say</span> <span class="s">Q{line\nbreak}</span>;  <span class="c1"># line\nbreak</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">Q{line\nbreak}</span>;  <span class="c1"># line\nbreak</span></pre></div>
 
 <p>So where do <code>q</code> and <code>Q</code> differ? <code>q</code>,
 like single quotes, still handles a <em>small</em> set of escapes — a
@@ -146,8 +144,7 @@ doubled backslash <code>\\</code> becomes one, and you can escape the
 closing delimiter — whereas the plain <code>Q</code> form processes
 <strong>nothing</strong> at all:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">q{a\\b}</span>; <span class="c1"># a\b   — q collapses the escaped backslash</span>
-<span class="nb">say</span> <span class="s">Q{a\\b}</span>; <span class="c1"># a\\b  — Q keeps both characters</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">Q{a\\b}</span>; <span class="c1"># a\\b  — Q keeps both characters</span></pre></div>
 
 <p>You can choose any delimiters — <code>q{…}</code>, <code>q[…]</code>,
 <code>q/…/</code>, <code>q!…!</code> — which is handy when the text

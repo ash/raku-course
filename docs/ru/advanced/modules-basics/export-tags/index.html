@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,27 +119,23 @@ href="/ru/advanced/modules-basics">Основы модулей</a></p>
 <p>Тег записывается в скобках после <code>is export</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
-</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
 
 <p>У <code>hello</code> нет тега, поэтому она принадлежит группе по
 умолчанию; <code>goodbye</code> помечена тегом
 <code>:partings</code>.</p>
 <p>Простой <code>use</code> импортирует только группу по умолчанию:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello is available; goodbye is not</span></pre></div>
 
 <p>Указание тега импортирует эту группу вместо группы по умолчанию — и,
 возможно неожиданно, <em>не</em> включает группу по умолчанию:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye is available; hello is not</span></pre></div>
 
 <p>Запрашивая <code>:partings</code>, вы получаете именно эту группу.
 Чтобы подключить всё, что модуль экспортирует, используйте встроенный
 тег <code>:ALL</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># both hello and goodbye</span></pre></div>
 
 <p>Стоит знать два специальных тега. <code>:ALL</code> поддерживается
 каждым модулем и импортирует все его экспорты. <code>:MANDATORY</code>
@@ -184,7 +180,7 @@ href="/ru/advanced/modules-basics/exercises">к упражнениям этог�
 <a href="/bg/advanced/modules-basics/export-tags">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/advanced/modules-basics/export-tags">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

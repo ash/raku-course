@@ -115,16 +115,15 @@ href="/paradigms/supply-kinds">Live and on-demand supplies</a></p>
 <code>Supply.from-list</code> is on-demand: each tap gets the
 <strong>whole</strong> sequence from the start, independently of any
 other tap.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>);
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>);
 
 <span class="k">my</span> <span class="nv">@a</span>;
 <span class="k">my</span> <span class="nv">@b</span>;
-<span class="nv">$s</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@a</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
-<span class="nv">$s</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@b</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nv">$s</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@a</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nv">$s</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@b</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
 
 <span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [1 2 3]</span>
-<span class="nb">say</span> <span class="nv">@b</span>; <span class="c1"># [1 2 3]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@b</span>; <span class="c1"># [1 2 3]</span></pre></div>
 
 <p>Both taps received all three values. The supply did not “use up” its
 values on the first tap; it simply ran again for the second. This is the

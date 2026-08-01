@@ -116,8 +116,7 @@ inside the class with the <code>has</code> keyword:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Dog</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
     <span class="k">has</span> <span class="nv">$.age</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Each object of the class gets its own copy of these attributes. You
 set their values when you create the object, by passing them to
@@ -127,24 +126,21 @@ set their values when you create the object, by passing them to
     <span class="k">has</span> <span class="nv">$.age</span>;
 }
 
-<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Rex&#39;</span>, <span class="n">age</span> =&gt; <span class="mi">3</span>);
-</pre></div>
+<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Rex'</span>, <span class="n">age</span> =&gt; <span class="mi">3</span>);</pre></div>
 
 <p>The <code>$.</code> in <code>has $.name</code> does two things at
 once: it declares an attribute, and it creates a method of the same name
 — an <em>accessor</em> — that returns the attribute’s value:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$rex</span>.<span class="nb">name</span>; <span class="c1"># Rex</span>
-<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">age</span>;  <span class="c1"># 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">name</span>; <span class="c1"># Rex</span>
+<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">age</span>;  <span class="c1"># 3</span></pre></div>
 
 <p>Different objects hold their own values, independently of one
 another:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$rex</span>  = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Rex&#39;</span>,  <span class="n">age</span> =&gt; <span class="mi">3</span>);
-<span class="k">my</span> <span class="nv">$fido</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Fido&#39;</span>, <span class="n">age</span> =&gt; <span class="mi">5</span>);
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$rex</span>  = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Rex'</span>,  <span class="n">age</span> =&gt; <span class="mi">3</span>);
+<span class="k">my</span> <span class="nv">$fido</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Fido'</span>, <span class="n">age</span> =&gt; <span class="mi">5</span>);
 
-<span class="nb">say</span> <span class="nv">$rex</span>.<span class="nb">name</span>;  <span class="c1"># Rex</span>
-<span class="nb">say</span> <span class="nv">$fido</span>.<span class="nb">name</span>; <span class="c1"># Fido</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">name</span>;  <span class="c1"># Rex</span>
+<span class="nb">say</span> <span class="nv">$fido</span>.<span class="n">name</span>; <span class="c1"># Fido</span></pre></div>
 
 <p>The following topics show how to make attributes changeable and how
 to give them default values. (There is also a way to declare

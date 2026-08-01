@@ -114,9 +114,8 @@ href="/eo/regexes/literals">Literaloj kaj signoklasoj</a></p>
 <p>La plej simpla ŝablono estas sekvenco de literoj kaj ciferoj. Tia
 ŝablono kongruas ekzakte kun tiuj signoj, en tiu ordo, ie ajn en la
 ĉeno:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /cat/</span>; <span class="c1"># ｢cat｣</span>
-<span class="nb">say</span> <span class="s">&#39;Hello&#39;</span>       ~~<span class="sr"> /ell/</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>La kongruo ne devas komenciĝi ĉe la komenco de la ĉeno — la
 regulesprima motoro serĉas la ŝablonon ĉe ĉiu pozicio, ĝis ĝi trovas
@@ -128,26 +127,23 @@ kun kiu ĝi kongruis, envolvitan en la angulaj krampoj <code>｢ ｣</code>.
 Se la ŝablono ne ĉeestas, la kongruo anstataŭe malsukcesas: la sagaca
 kongruigo produktas <code>Nil</code>, nedifinitan valoron, kiu
 kalkuliĝas kiel malvera en Boolea testo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>);       <span class="c1"># Nil</span>
-<span class="nb">say</span> (<span class="s">&#39;the cat sat&#39;</span> ~~<span class="sr"> /dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Ene de regulesprimo, spacoj <strong>ne</strong> estas signifaj
 defaŭlte — ili estas tie nur por fari la ŝablonon legebla. Do
 <code>/ ell /</code> kongruas ekzakte kun tio, kun kio
 <code>/ell/</code> kongruus; la ĉirkaŭaj spacoj estas simple
 ignorataj:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello&#39;</span> ~~<span class="sr"> / ell /</span>; <span class="c1"># ｢ell｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Ĉar spaco en la ŝablono estas ignorata, kongruigi <em>efektivan</em>
 spacon postulas <strong>citilojn</strong>: kion ajn vi metas en citilojn
 estas kongruigata laŭvorte. Tiu sama citado estas la maniero kongruigi
 interpunkcian signon, kiu alie havus specialan signifon en
 regulesprimo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a b&#39;</span>       ~~<span class="sr"> / &#39;a b&#39; /</span>; <span class="c1"># ｢a b｣</span>
-<span class="nb">say</span> <span class="s">&#39;price: $5&#39;</span> ~~<span class="sr"> / &#39;$&#39; /</span>;   <span class="c1"># ｢$｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(Por blankspaco vi ankaŭ povas uzi la klason <code>\s</code>, kiun vi
 baldaŭ renkontos.)</p>

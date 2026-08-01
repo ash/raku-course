@@ -114,10 +114,9 @@ href="/regexes/what-is-a-grammar">What is a grammar</a></p>
 as a class groups methods. You declare it with the <code>grammar</code>
 keyword:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Greeting</span> {
-    <span class="k">token</span><span class="n"> TOP</span>  {<span class="sr"> &#39;Hello, &#39; &lt;name&gt; &#39;!&#39; </span>}
-    <span class="k">token</span><span class="n"> name</span> {<span class="sr"> \w+ </span>}
-}
-</pre></div>
+    <span class="k">token</span> <span class="n">TOP</span>  { <span class="s">'Hello, '</span> <span class="s">&lt;name&gt;</span> <span class="s">'!'</span> }
+    <span class="k">token</span> <span class="n">name</span> { \<span class="n">w</span>+ }
+}</pre></div>
 
 <p>Inside the grammar, each named pattern is written with
 <code>token</code> (a kind of regex you will study in detail shortly).
@@ -131,9 +130,8 @@ previous topic. <code>TOP</code> uses <code>&lt;name&gt;</code>, which
 keeps the grammar readable: each rule has one clear job.</p>
 <p>To run a grammar against a string, call its <code>.parse</code>
 method:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="n">Greeting</span>.<span class="nb">parse</span>(<span class="s">&#39;Hello, Anna!&#39;</span>);
-<span class="nb">say</span> <span class="nv">$m&lt;name&gt;</span>; <span class="c1"># ｢Anna｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="n">Greeting</span>.<span class="n">parse</span>(<span class="s">'Hello, Anna!'</span>);
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;name&gt;</span>; <span class="c1"># ｢Anna｣</span></pre></div>
 
 <p>The next section looks at <code>TOP</code> and <code>.parse</code>
 more closely. For now, the idea to take away is simple: <strong>a

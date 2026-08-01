@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,11 +114,10 @@
 <em>захопити</em> її. Після успішного збігу кожен захоплений шматок
 доступний як <code>$0</code>, <code>$1</code> і так далі — нумерація від
 нуля в порядку відкривання дужок:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Перша пара дужок захопила рік у <code>$0</code>, друга — місяць у
 <code>$1</code>. Текст між ними, літеральний <code>-</code>,
@@ -126,22 +125,20 @@
 <p>Кожне захоплення саме є невеликим об’єктом збігу, тож у нього можна
 запитати <code>.Str</code>, позицію тощо. У рядку з подвійними лапками
 захоплення інтерполюється як текст, з яким воно збіглося:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Тут два захоплені слова виводяться у зворотному порядку, що міняє їх
 місцями.</p>
 <p>Захоплення також зберігаються у змінній збігу <code>$/</code>, і
 <code>$0</code> насправді є коротким записом для <code>$/[0]</code>.
 Працювати можна й безпосередньо через <code>$/</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}</pre></div>
 
 <p><code>$/</code> є цілим об’єктом збігу, індексування його дістає
 позиційні захоплення, а <code>.elems</code> каже, скільки їх.</p>
@@ -176,7 +173,7 @@ href="/uk/regexes/captures/exercises">до вправ цього розділу<
 <a href="/bg/regexes/captures/positional">Български</a>
 <a href="/ru/regexes/captures/positional">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

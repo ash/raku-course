@@ -120,14 +120,13 @@ argumentoj. Frazo <code>where</code> ebligas iri plu kaj sendi ankaŭ laŭ
 la <em>valoro</em>. Ĝi estas skribita post parametro kaj enhavas
 kondiĉon, kiun la argumento devas plenumi por ke tiu kandidato estu
 elektita:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is negative&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> == <span class="mi">0</span>) { <span class="nb">say</span> <span class="s">&quot;$n is zero&quot;</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">info</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &gt; <span class="mi">0</span>)  { <span class="nb">say</span> <span class="s">&quot;$n is positive&quot;</span> }
 
 <span class="n">info</span>(-<span class="mi">5</span>);
 <span class="n">info</span>(<span class="mi">0</span>);
-<span class="n">info</span>(<span class="mi">7</span>);
-</pre></div>
+<span class="n">info</span>(<span class="mi">7</span>);</pre></div>
 
 <p>Ĉiu voko iras al la kandidato, kies kondiĉo estas vera por la donita
 valoro:</p>
@@ -141,11 +140,10 @@ kondiĉoj igas ilin distinktaj.</p>
 <p>Ofta uzo de <code>where</code> estas provizi la haltan punkton de
 rekursio kiel apartan kandidaton. Jen la faktorialo denove, dividita en
 du multi-subrutinojn:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="n">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span> <span class="k">where</span> <span class="nv">$n</span> &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="k">sub</span> <span class="n">fact</span>(<span class="nb">Int</span> <span class="nv">$n</span>)               { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
 
 <p>La unua kandidato traktas la bazan kazon (<code>$n</code> de
 <code>1</code> aŭ malpli) kaj simple redonas <code>1</code>. Ĉiu alia

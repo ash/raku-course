@@ -114,19 +114,18 @@ href="/eo/paradigms/http-server">Simpla HTTP-servilo</a></p>
 <p>Post kiam kliento konektiĝis, vi legas ĝian peton kaj sendas
 respondon. Por retumilo la respondo devas esti valida HTTP: statusa
 linio, laŭvolaj kapoj, malplena linio kaj poste la korpo.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$listener</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(
     :<span class="n">listen</span>,
-    :<span class="n">localhost</span>(<span class="s">&#39;127.0.0.1&#39;</span>),
+    :<span class="n">localhost</span>(<span class="s">'127.0.0.1'</span>),
     :<span class="n">localport</span>(<span class="mi">8080</span>),
 );
 
-<span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="nb">accept</span>;
-<span class="k">my</span> <span class="nv">$request</span> = <span class="nv">$conn</span>.<span class="nb">recv</span>;
+<span class="k">my</span> <span class="nv">$conn</span> = <span class="nv">$listener</span>.<span class="n">accept</span>;
+<span class="k">my</span> <span class="nv">$request</span> = <span class="nv">$conn</span>.<span class="n">recv</span>;
 
 <span class="nv">$conn</span>.<span class="nb">print</span>(<span class="s">&quot;HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\n\r\nHello, web!\n&quot;</span>);
 <span class="nv">$conn</span>.<span class="nb">close</span>;
-<span class="nv">$listener</span>.<span class="nb">close</span>;
-</pre></div>
+<span class="nv">$listener</span>.<span class="nb">close</span>;</pre></div>
 
 <p>La respondo spegulas la petan formaton, kiun vi vidis ĉe la klienta
 flanko. <code>HTTP/1.0 200 OK</code> estas la statusa linio,

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,9 +123,8 @@ funkciju — <code>WhateverCode</code> —, kurā zvaigznīte apzīmē
 argumentu:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">$double</span>.^<span class="nb">name</span>; <span class="c1"># WhateverCode</span>
-<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
+<span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
 
 <p><code>* * 2</code> ir funkcija, kas savu vienīgo argumentu reizina ar
 diviem. Tieši tāpēc darbojas <code>(1..5).map(* * 2)</code>:
@@ -135,8 +134,7 @@ diviem. Tieši tāpēc darbojas <code>(1..5).map(* * 2)</code>:
 uzrakstīt arī kā bloku. Šie trīs ir līdzvērtīgi:</p>
 <div class="highlight raku"><pre><span></span>* * <span class="mi">2</span>
 { <span class="nv">$_</span> * <span class="mi">2</span> }
--&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }
-</pre></div>
+-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }</pre></div>
 
 <p>Whatever forma nenosauc nevienu parametru; bloka forma izmanto tēmas
 mainīgo <code>$_</code>; bultiņas forma nosauc <code>$x</code>. Pēdējā,
@@ -147,10 +145,9 @@ href="/lv/advanced/anonymous-subroutines">Anonīmas apakšprogrammas</a>;
 argumenta funkciju. Vienkāršai izteiksmei zvaigznīte ir viskompaktākā,
 un tieši tāpēc tā ir tik izplatīta ar <code>map</code>,
 <code>grep</code> un <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Ķerieties pie <strong>bloka</strong>, kad loģikai vajag vairāk nekā
 vienu izteiksmi vai kad skaidrāks nosaukts parametrs palīdz. Ķerieties
@@ -160,8 +157,7 @@ pie <strong>zvaigznītes</strong>, kad īsa izteiksme pasaka visu.</p>
 divas zvaigznītes veido <strong>divu</strong> argumentu funkciju:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
-<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Šeit <code>* + *</code> ir divu argumentu funkcija, kas saskaita
 savus argumentus — piemēram, uzkrāto summu un nākamo elementu.</p>
@@ -171,8 +167,7 @@ ierobežojuma. Divi ikdienišķi lietojumi:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
 <span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * is the array length, so *-1 is the last index</span>
 
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* is an open-ended range</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* is an open-ended range</span></pre></div>
 
 <p>Izteiksmē <code>@a[*-1]</code> zvaigznīte apzīmē elementu skaitu, bet
 <code>1..*</code> tā nozīmē «bez augšējās robežas». Vai tā būvē
@@ -221,7 +216,7 @@ href="/lv/advanced/whatever/exercises/whatever-map">Whatever ar map</a>
 <a href="/bg/advanced/whatever">Български</a>
 <a href="/ru/advanced/whatever">Русский</a>
 <a href="/uk/advanced/whatever">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

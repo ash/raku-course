@@ -118,18 +118,16 @@ Junction an und fügt die Ergebnisse wieder zu einer Junction zusammen.
 Das heißt <em>Autothreading</em>.</p>
 <p>Zu einer Junction zu addieren addiert etwa zu jedem ihrer Werte:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$j</span> = <span class="mi">1</span> | <span class="mi">2</span> | <span class="mi">3</span>;
-<span class="nb">say</span> <span class="nv">$j</span> + <span class="mi">10</span>; <span class="c1"># any(11, 12, 13)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$j</span> + <span class="mi">10</span>; <span class="c1"># any(11, 12, 13)</span></pre></div>
 
 <p>Das <code>+ 10</code> wurde einzeln auf <code>1</code>,
 <code>2</code> und <code>3</code> angewandt, was eine neue
 <em>any</em>-Junction <code>any(11, 12, 13)</code> ergibt.</p>
 <p>Bei einem Vergleich klappt das zusammengefügte Ergebnis gemäß der Art
 der Junction zu einem einzelnen Wahrheitswert zusammen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="nb">all</span>(<span class="mi">3</span>, <span class="mi">7</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>;  <span class="c1"># True  — every value is positive</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="nb">all</span>(<span class="mi">3</span>, -<span class="mi">1</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>; <span class="c1"># False — not all are positive</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="nb">none</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) == <span class="mi">5</span>; <span class="c1"># True — none of them is 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="n">all</span>(<span class="mi">3</span>, <span class="mi">7</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>;  <span class="c1"># True  — every value is positive</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">all</span>(<span class="mi">3</span>, -<span class="mi">1</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>; <span class="c1"># False — not all are positive</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">none</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) == <span class="mi">5</span>; <span class="c1"># True — none of them is 5</span></pre></div>
 
 <p>Autothreading ist es, was Junctions so knapp macht: Ein Vergleich
 prüft viele Werte. Dem Wesen nach sind die Prüfungen unabhängig, Raku

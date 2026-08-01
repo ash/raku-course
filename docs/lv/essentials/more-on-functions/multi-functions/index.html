@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,18 +114,16 @@ href="/lv/essentials/more-on-functions">Vairāk par funkcijām</a></p>
 parakstu. Tas ļauj izveidot funkcijas, kurām ir vienāds nosaukums, bet
 dažādi ievaddatu tipi. Izmantojiet <code>multi</code> deklaratoru katrai
 funkcijas variācijai.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(Ir pieļaujams izlaist <code>sub</code> pēc <code>multi</code>.)</p>
 <p>Ja jums ir divas vienas un tās pašas funkcijas variācijas,
 kompilators veic vairākkārtēju izsaukumu atkarībā no tā, kādus
 argumentus tas redz funkcijas izsaukumā. Salīdziniet šādus divus
 izsaukumus:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>Pirmais izsaukums aktivizē funkciju ar veselu skaitļu parametriem,
 kamēr otrais izsaukums palaidīs otro funkcijas variāciju, kas sagaida
@@ -134,16 +132,14 @@ divas virknes.</p>
 <p>Interesants gadījums daudzfunkcijām ir tāds, ka tām ir variācijas,
 kurām ir literālas vērtības kā parametri. Apsveriet šādas divas
 variācijas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Šī ir atbilde&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x nav atbilde&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Šī ir atbilde'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x nav atbilde&quot;</span>}</pre></div>
 
 <p>Pirmā variācija tiek palaista tikai tad, kad jūs izsaucat funkciju ar
 tieši 42 vērtību. Citos gadījumos tiek izmantota otrā variācija.
 Kārtība, kādā šīs funkcijas ir definētas, nav svarīga.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 nav atbilde</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Šī ir atbilde</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 nav atbilde</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Šī ir atbilde</span></pre></div>
 
 <section id="prakse" class="practice" data-markdown="1">
 <h2>Prakse</h2>
@@ -186,7 +182,7 @@ href="/lv/essentials/more-on-functions/exercises/factorial-with-multi-functions"
 <a href="/bg/essentials/more-on-functions/multi-functions">Български</a>
 <a href="/ru/essentials/more-on-functions/multi-functions">Русский</a>
 <a href="/uk/essentials/more-on-functions/multi-functions">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

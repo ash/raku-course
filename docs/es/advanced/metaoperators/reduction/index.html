@@ -118,21 +118,18 @@ reduciendo toda la lista a un único valor.</p>
 <p>Por ejemplo, <code>[+]</code> suma todos los elementos de una
 lista:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="mi">3</span>, <span class="mi">5</span>, <span class="mi">7</span>, <span class="mi">9</span>, <span class="mi">11</span>;
-<span class="nb">say</span> [+] <span class="nv">@data</span>; <span class="c1"># 35</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nv">@data</span>; <span class="c1"># 35</span></pre></div>
 
 <p>La construcción <code>[+] @data</code> es equivalente a escribir el
 operador a mano:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> + <span class="mi">5</span> + <span class="mi">7</span> + <span class="mi">9</span> + <span class="mi">11</span>; <span class="c1"># 35</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> + <span class="mi">5</span> + <span class="mi">7</span> + <span class="mi">9</span> + <span class="mi">11</span>; <span class="c1"># 35</span></pre></div>
 
 <p>Cualquier operador infijo adecuado funciona de la misma manera. Con
 <code>[*]</code> obtienes el producto de la lista, por lo que aplicarlo
 al rango <code>1..$n</code> es una forma práctica de calcular un
 factorial:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">5</span>;
-<span class="nb">say</span> [*] <span class="mi">1</span>..<span class="nv">$n</span>; <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> [*] <span class="mi">1</span>..<span class="nv">$n</span>; <span class="c1"># 120</span></pre></div>
 
 <p>Aquí, el rango <code>1..$n</code> produce los números del 1 al 5, y
 <code>[*]</code> los multiplica: <code>1 * 2 * 3 * 4 * 5</code>, que es
@@ -140,21 +137,18 @@ factorial:</p>
 <p>La concatenación de cadenas también funciona. La reducción
 <code>[~]</code> une una lista de cadenas en una sola:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@strings</span> = <span class="s">&lt;neun hundert fünf und zwanzig&gt;</span>;
-<span class="nb">say</span> [~] <span class="nv">@strings</span>; <span class="c1"># neunhundertfünfundzwanzig</span>
-</pre></div>
+<span class="nb">say</span> [~] <span class="nv">@strings</span>; <span class="c1"># neunhundertfünfundzwanzig</span></pre></div>
 
 <p>Incluso los operadores de comparación se pueden reducir.
 <code>[&lt;]</code> indica si los valores están en orden estrictamente
 creciente:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> [&lt;] <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> [&lt;] <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>; <span class="c1"># True</span></pre></div>
 
 <h2 id="reducción-triangular">Reducción triangular</h2>
 <p>Si colocas una barra invertida dentro de los corchetes, obtienes una
 reducción <em>triangular</em>, que conserva todos los resultados
 intermedios en lugar de solo el final:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> [\+] <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>; <span class="c1"># (1 3 6 10 15)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> [\+] <span class="mi">1</span>.<span class="mf">.5</span>; <span class="c1"># (1 3 6 10 15)</span></pre></div>
 
 <p>Cada elemento del resultado es una suma parcial: <code>1</code>,
 luego <code>1+2</code>, luego <code>1+2+3</code>, y así sucesivamente

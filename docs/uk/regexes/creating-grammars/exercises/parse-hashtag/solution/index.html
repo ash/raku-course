@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -109,19 +109,18 @@
           <p><a href="/uk/">Курс Raku</a> / <a href="/uk/regexes">Регулярні вирази
 та граматики</a> / <a href="/uk/regexes/grammars">Граматики</a> / <a
 href="/uk/regexes/creating-grammars">Створення граматик</a> / <a
-href="/uk/regexes/creating-grammars/exercises">Exercises</a> / <a
+href="/uk/regexes/creating-grammars/exercises">Вправи</a> / <a
 href="/uk/regexes/creating-grammars/exercises/parse-hashtag">Розберіть
 хештег</a></p>
 <h1 id="розвязання-розберіть-хештег">Розв’язання: Розберіть хештег</h1>
 <p>Ось одне з можливих розв’язань задачі.</p>
 <h2 id="код">Код</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &#39;#&#39; &lt;tag&gt; </span>}
-    <span class="k">token</span><span class="n"> tag</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">'#'</span> <span class="s">&lt;tag&gt;</span> }
+    <span class="k">token</span> <span class="n">tag</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span>;</pre></div>
 
 <p>🦋 Знайдіть програму у файлі <a
 href="https://github.com/ash/raku-course/blob/master/exercises/regexes/creating-grammars/parse-hashtag.raku">parse-hashtag.raku</a>.</p>
@@ -139,13 +138,12 @@ href="https://github.com/ash/raku-course/blob/master/exercises/regexes/creating-
 хештегом — із <code>#</code> разом зі словом — і дістатися до слова
 через вкладене правило <code>word</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span><span class="n"> TOP</span>  {<span class="sr"> &lt;tag&gt; </span>}
-    <span class="k">token</span><span class="n"> tag</span>  {<span class="sr"> &#39;#&#39; &lt;word&gt; </span>}
-    <span class="k">token</span><span class="n"> word</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>  { <span class="s">&lt;tag&gt;</span> }
+    <span class="k">token</span> <span class="n">tag</span>  { <span class="s">'#'</span> <span class="s">&lt;word&gt;</span> }
+    <span class="k">token</span> <span class="n">word</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;&lt;word&gt;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span><span class="s">&lt;word&gt;</span>;</pre></div>
 
 <p>Це друкує те саме <code>｢raku｣</code>. Тепер <code>&lt;tag&gt;</code>
 захоплює весь <code>#raku</code>, а до слова всередині нього дістаються
@@ -175,7 +173,7 @@ href="/uk/regexes/creating-grammars/exercises/parse-a-time">Розберіть
 <a href="/bg/regexes/creating-grammars/exercises/parse-hashtag/solution">Български</a>
 <a href="/ru/regexes/creating-grammars/exercises/parse-hashtag/solution">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

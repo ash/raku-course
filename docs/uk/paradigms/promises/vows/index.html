@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,29 +121,27 @@ href="/uk/paradigms/promises">Промиси</a></p>
 цю обіцянку. Відтоді обіцянка вважається доступною лише для читання: її
 владнують через зарок. Звична форма — виробник, що тримає зарок
 приватним і повертає саму лише обіцянку:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">after</span>(<span class="nv">$seconds</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">after</span>(<span class="nv">$seconds</span>) {
     <span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;                       <span class="c1"># беремо право владнати</span>
-    <span class="nb">start</span> {
+    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;                       <span class="c1"># беремо право владнати</span>
+    <span class="k">start</span> {
         <span class="nb">sleep</span> <span class="nv">$seconds</span>;
-        <span class="nv">$v</span>.<span class="nb">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># владнуємо її через зарок</span>
+        <span class="nv">$v</span>.<span class="n">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># владнуємо її через зарок</span>
     }
     <span class="k">return</span> <span class="nv">$p</span>;                            <span class="c1"># тим, хто викликає, дістається лише сторона читання</span>
 }
 
-<span class="k">my</span> <span class="nv">$job</span> = <span class="nb">after</span>(<span class="mf">0.2</span>);
-<span class="nb">say</span> <span class="nv">$job</span>.<span class="nb">status</span>;   <span class="c1"># Planned</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$job</span> = <span class="n">after</span>(<span class="mf">0.2</span>);
+<span class="nb">say</span> <span class="nv">$job</span>.<span class="n">status</span>;   <span class="c1"># Planned</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span></pre></div>
 
 <p>Узяття зароку робить обіцянку справді доступною лише для читання: від
 цієї миті <code>$p.keep</code> та <code>$p.break</code> відхиляються, бо
 виняткове право владнати її тепер належить зарокові.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;
+<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">1</span>); <span class="c1"># помирає: Access denied to keep/break this Promise; already vowed</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">1</span>); <span class="c1"># помирає: Access denied to keep/break this Promise; already vowed</span></pre></div>
 
 <p>Тож той, хто викликає, може <code>await</code>-ити обіцянку, зчепити
 з нею <code>.then</code> або перевірити її <code>.status</code>, але не
@@ -180,7 +178,7 @@ href="/uk/paradigms/promises/exercises">до вправ цього розділ�
 <a href="/bg/paradigms/promises/vows">Български</a>
 <a href="/ru/paradigms/promises/vows">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

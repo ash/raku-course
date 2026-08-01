@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,10 +114,9 @@
 <p>Оператор підстановки — це <code>s///</code>. Він схожий на
 зіставлення з другим полем: шаблон іде між першими двома скісними
 рисками, а текст заміни — між останніми двома:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
 <p>Підстановка змінює змінну <strong>на місці</strong>, тож оновлюється
 сама <code>$s</code>. Текст у частині заміни є літеральним — брати його
@@ -125,10 +124,9 @@
 <p>Як і зіставлення, підстановка типово торкається лише
 <strong>першого</strong> входження. Додайте прислівник <code>:g</code>,
 щоб замінити кожне входження:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
 <p>Якщо ви хочете зберегти оригінал і отримати змінену
 <strong>копію</strong> замість зміни на місці, скористайтеся оператором
@@ -136,20 +134,18 @@
 підстановку й повертає змінений рядок, залишаючи оригінал недоторканим.
 Оскільки він не оновлює змінну на місці, спрямуйте його на неї за
 допомогою <code>given</code>, а не <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
 <p>(Запис <code>$orig ~~ S///</code> попереджає вас про те, що слід
 використати <code>given</code> — з <code>S///</code> немає чого
 змінювати на місці.)</p>
 <p>Така сама неруйнівна поведінка доступна й у вигляді методу
 <code>.subst</code>, який повертає новий рядок:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
 <section id="практика" class="practice" data-markdown="1">
 <h2>Практика</h2>
@@ -183,7 +179,7 @@ href="/uk/regexes/substitution/exercises">до вправ цього
 <a href="/bg/regexes/substitution/s-operator">Български</a>
 <a href="/ru/regexes/substitution/s-operator">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

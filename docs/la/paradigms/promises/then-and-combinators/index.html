@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,9 @@ href="/la/paradigms/promises">Promissa</a></p>
 necessitas est <strong>plura</strong> simul exspectare.
 <code>await</code> indicem promissorum accipit et effectus eorum ordine
 reddit:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Tria opera simul currunt; <code>await @jobs</code> omnia exspectat et
 <code>(1, 2, 3)</code> reddit. Quia effectus eodem ordine ac promissa
@@ -126,10 +125,9 @@ redeunt, eos ut solet reducere potes.</p>
 <p>Opus etiam in promissum concatenare potes per <code>.then</code>,
 quod blocum sequentem currit simul atque promissum perfectum est. Intus,
 <code>.result</code> valor promissi originalis est:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> novum promissum est quod effectum <code>$p</code>
 duplicat. Illud exspectare <code>20</code> dat.</p>
@@ -137,8 +135,7 @@ duplicat. Illud exspectare <code>20</code> dat.</p>
 variabilem thematis <code>$_</code> accipit — quapropter nudum
 <code>.result</code> operatur: revera <code>$_.result</code> est. Si
 mavis illi promisso nomen dare, utere bloco acuto:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Hoc eodem prorsus modo se gerit; <code>$prev</code> promissum
 originale <code>$p</code> est, et <code>$prev.result</code> valor
@@ -180,7 +177,7 @@ sectionis</a> i.</p>
 <a href="/bg/paradigms/promises/then-and-combinators">Български</a>
 <a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
 <a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

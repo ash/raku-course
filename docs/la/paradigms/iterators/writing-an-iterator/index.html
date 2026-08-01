@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,14 +117,13 @@ Illa methodus valorem sequentem reddit, vel <code>IterationEnd</code>
 cum nihil superest. Ecce iterator numerationis inversae qui numerum
 reddit et ad nihil gradum facit:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
 
-    <span class="k">method</span> <span class="nb">pull-one</span> {
+    <span class="k">method</span> <span class="n">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n--</span>;
+        <span class="k">return</span> <span class="nv">$!n</span>--;
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Unaquaeque vocatio <code>pull-one</code> primum inspicit utrum
 numeratio defecerit; si non, numerum currentem reddit eumque minuit.
@@ -132,19 +131,17 @@ Postminutio <code>$!n--</code> valorem <em>ante</em> subtractionem
 reddit, itaque numeri <code>3, 2, 1</code> exeunt. Illum manu agens, ut
 quilibet alius iterator apparet:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>Iterator per se non est quod anulus <code>for</code> directe accipere
 potest — anulus rem <em>iterabilem</em> exspectat. Involve iteratorem in
 <code>Seq</code> et percurribilis fit:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Illud <code>3</code>, <code>2</code>, <code>1</code> imprimit. In
 codice cotidiano <code>gather</code> / <code>take</code> loco eius
@@ -179,7 +176,7 @@ huius sectionis</a> i.</p>
 <a href="/bg/paradigms/iterators/writing-an-iterator">Български</a>
 <a href="/ru/paradigms/iterators/writing-an-iterator">Русский</a>
 <a href="/uk/paradigms/iterators/writing-an-iterator">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

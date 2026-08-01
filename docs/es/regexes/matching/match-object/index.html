@@ -119,19 +119,17 @@ automáticamente en la variable especial <code>$/</code>, a veces llamada
 Como cadena, es el texto que coincidió, ya sea con el método
 <code>.Str</code> o con el prefijo <code>~</code>, que es el operador de
 conversión a cadena y hace exactamente lo mismo:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;concatenate&#39;</span> ~~<span class="sr"> /cat/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'concatenate'</span> ~~ <span class="sr">/cat/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>; <span class="c1"># cat</span>
-<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span>
-</pre></div>
+<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span></pre></div>
 
 <p>También sabe <strong>dónde</strong> se encontró la coincidencia en la
 cadena. El método <code>.from</code> da la posición donde empieza y
 <code>.to</code> la posición justo después de su final:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;room 7 left&#39;</span> ~~<span class="sr"> /\d/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'room 7 left'</span> ~~ <span class="sr">/\d/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>;  <span class="c1"># 7</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">from</span>; <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">to</span>;   <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">from</span>; <span class="c1"># 5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">to</span>;   <span class="c1"># 6</span></pre></div>
 
 <p>Las posiciones se cuentan desde cero, así que el dígito
 <code>7</code> está en el índice <code>5</code>.</p>
@@ -139,9 +137,8 @@ cadena. El método <code>.from</code> da la posición donde empieza y
 objeto de coincidencia en absoluto: es el valor especial
 <code>Nil</code>. Asignar <code>Nil</code> a un escalar lo deja sin
 definir:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;abc&#39;</span> ~~<span class="sr"> /z/</span>;
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'abc'</span> ~~ <span class="sr">/z/</span>;
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Así que siempre puedes comprobar <code>.defined</code> (o simplemente
 usar el valor en contexto booleano) antes de leer el texto

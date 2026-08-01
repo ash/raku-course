@@ -117,12 +117,11 @@ on.</p>
 <p>To declare an operator, write a <code>sub</code> whose name is the
 category, a colon, and the operator’s symbol in angle brackets. Here is
 a new infix operator called <code>plus</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">infix:</span><span class="s">&lt;plus&gt;</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">infix</span>:<span class="s">&lt;plus&gt;</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
     <span class="nv">$a</span> + <span class="nv">$b</span>
 }
 
-<span class="nb">say</span> <span class="mi">3</span> <span class="nb">plus</span> <span class="mi">4</span>; <span class="c1"># 7</span>
-</pre></div>
+<span class="nb">say</span> <span class="mi">3</span> <span class="n">plus</span> <span class="mi">4</span>; <span class="c1"># 7</span></pre></div>
 
 <p>Once defined, <code>plus</code> is used between its two operands,
 exactly like any built-in infix operator.</p>
@@ -130,22 +129,20 @@ exactly like any built-in infix operator.</p>
 example — here it is as the <code>!</code> postfix operator, built on <a
 href="/advanced/metaoperators/reduction">the reduction meta-operator</a>
 you met earlier:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">postfix:</span>&lt;!&gt;(<span class="nb">Int</span> <span class="nv">$n</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">postfix</span>:<span class="s">&lt;!&gt;</span>(<span class="nb">Int</span> <span class="nv">$n</span>) {
     [*] <span class="mi">1</span>..<span class="nv">$n</span>
 }
 
-<span class="nb">say</span> <span class="mi">5</span>!; <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> <span class="mi">5</span>!; <span class="c1"># 120</span></pre></div>
 
 <p>You are not limited to letters and ASCII punctuation; an operator’s
 symbol can be any character. This prefix operator uses the section sign
 to double a number:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">prefix:</span>&lt;§&gt;(<span class="nv">$x</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">prefix</span>:<span class="s">&lt;§&gt;</span>(<span class="nv">$x</span>) {
     <span class="nv">$x</span> * <span class="mi">2</span>
 }
 
-<span class="nb">say</span> §<span class="mi">5</span>; <span class="c1"># 10</span>
-</pre></div>
+<span class="nb">say</span> §<span class="mi">5</span>; <span class="c1"># 10</span></pre></div>
 
 <p>Defining operators is a powerful tool, so use it with taste: a
 well-chosen operator can make code read like the problem domain, while

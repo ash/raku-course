@@ -115,10 +115,9 @@ href="/de/paradigms/promises">Promises</a></p>
 gebraucht wird das Warten auf <strong>mehrere</strong> zugleich.
 <code>await</code> nimmt eine Liste von Promises auf und liefert ihre
 Ergebnisse in derselben Reihenfolge:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Die drei Aufgaben laufen nebenläufig; <code>await @jobs</code> wartet
 auf alle und reicht <code>(1, 2, 3)</code> zurück. Da die Ergebnisse in
@@ -127,10 +126,9 @@ gewohnt reduzieren.</p>
 <p>Sie können mit <code>.then</code> auch Arbeit an ein Promise
 anhängen, was einen Folgeblock ausführt, sobald das Promise fertig ist.
 Darin ist <code>.result</code> der Wert des ursprünglichen Promise:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> ist ein neues Promise, das das Ergebnis von
 <code>$p</code> verdoppelt. Es abzuwarten ergibt <code>20</code>.</p>
@@ -139,8 +137,7 @@ Promise also als Themenvariable <code>$_</code> — weshalb ein blankes
 <code>.result</code> funktioniert: Es ist in Wahrheit
 <code>$_.result</code>. Möchten Sie diesem Promise lieber einen Namen
 geben, nehmen Sie einen Pointy Block:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Das verhält sich genau gleich; <code>$prev</code> ist das
 ursprüngliche Promise <code>$p</code>, und <code>$prev.result</code> ist

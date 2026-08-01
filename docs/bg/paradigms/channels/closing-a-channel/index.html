@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,24 +118,22 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 <code>.list</code>, който ви дава всяка останала стойност и приключва,
 щом каналът е затворен:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">3</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">3</span>);
 <span class="nv">$c</span>.<span class="nb">close</span>;
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">list</span>; <span class="c1"># (1 2 3)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">list</span>; <span class="c1"># (1 2 3)</span></pre></div>
 
 <p>Понеже <code>.list</code> чака каналът да бъде затворен, той е
 идеален за „събери всичко, което производителят изпрати“. С резултата
 можете да работите като с всеки друг списък — да го сумирате, да го
 преброите и така нататък:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>;
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.5</span>;
 <span class="nv">$c</span>.<span class="nb">close</span>;
 
-<span class="nb">say</span> [+] <span class="nv">$c</span>.<span class="n">list</span>; <span class="c1"># 15</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nv">$c</span>.<span class="nb">list</span>; <span class="c1"># 15</span></pre></div>
 
 <p>Затварянето е начинът потребителят да разбере кога да спре. Без него
 <code>.list</code> (или цикъл от <code>.receive</code>) би чакал вечно
@@ -174,7 +172,7 @@ href="/bg/paradigms/channels/exercises">към упражненията в то�
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/channels/closing-a-channel">Русский</a>
 <a href="/uk/paradigms/channels/closing-a-channel">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

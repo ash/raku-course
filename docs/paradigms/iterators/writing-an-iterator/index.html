@@ -117,14 +117,13 @@ That method returns the next value, or <code>IterationEnd</code> when
 there is nothing left. Here is a countdown iterator that yields a number
 and steps towards zero:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Countdown</span> <span class="k">does</span> <span class="nb">Iterator</span> {
-    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="k">rw</span>;
+    <span class="k">has</span> <span class="nb">Int</span> <span class="nv">$.n</span> <span class="k">is</span> <span class="n">rw</span>;
 
-    <span class="k">method</span> <span class="nb">pull-one</span> {
+    <span class="k">method</span> <span class="n">pull-one</span> {
         <span class="k">return</span> <span class="n">IterationEnd</span> <span class="k">if</span> <span class="nv">$!n</span> &lt;= <span class="mi">0</span>;
-        <span class="k">return</span> <span class="nv">$!n--</span>;
+        <span class="k">return</span> <span class="nv">$!n</span>--;
     }
-}
-</pre></div>
+}</pre></div>
 
 <p>Each call to <code>pull-one</code> first checks whether the count has
 run out; if not, it returns the current number and decrements it. The
@@ -132,19 +131,17 @@ post-decrement <code>$!n--</code> returns the value <em>before</em>
 subtracting, so the numbers come out <code>3, 2, 1</code>. Driving it by
 hand looks just like any other iterator:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 3</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 3</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">pull-one</span> =:= <span class="n">IterationEnd</span>; <span class="c1"># True</span></pre></div>
 
 <p>An iterator on its own is not something a <code>for</code> loop can
 take directly — a loop expects an <em>iterable</em>. Wrap the iterator
 in a <code>Seq</code> and it becomes loopable:</p>
 <div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="nb">Seq</span>.<span class="nb">new</span>(<span class="n">Countdown</span>.<span class="nb">new</span>(<span class="n">n</span> =&gt; <span class="mi">3</span>)) -&gt; <span class="nv">$x</span> {
     <span class="nb">say</span> <span class="nv">$x</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>That prints <code>3</code>, <code>2</code>, <code>1</code>. In
 everyday code you would reach for <code>gather</code> /

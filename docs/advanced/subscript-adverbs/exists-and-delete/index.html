@@ -115,9 +115,8 @@ there a value at this key or index? It returns a Boolean without
 fetching anything:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%h</span> = <span class="n">apple</span> =&gt; <span class="mi">1</span>, <span class="n">pear</span> =&gt; <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">%h&lt;apple&gt;</span>:<span class="n">exists</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">%h&lt;plum&gt;</span>:<span class="n">exists</span>;  <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%h</span><span class="s">&lt;apple&gt;</span>:<span class="n">exists</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">%h</span><span class="s">&lt;plum&gt;</span>:<span class="n">exists</span>;  <span class="c1"># False</span></pre></div>
 
 <p>This is the right way to test for a key, because simply reading
 <code>%h&lt;plum&gt;</code> would either return an undefined value or,
@@ -127,10 +126,9 @@ depending on the data, hide the difference between “missing” and
 value it held:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%h</span> = <span class="n">apple</span> =&gt; <span class="mi">1</span>, <span class="n">pear</span> =&gt; <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">%h&lt;apple&gt;</span>:<span class="n">delete</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">%h</span><span class="s">&lt;apple&gt;</span>:<span class="n">delete</span>; <span class="c1"># 1</span>
 <span class="nb">say</span> <span class="nv">%h</span>.<span class="nb">keys</span>;          <span class="c1"># (pear)</span>
-<span class="nb">say</span> <span class="nv">%h</span>;               <span class="c1"># {pear =&gt; 2}</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%h</span>;               <span class="c1"># {pear =&gt; 2}</span></pre></div>
 
 <p>The <code>apple</code> entry is gone, and the deleted value
 <code>1</code> is handed back so you can use it.</p>
@@ -141,13 +139,11 @@ value it held:</p>
 <span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">5</span>]:<span class="n">exists</span>; <span class="c1"># False</span>
 
 <span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">delete</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">exists</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">exists</span>; <span class="c1"># False</span></pre></div>
 
 <p>If you are curious how the array will look like after a middle item
 is removed, here’s the answer:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [10 (Any) 30]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [10 (Any) 30]</span></pre></div>
 
 <p>So a single, consistent notation lets you query and modify containers
 in place, rather than reaching for separate methods.</p>

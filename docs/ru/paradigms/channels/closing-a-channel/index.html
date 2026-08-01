@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,24 +119,22 @@ href="/ru/paradigms/channels">Каналы</a></p>
 он выдаёт все оставшиеся значения и завершается, как только канал
 закрыт:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">3</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">3</span>);
 <span class="nv">$c</span>.<span class="nb">close</span>;
 
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">list</span>; <span class="c1"># (1 2 3)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">list</span>; <span class="c1"># (1 2 3)</span></pre></div>
 
 <p>Поскольку <code>.list</code> дожидается закрытия канала, он идеально
 подходит для «собрать всё, что отправит производитель». С результатом
 можно обращаться как с любым другим списком — просуммировать,
 пересчитать и так далее:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>;
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.5</span>;
 <span class="nv">$c</span>.<span class="nb">close</span>;
 
-<span class="nb">say</span> [+] <span class="nv">$c</span>.<span class="n">list</span>; <span class="c1"># 15</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nv">$c</span>.<span class="nb">list</span>; <span class="c1"># 15</span></pre></div>
 
 <p>Закрытие — это то, как потребитель узнаёт, когда остановиться. Без
 него <code>.list</code> (или цикл из <code>.receive</code>) ждал бы
@@ -175,7 +173,7 @@ href="/ru/paradigms/channels/exercises">к упражнениям этого
 <a href="/bg/paradigms/channels/closing-a-channel">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/channels/closing-a-channel">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,15 +118,13 @@ no tiem ir vērts zināt.</p>
 <p>Krusteniskais metaoperators <code>X</code> sapāro
 <strong>katru</strong> viena saraksta elementu ar <strong>katru</strong>
 otra saraksta elementu — Dekarta reizinājums:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
 
 <p>Tāpat kā zip, tas var ietvert operatoru, lai darbotos ar katru pāri.
 <code>X~</code> savieno katru pāri virknē, un <code>X*</code>
 sareizina:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
 
 <p>Kamēr zip apstaigā divus sarakstus sinhroni, krusteniskais operators
 tos apvieno visos iespējamos veidos.</p>
@@ -137,8 +135,7 @@ saraksta elementam. Operators tiek ietversts starp smailo
 sarakstiem tas strādā pa elementiem, līdzīgi kā zip; ar vienu vērtību
 vienā pusē tā tiek izstiepta pār visu sarakstu:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
 
 <p>Abām bultiņām nav jārāda vienā virzienā, un to virziens nosaka, kas
 notiek, ja saraksti atšķiras garumā — bultiņa, kas rāda
@@ -155,13 +152,11 @@ tiek atkārtots, lai sasniegtu labo;</li>
 <li><code>&lt;&lt;op&gt;&gt;</code> — <strong>īsākais</strong> saraksts
 tiek atkārtots, lai sasniegtu garāko.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span></pre></div>
 
 <p>Ir arī unārā forma, kas izsauc metodi katram elementam.
 <code>&gt;&gt;.uc</code> pārveido katru virkni lielajos burtos:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
 
 <p>Hiper operācijas arī signalizē, ka darbu <em>var</em> veikt paralēli
 — ar saistīto <code>.hyper</code> metodi jūs iepazīsieties vēlāk <a
@@ -174,9 +169,8 @@ negēts tā rezultāts. Pazīstamais <code>!=</code> (nav vienāds) ir tieši
 citiem Būla operatoriem, piemēram, <code>eq</code> un
 <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — not equal as strings</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is not divisible by 2</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — not equal as strings</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is not divisible by 2</span></pre></div>
 
 <p>Īsāk sakot, <code>$a !op $b</code> ir vienkārši glītāks veids, kā
 rakstīt <code>!($a op $b)</code>.</p>
@@ -185,8 +179,7 @@ kas cenšas piedāvāt vienu regulāru veidu katras lietas izteikšanai, Raku
 labprāt piedāvā vairākus — tāpēc negācijas <code>!eq</code> pastāv
 līdzās specializētajam <code>ne</code> operatoram, un abi nozīmē tieši
 to pašu:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — the same test as &#39;a&#39; !eq &#39;b&#39;</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — the same test as 'a' !eq 'b'</span></pre></div>
 
 <section id="prakse" class="practice" data-markdown="1">
 <h2>Prakse</h2>
@@ -220,7 +213,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/advanced/metaoperators/more">Български</a>
 <a href="/ru/advanced/metaoperators/more">Русский</a>
 <a href="/uk/advanced/metaoperators/more">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

@@ -123,25 +123,22 @@ corrisponde (lookahead positivo)</li>
 <p>L’asserzione in sé non riconosce alcun carattere; mette alla prova
 solo la posizione. Per esempio, riconosci un numero solo quando è
 seguito dalla parola <code>dollars</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; dollars&#39;&gt; /</span>; <span class="c1"># ｢100｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' dollars'&gt; /</span>; <span class="c1"># ｢100｣</span></pre></div>
 
 <p>La corrispondenza è solo <code>100</code> — il testo
 <code>dollars</code> è stato controllato ma non incluso.</p>
 <p>Poiché il lookahead asserisce solo ciò che segue, lo stesso numero
 corrisponde o no a seconda della valuta che gli sta dopo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 euro&#39;</span>    ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'100 euro'</span>    ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Le cifre sono identiche in entrambe le stringhe, ma l’asserzione
 accetta <code>100</code> solo quando segue <code>euro</code>.</p>
 <p>La forma negativa è utile per «… ma non quando è seguito da …».
 Riconosci <code>cat</code> solo quando <strong>non</strong> è seguito da
 una cifra:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cats&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cat5&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'cats'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'cat5'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>In <code>cat5</code> il lookahead vede una cifra subito dopo
 <code>cat</code>, quindi l’asserzione negativa fallisce e fallisce

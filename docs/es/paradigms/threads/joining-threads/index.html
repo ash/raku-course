@@ -114,10 +114,9 @@ concurrente</a> / <a href="/es/paradigms/threads">Hilos</a></p>
 <p>Para esperar a que un hilo termine, llama a <code>.finish</code>
 sobre él (también se escribe <code>.join</code>). El programa principal
 se detiene ahí hasta que el hilo acaba:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">&#39;in the thread&#39;</span> });
-<span class="nv">$t</span>.<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
+<span class="nv">$t</span>.<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
 
 <p>Esto imprime:</p>
 <div class="highlight"><pre>in the thread
@@ -130,10 +129,9 @@ incluso terminar antes de que el hilo tuviera ocasión de imprimir.</p>
 todos han terminado:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
-<span class="nv">$a</span>.<span class="nb">finish</span>;
-<span class="nv">$b</span>.<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
-</pre></div>
+<span class="nv">$a</span>.<span class="n">finish</span>;
+<span class="nv">$b</span>.<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
 
 <p>Los dos hilos corren de forma concurrente, y unir ambos antes del
 <code>say</code> final garantiza que <code>both finished</code> solo se
@@ -147,9 +145,8 @@ con el operador <code>all</code>, <code>&amp;</code>, y llama a
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
-(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="nb">finish</span>;
-<span class="nb">say</span> <span class="s">&#39;both finished&#39;</span>;
-</pre></div>
+(<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
+<span class="nb">say</span> <span class="s">'both finished'</span>;</pre></div>
 
 <p>Llamar a <code>.finish</code> sobre <code>$a &amp; $b</code> lo
 ejecuta sobre ambos hilos, así que el programa espera hasta que ninguno

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,14 +117,13 @@ href="/uk/advanced/introspection">Інтроспекція контейнері�
 <p>Маючи контейнер, можна запитати ім’я його класу через
 <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
-<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">&#39;42&#39;</span>;
+<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">'42'</span>;
 
-<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="nb">name</span>;     <span class="c1"># Int</span>
-<span class="nb">say</span> <span class="nv">$var1</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="n">name</span>;     <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span>
 
-<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="nb">name</span>;     <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var2</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="n">name</span>;     <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var2</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span></pre></div>
 
 <p><code>.^name</code> для змінної повертає тип <em>значення</em>
 (<code>Int</code> або <code>Str</code>), а <code>.VAR.^name</code>
@@ -134,28 +133,24 @@ href="/uk/advanced/introspection">Інтроспекція контейнері�
 <p>Метод <code>default</code> повертає типове значення контейнера — те,
 що ви отримуєте, коли контейнер не містить нічого власного. Трейтом
 <code>is default</code> ви задаєте його явно:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">'Raku'</span>);
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># Raku</span></pre></div>
 
 <p>Без явного типового значення ним є тип контейнера. Для нетипізованого
 контейнера це <code>Any</code>, незалежно від того, яке значення він
 зараз містить:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Any)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">'Raku'</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Any)</span></pre></div>
 
 <p>Для типізованого контейнера це тип обмеження:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="name-1"><code>name</code></h2>
 <p>Метод <code>name</code> повертає ім’я контейнера разом із
 сигілом:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="nb">name</span>; <span class="c1"># $language</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">name</span>; <span class="c1"># $language</span></pre></div>
 
 <p>Стежте за тим, щоб не плутати <code>^name</code> (тип) і
 <code>name</code> (власне ім’я змінної).</p>
@@ -184,7 +179,7 @@ href="/uk/advanced/introspection/exercises">до вправ цього
 <a href="/bg/advanced/introspection/var">Български</a>
 <a href="/ru/advanced/introspection/var">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,25 +115,22 @@ href="/uk/oop/external-programs">Запуск зовнішніх програм 
 іменованих значень на кшталт <code>HOME</code>, <code>PATH</code> чи
 <code>USER</code>, які надає операційна система. У Raku вони доступні в
 динамічному хеші <code>%*ENV</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="vg">%*ENV&lt;HOME&gt;</span>; <span class="c1"># домашній каталог, наприклад /home/anna</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;HOME&gt;</span>; <span class="c1"># домашній каталог, наприклад /home/anna</span></pre></div>
 
 <p>Змінну середовища читають, індексуючи <code>%*ENV</code> її іменем.
 Оскільки це звичайний хеш, ви можете також перевірити, чи змінну
 встановлено, або змінити її для програм, які запускаєте:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
-<span class="nb">say</span> <span class="vg">%*ENV&lt;GREETING&gt;</span>; <span class="c1"># Hello</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
+<span class="nb">say</span> <span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span>; <span class="c1"># Hello</span></pre></div>
 
 <p>Встановлення ключа в <code>%*ENV</code> додає його до середовища, яке
 успадкує будь-яка програма, згодом запущена через <code>run</code> чи
 <code>shell</code>, — саме так конфігурацію передають дочірній
 програмі:</p>
-<div class="highlight raku"><pre><span></span><span class="vg">%*ENV&lt;GREETING&gt;</span> = <span class="s">&#39;Hello&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nv">%*ENV</span><span class="s">&lt;GREETING&gt;</span> = <span class="s">'Hello'</span>;
 
-<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;echo $GREETING&#39;</span>, :<span class="n">out</span>;
-<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="n">close</span>).<span class="nb">chomp</span>; <span class="c1"># Hello</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$proc</span> = <span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'echo $GREETING'</span>, :<span class="n">out</span>;
+<span class="nb">say</span> <span class="nv">$proc</span>.<span class="n">out</span>.<span class="nb">slurp</span>(:<span class="nb">close</span>).<span class="n">chomp</span>; <span class="c1"># Hello</span></pre></div>
 
 <p>Змінну встановлено в середовищі вашої програми <em>до</em> запуску
 дитини, тож оболонка, яку запускає <code>run</code>, уже має
@@ -179,7 +176,7 @@ href="/uk/oop/external-programs/exercises">до вправ цього
 <a href="/bg/oop/external-programs/environment">Български</a>
 <a href="/ru/oop/external-programs/environment">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

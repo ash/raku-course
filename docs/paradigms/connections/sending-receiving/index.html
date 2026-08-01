@@ -114,14 +114,13 @@ href="/paradigms/connections">Making remote connections</a></p>
 <p>Once a socket is open, you exchange data through it. Send text with
 <code>.print</code>, and read what comes back with
 <code>.recv</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$conn</span> = <span class="nb">IO::Socket::INET</span>.<span class="nb">new</span>(:<span class="n">host</span>(<span class="s">&#39;raku.org&#39;</span>), :<span class="n">port</span>(<span class="mi">80</span>));
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$conn</span> = <span class="n">IO::Socket::INET</span>.<span class="nb">new</span>(:<span class="n">host</span>(<span class="s">'raku.org'</span>), :<span class="n">port</span>(<span class="mi">80</span>));
 
 <span class="nv">$conn</span>.<span class="nb">print</span>(<span class="s">&quot;GET / HTTP/1.0\r\nHost: raku.org\r\n\r\n&quot;</span>);
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nv">$conn</span>.<span class="nb">recv</span>;
+<span class="k">my</span> <span class="nv">$response</span> = <span class="nv">$conn</span>.<span class="n">recv</span>;
 
 <span class="nv">$conn</span>.<span class="nb">close</span>;
-<span class="nb">say</span> <span class="nv">$response</span>.<span class="nb">lines</span>.<span class="nb">first</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$response</span>.<span class="nb">lines</span>.<span class="nb">first</span>;</pre></div>
 
 <p>This sends a minimal HTTP request and reads the server’s reply into
 <code>$response</code>. The first line of a reply from a web server is

@@ -118,14 +118,13 @@ blocco</h2>
 l’esecuzione entra in un blocco, mentre il phaser <code>LEAVE</code>
 viene eseguito ogni volta che ne esce, indipendentemente dalla riga in
 cui sono scritti:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;before block&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'before block'</span>;
 {
-    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">&#39;leaving&#39;</span>;
-    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">&#39;entering&#39;</span>;
-    <span class="nb">say</span> <span class="s">&#39;inside&#39;</span>;
+    <span class="k">LEAVE</span> <span class="nb">say</span> <span class="s">'leaving'</span>;
+    <span class="k">ENTER</span> <span class="nb">say</span> <span class="s">'entering'</span>;
+    <span class="nb">say</span> <span class="s">'inside'</span>;
 }
-<span class="nb">say</span> <span class="s">&#39;after block&#39;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">'after block'</span>;</pre></div>
 
 <p>L’output mostra che <code>ENTER</code> viene eseguito per primo e
 <code>LEAVE</code> per ultimo, attorno al corpo del blocco:</p>
@@ -142,19 +141,18 @@ una singola istruzione, e se ne possono impostare diversi. Quando un
 blocco ha più di un <code>LEAVE</code>, questi vengono eseguiti in
 ordine inverso: l’ultimo registrato viene eseguito per primo, quindi il
 blocco si srotola come uno stack:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;open A&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'open A'</span>;
 {
     <span class="k">LEAVE</span> {
-        <span class="nb">say</span> <span class="s">&#39;close A&#39;</span>;
+        <span class="nb">say</span> <span class="s">'close A'</span>;
     }
-    <span class="nb">say</span> <span class="s">&#39;open B&#39;</span>;
+    <span class="nb">say</span> <span class="s">'open B'</span>;
     <span class="k">LEAVE</span> {
-        <span class="nb">say</span> <span class="s">&#39;close B&#39;</span>;
+        <span class="nb">say</span> <span class="s">'close B'</span>;
     }
-    <span class="nb">say</span> <span class="s">&#39;work&#39;</span>;
+    <span class="nb">say</span> <span class="s">'work'</span>;
 }
-<span class="nb">say</span> <span class="s">&#39;done&#39;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
 
 <p>La risorsa <code>A</code> viene aperta per prima e chiusa per
 ultima:</p>
@@ -176,13 +174,12 @@ dell’iterazione: <code>FIRST</code> viene eseguito una volta prima della
 prima iterazione, <code>LAST</code> viene eseguito una volta dopo
 l’ultima, e <code>NEXT</code> viene eseguito alla fine di ogni
 iterazione:</p>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span> {
-    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">&#39;-- first&#39;</span>;
-    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">&#39;-- last&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span> {
+    <span class="k">FIRST</span> <span class="nb">say</span> <span class="s">'-- first'</span>;
+    <span class="k">LAST</span>  <span class="nb">say</span> <span class="s">'-- last'</span>;
     <span class="k">NEXT</span>  <span class="nb">say</span> <span class="s">&quot;-- next (was $_)&quot;</span>;
     <span class="nb">say</span> <span class="s">&quot;body $_&quot;</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Il ciclo produce:</p>
 <div class="highlight"><pre>-- first

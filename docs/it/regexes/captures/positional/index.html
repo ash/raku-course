@@ -115,11 +115,10 @@ href="/it/regexes/captures">Catture</a></p>
 <em>catturarla</em>. Dopo una corrispondenza riuscita, ogni pezzo
 catturato è disponibile come <code>$0</code>, <code>$1</code> e così
 via, numerato da zero nell’ordine in cui si aprono le parentesi:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>La prima coppia di parentesi ha catturato l’anno in <code>$0</code>,
 la seconda ha catturato il mese in <code>$1</code>. Il testo fra di esse
@@ -128,10 +127,9 @@ la seconda ha catturato il mese in <code>$1</code>. Il testo fra di esse
 chiederle il suo <code>.Str</code>, la sua posizione e così via. In una
 stringa fra virgolette doppie una cattura si interpola come il testo che
 ha riconosciuto:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Qui le due parole catturate vengono stampate nell’ordine opposto, il
 che le scambia.</p>
@@ -139,12 +137,11 @@ che le scambia.</p>
 <code>$/</code>, e <code>$0</code> è in realtà un modo breve di scrivere
 <code>$/[0]</code>. Puoi lavorare direttamente attraverso
 <code>$/</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}</pre></div>
 
 <p><code>$/</code> è l’intero oggetto match, indicizzarlo raggiunge le
 catture posizionali, e <code>.elems</code> ti dice quante ce ne

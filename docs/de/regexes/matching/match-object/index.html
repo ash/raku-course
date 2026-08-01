@@ -119,29 +119,26 @@ Match-Variable“ genannt wird.</p>
 Zeichenkette ist es der getroffene Text — entweder über die Methode
 <code>.Str</code> oder über das Präfix <code>~</code>, den Operator zur
 Zeichenketten-Umwandlung, der genau dasselbe tut:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;concatenate&#39;</span> ~~<span class="sr"> /cat/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'concatenate'</span> ~~ <span class="sr">/cat/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>; <span class="c1"># cat</span>
-<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span>
-</pre></div>
+<span class="nb">say</span> ~<span class="nv">$m</span>;    <span class="c1"># cat</span></pre></div>
 
 <p>Es weiß auch, <strong>wo</strong> in der Zeichenkette der Treffer
 gefunden wurde. Die Methode <code>.from</code> liefert die Position, an
 der er beginnt, und <code>.to</code> die Position direkt hinter seinem
 Ende:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;room 7 left&#39;</span> ~~<span class="sr"> /\d/</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'room 7 left'</span> ~~ <span class="sr">/\d/</span>;
 <span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">Str</span>;  <span class="c1"># 7</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">from</span>; <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">to</span>;   <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">from</span>; <span class="c1"># 5</span>
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="n">to</span>;   <span class="c1"># 6</span></pre></div>
 
 <p>Positionen werden ab null gezählt, die Ziffer <code>7</code> steht
 also an Index <code>5</code>.</p>
 <p>Wenn der Regex <strong>nicht</strong> trifft, ist das Ergebnis gar
 kein Match-Objekt — es ist der besondere Wert <code>Nil</code>.
 <code>Nil</code> einem Skalar zuzuweisen lässt ihn undefiniert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">&#39;abc&#39;</span> ~~<span class="sr"> /z/</span>;
-<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="s">'abc'</span> ~~ <span class="sr">/z/</span>;
+<span class="nb">say</span> <span class="nv">$m</span>.<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Sie können also stets <code>.defined</code> prüfen (oder den Wert
 einfach in einem Wahrheitszusammenhang verwenden), bevor Sie den

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,19 +118,18 @@ supply при поискване</a></p>
 двама слушатели наблюдават поток от събития: <code>log</code>, който
 записва всичко, и <code>alert</code>, който се присъединява по-късно и
 си тръгва по-рано.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$events</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
-<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># първият слушател се присъединява</span>
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;start&#39;</span>);
+<span class="k">my</span> <span class="nv">$log</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;log:   $v&quot;</span> });    <span class="c1"># първият слушател се присъединява</span>
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'start'</span>);
 
-<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># присъединява се втори слушател</span>
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;warning&#39;</span>);
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;all clear&#39;</span>);
+<span class="k">my</span> <span class="nv">$alert</span> = <span class="nv">$events</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nb">say</span> <span class="s">&quot;alert: $v&quot;</span> });  <span class="c1"># присъединява се втори слушател</span>
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'warning'</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'all clear'</span>);
 
 <span class="nv">$log</span>.<span class="nb">close</span>;                                          <span class="c1"># първият слушател си тръгва</span>
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="s">&#39;stop&#39;</span>);
-</pre></div>
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="s">'stop'</span>);</pre></div>
 
 <p>Това отпечатва:</p>
 <div class="highlight"><pre>log:   start
@@ -236,7 +235,7 @@ href="/bg/paradigms/supply-kinds/exercises">към упражненията в �
 <span class="lang-current">Български</span>
 <a href="/ru/paradigms/supply-kinds/live-in-action">Русский</a>
 <a href="/uk/paradigms/supply-kinds/live-in-action">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

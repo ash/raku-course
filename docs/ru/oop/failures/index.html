@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,13 +120,12 @@ href="/ru/oop/exceptions">Исключения</a></p>
 объект <code>Failure</code>. <code>Failure</code> не определён, поэтому
 вызывающий код может тихо его проверить:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">divide</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">fail</span> <span class="s">&#39;cannot divide by zero&#39;</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
+    <span class="nb">fail</span> <span class="s">'cannot divide by zero'</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
     <span class="k">return</span> <span class="nv">$a</span> / <span class="nv">$b</span>;
 }
 
 <span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">2</span>);         <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Успешный вызов возвращает <code>5</code>. Неудачный возвращает
 <code>Failure</code>, который на <code>defined</code> отвечает
@@ -144,15 +143,13 @@ href="/ru/oop/exceptions">Исключения</a></p>
 <p><strong>Деление на ноль</strong> тихо порождает значение и бросает
 исключение лишь тогда, когда вы им действительно воспользуетесь:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span> / <span class="mi">0</span>;   <span class="c1"># ошибки пока нет</span>
-<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># бросает только здесь, когда значение используется</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># бросает только здесь, когда значение используется</span></pre></div>
 
 <p><strong>Неудачно завершившаяся внешняя программа</strong> возвращает
 <code>Proc</code>, который бросает исключение, только если вы отбросите
 его необработанным; сохраните и исследуйте его — и он останется
 безмолвным значением:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;   <span class="c1"># неудачный Proc отброшен, поэтому здесь бросается исключение</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;   <span class="c1"># неудачный Proc отброшен, поэтому здесь бросается исключение</span></pre></div>
 
 <p>В каждом случае проблема не останавливает программу в тот миг, когда
 возникает: она становится значением, которое можно проверить, и
@@ -202,7 +199,7 @@ href="/ru/oop/failures/exercises/soft-divide">Мягкое обратное чи
 <a href="/bg/oop/failures">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/oop/failures">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

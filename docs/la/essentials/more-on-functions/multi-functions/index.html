@@ -115,17 +115,15 @@ href="/la/essentials/functions-essentials">Fundamenta functionum</a> /
 functionis signaturam. Permittit creare functiones quae nomen
 communicant sed diversos generum inputorum habent. Utere
 <code>multi</code> declaratore pro singulis variantibus functionis.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(Bene est omittere <code>sub</code> post <code>multi</code>.)</p>
 <p>Si duas variantes eiusdem functionis habes, compilator multiplicem
 distributionem facit secundum argumenta quae in vocatione functionis
 videt. Compara sequentes duas vocationes:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>Prima vocatio functionem cum parametris integris excitat, dum secunda
 vocatio alteram variantem functionis quae duos chordas exspectat
@@ -134,16 +132,14 @@ currit.</p>
 <p>Casu interessante pro multi-functionibus est habere variantes quae
 valores literales ut parametros habent. Considera sequentes duas
 variantes:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Hoc est responsum&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x non est responsum&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Hoc est responsum'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x non est responsum&quot;</span>}</pre></div>
 
 <p>Prima varians solum curritur cum functionem cum exacto valore 42
 vocas. In aliis casibus, secunda varians adhibetur. Ordo in quo hae
 functiones definiuntur non refert.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 non est responsum</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Hoc est responsum</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 non est responsum</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Hoc est responsum</span></pre></div>
 
 <section id="exercitatio" class="practice" data-markdown="1">
 <h2>Exercitatio</h2>

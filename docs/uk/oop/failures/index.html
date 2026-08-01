@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,13 +119,12 @@ href="/uk/oop/exceptions">Винятки</a></p>
 <code>Failure</code>. <code>Failure</code> є невизначеним, тож викликач
 може тихо його перевірити:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">divide</span>(<span class="nv">$a</span>, <span class="nv">$b</span>) {
-    <span class="nb">fail</span> <span class="s">&#39;cannot divide by zero&#39;</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
+    <span class="nb">fail</span> <span class="s">'cannot divide by zero'</span> <span class="k">if</span> <span class="nv">$b</span> == <span class="mi">0</span>;
     <span class="k">return</span> <span class="nv">$a</span> / <span class="nv">$b</span>;
 }
 
 <span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">2</span>);         <span class="c1"># 5</span>
-<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">divide</span>(<span class="mi">10</span>, <span class="mi">0</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Успішний виклик повертає <code>5</code>. Невдалий виклик повертає
 <code>Failure</code>, який для <code>defined</code> повідомляє
@@ -144,15 +143,13 @@ href="/uk/oop/exceptions">Винятки</a></p>
 <p><strong>Ділення на нуль</strong> тихо створює значення й кидає
 виняток лише тоді, коли ви ним справді користуєтеся:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">1</span> / <span class="mi">0</span>;   <span class="c1"># помилки ще немає</span>
-<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># кидає лише тут, коли значення використано</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$x</span>;           <span class="c1"># кидає лише тут, коли значення використано</span></pre></div>
 
 <p><strong>Зовнішня програма, що зазнала невдачі,</strong> повертає
 <code>Proc</code>, який кидає виняток, лише якщо ви відкидаєте його
 необробленим; збережіть його й дослідіть — і він лишиться тихим
 значенням:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">&#39;sh&#39;</span>, <span class="s">&#39;-c&#39;</span>, <span class="s">&#39;exit 1&#39;</span>;   <span class="c1"># невдалий Proc відкинуто, тож це кидає виняток</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">run</span> <span class="s">'sh'</span>, <span class="s">'-c'</span>, <span class="s">'exit 1'</span>;   <span class="c1"># невдалий Proc відкинуто, тож це кидає виняток</span></pre></div>
 
 <p>У кожному з випадків негаразд не спиняє програму тієї миті, коли
 стається: він стає значенням, яке можна перевірити, і переростає в
@@ -201,7 +198,7 @@ href="/uk/oop/failures/exercises/soft-divide">М’яке обернене чи�
 <a href="/bg/oop/failures">Български</a>
 <a href="/ru/oop/failures">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

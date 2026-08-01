@@ -1,36 +1,31 @@
 ---
 title: Quomodo Rakudo installare
+translations_gpt:
 ---
 
 {% include menu.html %}
 
-Ad programmam in Raku exsequendum, necesse est compilatorem habere. Visita [situm Rakudo](https://rakudo.org) ut versionem idoneam pro tuo systemate operante deponas.
-
-Duae sunt optiones principales. Potes compilatorem ipsum installare aut Rakudo Star suite (etiam scriptum Rakudo *) installare. Rakudo Star includit procuratorem fasciculorum et pauca modula utilia.
+Ut programma in Raku exsequaris, compilatorem installatum habere debes. Hic cursus Rakudo adhibet; alter compilator, [Raku++](/la/essentials/the-rakupp-compiler), [seorsum](/la/essentials/how-to-install-rakupp) installatur. Adi [sedem interretialem Rakudo](https://rakudo.org) ut versionem systemati tuo aptam deprimas.
 
 ## Fontes
 
-Potes installer pro tuo systemate apud [rakudo.org/downloads](https://rakudo.org/downloads) deponere. Versiones pro omnibus maioribus systematibus operantibus existunt: Windows, Mac OS, et Linux. Sunt etiam codices fontes quos ipse compilare potes.
-
-## Rakudo Star
-
-Etiam possibile est fasciculum, Rakudo Star, installare, currendo installer quem apud [rakudo.org/star](https://rakudo.org/star) accipis. Versionis numerum antequam id installes inspice. Potes etiam paginam appellatam ‘[3rd-Party Rakudo Star Bundle Packages](https://rakudo.org/star/third-party)’ inspicere ut plures optiones videas.
+Programma installationis systemati tuo aptum apud [rakudo.org/downloads](https://rakudo.org/downloads) deprimere potes. Versiones sunt pro omnibus systematibus praecipuis: Windows, Mac OS, Linux. Sunt etiam codices fontales, quos ipse compilare potes.
 
 ## Imagines Docker
 
-Rakudo Star ut imago docker praesto est. Uti potes ad programmata currenda et ad parvos scriptores in REPL testa probandos. Omnes instructiones apud [github.com/Raku/docker](https://github.com/Raku/docker) invenies.
+Rakudo etiam ut imago docker praesto est. Ea uti potes et ad programmata exsequenda et ad brevia scripta in cortice REPL probanda. Omnia praecepta apud [github.com/Raku/docker](https://github.com/Raku/docker) invenies.
 
 ## Numeri versionum
 
-Systema numerandi versionum Rakudo numerum versionis format ut numerus bipartitus: annus et mensis diei emissionis. Facile videre potes quam recens sit tuus compilator. Curras sequentem mandatum ut numerum versionis videas:
+Ratio numerorum Rakudo numerum versionis ex duabus partibus format: anno et mense diei emissionis. Ita statim vides quam recens sit compilator tuus. Hanc lineam imperandi exsequere ut numerum versionis videas:
 
 ```console
 $ raku -v
-Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2020.10.
+Welcome to 𝐑𝐚𝐤𝐮𝐝𝐨™ v2026.06.
 Implementing the 𝐑𝐚𝐤𝐮™ programming language v6.d.
-Built on MoarVM version 2020.10.
+Built on MoarVM version 2026.06.
 ```
 
-Tres numeros versionum hic videre potes. Primus est numerus versionis Rakudo ipsius: `v2020.10`. Deinde venit numerus versionis linguae Raku: `v6.d`. Renovationes nunc litteram proximam ut partem minoris versionis accipient, e.g., `v6.e`, etc. Denique, nomen machinae virtualis in hoc compilatore usae videmus: MoarVM versio `2020.10`.
+Hic tres numeros versionum vides. Primus est versio ipsius Rakudo: `v2026.06`. Deinde sequitur versio linguae Raku: `v6.d`. Renovationes in praesenti litteram sequentem ut minorem versionis partem accipiunt, ut `v6.e` et cetera. Denique nomen machinae virtualis videmus qua hic compilator utitur: MoarVM versio `2026.06`.
 
 {% include nav.html %}

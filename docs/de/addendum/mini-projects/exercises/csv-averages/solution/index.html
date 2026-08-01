@@ -115,11 +115,11 @@ CSV-Zeilen</a></p>
 <h1 id="lösung-punkte-aus-csv-zeilen">Lösung: Punkte aus CSV-Zeilen</h1>
 <p>Hier ist eine mögliche Lösung der Aufgabe.</p>
 <h2 id="code">Code</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">&#39;Anna,90&#39;</span>, <span class="s">&#39;Bob,72&#39;</span>, <span class="s">&#39;Cara,84&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">'Anna,90'</span>, <span class="s">'Bob,72'</span>, <span class="s">'Cara,84'</span>;
 <span class="k">my</span> <span class="nv">%score</span>;
 
 <span class="k">for</span> <span class="nv">@lines</span> -&gt; <span class="nv">$line</span> {
-    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>);
+    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">','</span>);
     <span class="nv">%score</span>{<span class="nv">$name</span>} = <span class="nv">$mark</span>.<span class="nb">Int</span>;
 }
 
@@ -128,9 +128,8 @@ CSV-Zeilen</a></p>
 
 <span class="nb">say</span> <span class="s">&quot;above average:&quot;</span>;
 <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span> -&gt; <span class="nv">$pair</span> {
-    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="nb">value</span> &gt; <span class="nv">$average</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="n">value</span> &gt; <span class="nv">$average</span>;
+}</pre></div>
 
 <p>🦋 Du findest den Quellcode in der Datei <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/csv-averages.raku">csv-averages.raku</a>.</p>
@@ -152,8 +151,7 @@ Durchschnitt glatte <code>82</code>.</p></li>
 dem Durchschnitt, und <code>map</code> reduziert jedes übrig gebliebene
 Paar auf seinen Namen — der Schleifenrumpf trägt dann keine Logik mehr,
 nur noch die Ausgabe:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="nb">value</span> &gt; <span class="nv">$average</span>).<span class="n">map</span>(*.<span class="nb">key</span>);
-</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="n">value</span> &gt; <span class="nv">$average</span>).<span class="nb">map</span>(*.<span class="n">key</span>);</pre></div>
 
 <p>Von links nach rechts gelesen sagt das genau, was es tut: sortieren,
 die über dem Durchschnitt behalten, ihre Namen nehmen. Jede Stufe ist

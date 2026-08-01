@@ -117,17 +117,15 @@ nombre</h1>
 patrón y reutilizarlo, igual que a una subrutina. Se declara con
 <code>my regex</code> (o con <code>my token</code>, que conocerás bien
 enseguida):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
 
 <p>Para usar un regex con nombre dentro de otro patrón, escribe su
 nombre entre corchetes angulares, <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> number</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;42 cats&#39;</span> ~~<span class="sr"> / &lt;number&gt; /</span> {
+<span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Llamar a <code>&lt;number&gt;</code> empareja el patrón
 <strong>y</strong> lo captura bajo ese nombre, así que el texto
@@ -136,13 +134,12 @@ captura con nombre que te sale gratis.</p>
 <p>Un regex con nombre puede usarse varias veces en un mismo patrón.
 Cuando aparece más de una vez, las capturas forman una lista a la que se
 llega por índice:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> num</span> {<span class="sr"> \d+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
 
-<span class="k">if</span> <span class="s">&#39;3-4&#39;</span> ~~<span class="sr"> / &lt;num&gt; &#39;-&#39; &lt;num&gt; /</span> {
+<span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">1</span>]; <span class="c1"># ｢4｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Los regex con nombre mantienen legibles los patrones y te permiten
 construir otros mayores a partir de piezas más pequeñas y bien

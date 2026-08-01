@@ -113,15 +113,13 @@ concorrente</a> / <a href="/it/paradigms/promises">Promise</a></p>
 <h1 id="start-e-await">start e await</h1>
 <p>La parola chiave <code>start</code> esegue un blocco in secondo piano
 e restituisce subito una <code>Promise</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };</pre></div>
 
 <p>Il lavoro avviene sul pool di thread di Raku mentre il tuo programma
 prosegue. Per ottenere il risultato usa <code>await</code>, che aspetta
 che la promise finisca e ti dà il suo valore:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 4</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">2</span> + <span class="mi">2</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 4</span></pre></div>
 
 <p><code>await</code> blocca giusto il tempo che la promise si completi,
 poi restituisce ciò che il blocco ha prodotto — qui <code>4</code>. Se

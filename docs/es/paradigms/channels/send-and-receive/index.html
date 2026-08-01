@@ -114,11 +114,10 @@ concurrente</a> / <a href="/es/paradigms/channels">Canales</a></p>
 <p>Crea un canal con <code>Channel.new</code>. Mete valores con
 <code>.send</code> y sácalos con <code>.receive</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">1</span>);
-<span class="nv">$c</span>.<span class="nb">send</span>(<span class="mi">2</span>);
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 2</span>
-</pre></div>
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">1</span>);
+<span class="nv">$c</span>.<span class="n">send</span>(<span class="mi">2</span>);
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 2</span></pre></div>
 
 <p>Un canal es una <strong>cola</strong>: los valores salen en el mismo
 orden en que entraron, el primero en entrar es el primero en salir. Así
@@ -129,12 +128,11 @@ sin peligro desde <strong>hilos distintos</strong> al mismo tiempo. Un
 productor puede seguir enviando mientras un consumidor sigue recibiendo,
 y Raku se asegura de que ningún valor se pierda ni se duplique:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
-<span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">3</span>;
+<span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.3</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 }
-<span class="nb">say</span> <span class="nv">$c</span>.<span class="nb">receive</span>; <span class="c1"># 1</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$c</span>.<span class="n">receive</span>; <span class="c1"># 1</span></pre></div>
 
 <p>Aquí una tarea en segundo plano envía <code>1, 2, 3</code>; el
 programa principal recibe. <code>.receive</code> espera si el canal está

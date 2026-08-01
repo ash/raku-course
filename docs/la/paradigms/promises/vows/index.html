@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,29 +121,27 @@ illo vocare <code>Vow</code> reddit — solum ius illud promissum servandi
 vel frangendi. Ex illo momento promissum solum legendum esse debet: per
 votum componitur. Forma usitata est productor qui votum privatum servat
 et solum promissum reddit:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">after</span>(<span class="nv">$seconds</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">after</span>(<span class="nv">$seconds</span>) {
     <span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;                       <span class="c1"># cape ius componendi</span>
-    <span class="nb">start</span> {
+    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;                       <span class="c1"># cape ius componendi</span>
+    <span class="k">start</span> {
         <span class="nb">sleep</span> <span class="nv">$seconds</span>;
-        <span class="nv">$v</span>.<span class="nb">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># compone illud per votum</span>
+        <span class="nv">$v</span>.<span class="n">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># compone illud per votum</span>
     }
     <span class="k">return</span> <span class="nv">$p</span>;                            <span class="c1"># vocantes solam partem legendam accipiunt</span>
 }
 
-<span class="k">my</span> <span class="nv">$job</span> = <span class="nb">after</span>(<span class="mf">0.2</span>);
-<span class="nb">say</span> <span class="nv">$job</span>.<span class="nb">status</span>;   <span class="c1"># Planned</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$job</span> = <span class="n">after</span>(<span class="mf">0.2</span>);
+<span class="nb">say</span> <span class="nv">$job</span>.<span class="n">status</span>;   <span class="c1"># Planned</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span></pre></div>
 
 <p>Votum capere promissum vere solum legendum facit: ex illo momento
 <code>$p.keep</code> et <code>$p.break</code> recusantur, quia votum
 nunc solum ius illud componendi possidet.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;
+<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">1</span>); <span class="c1"># moritur: Access denied to keep/break this Promise; already vowed</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">1</span>); <span class="c1"># moritur: Access denied to keep/break this Promise; already vowed</span></pre></div>
 
 <p>Itaque vocans promissum <code>await</code> potest, <code>.then</code>
 in illud concatenare, vel <code>.status</code> eius inspicere, sed illud
@@ -181,7 +179,7 @@ sectionis</a> i.</p>
 <a href="/bg/paradigms/promises/vows">Български</a>
 <a href="/ru/paradigms/promises/vows">Русский</a>
 <a href="/uk/paradigms/promises/vows">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

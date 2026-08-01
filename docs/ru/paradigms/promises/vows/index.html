@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,30 +123,28 @@ href="/ru/paradigms/promises">Промисы</a></p>
 только для чтения: улаживают его через обещание. Обычная форма —
 производитель, который держит обещание при себе и возвращает только
 промис:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">after</span>(<span class="nv">$seconds</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">after</span>(<span class="nv">$seconds</span>) {
     <span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;                       <span class="c1"># забираем право улаживать</span>
-    <span class="nb">start</span> {
+    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;                       <span class="c1"># забираем право улаживать</span>
+    <span class="k">start</span> {
         <span class="nb">sleep</span> <span class="nv">$seconds</span>;
-        <span class="nv">$v</span>.<span class="nb">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># улаживаем через обещание</span>
+        <span class="nv">$v</span>.<span class="n">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># улаживаем через обещание</span>
     }
     <span class="k">return</span> <span class="nv">$p</span>;                            <span class="c1"># вызывающим достаётся только сторона для чтения</span>
 }
 
-<span class="k">my</span> <span class="nv">$job</span> = <span class="nb">after</span>(<span class="mf">0.2</span>);
-<span class="nb">say</span> <span class="nv">$job</span>.<span class="nb">status</span>;   <span class="c1"># Planned</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$job</span> = <span class="n">after</span>(<span class="mf">0.2</span>);
+<span class="nb">say</span> <span class="nv">$job</span>.<span class="n">status</span>;   <span class="c1"># Planned</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span></pre></div>
 
 <p>Взятие обещания делает промис по-настоящему доступным только для
 чтения: с этого момента <code>$p.keep</code> и <code>$p.break</code>
 отвергаются, потому что единоличное право улаживать теперь принадлежит
 обещанию.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;
+<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">1</span>); <span class="c1"># умирает: Access denied to keep/break this Promise; already vowed</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">1</span>); <span class="c1"># умирает: Access denied to keep/break this Promise; already vowed</span></pre></div>
 
 <p>Итак, вызывающая сторона может дождаться промиса через
 <code>await</code>, надстроить над ним <code>.then</code> или проверить
@@ -185,7 +183,7 @@ href="/ru/paradigms/promises/exercises">к упражнениям этого
 <a href="/bg/paradigms/promises/vows">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/paradigms/promises/vows">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

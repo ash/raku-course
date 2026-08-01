@@ -113,19 +113,17 @@ href="/de/paradigms/await">await</a></p>
 <h1 id="auf-ein-promise-warten">Auf ein Promise warten</h1>
 <p><code>await</code> nimmt ein Promise auf, wartet auf sein Ende und
 liefert sein Ergebnis:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Das Programm hält bei <code>await</code> nur so lange an, wie nötig,
 und läuft dann mit dem Wert weiter, den das Promise erzeugt hat.</p>
 <p>Bei mehreren Promises wartet <code>await</code> auf
 <strong>alle</strong> und liefert ihre Ergebnisse in derselben
 Reihenfolge wie die Promises in der Liste:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">5</span> }), (<span class="nb">start</span> { <span class="mi">10</span> }), (<span class="nb">start</span> { <span class="mi">15</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
 <p>Die Aufgaben laufen nebenläufig, doch <code>await @jobs</code> kehrt
 erst zurück, wenn jede fertig ist. Jedes Ergebnis steht danach an
@@ -137,11 +135,10 @@ der Stelle des <code>await</code> erneut. Fehler in Hintergrundarbeit
 tauchen also dort auf, wo Sie darauf warten, sodass Sie sie mit dem
 gewohnten <code>try</code> / <code>CATCH</code> aus dem Teil über
 Ausnahmen behandeln können:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;no such file&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
-<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
 
 <p>Das gibt aus:</p>
 <div class="highlight"><pre>the job failed: no such file</pre></div>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,16 +118,15 @@ reddit. Hic servitium tempestatis gratuitum de temperatura praesenti
 Berolini rogamus:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Client</span>;
 
-<span class="k">my</span> <span class="nv">$url</span> = <span class="s">&#39;https://api.open-meteo.com/v1/forecast&#39;</span>
-        ~ <span class="s">&#39;?latitude=52.52&amp;longitude=13.41&amp;current=temperature_2m,wind_speed_10m&#39;</span>;
+<span class="k">my</span> <span class="nv">$url</span> = <span class="s">'https://api.open-meteo.com/v1/forecast'</span>
+        ~ <span class="s">'?latitude=52.52&amp;longitude=13.41&amp;current=temperature_2m,wind_speed_10m'</span>;
 
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="nb">get</span>(<span class="nv">$url</span>);
+<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(<span class="nv">$url</span>);
 <span class="k">my</span> <span class="nv">%current</span>  = (<span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body</span>)<span class="s">&lt;current&gt;</span>;
 
 <span class="nb">say</span> <span class="s">&quot;Berlin right now:&quot;</span>;
 <span class="nb">say</span> <span class="s">&quot;  temperature: %current&lt;temperature_2m&gt; °C&quot;</span>;
-<span class="nb">say</span> <span class="s">&quot;  wind speed:  %current&lt;wind_speed_10m&gt; km/h&quot;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="s">&quot;  wind speed:  %current&lt;wind_speed_10m&gt; km/h&quot;</span>;</pre></div>
 
 <p>quod aliquid tale imprimit:</p>
 <div class="highlight"><pre>Berlin right now:
@@ -149,12 +148,11 @@ sinit te capita petitionis ponere, itaque te ut unum ex populo
 terminalis introduc:</p>
 <div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Cro::HTTP::Client</span>;
 
-<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="nb">get</span>(
-    <span class="s">&#39;https://wttr.in/Berlin?format=3&#39;</span>,
-    <span class="nb">headers</span> =&gt; [ <span class="n">User-Agent</span> =&gt; <span class="s">&#39;curl&#39;</span> ],
+<span class="k">my</span> <span class="nv">$response</span> = <span class="nb">await</span> <span class="n">Cro::HTTP::Client</span>.<span class="n">get</span>(
+    <span class="s">'https://wttr.in/Berlin?format=3'</span>,
+    <span class="n">headers</span> =&gt; [ <span class="n">User-Agent</span> =&gt; <span class="s">'curl'</span> ],
 );
-<span class="nb">print</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nb">await</span> <span class="nv">$response</span>.<span class="n">body-text</span>;</pre></div>
 
 <p>Hoc relationem tempestatis unius lineae imprimit, prompto conchae vel
 virgae status paratam:</p>
@@ -193,7 +191,7 @@ i.</p>
 <a href="/bg/paradigms/cro/public-apis">Български</a>
 <a href="/ru/paradigms/cro/public-apis">Русский</a>
 <a href="/uk/paradigms/cro/public-apis">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

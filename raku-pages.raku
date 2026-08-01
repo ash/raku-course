@@ -1749,10 +1749,10 @@ sub neutralize-unpublished-links($html) {
 }
 
 sub MAIN(:$language = '', :$filter = '', :$uri = '', :$destination = '_out', :$last-part = Inf,
-         :$highlighter = 'pygments', :$workers = 1) {
-    # --highlighter=pygments (default) | rakupp | auto | none
-    #   pygments : the Python highlighter (the historical reference output)
+         :$highlighter = 'rakupp', :$workers = 1) {
+    # --highlighter=rakupp (default) | pygments | auto | none
     #   rakupp   : Raku++'s own parse-aware `--highlight` (needs a `rakupp` binary)
+    #   pygments : the Python highlighter (the historical reference output)
     #   auto     : prefer pygments, fall back to rakupp
     #   none     : no syntax highlighting (plain, escaped code) — replaces the old --quick
     # --workers=N : render N pages in parallel (default 1 = sequential). Output is

@@ -122,17 +122,15 @@ patrón son significativos</li>
 <p><em>Retroceder</em> significa que, cuando una parte posterior del
 patrón falla, el motor vuelve atrás y prueba una coincidencia más corta
 para una parte anterior. Un <code>regex</code> hace esto:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> r</span> {<span class="sr"> \w+ &#39;b&#39; </span>}
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;aaab&#39;</span> ~~<span class="sr"> / &lt;r&gt; /</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">r</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;r&gt; /</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>\w+</code> agarra primero todo <code>aaab</code> y después
 tiene que devolver la última <code>b</code> para que la <code>b</code>
 literal pueda coincidir. Un <code>token</code> se niega a devolver
 nada:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span><span class="n"> t</span> {<span class="sr"> \w+ &#39;b&#39; </span>}
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;aaab&#39;</span> ~~<span class="sr"> / &lt;t&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> <span class="n">t</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;t&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Aquí <code>\w+</code> toma todo <code>aaab</code>, la <code>b</code>
 literal no encuentra nada libre y el token simplemente falla en lugar de

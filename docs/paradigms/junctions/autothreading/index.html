@@ -118,18 +118,16 @@ the results back into a junction. This is called
 <em>autothreading</em>.</p>
 <p>For example, adding to a junction adds to each of its values:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$j</span> = <span class="mi">1</span> | <span class="mi">2</span> | <span class="mi">3</span>;
-<span class="nb">say</span> <span class="nv">$j</span> + <span class="mi">10</span>; <span class="c1"># any(11, 12, 13)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$j</span> + <span class="mi">10</span>; <span class="c1"># any(11, 12, 13)</span></pre></div>
 
 <p>The <code>+ 10</code> was applied to <code>1</code>, <code>2</code>,
 and <code>3</code> separately, giving a new <em>any</em> junction
 <code>any(11, 12, 13)</code>.</p>
 <p>With a comparison, the joined result collapses to a single truth
 value according to the junction’s kind:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="nb">all</span>(<span class="mi">3</span>, <span class="mi">7</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>;  <span class="c1"># True  — every value is positive</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="nb">all</span>(<span class="mi">3</span>, -<span class="mi">1</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>; <span class="c1"># False — not all are positive</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="nb">none</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) == <span class="mi">5</span>; <span class="c1"># True — none of them is 5</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="n">all</span>(<span class="mi">3</span>, <span class="mi">7</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>;  <span class="c1"># True  — every value is positive</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">all</span>(<span class="mi">3</span>, -<span class="mi">1</span>, <span class="mi">2</span>) &gt; <span class="mi">0</span>; <span class="c1"># False — not all are positive</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="n">none</span>(<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) == <span class="mi">5</span>; <span class="c1"># True — none of them is 5</span></pre></div>
 
 <p>Autothreading is what makes junctions so concise: one comparison
 checks many values. Conceptually the checks are independent, so Raku is

@@ -124,8 +124,7 @@ convierten en dos subrutinas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
 
 <p>El primer candidato coincide solo cuando el argumento es exactamente
 <code>0</code>: ese literal de la firma <em>es</em> el caso base.
@@ -150,8 +149,7 @@ Fibonacci necesita dos:</p>
 <span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
 
-<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span></pre></div>
 
 <p>Cada caso base es su propio candidato de una línea, y el candidato
 recursivo se ocupa de todo lo demás, sin condicionales anidados.</p>
@@ -159,11 +157,10 @@ recursivo se ocupa de todo lo demás, sin condicionales anidados.</p>
 Cuando el caso base cubre un <em>rango</em> — «<code>$n</code> es
 <code>1</code> o menos» —, usa en su lugar una restricción
 <code>where</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="n">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
 
 <p>El candidato restringido es más específico, así que Raku lo prueba
 primero; el candidato simple <code>$n</code> recoge todo lo demás.</p>

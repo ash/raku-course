@@ -37,6 +37,6 @@ loop (; $c < 5;) {
 
 ## * * *
 
-La `loop` bukloj estas, probable, la malplej uzataj bukloj en Raku. Ili povas esti trovitaj, ekzemple, en aŭtomata tradukilo de C al Raku. Tamen, en Raku, estas pli praktikaj bukloj kiel `for`, kiujn ni esploros tre baldaŭ.
+La `loop` bukloj estas, probable, la malplej uzataj bukloj en Raku. Ili povas esti trovitaj, ekzemple, en aŭtomata kompililo de C al Raku. Tamen, en Raku, estas pli praktikaj bukloj kiel `for`, kiujn ni esploros tre baldaŭ.
 
 {% include nav.html %}

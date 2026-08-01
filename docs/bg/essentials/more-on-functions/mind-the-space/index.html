@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,34 +118,29 @@
 <code>if</code>.</p>
 <h2 id="дълга-история">Дълга история</h2>
 <p>Нека вземем една проста функция:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Първо, обърнете внимание на отсъствието на интервали между името на
 функцията и отварящите скоби, които съдържат параметрите. Някои стилове
 на кодиране в други езици може да изискват интервал там. Raku е добре с
 това, но това не е практика, която да следвате:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>От страната на извикването, отсъствието на интервал е важно. Ако
 извикате функцията и пропуснете скобите, тогава интервалът след името на
 функцията е неизбежен:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>Но ако добавите скоби, не можете да имате интервал преди тях. Това е
 правилното извикване:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>А това извикване е грешно:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Такъв код предизвиква изключение:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -155,12 +150,11 @@
 се предаде един аргумент <code>(5, 6)</code> на функцията. Можете лесно
 да проверите типа на този аргумент, ако пренапишете функцията да приема
 само един аргумент:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>Така че, извикването <code>f (5, 6)</code> означава, че предаваме <a
 href="/bg/essentials/positionals/lists">списък</a> на функцията. Списък
@@ -169,10 +163,9 @@ href="/bg/essentials/positionals/lists">списък</a> на функцията
 <p>В някои случаи, интервалът е необходим. Това се случва, когато
 използвате скоби с една от ключовите думи, като <code>if</code> или
 <code>for</code> или <code>loop</code>. Следният код е грешен:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>Съобщението за грешка обяснява какво не е наред:</p>
 <pre><code>===SORRY!===
@@ -187,8 +180,7 @@ at /Users/ash/raku-course/t.raku:1
 проблемът няма шанс да се появи, ако не ги използвате. Но в някои
 случаи, като например с <code>loop</code>, трябва да ги имате, и
 интервалът става задължителен:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>В този код се случва същото: <code>loop(...)</code> се разбира от
 компилатора като извикване на функция. Добавете интервал, за да
@@ -224,7 +216,7 @@ href="/bg/essentials/more-on-functions/exercises/factorial-with-multi-functions"
 <span class="lang-current">Български</span>
 <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
 <a href="/uk/essentials/more-on-functions/mind-the-space">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

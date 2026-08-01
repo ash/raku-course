@@ -206,11 +206,6 @@ div.related-docs a::after {
 }
 :root {
     --ext-link-icon: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M9%203h4v4'/%3E%3Cpath%20d='M13%203%207%209'/%3E%3Cpath%20d='M12%2010v2.5a1%201%200%200%201-1%201H3.5a1%201%200%200%201-1-1V5.5a1%201%200%200%201%201-1H6'/%3E%3C/svg%3E");
-
-    /* Accent for embedded raku.online play-code widgets (Part 6 solutions),
-       matching the course's own blue. Inherits through the widget's shadow
-       DOM; where the widget is not present this variable is simply unused. */
-    --rk-embed-accent: #0969da;
 }
 
 /* ════════════════════════════════════════════════════════════════ */
@@ -925,4 +920,56 @@ html[data-theme-active="dark"] .highlight.raku .copy-btn:hover {
 html[data-theme-active="dark"] .highlight.raku .copy-btn.copied {
     color: #3fb950;
     border-color: #3fb950;
+}
+
+/* ════════════════════════════════════════════════════════════════ */
+/*  Language switcher (site footer, every page)                       */
+/* ════════════════════════════════════════════════════════════════ */
+
+.site-footer .lang-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15em 1.05em;
+    max-width: 46em;
+    margin: 0 auto 1.1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(128, 128, 128, .2);
+    line-height: 1.9;
+}
+
+.site-footer .lang-switcher .lang-label {
+    width: 100%;
+    margin-bottom: -0.35em;
+    font-size: 92%;
+    opacity: .8;
+}
+
+/* The page's own language is shown, not linked. */
+.site-footer .lang-switcher .lang-current {
+    font-weight: 600;
+    color: #1f2328;
+}
+
+/* "About the translation" sits apart from the list of languages. The row
+   claims the full width; the link inside stays inline so its underline is
+   only as wide as the text. */
+.site-footer .lang-switcher .lang-about-row {
+    display: block;
+    width: 100%;
+    margin-top: 0.2em;
+}
+.site-footer .lang-switcher .lang-about {
+    font-size: 92%;
+    font-style: italic;
+    opacity: .85;
+}
+
+html[data-theme-active="dark"] .site-footer .lang-switcher .lang-current {
+    color: #e6edf3;
+}
+
+@media (max-width: 600px) {
+    .site-footer .lang-switcher { line-height: 2.1; }
 }

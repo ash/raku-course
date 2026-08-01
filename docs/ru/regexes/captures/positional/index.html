@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,11 +115,10 @@ href="/ru/regexes/captures">Захваты</a></p>
 <em>захватить</em> её. После успешного сопоставления каждый захваченный
 кусочек доступен как <code>$0</code>, <code>$1</code> и так далее —
 нумерация идёт с нуля в порядке открытия скобок:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢2025｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢06｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Первая пара скобок захватила год в <code>$0</code>, вторая — месяц в
 <code>$1</code>. Текст между ними, буквальный <code>-</code>,
@@ -128,22 +127,20 @@ href="/ru/regexes/captures">Захваты</a></p>
 поэтому у него можно спросить <code>.Str</code>, позицию и прочее. В
 строке с двойными кавычками захват интерполируется как совпавший
 текст:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;hello world&#39;</span> ~~<span class="sr"> / (\w+) &#39; &#39; (\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'hello world'</span> ~~ <span class="sr">/ (\w+) ' ' (\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;$1 $0&quot;</span>; <span class="c1"># world hello</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Здесь два захваченных слова печатаются в обратном порядке, то есть
 меняются местами.</p>
 <p>Захваты хранятся и в переменной совпадения <code>$/</code>, а
 <code>$0</code> — это на самом деле краткая запись для
 <code>$/[0]</code>. Работать можно и напрямую через <code>$/</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;2025-06&#39;</span> ~~<span class="sr"> / (\d+) &#39;-&#39; (\d+) /</span> {
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
-    <span class="nb">say</span> <span class="vg">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'2025-06'</span> ~~ <span class="sr">/ (\d+) '-' (\d+) /</span> {
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">0</span>];    <span class="c1"># ｢2025｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>[<span class="mi">1</span>];    <span class="c1"># ｢06｣</span>
+    <span class="nb">say</span> <span class="nv">$/</span>.<span class="nb">elems</span>; <span class="c1"># 2</span>
+}</pre></div>
 
 <p><code>$/</code> — это весь объект совпадения, индексация добирается
 до позиционных захватов, а <code>.elems</code> сообщает, сколько их.</p>
@@ -179,7 +176,7 @@ href="/ru/regexes/captures/exercises">к упражнениям этого
 <a href="/bg/regexes/captures/positional">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/captures/positional">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

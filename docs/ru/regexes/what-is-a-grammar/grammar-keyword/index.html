@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,10 +115,9 @@ href="/ru/regexes/what-is-a-grammar">Что такое грамматика</a><
 одним именем — во многом так же, как класс объединяет методы. Объявляют
 её ключевым словом <code>grammar</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Greeting</span> {
-    <span class="k">token</span><span class="n"> TOP</span>  {<span class="sr"> &#39;Hello, &#39; &lt;name&gt; &#39;!&#39; </span>}
-    <span class="k">token</span><span class="n"> name</span> {<span class="sr"> \w+ </span>}
-}
-</pre></div>
+    <span class="k">token</span> <span class="n">TOP</span>  { <span class="s">'Hello, '</span> <span class="s">&lt;name&gt;</span> <span class="s">'!'</span> }
+    <span class="k">token</span> <span class="n">name</span> { \<span class="n">w</span>+ }
+}</pre></div>
 
 <p>Внутри грамматики каждый именованный шаблон записывается через
 <code>token</code> (разновидность регулярного выражения, которую вы
@@ -134,9 +133,8 @@ href="/ru/regexes/what-is-a-grammar/named-regexes">именованные
 каждого правила одна ясная работа.</p>
 <p>Чтобы применить грамматику к строке, вызовите её метод
 <code>.parse</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="n">Greeting</span>.<span class="nb">parse</span>(<span class="s">&#39;Hello, Anna!&#39;</span>);
-<span class="nb">say</span> <span class="nv">$m&lt;name&gt;</span>; <span class="c1"># ｢Anna｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$m</span> = <span class="n">Greeting</span>.<span class="n">parse</span>(<span class="s">'Hello, Anna!'</span>);
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;name&gt;</span>; <span class="c1"># ｢Anna｣</span></pre></div>
 
 <p>Следующий раздел рассматривает <code>TOP</code> и <code>.parse</code>
 подробнее. Пока же вывод прост: <strong>грамматика — это именованное
@@ -175,7 +173,7 @@ href="/ru/regexes/what-is-a-grammar/exercises">к упражнениям это�
 <a href="/bg/regexes/what-is-a-grammar/grammar-keyword">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/what-is-a-grammar/grammar-keyword">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

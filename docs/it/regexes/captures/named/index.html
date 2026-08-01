@@ -114,11 +114,10 @@ href="/it/regexes/captures">Catture</a></p>
 <p>Le catture numerate sono comode, ma quando uno schema cresce i nomi
 sono più chiari dei numeri. Per dare un nome a una cattura, scrivi
 <code>$&lt;nome&gt;=( … )</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;Anna:30&#39;</span> ~~<span class="sr"> / $&lt;name&gt;=(\w+) &#39;:&#39; $&lt;age&gt;=(\d+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'Anna:30'</span> ~~ <span class="sr">/ $&lt;name&gt;=(\w+) ':' $&lt;age&gt;=(\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;name&gt;</span>; <span class="c1"># ｢Anna｣</span>
     <span class="nb">say</span> <span class="nv">$&lt;age&gt;</span>;  <span class="c1"># ｢30｣</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>I pezzi catturati si raggiungono ora per nome con
 <code>$&lt;name&gt;</code> e <code>$&lt;age&gt;</code> invece che con
@@ -127,10 +126,9 @@ sono più chiari dei numeri. Per dare un nome a una cattura, scrivi
 match <code>$/</code>.</p>
 <p>Le catture con nome fanno leggere uno schema quasi come una
 descrizione dei dati:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">&#39;x=5&#39;</span> ~~<span class="sr"> / $&lt;key&gt;=(\w+) &#39;=&#39; $&lt;value&gt;=(\w+) /</span> {
+<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'x=5'</span> ~~ <span class="sr">/ $&lt;key&gt;=(\w+) '=' $&lt;value&gt;=(\w+) /</span> {
     <span class="nb">say</span> <span class="s">&quot;key is $&lt;key&gt;, value is $&lt;value&gt;&quot;</span>; <span class="c1"># key is x, value is 5</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Come per le catture posizionali, ogni cattura con nome è un oggetto
 match, quindi <code>$&lt;age&gt;.Str</code> dà il testo semplice e

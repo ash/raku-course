@@ -116,13 +116,13 @@ It mixes the role into a single object at run time and returns a new
 object that plays the role:</p>
 <div class="highlight raku"><pre><span></span><span class="k">role</span> <span class="n">Loud</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="nb">callsame</span>().<span class="nb">uc</span>;
+        <span class="n">callsame</span>().<span class="nb">uc</span>;
     }
 }
 
 <span class="k">class</span> <span class="n">Greeter</span> {
     <span class="k">method</span> <span class="n">greet</span> {
-        <span class="s">&#39;Hello&#39;</span>;
+        <span class="s">'Hello'</span>;
     }
 }
 
@@ -130,8 +130,7 @@ object that plays the role:</p>
 <span class="k">my</span> <span class="nv">$loud</span>  = <span class="n">Greeter</span>.<span class="nb">new</span> <span class="k">but</span> <span class="n">Loud</span>;
 
 <span class="nb">say</span> <span class="nv">$quiet</span>.<span class="n">greet</span>; <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>.<span class="n">greet</span>;  <span class="c1"># HELLO</span></pre></div>
 
 <p>Only <code>$loud</code> gained the role. The <code>Greeter</code>
 class and every other <code>Greeter</code> object are untouched, so
@@ -143,16 +142,14 @@ then upper-cased.</p>
 <p>An object that has a role mixed in is recognised as doing that
 role:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$quiet</span> ~~ <span class="n">Loud</span>; <span class="c1"># False</span>
-<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$loud</span>  ~~ <span class="n">Loud</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>but</code> leaves the original object as it was and hands you a
 new one. If you would rather change an existing object in place, use the
 <code>does</code> operator instead:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$speaker</span> = <span class="n">Greeter</span>.<span class="nb">new</span>;
 <span class="nv">$speaker</span> <span class="k">does</span> <span class="n">Loud</span>;
-<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$speaker</span>.<span class="n">greet</span>; <span class="c1"># HELLO</span></pre></div>
 
 <p>Mixing roles into individual objects lets you decide, one object at a
 time, which extra behaviour it should take on — without defining a

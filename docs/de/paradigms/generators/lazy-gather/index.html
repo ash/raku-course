@@ -124,18 +124,16 @@ Legen Sie die Sequenz stattdessen in einem Skalar ab (wo sie eine träge
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$naturals</span> = <span class="k">gather</span> {
     <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>;
     <span class="k">loop</span> {
-        <span class="nb">take</span> <span class="nv">$n</span>++;
+        <span class="k">take</span> <span class="nv">$n</span>++;
     }
 }
 
-<span class="nb">say</span> <span class="nv">$naturals</span>[^<span class="mi">5</span>]; <span class="c1"># (1 2 3 4 5)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$naturals</span>[^<span class="mi">5</span>]; <span class="c1"># (1 2 3 4 5)</span></pre></div>
 
 <p>Die <code>loop</code> endet nie, aber es werden nur fünf Werte
 erzeugt, denn mehr haben wir mit <code>[^5]</code> nicht verlangt. Sie
 können auch vorn mit <code>.head</code> entnehmen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="k">gather</span> { <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>; <span class="k">loop</span> { <span class="nb">take</span> <span class="nv">$n</span>++ } }).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="k">gather</span> { <span class="k">my</span> <span class="nv">$n</span> = <span class="mi">1</span>; <span class="k">loop</span> { <span class="k">take</span> <span class="nv">$n</span>++ } }).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)</span></pre></div>
 
 <p>Die Trägheit ist es, die <code>gather</code> unendliche Ströme sicher
 abbilden lässt: Nichts wird berechnet, bevor es gebraucht wird, und Sie

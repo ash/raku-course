@@ -123,13 +123,12 @@ escepton.</li>
 Legi <code>.status</code> ne atendas — ĝi diras al vi, kie la promeso
 estas <em>ĝuste nun</em>, do vi povas kontroli ĝin antaŭ ol la promeso
 decidiĝis kaj denove poste:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">sleep</span> <span class="mi">1</span>; <span class="mi">10</span> };
 
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Planned — legita tuj, dum la bloko ankoraŭ kuras</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Planned — legita tuj, dum la bloko ankoraŭ kuras</span>
 <span class="nb">await</span> <span class="nv">$p</span>;      <span class="c1"># nun atendu, ke ĝi finiĝu</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>; <span class="c1"># Kept</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">result</span>; <span class="c1"># 10</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>; <span class="c1"># Kept</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">result</span>; <span class="c1"># 10</span></pre></div>
 
 <p><code>.result</code> donas la plenumitan valoron. Malsame ol
 <code>.status</code>, ĝi <em>atendas</em> ĝis la promeso estas decidita,
@@ -138,11 +137,10 @@ se la promeso estis rompita, <code>.result</code> reĵetas la
 escepton.</p>
 <p>Kiam vi volas rigardi malsukceson sen reĵeti ĝin, uzu
 <code>.cause</code> — la escepto-objekton de rompita promeso:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="nb">die</span> <span class="s">&#39;boom&#39;</span> };
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'boom'</span> };
 <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;         <span class="c1"># lasu ĝin decidiĝi (kaj forglutu la reĵetitan eraron)</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">status</span>;        <span class="c1"># Broken</span>
-<span class="nb">say</span> <span class="nv">$p</span>.<span class="nb">cause</span>.<span class="nb">message</span>; <span class="c1"># boom</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">status</span>;        <span class="c1"># Broken</span>
+<span class="nb">say</span> <span class="nv">$p</span>.<span class="n">cause</span>.<span class="n">message</span>; <span class="c1"># boom</span></pre></div>
 
 <p>Do <code>.status</code> kaj <code>.cause</code> inspektas promeson
 sen ĝeni ĝin, dum <code>await</code> kaj <code>.result</code> kolektas

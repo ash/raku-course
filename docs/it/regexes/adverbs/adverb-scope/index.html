@@ -118,9 +118,8 @@ l’<strong>intero</strong> schema. Scritto dentro il regex,
 <code>:i</code> è <em>posizionale</em>: si applica solo dal punto in cui
 compare in poi. Questo ti permette di allentare la regola sulle
 maiuscole per una sola parte di uno schema:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;RAKU&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
-<span class="nb">say</span> <span class="s">&#39;raku&#39;</span> ~~<span class="sr"> /R :i aku/</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'RAKU'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
+<span class="nb">say</span> <span class="s">'raku'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># Nil</span></pre></div>
 
 <p>Qui la <code>R</code> iniziale viene ancora riconosciuta distinguendo
 le maiuscole — quindi il minuscolo <code>raku</code> fallisce — mentre
@@ -133,17 +132,15 @@ sia <code>raku</code>.</p>
 racchiude. In <code>/[:i abc]def/</code> solo <code>abc</code> ignora le
 maiuscole; il <code>def</code> dopo il gruppo viene riconosciuto in modo
 stretto:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> /[:i abc]def/</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># Nil</span></pre></div>
 
 <h2 id="spegnere-un-avverbio">Spegnere un avverbio</h2>
 <p>Per rispegnere un avverbio a metà schema, negalo con un
 <code>!</code>. Quindi <code>:!i</code> ripristina la distinzione di
 maiuscole da quel punto in poi:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;ABCdef&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
-<span class="nb">say</span> <span class="s">&#39;ABCDEF&#39;</span> ~~<span class="sr"> / :i abc :!i def /</span>; <span class="c1"># Nil</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
+<span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># Nil</span></pre></div>
 
 <p><code>:i</code> allenta la regola sulle maiuscole per
 <code>abc</code>, poi <code>:!i</code> la rimette a posto così che

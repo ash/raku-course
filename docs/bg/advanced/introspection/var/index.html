@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,14 +118,13 @@ href="/bg/advanced/introspection">Интроспекция на контейне
 <p>След като имате контейнера, можете да попитате за името на неговия
 клас с <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
-<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">&#39;42&#39;</span>;
+<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">'42'</span>;
 
-<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="nb">name</span>;     <span class="c1"># Int</span>
-<span class="nb">say</span> <span class="nv">$var1</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="n">name</span>;     <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span>
 
-<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="nb">name</span>;     <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var2</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="n">name</span>;     <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var2</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span></pre></div>
 
 <p><code>.^name</code> върху променливата връща типа на
 <em>стойността</em> (<code>Int</code> или <code>Str</code>), докато
@@ -136,28 +135,24 @@ href="/bg/advanced/introspection">Интроспекция на контейне
 контейнера — това, което получавате, когато контейнерът не съдържа
 собствена стойност. С характеристиката <code>is default</code> я
 задавате изрично:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">'Raku'</span>);
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># Raku</span></pre></div>
 
 <p>Без изрична стойност по подразбиране, стойността по подразбиране е
 типът на контейнера. За нетипизиран контейнер това е <code>Any</code>,
 независимо каква стойност съдържа в момента:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Any)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">'Raku'</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Any)</span></pre></div>
 
 <p>За типизиран контейнер това е ограничаващият тип:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="name-1"><code>name</code></h2>
 <p>Методът <code>name</code> връща името на контейнера, включително
 сигила:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="nb">name</span>; <span class="c1"># $language</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">name</span>; <span class="c1"># $language</span></pre></div>
 
 <p>Внимавайте да не объркате <code>^name</code> (типът) и
 <code>name</code> (собственото име на променливата).</p>
@@ -186,7 +181,7 @@ href="/bg/advanced/introspection/exercises">към упражненията в �
 <span class="lang-current">Български</span>
 <a href="/ru/advanced/introspection/var">Русский</a>
 <a href="/uk/advanced/introspection/var">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

@@ -119,27 +119,23 @@ lasi ĉiun programon elekti la aron, kiun ĝi volas.</p>
 <p>Etikedo estas skribita en krampoj post <code>is export</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
-</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
 
 <p><code>hello</code> ne havas etikedon, do ĝi apartenas al la defaŭlta
 grupo; <code>goodbye</code> estas etikedita per
 <code>:partings</code>.</p>
 <p>Simpla <code>use</code> importas nur la defaŭltan grupon:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello estas disponebla; goodbye ne estas</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello estas disponebla; goodbye ne estas</span></pre></div>
 
 <p>Nomante etikedon importas tiun grupon anstataŭe — kaj, eble surprize,
 <em>ne</em> la defaŭltan kune:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye estas disponebla; hello ne estas</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye estas disponebla; hello ne estas</span></pre></div>
 
 <p>Petante <code>:partings</code> donas al vi ĝuste tiun grupon. Por
 enporti ĉion, kion modulo eksportas, uzu la enkonstruitan etikedon
 <code>:ALL</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># ambaŭ hello kaj goodbye</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># ambaŭ hello kaj goodbye</span></pre></div>
 
 <p>Du specialaj etikedoj indas scii. <code>:ALL</code> estas subtenata
 de ĉiu modulo kaj importas ĉiujn ĝiajn eksportojn.

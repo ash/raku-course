@@ -117,14 +117,13 @@ until all the supplies it watches are done, which gives you the same
 “everything has completed” guarantee:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@values</span>;
 
-<span class="n">react</span> {
-    <span class="n">whenever</span> <span class="nb">Supply</span>.<span class="nb">from-list</span>(<span class="mi">2</span>, <span class="mi">4</span>, <span class="mi">6</span>) {
+<span class="k">react</span> {
+    <span class="k">whenever</span> <span class="nb">Supply</span>.<span class="n">from-list</span>(<span class="mi">2</span>, <span class="mi">4</span>, <span class="mi">6</span>) {
         <span class="nv">@values</span>.<span class="nb">push</span>(<span class="nv">$_</span>);
     }
 }
 
-<span class="nb">say</span> [+] <span class="nv">@values</span>; <span class="c1"># 12</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nv">@values</span>; <span class="c1"># 12</span></pre></div>
 
 <p>The <code>say</code> runs only <strong>after</strong> the react block
 has finished, so <code>@values</code> already holds every emitted value.

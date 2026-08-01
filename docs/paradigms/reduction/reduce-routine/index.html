@@ -115,8 +115,7 @@ href="/paradigms/reduction">Reduction</a></p>
 named operator, use the <code>reduce</code> routine. It takes a block of
 two arguments and applies it across the list, carrying the running
 result forward:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(* + *); <span class="c1"># 15</span></pre></div>
 
 <p>The block <code>* + *</code> has two <a
 href="/advanced/whatever">Whatever</a> stars: the first is the result so
@@ -127,13 +126,12 @@ same as <code>[+]</code>, but written as a block.</p>
 step. A pointy block hands back its last expression, so
 <code>$x + $y</code> is both what the block prints about and the value
 it returns to <code>reduce</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="nb">reduce</span>(
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>(
     -&gt; <span class="nv">$x</span>, <span class="nv">$y</span> {
         <span class="nb">say</span> <span class="s">&quot;$x + $y&quot;</span>;
         <span class="nv">$x</span> + <span class="nv">$y</span>;
     }
-);
-</pre></div>
+);</pre></div>
 
 <p>This prints:</p>
 <div class="highlight"><pre>1 + 2
@@ -153,8 +151,7 @@ the next number as <code>$y</code>. The block’s value becomes the
 <code>say</code> prints on the last line.</p>
 <p>Because the block can be anything, <code>reduce</code> is more
 general. For example, build a value step by step:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.4</span>).<span class="nb">reduce</span>(-&gt; <span class="nv">$acc</span>, <span class="nv">$x</span> { <span class="nv">$acc</span> * <span class="mi">10</span> + <span class="nv">$x</span> }); <span class="c1"># 1234</span></pre></div>
 
 <p>Each step multiplies the accumulator by ten and adds the next digit,
 turning the separate digits <code>1, 2, 3, 4</code> into the number
@@ -162,8 +159,7 @@ turning the separate digits <code>1, 2, 3, 4</code> into the number
 <p>Like the other block-taking methods, <code>reduce</code> reads well
 with the <a href="/advanced/colon-calls">colon-call</a> form, which
 drops the parentheses around the block:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">reduce:</span> * + *; <span class="c1"># 15</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">reduce</span>: * + *; <span class="c1"># 15</span></pre></div>
 
 <p>In short, <code>[op]</code> is the quick form for a named operator,
 and <code>reduce</code> is the flexible form for an arbitrary combining

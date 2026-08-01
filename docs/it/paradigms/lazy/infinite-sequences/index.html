@@ -116,23 +116,20 @@ infinite</a></p>
 diventa <strong>infinita</strong>: non ha un ultimo elemento. Poiché
 l’elenco è pigro, la cosa è perfettamente sicura: nulla viene calcolato
 finché non lo prendi.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">4</span> ... *).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 4 8 16)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">4</span> ... *).<span class="nb">head</span>(<span class="mi">5</span>); <span class="c1"># (1 2 4 8 16)</span></pre></div>
 
 <p>La serie delle potenze di due va avanti per sempre, ma
 <code>.head(5)</code> ne estrae solo le prime cinque. L’intervallo
 <code>1..*</code> è la sequenza infinita più semplice — tutti gli interi
 da uno in poi:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>);          <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="n">map</span>(* ** <span class="mi">2</span>).<span class="nb">head</span>(<span class="mi">4</span>); <span class="c1"># (1 4 9 16)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">map</span>(* ** <span class="mi">2</span>).<span class="nb">head</span>(<span class="mi">4</span>); <span class="c1"># (1 4 9 16)</span></pre></div>
 
 <p>Puoi persino definire una sequenza in termini dei propri elementi
 precedenti. La sequenza di Fibonacci, dove ogni numero è la somma dei
 due precedenti, è notoriamente una riga sola:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@fib</span> = <span class="mi">1</span>, <span class="mi">1</span>, * + * ... *;
-<span class="nb">say</span> <span class="nv">@fib</span>[^<span class="mi">10</span>]; <span class="c1"># (1 1 2 3 5 8 13 21 34 55)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@fib</span>[^<span class="mi">10</span>]; <span class="c1"># (1 1 2 3 5 8 13 21 34 55)</span></pre></div>
 
 <p>La chiusura <code>* + *</code> prende i due elementi precedenti e li
 somma. Conservare qui la sequenza in <code>@fib</code> va bene perché

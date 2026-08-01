@@ -114,13 +114,12 @@ to build a list. You wrap some code in a <code>gather</code> block, and
 every time that code calls <code>take</code>, the value is added to the
 list that <code>gather</code> produces.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@result</span> = <span class="k">gather</span> {
-    <span class="nb">take</span> <span class="mi">1</span>;
-    <span class="nb">take</span> <span class="mi">2</span>;
-    <span class="nb">take</span> <span class="mi">3</span>;
+    <span class="k">take</span> <span class="mi">1</span>;
+    <span class="k">take</span> <span class="mi">2</span>;
+    <span class="k">take</span> <span class="mi">3</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@result</span>; <span class="c1"># [1 2 3]</span></pre></div>
 
 <p>The three <code>take</code> calls contribute three values, and
 <code>gather</code> collects them into the list stored in
@@ -128,12 +127,11 @@ list that <code>gather</code> produces.</p>
 <p>The real strength of this pair shows when the <code>take</code> calls
 are spread through ordinary control flow, such as a loop with a
 condition. The list then contains only the values you chose to take:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">10</span> {
-    <span class="nb">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@evens</span> = <span class="k">gather</span> <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.10</span> {
+    <span class="k">take</span> <span class="nv">$_</span> <span class="k">if</span> <span class="nv">$_</span> %% <span class="mi">2</span>;
 };
 
-<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@evens</span>; <span class="c1"># [2 4 6 8 10]</span></pre></div>
 
 <p>Here the loop runs over the numbers from 1 to 10, but only the even
 ones are taken, so <code>@evens</code> ends up holding

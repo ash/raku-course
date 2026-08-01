@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,23 +117,22 @@ href="/ru/regexes/action-classes/exercises/humanise-a-date">Сделайте
 человекочитаемой</h1>
 <p>Вот один из возможных вариантов решения задачи.</p>
 <h2 id="код">Код</h2>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Date</span> {
-    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;year&gt; &#39;-&#39; &lt;month&gt; &#39;-&#39; &lt;day&gt; </span>}
-    <span class="k">token</span><span class="n"> year</span>  {<span class="sr"> \d ** 4 </span>}
-    <span class="k">token</span><span class="n"> month</span> {<span class="sr"> \d ** 2 </span>}
-    <span class="k">token</span><span class="n"> day</span>   {<span class="sr"> \d ** 2 </span>}
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Date</span> {
+    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;year&gt;</span> <span class="s">'-'</span> <span class="s">&lt;month&gt;</span> <span class="s">'-'</span> <span class="s">&lt;day&gt;</span> }
+    <span class="k">token</span> <span class="n">year</span>  { \<span class="n">d</span> ** <span class="mi">4</span> }
+    <span class="k">token</span> <span class="n">month</span> { \<span class="n">d</span> ** <span class="mi">2</span> }
+    <span class="k">token</span> <span class="n">day</span>   { \<span class="n">d</span> ** <span class="mi">2</span> }
 }
 
 <span class="k">class</span> <span class="n">Humanise</span> {
-    <span class="k">method</span> <span class="nb">year</span>(<span class="vg">$/</span>)  { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="nb">month</span>(<span class="vg">$/</span>) { <span class="k">make</span> <span class="s">&lt;January February March April May June</span>
-<span class="s">                             July August September October November December&gt;</span>[<span class="vg">$/</span> - <span class="mi">1</span>] }
-    <span class="k">method</span> <span class="nb">day</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="vg">$/</span>.<span class="nb">Int</span> }
-    <span class="k">method</span> <span class="n">TOP</span>(<span class="vg">$/</span>)   { <span class="k">make</span> <span class="s">&quot;{$&lt;day&gt;.made} {$&lt;month&gt;.made} {$&lt;year&gt;.made}&quot;</span> }
+    <span class="k">method</span> <span class="n">year</span>(<span class="nv">$/</span>)  { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">month</span>(<span class="nv">$/</span>) { <span class="k">make</span> &lt;<span class="n">January</span> <span class="n">February</span> <span class="n">March</span> <span class="n">April</span> <span class="n">May</span> <span class="n">June</span>
+                             <span class="n">July</span> <span class="n">August</span> <span class="n">September</span> <span class="n">October</span> <span class="n">November</span> <span class="n">December</span>&gt;[<span class="nv">$/</span> - <span class="mi">1</span>] }
+    <span class="k">method</span> <span class="n">day</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="nv">$/</span>.<span class="nb">Int</span> }
+    <span class="k">method</span> <span class="n">TOP</span>(<span class="nv">$/</span>)   { <span class="k">make</span> <span class="s">&quot;{$&lt;day&gt;.made} {$&lt;month&gt;.made} {$&lt;year&gt;.made}&quot;</span> }
 }
 
-<span class="nb">say</span> <span class="nb">Date</span>.<span class="nb">parse</span>(<span class="s">&#39;2026-07-05&#39;</span>, <span class="nb">actions</span> =&gt; <span class="n">Humanise</span>.<span class="nb">new</span>).<span class="k">made</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nb">Date</span>.<span class="n">parse</span>(<span class="s">'2026-07-05'</span>, <span class="n">actions</span> =&gt; <span class="n">Humanise</span>.<span class="nb">new</span>).<span class="n">made</span>;</pre></div>
 
 <p>🦋 Исходный код можно найти в файле <a
 href="https://github.com/ash/raku-course/blob/master/exercises/regexes/action-classes/humanise-a-date.raku">humanise-a-date.raku</a>.</p>
@@ -181,7 +180,7 @@ href="/ru/regexes/action-classes/exercises/humanise-a-date">Сделайте
 <a href="/bg/regexes/action-classes/exercises/humanise-a-date/solution">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/action-classes/exercises/humanise-a-date/solution">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

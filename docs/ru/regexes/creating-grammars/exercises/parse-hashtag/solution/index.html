@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,12 +117,11 @@ href="/ru/regexes/creating-grammars/exercises/parse-hashtag">Разберите
 <p>Вот один из возможных вариантов решения задачи.</p>
 <h2 id="код">Код</h2>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span><span class="n"> TOP</span> {<span class="sr"> &#39;#&#39; &lt;tag&gt; </span>}
-    <span class="k">token</span><span class="n"> tag</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">'#'</span> <span class="s">&lt;tag&gt;</span> }
+    <span class="k">token</span> <span class="n">tag</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span>;</pre></div>
 
 <p>🦋 Исходный код можно найти в файле <a
 href="https://github.com/ash/raku-course/blob/master/exercises/regexes/creating-grammars/parse-hashtag.raku">parse-hashtag.raku</a>.</p>
@@ -140,13 +139,12 @@ href="https://github.com/ash/raku-course/blob/master/exercises/regexes/creating-
 целиком — <code>#</code> вместе со словом, — а до слова добираться через
 вложенное правило <code>word</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Hashtag</span> {
-    <span class="k">token</span><span class="n"> TOP</span>  {<span class="sr"> &lt;tag&gt; </span>}
-    <span class="k">token</span><span class="n"> tag</span>  {<span class="sr"> &#39;#&#39; &lt;word&gt; </span>}
-    <span class="k">token</span><span class="n"> word</span> {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> <span class="n">TOP</span>  { <span class="s">&lt;tag&gt;</span> }
+    <span class="k">token</span> <span class="n">tag</span>  { <span class="s">'#'</span> <span class="s">&lt;word&gt;</span> }
+    <span class="k">token</span> <span class="n">word</span> { \<span class="n">w</span>+ }
 }
 
-<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="nb">parse</span>(<span class="s">&#39;#raku&#39;</span>)<span class="s">&lt;tag&gt;&lt;word&gt;</span>;
-</pre></div>
+<span class="nb">say</span> <span class="n">Hashtag</span>.<span class="n">parse</span>(<span class="s">'#raku'</span>)<span class="s">&lt;tag&gt;</span><span class="s">&lt;word&gt;</span>;</pre></div>
 
 <p>Программа печатает то же <code>｢raku｣</code>. Теперь
 <code>&lt;tag&gt;</code> захватывает весь <code>#raku</code>, а до слова
@@ -177,7 +175,7 @@ href="/ru/regexes/creating-grammars/exercises/parse-a-time">Разберите
 <a href="/bg/regexes/creating-grammars/exercises/parse-hashtag/solution">Български</a>
 <span class="lang-current">Русский</span>
 <a href="/uk/regexes/creating-grammars/exercises/parse-hashtag/solution">Українська</a>
-<a class="lang-about" href="/ru/about-translation">О переводе</a>
+<span class="lang-about-row"><a class="lang-about" href="/ru/about-translation">О переводе</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/ru/">Полный курс языка программирования Raku</a></p>

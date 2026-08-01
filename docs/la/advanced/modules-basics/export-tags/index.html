@@ -118,27 +118,23 @@ unicuique programmati permittere ut seriem quam vult eligat.</p>
 <p>Tessera in parenthesibus post <code>is export</code> scribitur:</p>
 <div class="highlight raku"><pre><span></span><span class="k">unit</span> <span class="k">module</span> <span class="n">Greeting</span>;
 
-<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="k">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
-<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="k">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }
-</pre></div>
+<span class="k">sub</span> <span class="n">hello</span>(<span class="nv">$name</span>)   <span class="k">is</span> <span class="n">export</span>            { <span class="s">&quot;Hello, $name!&quot;</span> }
+<span class="k">sub</span> <span class="n">goodbye</span>(<span class="nv">$name</span>) <span class="k">is</span> <span class="n">export</span>(:<span class="n">partings</span>) { <span class="s">&quot;Goodbye, $name!&quot;</span> }</pre></div>
 
 <p><code>hello</code> tesseram non habet, itaque ad gregem praedefinitum
 pertinet; <code>goodbye</code> tessera <code>:partings</code> notatum
 est.</p>
 <p>Simplex <code>use</code> solum gregem praedefinitum importat:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello praesto est; goodbye non est</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span>;      <span class="c1"># hello praesto est; goodbye non est</span></pre></div>
 
 <p>Tesseram nominans illum gregem loco eius importas — et, fortasse
 mirum, <em>non</em> etiam praedefinitum:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye praesto est; hello non est</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">partings</span>; <span class="c1"># goodbye praesto est; hello non est</span></pre></div>
 
 <p><code>:partings</code> petens exacte illum gregem accipis. Ut omnia
 quae modulus exportat adducas, utere tessera inbuilta
 <code>:ALL</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># et hello et goodbye</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">use</span> <span class="n">Greeting</span> :<span class="n">ALL</span>; <span class="c1"># et hello et goodbye</span></pre></div>
 
 <p>Duae tesserae speciales cognoscendae sunt. <code>:ALL</code> ab omni
 modulo sustinetur et omnes eius exportationes importat.

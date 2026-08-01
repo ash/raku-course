@@ -117,15 +117,13 @@ más. Tres de ellos merecen ser mencionados aquí.</p>
 <p>El meta-operador cross <code>X</code> empareja <strong>cada</strong>
 elemento de una lista con <strong>cada</strong> elemento de otra, es
 decir, el producto cartesiano:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span> <span class="s">&lt;1 2&gt;</span>; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
 
 <p>Al igual que zip, puede envolver un operador para actuar sobre cada
 par. <code>X~</code> une cada par en una cadena, y <code>X*</code>
 multiplica:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b&gt;</span> <span class="o">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="o">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
 
 <p>Mientras que zip recorre dos listas en paralelo, cross las combina de
 todas las formas posibles.</p>
@@ -137,8 +135,7 @@ elemento</strong> de una lista. El operador se envuelve con las flechas
 elemento, como zip; con un único valor en un lado, ese valor se extiende
 a toda la lista:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
-<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span>
-</pre></div>
+<span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
 
 <p>Las dos flechas no tienen que apuntar en la misma dirección, y su
 orientación decide que ocurre cuando las listas difieren en longitud:
@@ -156,14 +153,12 @@ se repite para igualar a la izquierda;</li>
 <li><code>&lt;&lt;op&gt;&gt;</code> — la lista <strong>más
 corta</strong> se repite para igualar a la más larga.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) <span class="s">&lt;&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 repeats to 10, 20, 10, 20</span></pre></div>
 
 <p>También existe una forma unaria, que llama a un método en cada
 elemento. <code>&gt;&gt;.uc</code> convierte cada cadena a
 mayúsculas:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;raku perl&gt;</span>&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
 
 <p>Las operaciones hyper también indican que el trabajo <em>puede</em>
 realizarse en paralelo; más adelante conocerás el método relacionado
@@ -175,9 +170,8 @@ resultado. El conocido <code>!=</code> (no igual) es exactamente este
 meta-operador aplicado a <code>==</code>, y lo mismo funciona para otros
 operadores booleanos como <code>eq</code> y <code>%%</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
-<span class="nb">say</span> <span class="s">&#39;a&#39;</span> !<span class="o">eq</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True  — not equal as strings</span>
-<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is not divisible by 2</span>
-</pre></div>
+<span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — not equal as strings</span>
+<span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is not divisible by 2</span></pre></div>
 
 <p>En resumen, <code>$a !op $b</code> es simplemente una forma más
 ordenada de escribir <code>!($a op $b)</code>.</p>
@@ -186,8 +180,7 @@ minimalista como el Esperanto, que busca una forma regular de expresar
 cada cosa, Raku esta encantado de ofrecerte varias, por lo que el negado
 <code>!eq</code> convive junto al operador dedicado <code>ne</code>, y
 ambos significan exactamente lo mismo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a&#39;</span> <span class="o">ne</span> <span class="s">&#39;b&#39;</span>; <span class="c1"># True — the same test as &#39;a&#39; !eq &#39;b&#39;</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — the same test as 'a' !eq 'b'</span></pre></div>
 
 <section id="práctica" class="practice" data-markdown="1">
 <h2>Práctica</h2>

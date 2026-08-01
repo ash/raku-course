@@ -124,17 +124,15 @@ schema sono significativi</li>
 quando una parte successiva dello schema fallisce, il motore torna
 indietro e prova una corrispondenza più corta per una parte precedente.
 Un <code>regex</code> fa così:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> r</span> {<span class="sr"> \w+ &#39;b&#39; </span>}
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;aaab&#39;</span> ~~<span class="sr"> / &lt;r&gt; /</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">r</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;r&gt; /</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>\w+</code> afferra dapprima tutto <code>aaab</code>, poi deve
 restituire l’ultima <code>b</code> perché la <code>b</code> letterale
 possa corrispondere. Un <code>token</code> rifiuta di restituire
 alcunché:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span><span class="n"> t</span> {<span class="sr"> \w+ &#39;b&#39; </span>}
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;aaab&#39;</span> ~~<span class="sr"> / &lt;t&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> <span class="n">t</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;t&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Qui <code>\w+</code> prende tutto <code>aaab</code>, la
 <code>b</code> letterale non trova più nulla e il token fallisce

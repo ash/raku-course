@@ -122,10 +122,9 @@ anagrams</a></p>
     <span class="nv">%groups</span>{ <span class="nv">$word</span>.<span class="nb">comb</span>.<span class="nb">sort</span>.<span class="nb">join</span> }.<span class="nb">push</span>(<span class="nv">$word</span>);
 }
 
-<span class="k">for</span> <span class="nv">%groups</span>.<span class="nb">sort</span>(*.<span class="nb">key</span>) -&gt; <span class="nv">$pair</span> {
-    <span class="nb">say</span> <span class="nv">$pair</span>.<span class="nb">value</span>.<span class="nb">sort</span>.<span class="nb">join</span>(<span class="s">&#39; &#39;</span>);
-}
-</pre></div>
+<span class="k">for</span> <span class="nv">%groups</span>.<span class="nb">sort</span>(*.<span class="n">key</span>) -&gt; <span class="nv">$pair</span> {
+    <span class="nb">say</span> <span class="nv">$pair</span>.<span class="n">value</span>.<span class="nb">sort</span>.<span class="nb">join</span>(<span class="s">' '</span>);
+}</pre></div>
 
 <p>🦋 You can find the source code in the file <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/anagram-groups.raku">anagram-groups.raku</a>.</p>
@@ -140,8 +139,7 @@ anagrams share the same sorted letters, so pushing onto
 <code>%groups{ ... }</code> gathers them under one key. After the first
 loop, <code>say %groups</code> shows the whole structure — each
 canonical key mapping to its list of words:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="nv">%groups</span>; <span class="c1"># {act =&gt; [cat act], dgo =&gt; [dog], eilnst =&gt; [listen silent enlist]}</span>
-</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="nv">%groups</span>; <span class="c1"># {act =&gt; [cat act], dgo =&gt; [dog], eilnst =&gt; [listen silent enlist]}</span></pre></div>
 </li>
 <li><p>Each hash value is the list of words in that group, printed
 alphabetically with <code>.sort.join</code>.</p></li>

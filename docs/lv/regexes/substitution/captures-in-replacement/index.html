@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,10 +117,9 @@ izmest.</p>
 <p>Piemēram, pārvērtiet datumu, kas uzrakstīts kā
 <code>gads-mēnesis</code>, par <code>mēnesis/gads</code>, satverot abus
 skaitļus un ieliekot tos atpakaļ citā secībā:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">&#39;2025-06&#39;</span>;
-<span class="nv">$d</span> ~~ <span class="nb">s</span>/ (\<span class="nb">d</span>+) <span class="s">&#39;-&#39;</span> (\<span class="nb">d</span>+) /<span class="nv">$1</span>\/<span class="nv">$0</span>/;
-<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$d</span> = <span class="s">'2025-06'</span>;
+<span class="nv">$d</span> ~~ <span class="sr">s/ (\d+) '-' (\d+) /$1\/$0/</span>;
+<span class="nb">say</span> <span class="nv">$d</span>; <span class="c1"># 06/2025</span></pre></div>
 
 <p>Raksturs satver gadu <code>$0</code> un mēnesi <code>$1</code>.
 Aizstājumā <code>$1</code> un <code>$0</code> ir uzrakstīti apgrieztā
@@ -131,10 +130,9 @@ burtiskas <strong>aizstājuma</strong> pusē, tāpēc aizstājums uzrakstīts
 bez atstarpēm ap to.</p>
 <p>Nosauktie tvērumi darbojas tāpat. Tas padara aizstāšanu skaidri
 lasāmu pat tad, kad gabalu ir vairāki:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Doe, Jane&#39;</span>;
-<span class="nv">$name</span> ~~ <span class="nb">s</span>/ <span class="nv">$&lt;last&gt;</span>=(\<span class="nb">w</span>+) <span class="s">&#39;, &#39;</span> <span class="nv">$&lt;first&gt;</span>=(\<span class="nb">w</span>+) /<span class="nv">$&lt;first&gt;</span> <span class="nv">$&lt;last&gt;</span>/;
-<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Doe, Jane'</span>;
+<span class="nv">$name</span> ~~ <span class="sr">s/ $&lt;last&gt;=(\w+) ', ' $&lt;first&gt;=(\w+) /$&lt;first&gt; $&lt;last&gt;/</span>;
+<span class="nb">say</span> <span class="nv">$name</span>; <span class="c1"># Jane Doe</span></pre></div>
 
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
 <p>← <a href="/lv/regexes/substitution/s-operator/quiz">Viktorīna —
@@ -161,7 +159,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/regexes/substitution/captures-in-replacement">Български</a>
 <a href="/ru/regexes/substitution/captures-in-replacement">Русский</a>
 <a href="/uk/regexes/substitution/captures-in-replacement">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

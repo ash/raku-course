@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -110,19 +110,18 @@
 / <a href="/uk/addendum/types-and-text-machines">Типи та текстові
 машини</a> / <a href="/uk/addendum/regex-grammars">Регулярні вирази та
 граматики</a> / <a
-href="/uk/addendum/regex-grammars/exercises">Exercises</a> / <a
+href="/uk/addendum/regex-grammars/exercises">Вправи</a> / <a
 href="/uk/addendum/regex-grammars/exercises/validate-identifier">Перевірте
 ідентифікатори</a></p>
 <h1 id="розвязання-перевірте-ідентифікатори">Розв’язання: Перевірте
 ідентифікатори</h1>
 <p>Ось одне з можливих розв’язань задачі.</p>
 <h2 id="код">Код</h2>
-<div class="highlight raku"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
+<div class="highlight raku"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; &lt;[A..Za..z0..9_]&gt;* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
+}</pre></div>
 
 <p>🦋 Знайдіть програму у файлі <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/regex-grammars/validate-identifier.raku">validate-identifier.raku</a>.</p>
@@ -142,8 +141,7 @@ _hidden: valid</pre></div>
 класичним правилом ідентифікатора.</p></li>
 <li><p>Другий клас можна записати і як <code>\w</code> — вбудоване
 скорочення для словесного символу (літери, цифри або підкреслення):</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;
-</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* $ /</span>;</pre></div>
 
 <p>Про одну відмінність варто знати: <code>\w</code> у Raku зважає на
 Unicode, тож ім’я на кшталт <code>café</code> теж проходить, — а це, до
@@ -156,12 +154,11 @@ Unicode, тож ім’я на кшталт <code>café</code> теж прохо
 тому підпрограми на кшталт <code>is-prime</code> читаються так природно.
 Щоб перевіряти ідентифікатори <em>Raku</em>, дозвольте такі групи після
 класичної частини:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> <span class="s">&lt;count total2 2fast my-var _hidden&gt;</span> -&gt; <span class="nv">$name</span> {
-    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~<span class="sr"> / ^ &lt;[A..Za..z_]&gt; \w* [ &#39;-&#39; &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
+<div class="highlight raku no-run"><pre><span></span><span class="k">for</span> &lt;<span class="n">count</span> <span class="n">total2</span> <span class="mi">2</span><span class="n">fast</span> <span class="n">my-var</span> <span class="n">_hidden</span>&gt; -&gt; <span class="nv">$name</span> {
+    <span class="k">my</span> <span class="nv">$ok</span> = <span class="nv">$name</span> ~~ <span class="sr">/ ^ &lt;[A..Za..z_]&gt; \w* [ '-' &lt;[A..Za..z]&gt; \w* ]* $ /</span>;
 
-    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? &#39;valid&#39; !! &#39;invalid&#39; }&quot;</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;$name: { $ok ?? 'valid' !! 'invalid' }&quot;</span>;
+}</pre></div>
 
 <p>Кожна група в дужках <code>[ '-' &lt;[A..Za..z]&gt; \w* ]</code>
 приймає дефіс лише тоді, коли за ним іде літера, тож <code>my-var</code>
@@ -191,7 +188,7 @@ href="/uk/addendum/regex-grammars/exercises/grammar-fullname">Граматика
 <a href="/bg/addendum/regex-grammars/exercises/validate-identifier/solution">Български</a>
 <a href="/ru/addendum/regex-grammars/exercises/validate-identifier/solution">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

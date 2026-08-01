@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,11 +115,11 @@ href="/bg/addendum/mini-projects/exercises/csv-averages">Оценки от
 <h1 id="решение-оценки-от-редове-csv">Решение: Оценки от редове CSV</h1>
 <p>Ето едно възможно решение на задачата.</p>
 <h2 id="код">Код</h2>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">&#39;Anna,90&#39;</span>, <span class="s">&#39;Bob,72&#39;</span>, <span class="s">&#39;Cara,84&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@lines</span> = <span class="s">'Anna,90'</span>, <span class="s">'Bob,72'</span>, <span class="s">'Cara,84'</span>;
 <span class="k">my</span> <span class="nv">%score</span>;
 
 <span class="k">for</span> <span class="nv">@lines</span> -&gt; <span class="nv">$line</span> {
-    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>);
+    <span class="k">my</span> (<span class="nv">$name</span>, <span class="nv">$mark</span>) = <span class="nv">$line</span>.<span class="nb">split</span>(<span class="s">','</span>);
     <span class="nv">%score</span>{<span class="nv">$name</span>} = <span class="nv">$mark</span>.<span class="nb">Int</span>;
 }
 
@@ -128,9 +128,8 @@ href="/bg/addendum/mini-projects/exercises/csv-averages">Оценки от
 
 <span class="nb">say</span> <span class="s">&quot;above average:&quot;</span>;
 <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span> -&gt; <span class="nv">$pair</span> {
-    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="nb">value</span> &gt; <span class="nv">$average</span>;
-}
-</pre></div>
+    <span class="nb">say</span> <span class="s">&quot;  {$pair.key}&quot;</span> <span class="k">if</span> <span class="nv">$pair</span>.<span class="n">value</span> &gt; <span class="nv">$average</span>;
+}</pre></div>
 
 <p>🦋 Намерете програмата във файла <a
 href="https://github.com/ash/raku-course/blob/master/exercises/addendum/mini-projects/csv-averages.raku">csv-averages.raku</a>.</p>
@@ -151,8 +150,7 @@ above average:
 <code>sort</code> подрежда двойките, <code>grep</code> запазва онези над
 средното, а <code>map</code> свежда всяка оцеляла двойка до името ѝ —
 така в тялото на цикъла не остава логика, а само печатане:</p>
-<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="nb">value</span> &gt; <span class="nv">$average</span>).<span class="n">map</span>(*.<span class="nb">key</span>);
-</pre></div>
+<div class="highlight raku no-run"><pre><span></span><span class="nb">say</span> <span class="s">&quot;  $_&quot;</span> <span class="k">for</span> <span class="nv">%score</span>.<span class="nb">sort</span>.<span class="nb">grep</span>(*.<span class="n">value</span> &gt; <span class="nv">$average</span>).<span class="nb">map</span>(*.<span class="n">key</span>);</pre></div>
 
 <p>Четейки отляво надясно, това казва точно каквото прави: сортирай,
 запази онези над средното, вземи имената им. Всеки етап е малка
@@ -180,7 +178,7 @@ href="/bg/advanced/whatever">звезди Whatever</a>, които в движе
 <span class="lang-current">Български</span>
 <a href="/ru/addendum/mini-projects/exercises/csv-averages/solution">Русский</a>
 <a href="/uk/addendum/mini-projects/exercises/csv-averages/solution">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

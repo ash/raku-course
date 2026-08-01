@@ -117,23 +117,20 @@ href="/es/advanced/anonymous-subroutines">bloque con
 flecha</a></strong>, que enumera sus parámetros tras la flecha
 <code>-&gt;</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = -&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="nv">$x</span> };
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>La segunda es la forma <strong><a
 href="/es/advanced/whatever">Whatever</a></strong>, donde un
 <code>*</code> ocupa el lugar del argumento y la expresión que lo rodea
 se convierte en una función de un argumento:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = * ** <span class="mi">2</span>;
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>Ambas crean la misma clase de cosa: un fragmento de código que puedes
 guardar, pasar y llamar. Las lambdas brillan como argumentos de las
 funciones de orden superior, donde ponerles nombre solo estorbaría:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>La forma con flecha es más clara cuando el cuerpo es más largo o
 recibe varios parámetros; la forma Whatever es maravillosamente breve

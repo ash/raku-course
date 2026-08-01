@@ -116,8 +116,7 @@ declara dentro de la clase con la palabra clave <code>has</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">class</span> <span class="n">Dog</span> {
     <span class="k">has</span> <span class="nv">$.name</span>;
     <span class="k">has</span> <span class="nv">$.age</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Cada objeto de la clase recibe su propia copia de estos atributos.
 Sus valores se fijan al crear el objeto, pasándolos a <code>new</code>
@@ -127,24 +126,21 @@ como argumentos con nombre:</p>
     <span class="k">has</span> <span class="nv">$.age</span>;
 }
 
-<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Rex&#39;</span>, <span class="n">age</span> =&gt; <span class="mi">3</span>);
-</pre></div>
+<span class="k">my</span> <span class="nv">$rex</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Rex'</span>, <span class="n">age</span> =&gt; <span class="mi">3</span>);</pre></div>
 
 <p>El <code>$.</code> de <code>has $.name</code> hace dos cosas a la
 vez: declara un atributo y crea un método con el mismo nombre — un
 <em>accesor</em> — que devuelve el valor del atributo:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$rex</span>.<span class="nb">name</span>; <span class="c1"># Rex</span>
-<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">age</span>;  <span class="c1"># 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">name</span>; <span class="c1"># Rex</span>
+<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">age</span>;  <span class="c1"># 3</span></pre></div>
 
 <p>Objetos distintos guardan valores propios, independientes entre
 sí:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$rex</span>  = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Rex&#39;</span>,  <span class="n">age</span> =&gt; <span class="mi">3</span>);
-<span class="k">my</span> <span class="nv">$fido</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="nb">name</span> =&gt; <span class="s">&#39;Fido&#39;</span>, <span class="n">age</span> =&gt; <span class="mi">5</span>);
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$rex</span>  = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Rex'</span>,  <span class="n">age</span> =&gt; <span class="mi">3</span>);
+<span class="k">my</span> <span class="nv">$fido</span> = <span class="n">Dog</span>.<span class="nb">new</span>(<span class="n">name</span> =&gt; <span class="s">'Fido'</span>, <span class="n">age</span> =&gt; <span class="mi">5</span>);
 
-<span class="nb">say</span> <span class="nv">$rex</span>.<span class="nb">name</span>;  <span class="c1"># Rex</span>
-<span class="nb">say</span> <span class="nv">$fido</span>.<span class="nb">name</span>; <span class="c1"># Fido</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$rex</span>.<span class="n">name</span>;  <span class="c1"># Rex</span>
+<span class="nb">say</span> <span class="nv">$fido</span>.<span class="n">name</span>; <span class="c1"># Fido</span></pre></div>
 
 <p>Los temas siguientes muestran cómo hacer modificables los atributos y
 cómo darles valores por defecto. (También existe una manera de declarar

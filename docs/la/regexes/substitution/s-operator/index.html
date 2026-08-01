@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,10 +114,9 @@ href="/la/regexes/substitution">Substitutio et permutatio</a></p>
 <p>Operator substitutionis est <code>s///</code>. Similis congruentiae
 cum secundo loco videtur: exemplar inter duas primas lineolas obliquas
 it et textus permutationis inter duas ultimas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;hello world&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="nb">s</span><span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">Raku</span>/;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
 <p>Substitutio variabilem <strong>in loco</strong> mutat, itaque ipsa
 <code>$s</code> renovatur. Textus in parte permutationis litteralis est
@@ -125,10 +124,9 @@ it et textus permutationis inter duas ultimas:</p>
 <p>Sicut congruentia, substitutio ex more solam <strong>primam</strong>
 occurrentiam tangit. Adde adverbium <code>:g</code> ut omnem
 occurrentiam permutes:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">&#39;a-b-c&#39;</span>;
-<span class="nv">$s</span> ~~ <span class="sr">s:g/&#39;-&#39;/_/</span>;
-<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
+<span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
 <p>Si originale servare vis et <strong>exemplum</strong> mutatum
 producere loco eius quod in loco mutes, utere operatore
@@ -136,20 +134,18 @@ producere loco eius quod in loco mutes, utere operatore
 catenam mutatam reddit, originali intacto relicto. Quia variabilem in
 loco non renovat, illud per <code>given</code> potius quam per
 <code>~~</code> dirige:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="n">S:g</span><span class="o">/</span><span class="n">o</span><span class="o">/</span><span class="mi">0</span>/ <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
 <p>(<code>$orig ~~ S///</code> scribere te monet ut <code>given</code>
 loco eius adhibeas — cum <code>S///</code> nihil est quod in loco
 mutetur.)</p>
 <p>Eadem agendi ratio non destruens etiam ut methodus praesto est,
 <code>.subst</code>, quae novam catenam reddit:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">&#39;color&#39;</span>;
-<span class="nb">say</span> <span class="nv">$orig</span>.<span class="nb">subst</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
-<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
+<span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
 <section id="exercitatio" class="practice" data-markdown="1">
 <h2>Exercitatio</h2>
@@ -183,7 +179,7 @@ sectionis</a> i.</p>
 <a href="/bg/regexes/substitution/s-operator">Български</a>
 <a href="/ru/regexes/substitution/s-operator">Русский</a>
 <a href="/uk/regexes/substitution/s-operator">Українська</a>
-<a class="lang-about" href="/la/about-translation">De translatione</a>
+<span class="lang-about-row"><a class="lang-about" href="/la/about-translation">De translatione</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/la/">Cursus plenus linguae programmandi Raku</a></p>

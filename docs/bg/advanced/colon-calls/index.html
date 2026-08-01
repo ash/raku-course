@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,15 +114,13 @@ href="/bg/advanced/subroutines">Подпрограми</a></p>
 аргументите в скоби: <code>@a.grep(* &gt; 5)</code>. Raku предлага и
 втора форма — поставете <strong>двоеточие</strong> след името и всичко
 след двоеточието става списъкът с аргументи, без никакви скоби:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">10</span>).<span class="n">grep:</span> * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Двоеточието в <code>grep:</code> изпълнява същата роля като скобите:
 <code>(1..10).grep: * %% 2</code> означава точно
 <code>(1..10).grep(* %% 2)</code>. Двете форми са взаимозаменяеми:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-<span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="n">join:</span> <span class="s">&#39;-&#39;</span>; <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>Формата с двоеточие е най-удобна при методи, които приемат
 <strong>блок</strong> или <a href="/bg/advanced/whatever">Whatever</a>
@@ -130,8 +128,7 @@ href="/bg/advanced/subroutines">Подпрограми</a></p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># скоби около блока</span>
-<span class="nb">say</span> <span class="nv">@a</span>.<span class="n">sort:</span> { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># двоеточие — няма затваряща скоба за съвпадение</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># двоеточие — няма затваряща скоба за съвпадение</span></pre></div>
 
 <p>И двете отпечатват <code>(3 2 1)</code>, но версията с двоеточие се
 чете по-чисто, особено когато блокът е дълъг.</p>
@@ -146,8 +143,7 @@ href="/bg/advanced/subroutines">Подпрограми</a></p>
 извикване след него. Ако трябва да извиквате повече методи, използвайте
 формата със скоби или групирайте частите на целия израз, за да стане
 ясно:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">&#39;a&#39;</span> .. <span class="s">&#39;z&#39;</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="n">grep:</span> <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>Едно нещо, на което трябва да внимавате: не комбинирайте двоеточие
 <strong>и</strong> скоби като <code>.grep:( … )</code>. Този запис влиза
@@ -196,7 +192,7 @@ href="/bg/advanced/subroutines">Подпрограми</a></p>
 <span class="lang-current">Български</span>
 <a href="/ru/advanced/colon-calls">Русский</a>
 <a href="/uk/advanced/colon-calls">Українська</a>
-<a class="lang-about" href="/bg/about-translation">За превода</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>

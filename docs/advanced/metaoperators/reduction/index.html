@@ -116,20 +116,17 @@ a list of values and inserts the operator between every pair of them,
 reducing the whole list to a single value.</p>
 <p>For example, <code>[+]</code> adds up all the elements of a list:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@data</span> = <span class="mi">3</span>, <span class="mi">5</span>, <span class="mi">7</span>, <span class="mi">9</span>, <span class="mi">11</span>;
-<span class="nb">say</span> [+] <span class="nv">@data</span>; <span class="c1"># 35</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nv">@data</span>; <span class="c1"># 35</span></pre></div>
 
 <p>The construct <code>[+] @data</code> is equivalent to writing the
 operator out by hand:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> + <span class="mi">5</span> + <span class="mi">7</span> + <span class="mi">9</span> + <span class="mi">11</span>; <span class="c1"># 35</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> + <span class="mi">5</span> + <span class="mi">7</span> + <span class="mi">9</span> + <span class="mi">11</span>; <span class="c1"># 35</span></pre></div>
 
 <p>Any suitable infix operator works the same way. With <code>[*]</code>
 you get the product of the list, so applying it to the range
 <code>1..$n</code> is a handy way to compute a factorial:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$n</span> = <span class="mi">5</span>;
-<span class="nb">say</span> [*] <span class="mi">1</span>..<span class="nv">$n</span>; <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> [*] <span class="mi">1</span>..<span class="nv">$n</span>; <span class="c1"># 120</span></pre></div>
 
 <p>Here, the range <code>1..$n</code> produces the numbers from 1 to 5,
 and <code>[*]</code> multiplies them: <code>1 * 2 * 3 * 4 * 5</code>,
@@ -137,20 +134,17 @@ which is <em>5!</em>.</p>
 <p>String concatenation works too. The <code>[~]</code> reduction joins
 a list of strings into one:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@strings</span> = <span class="s">&lt;neun hundert fünf und zwanzig&gt;</span>;
-<span class="nb">say</span> [~] <span class="nv">@strings</span>; <span class="c1"># neunhundertfünfundzwanzig</span>
-</pre></div>
+<span class="nb">say</span> [~] <span class="nv">@strings</span>; <span class="c1"># neunhundertfünfundzwanzig</span></pre></div>
 
 <p>Even comparison operators can be reduced. <code>[&lt;]</code> reports
 whether the values are in strictly increasing order:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> [&lt;] <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> [&lt;] <span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>; <span class="c1"># True</span></pre></div>
 
 <h2 id="triangular-reduction">Triangular reduction</h2>
 <p>If you put a backslash inside the brackets, you get a
 <em>triangular</em> reduction, which keeps all the intermediate results
 instead of only the final one:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> [\+] <span class="mi">1</span><span class="o">..</span><span class="mi">5</span>; <span class="c1"># (1 3 6 10 15)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> [\+] <span class="mi">1</span>.<span class="mf">.5</span>; <span class="c1"># (1 3 6 10 15)</span></pre></div>
 
 <p>Each element of the result is a partial sum: <code>1</code>, then
 <code>1+2</code>, then <code>1+2+3</code>, and so on up to the sum of

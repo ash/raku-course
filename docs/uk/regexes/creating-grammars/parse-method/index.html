@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -112,25 +112,23 @@ href="/uk/regexes/creating-grammars">Створення граматик</a></p>
 <h1 id="розбір-за-допомогою-parse">Розбір за допомогою parse</h1>
 <p>Щоб запустити граматику, викличте її метод <code>.parse</code>,
 передавши рядок для аналізу:</p>
-<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="nb">Pair</span> {
-    <span class="k">token</span><span class="n"> TOP</span>   {<span class="sr"> &lt;key&gt; &#39;=&#39; &lt;value&gt; </span>}
-    <span class="k">token</span><span class="n"> key</span>   {<span class="sr"> \w+ </span>}
-    <span class="k">token</span><span class="n"> value</span> {<span class="sr"> \w+ </span>}
+<div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Pair</span> {
+    <span class="k">token</span> <span class="n">TOP</span>   { <span class="s">&lt;key&gt;</span> <span class="s">'='</span> <span class="s">&lt;value&gt;</span> }
+    <span class="k">token</span> <span class="n">key</span>   { \<span class="n">w</span>+ }
+    <span class="k">token</span> <span class="n">value</span> { \<span class="n">w</span>+ }
 }
 
-<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>);
-<span class="nb">say</span> <span class="nv">$m&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
-<span class="nb">say</span> <span class="nv">$m&lt;value&gt;</span>; <span class="c1"># ｢5｣</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$m</span> = <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>);
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;key&gt;</span>;   <span class="c1"># ｢x｣</span>
+<span class="nb">say</span> <span class="nv">$m</span><span class="s">&lt;value&gt;</span>; <span class="c1"># ｢5｣</span></pre></div>
 
 <p><code>.parse</code> повертає об’єкт збігу, коли граматика
 зіставляється з <strong>усім</strong> рядком, і <code>Nil</code>, коли
 ні. Оскільки весь вхідний текст має зіставитися, якорі <code>^</code> та
 <code>$</code> не потрібні — <code>.parse</code> додає цю вимогу за
 вас:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=5&#39;</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">Pair</span>.<span class="nb">parse</span>(<span class="s">&#39;x=&#39;</span>).<span class="nb">defined</span>;  <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x=5'</span>).<span class="nb">defined</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nb">Pair</span>.<span class="n">parse</span>(<span class="s">'x='</span>).<span class="nb">defined</span>;  <span class="c1"># False</span></pre></div>
 
 <p><a href="/uk/regexes/matching/match-object">Об’єкт збігу</a> працює
 так само, як ті, з якими ви зустрічалися раніше. Кожен токен,
@@ -170,7 +168,7 @@ href="/uk/regexes/creating-grammars/exercises">до вправ цього
 <a href="/bg/regexes/creating-grammars/parse-method">Български</a>
 <a href="/ru/regexes/creating-grammars/parse-method">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

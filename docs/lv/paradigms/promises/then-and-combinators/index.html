@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,10 +114,9 @@ href="/lv/paradigms/promises">Solījumi</a></p>
 <p>Solījumi kļūst vēl jaudīgāki, kad tos apvieno. Visbiežākā vajadzība
 ir sagaidīt <strong>vairākus</strong> uzreiz. <code>await</code> pieņem
 solījumu sarakstu un atgriež to rezultātus pēc kārtas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Visi trīs darbi izpildās vienlaikus; <code>await @jobs</code> sagaida
 tos visus un atdod <code>(1, 2, 3)</code>. Tā kā rezultāti atnāk tādā
@@ -125,10 +124,9 @@ pašā secībā kā solījumi, tos var reducēt kā parasti.</p>
 <p>Darbu solījumam var arī piesiet ar <code>.then</code>, kas izpilda
 turpinājuma bloku, tiklīdz solījums ir gatavs. Tā iekšienē
 <code>.result</code> ir sākotnējā solījuma vērtība:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> ir jauns solījums, kas dubulto <code>$p</code>
 rezultātu. Tā gaidīšana dod <code>20</code>.</p>
@@ -136,8 +134,7 @@ rezultātu. Tā gaidīšana dod <code>20</code>.</p>
 solījumu kā temata mainīgo <code>$_</code> — un tieši tāpēc darbojas
 kails <code>.result</code>: īstenībā tas ir <code>$_.result</code>. Ja
 labprātāk dotu šim solījumam vārdu, izmantojiet bultiņas bloku:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Tas uzvedas tieši tāpat; <code>$prev</code> ir sākotnējais solījums
 <code>$p</code>, un <code>$prev.result</code> ir tā vērtība.</p>
@@ -178,7 +175,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/paradigms/promises/then-and-combinators">Български</a>
 <a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
 <a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

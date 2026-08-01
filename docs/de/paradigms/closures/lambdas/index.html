@@ -116,23 +116,20 @@ dafür kennen Sie bereits. Die erste ist der <strong><a
 href="/de/advanced/anonymous-subroutines">Pointy Block</a></strong>, der
 seine Parameter hinter dem Pfeil <code>-&gt;</code> aufführt:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = -&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="nv">$x</span> };
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>Die zweite ist die <strong><a
 href="/de/advanced/whatever">Whatever</a></strong>-Form, in der ein
 <code>*</code> für das Argument steht und der Ausdruck darum herum zu
 einer einstelligen Funktion wird:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = * ** <span class="mi">2</span>;
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>Beide erzeugen dieselbe Art Ding: ein Stück Code, das Sie ablegen,
 weitergeben und aufrufen können. Lambdas glänzen als Argumente für
 Funktionen höherer Ordnung, wo ein Name nur im Weg wäre:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>Die Pointy-Form ist klarer, wenn der Rumpf länger ist oder mehrere
 Parameter hat; die Whatever-Form ist für einfache Ausdrücke herrlich

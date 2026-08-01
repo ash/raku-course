@@ -118,24 +118,21 @@ href="/it/advanced/anonymous-subroutines">blocco con la
 freccia</a></strong>, che elenca i propri parametri dopo la freccia
 <code>-&gt;</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = -&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="nv">$x</span> };
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>Il secondo è la forma <strong><a
 href="/it/advanced/whatever">Whatever</a></strong>, dove un
 <code>*</code> sta al posto dell’argomento e l’espressione attorno
 diventa una funzione a un argomento:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">&amp;square</span> = * ** <span class="mi">2</span>;
-<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">square</span>(<span class="mi">7</span>); <span class="c1"># 49</span></pre></div>
 
 <p>Entrambi creano lo stesso genere di cosa: un pezzo di codice che puoi
 conservare, passare e chiamare. Le lambda brillano come argomenti delle
 funzioni di ordine superiore, dove dar loro un nome sarebbe solo
 d’intralcio:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
-<span class="nb">say</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">5</span>).<span class="n">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$n</span> { <span class="nv">$n</span> * <span class="nv">$n</span> }); <span class="c1"># (1 4 9 16 25)</span>
+<span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* ** <span class="mi">2</span>);            <span class="c1"># (1 4 9 16 25)</span></pre></div>
 
 <p>La forma con la freccia è più chiara quando il corpo è più lungo o
 prende parecchi parametri; la forma Whatever è splendidamente breve per

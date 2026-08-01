@@ -115,13 +115,12 @@ href="/de/advanced/quoting">Quoting-Konstrukte</a></p>
 Anstelle von Trennzeichen um den Text herum gibst du mit
 <code>:to</code> ein Abschlusswort an, und der String reicht von der
 nächsten Zeile bis zu einer Zeile, die nur dieses Wort enthält:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/;</span>
-<span class="s">Hello,</span>
-<span class="s">World!</span>
-<span class="s">END</span>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$text</span> = <span class="s">q:to/END/</span>;
+<span class="n">Hello</span>,
+<span class="n">World</span>!
+<span class="k">END</span>
 
-<span class="nb">print</span> <span class="nv">$text</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$text</span>;</pre></div>
 
 <p>Die Ausgabe ist:</p>
 <div class="highlight"><pre>Hello,
@@ -133,29 +132,27 @@ bereits mit einem Zeilenumbruch endet — <code>say</code> würde einen
 zweiten hinzufügen und eine zusätzliche Leerzeile erzeugen. Da das
 Heredoc mit <code>q:to</code> beginnt, wird der Text nicht interpoliert;
 verwende <code>qq:to</code>, um Variablen zu interpolieren:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">&#39;Anna&#39;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$name</span> = <span class="s">'Anna'</span>;
 
-<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/;</span>
-<span class="s">Dear $name,</span>
-<span class="s">Welcome!</span>
-<span class="s">EOF</span>
+<span class="k">my</span> <span class="nv">$greeting</span> = <span class="s">qq:to/EOF/</span>;
+<span class="n">Dear</span> <span class="nv">$name</span>,
+<span class="n">Welcome</span>!
+<span class="n">EOF</span>
 
-<span class="nb">print</span> <span class="nv">$greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="nv">$greeting</span>;</pre></div>
 
 <p>Ein nützliches Detail: Die <strong>Einrückung des schließenden
 Abschlusswortes</strong> wird von jeder Zeile des Textes entfernt. So
 kannst du ein Heredoc passend zum umgebenden Code einrücken, ohne dass
 diese Einrückung im String landet:</p>
 <div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">greeting</span> {
-    <span class="k">return</span> <span class="s">q:to/END/;</span>
-<span class="s">        Hello,</span>
-<span class="s">        World!</span>
-<span class="s">        END</span>
+    <span class="k">return</span> <span class="s">q:to/END/</span>;
+        <span class="n">Hello</span>,
+        <span class="n">World</span>!
+        <span class="k">END</span>
 }
 
-<span class="nb">print</span> <span class="n">greeting</span>;
-</pre></div>
+<span class="nb">print</span> <span class="n">greeting</span>;</pre></div>
 
 <p>Dies gibt dasselbe <code>Hello,</code> und <code>World!</code> wie
 das erste Beispiel aus. Hier ist das schließende <code>END</code> um

@@ -116,17 +116,16 @@ a qualunque presa sia in ascolto <strong>in quel momento</strong>. Ne
 crei uno con un <code>Supplier</code>: il supplier è l’estremità che
 invia, e il suo <code>.Supply</code> è l’estremità che riceve, a cui gli
 altri attingono.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="nb">Supplier</span>.<span class="nb">new</span>;
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$supplier</span> = <span class="n">Supplier</span>.<span class="nb">new</span>;
 <span class="k">my</span> <span class="nv">$supply</span>   = <span class="nv">$supplier</span>.<span class="nb">Supply</span>;
 
 <span class="k">my</span> <span class="nv">@got</span>;
-<span class="nv">$supply</span>.<span class="nb">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@got</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
+<span class="nv">$supply</span>.<span class="n">tap</span>(-&gt; <span class="nv">$v</span> { <span class="nv">@got</span>.<span class="nb">push</span>(<span class="nv">$v</span>) });
 
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="mi">1</span>);
-<span class="nv">$supplier</span>.<span class="nb">emit</span>(<span class="mi">2</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="mi">1</span>);
+<span class="nv">$supplier</span>.<span class="n">emit</span>(<span class="mi">2</span>);
 
-<span class="nb">say</span> <span class="nv">@got</span>; <span class="c1"># [1 2]</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@got</span>; <span class="c1"># [1 2]</span></pre></div>
 
 <p>Qui <code>.emit</code> spinge un valore nel supply dal vivo, e ogni
 presa attuale lo riceve. La presa era già al suo posto prima delle

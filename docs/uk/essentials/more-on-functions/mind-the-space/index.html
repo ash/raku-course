@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,34 +117,29 @@ href="/uk/essentials/more-on-functions">Більше про функції</a></
 Але використовуйте пробіл після <code>for</code> та <code>if</code>.</p>
 <h2 id="детально">Детально</h2>
 <p>Візьмемо просту функцію:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Перш за все, зверніть увагу на відсутність пробілів між назвою
 функції та відкриваючими дужками, які містять параметри. Деякі стилі
 кодування в інших мовах можуть вимагати пробіл там. Raku це допускає,
 але це не практика, яку слід дотримуватися:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span> (<span class="nv">$x</span>, <span class="nv">$y</span>) {
     <span class="k">return</span> <span class="nv">$x</span> + <span class="nv">$y</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>На стороні виклику відсутність пробілу є важливою. Якщо ви викликаєте
 функцію і опускаєте дужки, то пробіл після назви функції є
 неминучим:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> <span class="mi">5</span>, <span class="mi">6</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> <span class="mi">5</span>, <span class="mi">6</span>;</pre></div>
 
 <p>Але якщо ви додаєте дужки, то не можна мати пробіл перед ними. Це
 правильний виклик:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>А цей виклик неправильний:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>);</pre></div>
 
 <p>Такий код викликає виняток:</p>
 <pre><code>Too few positionals passed; expected 2 arguments but got 1
@@ -154,12 +149,11 @@ href="/uk/essentials/more-on-functions">Більше про функції</a></
 передати один аргумент <code>(5, 6)</code> до функції. Ви можете легко
 перевірити тип цього аргументу, якщо перепишете функцію так, щоб вона
 приймала лише один аргумент:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$param</span>) {
-    <span class="nb">say</span> <span class="nv">$param</span>.<span class="nb">WHAT</span>;
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">f</span>(<span class="nv">$param</span>) {
+    <span class="nb">say</span> <span class="nv">$param</span>.<span class="n">WHAT</span>;
 }
 
-<span class="nb">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span>
-</pre></div>
+<span class="n">f</span> (<span class="mi">5</span>, <span class="mi">6</span>); <span class="c1"># (List)</span></pre></div>
 
 <p>Отже, виклик <code>f (5, 6)</code> означає, що ми передаємо <a
 href="/uk/essentials/positionals/lists">список</a> до функції. Список як
@@ -169,10 +163,9 @@ href="/uk/essentials/positionals/lists">список</a> до функції. С
 використовуєте дужки з одним із ключових слів, таких як <code>if</code>
 або <code>for</code> або <code>loop</code>. Наступний код
 неправильний:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="nb">True</span> != <span class="nb">False</span>) {
-    <span class="nb">say</span> <span class="s">&#39;OK&#39;</span>;
-}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">if</span>(<span class="n">True</span> != <span class="n">False</span>) {
+    <span class="nb">say</span> <span class="s">'OK'</span>;
+}</pre></div>
 
 <p>Повідомлення про помилку пояснює, що не так:</p>
 <pre><code>===SORRY!===
@@ -187,8 +180,7 @@ at /Users/ash/raku-course/t.raku:1
 не виникає, якщо ви їх не використовуєте. Але в деяких випадках, як,
 наприклад, з <code>loop</code>, вам потрібно мати їх, і пробіл стає
 обов’язковим:</p>
-<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">loop</span>(<span class="k">my</span> <span class="nv">$c</span> = <span class="mi">0</span>; <span class="nv">$c</span> != <span class="mi">10</span>; <span class="nv">$c</span>++) { <span class="nb">say</span> <span class="nv">$c</span> }</pre></div>
 
 <p>У цьому коді відбувається те ж саме: <code>loop(...)</code>
 розуміється компілятором як виклик функції. Додайте пробіл, щоб вирішити
@@ -224,7 +216,7 @@ href="/uk/essentials/more-on-functions/exercises/factorial-with-multi-functions"
 <a href="/bg/essentials/more-on-functions/mind-the-space">Български</a>
 <a href="/ru/essentials/more-on-functions/mind-the-space">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>

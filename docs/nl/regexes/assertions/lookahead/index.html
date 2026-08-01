@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,16 +123,14 @@ geschreven:</p>
 <p>De assertion zelf matcht geen tekens; hij test alleen de positie.
 Match bijvoorbeeld een getal alleen wanneer het door het woord
 <code>dollars</code> gevolgd wordt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; dollars&#39;&gt; /</span>; <span class="c1"># ｢100｣</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' dollars'&gt; /</span>; <span class="c1"># ｢100｣</span></pre></div>
 
 <p>De match is alleen <code>100</code> — de tekst <code>dollars</code>
 werd gecontroleerd maar niet meegenomen.</p>
 <p>Omdat de lookahead alleen beweert wat erna komt, matcht hetzelfde
 getal wel of niet, afhankelijk van de valuta erachter:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 euro&#39;</span>    ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;100 dollars&#39;</span> ~~<span class="sr"> / \d+ &lt;?before &#39; euro&#39;&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'100 euro'</span>    ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>De cijfers zijn in beide strings identiek, maar de assertion
 aanvaardt <code>100</code> alleen wanneer er <code>euro</code> op
@@ -140,9 +138,8 @@ volgt.</p>
 <p>De negatieve vorm is nuttig voor “… maar niet wanneer erop volgt …”.
 Match <code>cat</code> alleen wanneer er <strong>geen</strong> cijfer op
 volgt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cats&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;cat5&#39;</span> ~~<span class="sr"> / cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'cats'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'cat5'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>In <code>cat5</code> ziet de lookahead vlak achter <code>cat</code>
 een cijfer, dus mislukt de negatieve assertion en mislukt de hele
@@ -178,7 +175,7 @@ sectie</a>.</p>
 <a href="/bg/regexes/assertions/lookahead">Български</a>
 <a href="/ru/regexes/assertions/lookahead">Русский</a>
 <a href="/uk/regexes/assertions/lookahead">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

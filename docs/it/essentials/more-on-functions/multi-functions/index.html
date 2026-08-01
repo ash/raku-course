@@ -115,17 +115,15 @@ href="/it/essentials/functions-essentials">Fondamenti delle funzioni</a>
 funzione. Permette di creare funzioni che condividono lo stesso nome ma
 hanno tipi di dati di input differenti. Usa il dichiaratore
 <code>multi</code> per ciascuna delle varianti della funzione.</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Int</span> <span class="nv">$x</span>, <span class="nb">Int</span> <span class="nv">$y</span>) { <span class="nv">$x</span> + <span class="nv">$y</span> }
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">add</span>(<span class="nb">Str</span> <span class="nv">$x</span>, <span class="nb">Str</span> <span class="nv">$y</span>) { <span class="nv">$x</span> ~ <span class="nv">$y</span> }</pre></div>
 
 <p>(È possibile omettere <code>sub</code> dopo <code>multi</code>.)</p>
 <p>Se hai due varianti della stessa funzione, il compilatore esegue il
 multiple dispatch a seconda degli argomenti che vede nella chiamata
 della funzione. Confronta le seguenti due chiamate:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
-<span class="nb">say</span> <span class="nb">add</span>(<span class="s">&#39;10&#39;</span>, <span class="s">&#39;20&#39;</span>); <span class="c1"># 1020</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="n">add</span>(<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># 30</span>
+<span class="nb">say</span> <span class="n">add</span>(<span class="s">'10'</span>, <span class="s">'20'</span>); <span class="c1"># 1020</span></pre></div>
 
 <p>La prima chiamata attiva la funzione con parametri interi, mentre la
 seconda chiamata esegue la seconda variante della funzione che si
@@ -133,16 +131,14 @@ aspetta due stringhe.</p>
 <h2 id="parametri-letterali">Parametri letterali</h2>
 <p>Un caso interessante per le multi-funzioni è avere varianti che hanno
 valori letterali come parametri. Considera le seguenti due varianti:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">&#39;Questa è la risposta&#39;</span>}
-<span class="k">multi</span> <span class="k">sub</span> <span class="nb">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x non è la risposta&quot;</span>}
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="mi">42</span>) {<span class="nb">say</span> <span class="s">'Questa è la risposta'</span>}
+<span class="k">multi</span> <span class="k">sub</span> <span class="n">f</span>(<span class="nv">$x</span>) {<span class="nb">say</span> <span class="s">&quot;$x non è la risposta&quot;</span>}</pre></div>
 
 <p>La prima variante viene eseguita solo quando chiami la funzione con
 il valore esatto di 42. Negli altri casi, viene utilizzata la seconda
 variante. L’ordine in cui queste funzioni sono definite non importa.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">f</span>(<span class="mi">10</span>); <span class="c1"># 10 non è la risposta</span>
-<span class="nb">f</span>(<span class="mi">42</span>); <span class="c1"># Questa è la risposta</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">f</span>(<span class="mi">10</span>); <span class="c1"># 10 non è la risposta</span>
+<span class="n">f</span>(<span class="mi">42</span>); <span class="c1"># Questa è la risposta</span></pre></div>
 
 <section id="pratica" class="practice" data-markdown="1">
 <h2>Pratica</h2>

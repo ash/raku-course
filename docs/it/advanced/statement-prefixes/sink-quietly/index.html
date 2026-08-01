@@ -117,9 +117,8 @@ effetti piuttosto che per il suo valore.</p>
 sink</em> — esclusivamente per i suoi effetti collaterali, scartando il
 risultato. È utile con un’operazione lazy che volete forzare ad
 eseguire:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">sink</span> (<span class="mi">1</span><span class="o">..</span><span class="mi">3</span>).<span class="n">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
-<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="n">sink</span> (<span class="mi">1</span>.<span class="mf">.3</span>).<span class="nb">map</span>({ <span class="nb">print</span> <span class="s">&quot;$_ &quot;</span> });
+<span class="nb">print</span> <span class="s">&quot;\n&quot;</span>; <span class="c1"># 1 2 3</span></pre></div>
 
 <p>Il <code>map</code> qui viene eseguito solo per la stampa che
 produce; <code>sink</code> si assicura che venga effettivamente eseguito
@@ -130,10 +129,9 @@ affatto.</p>
 <strong>avvisi soppressi</strong>. Il codice che normalmente stamperebbe
 un avviso sul flusso di errore rimane silenzioso:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$value</span>;
-<span class="n">quietly</span> {
+<span class="k">quietly</span> {
     <span class="nb">say</span> <span class="nv">$value</span> + <span class="mi">1</span>; <span class="c1"># 1, with no &quot;uninitialized value&quot; warning</span>
-}
-</pre></div>
+}</pre></div>
 
 <p>Sommare <code>1</code> a un <code>$value</code> non definito
 normalmente genera un avviso sull’uso di un valore non inizializzato, ma

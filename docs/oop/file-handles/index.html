@@ -117,12 +117,11 @@ handle</em>.</p>
 <p>The simplest way to read a file line by line does not even need an
 explicit handle: the <code>lines</code> method on a path object gives
 the lines one at a time, ready for a <code>for</code> loop:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">&#39;words.txt&#39;</span>, <span class="s">&quot;one\ntwo\nthree\n&quot;</span>;
+<div class="highlight raku"><pre><span></span><span class="nb">spurt</span> <span class="s">'words.txt'</span>, <span class="s">&quot;one\ntwo\nthree\n&quot;</span>;
 
-<span class="k">for</span> <span class="s">&#39;words.txt&#39;</span>.<span class="nb">IO</span>.<span class="nb">lines</span> -&gt; <span class="nv">$line</span> {
+<span class="k">for</span> <span class="s">'words.txt'</span>.<span class="nb">IO</span>.<span class="nb">lines</span> -&gt; <span class="nv">$line</span> {
     <span class="nb">say</span> <span class="nv">$line</span>.<span class="nb">uc</span>;
-}
-</pre></div>
+}</pre></div>
 
 <p>Each <code>$line</code> is a single line, without its trailing
 newline. The program prints:</p>
@@ -132,11 +131,10 @@ THREE</pre></div>
 <p>To write to a file through a handle, open it with <code>open</code>
 and the <code>:w</code> (write) flag, use the handle’s <code>say</code>
 or <code>print</code> methods, and <code>close</code> it when done:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$fh</span> = <span class="nb">open</span> <span class="s">&#39;out.txt&#39;</span>, :<span class="n">w</span>;
-<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">&#39;first line&#39;</span>);
-<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">&#39;second line&#39;</span>);
-<span class="nv">$fh</span>.<span class="nb">close</span>;
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$fh</span> = <span class="nb">open</span> <span class="s">'out.txt'</span>, :<span class="n">w</span>;
+<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">'first line'</span>);
+<span class="nv">$fh</span>.<span class="nb">say</span>(<span class="s">'second line'</span>);
+<span class="nv">$fh</span>.<span class="nb">close</span>;</pre></div>
 
 <p>Closing the handle makes sure everything you wrote is flushed to
 disk. Reading line by line, as above, is the usual way to handle files

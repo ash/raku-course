@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,41 +114,34 @@ href="/lv/advanced/built-in-types">Vairāk par iebūvētajiem tipiem</a> /
 <p>Virknes var sadalīt daļās un salikt atpakaļ kopā vairākos veidos.</p>
 <p>Metode <code>words</code> sadala virkni vārdu sarakstā, atdalot pēc
 atstarpēm:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello big World&#39;</span>.<span class="nb">words</span>; <span class="c1"># (Hello big World)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello big World'</span>.<span class="nb">words</span>; <span class="c1"># (Hello big World)</span></pre></div>
 
 <p>Metode <code>split</code> sadala virkni pie jūsu izvēlēta
 atdalītāja:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;a,b,c&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;,&#39;</span>); <span class="c1"># (a b c)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a,b,c'</span>.<span class="nb">split</span>(<span class="s">','</span>); <span class="c1"># (a b c)</span></pre></div>
 
 <p>Svarīgs īpašs gadījums ir sadalīšana pie <strong>tukšās
 virknes</strong> <code>''</code>: tā sadala virkni atsevišķās
 rakstzīmēs, bet arī ievieto tukšu virkni pašā sākumā un beigās, tāpēc
 rezultātam ir par diviem elementiem vairāk, nekā varētu gaidīt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;abc&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;&#39;</span>).<span class="nb">elems</span>;        <span class="c1"># 5 — trīs burti, plus tukša virkne katrā galā</span>
-<span class="nb">say</span> <span class="s">&#39;abc&#39;</span>.<span class="nb">split</span>(<span class="s">&#39;&#39;</span>, :<span class="n">skip-empty</span>); <span class="c1"># (a b c) — adverbs :skip-empty izlaiž tukšos</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abc'</span>.<span class="nb">split</span>(<span class="s">''</span>).<span class="nb">elems</span>;        <span class="c1"># 5 — trīs burti, plus tukša virkne katrā galā</span>
+<span class="nb">say</span> <span class="s">'abc'</span>.<span class="nb">split</span>(<span class="s">''</span>, :<span class="n">skip-empty</span>); <span class="c1"># (a b c) — adverbs :skip-empty izlaiž tukšos</span></pre></div>
 
 <p>Lai sadalītu rakstzīmēs, metode <code>comb</code>, izsaukta bez
 argumentiem, dara to tieši — bez liekām tukšām virknēm:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Raku&#39;</span>.<span class="nb">comb</span>; <span class="c1"># (R a k u)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Raku'</span>.<span class="nb">comb</span>; <span class="c1"># (R a k u)</span></pre></div>
 
 <p>Lai dotos pretējā virzienā, metode <code>join</code> salīmē vērtību
 sarakstu vienā virknē, ievietojot atdalītāju starp tām:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&lt;a b c&gt;</span>.<span class="nb">join</span>(<span class="s">&#39;-&#39;</span>); <span class="c1"># a-b-c</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span></pre></div>
 
 <p>Vēl divas metodes strādā ar virknes daļām. Metode <code>substr</code>
 izgriež gabalu, norādot sākuma pozīciju un, pēc izvēles, garumu:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;Hello World&#39;</span>.<span class="nb">substr</span>(<span class="mi">0</span>, <span class="mi">5</span>); <span class="c1"># Hello</span>
-<span class="nb">say</span> <span class="s">&#39;Hello World&#39;</span>.<span class="nb">substr</span>(<span class="mi">6</span>);    <span class="c1"># World</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello World'</span>.<span class="nb">substr</span>(<span class="mi">0</span>, <span class="mi">5</span>); <span class="c1"># Hello</span>
+<span class="nb">say</span> <span class="s">'Hello World'</span>.<span class="nb">substr</span>(<span class="mi">6</span>);    <span class="c1"># World</span></pre></div>
 
 <p>Un <code>trim</code> noņem atstarpes no abiem virknes galiem:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">&#39;  hi  &#39;</span>.<span class="nb">trim</span>; <span class="c1"># hi</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'  hi  '</span>.<span class="nb">trim</span>; <span class="c1"># hi</span></pre></div>
 
 <h2 id="kursa-navigācija">Kursa navigācija</h2>
 <p>← <a href="/lv/advanced/strings/searching/quiz">Viktorīna —
@@ -175,7 +168,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/advanced/strings/splitting">Български</a>
 <a href="/ru/advanced/strings/splitting">Русский</a>
 <a href="/uk/advanced/strings/splitting">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

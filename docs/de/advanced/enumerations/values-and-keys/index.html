@@ -114,29 +114,26 @@ href="/de/advanced/enumerations">Aufzählungen</a></p>
 <p>Jede Enum-Konstante trägt sowohl einen Namen als auch eine Zahl. Die
 Methode <code>.value</code> gibt die Zahl zurück, und die Methode
 <code>.key</code> gibt den Namen als String zurück:</p>
-<div class="highlight raku"><pre><span></span><span class="k">enum</span> <span class="n">Colour</span> <span class="s">&lt;red green blue&gt;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">enum</span> <span class="n">Colour</span> &lt;<span class="n">red</span> <span class="n">green</span> <span class="n">blue</span>&gt;;
 
-<span class="nb">say</span> <span class="n">green</span>.<span class="nb">value</span>; <span class="c1"># 1</span>
-<span class="nb">say</span> <span class="n">green</span>.<span class="nb">key</span>;   <span class="c1"># green</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">green</span>.<span class="n">value</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="n">green</span>.<span class="n">key</span>;   <span class="c1"># green</span></pre></div>
 
 <p>Du musst die automatische Nummerierung ab Null nicht akzeptieren.
 Schreibe die Konstanten als Paare, um die Werte selbst zu wählen:</p>
 <div class="highlight raku"><pre><span></span><span class="k">enum</span> <span class="n">Day</span> (<span class="n">Mon</span> =&gt; <span class="mi">1</span>, <span class="n">Tue</span> =&gt; <span class="mi">2</span>, <span class="n">Wed</span> =&gt; <span class="mi">3</span>, <span class="n">Thu</span> =&gt; <span class="mi">4</span>, <span class="n">Fri</span> =&gt; <span class="mi">5</span>);
 
-<span class="nb">say</span> <span class="n">Tue</span>.<span class="nb">value</span>; <span class="c1"># 2</span>
-<span class="nb">say</span> <span class="n">Fri</span>.<span class="nb">value</span>; <span class="c1"># 5</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Tue</span>.<span class="n">value</span>; <span class="c1"># 2</span>
+<span class="nb">say</span> <span class="n">Fri</span>.<span class="n">value</span>; <span class="c1"># 5</span></pre></div>
 
 <p>Hier ist die Arbeitswoche ab eins statt ab Null nummeriert.</p>
 <p>Der Enum-Typ selbst kann alle seine Konstanten auflisten. Die Methode
 <code>.enums</code> gibt eine Map von jedem Namen zu seinem Wert
 zurück:</p>
-<div class="highlight raku"><pre><span></span><span class="k">enum</span> <span class="n">Colour</span> <span class="s">&lt;red green blue&gt;</span>;
+<div class="highlight raku"><pre><span></span><span class="k">enum</span> <span class="n">Colour</span> &lt;<span class="n">red</span> <span class="n">green</span> <span class="n">blue</span>&gt;;
 
-<span class="nb">say</span> <span class="n">Colour</span>.<span class="nb">enums</span>;       <span class="c1"># Map.new((blue =&gt; 2, green =&gt; 1, red =&gt; 0))</span>
-<span class="nb">say</span> <span class="n">Colour</span>.<span class="nb">enums</span>.<span class="nb">elems</span>; <span class="c1"># 3</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">Colour</span>.<span class="n">enums</span>;       <span class="c1"># Map.new((blue =&gt; 2, green =&gt; 1, red =&gt; 0))</span>
+<span class="nb">say</span> <span class="n">Colour</span>.<span class="n">enums</span>.<span class="nb">elems</span>; <span class="c1"># 3</span></pre></div>
 
 <p>Mit <code>.value</code>, <code>.key</code> und <code>.enums</code>
 kannst du frei von einer Konstante zu ihrer Zahl wechseln, von einer

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,10 +116,9 @@ combineren</h1>
 gebruikelijkste behoefte is op <strong>meerdere</strong> tegelijk
 wachten. <code>await</code> accepteert een lijst promises en geeft hun
 resultaten op volgorde terug:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>De drie taken lopen gelijktijdig; <code>await @jobs</code> wacht op
 alle drie en geeft <code>(1, 2, 3)</code> terug. Omdat de resultaten in
@@ -128,10 +127,9 @@ reduceren.</p>
 <p>Je kunt met <code>.then</code> ook werk aan een promise rijgen, dat
 een vervolgblok draait zodra de promise klaar is. Binnen dat blok is
 <code>.result</code> de waarde van de oorspronkelijke promise:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> is een nieuwe promise die het resultaat van
 <code>$p</code> verdubbelt. Haar afwachten geeft <code>20</code>.</p>
@@ -140,8 +138,7 @@ voltooide promise als de onderwerpsvariabele <code>$_</code> — en daarom
 werkt een kale <code>.result</code>: het is eigenlijk
 <code>$_.result</code>. Als je die promise liever een naam geeft,
 gebruik dan een pointy block:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Dit gedraagt zich precies hetzelfde; <code>$prev</code> is de
 oorspronkelijke promise <code>$p</code>, en <code>$prev.result</code> is
@@ -183,7 +180,7 @@ sectie</a>.</p>
 <a href="/bg/paradigms/promises/then-and-combinators">Български</a>
 <a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
 <a href="/uk/paradigms/promises/then-and-combinators">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

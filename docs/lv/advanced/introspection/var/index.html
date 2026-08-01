@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,14 +118,13 @@ objektu. Skalāram mainīgajam <code>.VAR</code> izsaukums atgriež
 <p>Kad jums ir konteineris, varat noskaidrot tā klases nosaukumu ar
 <code>.^name</code>:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$var1</span> = <span class="mi">42</span>;
-<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">&#39;42&#39;</span>;
+<span class="k">my</span> <span class="nv">$var2</span> = <span class="s">'42'</span>;
 
-<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="nb">name</span>;     <span class="c1"># Int</span>
-<span class="nb">say</span> <span class="nv">$var1</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.^<span class="n">name</span>;     <span class="c1"># Int</span>
+<span class="nb">say</span> <span class="nv">$var1</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span>
 
-<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="nb">name</span>;     <span class="c1"># Str</span>
-<span class="nb">say</span> <span class="nv">$var2</span>.<span class="nb">VAR</span>.^<span class="nb">name</span>; <span class="c1"># Scalar</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$var2</span>.^<span class="n">name</span>;     <span class="c1"># Str</span>
+<span class="nb">say</span> <span class="nv">$var2</span>.<span class="n">VAR</span>.^<span class="n">name</span>; <span class="c1"># Scalar</span></pre></div>
 
 <p><code>.^name</code> uz mainīgā atgriež <em>vērtības</em> tipu
 (<code>Int</code> vai <code>Str</code>), savukārt
@@ -135,28 +134,24 @@ gadījumos ir <code>Scalar</code>.</p>
 <p>Metode <code>default</code> atgriež konteinera noklusējuma vērtību —
 to, ko saņemat, kad konteineris pats neko nesatur. Ar iezīmi
 <code>is default</code> to var iestatīt tieši:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">&#39;Raku&#39;</span>);
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># Raku</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span> <span class="k">is</span> <span class="k">default</span>(<span class="s">'Raku'</span>);
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># Raku</span></pre></div>
 
 <p>Bez norādīta noklusējuma noklusējuma vērtība ir konteinera tips.
 Netipizētam konteineram tā ir <code>Any</code>, neatkarīgi no tā, kāda
 vērtība tajā pašlaik glabājas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">&#39;Raku&#39;</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Any)</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span> = <span class="s">'Raku'</span>;
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Any)</span></pre></div>
 
 <p>Tipizētam konteineram tā ir ierobežojuma tips:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nb">Str</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="k">default</span>; <span class="c1"># (Str)</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">default</span>; <span class="c1"># (Str)</span></pre></div>
 
 <h2 id="name-1"><code>name</code></h2>
 <p>Metode <code>name</code> atgriež konteinera nosaukumu, ieskaitot
 sigilu:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$language</span>;
-<span class="nb">say</span> <span class="nv">$language</span>.<span class="nb">VAR</span>.<span class="nb">name</span>; <span class="c1"># $language</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">$language</span>.<span class="n">VAR</span>.<span class="n">name</span>; <span class="c1"># $language</span></pre></div>
 
 <p>Uzmanieties, lai nesajauktu <code>^name</code> (tips) un
 <code>name</code> (paša mainīgā nosaukums).</p>
@@ -185,7 +180,7 @@ vingrinājumiem</a>.</p>
 <a href="/bg/advanced/introspection/var">Български</a>
 <a href="/ru/advanced/introspection/var">Русский</a>
 <a href="/uk/advanced/introspection/var">Українська</a>
-<a class="lang-about" href="/lv/about-translation">Par tulkojumu</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>

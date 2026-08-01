@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -118,18 +118,17 @@ op</a></p>
 <h2 id="code">Code</h2>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$c</span> = <span class="nb">Channel</span>.<span class="nb">new</span>;
 
-<span class="k">my</span> <span class="nv">$producer</span> = <span class="nb">start</span> {
-    <span class="nv">$c</span>.<span class="nb">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span><span class="o">..</span><span class="mi">6</span>;
+<span class="k">my</span> <span class="nv">$producer</span> = <span class="k">start</span> {
+    <span class="nv">$c</span>.<span class="n">send</span>(<span class="nv">$_</span>) <span class="k">for</span> <span class="mi">1</span>.<span class="mf">.6</span>;
     <span class="nv">$c</span>.<span class="nb">close</span>;
 };
 
-<span class="k">my</span> <span class="nv">$consumer</span> = <span class="nb">start</span> {
-    [+] <span class="nv">$c</span>.<span class="n">list</span>;
+<span class="k">my</span> <span class="nv">$consumer</span> = <span class="k">start</span> {
+    [+] <span class="nv">$c</span>.<span class="nb">list</span>;
 };
 
 <span class="k">my</span> (<span class="nv">$sent</span>, <span class="nv">$sum</span>) = <span class="nb">await</span> <span class="nv">$producer</span>, <span class="nv">$consumer</span>;
-<span class="nb">say</span> <span class="nv">$sum</span>;
-</pre></div>
+<span class="nb">say</span> <span class="nv">$sum</span>;</pre></div>
 
 <p>🦋 Je kunt de broncode vinden in het bestand <a
 href="https://github.com/ash/raku-course/blob/master/exercises/paradigms/channels/channel-sum.raku">channel-sum.raku</a>.</p>
@@ -171,7 +170,7 @@ channel</a> →</p>
 <a href="/bg/paradigms/channels/exercises/channel-sum/solution">Български</a>
 <a href="/ru/paradigms/channels/exercises/channel-sum/solution">Русский</a>
 <a href="/uk/paradigms/channels/exercises/channel-sum/solution">Українська</a>
-<a class="lang-about" href="/nl/about-translation">Over de vertaling</a>
+<span class="lang-about-row"><a class="lang-about" href="/nl/about-translation">Over de vertaling</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/nl/">De volledige cursus van de programmeertaal Raku</a></p>

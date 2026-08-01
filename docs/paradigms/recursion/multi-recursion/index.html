@@ -123,8 +123,7 @@ two subroutines:</p>
 <div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
 
 <p>The first candidate matches only when the argument is exactly
 <code>0</code> — that literal in the signature <em>is</em> the base
@@ -149,8 +148,7 @@ Fibonacci needs two:</p>
 <span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
 
-<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fib</span>(<span class="mi">10</span>); <span class="c1"># 55</span></pre></div>
 
 <p>Each base case is its own one-line candidate, and the recursive
 candidate handles everything else — no nested conditionals.</p>
@@ -158,11 +156,10 @@ candidate handles everything else — no nested conditionals.</p>
 the base case covers a <em>range</em> — “<code>$n</code> is
 <code>1</code> or less” — use a <code>where</code> constraint
 instead:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="n">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
-<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span>
-</pre></div>
+<span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
 
 <p>The constrained candidate is more specific, so Raku tries it first;
 the plain <code>$n</code> candidate catches everything else.</p>

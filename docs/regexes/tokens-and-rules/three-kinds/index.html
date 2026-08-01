@@ -121,16 +121,14 @@ pattern are significant</li>
 <p><em>Backtracking</em> means that when a later part of the pattern
 fails, the engine goes back and tries a shorter match for an earlier
 part. A <code>regex</code> does this:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span><span class="n"> r</span> {<span class="sr"> \w+ &#39;b&#39; </span>}
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;aaab&#39;</span> ~~<span class="sr"> / &lt;r&gt; /</span>; <span class="c1"># True</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">r</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;r&gt; /</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>\w+</code> first grabs all of <code>aaab</code>, then has to
 give back the last <code>b</code> so the literal <code>b</code> can
 match. A <code>token</code> refuses to give anything back:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span><span class="n"> t</span> {<span class="sr"> \w+ &#39;b&#39; </span>}
-<span class="nb">say</span> <span class="nb">so</span> <span class="s">&#39;aaab&#39;</span> ~~<span class="sr"> / &lt;t&gt; /</span>; <span class="c1"># False</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> <span class="n">t</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;t&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Here <code>\w+</code> takes all of <code>aaab</code>, the literal
 <code>b</code> finds nothing left, and the token simply fails instead of

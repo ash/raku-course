@@ -116,9 +116,8 @@ pregunta: ¿hay un valor en esta clave o índice? Devuelve un valor
 booleano sin obtener nada:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%h</span> = <span class="n">apple</span> =&gt; <span class="mi">1</span>, <span class="n">pear</span> =&gt; <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">%h&lt;apple&gt;</span>:<span class="n">exists</span>; <span class="c1"># True</span>
-<span class="nb">say</span> <span class="nv">%h&lt;plum&gt;</span>:<span class="n">exists</span>;  <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%h</span><span class="s">&lt;apple&gt;</span>:<span class="n">exists</span>; <span class="c1"># True</span>
+<span class="nb">say</span> <span class="nv">%h</span><span class="s">&lt;plum&gt;</span>:<span class="n">exists</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Esta es la forma correcta de comprobar si una clave existe, porque
 simplemente leer <code>%h&lt;plum&gt;</code> devolvería un valor
@@ -128,10 +127,9 @@ indefinido o, dependiendo de los datos, ocultaría la diferencia entre
 valor que contenía:</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">%h</span> = <span class="n">apple</span> =&gt; <span class="mi">1</span>, <span class="n">pear</span> =&gt; <span class="mi">2</span>;
 
-<span class="nb">say</span> <span class="nv">%h&lt;apple&gt;</span>:<span class="n">delete</span>; <span class="c1"># 1</span>
+<span class="nb">say</span> <span class="nv">%h</span><span class="s">&lt;apple&gt;</span>:<span class="n">delete</span>; <span class="c1"># 1</span>
 <span class="nb">say</span> <span class="nv">%h</span>.<span class="nb">keys</span>;          <span class="c1"># (pear)</span>
-<span class="nb">say</span> <span class="nv">%h</span>;               <span class="c1"># {pear =&gt; 2}</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">%h</span>;               <span class="c1"># {pear =&gt; 2}</span></pre></div>
 
 <p>La entrada <code>apple</code> ha desaparecido, y el valor eliminado
 <code>1</code> se devuelve para que puedas usarlo.</p>
@@ -142,13 +140,11 @@ valor que contenía:</p>
 <span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">5</span>]:<span class="n">exists</span>; <span class="c1"># False</span>
 
 <span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">delete</span>; <span class="c1"># 20</span>
-<span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">exists</span>; <span class="c1"># False</span>
-</pre></div>
+<span class="nb">say</span> <span class="nv">@a</span>[<span class="mi">1</span>]:<span class="n">exists</span>; <span class="c1"># False</span></pre></div>
 
 <p>Si tienes curiosidad por saber cómo se verá el array después de
 eliminar un elemento del medio, aquí está la respuesta:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [10 (Any) 30]</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nv">@a</span>; <span class="c1"># [10 (Any) 30]</span></pre></div>
 
 <p>Así, una notación única y consistente te permite consultar y
 modificar contenedores en su lugar, en vez de recurrir a métodos

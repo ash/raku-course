@@ -121,29 +121,27 @@ separation is a <strong>vow</strong>.</p>
 to keep or break that promise. From then on the promise is meant to be
 read-only: it is settled through the vow. The usual shape is a producer
 that keeps the vow private and returns just the promise:</p>
-<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="nb">after</span>(<span class="nv">$seconds</span>) {
+<div class="highlight raku"><pre><span></span><span class="k">sub</span> <span class="n">after</span>(<span class="nv">$seconds</span>) {
     <span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;                       <span class="c1"># take the settle-right</span>
-    <span class="nb">start</span> {
+    <span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;                       <span class="c1"># take the settle-right</span>
+    <span class="k">start</span> {
         <span class="nb">sleep</span> <span class="nv">$seconds</span>;
-        <span class="nv">$v</span>.<span class="nb">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># settle it through the vow</span>
+        <span class="nv">$v</span>.<span class="n">keep</span>(<span class="s">&quot;done after $seconds s&quot;</span>); <span class="c1"># settle it through the vow</span>
     }
     <span class="k">return</span> <span class="nv">$p</span>;                            <span class="c1"># callers get only the read side</span>
 }
 
-<span class="k">my</span> <span class="nv">$job</span> = <span class="nb">after</span>(<span class="mf">0.2</span>);
-<span class="nb">say</span> <span class="nv">$job</span>.<span class="nb">status</span>;   <span class="c1"># Planned</span>
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span>
-</pre></div>
+<span class="k">my</span> <span class="nv">$job</span> = <span class="n">after</span>(<span class="mf">0.2</span>);
+<span class="nb">say</span> <span class="nv">$job</span>.<span class="n">status</span>;   <span class="c1"># Planned</span>
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$job</span>;    <span class="c1"># done after 0.2 s</span></pre></div>
 
 <p>Taking the vow makes the promise genuinely read-only: from that
 moment <code>$p.keep</code> and <code>$p.break</code> are refused,
 because the vow now owns the sole right to settle it.</p>
 <div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
-<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="nb">vow</span>;
+<span class="k">my</span> <span class="nv">$v</span> = <span class="nv">$p</span>.<span class="n">vow</span>;
 
-<span class="nv">$p</span>.<span class="nb">keep</span>(<span class="mi">1</span>); <span class="c1"># dies: Access denied to keep/break this Promise; already vowed</span>
-</pre></div>
+<span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">1</span>); <span class="c1"># dies: Access denied to keep/break this Promise; already vowed</span></pre></div>
 
 <p>So the caller can <code>await</code> the promise, chain
 <code>.then</code> onto it, or check its <code>.status</code>, but it

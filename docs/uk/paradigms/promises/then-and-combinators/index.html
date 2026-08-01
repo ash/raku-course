@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=25">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,10 +114,9 @@ href="/uk/paradigms/promises">Промиси</a></p>
 <p>Обіцянки стають іще потужнішими, коли ви їх поєднуєте. Найпоширеніша
 потреба — дочекатися <strong>кількох</strong> одразу. <code>await</code>
 приймає список обіцянок і повертає їхні результати по порядку:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="nb">start</span> { <span class="mi">1</span> }), (<span class="nb">start</span> { <span class="mi">2</span> }), (<span class="nb">start</span> { <span class="mi">3</span> });
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
-<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span>
-</pre></div>
+<span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
 <p>Три завдання виконуються конкурентно; <code>await @jobs</code> чекає
 на всі й повертає <code>(1, 2, 3)</code>. Оскільки результати
@@ -126,10 +125,9 @@ href="/uk/paradigms/promises">Промиси</a></p>
 <p>Роботу можна також зчепити з обіцянкою через <code>.then</code>, який
 виконує блок-продовження, щойно обіцянка завершиться. Усередині нього
 <code>.result</code> є значенням початкової обіцянки:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">start</span> { <span class="mi">10</span> };
-<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>({ .<span class="nb">result</span> * <span class="mi">2</span> });
-<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span>
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
+<span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
 <p><code>$q</code> — це нова обіцянка, що подвоює результат
 <code>$p</code>. Очікування її дає <code>20</code>.</p>
@@ -137,8 +135,7 @@ href="/uk/paradigms/promises">Промиси</a></p>
 змінну теми <code>$_</code> — саме тому голе <code>.result</code>
 працює: насправді це <code>$_.result</code>. Якщо ви волієте дати цій
 обіцянці ім’я, скористайтеся гострим блоком:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="nb">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="nb">result</span> * <span class="mi">2</span> });
-</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>(-&gt; <span class="nv">$prev</span> { <span class="nv">$prev</span>.<span class="n">result</span> * <span class="mi">2</span> });</pre></div>
 
 <p>Поводиться це точно так само; <code>$prev</code> є початковою
 обіцянкою <code>$p</code>, а <code>$prev.result</code> — її
@@ -179,7 +176,7 @@ href="/uk/paradigms/promises/exercises">до вправ цього розділ�
 <a href="/bg/paradigms/promises/then-and-combinators">Български</a>
 <a href="/ru/paradigms/promises/then-and-combinators">Русский</a>
 <span class="lang-current">Українська</span>
-<a class="lang-about" href="/uk/about-translation">Про переклад</a>
+<span class="lang-about-row"><a class="lang-about" href="/uk/about-translation">Про переклад</a></span>
 </nav>
 
 <p style="margin:.35em 0;"><a href="/uk/">Повний курс мови програмування Raku</a></p>
