@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Как да инсталирате mutsu — Курс по Raku</title>
+    <meta property="og:title" content="Как да инсталирате mutsu — Курс по Raku" />
+    <meta property="og:locale" content="bg" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/bg/">Курс по Raku</a> / <a href="/bg/essentials">Основи</a>
+/ <a href="/bg/essentials/compilers">Компилатори</a></p>
+<h1 id="как-да-инсталирате-mutsu">Как да инсталирате mutsu 🆕</h1>
+<p>mutsu публикува готови компилации за macOS и Linux, както за
+процесори Intel/AMD, така и за ARM, на страницата с издания на
+хранилището си в GitHub — <a
+href="https://github.com/tokuhirom/mutsu">github.com/tokuhirom/mutsu</a>.
+Всяка компилация съдържа два изпълними файла: самия <code>mutsu</code> и
+<code>mzef</code>, неговия мениджър на пакети.</p>
+<h2 id="с-mise">С mise</h2>
+<p>Най-лесният начин да инсталирате издание е <a
+href="https://mise.jdx.dev/">mise</a> — програма, която инсталира и
+обновява инструменти за разработчици. Една команда изтегля компилацията
+за вашата машина и поставя във вашия <code>PATH</code> както
+<code>mutsu</code>, така и <code>mzef</code>:</p>
+<div class="highlight"><pre>$ mise use -g github:tokuhirom/mutsu</pre></div>
+<h2 id="с-docker">С Docker</h2>
+<p>На всяка система, на която работи Docker, включително Windows, можете
+да използвате mutsu, без да го инсталирате. Това стартира интерактивната
+обвивка REPL:</p>
+<div class="highlight"><pre>$ docker run --rm -it ghcr.io/tokuhirom/mutsu</pre></div>
+<p>А това изпълнява програма от текущата директория:</p>
+<div class="highlight"><pre>$ docker run --rm -v "$PWD:/work:ro" ghcr.io/tokuhirom/mutsu mutsu hello.raku</pre></div>
+<h2 id="изграждане-от-изходния-код">Изграждане от изходния код</h2>
+<p>mutsu е написан на Rust, така че можете и сами да го изградите с
+Cargo от изходния код в хранилището му; хранилището обяснява
+подробностите.</p>
+<h2 id="номера-на-версиите">Номера на версиите</h2>
+<p>Проверете коя версия имате с опцията <code>--version</code>:</p>
+<div class="highlight"><pre>$ mutsu --version
+mutsu 0.24.0</pre></div>
+<p>Това е изданието на самия mutsu. Както и при другите компилатори, за
+версията на езика Raku можете да попитате самия език:</p>
+<div class="highlight"><pre>$ mutsu -e 'say $*RAKU.version'
+v6.d</pre></div>
+<p>Сравнете това с начина, по който се представят <a
+href="/bg/essentials/how-to-install-rakudo">Rakudo</a> и <a
+href="/bg/essentials/how-to-install-rakupp">Raku++</a>.</p>
+<h2 id="навигация-в-курса">Навигация в курса</h2>
+<p>← <a href="/bg/essentials/the-mutsu-interpreter">Интерпретаторът
+mutsu 🆕</a>   |   <a href="/bg/essentials/getting-started">Писане и
+изпълнение на програми</a> →</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Тази страница на други езици:">
+<span class="lang-label">Тази страница на други езици:</span>
+<a href="/essentials/how-to-install-mutsu">English</a>
+<a href="/de/essentials/how-to-install-mutsu">Deutsch</a>
+<a href="/eo/essentials/how-to-install-mutsu">Esperanto</a>
+<a href="/es/essentials/how-to-install-mutsu">Español</a>
+<a href="/it/essentials/how-to-install-mutsu">Italiano</a>
+<a href="/la/essentials/how-to-install-mutsu">Latina</a>
+<a href="/lv/essentials/how-to-install-mutsu">Latviešu</a>
+<a href="/nl/essentials/how-to-install-mutsu">Nederlands</a>
+<span class="lang-current">Български</span>
+<a href="/ru/essentials/how-to-install-mutsu">Русский</a>
+<a href="/uk/essentials/how-to-install-mutsu">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/bg/about-translation">За превода</a></span>
+</nav>
+
+<p style="margin:.35em 0;"><a href="/bg/">Пълен курс по програмния език Raku</a></p>
+<p style="margin:.35em 0;"><a href="/bg/about-this-course">За курса</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Отворен код · С подкрепата на <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Автор: <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>

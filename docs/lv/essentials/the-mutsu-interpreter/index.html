@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    /* Theme switcher: 'system' | 'light' | 'dark'. Runs here in <head> so the
+       resolved theme is applied before first paint (no flash). The dark rules
+       in course.css key on the data-theme-active attribute we set below. */
+    (function () {
+      var KEY = 'raku-theme';
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      function stored() {
+        try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; }
+      }
+      function effective(s) {
+        return (s === 'dark' || (s === 'system' && mql.matches)) ? 'dark' : 'light';
+      }
+      var ICON = { system: '◐', light: '☀', dark: '☾' };
+      function apply(s) {
+        var d = document.documentElement;
+        d.setAttribute('data-theme', s);
+        d.setAttribute('data-theme-active', effective(s));
+        var btn = document.querySelector('.theme-btn');
+        if (btn) btn.textContent = ICON[s] || ICON.system;
+        var items = document.querySelectorAll('.theme-menu [data-theme-set]');
+        for (var i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-checked',
+            items[i].getAttribute('data-theme-set') === s ? 'true' : 'false');
+        }
+      }
+      apply(stored());
+      mql.addEventListener('change', function () { if (stored() === 'system') apply('system'); });
+      window.__setTheme = function (s) {
+        try { localStorage.setItem(KEY, s); } catch (e) {}
+        apply(s);
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        apply(stored());
+        var sw = document.querySelector('.theme-switch');
+        if (!sw) return;
+        var btn = sw.querySelector('.theme-btn'), menu = sw.querySelector('.theme-menu');
+        function open(o) {
+          menu.hidden = !o;
+          btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
+        menu.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-theme-set]');
+          if (b) { window.__setTheme(b.getAttribute('data-theme-set')); open(false); btn.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!sw.contains(e.target)) open(false); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); }
+        });
+      });
+    })();
+    </script>
+
+    <title>Interpretators mutsu — Raku kurss</title>
+    <meta property="og:title" content="Interpretators mutsu — Raku kurss" />
+    <meta property="og:locale" content="lv" />
+    <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/course.css?v=26">
+    
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+  
+  <body>
+    <div class="top-controls">
+      <div class="site-search">
+        <button class="search-toggle" type="button" aria-label="Search the course" aria-expanded="false" title="Search ( / )"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12.6" y1="12.6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <input type="search" placeholder="Search the course…" aria-label="Search the course" autocomplete="off" spellcheck="false">
+        <div class="ss-results" role="listbox" hidden></div>
+      </div>
+      <div class="theme-switch">
+        <button class="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Colour theme" title="Colour theme">◐</button>
+        <ul class="theme-menu" role="menu" hidden>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="system"><span class="ti">◐</span> System</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="light"><span class="ti">☀</span> Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" data-theme-set="dark"><span class="ti">☾</span> Dark</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <p><a href="/lv/">Raku kurss</a> / <a href="/lv/essentials">Pamati</a> /
+<a href="/lv/essentials/compilers">Kompilatori</a></p>
+<h1 id="interpretators-mutsu">Interpretators mutsu 🆕</h1>
+<p><strong>mutsu</strong> ir trešā Raku īstenošana, ko
+<strong>Rust</strong> valodā uzrakstījis Tokuhiro Matsuno. Tāpat kā
+Rakudo, tas kompilē jūsu programmu baitkodā un izpilda to uz virtuālās
+mašīnas — taču tā nav MoarVM, bet paša mutsu virtuālā mašīna, kas
+iebūvēta izpildāmajā failā <code>mutsu</code>.</p>
+<p>mutsu implementē Raku 6.d un tiek aktīvi izstrādāts. Tā autors
+atklāti saka, ka mutsu vēl nav piemērots lietošanai produkcijas vidē,
+taču tas jau iztur gandrīz visus Roast testu failus, tāpēc gandrīz visas
+šī kursa programmas uz tā darbojas bez izmaiņām.</p>
+<p>Mācoties nozīme ir vienam trūkumam: dažu kompilēšanas laika pārbaužu
+vēl nav. Visredzamākais piemērs: versijā 0.24.0 mutsu neziņo par
+mainīgo, ko aizmirsāt deklarēt, jau pirms programmas palaišanas, kā to
+dara Rakudo un Raku++. Kad kurss rāda šādu kļūdas paziņojumu, izmēģiniet
+attiecīgo piemēru ar kādu no abiem pārējiem kompilatoriem.</p>
+<h2 id="raku-pārlūkprogrammā">Raku pārlūkprogrammā</h2>
+<p>mutsu var arī kompilēt uz WebAssembly, tāpēc tas darbojas arī tīmekļa
+lappusē. Tā vietne <a
+href="https://tokuhirom.github.io/mutsu/">tokuhirom.github.io/mutsu</a>
+to izmanto Raku ievadam angļu un japāņu valodā, praktiskai pamācībai un
+spēļu laukumam, kurā varat palaist Raku bez jebkādas instalēšanas — visu
+šajās lappusēs darbina pats mutsu.</p>
+<h2 id="moduļi">Moduļi</h2>
+<p>mutsu nāk ar savu zef pakotņu pārvaldnieka kopiju, ko sauc
+<code>mzef</code>, tāpēc Raku moduļus tam var instalēt ierastajā veidā —
+ar <code>mzef install</code>, kam seko moduļa nosaukums.</p>
+<h2 id="pirmkods">Pirmkods</h2>
+<p>mutsu ir atvērtā koda projekts. To kopā ar izlaidumu būvējumiem un
+būvēšanas norādēm var atrast vietnē <a
+href="https://github.com/tokuhirom/mutsu">github.com/tokuhirom/mutsu</a>.</p>
+<h2 id="kursa-navigācija">Kursa navigācija</h2>
+<p>← <a href="/lv/essentials/how-to-install-rakupp">Kā uzstādīt Raku++
+🆕</a>   |   <a href="/lv/essentials/how-to-install-mutsu">Kā uzstādīt
+mutsu 🆕</a> →</p>
+
+        </div>
+      </main>
+      <footer class="site-footer" style="margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.25); font-size: 85%; text-align: center; opacity: .75;">
+<nav class="lang-switcher" aria-label="Šī lapa citās valodās:">
+<span class="lang-label">Šī lapa citās valodās:</span>
+<a href="/essentials/the-mutsu-interpreter">English</a>
+<a href="/de/essentials/the-mutsu-interpreter">Deutsch</a>
+<a href="/eo/essentials/the-mutsu-interpreter">Esperanto</a>
+<a href="/es/essentials/the-mutsu-interpreter">Español</a>
+<a href="/it/essentials/the-mutsu-interpreter">Italiano</a>
+<a href="/la/essentials/the-mutsu-interpreter">Latina</a>
+<span class="lang-current">Latviešu</span>
+<a href="/nl/essentials/the-mutsu-interpreter">Nederlands</a>
+<a href="/bg/essentials/the-mutsu-interpreter">Български</a>
+<a href="/ru/essentials/the-mutsu-interpreter">Русский</a>
+<a href="/uk/essentials/the-mutsu-interpreter">Українська</a>
+<span class="lang-about-row"><a class="lang-about" href="/lv/about-translation">Par tulkojumu</a></span>
+</nav>
+
+<p style="margin:.35em 0;"><a href="/lv/">Pilns Raku programmēšanas valodas kurss</a></p>
+<p style="margin:.35em 0;"><a href="/lv/about-this-course">Par kursu</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<p style="margin:.35em 0;">Brīvs un atvērtā koda · Atbalsta <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
+<p style="margin:.35em 0;">© 2021–2026 · Autors <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
+</footer>
+
+    </div>
+    <script src="/assets/search.js?v=3" defer></script>
+    <script src="/assets/copy-code.js?v=2" defer></script>
+  </body>
+</html>
