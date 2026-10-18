@@ -5,7 +5,7 @@ translations_gpt:
 
 {% include menu.html %}
 
-Ut programma in Raku exsequaris, compilatorem installatum habere debes. Hic cursus Rakudo adhibet; alter compilator, [Raku++](/la/essentials/the-rakupp-compiler), [seorsum](/la/essentials/how-to-install-rakupp) installatur. Adi [sedem interretialem Rakudo](https://rakudo.org) ut versionem systemati tuo aptam deprimas.
+Ut programma in Raku exsequaris, compilatorem installatum habere debes. Hic cursus Rakudo adhibet; ceteri, [Raku++](/la/essentials/the-rakupp-compiler) et [mutsu](/la/essentials/the-mutsu-interpreter), seorsum installantur — vide [Quomodo Raku++ installare](/la/essentials/how-to-install-rakupp) et [Quomodo mutsu installare](/la/essentials/how-to-install-mutsu). Adi [sedem interretialem Rakudo](https://rakudo.org) ut versionem systemati tuo aptam deprimas.
 
 ## Fontes
 

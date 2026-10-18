@@ -5,7 +5,7 @@ translations_gpt:
 
 {% include menu.html %}
 
-Por ruli programon en Raku, vi bezonas instalitan kompililon. Ĉi tiu kurso uzas Rakudo; la alia kompililo, [Raku++](/eo/essentials/the-rakupp-compiler), estas instalata [aparte](/eo/essentials/how-to-install-rakupp). Vizitu [la retejon de Rakudo](https://rakudo.org) por elŝuti la version taŭgan por via mastruma sistemo.
+Por ruli programon en Raku, vi bezonas instalitan kompililon. Ĉi tiu kurso uzas Rakudo; la aliaj, [Raku++](/eo/essentials/the-rakupp-compiler) kaj [mutsu](/eo/essentials/the-mutsu-interpreter), estas instalataj aparte — vidu [Kiel instali Raku++](/eo/essentials/how-to-install-rakupp) kaj [Kiel instali mutsu](/eo/essentials/how-to-install-mutsu). Vizitu [la retejon de Rakudo](https://rakudo.org) por elŝuti la version taŭgan por via mastruma sistemo.
 
 ## Fontoj
 

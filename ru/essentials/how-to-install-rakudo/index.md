@@ -5,7 +5,7 @@ translations_gpt:
 
 {% include menu.html %}
 
-Чтобы выполнить программу на Raku, вам потребуется установленный компилятор. В этом курсе используется Rakudo; другой компилятор, [Raku++](/ru/essentials/the-rakupp-compiler), устанавливается [отдельно](/ru/essentials/how-to-install-rakupp). Зайдите на [сайт Rakudo](https://rakudo.org), чтобы скачать версию, подходящую для вашей операционной системы.
+Чтобы выполнить программу на Raku, вам потребуется установленный компилятор. В этом курсе используется Rakudo; два других, [Raku++](/ru/essentials/the-rakupp-compiler) и [mutsu](/ru/essentials/the-mutsu-interpreter), устанавливаются отдельно — см. страницы [Как установить Raku++](/ru/essentials/how-to-install-rakupp) и [Как установить mutsu](/ru/essentials/how-to-install-mutsu). Зайдите на [сайт Rakudo](https://rakudo.org), чтобы скачать версию, подходящую для вашей операционной системы.
 
 ## Исходники
 

@@ -1,5 +1,5 @@
 ---
-title: Raku, Rakudo et Raku++
+title: Raku, Rakudo, Raku++ et mutsu
 translations_gpt:
 ---
 
@@ -11,9 +11,11 @@ translations_gpt:
 
 Ratio linguae Raku non praescribit quo compilatore utendum sit. Documentis rationis adiungitur series probationum cui nomen Roast; compilatorem scribere cuivis licet, et si eas probationes transit, compilator Raku est.
 
-Diu Rakudo sola implementatio matura fuit, sed id iam non ita est. Mense Iulio anni 2026 alter compilator apparuit — **Raku++** (cuius programma exsecutabile `rakupp` nominatur), in C++ scriptus. Versio eius 5.4.1 totam seriem Roast transit, et ipse mirabiliter celeriter incipit. Hic cursus in exemplis Rakudo adhibet; quod tamen discis ipsa lingua Raku est, cuius paene omnia immutata etiam in Raku++ currunt. Paginae sequentes hos duos compilatores — Rakudo et Raku++ — vicissim spectant, et quomodo eos installes.
+Diu Rakudo sola implementatio matura fuit, sed id iam non ita est. Mense Iulio anni 2026 alter compilator apparuit — **Raku++** (cuius programma exsecutabile `rakupp` nominatur), in C++ scriptus. Versio eius 5.4.1 totam seriem Roast transit, et ipse mirabiliter celeriter incipit. Hic cursus in exemplis Rakudo adhibet; quod tamen discis ipsa lingua Raku est, cuius paene omnia immutata etiam in Raku++ currunt.
 
 Est etiam tertia implementatio: **mutsu**, interpres in Rust a Tokuhiro Matsuno scriptus. Raku in bytecode pro machina virtuali propria compilat, atque etiam intra navigatrum interretiale per WebAssembly currit — situs eius interretialis institutionem Raku et palaestram super eum aedificatas praebet. mutsu adhuc strenue evolvitur et, auctoris sui verbis, nondum ad usum in productione aptus est, quamquam iam paene omnia archiva probationum Roast transit.
+
+Paginae sequentes singulos e tribus — Rakudo, Raku++ et mutsu — vicissim spectant, et quomodo eos installes.
 
 ## Nexus externi
 

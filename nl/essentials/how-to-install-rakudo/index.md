@@ -5,7 +5,7 @@ translations_gpt:
 
 {% include menu.html %}
 
-Om een programma in Raku uit te voeren moet je een compiler geïnstalleerd hebben. Deze cursus gebruikt Rakudo; de andere compiler, [Raku++](/nl/essentials/the-rakupp-compiler), installeer je [apart](/nl/essentials/how-to-install-rakupp). Ga naar [de website van Rakudo](https://rakudo.org) om de versie te downloaden die bij jouw besturingssysteem past.
+Om een programma in Raku uit te voeren moet je een compiler geïnstalleerd hebben. Deze cursus gebruikt Rakudo; de andere, [Raku++](/nl/essentials/the-rakupp-compiler) en [mutsu](/nl/essentials/the-mutsu-interpreter), installeer je apart — zie [Raku++ installeren](/nl/essentials/how-to-install-rakupp) en [mutsu installeren](/nl/essentials/how-to-install-mutsu). Ga naar [de website van Rakudo](https://rakudo.org) om de versie te downloaden die bij jouw besturingssysteem past.
 
 ## Bronnen
 

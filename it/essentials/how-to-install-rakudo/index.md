@@ -5,7 +5,7 @@ translations_gpt:
 
 {% include menu.html %}
 
-Per eseguire un programma in Raku dovete avere un compilatore installato. Questo corso usa Rakudo; l'altro compilatore, [Raku++](/it/essentials/the-rakupp-compiler), si installa [a parte](/it/essentials/how-to-install-rakupp). Visitate [il sito di Rakudo](https://rakudo.org) per scaricare la versione adatta al vostro sistema operativo.
+Per eseguire un programma in Raku dovete avere un compilatore installato. Questo corso usa Rakudo; gli altri, [Raku++](/it/essentials/the-rakupp-compiler) e [mutsu](/it/essentials/the-mutsu-interpreter), si installano a parte — vedete [Come installare Raku++](/it/essentials/how-to-install-rakupp) e [Come installare mutsu](/it/essentials/how-to-install-mutsu). Visitate [il sito di Rakudo](https://rakudo.org) per scaricare la versione adatta al vostro sistema operativo.
 
 ## Sorgenti
 

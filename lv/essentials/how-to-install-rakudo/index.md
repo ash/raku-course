@@ -5,7 +5,7 @@ translations_gpt:
 
 {% include menu.html %}
 
-Lai izpildītu programmu Raku valodā, jums jābūt uzstādītam kompilatoram. Šajā kursā tiek lietots Rakudo; otrs kompilators, [Raku++](/lv/essentials/the-rakupp-compiler), tiek uzstādīts [atsevišķi](/lv/essentials/how-to-install-rakupp). Apmeklējiet [Rakudo tīmekļa vietni](https://rakudo.org), lai lejupielādētu jūsu operētājsistēmai piemēroto versiju.
+Lai izpildītu programmu Raku valodā, jums jābūt uzstādītam kompilatoram. Šajā kursā tiek lietots Rakudo; pārējie, [Raku++](/lv/essentials/the-rakupp-compiler) un [mutsu](/lv/essentials/the-mutsu-interpreter), tiek uzstādīti atsevišķi — skatiet [Kā uzstādīt Raku++](/lv/essentials/how-to-install-rakupp) un [Kā uzstādīt mutsu](/lv/essentials/how-to-install-mutsu). Apmeklējiet [Rakudo tīmekļa vietni](https://rakudo.org), lai lejupielādētu jūsu operētājsistēmai piemēroto versiju.
 
 ## Avoti
 
