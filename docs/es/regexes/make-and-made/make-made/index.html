@@ -119,8 +119,8 @@ un <code>{ … }</code> interior escrito entre el patrón — que se ejecuta
 en cuanto el emparejamiento lo alcanza. Dentro de ese bloque, la función
 <code>make</code> guarda un valor en la coincidencia actual:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">OneNum</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;number&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;number&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+    <span class="k">token</span> TOP    {<span class="sr"> &lt;number&gt; { make $&lt;number&gt;.Int } </span>}
+    <span class="k">token</span> number {<span class="sr"> \d+ </span>}
 }</pre></div>
 
 <p>Cuando <code>TOP</code> coincide, el bloque interior
@@ -146,9 +146,9 @@ en bruto.</p>
 array, un objeto. Un token también puede combinar los valores producidos
 por sus subtokens. Por ejemplo, sumando dos números capturados:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> TOP {<span class="sr"> &lt;a&gt; '+' &lt;b&gt; { make $&lt;a&gt;.Int + $&lt;b&gt;.Int } </span>}
+    <span class="k">token</span> a   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> b   {<span class="sr"> \d+ </span>}
 }
 
 <span class="nb">say</span> <span class="n">Sum</span>.<span class="n">parse</span>(<span class="s">'2+3'</span>).<span class="n">made</span>; <span class="c1"># 5</span></pre></div>

@@ -116,11 +116,11 @@ nome</h1>
 Puoi anche dare a uno schema un <strong>nome</strong> e riusarlo,
 proprio come una subroutine. Ne dichiari uno con <code>my regex</code>
 (o con <code>my token</code>, che incontrerai per bene fra poco):</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }</pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> number {<span class="sr"> \d+ </span>}</pre></div>
 
 <p>Per usare un regex con nome dentro un altro schema, scrivi il suo
 nome fra parentesi angolari, <code>&lt;number&gt;</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">number</span> { \<span class="n">d</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> number {<span class="sr"> \d+ </span>}
 
 <span class="k">if</span> <span class="s">'42 cats'</span> ~~ <span class="sr">/ &lt;number&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;number&gt;</span>; <span class="c1"># ｢42｣</span>
@@ -133,7 +133,7 @@ cattura con nome che ti arriva gratis.</p>
 <p>Un regex con nome si può usare più volte in uno stesso schema. Quando
 compare più di una volta, le catture diventano un elenco, raggiungibile
 per indice:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">num</span> { \<span class="n">d</span>+ }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> num {<span class="sr"> \d+ </span>}
 
 <span class="k">if</span> <span class="s">'3-4'</span> ~~ <span class="sr">/ &lt;num&gt; '-' &lt;num&gt; /</span> {
     <span class="nb">say</span> <span class="nv">$&lt;num&gt;</span>[<span class="mi">0</span>]; <span class="c1"># ｢3｣</span>

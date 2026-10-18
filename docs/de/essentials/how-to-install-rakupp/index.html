@@ -110,29 +110,54 @@
 href="/de/essentials">Grundlagen</a> / <a
 href="/de/essentials/compilers">Compiler</a></p>
 <h1 id="raku-installieren">Raku++ installieren 🆕</h1>
-<p>Raku++ wird über sein GitHub-Repository <a
+<p>Raku++ wird über seine Website <a
+href="https://raku.online">raku.online</a> und sein GitHub-Repository <a
 href="https://github.com/ash/rakupp">github.com/ash/rakupp</a>
 verbreitet. Die Installation liefert Ihnen eine einzige ausführbare
-Datei namens <code>rakupp</code>.</p>
-<h2 id="binärdateien">Binärdateien</h2>
-<p>Fertige Binärdateien der aktuellen Veröffentlichung gibt es für
-Windows, macOS und Linux. Laden Sie die passende für Ihr Betriebssystem
-von der Releases-Seite des Repositorys herunter — mehr ist nicht
-einzurichten, denn Raku++ hat keine gesonderte virtuelle Maschine zu
-installieren.</p>
-<h2 id="aus-dem-quellcode-bauen">Aus dem Quellcode bauen</h2>
-<p>Da Raku++ in C++ geschrieben ist, können Sie ihn auch selbst aus dem
-Quellcode im Repository bauen. Das Repository erklärt, welche Werkzeuge
-Sie brauchen und wie Sie ihn übersetzen.</p>
+Datei namens <code>rakupp</code> — mehr ist nicht einzurichten, denn
+Raku++ hat keine gesonderte virtuelle Maschine zu installieren.</p>
+<h2 id="das-installationsprogramm">Das Installationsprogramm</h2>
+<p>Unter macOS, Linux und den BSD-Systemen lädt ein einziger Befehl den
+passenden Build für Ihren Rechner herunter, prüft ihn und nimmt
+<code>rakupp</code> in Ihren <code>PATH</code> auf. Administratorrechte
+sind dafür nicht nötig:</p>
+<div class="highlight"><pre>$ curl -fsSL https://raku.online/install.sh | sh</pre></div>
+<p>Unter Windows führen Sie stattdessen Folgendes in einem
+PowerShell-Fenster aus, oder Sie laden den Installationsassistenten
+<code>rakupp-setup-windows-x64.exe</code> von der Releases-Seite des
+Repositorys herunter:</p>
+<div class="highlight"><pre>&gt; irm https://raku.online/install-windows.ps1 | iex</pre></div>
+<p>Das Installationsprogramm fragt, ob Sie Raku++ zusätzlich unter dem
+Namen <code>raku</code> haben möchten. Öffnen Sie danach ein neues
+Terminal, damit der neue <code>PATH</code> wirksam wird. Später ersetzt
+<code>rakupp upgrade</code> die installierte Version durch die neueste
+Veröffentlichung.</p>
+<h2 id="andere-installationswege">Andere Installationswege</h2>
+<ul>
+<li>Unter macOS mit Homebrew:
+<code>brew tap ash/rakupp &amp;&amp; brew install rakupp</code>.</li>
+<li>Mit Docker, ganz ohne Installation:
+<code>docker run --rm -it ghcr.io/ash/rakupp</code> startet die
+interaktive REPL.</li>
+<li>Fertige Archive für jede Plattform gibt es auf der Releases-Seite
+des Repositorys.</li>
+<li>Da Raku++ in C++ geschrieben ist, können Sie ihn auch selbst aus dem
+Quellcode bauen; das Repository erklärt, welche Werkzeuge Sie
+brauchen.</li>
+</ul>
 <h2 id="versionsnummern">Versionsnummern</h2>
 <p>Welche Version Sie haben, sehen Sie mit der Option
 <code>--version</code>:</p>
 <div class="highlight"><pre>$ rakupp --version
-Raku++ (rakupp) 1.5.2 — a Raku interpreter and compiler in C++ (implements Raku 6.d, with 6.e features)</pre></div>
+Raku++ 5.4.1 (2026-10-13) arm64-darwin</pre></div>
 <p>Die Zeile nennt die Veröffentlichung von Raku++ selbst
-(<code>1.5.2</code>) und die Version der Sprache Raku, auf die er zielt
-(<code>6.d</code>, mit einigen Möglichkeiten aus <code>6.e</code>).
-Vergleichen Sie das mit dem Versionsbanner von Rakudo auf der <a
+(<code>5.4.1</code>), das Datum, an dem die Binärdatei gebaut wurde, und
+die Plattform, für die sie bestimmt ist. Die Version der Sprache Raku
+ist eine andere Sache, und Sie können die Sprache selbst danach
+fragen:</p>
+<div class="highlight"><pre>$ rakupp -e 'say $*RAKU.version'
+v6.d</pre></div>
+<p>Vergleichen Sie das mit dem Versionsbanner von Rakudo auf der <a
 href="/de/essentials/how-to-install-rakudo">Seite zur
 Rakudo-Installation</a>, um zu sehen, wie sich die beiden Compiler
 jeweils melden.</p>

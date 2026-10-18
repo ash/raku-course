@@ -122,23 +122,23 @@ pecoj.</p>
 petas la du partojn kun nenio inter ili. Ĉar <code>\w+</code> haltas ĉe
 la spaco, spacita enigo havas neniun kongruon:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithToken</span> {
-    <span class="k">token</span> <span class="n">TOP</span>    { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
-    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
+    <span class="k">token</span> TOP    {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
+    <span class="k">token</span> first  {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> second {<span class="sr"> \w+ </span>}
 }
 
 <span class="nb">say</span> <span class="n">WithToken</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># False</span></pre></div>
 
 <p>Vi <em>povas</em> akcepti la spacon en <code>token</code> — vi nur
 devas kongruigi ĝin mem, ekzemple per <code>\s+</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;first&gt;</span> \<span class="n">s</span>+ <span class="s">&lt;second&gt;</span> }      <span class="c1"># nun 'foo bar' analiziĝas</span></pre></div>
+<div class="highlight raku"><pre><span></span><span class="k">token</span> TOP {<span class="sr"> &lt;first&gt; \s+ &lt;second&gt; </span>}      <span class="c1"># nun 'foo bar' analiziĝas</span></pre></div>
 
 <p><code>rule</code> enmetas tiun blankspacan kongruigon por vi, do
 simple skribi spacon inter la partoj sufiĉas:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">WithRule</span> {
-    <span class="k">rule</span> <span class="n">TOP</span>     { <span class="s">&lt;first&gt;</span> <span class="s">&lt;second&gt;</span> }
-    <span class="k">token</span> <span class="n">first</span>  { \<span class="n">w</span>+ }
-    <span class="k">token</span> <span class="n">second</span> { \<span class="n">w</span>+ }
+    <span class="k">rule</span> TOP     {<span class="sr"> &lt;first&gt; &lt;second&gt; </span>}
+    <span class="k">token</span> first  {<span class="sr"> \w+ </span>}
+    <span class="k">token</span> second {<span class="sr"> \w+ </span>}
 }
 
 <span class="nb">say</span> <span class="n">WithRule</span>.<span class="n">parse</span>(<span class="s">'foo bar'</span>).<span class="nb">defined</span>; <span class="c1"># True</span></pre></div>

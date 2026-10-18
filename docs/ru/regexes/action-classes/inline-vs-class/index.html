@@ -117,9 +117,9 @@ href="/ru/regexes/action-classes">Классы действий</a></p>
 <p><strong>Встроенные действия</strong> помещают блок
 <code>{ make … }</code> прямо внутрь токена:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> { <span class="k">make</span> <span class="nv">$&lt;a&gt;</span>.<span class="nb">Int</span> + <span class="nv">$&lt;b&gt;</span>.<span class="nb">Int</span> } }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> TOP {<span class="sr"> &lt;a&gt; '+' &lt;b&gt; { make $&lt;a&gt;.Int + $&lt;b&gt;.Int } </span>}
+    <span class="k">token</span> a   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> b   {<span class="sr"> \d+ </span>}
 }</pre></div>
 
 <p>Их быстро писать, и для крошечной грамматики или одноразового скрипта
@@ -128,9 +128,9 @@ href="/ru/regexes/action-classes">Классы действий</a></p>
 <p><strong>Класс действий</strong> держит их порознь: грамматика
 описывает форму, а класс действий — смысл:</p>
 <div class="highlight raku"><pre><span></span><span class="k">grammar</span> <span class="n">Sum</span> {
-    <span class="k">token</span> <span class="n">TOP</span> { <span class="s">&lt;a&gt;</span> <span class="s">'+'</span> <span class="s">&lt;b&gt;</span> }
-    <span class="k">token</span> <span class="n">a</span>   { \<span class="n">d</span>+ }
-    <span class="k">token</span> <span class="n">b</span>   { \<span class="n">d</span>+ }
+    <span class="k">token</span> TOP {<span class="sr"> &lt;a&gt; '+' &lt;b&gt; </span>}
+    <span class="k">token</span> a   {<span class="sr"> \d+ </span>}
+    <span class="k">token</span> b   {<span class="sr"> \d+ </span>}
 }
 
 <span class="k">class</span> <span class="n">SumActions</span> {

@@ -122,13 +122,13 @@ href="/ru/regexes/tokens-and-rules">Токены и правила</a></p>
 <p><em>Возврат назад</em> означает, что, когда более поздняя часть
 шаблона не срабатывает, движок отступает и пробует более короткое
 совпадение для более ранней части. <code>regex</code> так и делает:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">r</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> r {<span class="sr"> \w+ 'b' </span>}
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;r&gt; /</span>; <span class="c1"># True</span></pre></div>
 
 <p>Сначала <code>\w+</code> захватывает всё <code>aaab</code>, а затем
 вынужден отдать последнюю <code>b</code>, чтобы совпал буквальный
 <code>b</code>. <code>token</code> же ничего отдавать не станет:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> <span class="n">t</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> t {<span class="sr"> \w+ 'b' </span>}
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;t&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Здесь <code>\w+</code> забирает всё <code>aaab</code>, буквальному

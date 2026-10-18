@@ -121,14 +121,14 @@
 <p><em>Връщането назад</em> означава, че когато по-късна част от шаблона
 се провали, машината се връща и опитва по-късо съвпадение за по-ранна
 част. <code>regex</code> прави точно това:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> <span class="n">r</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">regex</span> r {<span class="sr"> \w+ 'b' </span>}
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;r&gt; /</span>; <span class="c1"># True</span></pre></div>
 
 <p><code>\w+</code> първо грабва цялото <code>aaab</code>, а после
 трябва да върне последното <code>b</code>, за да може буквалното
 <code>b</code> да съвпадне. <code>token</code> отказва да върне каквото
 и да било:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> <span class="n">t</span> { \<span class="n">w</span>+ <span class="s">'b'</span> }
+<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="k">token</span> t {<span class="sr"> \w+ 'b' </span>}
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'aaab'</span> ~~ <span class="sr">/ &lt;t&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Тук <code>\w+</code> взема цялото <code>aaab</code>, за буквалното
