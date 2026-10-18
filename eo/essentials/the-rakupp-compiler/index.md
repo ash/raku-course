@@ -9,7 +9,9 @@ translations_gpt:
 
 Ĝi estas kaj **interpretilo** kaj **kompililo**: ĝi povas ruli programon rekte, aŭ traduki ĝin al maŝina kodo por plia rapideco. Ĉar ne estas peza rultempo por startigi, `rakupp` ekfunkcias en nur kelkaj milisekundoj, kio faras ĝin agrabla por mallongaj skriptoj kaj ĉiutaga laboro en la komandlinio. Ĝia aŭtoro priskribas ĝin kiel la plej rapidan kompililon de Raku.
 
-Raku++ realigas Raku 6.d (kun kelkaj funkcioj de 6.e). Ĉe versio 1.5.2 ĝi jam trapasas ĉirkaŭ 90% de la testaro Roast — la oficiala aro de testoj de Raku. Ĝi estas juna, do ĝi ankoraŭ ne kovras la tutan lingvon, sed ĝi disvolviĝas rapide.
+Raku++ realigas Raku 6.d defaŭlte, kaj 6.e kiam programo petas tion per `use v6.e.PREVIEW`. Versio 5.4.1, eldonita en oktobro 2026, trapasas ĉiujn 1425 testodosierojn de la testaro Roast — la oficiala aro de testoj de Raku.
+
+Raku++ rulas ankaŭ en retumilo: kompilita al WebAssembly, ĝi funkciigas la provejon ĉe [raku.online](https://raku.online), kie vi povas provi Raku sen instali ion ajn.
 
 ## Reĝimoj de interpretilo kaj kompililo
 

@@ -9,7 +9,9 @@ translations_gpt:
 
 È al tempo stesso un **interprete** e un **compilatore**: può eseguire un programma direttamente oppure tradurlo in codice nativo per guadagnare velocità. Poiché non c'è alcun runtime pesante da avviare, `rakupp` parte in pochi millisecondi, il che lo rende piacevole per gli script brevi e per il lavoro quotidiano dalla riga di comando. Il suo autore lo descrive come il compilatore Raku più veloce.
 
-Raku++ implementa Raku 6.d (con alcune funzionalità di 6.e). Alla versione 1.5.2 supera già circa l'90% della suite di test Roast — l'insieme ufficiale dei test di Raku. È giovane, quindi non copre ancora tutto il linguaggio, ma si sviluppa rapidamente.
+Raku++ implementa Raku 6.d per impostazione predefinita, e 6.e quando un programma lo richiede con `use v6.e.PREVIEW`. La versione 5.4.1, uscita nell'ottobre 2026, supera tutti i 1.425 file di test della suite Roast — l'insieme ufficiale dei test di Raku.
+
+Raku++ gira anche in un browser web: compilato in WebAssembly, è il motore del campo da gioco su [raku.online](https://raku.online), dove puoi provare Raku senza installare nulla.
 
 ## Modalità interprete e compilatore
 

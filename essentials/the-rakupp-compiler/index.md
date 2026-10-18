@@ -8,7 +8,9 @@ title: The Raku++ compiler
 
 It is both an **interpreter** and a **compiler**: it can run a program directly, or translate it into native code for extra speed. Because there is no heavy runtime to start up, `rakupp` launches in just a few milliseconds, which makes it pleasant for short scripts and everyday command-line work. Its author describes it as the fastest Raku compiler.
 
-Raku++ implements Raku 6.d (with some 6.e features). At version 1.5.2 it already passes about 90% of the Roast test suite — the official set of Raku tests. It is young, so it does not yet cover the whole language, but it is developing quickly.
+Raku++ implements Raku 6.d by default, and 6.e when a program asks for it with `use v6.e.PREVIEW`. Version 5.4.1, released in October 2026, passes all 1,425 test files of the Roast suite — the official set of Raku tests.
+
+Raku++ also runs in a web browser: compiled to WebAssembly, it powers the playground at [raku.online](https://raku.online), where you can try Raku without installing anything.
 
 ## Interpreter and compiler modes
 

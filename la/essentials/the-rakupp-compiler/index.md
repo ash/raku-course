@@ -9,7 +9,9 @@ translations_gpt:
 
 Est simul **interpres** et **compilator**: programma directe exsequi potest, vel illud in codicem nativum transferre ad maiorem celeritatem. Quia nullum grave systema exsecutionis incipiendum est, `rakupp` intra pauca millisecunda incipit, quod eum ad brevia scripta et cotidianum laborem in linea imperandi iucundum reddit. Auctor eum compilatorem Raku celerrimum esse describit.
 
-Raku++ Raku 6.d implet (cum quibusdam facultatibus 6.e). In versione 1.5.2 iam circiter 90% seriei probationum Roast transit — officialis series probationum Raku. Iuvenis est, itaque totam linguam nondum comprehendit, sed celeriter crescit.
+Raku++ ex more Raku 6.d implet, 6.e autem cum programma id per `use v6.e.PREVIEW` petit. Versio 5.4.1, mense Octobri anni 2026 emissa, omnia 1425 archiva probationum seriei Roast transit — officialis series probationum Raku.
+
+Raku++ etiam in navigatro interretiali currit: in WebAssembly compilatum, palaestram apud [raku.online](https://raku.online) movet, ubi Raku experiri potes nihil installans.
 
 ## Modi interpretis et compilatoris
 
