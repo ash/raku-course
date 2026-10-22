@@ -18,6 +18,7 @@ language
 Your word: coding
 coding
 Your word: enough
+enough
 OK, done.
 ```
 
