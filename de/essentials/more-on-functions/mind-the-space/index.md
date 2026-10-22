@@ -79,10 +79,10 @@ Die Fehlermeldung erklärt, was falsch ist:
     ===SORRY!===
     Das Wort 'if' wird als Funktionsaufruf 'if()' interpretiert. Bitte verwenden Sie
     Leerzeichen anstelle von Klammern.
-    bei /Users/ash/raku-course/t.raku:1
+    bei t.raku:1
     ------> if⏏(True != False) {
     Unerwarteter Block in Infix-Position (zwei Terme hintereinander)
-    bei /Users/ash/raku-course/t.raku:1
+    bei t.raku:1
     ------> if(True != False)⏏ {
 
 Im Fall von `if` sind Klammern überhaupt nicht erforderlich, sodass das Problem nicht auftreten kann, wenn Sie sie nicht verwenden. Aber in einigen Fällen, wie zum Beispiel bei `loop`, müssen Sie sie haben, und das Leerzeichen wird obligatorisch:

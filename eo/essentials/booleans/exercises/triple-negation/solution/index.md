@@ -30,9 +30,9 @@ Estis iomete neatendite ke la programo kun tri kriegosignoj ne kompilis:
 
 ```console
 $ raku triple-negation.raku
-===SORRY!=== Eraro dum kompilado de /Users/ash/raku-course/exercises/booleans/triple-negation.raku
+===SORRY!=== Eraro dum kompilado de triple-negation.raku
 Du terminoj sinsekve
-ĉe /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
+ĉe triple-negation.raku:2
 ------> say !!!⏏$value;
     atendante iun el:
         infikso

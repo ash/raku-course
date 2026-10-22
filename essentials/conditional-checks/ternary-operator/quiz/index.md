@@ -18,10 +18,10 @@ Fill in the gaps in the program:
 
 The Rakudo compiler has a special error message for the most common error you can make when using the ternary operator in Raku.
 
-    ===SORRY!=== Error while compiling /Users/ash/raku-course/t.raku
+    ===SORRY!=== Error while compiling t.raku
     Unsupported use of ?  and : for the ternary conditional operator.  In
     Raku please use: ??  and !!.
-    at /Users/ash/raku-course/t.raku:2
+    at t.raku:2
     ------> say $color eq 'blue' ?⏏ 'This is a sky!' : 'I need more informa
 
 {% include nav.html %}

@@ -17,9 +17,9 @@ say $x;
 
 Променливата `$x` е създадена в блока от код. Първото извикване на `say $x` отпечатва стойността на променливата, тъй като тя е видима в рамките на блока. Второто `say $x` не успява, защото името `$x` не съществува извън блока и не е известно след неговото приключване. Програмата не се компилира и получавате грешка:
 
-    ===SORRY!=== Error while compiling /Users/ash/raku-course/t.raku
+    ===SORRY!=== Error while compiling t.raku
     Variable '$x' is not declared
-    at /Users/ash/raku-course/t.raku:6
+    at t.raku:6
     ------> say ⏏$x;
 
 {% include nav.html %}

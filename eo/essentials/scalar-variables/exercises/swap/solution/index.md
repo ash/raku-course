@@ -49,7 +49,7 @@ En ĉi tiu kazo, vi ricevas averton ke `$a` ĉe la dekstra flanko ne estas uzata
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-AVERTOJ por /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+AVERTOJ por exercises/scalar-variables/swap.raku:
 Senzaŭza uzo de $a en sink-kunteksto (linioj 2, 2)
 10, 20
 ```
@@ -64,7 +64,7 @@ $a, $b = 2 * $b, 3 * $a;
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-AVERTOJ por /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+AVERTOJ por exercises/scalar-variables/swap.raku:
 Senzaŭza uzo de "*" en esprimo "3 * $a" en sink-kunteksto (linio 2)
 Senzaŭza uzo de $a en sink-kunteksto (linio 2)
 10, 40

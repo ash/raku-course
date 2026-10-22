@@ -18,9 +18,9 @@ Aizpildiet programmas tukšās vietas:
 
 Rakudo kompilatoram ir īpaša kļūdas ziņa visbiežākajai kļūdai, ko varat pieļaut, izmantojot ternāro operatoru Raku valodā.
 
-    ===SORRY!=== Kļūda kompilējot /Users/ash/raku-course/t.raku
+    ===SORRY!=== Kļūda kompilējot t.raku
     Neatbalstīta ? un : izmantošana ternārajam nosacījuma operatoram. Raku valodā, lūdzu, izmantojiet: ?? un !!.
-    pie /Users/ash/raku-course/t.raku:2
+    pie t.raku:2
     ------> say $color eq 'blue' ?⏏ 'Tā ir debesis!' : 'Man vajag vairāk informa
 
 {% include nav.html %}

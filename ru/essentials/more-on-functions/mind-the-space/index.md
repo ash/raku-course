@@ -79,10 +79,10 @@ if(True != False) {
     ===SORRY!===
     The word 'if' is interpreted as a 'if()' function call.  Please use
     whitespace instead of parentheses.
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if⏏(True != False) {
     Unexpected block in infix position (two terms in a row)
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if(True != False)⏏ {
 
 В случае с `if` скобки вообще не требуются, поэтому проблема не возникнет, если вы их не используете. Но в некоторых случаях, например, с `loop`, их необходимо использовать, и пробел становится обязательным:

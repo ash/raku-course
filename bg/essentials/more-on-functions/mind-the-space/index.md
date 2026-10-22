@@ -79,10 +79,10 @@ if(True != False) {
     ===SORRY!===
     The word 'if' is interpreted as a 'if()' function call.  Please use
     whitespace instead of parentheses.
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if⏏(True != False) {
     Unexpected block in infix position (two terms in a row)
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if(True != False)⏏ {
 
 В случая с `if`, скобите изобщо не са необходими, така че проблемът няма шанс да се появи, ако не ги използвате. Но в някои случаи, като например с `loop`, трябва да ги имате, и интервалът става задължителен:

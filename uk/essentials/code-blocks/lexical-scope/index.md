@@ -17,9 +17,9 @@ say $x;
 
 Змінна `$x` створюється в блоці коду. Перше викликання `say $x` виводить значення змінної, оскільки вона видима всередині блоку. Друге `say $x` не вдається, тому що ім'я `$x` не існує поза блоком і не відоме після його завершення. Програма не компілюється, і ви отримуєте помилку:
 
-    ===SORRY!=== Error while compiling /Users/ash/raku-course/t.raku
+    ===SORRY!=== Error while compiling t.raku
     Variable '$x' is not declared
-    at /Users/ash/raku-course/t.raku:6
+    at t.raku:6
     ------> say ⏏$x;
 
 {% include nav.html %}

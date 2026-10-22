@@ -79,10 +79,10 @@ Het foutbericht legt uit wat er mis is:
     ===SORRY!===
     The word 'if' is interpreted as a 'if()' function call.  Please use
     whitespace instead of parentheses.
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if⏏(True != False) {
     Unexpected block in infix position (two terms in a row)
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if(True != False)⏏ {
 
 In het geval van `if` zijn haakjes helemaal niet nodig, dus het probleem heeft geen kans om te verschijnen als je ze niet gebruikt. Maar in sommige gevallen, zoals bijvoorbeeld met `loop`, moet je ze hebben, en wordt de spatie verplicht:

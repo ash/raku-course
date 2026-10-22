@@ -30,9 +30,9 @@ Es war etwas unerwartet, dass das Programm mit drei Ausrufezeichen nicht kompili
 
 ```console
 $ raku triple-negation.raku
-===SORRY!=== Fehler beim Kompilieren von /Users/ash/raku-course/exercises/booleans/triple-negation.raku
+===SORRY!=== Fehler beim Kompilieren von triple-negation.raku
 Zwei Begriffe in Folge
-bei /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
+bei triple-negation.raku:2
 ------> say !!!⏏$value;
     erwartet wurde einer der folgenden:
         Infix

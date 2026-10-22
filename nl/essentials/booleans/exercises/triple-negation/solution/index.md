@@ -30,9 +30,9 @@ Het was een beetje onverwacht dat het programma met drie uitroeptekens niet comp
 
 ```console
 $ raku triple-negation.raku
-===SORRY!=== Fout tijdens het compileren van /Users/ash/raku-course/exercises/booleans/triple-negation.raku
+===SORRY!=== Fout tijdens het compileren van triple-negation.raku
 Twee termen op een rij
-op /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
+op triple-negation.raku:2
 ------> say !!!⏏$value;
     verwacht een van:
         infix

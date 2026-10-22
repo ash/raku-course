@@ -18,10 +18,10 @@ Plenigu la mankojn en la programo:
 
 La Rakudo-kompililo havas specialan erarmesagon por la plej ofta eraro, kiun vi povas fari uzante la ternaran operatoron en Raku.
 
-    ===PARDONU!=== Eraro dum kompilado de /Users/ash/raku-course/t.raku
+    ===PARDONU!=== Eraro dum kompilado de t.raku
     Neaprobita uzo de ? kaj : por la ternara kondiĉa operatoro. En
     Raku bonvolu uzi: ?? kaj !!.
-    ĉe /Users/ash/raku-course/t.raku:2
+    ĉe t.raku:2
     ------> say $color eq 'blua' ?⏏ 'Ĉi tio estas ĉielo!' : 'Mi bezonas pli da informa
 
 {% include nav.html %}

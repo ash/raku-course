@@ -79,10 +79,10 @@ Kļūdas ziņojums izskaidro, kas ir nepareizi:
     ===SORRY!===
     The word 'if' is interpreted as a 'if()' function call.  Please use
     whitespace instead of parentheses.
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if⏏(True != False) {
     Unexpected block in infix position (two terms in a row)
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if(True != False)⏏ {
 
 Gadījumā ar `if`, iekavas nav nepieciešamas vispār, tāpēc problēma nevar rasties, ja jūs tās neizmantojat. Bet dažos gadījumos, piemēram, ar `loop`, jums tās ir nepieciešamas, un atstarpe kļūst obligāta:

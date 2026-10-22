@@ -49,7 +49,7 @@ In hoc casu, monitionem accipis quod `$a` in latere dextro non adhibetur:
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-MONITIONES pro /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+MONITIONES pro exercises/scalar-variables/swap.raku:
 Inutilis usus $a in contextu sink (lineae 2, 2)
 10, 20
 ```
@@ -64,7 +64,7 @@ Hoc programma plures monitiones imprimit, sed etiam videre potes solum `$b` valo
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-MONITIONES pro /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+MONITIONES pro exercises/scalar-variables/swap.raku:
 Inutilis usus "*" in expressione "3 * $a" in contextu sink (linea 2)
 Inutilis usus $a in contextu sink (linea 2)
 10, 40

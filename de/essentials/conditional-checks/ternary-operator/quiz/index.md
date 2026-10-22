@@ -18,10 +18,10 @@ Füllen Sie die Lücken im Programm:
 
 Der Rakudo-Compiler hat eine spezielle Fehlermeldung für den häufigsten Fehler, den man beim Verwenden des ternären Operators in Raku machen kann.
 
-    ===SORRY!=== Fehler beim Kompilieren von /Users/ash/raku-course/t.raku
+    ===SORRY!=== Fehler beim Kompilieren von t.raku
     Nicht unterstützte Verwendung von ? und : für den ternären bedingten Operator. In
     Raku bitte verwenden: ?? und !!.
-    bei /Users/ash/raku-course/t.raku:2
+    bei t.raku:2
     ------> say $color eq 'blue' ?⏏ 'This is a sky!' : 'I need more informa
 
 {% include nav.html %}

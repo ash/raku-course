@@ -23,9 +23,9 @@ say $x;
 его окончания. Программа отказывается компилироваться и выводит ошибку:
 
 ```
-===SORRY!=== Error while compiling /Users/ash/raku-course/t.raku
+===SORRY!=== Error while compiling t.raku
 Variable '$x' is not declared
-at /Users/ash/raku-course/t.raku:6
+at t.raku:6
 ------> say ⏏$x;
 ```
 

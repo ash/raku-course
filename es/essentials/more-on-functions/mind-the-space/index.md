@@ -79,10 +79,10 @@ El mensaje de error explica qué está mal:
     ===SORRY!===
     The word 'if' is interpreted as a 'if()' function call.  Please use
     whitespace instead of parentheses.
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if⏏(True != False) {
     Unexpected block in infix position (two terms in a row)
-    at /Users/ash/raku-course/t.raku:1
+    at t.raku:1
     ------> if(True != False)⏏ {
 
 En el caso de `if`, los paréntesis no son necesarios en absoluto, por lo que el problema no tiene posibilidades de aparecer si no los usas. Pero en algunos casos, como, por ejemplo, con `loop`, necesitas tenerlos, y el espacio se vuelve obligatorio:

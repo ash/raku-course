@@ -49,7 +49,7 @@ $a, $b = $b, $a;
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-BRĪDINĀJUMI par /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+BRĪDINĀJUMI par exercises/scalar-variables/swap.raku:
 Bezjēdzīga $a izmantošana sink kontekstā (2. rinda, 2. rinda)
 10, 20
 ```
@@ -64,7 +64,7 @@ $a, $b = 2 * $b, 3 * $a;
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-BRĪDINĀJUMI par /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+BRĪDINĀJUMI par exercises/scalar-variables/swap.raku:
 Bezjēdzīga "*" izmantošana izteiksmē "3 * $a" sink kontekstā (2. rinda)
 Bezjēdzīga $a izmantošana sink kontekstā (2. rinda)
 10, 40

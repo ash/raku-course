@@ -49,7 +49,7 @@ En este caso, obtienes una advertencia de que `$a` en el lado derecho no se usa:
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+WARNINGS for exercises/scalar-variables/swap.raku:
 Useless use of $a in sink context (lines 2, 2)
 10, 20
 ```
@@ -64,7 +64,7 @@ Este programa imprime aún más advertencias, pero también puedes ver que solo 
 
 ```
 $ raku exercises/scalar-variables/swap.raku
-WARNINGS for /Users/ash/raku-course/exercises/scalar-variables/swap.raku:
+WARNINGS for exercises/scalar-variables/swap.raku:
 Useless use of "*" in expression "3 * $a" in sink context (line 2)
 Useless use of $a in sink context (line 2)
 10, 40

@@ -33,9 +33,9 @@ True
 
 ```console
 $ raku triple-negation.raku
-===SORRY!=== Error while compiling /Users/ash/raku-course/exercises/booleans/triple-negation.raku
+===SORRY!=== Error while compiling triple-negation.raku
 Two terms in a row
-at /Users/ash/raku-course/exercises/booleans/triple-negation.raku:2
+at triple-negation.raku:2
 ------> say !!!⏏$value;
     expecting any of:
         infix

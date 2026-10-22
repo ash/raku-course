@@ -18,10 +18,10 @@ Riempi gli spazi nel programma:
 
 Il compilatore Rakudo ha un messaggio di errore speciale per l'errore più comune che puoi fare quando usi l'operatore ternario in Raku.
 
-    ===SORRY!=== Errore durante la compilazione di /Users/ash/raku-course/t.raku
+    ===SORRY!=== Errore durante la compilazione di t.raku
     Uso non supportato di ? e : per l'operatore condizionale ternario. In
     Raku per favore usa: ?? e !!.
-    a /Users/ash/raku-course/t.raku:2
+    a t.raku:2
     ------> say $color eq 'blu' ?⏏ 'Questo è un cielo!' : 'Ho bisogno di più informa
 
 {% include nav.html %}

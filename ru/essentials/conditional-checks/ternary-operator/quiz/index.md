@@ -20,10 +20,10 @@ title: 'Тест: Тернарный оператор'
 где вы можете допустить ошибку с тернарным оператором в Raku:
 
 ```
-===SORRY!=== Error while compiling /Users/ash/raku-course/t.raku
+===SORRY!=== Error while compiling t.raku
 Unsupported use of ?  and : for the ternary conditional operator.  In
 Raku please use: ??  and !!.
-at /Users/ash/raku-course/t.raku:2
+at t.raku:2
 ------> say $color eq 'blue' ?⏏ 'This is a sky!' : 'I need more informa
 ```
 

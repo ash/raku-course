@@ -79,10 +79,10 @@ La erarmesaĝo klarigas kio estas malĝusta:
     ===PARDONU!===
     La vorto 'if' estas interpretita kiel 'if()' funkciovoko. Bonvolu uzi
     blankspacon anstataŭ parentezoj.
-    ĉe /Users/ash/raku-course/t.raku:1
+    ĉe t.raku:1
     ------> if⏏(True != False) {
     Neatendita bloko en infiksa pozicio (du terminoj en vico)
-    ĉe /Users/ash/raku-course/t.raku:1
+    ĉe t.raku:1
     ------> if(True != False)⏏ {
 
 Kun la kazo de `if`, parentezoj tute ne estas postulataj, do la problemo ne havas ŝancon aperi se vi ne uzas ilin. Sed en iuj kazoj, kiel ekzemple kun `loop`, vi bezonas ilin, kaj la spaco fariĝas deviga:
