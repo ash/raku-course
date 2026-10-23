@@ -6,7 +6,7 @@ title: Solution of ’Fibonacci numbers’
 
 The following algorithm defines Fibonacci numbers.
 
-1. _F<sub>0</sub>_ = 0, _F<sub>0</sub>_ = 1
+1. _F<sub>0</sub>_ = 0, _F<sub>1</sub>_ = 1
 2. _F<sub>n</sub>_ = _F<sub>n-1</sub>_ + _F<sub>n-2</sub>_
 
 ## Code
