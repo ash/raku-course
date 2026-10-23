@@ -3,6 +3,11 @@
 use YAMLish;
 
 my %toc;
+# The ```raku blocks that get a Run button: the programs bin/check-runnable.js
+# found to print the same in the browser (Raku++ under raku.online) as under
+# Rakudo and as the page shows. Keyed by the block's exact text. Filled once in
+# MAIN and only looked up after that, so the render workers can share it.
+my %runnable;
 # How many parts to actually publish. Parts numbered above this are listed on
 # the front page (greyed out) but not generated, and links into them are muted.
 my $published-limit = Inf;
@@ -804,21 +809,22 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
         $html = post-process-html($html) if $html ~~ /'%%'/;
         $html = neutralize-unpublished-links($html) if $dir;
 
-        # raku.online embed widget: it turns each highlighted Raku block into a
-        # play-and-edit editor with a Run button. Loaded from raku.online itself
-        # rather than bundled with the course, so it always matches the live
-        # playground and no raku.js/wasm ships in this repository.
+        # raku.online embed widget: it turns each Raku block marked `runnable` by
+        # format-code into a play-and-edit editor with a Run button. Loaded from
+        # raku.online itself rather than bundled with the course, so it always
+        # matches the live playground — the engine bin/check-runnable.js checks
+        # the blocks against — and no raku.js/wasm ships in this repository.
+        # Only a page with at least one such block loads it.
         #
-        # `data-selector` targets only the main `.highlight.raku` solution block.
-        # Output/console blocks are `.highlight` only, and the illustrative code
-        # fragments nested inside numbered comments are marked `.no-run` by
-        # rehighlight-fragments — both are left as static, coloured code. The Run
-        # button picks up the course blue from --rk-embed-accent in course.css.
-        #
-        # $dir carries no language prefix, so this covers every translation too.
-        if $dir ~~ /^ 'addendum/' .* '/solution' $/ {
+        # Everything else stays static, coloured code: output/console blocks
+        # (`.highlight` only), the illustrative fragments nested inside numbered
+        # comments (`.no-run`, from rehighlight-fragments), and the Raku blocks
+        # that did not pass the check, which keep copy-code.js's Copy and
+        # open-in-the-playground buttons. The Run button picks up the course blue
+        # from --rk-embed-accent in course.css.
+        if $html.contains('class="highlight raku runnable"') {
             my $embed = '<script src="https://raku.online/raku.js"'
-                      ~ ' data-selector=".highlight.raku:not(.no-run)" defer></script>';
+                      ~ ' data-selector=".highlight.raku.runnable" defer></script>';
             $html .= subst('</body>', "$embed\n</body>");
         }
 
@@ -964,10 +970,17 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             # copy-to-clipboard button (added by copy-code.js) attaches only to
             # them — never to program output (```console) or data (```json).
             # `:norun` adds a `no-run` class: the block is highlighted like any
-            # other, but the play-editor script skips it (used for the illustrative
-            # code fragments nested inside numbered comments — see prepare-content).
+            # other, but gets no buttons at all (used for the illustrative code
+            # fragments nested inside numbered comments — see prepare-content).
+            # A block on the checked list gets a `runnable` class instead, which
+            # the raku.online embed turns into an editor with a Run button —
+            # except on a quiz page, where running the program would give the
+            # answer away.
             my $is-raku = $language.lc eq 'raku' | 'perl6';
-            my $raku-class = $norun ?? 'highlight raku no-run' !! 'highlight raku';
+            my $runnable = (%runnable{$code}:exists) && %toc{%content<url>}<type> != Quiz;
+            my $raku-class = $norun     ?? 'highlight raku no-run'
+                          !! $runnable  ?? 'highlight raku runnable'
+                          !!               'highlight raku';
             my $wrapper = $is-raku ?? $raku-class !! 'highlight';
 
             # Plain, HTML-escaped code block — matching the wrapper pygments uses
@@ -1717,6 +1730,29 @@ sub decline($n, $word, $lang = 'en') {
     return "$n " ~ %forms{$word}[$n == 1 ?? 0 !! 1];
 }
 
+#| Read the Run-button list written by bin/check-runnable.js: blocks of code,
+#| each after a `--- <page>` line, with every non-empty line indented by four
+#| spaces. Returns the set of the blocks' texts.
+sub load-runnable($path) {
+    my %set;
+    return %set unless $path.IO.f;
+    my @code;
+    my $in-block = False;
+    # The extra `--- ` at the end closes the last block.
+    for |$path.IO.lines, '--- ' -> $line {
+        if $line.starts-with('--- ') {
+            @code.pop while @code && @code.tail eq '';
+            %set{@code.join("\n")} = True if $in-block && @code;
+            @code = ();
+            $in-block = True;
+        }
+        elsif $in-block {
+            @code.push: $line.starts-with('    ') ?? $line.substr(4) !! '';
+        }
+    }
+    return %set;
+}
+
 sub parent-level-url($url is copy) {
     $url ~~ s/ '/' <-[/]>+ $ //;
     return $url;
@@ -1761,6 +1797,8 @@ sub MAIN(:$language = '', :$filter = '', :$uri = '', :$destination = '_out', :$l
     #   generator as `raku raku-pages.raku …`. Under `rakupp …` start/await do not
     #   thread, so --workers>1 is a no-op (same 1-worker time, no speedup).
     $published-limit = +$last-part;
+    %runnable = load-runnable('_data/runnable.txt');
+    say "\e[32m{%runnable.elems} programs on the Run-button list (_data/runnable.txt).\e[0m";
     for @languages.map: *.key -> $lang {
         next if $language && $lang ne $language;
 

@@ -64,7 +64,7 @@ this is an array
 this is a list
 {A => alpha, B => beta}
 A	alpha
-B	bета
+B	beta
 ```
 
 ## Коментари

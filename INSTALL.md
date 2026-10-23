@@ -113,9 +113,32 @@ The `--filter` value is matched as plain text against each page’s directory pa
 
 ## Running the examples in a browser
 
-The course does not ship an in-page code runner. Readers who want to run the
-examples without a local install use the shared playground at
-[raku.online/play](https://raku.online/play) — a single instance, maintained in
-the [raku.online](https://github.com/ash/raku.online) repository, not here. The
-syntax highlighting you see on course pages is **baked at build time** by
-`--highlighter=rakupp` (above), so no WebAssembly is loaded to display code.
+Code examples can be run right on the page. The runner is the
+[raku.online](https://github.com/ash/raku.online) embed: a page loads
+`https://raku.online/raku.js`, which turns a code block into an editor with a
+**Run** button and runs the program in the browser — with Raku++ compiled to
+WebAssembly, fetched only when the reader presses Run. Nothing of it ships in
+this repository. The syntax highlighting you see on course pages is still
+**baked at build time** by `--highlighter=rakupp` (above), so no WebAssembly is
+loaded just to display code.
+
+Since that engine is Raku++, not Rakudo, a block only gets a Run button where
+the result is the one the course expects. Those blocks are listed in
+`_data/runnable.txt`, which the generator reads; a page with none of them does
+not load `raku.js` at all. Quiz pages never get a Run button, as running the
+program would give the answer away. Every other Raku block keeps a button that opens its
+code in the shared playground at [raku.online/play](https://raku.online/play).
+
+The list is made by a script that runs every Raku block of every language both
+under Rakudo and in the WebAssembly engine the embed loads, and keeps a block
+when the two agree with each other and with the output the page shows:
+
+    node bin/check-runnable.js
+
+It needs Node.js 18 or newer and Rakudo (`rakudo` on your `PATH`, or
+`--rakudo=PATH`), downloads the engine from raku.online, and takes about ten
+minutes. Add `--report=FILE` to get every block that was left out and why — a
+handy list of where Raku++ and Rakudo still differ. Blocks are matched by their
+exact text, so a code block you edit loses its Run button until you run the
+check again (it keeps the playground button). Commit `_data/runnable.txt`
+together with the content change.

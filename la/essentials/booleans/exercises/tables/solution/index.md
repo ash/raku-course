@@ -33,18 +33,18 @@ Programma exsequere, et haec tabula imprimitur.
 
 ```console
 $ raku tables.raku
-Verum && Verum est Verum
-Verum && Falsum est Falsum
-Falsum && Verum est Falsum
-Falsum && Falsum est Falsum
-Verum || Verum est Verum
-Verum || Falsum est Verum
-Falsum || Verum est Verum
-Falsum || Falsum est Falsum
+Verum && Verum est True
+Verum && Falsum est False
+Falsum && Verum est False
+Falsum && Falsum est False
+Verum || Verum est True
+Verum || Falsum est True
+Falsum || Verum est True
+Falsum || Falsum est False
 Verum ^^ Verum est Nil
-Verum ^^ Falsum est Verum
-Falsum ^^ Verum est Verum
-Falsum ^^ Falsum est Falsum
+Verum ^^ Falsum est True
+Falsum ^^ Verum est True
+Falsum ^^ Falsum est False
 ```
 
 ## Commentarii

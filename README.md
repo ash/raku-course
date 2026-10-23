@@ -47,7 +47,7 @@ Beyond the five parts, the course also offers:
 
 * [The Final Test](https://course.raku.org/final-test/) — a 100-question quiz covering the whole course, with a shareable result.
 * An addendum with 50 comprehensive exercises that draw on the material of the entire course.
-* An [online Raku playground](https://raku.online/play) for running code straight in the browser.
+* An [online Raku playground](https://raku.online/play) for running code straight in the browser, and a Run button on the code examples that run there exactly as they do under Rakudo.
 
 New exercises and quizzes may appear in the already published topics, and the theory may be slightly modified to achieve the best flow of the course.
 
