@@ -926,6 +926,7 @@ sub generate-pages(%toc, $lang, $destination, $filter, $uri, $highlighter, $work
             $switcher
             <p style="margin:.35em 0;"><a href="$p/">{ui(%content<lang>, 'footer-course')}</a></p>
             <p style="margin:.35em 0;"><a href="$p/about-this-course">{ui(%content<lang>, 'footer-about')}</a> · <a href="https://raku.org" target="_blank" rel="noopener noreferrer">Raku.org</a> · <a href="https://raku.online/play" target="_blank" rel="noopener noreferrer">Raku Playground</a> · <a href="https://github.com/ash/raku-course" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p class="store-badges"><a href="https://apps.apple.com/app/id6788222934" target="_blank" rel="noopener noreferrer"><img src="/assets/app-store-badge.svg" alt="Download on the App Store" width="120" height="40"></a> <a href="https://play.google.com/store/apps/details?id=online.deepsoft.learnraku" target="_blank" rel="noopener noreferrer"><img src="/assets/google-play-badge.svg" alt="Get it on Google Play" width="135" height="40"></a></p>
             <p style="margin:.35em 0;">{ui(%content<lang>, 'footer-free')} <a href="https://www.perlfoundation.org">The Perl &amp; Raku Foundation</a></p>
             <p style="margin:.35em 0;">© 2021–{$year} · {ui(%content<lang>, 'footer-written')} <a href="https://andrewshitov.com/">Andrew Shitov</a></p>
             </footer>
