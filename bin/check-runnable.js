@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 // Decide which Raku code blocks of the course get a Run button.
 //
 // The Run button is the raku.online embed (https://raku.online/raku.js): it
@@ -9,7 +9,7 @@
 //
 //   * runs the block under Rakudo, twice — a block whose output changes from
 //     run to run (hash order, rand, the time) is left out;
-//   * runs it in the very WebAssembly engine the embed loads, here under Node;
+//   * runs it in the very WebAssembly engine the embed loads, here under Bun;
 //   * keeps it only if both runs succeed with the same stdout and stderr;
 //   * compares the result with the output the page itself shows after the
 //     block (a ``` / ```console block or an indented one), if it shows any. A
@@ -27,7 +27,9 @@
 // after the last check has no Run button until the next one. Run this again
 // after changing code in the course, or when raku.online updates its engine:
 //
-//     node bin/check-runnable.js
+//     bun bin/check-runnable.js
+//
+// (It uses nothing Bun-specific, so `node bin/check-runnable.js` works too.)
 //
 // Options:
 //     --rakudo=PATH    the Rakudo to compare with (default: `rakudo`)
@@ -46,17 +48,36 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawn } = require('child_process');
-const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 
 const TIMEOUT = 20000;              // per program, per compiler
 const STDIN = '10\n20\n30\n';
 
-// ---- the WebAssembly engine, in a worker thread ---------------------------
-// One instance runs every program in turn, as one instance serves a whole page
-// in the browser. A run that never returns is ended by killing the worker.
-if (!isMainThread) {
-    const RakuJS = require(path.join(workerData.engine, 'rakujs.js'));
-    const wasm = fs.readFileSync(path.join(workerData.engine, 'rakujs.wasm'));
+// Calls `fn` with every complete line that arrives on `stream`.
+function onLines(stream, fn) {
+    let buf = '';
+    stream.setEncoding('utf8');
+    stream.on('data', d => {
+        buf += d;
+        let nl;
+        while ((nl = buf.indexOf('\n')) >= 0) {
+            const line = buf.slice(0, nl);
+            buf = buf.slice(nl + 1);
+            fn(line);
+        }
+    });
+}
+
+// ---- the WebAssembly engine, in a process of its own ----------------------
+// `--lane=DIR` runs this script as one engine lane: one instance runs every
+// program in turn, as one instance serves a whole page in the browser.
+// Programs come in on stdin and results go out on stdout, a JSON object a line.
+// A process rather than a worker thread, because a program that never ends can
+// only be stopped by killing it: under Bun, terminating a worker does not stop
+// a WebAssembly loop.
+function lane(dir) {
+    const RakuJS = require(path.join(dir, 'rakujs.js'));
+    const wasm = fs.readFileSync(path.join(dir, 'rakujs.wasm'));
+    const send = msg => process.stdout.write(JSON.stringify(msg) + '\n');
     // `both` keeps the two streams in the order they were written, as the
     // embed shows them.
     let out = '', err = '', both = '';
@@ -68,16 +89,16 @@ if (!isMainThread) {
         print: t => { out += t + '\n'; both += t + '\n'; },
         printErr: t => { err += t + '\n'; both += t + '\n'; },
     }).then(m => {
-        parentPort.on('message', job => {
+        onLines(process.stdin, line => {
+            const job = JSON.parse(line);
             out = ''; err = ''; both = '';
             let rc = null, crash = null;
             try { rc = m.ccall('rakupp_run', 'number', ['string', 'string'], [job.code, STDIN]); }
             catch (e) { crash = String(e); }
-            parentPort.postMessage({ id: job.id, rc, out, err, both, crash });
+            send({ id: job.id, rc, out, err, both, crash });
         });
-        parentPort.postMessage({ ready: m.ccall('rakupp_version', 'string', [], []) });
+        send({ ready: m.ccall('rakupp_version', 'string', [], []) });
     });
-    return;
 }
 
 const ROOT = path.resolve(__dirname, '..');
@@ -149,8 +170,8 @@ function shownOutput(gap, next) {
 
 // ---- running the programs -------------------------------------------------
 
-// The programs running right now, so that an interrupted check does not leave
-// a sleeping server or two behind.
+// The programs and engine lanes running right now, so that an interrupted check
+// does not leave a sleeping server or two behind.
 const running = new Set();
 for (const sig of ['SIGINT', 'SIGTERM'])
     process.on(sig, () => { for (const p of running) p.kill('SIGKILL'); process.exit(130); });
@@ -197,42 +218,52 @@ async function pool(items, jobs, fn, label) {
     return results;
 }
 
-// Several lanes, each a worker with an engine of its own, take the programs in
-// turn: a program that never ends holds up only its own lane.
+// Several lanes, each a process with an engine of its own (see lane() above),
+// take the programs in turn: a program that never ends holds up only its own
+// lane, until the timeout kills it and starts a fresh one.
 async function runWasm(engine, programs, lanes) {
     const results = new Map();
     let version = null, i = 0;
-    function lane() {
+    function runLane() {
         return new Promise(resolve => {
-            let w, job = null, timer;
+            let p, job = null, timer;
             function start() {
-                w = new Worker(__filename, { workerData: { engine } });
-                w.on('message', msg => {
-                    if (msg.ready) { version = msg.ready; return next(); }
+                const me = p = spawn(process.execPath, [__filename, `--lane=${engine}`],
+                                     { stdio: ['pipe', 'pipe', 'inherit'] });
+                let ready = false;
+                running.add(me);
+                me.stdin.on('error', () => {});
+                onLines(me.stdout, line => {
+                    if (me !== p || !line.startsWith('{')) return;
+                    const msg = JSON.parse(line);
+                    if (msg.ready) { ready = true; version = msg.ready; return next(); }
                     clearTimeout(timer);
                     results.set(msg.id, msg);
                     if (msg.crash) return restart();     // the instance is in an unknown state
                     next();
                 });
-                w.on('error', e => {
+                me.on('exit', code => {
+                    running.delete(me);
+                    if (me !== p) return;                // one we killed ourselves
                     clearTimeout(timer);
-                    if (!job) { console.error(`cannot start the engine: ${e.message}`); process.exit(1); }
-                    results.set(job.id, { crash: String(e) });
+                    if (!ready) { console.error(`cannot start the engine (exit ${code})`); process.exit(1); }
+                    results.set(job.id, { crash: `the engine exited (${code})` });
                     restart();
                 });
             }
-            function restart() { w.removeAllListeners(); w.terminate(); start(); }
+            function stop() { const old = p; p = null; old.kill('SIGKILL'); }
+            function restart() { stop(); start(); }
             function next() {
-                if (i >= programs.length) { w.terminate(); return resolve(); }
+                if (i >= programs.length) { stop(); return resolve(); }
                 job = programs[i++];
                 if (i % 200 === 0) process.stderr.write(`  Raku++: ${i}/${programs.length}\n`);
                 timer = setTimeout(() => { results.set(job.id, { timeout: true }); restart(); }, TIMEOUT);
-                w.postMessage(job);
+                p.stdin.write(JSON.stringify(job) + '\n');
             }
             start();
         });
     }
-    await Promise.all(Array.from({ length: lanes }, lane));
+    await Promise.all(Array.from({ length: lanes }, runLane));
     return { version, results };
 }
 
@@ -320,7 +351,7 @@ function writeData(runnable, about) {
     const head = [
         '# Raku code blocks that get a Run button (the raku.online embed).',
         '#',
-        '# Generated by `node bin/check-runnable.js` — do not edit by hand; that',
+        '# Generated by `bun bin/check-runnable.js` — do not edit by hand; that',
         '# script says how a block qualifies. raku-pages.raku gives the button to',
         '# every ```raku block whose text is exactly one of the blocks below.',
         '#',
@@ -337,7 +368,7 @@ function writeData(runnable, about) {
 
 // ---- main -----------------------------------------------------------------
 
-(async () => {
+async function main() {
     // Unique programs, each with every place it is used (English first).
     const programs = new Map();
     for (const file of markdownFiles(ROOT)) {
@@ -403,4 +434,7 @@ function writeData(runnable, about) {
         fs.writeFileSync(opt.report, text);
         console.log(`Wrote ${opt.report}.`);
     }
-})();
+}
+
+if (opt.lane) lane(opt.lane);
+else main();

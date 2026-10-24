@@ -133,11 +133,15 @@ The list is made by a script that runs every Raku block of every language both
 under Rakudo and in the WebAssembly engine the embed loads, and keeps a block
 when the two agree with each other and with the output the page shows:
 
-    node bin/check-runnable.js
+    bun bin/check-runnable.js
 
-It needs Node.js 18 or newer and Rakudo (`rakudo` on your `PATH`, or
-`--rakudo=PATH`), downloads the engine from raku.online, and takes about ten
-minutes. Add `--report=FILE` to get every block that was left out and why — a
+It needs [Bun](https://bun.com) and Rakudo (`rakudo` on your `PATH`, or
+`--rakudo=PATH`), downloads the engine from raku.online, and takes about five
+minutes. Install Bun the same way as `pandoc`:
+
+    brew install bun             # macOS, Homebrew
+
+Add `--report=FILE` to get every block that was left out and why — a
 handy list of where Raku++ and Rakudo still differ. Blocks are matched by their
 exact text, so a code block you edit loses its Run button until you run the
 check again (it keeps the playground button). Commit `_data/runnable.txt`
