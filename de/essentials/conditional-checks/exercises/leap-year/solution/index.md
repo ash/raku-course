@@ -79,6 +79,7 @@ Gemeinjahr
 ```
 
 %%tipblock
+
 ## `%%` vs `%`
 
 Beachten Sie, dass in booleschen Kontexten die Operatoren `%%` und `%` komplementär sind. Sie können diese Tatsache nutzen, um einen der Operatoren auszuwählen, um einen expliziten Vergleich mit Null zu vermeiden.
@@ -90,6 +91,7 @@ say 100 % 3 != 0;  # Wahr
 say ?(100 %% 3);   # Falsch
 say 100 %% 3 != 0; # Falsch
 ```
+
 %%/tipblock
 
 {% include nav.html %}

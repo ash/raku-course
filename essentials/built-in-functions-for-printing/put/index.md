@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## A newline of `put`
 
 The actual characters that are added after the output are taken from the `nl-out` method of the output stream. Its default value is `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

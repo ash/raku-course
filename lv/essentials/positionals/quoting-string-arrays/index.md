@@ -23,6 +23,7 @@ my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eig
 ```
 
 %%tipblock
+
 ## Masīvs vs Saraksts
 
 Pamaniet, ka iepriekšējos piemēros citāts `< . . . >` izveido `List`, nevis `Array`. To varat apstiprināt, izsaucot `WHAT` metodi:

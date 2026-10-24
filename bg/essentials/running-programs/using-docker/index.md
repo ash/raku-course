@@ -11,6 +11,7 @@ Docker изображение на Rakudo Star може да се използв
 ```console
 $ docker run -it rakudo-star
 ```
+
 За да изпълните програма, използвайте следната команда:
 
 ```console

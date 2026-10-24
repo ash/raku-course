@@ -11,6 +11,7 @@ Ad concham incipiendam, currite sequentem praeceptum. Hoc trahere novissimam ima
 ```console
 $ docker run -it rakudo-star
 ```
+
 Ad currendum programma, utere sequenti praecepto:
 
 ```console

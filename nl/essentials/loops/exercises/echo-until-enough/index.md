@@ -11,6 +11,7 @@ Schrijf een programma dat herhaaldelijk vraagt om een woord in te voeren en het 
 ## Voorbeeld
 
 Het programma kan oneindig lang draaien, maar hier laten we slechts een paar iteraties zien.
+
 ```console
 $ raku echo-until-enough.raku
 Uw woord: taal

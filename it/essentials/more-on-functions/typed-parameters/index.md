@@ -35,8 +35,10 @@ say '3' + '4'; # OK ed è 7
 ```
 
 %%tipblock
+
 ## Come capire se è un errore di compilazione
 Se il messaggio di errore inizia con `===SORRY!=== Error while compiling`, significa che l'errore è avvenuto durante la compilazione.
+
 %%/tipblock
 
 {% include nav.html %}

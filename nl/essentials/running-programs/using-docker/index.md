@@ -11,6 +11,7 @@ Om de shell te starten, voer je het volgende commando uit. Het zal de nieuwste `
 ```console
 $ docker run -it rakudo-star
 ```
+
 Om een programma uit te voeren, gebruik je het volgende commando:
 
 ```console

@@ -23,6 +23,7 @@ my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eig
 ```
 
 %%tipblock
+
 ## Tabelo vs Listo
 
 Notu ke en la supraj ekzemploj, la citaĵo `< . . . >` kreas `List`, ne `Array`. Vi povas konfirmi tion per vokado de la metodo `WHAT`:

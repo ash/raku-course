@@ -35,8 +35,10 @@ say '3' + '4'; # BONE kaj estas 7
 ```
 
 %%tipblock
+
 ## Kiel diri ĉu ĝi estas kompila-tempa eraro
 Se la erarmesaĝo komenciĝas per `===SORRY!=== Error while compiling`, tio signifas, ke la eraro okazis dum kompila tempo.
+
 %%/tipblock
 
 {% include nav.html %}

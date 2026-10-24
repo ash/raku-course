@@ -11,6 +11,7 @@ To start the shell, run the following command. It will pull the latest `rakudo-s
 ```console
 $ docker run -it rakudo-star
 ```
+
 To run a program, use the following command:
 
 ```console

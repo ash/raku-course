@@ -11,6 +11,7 @@ Um die Shell zu starten, führen Sie den folgenden Befehl aus. Er wird das neues
 ```console
 $ docker run -it rakudo-star
 ```
+
 Um ein Programm auszuführen, verwenden Sie den folgenden Befehl:
 
 ```console

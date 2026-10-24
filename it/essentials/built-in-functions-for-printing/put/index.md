@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## Una nuova linea di `put`
 
 I caratteri effettivi che vengono aggiunti dopo l'output sono presi dal metodo `nl-out` del flusso di output. Il suo valore predefinito è `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

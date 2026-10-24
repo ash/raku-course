@@ -11,6 +11,7 @@ Para iniciar el shell, ejecuta el siguiente comando. Este descargará la última
 ```console
 $ docker run -it rakudo-star
 ```
+
 Para ejecutar un programa, usa el siguiente comando:
 
 ```console

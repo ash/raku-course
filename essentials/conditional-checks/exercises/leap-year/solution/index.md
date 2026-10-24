@@ -79,6 +79,7 @@ Common year
 ```
 
 %%tipblock
+
 ## `%%` vs `%`
 
 Note that in Boolean contexts, the `%%` and `%` operators are complementary. You can use this fact to choose one of the operators to avoid explicit comparison with zero.
@@ -90,6 +91,7 @@ say 100 % 3 != 0;  # True
 say ?(100 %% 3);   # False
 say 100 %% 3 != 0; # Flase
 ```
+
 %%/tipblock
 
 {% include nav.html %}

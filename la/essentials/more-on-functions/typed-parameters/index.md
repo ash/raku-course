@@ -35,8 +35,10 @@ say '3' + '4'; # OK et est 7
 ```
 
 %%tipblock
+
 ## Quomodo dicere si error est temporis compilationis
 Si nuntius erroris incipit cum `===SORRY!=== Error while compiling`, significat errorem accidisse in tempore compilationis.
+
 %%/tipblock
 
 {% include nav.html %}

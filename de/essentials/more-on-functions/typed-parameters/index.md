@@ -35,8 +35,10 @@ say '3' + '4'; # OK und ergibt 7
 ```
 
 %%tipblock
+
 ## Wie man erkennt, ob es ein Kompilierungsfehler ist
 Wenn die Fehlermeldung mit `===SORRY!=== Fehler beim Kompilieren` beginnt, bedeutet dies, dass der Fehler zur Kompilierzeit aufgetreten ist.
+
 %%/tipblock
 
 {% include nav.html %}

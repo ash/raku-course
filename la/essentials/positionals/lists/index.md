@@ -40,6 +40,7 @@ my @data = (40, 42, 44);
 In hoc casu, variabilis `@data` continet array, et eius elementa mutare potes.
 
 %%tipblock
+
 ## Variabilis vs index
 
 Nota quod indices immutabiles esse non significat te non posse variabilem, quae eum continet, iterum uti.

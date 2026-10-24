@@ -40,6 +40,7 @@ my @data = (40, 42, 44);
 Šajā gadījumā `@data` mainīgais satur masīvu, un jūs varat modificēt tā elementus.
 
 %%tipblock
+
 ## Mainīgais vs saraksts
 
 Ņemiet vērā, ka fakts, ka saraksti ir nemaināmi, nenozīmē, ka jūs nevarat atkārtoti izmantot mainīgo, kas to satur.

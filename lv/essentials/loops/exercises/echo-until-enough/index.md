@@ -11,6 +11,7 @@ Uzrakstiet programmu, kas atkārtoti lūdz ievadīt vārdu un izdrukā to termin
 ## Piemērs
 
 Programma var darboties bezgalīgi ilgi, bet šeit mēs parādām tikai dažas iterācijas.
+
 ```console
 $ raku echo-until-enough.raku
 Jūsu vārds: valoda

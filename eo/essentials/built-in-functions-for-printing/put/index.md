@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## Nova linio de `put`
 
 La faktaj karakteroj, kiuj estas aldonitaj post la eligo, estas prenitaj de la metodo `nl-out` de la eliga fluo. Ĝia defaŭlta valoro estas `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

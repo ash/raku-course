@@ -23,6 +23,7 @@ my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eig
 ```
 
 %%tipblock
+
 ## Array vs List
 
 Notice that in the examples above, the quotation `< . . . >` creates a `List`, not an `Array`. You can confirm it by calling the `WHAT` method:

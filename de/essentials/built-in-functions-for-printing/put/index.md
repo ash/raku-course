@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## Eine neue Zeile von `put`
 
 Die tatsächlichen Zeichen, die nach der Ausgabe hinzugefügt werden, stammen aus der `nl-out`-Methode des Ausgabestreams. Der Standardwert ist `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

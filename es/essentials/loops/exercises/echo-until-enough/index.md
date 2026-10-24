@@ -11,6 +11,7 @@ Escribe un programa que pida repetidamente ingresar una palabra y la imprima en 
 ## Ejemplo
 
 El programa puede ejecutarse indefinidamente, pero aquí solo mostramos un par de iteraciones.
+
 ```console
 $ raku echo-until-enough.raku
 Tu palabra: lenguaje

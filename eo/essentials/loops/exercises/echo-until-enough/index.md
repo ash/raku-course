@@ -11,6 +11,7 @@ Skribu programon kiu ripete petas enigi vorton kaj presas ĝin en la terminalo. 
 ## Ekzemplo
 
 La programo povas funkcii senfine, sed ĉi tie ni montras nur kelkajn iteraciojn.
+
 ```console
 $ raku echo-until-enough.raku
 Via vorto: lingvo

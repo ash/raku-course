@@ -11,6 +11,7 @@ Schreiben Sie ein Programm, das wiederholt nach einem Wort fragt und es im Termi
 ## Beispiel
 
 Das Programm kann unendlich lange laufen, aber hier zeigen wir nur ein paar Iterationen.
+
 ```console
 $ raku echo-until-enough.raku
 Ihr Wort: Sprache

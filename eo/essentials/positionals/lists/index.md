@@ -40,6 +40,7 @@ my @data = (40, 42, 44);
 En ĉi tiu kazo, la variablo `@data` enhavas tabelon, kaj vi povas modifi ĝiajn elementojn.
 
 %%tipblock
+
 ## Variablo vs listo
 
 Notu, ke la fakto ke listoj estas nemodifikeblaj ne signifas ke vi ne povas reuzi la variablon kiu tenas ĝin.

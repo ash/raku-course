@@ -23,6 +23,7 @@ my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eig
 ```
 
 %%tipblock
+
 ## Arreglo vs Lista
 
 Nota que en los ejemplos anteriores, la cita `< . . . >` crea una `List`, no un `Array`. Puedes confirmarlo llamando al método `WHAT`:

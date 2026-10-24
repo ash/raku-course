@@ -11,6 +11,7 @@ Scribe programma quod iterum iterumque rogat ut verbum inseras et illud in termi
 ## Exemplum
 
 Programma infinitum currere potest, sed hic tantum paucos iterationes ostendimus.
+
 ```console
 $ raku echo-usque-satis.raku
 Verbum tuum: lingua

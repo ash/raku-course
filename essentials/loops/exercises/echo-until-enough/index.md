@@ -11,6 +11,7 @@ Write a program that repeatedly asks to enter a word and prints it in the termin
 ## Example
 
 The program may run infinitely long, but here we only show a couple of iterations.
+
 ```console
 $ raku echo-until-enough.raku
 Your word: language

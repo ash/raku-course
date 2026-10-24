@@ -79,6 +79,7 @@ Common year
 ```
 
 %%tipblock
+
 ## `%%` vs `%`
 
 Let op dat in Booleaanse contexten de `%%` en `%` operatoren complementair zijn. Je kunt dit feit gebruiken om een van de operatoren te kiezen om expliciete vergelijking met nul te vermijden.
@@ -90,6 +91,7 @@ say 100 % 3 != 0;  # True
 say ?(100 %% 3);   # False
 say 100 %% 3 != 0; # False
 ```
+
 %%/tipblock
 
 {% include nav.html %}

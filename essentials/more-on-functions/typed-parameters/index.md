@@ -35,8 +35,10 @@ say '3' + '4'; # OK and is 7
 ```
 
 %%tipblock
+
 ## How to tell if it’s a compile-time error
 If the error message starts with `===SORRY!=== Error while compiling`, it means that the error happened at compile time.
+
 %%/tipblock
 
 {% include nav.html %}

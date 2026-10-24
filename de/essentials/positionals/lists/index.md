@@ -40,6 +40,7 @@ my @data = (40, 42, 44);
 In diesem Fall enthält die Variable `@data` ein Array, und Sie können dessen Elemente ändern.
 
 %%tipblock
+
 ## Variable vs Liste
 
 Beachten Sie, dass die Tatsache, dass Listen unveränderlich sind, nicht bedeutet, dass Sie die Variable, die sie enthält, nicht wiederverwenden können.

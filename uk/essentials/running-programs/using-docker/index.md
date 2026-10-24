@@ -11,6 +11,7 @@ title: Використання docker
 ```console
 $ docker run -it rakudo-star
 ```
+
 Щоб виконати програму, використовуйте наступну команду:
 
 ```console

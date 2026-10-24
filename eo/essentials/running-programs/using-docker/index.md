@@ -11,6 +11,7 @@ Por starti la ŝelon, rulu la jenan komandon. Ĝi elŝutos la plej lastan bildon
 ```console
 $ docker run -it rakudo-star
 ```
+
 Por funkciigi programon, uzu la jenan komandon:
 
 ```console

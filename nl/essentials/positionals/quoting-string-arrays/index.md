@@ -23,6 +23,7 @@ my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eig
 ```
 
 %%tipblock
+
 ## Array vs Lijst
 
 Let op dat in de bovenstaande voorbeelden de aanhalingstekens `< . . . >` een `List` creëren, geen `Array`. Je kunt dit bevestigen door de `WHAT`-methode aan te roepen:

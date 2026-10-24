@@ -79,6 +79,7 @@ Annus communis
 ```
 
 %%tipblock
+
 ## `%%` vs `%`
 
 Nota quod in contextibus Booleanis, operatores `%%` et `%` sunt complementarii. Potes uti hoc facto ad eligendum unum ex operatoribus ad vitandum explicitum comparationem cum zero.
@@ -90,6 +91,7 @@ say 100 % 3 != 0;  # Verum
 say ?(100 %% 3);   # Falsum
 say 100 %% 3 != 0; # Falsum
 ```
+
 %%/tipblock
 
 {% include nav.html %}

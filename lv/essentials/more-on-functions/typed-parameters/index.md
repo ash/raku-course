@@ -35,8 +35,10 @@ say '3' + '4'; # OK un ir 7
 ```
 
 %%tipblock
+
 ## Kā noteikt, vai tā ir kļūda kompilācijas laikā
 Ja kļūdas ziņojums sākas ar `===SORRY!=== Kļūda kompilējot`, tas nozīmē, ka kļūda notika kompilācijas laikā.
+
 %%/tipblock
 
 {% include nav.html %}

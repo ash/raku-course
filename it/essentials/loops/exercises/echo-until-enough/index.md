@@ -11,6 +11,7 @@ Scrivi un programma che chiede ripetutamente di inserire una parola e la stampa 
 ## Esempio
 
 Il programma può funzionare indefinitamente, ma qui mostriamo solo un paio di iterazioni.
+
 ```console
 $ raku echo-until-enough.raku
 La tua parola: linguaggio

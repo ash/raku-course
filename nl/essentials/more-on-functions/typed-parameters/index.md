@@ -35,8 +35,10 @@ say '3' + '4'; # OK en is 7
 ```
 
 %%tipblock
+
 ## Hoe te herkennen of het een compile-tijd fout is
 Als het foutbericht begint met `===SORRY!=== Error while compiling`, betekent dit dat de fout op compile-tijd is opgetreden.
+
 %%/tipblock
 
 {% include nav.html %}

@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## Jauna rinda `put`
 
 Patiesās rakstzīmes, kas tiek pievienotas pēc izvades, tiek ņemtas no izvades plūsmas `nl-out` metodes. Tās noklusējuma vērtība ir `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

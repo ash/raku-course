@@ -79,6 +79,7 @@ Parastais gads
 ```
 
 %%tipblock
+
 ## `%%` vs `%`
 
 Ņemiet vērā, ka loģiskos kontekstos operatori `%%` un `%` ir komplementāri. Jūs varat izmantot šo faktu, lai izvēlētos vienu no operatoriem, lai izvairītos no tiešas salīdzināšanas ar nulli.
@@ -90,6 +91,7 @@ say 100 % 3 != 0;  # True
 say ?(100 %% 3);   # False
 say 100 %% 3 != 0; # False
 ```
+
 %%/tipblock
 
 {% include nav.html %}

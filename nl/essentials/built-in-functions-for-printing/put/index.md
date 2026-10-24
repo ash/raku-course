@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## Een nieuwe regel van `put`
 
 De daadwerkelijke karakters die na de uitvoer worden toegevoegd, worden gehaald uit de `nl-out` methode van de uitvoer stream. De standaardwaarde is `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

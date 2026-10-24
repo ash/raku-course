@@ -23,6 +23,7 @@ my @digits = 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eig
 ```
 
 %%tipblock
+
 ## Series vs Index
 
 Nota quod in exemplis supra, quotatio `< . . . >` creat `List`, non `Array`. Potes id confirmare vocando methodum `WHAT`:

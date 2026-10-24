@@ -35,9 +35,11 @@ c	d
 ```
 
 %%tipblock
+
 ## Nova linea `put`
 
 Veri characteres qui adduntur post exitum sumuntur ex methodo `nl-out` rivi exitus. Valor defaltus est `\n`.
+
 %%/tipblock
 
 {% include nav.html %}

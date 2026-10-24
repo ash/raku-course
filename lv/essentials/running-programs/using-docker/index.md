@@ -11,6 +11,7 @@ Lai sāktu čaulu, palaidiet šādu komandu. Tā nepieciešamības gadījumā le
 ```console
 $ docker run -it rakudo-star
 ```
+
 Lai palaistu programmu, izmantojiet šādu komandu:
 
 ```console
