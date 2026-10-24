@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,18 +119,18 @@ which group <strong>without</strong> capturing.</p>
 <p>Grouping matters as soon as you attach a quantifier. A quantifier
 binds only to the atom right before it, so the pattern below repeats
 just the final letter:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Only the <code>c</code> was repeated three times. Wrap the whole
 piece in <code>[ ]</code> to repeat all of it:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Now <code>[ abc ]</code> is one unit, and <code>** 3</code> applies
 to the group.</p>
 <p>Because <code>[ ]</code> takes no capture slot, the numbers stay
 reserved for the parts you actually care about. Compare a plain
 key–value match:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -138,7 +138,7 @@ key–value match:</p>
 <p>Suppose the key may be preceded by a word you want to skip. Group
 that prefix with <code>[ ]</code> so it does not disturb the
 numbering:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -203,6 +203,7 @@ the exercises in this section</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

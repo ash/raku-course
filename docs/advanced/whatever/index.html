@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,7 +120,7 @@ want”.</p>
 <p>When <code>*</code> appears in an expression, Raku turns the whole
 expression into a function — a <code>WhateverCode</code> — in which the
 star stands for the argument:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$double</span> = * * <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">$double</span>.^<span class="n">name</span>; <span class="c1"># WhateverCode</span>
 <span class="nb">say</span> <span class="nv">$double</span>(<span class="mi">21</span>);   <span class="c1"># 42</span></pre></div>
@@ -144,7 +144,7 @@ it is enough to read it as a third way to spell the same one-argument
 function. For a simple expression the star is the most compact, which is
 why it is so common with <code>map</code>, <code>grep</code>, and
 <code>sort</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(* * <span class="mi">2</span>);            <span class="c1"># (2 4 6 8 10)</span>
 <span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>({ <span class="nv">$_</span> * <span class="mi">2</span> });       <span class="c1"># (2 4 6 8 10)</span>
 <span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">map</span>(-&gt; <span class="nv">$x</span> { <span class="nv">$x</span> * <span class="mi">2</span> }); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
@@ -154,7 +154,7 @@ expression, or when a clearer named parameter helps. Reach for the
 <h2 id="more-than-one-star">More than one star</h2>
 <p>Each <code>*</code> in the expression is a separate argument, in
 order. So two stars make a <strong>two</strong>-argument function:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$add</span> = * + *;
 
 <span class="nb">say</span> <span class="nv">$add</span>(<span class="mi">3</span>, <span class="mi">4</span>); <span class="c1"># 7</span></pre></div>
 
@@ -163,7 +163,7 @@ arguments — for example a running total and the next element.</p>
 <h2 id="the-bare-whatever">The bare Whatever</h2>
 <p>On its own, <code>*</code> means “whatever” — as much as there is, or
 no limit. Two everyday uses:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>;
 <span class="nb">say</span> <span class="nv">@a</span>[*-<span class="mi">1</span>];        <span class="c1"># 30  — * is the array length, so *-1 is the last index</span>
 
 <span class="nb">say</span> (<span class="mi">1</span>..*).<span class="nb">head</span>(<span class="mi">3</span>); <span class="c1"># (1 2 3)  — 1..* is an open-ended range</span></pre></div>
@@ -239,6 +239,7 @@ map</a> →</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

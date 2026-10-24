@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,7 +117,7 @@ string</li>
 <li><code>$</code> matches at the very <strong>end</strong></li>
 </ul>
 <p>Use <code>^</code> to require that the match begins at the start:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
 
 <p>The second string contains <code>http</code>, but not at the
@@ -125,12 +125,12 @@ beginning, so the anchored pattern fails.</p>
 <p>Putting <code>^</code> and <code>$</code> around a pattern forces it
 to match the <strong>whole</strong> string, with nothing left over on
 either side:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
 
 <p>This is a very common idiom for validation — “is this string exactly
 a number?”, for instance:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
 
 <h2 id="line-anchors">Line anchors</h2>
@@ -140,7 +140,7 @@ rather than the whole string. The difference from <code>^</code> and
 <code>$</code> shows up as soon as the text you want is not on the first
 line: the single anchors see only the whole string and fail, while the
 doubled ones match on any line.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
 
 <p>Here <code>\n</code> starts a second line. The <code>^^</code>
@@ -201,6 +201,7 @@ the exercises in this section</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

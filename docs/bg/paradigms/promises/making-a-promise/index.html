@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,7 +115,7 @@ href="/bg/paradigms">Функционално, паралелно, реакти�
 създадете такова и направо с <code>Promise.new</code> — обещание, което
 още не е приключило, — и да го уредите сами, когато резултатът (или
 новината) е готов. <code>.keep</code> го изпълнява със стойност:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># ново, неуредено обещание</span>
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;   <span class="c1"># ново, неуредено обещание</span>
 
 <span class="nv">$p</span>.<span class="n">keep</span>(<span class="mi">42</span>);           <span class="c1"># изпълняваме го със стойност</span>
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>;          <span class="c1"># 42</span></pre></div>
@@ -133,7 +133,7 @@ href="/bg/paradigms/await/awaiting-promises">умрял</a> — и ако ник
 
 <p>За да продължите, прихванете провала с <code>try</code>, точно както
 бихте направили около всеки код, който може да умре:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="nb">Promise</span>.<span class="nb">new</span>;
 <span class="nv">$p</span>.<span class="n">break</span>(<span class="s">'disk full'</span>);
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
@@ -142,7 +142,7 @@ href="/bg/paradigms/await/awaiting-promises">умрял</a> — и ако ник
 <p>Ако изходът вече е известен, две скъсявания създават обещание, което
 започва уредено: <code>Promise.kept($value)</code> и
 <code>Promise.broken($error)</code>.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="nb">await</span> <span class="nb">Promise</span>.<span class="n">kept</span>(<span class="mi">7</span>); <span class="c1"># 7</span></pre></div>
 
 <p>Защо да създавате обещание на ръка? Защото не всеки резултат идва от
 блок <code>start</code>. Събитие, което ще се задейства по-късно,
@@ -187,6 +187,7 @@ href="/bg/paradigms/promises/exercises">към упражненията в то�
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

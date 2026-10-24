@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,7 +117,7 @@ case-insensitive. Written inside the regex, <code>:i</code> is
 <em>positional</em> — it applies only from the point where it appears
 onward. That lets you relax the case rule for just part of a
 pattern:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'RAKU'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'RAKU'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># ｢RAKU｣</span>
 <span class="nb">say</span> <span class="s">'raku'</span> ~~ <span class="sr">/R :i aku/</span>; <span class="c1"># Nil</span></pre></div>
 
 <p>Here the leading <code>R</code> is still matched case-sensitively —
@@ -129,14 +129,14 @@ so both <code>RAKU</code> and <code>raku</code> match.</p>
 <p>The effect of an internal adverb is also confined to its enclosing
 group. In <code>/[:i abc]def/</code> only <code>abc</code> ignores case;
 the <code>def</code> after the group is matched strictly:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># ｢ABCdef｣</span>
 <span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/[:i abc]def/</span>; <span class="c1"># Nil</span></pre></div>
 
 <h2 id="switching-an-adverb-off">Switching an adverb off</h2>
 <p>To turn an adverb back off partway through a pattern, negate it with
 a <code>!</code>. So <code>:!i</code> restores case sensitivity from
 that point on:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'ABCdef'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># ｢ABCdef｣</span>
 <span class="nb">say</span> <span class="s">'ABCDEF'</span> ~~ <span class="sr">/ :i abc :!i def /</span>; <span class="c1"># Nil</span></pre></div>
 
 <p><code>:i</code> relaxes the case rule for <code>abc</code>, then
@@ -189,6 +189,7 @@ the exercises in this section</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

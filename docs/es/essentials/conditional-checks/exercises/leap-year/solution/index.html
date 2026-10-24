@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -133,7 +133,7 @@ con fechas y horas, así que volveremos a esta tarea en la segunda parte
 del curso.</p>
 <h2 id="código-1">Código 1</h2>
 <p>La primera solución reproduce los pasos anteriores literalmente:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
     <span class="nb">say</span> <span class="s">'Common year'</span>;
@@ -154,7 +154,7 @@ href="https://github.com/ash/raku-course/blob/master/exercises/essentials/condit
 <p>En la segunda solución, la lógica está empaquetada en una sola
 expresión. Los paréntesis no siempre son necesarios, pero se agregan
 aquí para mayor claridad.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">'Leap year'</span> !! <span class="s">'Common year'</span>;</pre></div>
 
@@ -177,12 +177,19 @@ Leap year
 $ raku exercises/conditional-checks/leap-year-formula.raku
 Year: 2021
 Common year</pre></div>
-<p>%%tipblock ## <code>%%</code> vs <code>%</code></p>
+<div class="tip"><p></p>
+<h2 id="vs"><code>%%</code> vs <code>%</code></h2>
 <p>Ten en cuenta que en contextos booleanos, los operadores
 <code>%%</code> y <code>%</code> son complementarios. Puedes usar este
 hecho para elegir uno de los operadores y evitar la comparación
 explícita con cero.</p>
-<p>CodeBlockPlaceholder5 %%/tipblock</p>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># True</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># False</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># False</span></pre></div>
+
+</div>
 <h2 id="navegación-del-curso">Navegación del curso</h2>
 <p>← <a href="/es/essentials/conditional-checks/exercises/leap-year">Año
 bisiesto</a>   |   <a href="/es/essentials/loops">Bucles</a> →</p>
@@ -215,6 +222,7 @@ bisiesto</a>   |   <a href="/es/essentials/loops">Bucles</a> →</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

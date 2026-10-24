@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,7 +121,7 @@ haben kann, können Sie dem Grundfall und dem rekursiven Schritt
 für jeden Aufruf die richtige wählen lassen.</p>
 <p>Erinnern Sie sich an die Fakultät. Mit <code>multi</code> werden ihre
 zwei Fälle zu zwei Subroutinen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
+<div class="highlight raku runnable"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
 <span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
@@ -146,7 +146,7 @@ durchfallen lassen und ewig über null hinaus weiterrekursieren. Bei
 ganze Zahl richtig, <code>fact(0)</code> eingeschlossen.</p>
 <p>Besonders gut liest sich das, wenn es mehr als einen Grundfall gibt.
 Fibonacci braucht zwei:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fib</span>(<span class="mi">0</span>) { <span class="mi">0</span> }
+<div class="highlight raku runnable"><pre><span></span><span class="k">multi</span> <span class="n">fib</span>(<span class="mi">0</span>) { <span class="mi">0</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
 
@@ -159,7 +159,7 @@ Bedingungen.</p>
 der Grundfall einen <em>Bereich</em> ab — „<code>$n</code> ist
 <code>1</code> oder kleiner“ —, nehmen Sie stattdessen eine
 <code>where</code>-Einschränkung:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku runnable"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
 <span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
@@ -220,6 +220,7 @@ Abschnitts</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

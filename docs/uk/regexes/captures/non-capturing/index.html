@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,18 +119,18 @@
 <p>Групування стає важливим, щойно ви чіпляєте квантифікатор.
 Квантифікатор зв’язується лише з атомом, що стоїть безпосередньо перед
 ним, тож наведений шаблон повторює саму лише останню літеру:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Тричі повторилася тільки <code>c</code>. Загорніть увесь шматок у
 <code>[ ]</code>, щоб повторити його весь:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Тепер <code>[ abc ]</code> є однією одиницею, і <code>** 3</code>
 застосовується до групи.</p>
 <p>Оскільки <code>[ ]</code> не займає слота захоплення, номери
 лишаються за тими частинами, які вам справді важливі. Порівняйте зі
 звичайним зіставленням ключа й значення:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -138,7 +138,7 @@
 <p>Припустімо, перед ключем може стояти слово, яке ви хочете пропустити.
 Згрупуйте цей префікс через <code>[ ]</code>, щоб він не порушив
 нумерації:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -190,6 +190,7 @@ href="/uk/regexes/captures/exercises">до вправ цього розділу<
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

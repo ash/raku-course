@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,7 +114,7 @@ href="/es/regexes/substitution">Sustitución y reemplazo</a></p>
 <p>El operador de sustitución es <code>s///</code>. Parece un
 emparejamiento con una segunda ranura: el patrón va entre las dos
 primeras barras y el texto de reemplazo entre las dos últimas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
 <span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
 <span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
@@ -124,7 +124,7 @@ literal: no lo pones entre comillas.</p>
 <p>Igual que el emparejamiento, la sustitución toca por omisión solo la
 <strong>primera</strong> aparición. Añade el adverbio <code>:g</code>
 para reemplazar todas:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
 <span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
 <span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
@@ -134,7 +134,7 @@ el operador en <strong>mayúscula</strong> <code>S///</code>: hace la
 sustitución y devuelve la cadena cambiada, dejando intacto el original.
 Como no actualiza ninguna variable en el sitio, apúntalo a una con
 <code>given</code> en lugar de con <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
 <span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
 <span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
@@ -143,7 +143,7 @@ Como no actualiza ninguna variable en el sitio, apúntalo a una con
 modificar en el sitio.)</p>
 <p>El mismo comportamiento no destructivo está también disponible como
 método, <code>.subst</code>, que devuelve una cadena nueva:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
 <span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
 <span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
@@ -191,6 +191,7 @@ sección</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

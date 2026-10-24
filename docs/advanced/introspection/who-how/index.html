@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,13 +116,13 @@ href="/advanced/introspection">Introspecting containers</a></p>
 <p>Every value in Raku is backed by a <em>metaobject</em> — an object
 that knows how the value’s type works. <code>HOW</code> (short for
 <em>Higher Order Workings</em>) returns that metaobject:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
 <span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.^<span class="n">name</span>; <span class="c1"># Perl6::Metamodel::ClassHOW</span></pre></div>
 
 <p>You have been using the metaobject all along, perhaps without
 noticing. The <code>.^</code> in <code>.^name</code> is a method call
 routed through <code>HOW</code>. These two lines are equivalent:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$x</span> = <span class="mi">42</span>;
 <span class="nb">say</span> <span class="nv">$x</span>.^<span class="n">name</span>;        <span class="c1"># Int</span>
 <span class="nb">say</span> <span class="nv">$x</span>.<span class="n">HOW</span>.<span class="n">name</span>(<span class="nv">$x</span>); <span class="c1"># Int</span></pre></div>
 
@@ -138,7 +138,7 @@ the correct, general form — some meta-methods do use it.)</p>
 <h2 id="who"><code>WHO</code></h2>
 <p><code>WHO</code> returns the <em>package</em> that a name belongs to
 — the table of symbols defined in that namespace:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="nb">Int</span>.<span class="n">WHO</span>.^<span class="n">name</span>; <span class="c1"># Stash</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="nb">Int</span>.<span class="n">WHO</span>.^<span class="n">name</span>; <span class="c1"># Stash</span></pre></div>
 
 <p>A <code>Stash</code> (a symbol-table hash) becomes useful when you
 work with modules, where it lets you look up the names a module defines.
@@ -194,6 +194,7 @@ section</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

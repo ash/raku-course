@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,20 +115,20 @@ argomenti tra parentesi: <code>@a.grep(* &gt; 5)</code>. Raku offre una
 seconda forma — metti un <strong>due punti</strong> dopo il nome, e
 tutto ciò che segue i due punti diventa la lista degli argomenti, senza
 alcuna parentesi:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">grep</span>: * %% <span class="mi">2</span>; <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>I due punti in <code>grep:</code> svolgono lo stesso ruolo delle
 parentesi: <code>(1..10).grep: * %% 2</code> significa esattamente
 <code>(1..10).grep(* %% 2)</code>. Le due forme sono
 intercambiabili:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>(<span class="s">'-'</span>); <span class="c1"># a-b-c</span>
 <span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span> <span class="n">c</span>&gt;.<span class="nb">join</span>: <span class="s">'-'</span>; <span class="c1"># a-b-c</span></pre></div>
 
 <p>La forma con i due punti è particolarmente comoda con i metodi che
 accettano un <strong>blocco</strong> o un’espressione <a
 href="/it/advanced/whatever">Whatever</a>, perché elimina un livello di
 annidamento. Confronta:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">@a</span> = <span class="mi">3</span>, <span class="mi">1</span>, <span class="mi">2</span>;
 
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>({ <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }); <span class="c1"># parentesi attorno al blocco</span>
 <span class="nb">say</span> <span class="nv">@a</span>.<span class="nb">sort</span>: { <span class="nv">$^b</span> &lt;=&gt; <span class="nv">$^a</span> }; <span class="c1"># due punti — nessuna parentesi di chiusura da abbinare</span></pre></div>
@@ -148,7 +148,7 @@ di chiamate. Ecco perché
 dopo di essa. Se hai bisogno di chiamare altri metodi dopo, usa la forma
 con le parentesi oppure raggruppa le parti dell’intera espressione per
 renderla chiara:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> ((<span class="s">'a'</span> .. <span class="s">'z'</span>)».<span class="nb">uc</span>».<span class="nb">ord</span>.<span class="nb">grep</span>: <span class="mi">60</span> &lt; * &lt; <span class="mi">70</span>)».<span class="nb">chr</span> <span class="c1"># (A B C D E)</span></pre></div>
 
 <p>Una cosa a cui fare attenzione: non combinare i due punti
 <strong>e</strong> le parentesi come <code>.grep:( … )</code>. Questa
@@ -211,6 +211,7 @@ due punti</a> →</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

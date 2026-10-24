@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -120,18 +120,18 @@ agrupan <strong>sin</strong> capturar.</p>
 <p>La agrupación importa en cuanto añades un cuantificador. Un
 cuantificador se liga solo al átomo inmediatamente anterior, así que el
 patrón de abajo repite únicamente la última letra:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Solo se repitió la <code>c</code> tres veces. Envuelve toda la pieza
 en <code>[ ]</code> para repetirla entera:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Ahora <code>[ abc ]</code> es una sola unidad y <code>** 3</code> se
 aplica al grupo.</p>
 <p>Como <code>[ ]</code> no ocupa ninguna plaza de captura, los números
 quedan reservados para las partes que de verdad te importan. Compara una
 simple coincidencia de clave y valor:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -139,7 +139,7 @@ simple coincidencia de clave y valor:</p>
 <p>Supón que a la clave puede precederla una palabra que quieres
 saltarte. Agrupa ese prefijo con <code>[ ]</code> para que no altere la
 numeración:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -191,6 +191,7 @@ sección</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

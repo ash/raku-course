@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,7 +113,7 @@ href="/nl/paradigms/await">await</a></p>
 <h1 id="wachten-op-een-promise">Wachten op een promise</h1>
 <p><code>await</code> neemt een promise aan, wacht tot zij klaar is, en
 geeft haar resultaat terug:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Het programma pauzeert bij <code>await</code> alleen zolang als nodig
@@ -121,7 +121,7 @@ is en gaat daarna verder met de waarde die de promise opleverde.</p>
 <p>Gegeven meerdere promises wacht <code>await</code> op
 <strong>alle</strong> en geeft het hun resultaten in dezelfde volgorde
 terug als de promises in de lijst:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
 <span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
@@ -135,7 +135,7 @@ het punt van de <code>await</code>. Dat betekent dat fouten in
 achtergrondwerk opduiken waar je erop wacht, zodat je ze met de gewone
 <code>try</code> / <code>CATCH</code> uit het deel over excepties kunt
 afhandelen:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
 <span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
@@ -194,6 +194,7 @@ de oefeningen in deze sectie</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

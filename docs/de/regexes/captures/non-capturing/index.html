@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,18 +121,18 @@ gruppieren.</p>
 <p>Das Gruppieren wird wichtig, sobald Sie einen Quantor anhängen. Ein
 Quantor bindet nur an das Atom unmittelbar davor, das folgende Muster
 wiederholt also nur den letzten Buchstaben:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abccc'</span> ~~ <span class="sr">/ abc ** 3 /</span>; <span class="c1"># ｢abccc｣</span></pre></div>
 
 <p>Nur das <code>c</code> wurde dreimal wiederholt. Hüllen Sie das ganze
 Stück in <code>[ ]</code>, um alles zu wiederholen:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'abcabcabc'</span> ~~ <span class="sr">/ [ abc ] ** 3 /</span>; <span class="c1"># ｢abcabcabc｣</span></pre></div>
 
 <p>Nun ist <code>[ abc ]</code> eine Einheit, und <code>** 3</code>
 bezieht sich auf die Gruppe.</p>
 <p>Weil <code>[ ]</code> keinen Capture-Platz belegt, bleiben die
 Nummern für die Teile reserviert, auf die es Ihnen wirklich ankommt.
 Vergleichen Sie einen schlichten Treffer aus Schlüssel und Wert:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'foo=42'</span> ~~ <span class="sr">/ (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -140,7 +140,7 @@ Vergleichen Sie einen schlichten Treffer aus Schlüssel und Wert:</p>
 <p>Nehmen wir an, dem Schlüssel darf ein Wort vorangehen, das Sie
 überspringen möchten. Gruppieren Sie dieses Präfix mit <code>[ ]</code>,
 damit es die Nummerierung nicht stört:</p>
-<div class="highlight raku"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
+<div class="highlight raku runnable"><pre><span></span><span class="k">if</span> <span class="s">'the foo=42'</span> ~~ <span class="sr">/ [ \w+ \s ]? (\w+) '=' (\d+) /</span> {
     <span class="nb">say</span> <span class="nv">$0</span>; <span class="c1"># ｢foo｣</span>
     <span class="nb">say</span> <span class="nv">$1</span>; <span class="c1"># ｢42｣</span>
 }</pre></div>
@@ -193,6 +193,7 @@ Abschnitts</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

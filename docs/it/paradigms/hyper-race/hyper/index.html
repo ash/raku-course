@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -116,7 +116,7 @@ concorrente</a> / <a href="/it/paradigms/hyper-race">hyper e race
 o di un <code>grep</code>, e il lavoro viene distribuito su più thread
 lavoratori — mentre i risultati tornano comunque nell’<strong>ordine
 originale</strong>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>.<span class="nb">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.5</span>).<span class="nb">hyper</span>.<span class="nb">map</span>(* * <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Sembra esattamente un <code>map</code> ordinario, e il risultato è
 identico; l’unica differenza è che i raddoppi possono essere stati
@@ -124,7 +124,7 @@ calcolati su core diversi nello stesso momento.</p>
 <p><code>.hyper</code> funziona con <code>grep</code> esattamente allo
 stesso modo: ogni elemento viene messo alla prova in parallelo, e quelli
 che passano tornano comunque nel loro ordine originale:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>.<span class="mf">.10</span>).<span class="nb">hyper</span>.<span class="nb">grep</span>(* %% <span class="mi">2</span>); <span class="c1"># (2 4 6 8 10)</span></pre></div>
 
 <p>Poiché <code>.hyper</code> preserva l’ordine, è un sostituto
 immediato di un <code>map</code> o <code>grep</code> lento: nulla che
@@ -147,7 +147,7 @@ un’occasione di accelerazione, non come una garanzia.</p>
 da esso continuano a venire giuste. Qui ogni parola viene resa maiuscola
 in parallelo, eppure i pezzi si riuniscono nella frase nella loro
 sequenza originale:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="k">is</span> <span class="n">fun</span>&gt;.<span class="nb">hyper</span>.<span class="nb">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">' '</span>); <span class="c1"># RAKU IS FUN</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="k">is</span> <span class="n">fun</span>&gt;.<span class="nb">hyper</span>.<span class="nb">map</span>(*.<span class="nb">uc</span>).<span class="nb">join</span>(<span class="s">' '</span>); <span class="c1"># RAKU IS FUN</span></pre></div>
 
 <section id="pratica" class="practice" data-markdown="1">
 <h2>Pratica</h2>
@@ -191,6 +191,7 @@ sezione</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

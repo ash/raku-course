@@ -206,6 +206,11 @@ div.related-docs a::after {
 }
 :root {
     --ext-link-icon: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M9%203h4v4'/%3E%3Cpath%20d='M13%203%207%209'/%3E%3Cpath%20d='M12%2010v2.5a1%201%200%200%201-1%201H3.5a1%201%200%200%201-1-1V5.5a1%201%200%200%201%201-1H6'/%3E%3C/svg%3E");
+
+    /* Accent for the embedded raku.online play-code widgets (the Run buttons),
+       matching the course's own blue. Inherits through the widget's shadow
+       DOM; where the widget is not present this variable is simply unused. */
+    --rk-embed-accent: #0969da;
 }
 
 /* ════════════════════════════════════════════════════════════════ */
@@ -869,12 +874,14 @@ html[data-theme-active="dark"] .ss-results mark { background: #5a4a00; color: #f
     .site-search.open input { width: 56vw; }
 }
 
-/* ── Copy-to-clipboard button on Raku code examples ────────────────────────
+/* ── Copy and open-in-the-playground buttons on Raku code examples ─────────
    The generator adds the `raku` class only to ```raku blocks, so program
-   output (```console) and data (```json) blocks never get a button. */
+   output (```console) and data (```json) blocks never get a button. Blocks
+   with a Run button are replaced by the raku.online editor, which has both. */
 .highlight.raku { position: relative; }
 
-.highlight.raku .copy-btn {
+.highlight.raku .copy-btn,
+.highlight.raku .play-btn {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -892,28 +899,37 @@ html[data-theme-active="dark"] .ss-results mark { background: #5a4a00; color: #f
     opacity: 0;
     transition: opacity .15s ease, color .15s ease, border-color .15s ease;
 }
+.highlight.raku .play-btn { right: 44px; text-decoration: none; }
 .highlight.raku:hover .copy-btn,
-.highlight.raku:focus-within .copy-btn { opacity: 1; }
-.highlight.raku .copy-btn:hover { color: #1f2328; border-color: #b0b7be; }
-.highlight.raku .copy-btn:focus-visible {
+.highlight.raku:focus-within .copy-btn,
+.highlight.raku:hover .play-btn,
+.highlight.raku:focus-within .play-btn { opacity: 1; }
+.highlight.raku .copy-btn:hover,
+.highlight.raku .play-btn:hover { color: #1f2328; border-color: #b0b7be; }
+.highlight.raku .copy-btn:focus-visible,
+.highlight.raku .play-btn:focus-visible {
     opacity: 1;
     outline: 2px solid #0969da;
     outline-offset: 1px;
 }
 .highlight.raku .copy-btn.copied { color: #1a7f37; border-color: #1a7f37; }
-.highlight.raku .copy-btn svg { display: block; }
+.highlight.raku .copy-btn svg,
+.highlight.raku .play-btn svg { display: block; }
 
-/* Touch devices have no hover — keep the button visible there. */
+/* Touch devices have no hover — keep the buttons visible there. */
 @media (hover: none) {
-    .highlight.raku .copy-btn { opacity: .6; }
+    .highlight.raku .copy-btn,
+    .highlight.raku .play-btn { opacity: .6; }
 }
 
-html[data-theme-active="dark"] .highlight.raku .copy-btn {
+html[data-theme-active="dark"] .highlight.raku .copy-btn,
+html[data-theme-active="dark"] .highlight.raku .play-btn {
     background: #161b22;
     border-color: #30363d;
     color: #8b949e;
 }
-html[data-theme-active="dark"] .highlight.raku .copy-btn:hover {
+html[data-theme-active="dark"] .highlight.raku .copy-btn:hover,
+html[data-theme-active="dark"] .highlight.raku .play-btn:hover {
     color: #e6edf3;
     border-color: #6e7681;
 }

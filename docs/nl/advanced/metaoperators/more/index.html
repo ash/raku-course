@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -117,12 +117,12 @@ meta-operatoren. Drie ervan zijn hier het vermelden waard.</p>
 <p>De cross-meta-operator <code>X</code> koppelt <strong>elk</strong>
 element van de ene lijst aan <strong>elk</strong> element van de andere
 — het cartesisch product:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span> &lt;<span class="mi">1</span> <span class="mi">2</span>&gt;; <span class="c1"># ((a 1) (a 2) (b 1) (b 2))</span></pre></div>
 
 <p>Net als zip kan hij een operator omhullen om op elk paar te werken.
 <code>X~</code> voegt elk paar samen tot een tekenreeks, en
 <code>X*</code> vermenigvuldigt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> &lt;<span class="n">a</span> <span class="n">b</span>&gt; <span class="n">X</span>~ <span class="s">&lt;1 2&gt;</span>;         <span class="c1"># (a1 a2 b1 b2)</span>
 <span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) <span class="n">X</span>* (<span class="mi">10</span>, <span class="mi">100</span>); <span class="c1"># (10 100 20 200 30 300)</span></pre></div>
 
 <p>Waar zip twee lijsten gelijktijdig doorloopt, combineert cross ze op
@@ -134,7 +134,7 @@ element</strong> van een lijst. De operator wordt omhuld door de puntige
 <code>&gt;&gt;...&lt;&lt;</code>). Met twee lijsten werkt hij element
 voor element, net als zip; met een enkele waarde aan een kant wordt die
 waarde over de hele lijst uitgestrekt:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »+» (<span class="mi">10</span>, <span class="mi">20</span>, <span class="mi">30</span>); <span class="c1"># (11 22 33)</span>
 <span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>) »*» <span class="mi">2</span>;            <span class="c1"># (2 4 6)</span></pre></div>
 
 <p>De twee pijlen hoeven niet dezelfde kant op te wijzen, en hun
@@ -154,11 +154,11 @@ wordt herhaald om bij de rechter te passen;</li>
 <li><code>&lt;&lt;op&gt;&gt;</code> — de <strong>kortere</strong> lijst
 wordt herhaald om bij de langere te passen.</li>
 </ul>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 herhaalt tot 10, 20, 10, 20</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="mi">1</span>, <span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>) &lt;<span class="s">&lt;+&gt;</span>&gt; (<span class="mi">10</span>, <span class="mi">20</span>); <span class="c1"># (11 22 13 24)  — 10, 20 herhaalt tot 10, 20, 10, 20</span></pre></div>
 
 <p>Er is ook een unaire vorm, die een methode op elk element aanroept.
 <code>&gt;&gt;.uc</code> maakt elke tekenreeks in hoofdletters:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> &lt;<span class="nb">raku</span> <span class="nb">perl</span>&gt;&gt;&gt;.<span class="nb">uc</span>; <span class="c1"># (RAKU PERL)</span></pre></div>
 
 <p>Hyper-operaties geven ook aan dat het werk <em>parallel uitgevoerd
 mag worden</em> — je zult de verwante <code>.hyper</code>-methode later
@@ -170,7 +170,7 @@ negeert het resultaat. Het bekende <code>!=</code> (niet gelijk) is
 precies deze meta-operator toegepast op <code>==</code>, en hetzelfde
 werkt voor andere Booleaanse operatoren zoals <code>eq</code> en
 <code>%%</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="mi">3</span> != <span class="mi">4</span>;      <span class="c1"># True</span>
 <span class="nb">say</span> <span class="s">'a'</span> !<span class="n">eq</span> <span class="s">'b'</span>; <span class="c1"># True  — niet gelijk als tekenreeksen</span>
 <span class="nb">say</span> <span class="mi">5</span> !%% <span class="mi">2</span>;     <span class="c1"># True  — 5 is niet deelbaar door 2</span></pre></div>
 
@@ -182,7 +182,7 @@ manier om elk ding uit te drukken, geeft Raku je graag meerdere
 mogelijkheden — dus het genegeerde <code>!eq</code> bestaat naast de
 speciale <code>ne</code>-operator, en beide betekenen precies
 hetzelfde:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — dezelfde test als 'a' !eq 'b'</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'a'</span> <span class="n">ne</span> <span class="s">'b'</span>; <span class="c1"># True — dezelfde test als 'a' !eq 'b'</span></pre></div>
 
 <section id="praktijk" class="practice" data-markdown="1">
 <h2>Praktijk</h2>
@@ -228,6 +228,7 @@ sectie</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

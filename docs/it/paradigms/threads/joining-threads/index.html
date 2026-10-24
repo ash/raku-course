@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,7 +114,7 @@ concorrente</a> / <a href="/it/paradigms/threads">Thread</a></p>
 <p>Per aspettare che un thread finisca, chiamavi sopra
 <code>.finish</code> (scritto anche <code>.join</code>). Il programma
 principale si mette in pausa lì finché il thread non ha finito:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$t</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="nb">say</span> <span class="s">'in the thread'</span> });
 <span class="nv">$t</span>.<span class="n">finish</span>;
 <span class="nb">say</span> <span class="s">'done'</span>;</pre></div>
 
@@ -127,7 +127,7 @@ l’ordine sarebbe imprevedibile, e il programma potrebbe persino finire
 prima che il thread abbia avuto modo di stampare.</p>
 <p>Quando avvii parecchi thread, unisci ciascuno per essere sicuro che
 siano tutti finiti:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 <span class="nv">$a</span>.<span class="n">finish</span>;
 <span class="nv">$b</span>.<span class="n">finish</span>;
@@ -142,7 +142,7 @@ href="/it/paradigms/junctions">junction</a> si diffonde a ogni valore
 che essa contiene, puoi unire più thread in un’unica espressione.
 Combinali con l’operatore <code>all</code> <code>&amp;</code> e chiama
 <code>.finish</code> sulla junction:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$a</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">1</span> + <span class="mi">1</span> });
 <span class="k">my</span> <span class="nv">$b</span> = <span class="nb">Thread</span>.<span class="nb">start</span>({ <span class="mi">2</span> + <span class="mi">2</span> });
 
 (<span class="nv">$a</span> &amp; <span class="nv">$b</span>).<span class="n">finish</span>;
@@ -190,6 +190,7 @@ sezione</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

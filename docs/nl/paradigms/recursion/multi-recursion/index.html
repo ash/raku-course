@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -121,7 +121,7 @@ recursieve stap <strong>elk hun eigen subroutine</strong> geven en
 meervoudige dispatch voor elke aanroep de juiste laten kiezen.</p>
 <p>Denk terug aan de faculteit. Met <code>multi</code> worden haar twee
 gevallen twee subroutines:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
+<div class="highlight raku runnable"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="mi">0</span>)  { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>) { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
 <span class="nb">say</span> <span class="n">fact</span>(<span class="mi">5</span>); <span class="c1"># 120</span></pre></div>
@@ -146,7 +146,7 @@ doorvallen en eeuwig voorbij nul recursief blijven aanroepen. Bij
 niet-negatief geheel getal, <code>fact(0)</code> inbegrepen.</p>
 <p>Dit leest bijzonder goed wanneer er meer dan één basisgeval is.
 Fibonacci heeft er twee nodig:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fib</span>(<span class="mi">0</span>) { <span class="mi">0</span> }
+<div class="highlight raku runnable"><pre><span></span><span class="k">multi</span> <span class="n">fib</span>(<span class="mi">0</span>) { <span class="mi">0</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fib</span>(<span class="nv">$n</span>) { <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">1</span>) + <span class="n">fib</span>(<span class="nv">$n</span> - <span class="mi">2</span>) }
 
@@ -158,7 +158,7 @@ kandidaat handelt al het overige af — geen geneste voorwaarden.</p>
 Wanneer het basisgeval een <em>bereik</em> omvat — “<code>$n</code> is
 <code>1</code> of minder” — gebruik je in plaats daarvan een
 <code>where</code>-beperking:</p>
-<div class="highlight raku"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
+<div class="highlight raku runnable"><pre><span></span><span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span> <span class="k">where</span> * &lt;= <span class="mi">1</span>) { <span class="mi">1</span> }
 <span class="k">multi</span> <span class="n">fact</span>(<span class="nv">$n</span>)              { <span class="nv">$n</span> * <span class="n">fact</span>(<span class="nv">$n</span> - <span class="mi">1</span>) }
 
 <span class="nb">say</span> <span class="n">fact</span>(<span class="mi">6</span>); <span class="c1"># 720</span></pre></div>
@@ -218,6 +218,7 @@ sectie</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

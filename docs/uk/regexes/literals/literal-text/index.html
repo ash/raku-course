@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -114,7 +114,7 @@
 тексту</h1>
 <p>Найпростіший шаблон — це послідовність літер і цифр. Такий шаблон
 збігається саме з цими символами, в такому порядку, будь-де в рядку:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
 <span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Збіг не мусить починатися з початку рядка — механізм регексів шукає
@@ -125,21 +125,21 @@
 узятий у кутові дужки <code>｢ ｣</code>. Якщо шаблону немає, збіг
 натомість зазнає невдачі: розумне зіставлення дає <code>Nil</code> —
 невизначене значення, яке в булевій перевірці рахується як хибне:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
 <span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Усередині регекса пробіли за замовчуванням <strong>не</strong>
 значущі — вони існують лише для того, щоб зробити шаблон читнішим. Тож
 <code>/ ell /</code> збігається точно з тим, з чим збігся б
 <code>/ell/</code>; навколишні пробіли просто ігноруються:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Оскільки пробіл у шаблоні ігнорується, зіставлення зі
 <em>справжнім</em> пробілом потребує <strong>лапок</strong>: усе, що ви
 берете в лапки, зіставляється буквально. Те саме взяття в лапки є
 способом зіставитися з розділовим знаком, який інакше мав би в регексі
 особливе значення:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
 <span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(Для пробільних символів можна також скористатися класом
@@ -179,6 +179,7 @@ href="/uk/regexes/literals/exercises">до вправ цього розділу<
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

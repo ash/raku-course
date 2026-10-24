@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -132,7 +132,7 @@ href="/bg/essentials/conditional-checks/exercises/leap-year">Високосна
 курса.</p>
 <h2 id="код-1">Код 1</h2>
 <p>Първото решение възпроизвежда горните стъпки буквално:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
     <span class="nb">say</span> <span class="s">'Common year'</span>;
@@ -152,7 +152,7 @@ href="https://github.com/ash/raku-course/blob/master/exercises/essentials/condit
 <h2 id="код-2">Код 2</h2>
 <p>Във второто решение логиката е събрана в едно изразяване. Скобите не
 винаги са необходими, но са добавени тук за яснота.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">'Leap year'</span> !! <span class="s">'Common year'</span>;</pre></div>
 
@@ -175,12 +175,19 @@ Leap year
 $ raku exercises/conditional-checks/leap-year-formula.raku
 Year: 2021
 Common year</pre></div>
-<p>%%tipblock ## <code>%%</code> срещу <code>%</code></p>
+<div class="tip"><p></p>
+<h2 id="срещу"><code>%%</code> срещу <code>%</code></h2>
 <p>Имайте предвид, че в логически контексти операторите <code>%%</code>
 и <code>%</code> са допълващи се. Можете да използвате този факт, за да
 изберете един от операторите, за да избегнете явното сравнение с
 нула.</p>
-<p>CodeBlockPlaceholder5 %%/tipblock</p>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># Вярно</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># Вярно</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># Невярно</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># Невярно</span></pre></div>
+
+</div>
 <h2 id="навигация-в-курса">Навигация в курса</h2>
 <p>← <a
 href="/bg/essentials/conditional-checks/exercises/leap-year">Високосна
@@ -214,6 +221,7 @@ href="/bg/essentials/conditional-checks/exercises/leap-year">Високосна
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

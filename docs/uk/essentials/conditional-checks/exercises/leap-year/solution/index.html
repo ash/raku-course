@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -130,7 +130,7 @@ href="/uk/essentials/conditional-checks/exercises/leap-year">Високосни�
 частині курсу.</p>
 <h2 id="код-1">Код 1</h2>
 <p>Перше рішення буквально відтворює наведені вище кроки:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="k">if</span> <span class="nv">$year</span> % <span class="mi">4</span> {
     <span class="nb">say</span> <span class="s">'Common year'</span>;
@@ -150,7 +150,7 @@ href="https://github.com/ash/raku-course/blob/master/exercises/essentials/condit
 <h2 id="код-2">Код 2</h2>
 <p>У другому рішенні логіка зібрана в один вираз. Дужки не завжди
 потрібні, але додані тут для ясності.</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$year</span> = <span class="nb">prompt</span> <span class="s">'Year: '</span>;
 
 <span class="nb">say</span> ((<span class="nv">$year</span> %% <span class="mi">400</span>) || ((<span class="nv">$year</span> %% <span class="mi">4</span>) &amp;&amp; (<span class="nv">$year</span> % <span class="mi">100</span>))) ?? <span class="s">'Leap year'</span> !! <span class="s">'Common year'</span>;</pre></div>
 
@@ -173,12 +173,19 @@ Leap year
 $ raku exercises/conditional-checks/leap-year-formula.raku
 Year: 2021
 Common year</pre></div>
-<p>%%tipblock ## <code>%%</code> vs <code>%</code></p>
+<div class="tip"><p></p>
+<h2 id="vs"><code>%%</code> vs <code>%</code></h2>
 <p>Зверніть увагу, що в логічних контекстах оператори <code>%%</code> і
 <code>%</code> є взаємодоповнюючими. Ви можете використовувати цей факт,
 щоб вибрати один із операторів, щоб уникнути явного порівняння з
 нулем.</p>
-<p>CodeBlockPlaceholder5 %%/tipblock</p>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> ?(<span class="mi">100</span> % <span class="mi">3</span>);    <span class="c1"># True</span>
+<span class="nb">say</span> <span class="mi">100</span> % <span class="mi">3</span> != <span class="mi">0</span>;  <span class="c1"># True</span>
+
+<span class="nb">say</span> ?(<span class="mi">100</span> %% <span class="mi">3</span>);   <span class="c1"># False</span>
+<span class="nb">say</span> <span class="mi">100</span> %% <span class="mi">3</span> != <span class="mi">0</span>; <span class="c1"># False</span></pre></div>
+
+</div>
 <h2 id="навігація-курсом">Навігація курсом</h2>
 <p>← <a
 href="/uk/essentials/conditional-checks/exercises/leap-year">Високосний
@@ -212,6 +219,7 @@ href="/uk/essentials/conditional-checks/exercises/leap-year">Високосни�
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

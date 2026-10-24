@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,7 +113,7 @@ href="/ru/paradigms">Функциональное, конкурентное, р�
 <h1 id="ожидание-промиса">Ожидание промиса</h1>
 <p><code>await</code> принимает промис, дожидается его завершения и
 возвращает его результат:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Программа приостанавливается на <code>await</code> ровно настолько,
@@ -122,7 +122,7 @@ href="/ru/paradigms">Функциональное, конкурентное, р�
 <p>Получив несколько промисов, <code>await</code> дожидается
 <strong>всех</strong> и возвращает их результаты в том же порядке, в
 каком промисы стоят в списке:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
 <span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
@@ -135,7 +135,7 @@ href="/ru/paradigms">Функциональное, конкурентное, р�
 точке <code>await</code>. Значит, ошибки фоновой работы всплывают там,
 где вы её дожидаетесь, и обрабатывать их можно привычными
 <code>try</code> / <code>CATCH</code> из части об исключениях:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
 <span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
@@ -195,6 +195,7 @@ href="/ru/paradigms/await/exercises">к упражнениям этого
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

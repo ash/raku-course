@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -123,13 +123,13 @@ href="/ru/regexes/assertions">Утверждения просмотра</a></p>
 <p>Само утверждение не сопоставляет ни одного символа; оно лишь
 проверяет позицию. Например, сопоставим число только тогда, когда за ним
 следует слово <code>dollars</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' dollars'&gt; /</span>; <span class="c1"># ｢100｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' dollars'&gt; /</span>; <span class="c1"># ｢100｣</span></pre></div>
 
 <p>Совпадение — только <code>100</code>: текст <code>dollars</code> был
 проверен, но не включён.</p>
 <p>Поскольку просмотр вперёд лишь утверждает, что идёт следом, одно и то
 же число совпадает или нет в зависимости от валюты после него:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'100 euro'</span>    ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'100 euro'</span>    ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'100 dollars'</span> ~~ <span class="sr">/ \d+ &lt;?before ' euro'&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>Цифры в обеих строках одинаковые, но утверждение принимает
@@ -137,7 +137,7 @@ href="/ru/regexes/assertions">Утверждения просмотра</a></p>
 <p>Отрицательная форма полезна для случаев «… но не тогда, когда следом
 идёт …». Сопоставим <code>cat</code> только если за ним
 <strong>не</strong> следует цифра:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'cats'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'cats'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'cat5'</span> ~~ <span class="sr">/ cat &lt;!before \d&gt; /</span>; <span class="c1"># False</span></pre></div>
 
 <p>В <code>cat5</code> просмотр вперёд видит цифру сразу после
@@ -187,6 +187,7 @@ href="/ru/regexes/assertions/exercises">к упражнениям этого
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,7 +115,7 @@ href="/ru/regexes/literals">Литералы и классы символов</a
 <p>Простейший шаблон — это последовательность букв и цифр. Такой шаблон
 соответствует именно этим символам, идущим в этом порядке, в любом месте
 строки:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'the cat sat'</span> ~~ <span class="sr">/cat/</span>; <span class="c1"># ｢cat｣</span>
 <span class="nb">say</span> <span class="s">'Hello'</span>       ~~ <span class="sr">/ell/</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>Совпадение не обязано начинаться с начала строки — движок регулярных
@@ -127,21 +127,21 @@ href="/ru/regexes/literals">Литералы и классы символов</a
 строке нет, сопоставление не удаётся: умное сопоставление даёт
 <code>Nil</code> — неопределённое значение, которое в логической
 проверке считается ложным:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>);       <span class="c1"># Nil</span>
 <span class="nb">say</span> (<span class="s">'the cat sat'</span> ~~ <span class="sr">/dog/</span>).<span class="nb">Bool</span>;  <span class="c1"># False</span></pre></div>
 
 <p>Внутри регулярного выражения пробелы по умолчанию <strong>не</strong>
 значимы — они нужны лишь для удобочитаемости шаблона. Поэтому
 <code>/ ell /</code> соответствует ровно тому же, что и
 <code>/ell/</code>; окружающие пробелы просто игнорируются:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'Hello'</span> ~~ <span class="sr">/ ell /</span>; <span class="c1"># ｢ell｣</span></pre></div>
 
 <p>А раз пробел в шаблоне игнорируется, для сопоставления
 <em>настоящего</em> пробела нужны <strong>кавычки</strong>: всё, что вы
 поместите в кавычки, сопоставляется буквально. Так же поступают и со
 знаком препинания, который иначе имел бы в регулярном выражении особое
 значение:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="s">'a b'</span>       ~~ <span class="sr">/ 'a b' /</span>; <span class="c1"># ｢a b｣</span>
 <span class="nb">say</span> <span class="s">'price: $5'</span> ~~ <span class="sr">/ '$' /</span>;   <span class="c1"># ｢$｣</span></pre></div>
 
 <p>(Для пробельных символов можно также использовать класс
@@ -182,6 +182,7 @@ href="/ru/regexes/literals/exercises">к упражнениям этого
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

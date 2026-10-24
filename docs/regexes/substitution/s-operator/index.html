@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,7 +113,7 @@ href="/regexes/substitution">Substitution and replacement</a></p>
 <p>The substitution operator is <code>s///</code>. It looks like a match
 with a second slot: the pattern goes between the first two slashes and
 the replacement text between the last two:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'hello world'</span>;
 <span class="nv">$s</span> ~~ <span class="sr">s/world/Raku/</span>;
 <span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># hello Raku</span></pre></div>
 
@@ -123,7 +123,7 @@ literal — you do not put it in quotes.</p>
 <p>Like matching, substitution touches only the <strong>first</strong>
 occurrence by default. Add the <code>:g</code> adverb to replace every
 occurrence:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$s</span> = <span class="s">'a-b-c'</span>;
 <span class="nv">$s</span> ~~ <span class="sr">s:g/'-'/_/</span>;
 <span class="nb">say</span> <span class="nv">$s</span>; <span class="c1"># a_b_c</span></pre></div>
 
@@ -133,7 +133,7 @@ occurrence:</p>
 substitution and returns the changed string, leaving the original
 untouched. Because it does not update a variable in place, point it at
 one with <code>given</code> rather than <code>~~</code>:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
 <span class="nb">say</span> <span class="sr">S:g/o/0/</span> <span class="k">given</span> <span class="nv">$orig</span>; <span class="c1"># c0l0r</span>
 <span class="nb">say</span> <span class="nv">$orig</span>;                <span class="c1"># color</span></pre></div>
 
@@ -142,7 +142,7 @@ one with <code>given</code> rather than <code>~~</code>:</p>
 modify in place.)</p>
 <p>The same non-destructive behaviour is also available as a method,
 <code>.subst</code>, which returns a new string:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$orig</span> = <span class="s">'color'</span>;
 <span class="nb">say</span> <span class="nv">$orig</span>.<span class="n">subst</span>(<span class="s">'o'</span>, <span class="s">'0'</span>, :<span class="n">g</span>); <span class="c1"># c0l0r</span>
 <span class="nb">say</span> <span class="nv">$orig</span>;                     <span class="c1"># color</span></pre></div>
 
@@ -201,6 +201,7 @@ section</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

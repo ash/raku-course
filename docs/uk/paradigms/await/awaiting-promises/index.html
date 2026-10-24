@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -113,7 +113,7 @@ href="/uk/paradigms/await">await</a></p>
 <h1 id="очікування-промиса">Очікування промиса</h1>
 <p><code>await</code> приймає обіцянку, чекає її завершення й повертає
 її результат:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">7</span> * <span class="mi">6</span> };
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$p</span>; <span class="c1"># 42</span></pre></div>
 
 <p>Програма зупиняється на <code>await</code> лише настільки, наскільки
@@ -121,7 +121,7 @@ href="/uk/paradigms/await">await</a></p>
 <p>Отримавши кілька обіцянок, <code>await</code> чекає на
 <strong>всі</strong> й повертає їхні результати в тому самому порядку, у
 якому обіцянки стоять у списку:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">5</span> }), (<span class="k">start</span> { <span class="mi">10</span> }), (<span class="k">start</span> { <span class="mi">15</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (5 10 15)</span>
 <span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 30</span></pre></div>
 
@@ -134,7 +134,7 @@ href="/uk/paradigms/await">await</a></p>
 <code>await</code>. Це означає, що помилки у фоновій роботі виринають
 там, де ви на неї чекаєте, тож ви можете обробити їх звичними
 <code>try</code> / <code>CATCH</code> із частини про винятки:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="nb">die</span> <span class="s">'no such file'</span> };
 
 <span class="k">my</span> <span class="nv">$result</span> = <span class="k">try</span> <span class="nb">await</span> <span class="nv">$p</span>;
 <span class="nb">say</span> <span class="nv">$result</span> // <span class="s">&quot;the job failed: $!&quot;</span>;</pre></div>
@@ -192,6 +192,7 @@ href="/uk/paradigms/await/exercises">до вправ цього розділу</
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

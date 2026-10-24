@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -119,7 +119,7 @@ stringa</li>
 </ul>
 <p>Usa <code>^</code> per richiedere che la corrispondenza cominci
 dall’inizio:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'http://example'</span> ~~ <span class="sr">/^ http /</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'see http://x'</span>   ~~ <span class="sr">/^ http /</span>; <span class="c1"># False</span></pre></div>
 
 <p>La seconda stringa contiene <code>http</code>, ma non all’inizio,
@@ -127,12 +127,12 @@ quindi lo schema ancorato fallisce.</p>
 <p>Mettere <code>^</code> e <code>$</code> attorno a uno schema lo
 costringe a riconoscere l’<strong>intera</strong> stringa, senza che
 avanzi nulla da nessuna delle due parti:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'hello'</span>       ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'hello world'</span> ~~ <span class="sr">/^ hello $/</span>; <span class="c1"># False</span></pre></div>
 
 <p>È un modo di dire molto comune per la validazione — «questa stringa è
 esattamente un numero?», per esempio:</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">'2025'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># True</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">'20a5'</span> ~~ <span class="sr">/^ \d+ $/</span>; <span class="c1"># False</span></pre></div>
 
 <h2 id="ancore-di-riga">Ancore di riga</h2>
@@ -142,7 +142,7 @@ riga</strong> invece che dell’intera stringa. La differenza rispetto a
 <code>^</code> e <code>$</code> salta fuori non appena il testo che vuoi
 non è sulla prima riga: le ancore singole vedono solo l’intera stringa e
 falliscono, mentre quelle doppie corrispondono su qualunque riga.</p>
-<div class="highlight raku"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
+<div class="highlight raku runnable"><pre><span></span><span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^  dog  $/</span>;  <span class="c1"># False</span>
 <span class="nb">say</span> <span class="k">so</span> <span class="s">&quot;cat\ndog&quot;</span> ~~ <span class="sr">/^^ dog $$/</span>;  <span class="c1"># True</span></pre></div>
 
 <p>Qui <code>\n</code> inizia una seconda riga. <code>^^</code> richiede
@@ -193,6 +193,7 @@ sezione</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>

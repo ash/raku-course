@@ -65,7 +65,7 @@
     <meta property="og:site_name" content="The Complete Course of the Raku programming language" />
 
     <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/course.css?v=27">
+    <link rel="stylesheet" href="/assets/course.css?v=28">
     
 
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
@@ -115,7 +115,7 @@ href="/paradigms/promises">Promises</a></p>
 common need is to wait for <strong>several</strong> at once.
 <code>await</code> accepts a list of promises and returns their results
 in order:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">@jobs</span> = (<span class="k">start</span> { <span class="mi">1</span> }), (<span class="k">start</span> { <span class="mi">2</span> }), (<span class="k">start</span> { <span class="mi">3</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">@jobs</span>;     <span class="c1"># (1 2 3)</span>
 <span class="nb">say</span> [+] <span class="nb">await</span> <span class="nv">@jobs</span>; <span class="c1"># 6</span></pre></div>
 
@@ -126,7 +126,7 @@ usual.</p>
 <p>You can also chain work onto a promise with <code>.then</code>, which
 runs a follow-up block once the promise is done. Inside it,
 <code>.result</code> is the value of the original promise:</p>
-<div class="highlight raku"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
+<div class="highlight raku runnable"><pre><span></span><span class="k">my</span> <span class="nv">$p</span> = <span class="k">start</span> { <span class="mi">10</span> };
 <span class="k">my</span> <span class="nv">$q</span> = <span class="nv">$p</span>.<span class="n">then</span>({ .<span class="n">result</span> * <span class="mi">2</span> });
 <span class="nb">say</span> <span class="nb">await</span> <span class="nv">$q</span>; <span class="c1"># 20</span></pre></div>
 
@@ -202,6 +202,7 @@ the exercises in this section</a>.</p>
 
     </div>
     <script src="/assets/search.js?v=3" defer></script>
-    <script src="/assets/copy-code.js?v=2" defer></script>
-  </body>
+    <script src="/assets/copy-code.js?v=3" defer></script>
+  <script src="https://raku.online/raku.js" data-selector=".highlight.raku.runnable" defer></script>
+</body>
 </html>
